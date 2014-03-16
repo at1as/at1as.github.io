@@ -1,0 +1,10 @@
+name: "Jason"
+description: "Jason Willems' Blog"
+
+url: "www.jasonwillems.com/"
+
+paginate: 2
+
+markdown: rdiscount
+permalink: pretty
+pygments: true
