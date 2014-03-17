@@ -83,8 +83,15 @@
 &lt;div id=&quot;subheading&quot;&gt;
 	&lt;div id=&quot;blogdatestamp&quot; style=&quot;font-weight:bold;font-family:times;text-align:center;&quot;&gt;&lt;i&gt;08 Mar 2013&lt;/i&gt;&lt;/div&gt;
 	&lt;div id=&quot;blogtext&quot;&gt;
-		I&#39;m updating this post, and it will be back soon!
-		
+		I was introduced to testing &lt;a href=&quot;http://en.wikipedia.org/wiki/Representational_state_transfer&quot;&gt;RESTful APIs&lt;/a&gt; long before I started web development. Perhaps the most indispensable resource available to me was &lt;a href=&quot;http://curl.haxx.se/&quot;&gt;cURL&lt;/a&gt;, which is a command line utility to send and receive data from servers. I&#39;ve since encountered various alternatives, and supersets, however none of them has ever been truly as lightweight and easy to set up, use and understand as cURL.&lt;br /&gt;
+&lt;br /&gt;
+When we test using cURL, we&amp;rsquo;re really performing the same actions our browser is, but we&amp;rsquo;re able to both send and receive data much less ambiguously, more clearly verify the server is operating as expected, and more easily test things like valid data ranges. Removing the layer of abstraction that the webUI introduces (let alone the variation in the way different browsers react to the same data), enables us design and test our APIs much more confidently.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Setup&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+If you&amp;rsquo;re on a Mac or a Linux PC it&amp;rsquo;s as simple as opening terminal and entering the commands we discuss! (also, type &amp;ldquo;man curl&amp;rdquo; for the included user manual) &lt;br /&gt;
+
         
       </description>
       <pubDate>Fri, 08 Mar 2013 00:00:00 -0500</pubDate>
