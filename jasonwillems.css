@@ -15,7 +15,8 @@
 }
 
 #page{
-	align:middle;
+	margin-left:auto;
+	margin-right:auto;
 	background-color:#F3F3F3; 
 	min-height:100%;
 	margin: 0px;
@@ -109,11 +110,18 @@ a:hover{
 #blogtext {
 	font-family: arial;
 	font-size: 17px;
-	padding-left: 100px;
-	padding-right: 100px;
+	padding-left: 150px;
+	padding-right: 150px;
 	padding-top:10px;
 	text-align: left;
 	text-align: justify;
+	color:#444444;
+}
+
+h2 {
+	color: #000000;
+	font-size:18px;
+	font-weight:bold;
 }
 
 #infotext {
@@ -226,15 +234,15 @@ a:hover{
 	}
 
 	h1{
-		font-size:13px;	
+		font-size:14px;	
 		text-align:center;
 		font-family:Arial, Helvetica, sans-serif;
 		font-weight:100;
 		color:white;
 		background:#88AABF;
 		padding:0px;
-		padding-top:10px;
-		padding-bottom:10px;
+		padding-top:9px;
+		padding-bottom:9px;
 		border-radius: 4px;
 		letter-spacing:1px;
 		font-variant: small-caps;
