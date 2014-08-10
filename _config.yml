@@ -7,4 +7,4 @@ paginate: 2
 
 markdown: rdiscount
 permalink: pretty
-pygments: true
+highlighter: pygments
