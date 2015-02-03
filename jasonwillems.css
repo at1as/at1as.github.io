@@ -189,6 +189,12 @@ h2 {
 	background-color: #ff8f00;
 }
 
+.activeHeaderLink {
+  color:#FFF;
+  background-color:#000;
+  border:1px solid #FFF;
+ }
+
 #nav{
 	width:60%;
 	display:inline-block;
@@ -375,7 +381,7 @@ h2 {
 		margin-right: auto;
 
 	}
-	.illustrationSelect:hover{
+	.illustrationSelect:hover {
 		background: #405759;
 	}
 
@@ -401,3 +407,4 @@ h2 {
 	.blogExpand a {
 		font-size:18px;
 	}
+

@@ -32,10 +32,22 @@ layout: default
     </div>
 </div>
 <script>
-document.getElementById('illustrationslink').style.color = "#000000";
-document.getElementById('illustrationslink').style.background = "#FFFFFF";
+  document.getElementById('illustrationslink').className = "activeHeaderLink";
 
-function changeIllustration(illustration){
+  <!-- warning: dangerous code
+  //while(true){
+    if(document.getElementById('illustrationLarge').naturalWidth !== 0) {
+      document.getElementById('homelink').innerHTML = "GOODBYE";
+      console.log("Breaking");
+      break;
+    }
+    document.getElementById('homelink').innerHTML = "HELLO";
+    console.log("Nothing to see here...");
+    //} 
+  -->
+  
+  
+  function changeIllustration(illustration){
     var illustrations = document.getElementsByClassName("illustrationSelect"),
         i = illustrations.length;
 

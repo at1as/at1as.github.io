@@ -12,8 +12,8 @@ layout: default
        <div id="mapdiv"  style="width: 978px; height: 380px; border-radius: 5px; margin-left: auto; margin-right: auto;"></div>
 
        <script type="text/javascript">
-       document.getElementById('travellink').style.color = "#000000";
-       document.getElementById('travellink').style.background = "#FFFFFF";
+       document.getElementById('travellink').className = "activeHeaderLink";
+
 
        var map;
        AmCharts.ready(function() {
@@ -47,7 +47,7 @@ layout: default
             { id: 'LB', showAsSelected: true },
             { id: 'AU', showAsSelected: true },
             { id: 'VA', showAsSelected: true },
-	    { id: 'JP', showAsSelected: true }
+            { id: 'JP', showAsSelected: true }
             ]
         };
 
