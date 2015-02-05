@@ -6,13 +6,13 @@ layout: default
         <div id="body" class="center">
 
 
-            <h1 id="photoTitle">Montreal, Quebec. 2008</h1>
+            <h1 id="photoTitle">Tokyo, Japan. 2014</h1>
             <br>
 
             <div id="subheading" style="margin-left:auto; margin-right:auto; text-align:center">
 
-             <img id="photoLarge" src="/photos/IMG_1109.jpg" width="978" onclick="maximize(this)">
-             <div id="photoLarge-caption">A view from McGill&#39;s McConnell Residence on a rainy day</div>
+             <img id="photoLarge" src="/photos/IMG_2888.jpg" width="978" onclick="maximize(this)">
+             <div id="photoLarge-caption">Shibuya Crossing</div>
 
             </div>
         </div>
@@ -21,14 +21,14 @@ layout: default
   
             <div id="nextimage" class="center" style="height:114px; overflow: scroll; overflow-y:hidden; max-width:1000px; white-space: nowrap; vertical-align:middle;" >
                 
-		            <span class="thumbnailContainer" title="Montreal, Quebec. 2008">
-                    <img src="/photos/IMG_1109-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2008" onclick="changePicture(this)" data-caption="A view from McGill&#39;s McConnell Residence on a rainy day" data-piclarge="/photos/IMG_1109.jpg"/>
+                <span class="thumbnailContainer" title="Tokyo, Japan. 2014">
+                    <img src="/photos/IMG_2888-small.jpg" class="gallery-landscape" width="128" height="96" alt="Tokyo, Japan. 2014" onclick="changePicture(this)" data-caption="Shibuya Crossing" data-piclarge="/photos/IMG_2888.jpg"/>
                 </span>
                 <span class="thumbnailContainer" title="Kyoto, Japan. 2014">
                     <img src="/photos/IMG_2969-small.jpg" class="gallery-portrait" width="128" height="96" alt="Kyoto, Japan. 2014" onclick="changePicture(this)" data-caption="Kyoto at Night" data-piclarge="/photos/IMG_2969.jpg"/>
                 </span>
-                <span class="thumbnailContainer" title="Tokyo, Japan. 2014">
-                    <img src="/photos/IMG_2888-small.jpg" class="gallery-landscape" width="128" height="96" alt="Tokyo, Japan. 2014" onclick="changePicture(this)" data-caption="Shibuya Crossing" data-piclarge="/photos/IMG_2888.jpg"/>
+		            <span class="thumbnailContainer" title="Montreal, Quebec. 2008">
+                    <img src="/photos/IMG_1109-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2008" onclick="changePicture(this)" data-caption="A view from McGill&#39;s McConnell Residence on a rainy day" data-piclarge="/photos/IMG_1109.jpg"/>
                 </span>
                 <span class="thumbnailContainer" title="Oakville, Ontario. 2008">
                     <img src="/photos/IMG_0862-small.jpg" class="gallery-landscape" width="128" height="96" alt="Oakville, Ontario. 2008" onclick="changePicture(this)" data-caption="A rainy day in Oakville" data-piclarge="/photos/IMG_0862.jpg"/>
@@ -72,17 +72,21 @@ layout: default
   // Enter theatre mode
   function maximize(picture) {
 
-    img_full = document.createElement("IFRAME");
+    img_full = document.createElement("img");
     img_full.id = "img_full";
     img_full.setAttribute("src", picture.src);
     img_full.style.zIndex="10";
-    img_full.style.height = picture.height+15+"px";
-    img_full.style.width = picture.width+"px";
+    img_full.style.maxHeight = "100%";
+    //img_full.style.maxWidth = "100%";
     img_full.style.marginLeft = "auto";
     img_full.style.marginRight = "auto";
     img_full.className = "centered";
+    img_container = document.createElement("div");
+    img_container.appendChild(img_full);
+    img_container.style.maxHeight = "95%";
+    
     document.getElementById('backdrop').style.display = '';
-    document.body.appendChild(img_full); 
+    document.body.appendChild(img_container); 
   }
 
   // Exit theatre mode
@@ -107,13 +111,17 @@ layout: default
       if (index < range - 1) {
         var next_image = img_thumbnails[index+1].children[0];
         changePicture(next_image);
-        document.getElementById("nextimage").scrollLeft += navbar_scroll();
+        if (!theatre_mode()) {
+          document.getElementById("nextimage").scrollLeft += navbar_scroll();
+        }  
       }
     } else if (direction==="left") {
       if (index > 0) {
         var previous_image = img_thumbnails[index-1].children[0];
         changePicture(previous_image);
-        document.getElementById("nextimage").scrollLeft += (-1) * navbar_scroll(); 
+        if (!theatre_mode()) {
+          document.getElementById("nextimage").scrollLeft += (-1) * navbar_scroll(); 
+        }
       }
     }
   }
@@ -153,8 +161,9 @@ layout: default
       (img_full = document.getElementById("img_full")).src = thumbnail.dataset.piclarge;
       
       document.getElementById("img_full").onload = function() {
-        img_full.style.height = img_full.naturalHeight+"px";
-        img_full.style.width = img_full.naturalWidth+"px";
+        document.getElementById("img_container").width = img_full.naturalHeight+"px";
+        //img_full.style.height = img_full.naturalHeight+"px";
+        //img_full.style.width = img_full.naturalWidth+"px";
         //document.getElementById("photoLarge-caption").innerHTML = thumbnail.dataset.caption;
       }
     } else {
