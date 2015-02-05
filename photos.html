@@ -61,8 +61,9 @@ layout: default
 </div>
 <script>
 
-  var spinner_exists = false;
   var spinner = new Spinner({length: 30, width: 8});
+  var target = document.getElementById('subheading');
+
 
   // Update style of "Photos" link in header
   document.getElementById('photoslink').className = "activeHeaderLink";
@@ -178,27 +179,15 @@ layout: default
     }
   }
 
-  // Add a spinner icon
-  function add_spinner(){
+  // Start spinner animation
+  function start_spinner(){
     var target = document.getElementById('subheading');
     spinner.spin(target);
-    spinner_exists = true;
   }
 
-  // Resume spin animation
-  function start_spinner(){
-    if (spinner_exists) {
-      spinner.spin();
-    } else {
-      add_spinner();
-    };
-  }
-
-  // Halt spin animation
+  // Halt spinner animation
   function stop_spinner(){
-    if (spinner_exists) {
-      spinner.stop();
-    }
+    spinner.stop();
   }
 
   // Key press listener

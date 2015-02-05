@@ -34,22 +34,12 @@ layout: default
 <script>
   document.getElementById('illustrationslink').className = "activeHeaderLink";
 
-  <!-- warning: dangerous code
-  //while(true){
-    if(document.getElementById('illustrationLarge').naturalWidth !== 0) {
-      document.getElementById('homelink').innerHTML = "GOODBYE";
-      console.log("Breaking");
-      break;
-    }
-    document.getElementById('homelink').innerHTML = "HELLO";
-    console.log("Nothing to see here...");
-    //} 
-  -->
-  
-  
+  var spinner = new Spinner({length: 30, width: 8});
+  var target = document.getElementById('subheading');
+
   function changeIllustration(illustration){
-    var illustrations = document.getElementsByClassName("illustrationSelect"),
-        i = illustrations.length;
+    var illustrations = document.getElementsByClassName("illustrationSelect");
+    var i = illustrations.length;
 
     while(i--) {
         illustrations[i].style.backgroundColor = "#88AABF";
@@ -59,9 +49,24 @@ layout: default
     
     document.getElementById("illustrationTitle").innerHTML = illustration.dataset.heading;
     document.getElementById("illustrationLarge").src = illustration.title;
-    
+    start_spinner();
+
+    document.getElementById("illustrationLarge").onload = function() {
+      stop_spinner();
+    }
+
     window.scrollTo(0,document.getElementById("body").offsetTop);
-}
+  }
+
+  // Start a spinner animation
+  function start_spinner(){
+    spinner.spin(target);
+  }
+
+  // Halt spinner animation
+  function stop_spinner(){
+    spinner.stop();
+  }
 
 </script>
 </body>
