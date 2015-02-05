@@ -11,7 +11,7 @@ layout: default
 
             <div id="subheading" style="margin-left:auto; margin-right:auto; text-align:center">
 
-             <img id="photoLarge" src="/photos/IMG_1109.jpg" width="978" >
+             <img id="photoLarge" src="/photos/IMG_1109.jpg" width="978" onclick="maximize(this)">
              <div id="photoLarge-caption">A view from McGill&#39;s McConnell Residence on a rainy day</div>
 
             </div>
@@ -21,7 +21,7 @@ layout: default
   
             <div id="nextimage" class="center" style="height:114px; overflow: scroll; overflow-y:hidden; max-width:1000px; white-space: nowrap; vertical-align:middle;" >
                 
-		<span class="thumbnailContainer" title="Montreal, Quebec. 2008">
+		            <span class="thumbnailContainer" title="Montreal, Quebec. 2008">
                     <img src="/photos/IMG_1109-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2008" onclick="changePicture(this)" data-caption="A view from McGill&#39;s McConnell Residence on a rainy day" data-piclarge="/photos/IMG_1109.jpg"/>
                 </span>
                 <span class="thumbnailContainer" title="Kyoto, Japan. 2014">
@@ -56,25 +56,164 @@ layout: default
 
 </div>
 
+<div id="backdrop" style="display:none" onclick="minimize()"></div>
+
 </div>
 <script>
+
+  var spinner_exists = false;
+  var spinner = new Spinner({length: 30, width: 8});
+
+  // Update style of "Photos" link in header
   document.getElementById('photoslink').className = "activeHeaderLink";
 
-function changePicture(thumbnail) {
-    if (thumbnail.className == "gallery-landscape") {
+
+  // Enter theatre mode
+  function maximize(picture) {
+
+    img_full = document.createElement("IFRAME");
+    img_full.id = "img_full";
+    img_full.setAttribute("src", picture.src);
+    img_full.style.zIndex="10";
+    img_full.style.height = picture.height+15+"px";
+    img_full.style.width = picture.width+"px";
+    img_full.style.marginLeft = "auto";
+    img_full.style.marginRight = "auto";
+    img_full.className = "centered";
+    document.getElementById('backdrop').style.display = '';
+    document.body.appendChild(img_full); 
+  }
+
+  // Exit theatre mode
+  function minimize() {
+    if(document.getElementById('img_full') !== null) {
+      (img_full=document.getElementById('img_full')).parentNode.removeChild(img_full);
+    }
+    document.getElementById('backdrop').style.display = 'none';
+  }
+
+  // Currently in theatre mode?
+  function theatre_mode() {
+    return document.getElementById('backdrop').style.display === '';
+  }
+
+  function scroll_photo(direction) {
+    var index = get_photo_index();
+    var range = get_photo_range();
+    var img_thumbnails = document.getElementById('nextimage').children;
+
+    if (direction==="right"){
+      if (index < range - 1) {
+        var next_image = img_thumbnails[index+1].children[0];
+        changePicture(next_image);
+        document.getElementById("nextimage").scrollLeft += navbar_scroll();
+      }
+    } else if (direction==="left") {
+      if (index > 0) {
+        var previous_image = img_thumbnails[index-1].children[0];
+        changePicture(previous_image);
+        document.getElementById("nextimage").scrollLeft += (-1) * navbar_scroll(); 
+      }
+    }
+  }
+
+  // Amount of photos
+  function get_photo_range() {
+    return document.getElementById('nextimage').children.length;
+  }
+
+  // Index of current photo
+  function get_photo_index(){
+    var photo_name = '';
+    if (theatre_mode()) {
+      photo_name = document.getElementById('img_full').src.split("/").pop().split(".")[0]; 
+    } else {
+      photo_name = document.getElementById("photoLarge").src.split("/").pop().split(".")[0];
+    }
+    var img_spans = document.getElementById('nextimage').children;
+    var counter = 0;
+    for(var i=0; i<img_spans.length; i++) {
+      if (img_spans[i].children[0].src.indexOf(photo_name) !== -1){
+        return counter;
+        break;
+      }
+      counter++;
+    }
+  }
+
+  function navbar_scroll() {
+    // TODO. Find index of previous thumbnail and scroll viewer by that many pixels
+    return 128 + 1;
+  }
+
+  // Image change via thumbnail selector
+  function changePicture(thumbnail) {
+    if (theatre_mode()) {
+      (img_full = document.getElementById("img_full")).src = thumbnail.dataset.piclarge;
+      
+      document.getElementById("img_full").onload = function() {
+        img_full.style.height = img_full.naturalHeight+"px";
+        img_full.style.width = img_full.naturalWidth+"px";
+        //document.getElementById("photoLarge-caption").innerHTML = thumbnail.dataset.caption;
+      }
+    } else {
+      if (thumbnail.className === "gallery-landscape") {
         document.getElementById("photoLarge").style.width = "978px";
-    }
-    else if (thumbnail.className == "gallery-portrait") {
+      }
+      else if (thumbnail.className === "gallery-portrait") {
         document.getElementById("photoLarge").style.width = "500px";
+      } 
+
+      document.getElementById("photoLarge").src = thumbnail.dataset.piclarge;
+      start_spinner();
+
+      // Scroll to top of image on load
+      document.getElementById("photoLarge").onload = function() {
+        stop_spinner();
+        window.scrollTo(0, document.getElementById("body").offsetTop); 
+      }
+      
+      document.getElementById("photoLarge-caption").innerHTML = thumbnail.dataset.caption;
+      document.getElementById("photoTitle").innerHTML = thumbnail.alt;
     }
+  }
 
-    document.getElementById("photoLarge").src = thumbnail.dataset.piclarge;
-    document.getElementById("photoLarge-caption").innerHTML = thumbnail.dataset.caption;
-    document.getElementById("photoTitle").innerHTML = thumbnail.alt;
+  // Add a spinner icon
+  function add_spinner(){
+    var target = document.getElementById('subheading');
+    spinner.spin(target);
+    spinner_exists = true;
+  }
 
-    window.scrollTo(0,document.getElementById("body").offsetTop);
+  // Resume spin animation
+  function start_spinner(){
+    if (spinner_exists) {
+      spinner.spin();
+    } else {
+      add_spinner();
+    };
+  }
 
-}
+  // Halt spin animation
+  function stop_spinner(){
+    if (spinner_exists) {
+      spinner.stop();
+    }
+  }
+
+  // Key press listener
+  window.onkeydown = function (e) {
+    var code = e.keyCode ? e.keyCode : e.which;
+    if (code === 27) { //escape key
+      minimize();
+    } else if (code === 37) {
+      scroll_photo("left");
+    } else if (code === 39) {
+      scroll_photo("right");
+    }
+  }
+  
+
 </script>
 </body>
 </html>
