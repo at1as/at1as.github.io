@@ -1,118 +1,135 @@
 ---
 layout: blog
-title: "A Primer on cURL"
+title: "A Primer on Using cURL"
 tags:
 - technical
 - curl
 ---
-<h1>{{ page.title }}</h1><br>
+<h1>{{ page.title }}</h1>
 
 <div id="subheading">
-	<div id="blogdatestamp" style="font-weight:bold;font-family:times;text-align:center;"><i>{{ page.date | date_to_string }}</i></div>
-	<div id="blogtext">
-		I was introduced to testing <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful APIs</a> long before I started web development. Perhaps the most indispensable resource available to me was <a href="http://curl.haxx.se/">cURL</a>, which is a command line utility to send and receive data from servers. I've since encountered various alternatives, and supersets, however none of them has ever been truly as lightweight and easy to set up, use and understand as cURL.<br />
-		<br />
-		When we test using cURL, we&rsquo;re really performing the same actions our browser is, but we&rsquo;re able to both send and receive data much less ambiguously, more clearly verify the server is operating as expected, and more easily test things like valid data ranges. Removing the layer of abstraction that the webUI introduces (let alone the variation in the way different browsers react to the same data), enables us design and test our APIs much more confidently.<br />
-		<br />
-		<br />
-		<h2>Setup</h2><br />
-		If you&rsquo;re on a Mac or a Linux PC it&rsquo;s as simple as opening terminal and entering the commands we discuss! (also, type &ldquo;man curl&rdquo; for the included user manual) <br />
-		<!--more-->
-		<br/>
-		<img src="/blog-assets/curl-manual.png" style="margin-left:auto;margin-right:auto;width:100%;">
-		<br />
-		<br />
-		<br />
-		<h2>HTTP Requests</h2><br />
-		Most RESTful APIs use four main HTTP methods to interact with the server: GET, PUT, POST &amp; DELETE:&#8232;<br />
-		<ul style="margin-left:45px">
-			<li><b>GET</b> is used to retrieve content, without making any modifications to it&#8232;</li>
-			<li><b>POST</b> and <b>PUT</b> are used to create or update resources. There are subtle differences between them (generally a POST is used to update and element, or add to a queue, while a PUT is used to create or replace an element), but it depends somewhat on the program architecture. In this case, simply follow the API Documentation of whatever you're testing for guidance on which to use when.</li>
-			<li><b>DELETE</b> is used to remove a resource</li><br />
-		</ul>
-		At this point, our request might look something like (ignore the prepending &ldquo;X&rdquo;, which we&rsquo;ll go over in the next section):<br />
-		<br />
-		<span style="color:blue;">
+  <div class="blogDateStamp">
+    {{ page.date | date_to_string }}
+  </div>
+
+  <div id="blogtext">
+
+    <div class="textBlock">
+      I was introduced to testing <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful APIs</a> long before I started web development. Perhaps the most indispensable resource available to me was <a href="http://curl.haxx.se/">cURL</a>, which is a command line utility to send and receive data from servers. I've since encountered various alternatives, and supersets, however none of them has ever been truly as lightweight and easy to set up, use and understand as cURL.
+    </div>
+
+    <div class="textBlock">
+      When we test using cURL, we&rsquo;re really performing the same actions our browser is, but we&rsquo;re able to both send and receive data much less ambiguously, more clearly verify the server is operating as expected, and more easily test things like valid data ranges. Removing the layer of abstraction that the webUI introduces (let alone the variation in the way different browsers react to the same data), enables us design and test our APIs much more confidently.
+    </div>
+
+
+    <h2>Setup</h2>
+
+    <div class="textBlock">
+      If you&rsquo;re on a Mac or a Linux PC it&rsquo;s as simple as opening terminal and entering the commands we discuss! (also, type &ldquo;man curl&rdquo; for the included user manual)
+    </div>
+
+    <!--more-->
+
+		<img class="blogImage" src="/blog-assets/curl-manual.png">
+
+		<h2>HTTP Requests</h2>
+    
+    <div class="textBlock">
+      Most RESTful APIs use four main HTTP methods to interact with the server: GET, PUT, POST &amp; DELETE:&#8232;
+		  <ul class="blogList">
+			  <li><b>GET</b> is used to retrieve content, without making any modifications to it&#8232;</li>
+			  <li><b>POST</b> and <b>PUT</b> are used to create or update resources. There are subtle differences between them (generally a POST is used to update and element, or add to a queue, while a PUT is used to create or replace an element), but it depends somewhat on the program architecture. In this case, simply follow the API Documentation of whatever you're testing for guidance on which to use when.
+			  <li><b>DELETE</b> is used to remove a resource</li>
+      </ul>
+    </div>
+
+    <div class="textBlock">
+		  At this point, our request might look something like (ignore the prepending &ldquo;X&rdquo;, which we&rsquo;ll go over in the next section):
+    </div>
+   
+    <div class="blogCodeSnippet">
 			{% highlight bash shell script %}
 curl -X GET www.jasonwillems.com
 curl -X POST www.jasonwillems.com/api/<resouce-to-update>
 			{% endhighlight %}
-		</span>
-		<br />
-		<h2>cURL Request Flags</h2><br />
-		In order for our cURL requests to become more powerful, we need to use flags in order to pass important pieces of information. There are many more flags than we&rsquo;ll cover here, but here are a few of the important ones:
-		<br /><br />
-		<ul style="margin-left:45px;">
+		</div>
+
+		<h2>cURL Request Flags</h2>
+    
+    <div class="textBlock">
+      In order for our cURL requests to become more powerful, we need to use flags in order to pass important pieces of information. There are many more flags than we&rsquo;ll cover here, but here are a few of the important ones:
+    </div>
+    
+    <ul class="blogList">
 			<li>
-				The <b>&ldquo;-X&rdquo; flag</b> is to override the default curl call (a GET). cURL can be used without it, but it the call must be appended with &ldquo;-X <PUT/POST/DELETE>&rdquo; for any of these requests. </li>
-				<br />
-				<span style="display:inline-block;color:blue;">
+        The <b>&ldquo;-X&rdquo; flag</b> is to override the default curl call (a GET). cURL can be used without it, but it the call must be appended with &ldquo;-X <PUT/POST/DELETE>&rdquo; for any of these requests. 
+        </li>
+
+				<div class="blogCodeSnippet">
 					{% highlight bash shell script %}
 curl -X DELETE www.jasonwillems.com/api/<resource-to-delete>
 					{% endhighlight %}
-				</span>
-				<br />
-				<br />
-				<li>
+				</div>
+        
+        <li>
 					The <b>&ldquo;-H&rdquo; flag</b> is to send a header with the request. Headers will be read first by the server and often specify initial information such as the Cookies for the current session, or the content type. <br />
 				</li>
-				<br />
-				<span style="display:inline-block;color:blue;">
+        
+        <div class="blogCodeSnippet">
 					{% highlight bash shell script %}
 curl -X GET www.jasonwillems.com 
 	-H "Content-Type: application/xml"
 					{% endhighlight %}
-				</span>
-				<br />
-				<br />
-				<li>
+				</div>
+        
+        <li>
 					The <b>&ldquo;-d&rdquo; flag</b> is to add data to the request, the same way a browser would send a completed web-form when the user clicks &ldquo;Submit&rdquo;. This flag is required for POST and PUT requests only. <br />
 				</li>
-				<br />
-				<span style="display:inline-block;color:blue;">
+        
+				<div class="blogCodeSnippet">
 					{% highlight bash shell script %}
 curl -X POST www.jasonwillems.com/api/login 
 	 -d "{'username':'jason','password':'letmein!'}"
 					{% endhighlight %}
-				</span>
-				<br />
-				<br/>
-				<li>
+				</div>
+        
+        <li>
 					The <b>&ldquo;-k&rdquo; flag</b> is the same as the &ldquo;--insecure&rdquo; flag, which will drop any prompts generated regarding the SSL license signing authority. This flag is necessary for all requests. <br />
 				</li>
-				<br />
-				<span style="display:inline-block;color:blue;">
+        
+				<div class="blogCodeSnippet">
 					{% highlight bash shell script %}
 curl -X GET https://www.jasonwillems.com -k
 					{% endhighlight %}
-				</span>
-				<br />
-				<br/>
-				<li>
+				</div>
+        
+        <li>
 					The <b>&ldquo;-v&rdquo; flag</b> specifies a verbose response. This will necessarily include not only the response, but also the header values returned, such as the HTTP status code (ex. 200 OK, 401 Not Authorized, etc). It is recommended to always provide this flag.<br />
 				</li>
-				<br />
-				<span style="display:inline-block;color:blue;">
+        
+        <div class="blogCodeSnippet">
 					{% highlight bash shell script %}
 curl -X GET www.jasonwillems.com -v
 					{% endhighlight %}
-				</span>
+				</div>
 			</ul>
-			<br />
-			<br />
-			<h2>Headers</h2><br />
-			The format in which cURL requests are sent is the following (note that the order in which the arguments are presented does not matter, however ensuring the argument pertaining to a flag directly follows that flag, is important):<br />
-			<br/>
-			<span style="isplay:inline-block;color:blue;padding-left:5px;">
-				{% highlight bash shell script %}
+
+      <h2>Headers</h2>
+      
+      <div class="textBlock">
+      The format in which cURL requests are sent is the following (note that the order in which the arguments are presented does not matter, however ensuring the argument pertaining to a flag directly follows that flag, is important):<br />
+        <span style="isplay:inline-block;color:blue;padding-left:5px;">
+          {% highlight bash shell script %}
 curl https://<ipaddress>/<URN> -X <PUT/POST/GET/DELETE> -H <header> 
 	-d <data> -k -v
-				{% endhighlight %}
-			</span>
-			<br />
+          {% endhighlight %}
+        </span>
+
+      </div>
 			<a href="http://en.wikipedia.org/wiki/List_of_HTTP_header_fields">Headers</a> provide necessary information which defines the browser environment (such as passing the type of browser you're using, so the server can pass you different content depending on this), and they're also useful for both the server and client to define what format the information they're sending and willing to receive should be in. Let's see a few common headers:<br/>
 			<br/>
-			<span style="display:inline-block;color:blue;">
+			<span class="blogCodeSnippet" style="display:inline-block;">
 				{% highlight bash shell script %}
 -H "Content-type: application/json"
 -H "Accept-Encoding: gzip, deflate"
@@ -120,26 +137,28 @@ curl https://<ipaddress>/<URN> -X <PUT/POST/GET/DELETE> -H <header>
 -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;)"
 				{% endhighlight %}
 			</span>
-			<br />
-			<br />
-			<h2>Tools</h2><br />
-			The the tools that best illustrate these points are the console&rsquo;s included in your browser (and I&rsquo;d highly recommend looking at <a href="https://getfirebug.com/">FireBug</a> for Firefox, which is my personal favourite). Open up the console and you&rsquo;ll be able to see every request your browser makes, the data included in the request, and the response from the server. Perhaps the nicest feature, is the recently added ability to copy the request to the clipboard as cURL request.<br />
-			<br/>
-			<img src="/blog-assets/firebug-basic.png" style="width:100%">
-			<br />
-			<br />
-			<br />
-			<h2>Going Further</h2><br />
-			In essence, every time you&rsquo;re on the internet the communication your browser and the server can be broken down into cURL requests like above. But, as a decades old piece of software, cURL does have its limitations.&#8232;<br /><br />
-			<ul style="margin-left:45px;">
-				<li>Responses can be returned with various formatting: xml, html, json, text, or something else entirely. cURL won&rsquo;t understand the proper way to display these to you, and things can get messy.</li>
-				<li>Modern websites will often use authentication protocols like digest, oAuth, or oAuth2. The authentication process for these isn&rsquo;t a straightforward process and cURL has never scaled well to meet these demands.</li>
-			</ul><br />
-			To go further, check out the built in Node.js <a href="http://nodejs.org/api/http.html">HTTP module</a>, Python&rsquo;s <a href="http://pycurl.sourceforge.net/">PycURL</a>, Ruby&rsquo;s <a href="https://github.com/typhoeus/typhoeus">Typhoeus</a>, and many others, most of which simply wrap cURL (but have added the logic needed for some of its limitations).
+      
+      <h2>Tools</h2>
 
-			<br/>
-			<br/>
-			<br/>
+      <div class="textBlock">
+        The the tools that best illustrate these points are the console&rsquo;s included in your browser (and I&rsquo;d highly recommend looking at <a href="https://getfirebug.com/">FireBug</a> for Firefox, which is my personal favourite). Open up the console and you&rsquo;ll be able to see every request your browser makes, the data included in the request, and the response from the server. Perhaps the nicest feature, is the recently added ability to copy the request to the clipboard as cURL request.
+      </div>
+        
+      <img class="blogImage" src="/blog-assets/firebug-basic.png">
+
+			<h2>Going Further</h2>
+      
+      <div class="textBlock">
+        In essence, every time you&rsquo;re on the internet the communication your browser and the server can be broken down into cURL requests like above. But, as a decades old piece of software, cURL does have its limitations.&#8232;
+        <ul class="blogList">
+          <li>Responses can be returned with various formatting: xml, html, json, text, or something else entirely. cURL won&rsquo;t understand the proper way to display these to you, and things can get messy.</li>
+          <li>Modern websites will often use authentication protocols like digest, oAuth, or oAuth2. The authentication process for these isn&rsquo;t a straightforward process and cURL has never scaled well to meet these demands.</li>
+        </ul>
+      </div>
+
+      <div class="textBlock">
+        To go further, check out the built in Node.js <a href="http://nodejs.org/api/http.html">HTTP module</a>, Python&rsquo;s <a href="http://pycurl.sourceforge.net/">PycURL</a>, Ruby&rsquo;s <a href="https://github.com/typhoeus/typhoeus">Typhoeus</a>, and many others, most of which simply wrap cURL (but have added the logic needed for some of its limitations).
+      </div>
 
 
 			<div id="disqus_thread"></div>
