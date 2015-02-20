@@ -1,40 +1,56 @@
 ---
-title: Jason's Blog
-layout: blog
+layout: default
 ---
 
-{% for post in paginator.posts %}         
+    <div id="middle" class="center">
+        <div id="body"  class="center">
 
-{% if post.content contains '<!--more-->' %}
-{{ post.content | split:'<!--more-->' | first }}
-<span class="blogExpand">
-  <a href="{{ post.url }}">Read More...</a>
-</span>
-{% else %}
-{{ post.content }}
-{% endif %}
+        	<h1> More About Me Here </h1>
+            <div id="subbody" class="indentlink" style="width:980px; margin-left:auto;margin-right:auto; text-align:center;">
 
-</div>
-</div>
-<br/><br/><br/>
-{% endfor %}
-</div>
+                <div style="display:inline-block; margin-top:70px; margin-bottom:80px; margin-left:auto; margin-right:auto; width:100%">
+                  <ul>
+                    <li style="display:inline-block; padding-left:20px; padding-right:20px; vertical-align:middle;">
+                      <a href="https://ca.linkedin.com/in/jasonmwillems" style="display:block; border-radius:5px;">
+                        <i class="fa fa-linkedin fa-3x" style="padding-left:5px; padding-right:5px"></i>
+                      </a>
+                    </li>
+                    
+                    <li style="display:inline-block; padding-left:20px; padding-right:20px; vertical-align:middle;">
+                      <a href="https://twitter.com/jasonwillems" style="display:block; border-radius:5px;">
+                        <i class="fa fa-twitter fa-3x" style="padding-left:5px; padding-right:5px;"></i>
+                      </a>
+                    </li>
+                    
+                    <li style="display:inline-block; padding-left:20px; padding-right:20px; vertical-align:middle;">
+                      <a href="https://github.com/at1as" style="display:block; border-radius:5px;">
+                        <i class="fa fa-github fa-3x" style="padding-left:5px; padding-right:5px;"></i>
+                      </a>
+                    </li>
+                    
+                    <li style="display:inline-block; padding-left:20px; padding-right:20px; vertical-align:middle;">
+                      <a href="https://gist.github.com/at1as" style="display:block; border-radius:5px;">
+                        <i class="fa fa-github-alt fa-3x" style="padding-left:5px; padding-right:5px;"></i>
+                      </a>
+                    </li>
+                  </ul>  
+                </div>
+            
+            </div>
+        </div>
+    
 
+        </div>
 
-
-<div id="navigationBar"  class="center">
-  <div id="nextimage" class="center" style="text-align:center; margin-left:auto; margin-right: auto; width:100%; vertical-align:middle;">
-    <div class="pagination" style="text-align:center; margin-left:auto; margin-right: auto;">
-      {% if paginator.next_page %}
-      <a class="blogSelect" href="/page{{paginator.next_page}}" style="float:left"><< Prev</a>
-      {% endif %}
-      {% if paginator.previous_page %}
-      {% if paginator.page == 2 %}
-      <a class="blogSelect" href="/" style="float:right">Next >></a>
-      {% else %}
-      <a class="blogSelect" href="/page{{paginator.previous_page}}" style="float:right">Next >></a>
-      {% endif %}
-      {% endif %}
     </div>
-  </div>
+    
+    <div id="footer" class="center">
+     <a href="mailto:hello@jasonwillems.com?subject=sayhello">Site Design by Jason Willems</a>
+ </div>
+
 </div>
+<script>
+        document.getElementById('homelink').className = "activeHeaderLink";
+</script>
+</body>
+</html>

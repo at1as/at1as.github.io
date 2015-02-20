@@ -1,9 +1,10 @@
 name: "Jason"
 description: "Jason Willems' Blog"
 
-url: "www.jasonwillems.com"
+url: "www.jasonwillems.com/blog"
 
 paginate: 2
+paginate_path: /blog/page:num
 
 markdown: rdiscount
 permalink: pretty
