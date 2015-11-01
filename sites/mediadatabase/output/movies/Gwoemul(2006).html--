@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Local Movie Database</title>
+    <link href="../../_resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../_resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="../../_resources/css/common.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body role="document">
+
+    <div class="container theme-showcase" role="main" style="margin:0px; padding:0px;">
+      <div id="title_content" class="jumbotron">
+        <span style="vertical-align:top">
+          <a href="../images/The Host (2006).png">
+            <img data-src="holder.js/200x200" class="img-thumbnail title-image" alt="200x200" src="../images/The Host (2006).png">
+          </a>
+        </span>
+        <span id="title-header">
+
+          <h2> Gwoemul (2006) </h2>
+
+          <div>
+            <span id="star">&#9733; </span>
+            <h4 id="item-rating"><b> 7.0 / 10</b> (58,778 votes) </h4>
+          </div>
+
+          <div style="margin-left:10px">
+            <h5>
+              <span id="item-content-rating">
+                14A
+              </span> &mdash;
+              <span id="item-running-time">119 min</span> &mdash;
+              <span style="margin-left:10px">
+                 <span style="margin-right:10px">Action</span>  <span style="margin-right:10px">Horror</span>  <span style="margin-right:10px">Sci-Fi</span> </h5>
+              </span>
+          </div>
+
+          <h4 style="padding-top:10px">Cast:</h4>
+          <div style="margin-left:10px">
+            
+              <h5 style="font-weight:400"> Kang-ho Song </h5>
+            
+              <h5 style="font-weight:400"> Hie-bong Byeon </h5>
+            
+              <h5 style="font-weight:400"> Hae-il Park </h5>
+            
+          </div>
+
+          <h4 style="padding-top:10px">Languages:</h4>
+          <div style="margin-left:10px;">
+            
+              <h5 class="title-language"> Korean </h5>
+            
+              <h5 class="title-language"> English </h5>
+            
+          </div>
+        </span>
+        <hr>
+        
+        
+        
+        <div id="item-description">
+          <p> A monster emerges from Seoul's Han River and focuses its attention on attacking people. One victim's loving family does what it can to rescue her from its clutches. </p>
+        </div>
+        <p id="title-url"><a href="http://www.imdb.com/title/tt0468492/?ref_=fn_al_tt_1" target="_blank">Go to IMDB</a></p>
+        <div id="data-retrieved">
+          Data Retrieved: 2014-11-28
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

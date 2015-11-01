@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Local Movie Database</title>
+    <link href="../../_resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../_resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="../../_resources/css/common.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body role="document">
+
+    <div class="container theme-showcase" role="main" style="margin:0px; padding:0px;">
+      <div id="title_content" class="jumbotron">
+        <span style="vertical-align:top">
+          <a href="../images/Musa (2001).png">
+            <img data-src="holder.js/200x200" class="img-thumbnail title-image" alt="200x200" src="../images/Musa (2001).png">
+          </a>
+        </span>
+        <span id="title-header">
+
+          <h2> Miss USA 2005 (2005) </h2>
+
+          <div>
+            <span id="star">&#9733; </span>
+            <h4 id="item-rating"><b>  / 10</b> ( votes) </h4>
+          </div>
+
+          <div style="margin-left:10px">
+            <h5>
+              <span id="item-content-rating">
+                
+              </span> &mdash;
+              <span id="item-running-time"></span> &mdash;
+              <span style="margin-left:10px">
+                </h5>
+              </span>
+          </div>
+
+          <h4 style="padding-top:10px">Cast:</h4>
+          <div style="margin-left:10px">
+            
+          </div>
+
+          <h4 style="padding-top:10px">Languages:</h4>
+          <div style="margin-left:10px;">
+            
+              <h5 class="title-language"> English </h5>
+            
+          </div>
+        </span>
+        <hr>
+        
+        
+          
+        
+        
+        <div id="item-description">
+          <p> Add a Plot </p>
+        </div>
+        <p id="title-url"><a href="http://www.imdb.com/title/tt0462431/?ref_=fn_al_tt_1" target="_blank">Go to IMDB</a></p>
+        <div id="data-retrieved">
+          Data Retrieved: 2015-08-13
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

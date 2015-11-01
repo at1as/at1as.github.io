@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color:#EEE">
+  <head>
+    <title>Local Movie Database</title>
+    <link href="../../_resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../_resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="../../_resources/css/common.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body role="document">
+
+    <div class="container theme-showcase" role="main" style="margin:0px; padding:0px;">
+      <div id="title_content" class="jumbotron">
+        <span style="vertical-align:top">
+          <a href="../images/Attack on Titan (2015).png">
+            <img data-src="holder.js/200x200" class="img-thumbnail title-image" alt="200x200" src="../images/Attack on Titan (2015).png">
+          </a>
+        </span>
+        <span id="title-header">
+
+          <h2> Attack on Titan Crimson Bow and Arrow (2014) </h2>
+
+          <div>
+            <span id="star">&#9733; </span>
+            <h4 id="item-rating"><b>  / 10</b> ( votes) </h4>
+          </div>
+
+          <div style="margin-left:10px">
+            <h5>
+              <span id="item-content-rating">
+                7
+              </span> &mdash;
+              <span id="item-running-time"></span> &mdash;
+              <span style="margin-left:10px">
+                </h5>
+              </span>
+          </div>
+
+          <h4 style="padding-top:10px">Cast:</h4>
+          <div style="margin-left:10px">
+            
+          </div>
+
+          <h4 style="padding-top:10px">Languages:</h4>
+          <div style="margin-left:10px;">
+            
+              <h5 class="title-language"> Japanese </h5>
+            
+          </div>
+        </span>
+        <hr>
+        
+        
+          
+        
+        
+        <div id="item-description">
+          <p> In a dystopian world, a young man vows to eliminate the giant humanoid creatures that threatens the remnants of humanity. </p>
+        </div>
+        <p id="title-url"><a href="http://www.imdb.com/title/tt3646944/?ref_=fn_al_tt_2" target="_blank">Go to IMDB</a></p>
+        <div id="data-retrieved">
+          Data Retrieved: 2015-10-25
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

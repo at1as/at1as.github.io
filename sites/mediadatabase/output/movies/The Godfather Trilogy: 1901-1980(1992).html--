@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Local Movie Database</title>
+    <link href="../../_resources/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../_resources/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body role="document">
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">List of Content <span class="badge">916</span></a></li>
+            <li><a href="../about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container theme-showcase" role="main" style="margin-top:80px;margin-left: auto; margin-right:auto;">
+      <div id="movie_content" class="jumbotron" style="width:800px; margin-left:auto; margin-right:auto; padding:20px;">
+        <span style="vertical-align:top">
+          <a href="../images/The Godfather Trilogy.png">
+            <img style="width: 200px; height: 300px; vertical-align:top; margin-top:25px" data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="../images/The Godfather Trilogy.png">
+          </a>
+        </span>
+        <span style="display:inline-block; padding-left:30px; width:70%">
+
+          <h2> The Godfather Trilogy: 1901-1980 (1992) </h2>
+
+          <div>
+            <span style="display:inline-block; color:orange; font-size:30px; margin-left:10px;">&#9733; </span>
+            <h4 style="display:inline-block"><b> 9.1 / 10</b> (11,575 votes) </h4>
+          </div>
+
+          <div style="margin-left:10px">
+            <h5>
+              <span style="margin-right:10px; padding-left:4px; padding-right:2px; border:1px #AAA solid; border-radius:2px;">
+                R
+              </span> &mdash;
+              <span style="margin-left:10px; margin-right:10px">583 min</span> &mdash;
+              <span style="margin-left:10px">
+                 <span style="margin-right:10px">Crime</span>  <span style="margin-right:10px">Drama</span>  <span style="margin-right:10px">Thriller</span> </h5>
+              </span>
+          </div>
+
+          <h4 style="padding-top:10px">Cast:</h4>
+          <div style="margin-left:10px">
+            
+              <h5 style="font-weight:400"> Marlon Brando </h5>
+            
+              <h5 style="font-weight:400"> Al Pacino </h5>
+            
+              <h5 style="font-weight:400"> Robert Duvall </h5>
+            
+          </div>
+
+          <h4 style="padding-top:10px">Languages:</h4>
+          <div style="margin-left:10px;">
+            
+              <h5 style="font-weight:400"> English </h5>
+            
+              <h5 style="font-weight:400"> Italian </h5>
+            
+          </div>
+        </span>
+        <hr>
+        <div style="padding:10px;">
+          <p> The multigenerational saga of the rise and fall of the Corleone crime family. </p>
+        </div>
+        <p style="text-align:center"><a href="http://www.imdb.com/title/tt0150742/?ref_=fn_al_tt_1">Go to IMDB</a></p>
+        <div style="margin-top:5px; font-size:12px; text-align:center">
+          Data Retrieved: 2014-11-28
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
