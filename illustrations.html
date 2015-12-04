@@ -2,35 +2,34 @@
 layout: default
 ---
 
-    <div id="middle" class="center">
-        <div id="body" class="center">
+<div id="middle" class="center">
+  <div id="body" class="center">
 
-        <h1 id="illustrationTitle">Special Relativity</h1>
+    <h1 id="illustrationTitle">Special Relativity</h1>
     <div id="subheading">
-        <img src="/illustrations/Special Relativity.jpg" id="illustrationLarge" width="978">
+      <img src="/illustrations/Special Relativity.jpg" id="illustrationLarge" width="978">
     </div>
 
-
-
     </div>
-        <div id="navigationBar"  class="center">   
-            <div id="nextimage" class="center" style="margin-left: auto; margin-right: auto; width:980px; text-align:center;">
+      <div id="navigationBar"  class="center">   
+        <div id="nextimage" class="center" style="margin-left: auto; margin-right: auto; width:980px; text-align:center;">
 
-                <!--<span ="illustrations.html" class="illustrationSelect"> << </a></li>-->
-                <span title="/illustrations/Special Relativity.jpg" class="illustrationSelect" style="background-color: #405759" onclick="changeIllustration(this)" data-heading="Special Relativity"> 1 </span>
-                <span title="/illustrations/Subatomic.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="Subatomic Particles"> 2 </span>
-                <span title="/illustrations/Double Slit.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="The Double Slit Experiment"> 3 </span>
-                <span title="/illustrations/Black Holes.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="Black Holes"> 4 </span>
-                <span title="/illustrations/Radioactive Decay.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="Radioactive Decay"> 5 </span>
-                <span title="/illustrations/EM Radiation.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="EM Radiation"> 6 </span>
-                <span title="/illustrations/grades.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="Grades"> 7 </span>
-                <!--<li><a href="illustrations/2.html" class="illustrationSelect"> >> </a></li>-->
+          <!--<span ="illustrations.html" class="illustrationSelect"> << </a></li>-->
+          <span title="/illustrations/Special Relativity.jpg" class="illustrationSelect" style="background-color: #405759" onclick="changeIllustration(this)" data-heading="Special Relativity"> 1 </span>
+          <span title="/illustrations/Subatomic.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="Subatomic Particles"> 2 </span>
+          <span title="/illustrations/Double Slit.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="The Double Slit Experiment"> 3 </span>
+          <span title="/illustrations/Black Holes.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="Black Holes"> 4 </span>
+          <span title="/illustrations/Radioactive Decay.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="Radioactive Decay"> 5 </span>
+          <span title="/illustrations/EM Radiation.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="EM Radiation"> 6 </span>
+          <span title="/illustrations/grades.jpg" class="illustrationSelect" onclick="changeIllustration(this)" data-heading="Grades"> 7 </span>
+          <!--<li><a href="illustrations/2.html" class="illustrationSelect"> >> </a></li>-->
 
-            </div>
         </div>
+      </div>
     </div>
-</div>
-<script>
+  </div><!--body-->
+  
+  <script>
   document.getElementById('illustrationslink').className = "activeHeaderLink";
 
   var spinner = new Spinner({length: 30, width: 8});
@@ -41,7 +40,7 @@ layout: default
     var i = illustrations.length;
 
     while(i--) {
-        illustrations[i].style.backgroundColor = "#88AABF";
+      illustrations[i].style.backgroundColor = "#88AABF";
     }
 
     illustration.style.backgroundColor = "#405759";
@@ -67,6 +66,6 @@ layout: default
     spinner.stop();
   }
 
-</script>
+  </script>
 </body>
 </html>

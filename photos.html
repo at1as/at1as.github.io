@@ -2,215 +2,206 @@
 layout: default
 ---
 
-    <div id="middle" class="center">
-        <div id="body" class="center">
+<div id="middle" class="center">
+  <div id="body" class="center">
+    <h1 id="photoTitle">Tokyo, Japan. 2014</h1>
 
+    <div id="subheading" style="margin-left:auto; margin-right:auto; text-align:center">
+      <img id="photoLarge" src="/photos/IMG_2888.jpg" width="978" onclick="maximize(this)">
+      <div id="photoLarge-caption">Shibuya Crossing</div>
+    </div>
+  </div>
 
-            <h1 id="photoTitle">Tokyo, Japan. 2014</h1>
+  <div id="navigationBar"  class="center">  
+    <div id="nextimage" class="center" style="height:114px; overflow: scroll; overflow-y:hidden; max-width:1000px; white-space: nowrap; vertical-align:middle;" >
 
-            <div id="subheading" style="margin-left:auto; margin-right:auto; text-align:center">
+      <span class="thumbnailContainer" title="Tokyo, Japan. 2014">
+        <img src="/photos/IMG_2888-small.jpg" class="gallery-landscape" width="128" height="96" alt="Tokyo, Japan. 2014" onclick="changePicture(this)" data-caption="Shibuya Crossing" data-piclarge="/photos/IMG_2888.jpg"/>
+      </span>
+      <span class="thumbnailContainer" title="Kyoto, Japan. 2014">
+        <img src="/photos/IMG_2969-small.jpg" class="gallery-portrait" width="128" height="96" alt="Kyoto, Japan. 2014" onclick="changePicture(this)" data-caption="Kyoto at Night" data-piclarge="/photos/IMG_2969.jpg"/>
+      </span>
+      <span class="thumbnailContainer" title="Haastrecht, Netherlands. 2012">
+        <img src="/photos/IMG_5476-small.jpg" class="gallery-portrait" width="128" height="96" alt="Haastrecht, Netherlands. 2012" onclick="changePicture(this)" data-caption="Windmill in Haastrecht, Netherlands" data-piclarge="/photos/IMG_5476.jpg"/>
+      </span>
+      <span class="thumbnailContainer" title="Montreal, Quebec. 2008">
+        <img src="/photos/IMG_1109-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2008" onclick="changePicture(this)" data-caption="A view from McGill&#39;s McConnell Residence on a rainy day" data-piclarge="/photos/IMG_1109.jpg"/>
+      </span>
+      <span class="thumbnailContainer" title="Oakville, Ontario. 2008">
+        <img src="/photos/IMG_0862-small.jpg" class="gallery-landscape" width="128" height="96" alt="Oakville, Ontario. 2008" onclick="changePicture(this)" data-caption="A rainy day in Oakville" data-piclarge="/photos/IMG_0862.jpg"/>
+      </span>
+      <span class="thumbnailContainer" title="Montreal, Quebec. 2009">
+        <img src="/photos/IMG_2761-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2009" onclick="changePicture(this)" data-caption="Prince Arthur and Parc, Montreal" data-piclarge="/photos/IMG_2761.jpg"/>
+      </span>
+      <span class="thumbnailContainer" title="Oakville, Ontario. 2008">
+        <img src="/photos/IMG_3028-small.jpg" class="gallery-landscape" width="128" height="96" alt="Oakville, Ontario. 2008" onclick="changePicture(this)" data-caption="Canada Day Fireworks in Oakville, Ontario" data-piclarge="/photos/IMG_3028.jpg"/>
+      </span>
+      <span class="thumbnailContainer" title="Montreal, Quebec. 2014">
+        <img src="/photos/IMG_1764-small.jpg" class="gallery-portrait" width="128" height="96" alt="Montreal, Quebec. 2014" onclick="changePicture(this)" data-caption="A skating rink overlooking the Montreal Olympic Stadium" data-piclarge="/photos/IMG_1764.jpg"/>
+      </span>
+      <span class="thumbnailContainer" title="Montreal, Quebec. 2014">
+        <img src="/photos/IMG_1792-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2014" onclick="changePicture(this)" data-caption="The Montreal Olympic Stadium" data-piclarge="/photos/IMG_1792.jpg"/>
+      </span>
 
-             <img id="photoLarge" src="/photos/IMG_2888.jpg" width="978" onclick="maximize(this)">
-             <div id="photoLarge-caption">Shibuya Crossing</div>
+    </div>
+  </div>
 
-            </div>
-        </div>
-
-        <div id="navigationBar"  class="center">  
-  
-            <div id="nextimage" class="center" style="height:114px; overflow: scroll; overflow-y:hidden; max-width:1000px; white-space: nowrap; vertical-align:middle;" >
-                
-                <span class="thumbnailContainer" title="Tokyo, Japan. 2014">
-                    <img src="/photos/IMG_2888-small.jpg" class="gallery-landscape" width="128" height="96" alt="Tokyo, Japan. 2014" onclick="changePicture(this)" data-caption="Shibuya Crossing" data-piclarge="/photos/IMG_2888.jpg"/>
-                </span>
-                <span class="thumbnailContainer" title="Kyoto, Japan. 2014">
-                    <img src="/photos/IMG_2969-small.jpg" class="gallery-portrait" width="128" height="96" alt="Kyoto, Japan. 2014" onclick="changePicture(this)" data-caption="Kyoto at Night" data-piclarge="/photos/IMG_2969.jpg"/>
-                </span>
-                <span class="thumbnailContainer" title="Haastrecht, Netherlands. 2012">
-                    <img src="/photos/IMG_5476-small.jpg" class="gallery-portrait" width="128" height="96" alt="Haastrecht, Netherlands. 2012" onclick="changePicture(this)" data-caption="Windmill in Haastrecht, Netherlands" data-piclarge="/photos/IMG_5476.jpg"/>
-                </span>
-		<span class="thumbnailContainer" title="Montreal, Quebec. 2008">
-                    <img src="/photos/IMG_1109-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2008" onclick="changePicture(this)" data-caption="A view from McGill&#39;s McConnell Residence on a rainy day" data-piclarge="/photos/IMG_1109.jpg"/>
-                </span>
-                <span class="thumbnailContainer" title="Oakville, Ontario. 2008">
-                    <img src="/photos/IMG_0862-small.jpg" class="gallery-landscape" width="128" height="96" alt="Oakville, Ontario. 2008" onclick="changePicture(this)" data-caption="A rainy day in Oakville" data-piclarge="/photos/IMG_0862.jpg"/>
-                </span>
-                <span class="thumbnailContainer" title="Montreal, Quebec. 2009">
-                    <img src="/photos/IMG_2761-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2009" onclick="changePicture(this)" data-caption="Prince Arthur and Parc, Montreal" data-piclarge="/photos/IMG_2761.jpg"/>
-                </span>
-                <span class="thumbnailContainer" title="Oakville, Ontario. 2008">
-                    <img src="/photos/IMG_3028-small.jpg" class="gallery-landscape" width="128" height="96" alt="Oakville, Ontario. 2008" onclick="changePicture(this)" data-caption="Canada Day Fireworks in Oakville, Ontario" data-piclarge="/photos/IMG_3028.jpg"/>
-                </span>
-                 <span class="thumbnailContainer" title="Montreal, Quebec. 2014">
-                    <img src="/photos/IMG_1764-small.jpg" class="gallery-portrait" width="128" height="96" alt="Montreal, Quebec. 2014" onclick="changePicture(this)" data-caption="A skating rink overlooking the Montreal Olympic Stadium" data-piclarge="/photos/IMG_1764.jpg"/>
-                </span>
-                <span class="thumbnailContainer" title="Montreal, Quebec. 2014">
-                    <img src="/photos/IMG_1792-small.jpg" class="gallery-landscape" width="128" height="96" alt="Montreal, Quebec. 2014" onclick="changePicture(this)" data-caption="The Montreal Olympic Stadium" data-piclarge="/photos/IMG_1792.jpg"/>
-                </span>
-
-        </div>
-
-
- </div>
+  <div id="backdrop" style="display:none" onclick="minimize()">
+  </div>
 
 </div>
+  <script>
 
-<div id="backdrop" style="display:none" onclick="minimize()"></div>
+    var spinner = new Spinner({length: 30, width: 8});
+    var target = document.getElementById('subheading');
 
-</div>
-<script>
+    // Update style of "Photos" link in header
+    document.getElementById('photoslink').className = "activeHeaderLink";
 
-  var spinner = new Spinner({length: 30, width: 8});
-  var target = document.getElementById('subheading');
+    // Enter theatre mode
+    function maximize(picture) {
 
-
-  // Update style of "Photos" link in header
-  document.getElementById('photoslink').className = "activeHeaderLink";
-
-
-  // Enter theatre mode
-  function maximize(picture) {
-
-    img_full = document.createElement("img");
-    img_full.id = "img_full";
-    img_full.setAttribute("src", picture.src);
-    img_full.style.zIndex="10";
-    img_full.style.maxHeight = "100%";
-    //img_full.style.maxWidth = "100%";
-    img_full.style.marginLeft = "auto";
-    img_full.style.marginRight = "auto";
-    img_full.className = "centered";
-    img_container = document.createElement("div");
-    img_container.appendChild(img_full);
-    img_container.style.maxHeight = "95%";
-    
-    document.getElementById('backdrop').style.display = '';
-    document.body.appendChild(img_container); 
-  }
-
-  // Exit theatre mode
-  function minimize() {
-    if(document.getElementById('img_full') !== null) {
-      (img_full=document.getElementById('img_full')).parentNode.removeChild(img_full);
+      img_full = document.createElement("img");
+      img_full.id = "img_full";
+      img_full.setAttribute("src", picture.src);
+      img_full.style.zIndex="10";
+      img_full.style.maxHeight = "100%";
+      //img_full.style.maxWidth = "100%";
+      img_full.style.marginLeft = "auto";
+      img_full.style.marginRight = "auto";
+      img_full.className = "centered";
+      img_container = document.createElement("div");
+      img_container.appendChild(img_full);
+      img_container.style.maxHeight = "95%";
+      
+      document.getElementById('backdrop').style.display = '';
+      document.body.appendChild(img_container); 
     }
-    document.getElementById('backdrop').style.display = 'none';
-  }
 
-  // Currently in theatre mode?
-  function theatre_mode() {
-    return document.getElementById('backdrop').style.display === '';
-  }
-
-  function scroll_photo(direction) {
-    var index = get_photo_index();
-    var range = get_photo_range();
-    var img_thumbnails = document.getElementById('nextimage').children;
-
-    if (direction==="right"){
-      if (index < range - 1) {
-        var next_image = img_thumbnails[index+1].children[0];
-        changePicture(next_image);
-        if (!theatre_mode()) {
-          document.getElementById("nextimage").scrollLeft += navbar_scroll();
-        }  
+    // Exit theatre mode
+    function minimize() {
+      if(document.getElementById('img_full') !== null) {
+        (img_full=document.getElementById('img_full')).parentNode.removeChild(img_full);
       }
-    } else if (direction==="left") {
-      if (index > 0) {
-        var previous_image = img_thumbnails[index-1].children[0];
-        changePicture(previous_image);
-        if (!theatre_mode()) {
-          document.getElementById("nextimage").scrollLeft += (-1) * navbar_scroll(); 
+      document.getElementById('backdrop').style.display = 'none';
+    }
+
+    // Currently in theatre mode?
+    function theatre_mode() {
+      return document.getElementById('backdrop').style.display === '';
+    }
+
+    function scroll_photo(direction) {
+      var index = get_photo_index();
+      var range = get_photo_range();
+      var img_thumbnails = document.getElementById('nextimage').children;
+
+      if (direction==="right"){
+        if (index < range - 1) {
+          var next_image = img_thumbnails[index+1].children[0];
+          changePicture(next_image);
+          if (!theatre_mode()) {
+            document.getElementById("nextimage").scrollLeft += navbar_scroll();
+          }  
+        }
+      } else if (direction==="left") {
+        if (index > 0) {
+          var previous_image = img_thumbnails[index-1].children[0];
+          changePicture(previous_image);
+          if (!theatre_mode()) {
+            document.getElementById("nextimage").scrollLeft += (-1) * navbar_scroll(); 
+          }
         }
       }
     }
-  }
 
-  // Amount of photos
-  function get_photo_range() {
-    return document.getElementById('nextimage').children.length;
-  }
-
-  // Index of current photo
-  function get_photo_index(){
-    var photo_name = '';
-    if (theatre_mode()) {
-      photo_name = document.getElementById('img_full').src.split("/").pop().split(".")[0]; 
-    } else {
-      photo_name = document.getElementById("photoLarge").src.split("/").pop().split(".")[0];
+    // Amount of photos
+    function get_photo_range() {
+      return document.getElementById('nextimage').children.length;
     }
-    var img_spans = document.getElementById('nextimage').children;
-    var counter = 0;
-    for(var i=0; i<img_spans.length; i++) {
-      if (img_spans[i].children[0].src.indexOf(photo_name) !== -1){
-        return counter;
-        break;
+
+    // Index of current photo
+    function get_photo_index(){
+      var photo_name = '';
+      if (theatre_mode()) {
+        photo_name = document.getElementById('img_full').src.split("/").pop().split(".")[0]; 
+      } else {
+        photo_name = document.getElementById("photoLarge").src.split("/").pop().split(".")[0];
       }
-      counter++;
+      var img_spans = document.getElementById('nextimage').children;
+      var counter = 0;
+      for(var i=0; i<img_spans.length; i++) {
+        if (img_spans[i].children[0].src.indexOf(photo_name) !== -1){
+          return counter;
+          break;
+        }
+        counter++;
+      }
     }
-  }
 
-  function navbar_scroll() {
-    // TODO. Find index of previous thumbnail and scroll viewer by that many pixels
-    return 128 + 1;
-  }
-
-  // Image change via thumbnail selector
-  function changePicture(thumbnail) {
-    if (theatre_mode()) {
-      (img_full = document.getElementById("img_full")).src = thumbnail.dataset.piclarge;
-      
-      document.getElementById("img_full").onload = function() {
-        document.getElementById("img_container").width = img_full.naturalHeight+"px";
-        //img_full.style.height = img_full.naturalHeight+"px";
-        //img_full.style.width = img_full.naturalWidth+"px";
-        //document.getElementById("photoLarge-caption").innerHTML = thumbnail.dataset.caption;
-      }
-    } else {
-      if (thumbnail.className === "gallery-landscape") {
-        document.getElementById("photoLarge").style.width = "978px";
-      }
-      else if (thumbnail.className === "gallery-portrait") {
-        document.getElementById("photoLarge").style.width = "500px";
-      } 
-
-      document.getElementById("photoLarge").src = thumbnail.dataset.piclarge;
-      start_spinner();
-
-      // Scroll to top of image on load
-      document.getElementById("photoLarge").onload = function() {
-        stop_spinner();
-        window.scrollTo(0, document.getElementById("body").offsetTop); 
-      }
-      
-      document.getElementById("photoLarge-caption").innerHTML = thumbnail.dataset.caption;
-      document.getElementById("photoTitle").innerHTML = thumbnail.alt;
+    function navbar_scroll() {
+      // TODO. Find index of previous thumbnail and scroll viewer by that many pixels
+      return 128 + 1;
     }
-  }
 
-  // Start spinner animation
-  function start_spinner(){
-    var target = document.getElementById('subheading');
-    spinner.spin(target);
-  }
+    // Image change via thumbnail selector
+    function changePicture(thumbnail) {
+      if (theatre_mode()) {
+        (img_full = document.getElementById("img_full")).src = thumbnail.dataset.piclarge;
+        
+        document.getElementById("img_full").onload = function() {
+          document.getElementById("img_container").width = img_full.naturalHeight+"px";
+          //img_full.style.height = img_full.naturalHeight+"px";
+          //img_full.style.width = img_full.naturalWidth+"px";
+          //document.getElementById("photoLarge-caption").innerHTML = thumbnail.dataset.caption;
+        }
+      } else {
+        if (thumbnail.className === "gallery-landscape") {
+          document.getElementById("photoLarge").style.width = "978px";
+        }
+        else if (thumbnail.className === "gallery-portrait") {
+          document.getElementById("photoLarge").style.width = "500px";
+        } 
 
-  // Halt spinner animation
-  function stop_spinner(){
-    spinner.stop();
-  }
+        document.getElementById("photoLarge").src = thumbnail.dataset.piclarge;
+        start_spinner();
 
-  // Key press listener
-  window.onkeydown = function (e) {
-    var code = e.keyCode ? e.keyCode : e.which;
-    if (code === 27) { //escape key
-      minimize();
-    } else if (code === 37) {
-      scroll_photo("left");
-    } else if (code === 39) {
-      scroll_photo("right");
+        // Scroll to top of image on load
+        document.getElementById("photoLarge").onload = function() {
+          stop_spinner();
+          window.scrollTo(0, document.getElementById("body").offsetTop); 
+        }
+        
+        document.getElementById("photoLarge-caption").innerHTML = thumbnail.dataset.caption;
+        document.getElementById("photoTitle").innerHTML = thumbnail.alt;
+      }
     }
-  }
-  
 
+    // Start spinner animation
+    function start_spinner(){
+      var target = document.getElementById('subheading');
+      spinner.spin(target);
+    }
+
+    // Halt spinner animation
+    function stop_spinner(){
+      spinner.stop();
+    }
+
+    // Key press listener
+    window.onkeydown = function (e) {
+      var code = e.keyCode ? e.keyCode : e.which;
+      if (code === 27) { //escape key
+        minimize();
+      } else if (code === 37) {
+        scroll_photo("left");
+      } else if (code === 39) {
+        scroll_photo("right");
+      }
+    }
 </script>
+
+<!-- End elements opened in header -->
+</div>
 </body>
 </html>

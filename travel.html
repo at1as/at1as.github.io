@@ -3,16 +3,17 @@ layout: default
 ---
 
 <div id="middle" class="center">
+  <div id="body"  class="center">
+     <h1> Where I've Traveled </h1>
+     <script src="http://www.ammap.com/lib/3/ammap.js" type="text/javascript"></script>
+     <script src="http://www.ammap.com/lib/3/maps/js/worldHigh.js" type="text/javascript"></script>
 
-    <div id="body"  class="center">
-       <h1> Where I've Traveled </h1>
-       <script src="http://www.ammap.com/lib/3/ammap.js" type="text/javascript"></script>
-       <script src="http://www.ammap.com/lib/3/maps/js/worldHigh.js" type="text/javascript"></script>
-       <div id="mapdiv"  style="width: 978px; height: 380px; border-radius: 5px; margin-left: auto; margin-right: auto;"></div>
+     <!-- Load Map in this div -->
+     <div id="mapdiv"  style="width: 978px; height: 380px; border-radius: 5px; margin-left: auto; margin-right: auto;">
+     </div>
 
-       <script type="text/javascript">
+     <script type="text/javascript">
        document.getElementById('travellink').className = "activeHeaderLink";
-
 
        var map;
        AmCharts.ready(function() {
@@ -29,25 +30,25 @@ layout: default
             mapVar: AmCharts.maps.worldHigh,
             getAreasFromMap: true,
             areas: [
-            { id: 'AT', showAsSelected: true },
-            { id: 'BE', showAsSelected: true },
-            { id: 'DE', showAsSelected: true },
-            { id: 'IT', showAsSelected: true },
-            { id: 'NL', showAsSelected: true },
-            { id: 'GB', showAsSelected: true },
-            { id: 'CA', showAsSelected: true },
-            { id: 'CU', showAsSelected: true },
-            { id: 'MX', showAsSelected: true },
-            { id: 'US', showAsSelected: true },
-            { id: 'EG', showAsSelected: true },
-            { id: 'CN', showAsSelected: true },
-            { id: 'IL', showAsSelected: true },
-            { id: 'JO', showAsSelected: true },
-            { id: 'LB', showAsSelected: true },
-            { id: 'AU', showAsSelected: true },
-            { id: 'VA', showAsSelected: true },
-            { id: 'JP', showAsSelected: true },
-	    { id: 'VN', showAsSelected: true }
+              { id: 'AT', showAsSelected: true },
+              { id: 'BE', showAsSelected: true },
+              { id: 'DE', showAsSelected: true },
+              { id: 'IT', showAsSelected: true },
+              { id: 'NL', showAsSelected: true },
+              { id: 'GB', showAsSelected: true },
+              { id: 'CA', showAsSelected: true },
+              { id: 'CU', showAsSelected: true },
+              { id: 'MX', showAsSelected: true },
+              { id: 'US', showAsSelected: true },
+              { id: 'EG', showAsSelected: true },
+              { id: 'CN', showAsSelected: true },
+              { id: 'IL', showAsSelected: true },
+              { id: 'JO', showAsSelected: true },
+              { id: 'LB', showAsSelected: true },
+              { id: 'AU', showAsSelected: true },
+              { id: 'VA', showAsSelected: true },
+              { id: 'JP', showAsSelected: true },
+              { id: 'VN', showAsSelected: true }
             ]
         };
 
@@ -57,25 +58,20 @@ layout: default
             autoZoom: true,
             color: "#CDCDCD",
             colorSolid: "#88AABF",
-            selectedColor: "#009933", //"#88AABF"
+            selectedColor: "#009933",
             outlineColor: "#666666",
             rollOverColor: "#405759",
             rollOverOutlineColor: "#FFFFFF"
         };
 
         map.write("mapdiv");
-    });
-</script>
+      });
+    </script>
 
-
-
+  </div>
 </div>
 
-
-</div>
-
-</div>
-
+<!-- Close template headers -->
 </div>
 </body>
 </html>

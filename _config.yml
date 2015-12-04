@@ -3,6 +3,7 @@ description: "Jason Willems' Blog"
 
 url: "www.jasonwillems.com/blog"
 
+gems: [jekyll-paginate]
 paginate: 2
 paginate_path: /blog/page:num
 
