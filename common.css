@@ -85,6 +85,7 @@ html, body {
   margin-top:20px;
   border-radius: 3px;
   box-shadow: 0 0 1px #777;
+  -webkit-box-shadow: 0 0 2px #777;
 }
 
 #body ul{
@@ -163,6 +164,7 @@ h2 {
 #nextimage ul li a:hover{
   background-color: #405759;
   box-shadow: 0px 1px 1px #666;
+  -webkit-box-shadow: 0 0 2px #777;
 }
 #nextimage ul li a:active{
   background-color: #FFFFFF;
@@ -180,6 +182,7 @@ h2 {
   border-radius: 3px;
   background-color:#FFFFFF;
   box-shadow: 0 0 1px #777;	
+  -webkit-box-shadow: 0 0 2px #777;
 }
 
 #navigationBar a{
@@ -276,6 +279,7 @@ h1{
 #button1 a:hover {
   background-color:#AAA;
   box-shadow: 0px 1px 1px #000;
+  -webkit-box-shadow: 0px 1px 2px #000;
   text-decoration:none;
 }
 #button1 a:active {
@@ -295,7 +299,7 @@ h1{
   font-size:9px;				
   width:100%;
   position:fixed;
-    bottom:0px;	
+  bottom:0px;	
   border-top-width:thin;
   border-top-color:#EEE;
   border-top-style:solid;	
@@ -405,14 +409,6 @@ p {
   z-order:5;
 }
 
-.blogDateStamp {
-  font-weight:bold;
-  font-family:times;
-  text-align:center;
-  font-style:italic;
-  margin-top:20px;
-}
-
 .textBlock {
   margin-bottom:30px;
 }
@@ -426,24 +422,27 @@ p {
   margin-right:auto;
   width:100%;
 }
-
+.blogDateStamp {
+  font-weight:bold;
+  font-family:times;
+  text-align:center;
+  font-style:italic;
+  margin-top:20px;
+}
 .blogCodeSnippet{
   color:blue;
   margin-left:10px;
   margin-top:10px;
   margin-bottom:30px;
 }
-
 .blogList{
   margin-left:45px;
   margin-top:15px;
   margin-bottom:20px;
 }
-
 .blogList > li {
   margin-bottom:10px;
 }
-
 .blogSelect {
   display:inline-block;
   font-family:Tahoma, Geneva, sans-serif;
@@ -462,7 +461,6 @@ p {
 .blogExpand {
   float:right;
 }
-
 .blogExpand a {
   font-size:18px;
 }
@@ -478,7 +476,15 @@ p {
   border-radius:3px;
   background-color:#FBFBFB;
   box-shadow: 0px 0px 1px #999;
+  -webkit-box-shadow: 0px 0px 2px #999;
   overflow:hidden;
+}
+.project-div-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
 }
 .project-div-right{
   display:inline-block;
@@ -488,7 +494,6 @@ p {
 .project-div-left{
   display:inline-block;
   padding:20px;
-  max-width:480px;
 }
 .project-text{
   margin-top:30px;
