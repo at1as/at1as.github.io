@@ -1,0 +1,59 @@
+<html>
+  <head>
+  </head>
+  <body role="document" style="position:absolute; width:100%; height:100%; background-color:#3F3F5F; color:#FFF">
+    <div style="display:table; width:100%; min-height:100%;">
+      <div style="display:table-cell; text-align:center; vertical-align:middle; font-size:12.692307692307692vw;">
+          'a' == "a"<br/>  'a' === "a"
+      </div>
+    </div>
+    <input type="hidden" id="slideCount" value="2">
+    <script type="text/javascript">
+      document.onkeydown = function(e) {
+        e = e || window.event;
+        switch(e.which || e.keyCode) {
+          case 39: //right
+            var extensionless_url = location.href.replace(/.[^/.]+$/, '');
+            var slide_num = extensionless_url.slice(-1);
+            var slide_limit = 2;
+
+            if (extensionless_url.slice(-2, -1) === 'q'){
+              var slide_path = 'a' + slide_num + '.html';
+              location.replace(extensionless_url.substring(0, extensionless_url.length - 2) + slide_path);
+            } else {
+              var next_slide = parseInt(slide_num) + 1
+              if (next_slide > slide_limit){
+                var slide_path = 'q' + 1 + '.html';
+              } else {
+                var slide_path = 'q' + next_slide + '.html';
+              }
+              location.replace(extensionless_url.substring(0, extensionless_url.length - 2) + slide_path);
+            }
+            break;
+
+          case 37: //left
+            var extensionless_url = location.href.replace(/.[^/.]+$/, '');
+            var slide_num = extensionless_url.slice(-1);
+            var slide_limit = 2;
+
+            if (extensionless_url.slice(-2, -1) === 'q'){
+              var prev_slide = parseInt(slide_num) - 1;
+              if (prev_slide < 1){
+                var slide_path = 'a' + slide_limit + '.html';
+              } else {
+                var slide_path = 'a' + prev_slide + '.html';
+              }
+              location.replace(extensionless_url.substring(0, extensionless_url.length - 2) + slide_path);
+            } else {
+              var slide_path = 'q' + slide_num + '.html';
+              location.replace(extensionless_url.substring(0, extensionless_url.length - 2) + slide_path);
+            }
+            break;
+            
+          default: return
+        }
+        e.preventDefault();
+      }
+    </script>
+  </body>
+</html>
