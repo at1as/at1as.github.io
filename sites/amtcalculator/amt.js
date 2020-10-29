@@ -1,14 +1,14 @@
-// <START> UPDATE THIS SECTION YEARLY (Current: 2018)
+// <START> UPDATE THIS SECTION YEARLY (Current: 2020)
 function taxYear() {
-  return 2018;
+  return 2020;
 }
 
 function amtTaxDetails(filing_status) {
   function exemptionAmount() {
     switch(filing_status) {
-      case "married_joint":     return 109400;
-      case "married_separate":  return 54700;
-      default:                  return 70300;
+      case "married_joint":     return 113400;
+      case "married_separate":  return 56700;
+      default:                  return 72900;
     }
   }
   
@@ -16,8 +16,8 @@ function amtTaxDetails(filing_status) {
       amt_low_rate:           0.26
     , amt_high_rate:          0.28
     , amt_exemption_amount:   (() => { return exemptionAmount() })()
-    , amt_bracket_crossover:  (() => { return (filing_status === "married_separate" ? 95550   : 191500) })()
-    , amt_phase_out_income:   (() => { return (filing_status === "married_joint"    ? 1000000 : 500000) })()
+    , amt_bracket_crossover:  (() => { return (filing_status === "married_separate" ? 98950   : 197900) })()
+    , amt_phase_out_income:   (() => { return (filing_status === "married_joint"    ? 1036800 : 518400) })()
     , amt_phase_out_percent:  0.25
     , tax_year:               taxYear()
   }
@@ -27,10 +27,10 @@ function standardTaxDetails(filing_status) {
   const inf = Number.POSITIVE_INFINITY;
   function standardDeduction() {
     switch(filing_status) {
-      case "single":            return 12000;
-      case "married_joint":     return 24000;
-      case "married_separate":  return 12000;
-      case "head_of_household": return 18000;
+      case "single":            return 12400;
+      case "married_joint":     return 24800;
+      case "married_separate":  return 12400;
+      case "head_of_household": return 18600;
     }
   }
   
@@ -41,43 +41,43 @@ function standardTaxDetails(filing_status) {
         switch(filing_status) {
           case "single":
             return [
-                [0,       9525,   0.10]
-              , [9525,    38700,  0.12]
-              , [38701,   82500,  0.22]
-              , [82501,   157500, 0.24]
-              , [157501,  200000, 0.32]
-              , [200001,  500000, 0.35]
-              , [500001,  inf,    0.37]
+                [0,       9875,   0.10]
+              , [9876,    40125,  0.12]
+              , [40126,   85525,  0.22]
+              , [85526,   163300, 0.24]
+              , [163301,  207350, 0.32]
+              , [207351,  518400, 0.35]
+              , [518401,  inf,    0.37]
             ];
           case "married_joint":
             return [
-                [0,       19050,  0.10]
-              , [19050,   77400,  0.12]
-              , [77400,   165000, 0.22]
-              , [165000,  315000, 0.24]
-              , [315000,  400000, 0.32]
-              , [400000,  600000, 0.35]
-              , [600000,  inf,    0.37]
+                [0,       19750,  0.10]
+              , [19751,   80250,  0.12]
+              , [80251,   171050, 0.22]
+              , [171051,  326600, 0.24]
+              , [326601,  414700, 0.32]
+              , [414701,  622050, 0.35]
+              , [622051,  inf,    0.37]
             ];
           case "married_separate":
             return [
-                [0,       9525,   0.10]
-              , [9526,    38700,  0.12]
-              , [38701,   82500,  0.22]
-              , [82501,   157500, 0.24]
-              , [157501,  200000, 0.32]
-              , [200001,  500000, 0.35]
-              , [300000,  inf,    0.37]
+                [0,       9875,   0.10]
+              , [9876,    40125,  0.12]
+              , [40126,   85525,  0.22]
+              , [85526,   163300, 0.24]
+              , [163301,  207350, 0.32]
+              , [207351,  518400, 0.35]
+              , [518401,  inf,    0.37]
             ];
           case "head_of_household":
             return [
-                [0,       13600,  0.10]
-              , [13601,   51800,  0.12]
-              , [51801,   82500,  0.22]
-              , [82501,   157500, 0.24]
-              , [157501,  200000, 0.32]
-              , [200001,  500000, 0.35]
-              , [500001,  inf,    0.37]
+                [0,       14100,  0.10]
+              , [14101,   53700,  0.12]
+              , [53701,   85500,  0.22]
+              , [85501,   163300, 0.24]
+              , [163301,  207350, 0.32]
+              , [207351,  518400, 0.35]
+              , [518401,  inf,    0.37]
             ];
       }
     }()
