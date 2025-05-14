@@ -1,7 +1,7 @@
 # Site settings
 title: "Jason Willems"
 name: "Jason"
-description: "Jason Willems - Software Engineer, Traveler, Speaker"
+description: "Jason Willems – Building products, exploring the world, sharing what I learn"
 author: Jason Willems
 email: hello@jasonwillems.com
 
@@ -30,6 +30,10 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+# Google Analytics
+# Replace this with your actual GA4 Measurement ID when ready
+google_analytics: "G-Q5N6H3PVG2"
 
 # Exclude from processing
 exclude:
