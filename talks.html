@@ -1,0 +1,252 @@
+---
+layout: default
+title: Talks
+---
+
+<section class="section">
+  <div class="container">
+
+    <div class="talks-intro">
+      <p class="talks-subtitle">Here you'll find a collection of my speaking engagements, papers, and presentations at conferences, meetups, and other events</p>
+    </div>
+
+    <div class="talks-list">
+
+      <!-- Example talk - replace with your actual talks -->
+      <div class="talk-item">
+        <div class="talk-title-wrapper">
+          <h2 class="talk-title">Future of Enterprise Tech & Startup Showcase</h2>
+          <span class="talk-tag tag-cohost">Co-host</span>
+        </div>
+        <div class="talk-event">📍 Manhattan, New York</div>
+        <div class="talk-date">April 30, 2025</div>
+        <div class="talk-description">
+          <p>
+            <b>LEAD x AI Circle x Alchemist Accelerator:</b> A look at how companies can apply modern change management strategies and organizational network analysis (ONA)
+            to optimize collaboration, surface hidden insights, and unlock the full value of their internal data—powered by <a href="https://www.lead.app">today's tooling and platforms</a>.
+          </p>
+        </div>
+        <div class="talk-links">
+          <a href="#" class="talk-link unavailable"><i class="fas fa-file-powerpoint"></i> Slides</a>
+          <a href="#" class="talk-link unavailable"><i class="fab fa-youtube"></i> Video</a>
+          <a href="javascript:void(0)" class="talk-link" onclick="openPhotoGallery('future-enterprise-tech-2025')"><i class="fas fa-camera"></i> Photos</a>
+          <a href="https://lu.ma/ajn6c01w" class="talk-link"><i class="fas fa-link"></i>Event Link</a>
+          <a href="https://www.lead.app" class="talk-link"><i class="fas fa-link"></i>Partner</a>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="upcoming-talks">
+      <h2 class="section-subtitle">Upcoming Talks</h2>
+      <p>Stay tuned for upcoming speaking engagements!</p>
+
+      <!-- Uncomment and modify when you have upcoming talks
+      <div class="talk-item upcoming">
+        <h2 class="talk-title">Title of Upcoming Talk</h2>
+        <div class="talk-event">Event Name</div>
+        <div class="talk-date">Future Date</div>
+        <div class="talk-description">
+          <p>Brief description of the talk.</p>
+        </div>
+      </div>
+      -->
+    </div>
+  </div>
+</section>
+
+<!-- Photo Gallery Modal -->
+<div id="photoModal" class="photo-modal">
+  <span class="close-modal">&times;</span>
+  <div class="modal-content">
+    <img class="modal-image" id="modalImage">
+    <a class="prev-photo">&#10094;</a>
+    <a class="next-photo">&#10095;</a>
+    <div class="photo-counter" id="photoCounter"></div>
+    <div class="photo-caption" id="photoCaption"></div>
+  </div>
+</div>
+
+<script>
+  // Photo Gallery Configuration
+  const galleryConfig = {
+    'future-enterprise-tech-2025': {
+      photos: [
+        {
+          src: '/assets/images/talks/future-enterprise-tech-2025/LEAD.png',
+          caption: 'LEAD platform for organizational network analysis'
+        },
+        {
+          src: '/assets/images/talks/future-enterprise-tech-2025/SMEs.png',
+          caption: 'Subject matter experts and knowledge flow visualization'
+        },
+        {
+          src: '/assets/images/talks/future-enterprise-tech-2025/change_management.png',
+          caption: 'Modern change management approach with data-driven insights'
+        }
+      ]
+    }
+    // Add more galleries for other talks as needed
+  };
+
+  // Current gallery and photo index
+  let currentGallery = '';
+  let currentPhotoIndex = 0;
+
+  // Get modal elements
+  const modal = document.getElementById('photoModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeBtn = document.getElementsByClassName('close-modal')[0];
+  const prevBtn = document.getElementsByClassName('prev-photo')[0];
+  const nextBtn = document.getElementsByClassName('next-photo')[0];
+  const counter = document.getElementById('photoCounter');
+  const caption = document.getElementById('photoCaption');
+
+  // Open the photo gallery
+  function openPhotoGallery(galleryId) {
+    if (!galleryConfig[galleryId]) return;
+    
+    currentGallery = galleryId;
+    currentPhotoIndex = 0;
+    showPhoto(currentPhotoIndex);
+    modal.style.display = 'block';
+    
+    // Prevent scrolling on the body when modal is open
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Show the current photo
+  function showPhoto(index) {
+    const gallery = galleryConfig[currentGallery];
+    if (!gallery) return;
+    
+    const photos = gallery.photos;
+    if (index >= photos.length) index = 0;
+    if (index < 0) index = photos.length - 1;
+    
+    currentPhotoIndex = index;
+    modalImg.src = photos[index].src;
+    caption.textContent = photos[index].caption || '';
+    counter.textContent = `${index + 1} / ${photos.length}`;
+  }
+
+  // Close the modal
+  closeBtn.onclick = function() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // Next photo
+  nextBtn.onclick = function() {
+    showPhoto(currentPhotoIndex + 1);
+  }
+
+  // Previous photo
+  prevBtn.onclick = function() {
+    showPhoto(currentPhotoIndex - 1);
+  }
+
+  // Close modal when clicking outside the image
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(event) {
+    if (modal.style.display === 'block') {
+      if (event.key === 'ArrowRight') {
+        showPhoto(currentPhotoIndex + 1);
+      } else if (event.key === 'ArrowLeft') {
+        showPhoto(currentPhotoIndex - 1);
+      } else if (event.key === 'Escape') {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+  });
+</script>
+
+<style>
+  .talks-intro {
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    max-width: 800px;
+  }
+
+  .talk-item {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .talk-item:last-child {
+    border-bottom: none;
+  }
+
+  .talk-title {
+    font-size: 1.75rem;
+    color: var(--text-color);
+  }
+
+  .talk-event {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: #980000;
+  }
+
+  .talk-date {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+
+  .talk-description {
+    margin-bottom: 36px;
+  }
+
+  .talk-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .talk-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background-color: var(--background-alt);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+  }
+
+  .talk-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  .upcoming-talks {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .talk-item.upcoming {
+    background-color: var(--background-alt);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    border-bottom: none;
+  }
+</style>
+
+<script>
+  document.getElementById('talkslink').classList.add('active');
+</script>

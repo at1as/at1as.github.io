@@ -1,82 +1,490 @@
 ---
 layout: default
+title: Places I've Traveled
 ---
 
-<div id="middle" class="center">
-  <div id="body"  class="center">
-     <h1> Where I've Traveled </h1>
-     <script src="http://www.ammap.com/lib/3/ammap.js" type="text/javascript"></script>
-     <script src="http://www.ammap.com/lib/3/maps/js/worldHigh.js" type="text/javascript"></script>
+<section class="section">
+  <div class="container">
 
-     <!-- Load Map in this div -->
-     <div id="mapdiv"  style="width: 978px; height: 380px; border-radius: 5px; margin-left: auto; margin-right: auto;">
-     </div>
+    <!-- Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-     <script type="text/javascript">
-       document.getElementById('travellink').className = "activeHeaderLink";
+    <!-- Map Container -->
+    <div class="travel-map-container" id="travel-map"></div>
 
-       var map;
-       AmCharts.ready(function() {
-        map = new AmCharts.AmMap();
-        map.pathToImages = "http://www.ammap.com/lib/images/";
-        map.panEventsEnabled = true;
-        map.backgroundColor = "#88AABF"; //"#666666";
-        map.backgroundAlpha = 1;
-        
-        map.zoomControl.panControlEnabled = false;
-        map.zoomControl.zoomControlEnabled = true;
+    <!-- Map Legend -->
+    <div class="map-legend">
+      <div class="legend-item">
+        <div class="legend-color lived"></div>
+        <div class="legend-label">Lived</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color visited"></div>
+        <div class="legend-label">Visited</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color not-visited"></div>
+        <div class="legend-label">Not Yet Visited</div>
+      </div>
+    </div>
 
-        var dataProvider = {
-            mapVar: AmCharts.maps.worldHigh,
-            getAreasFromMap: true,
-            areas: [
-              { id: 'AT', showAsSelected: true },
-              { id: 'BE', showAsSelected: true },
-              { id: 'DE', showAsSelected: true },
-              { id: 'IT', showAsSelected: true },
-              { id: 'NL', showAsSelected: true },
-              { id: 'GB', showAsSelected: true },
-              { id: 'CA', showAsSelected: true },
-              { id: 'CU', showAsSelected: true },
-              { id: 'MX', showAsSelected: true },
-              { id: 'US', showAsSelected: true },
-              { id: 'EG', showAsSelected: true },
-              { id: 'CN', showAsSelected: true },
-              { id: 'IL', showAsSelected: true },
-              { id: 'JO', showAsSelected: true },
-              { id: 'LB', showAsSelected: true },
-              { id: 'AU', showAsSelected: true },
-              { id: 'VA', showAsSelected: true },
-              { id: 'JP', showAsSelected: true },
-              { id: 'VN', showAsSelected: true },
-              { id: 'SG', showAsSelected: true },
-              { id: 'MY', showAsSelected: true },
-              { id: 'ID', showAsSelected: true },
-              { id: 'BS', showAsSelected: true },
-              { id: 'FR', showAsSelected: true }
-            ]
-        };
+    <div class="travel-stats">
+      <h2 class="section-subtitle">Highlights</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="countries-count">24</div>
+          <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="continents-count">5</div>
+          <div class="stat-label">Continents</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="cities-count">50+</div>
+          <div class="stat-label">Cities</div>
+        </div>
+      </div>
+    </div>
 
-        map.dataProvider = dataProvider;
+    <div class="country-list">
+      <h2 class="section-subtitle">Lived</h2>
+      <div class="countries-grid" id="lived-countries-grid">
+        <!-- Countries lived will be populated by JavaScript -->
+      </div>
+    </div>
 
-        map.areasSettings = {
-            autoZoom: true,
-            color: "#CDCDCD",
-            colorSolid: "#88AABF",
-            selectedColor: "#009933",
-            outlineColor: "#666666",
-            rollOverColor: "#405759",
-            rollOverOutlineColor: "#FFFFFF"
-        };
-
-        map.write("mapdiv");
-      });
-    </script>
+    <div class="country-list" style="margin-top:40px;">
+      <h2 class="section-subtitle">Visited</h2>
+      <div class="countries-grid" id="countries-grid">
+        <!-- Countries will be populated by JavaScript -->
+      </div>
+    </div>
 
   </div>
-</div>
+</section>
 
-<!-- Close template headers -->
-</div>
-</body>
-</html>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mark the travel link as active
+    document.getElementById('travellink').classList.add('active');
+
+    // Initialize the map
+    const map = L.map('travel-map').setView([20, 0], 2);
+
+    // Add the base map layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(map);
+
+    // Countries data with ISO codes, names, and whether I've lived there
+    const countriesData = [
+      { code: 'AUT', name: 'Austria', lived: false },
+      { code: 'BEL', name: 'Belgium', lived: false },
+      { code: 'DEU', name: 'Germany', lived: false },
+      { code: 'ITA', name: 'Italy', lived: false },
+      { code: 'NLD', name: 'Netherlands', lived: true },
+      { code: 'GBR', name: 'United Kingdom', lived: false },
+      { code: 'CAN', name: 'Canada', lived: true },
+      { code: 'CUB', name: 'Cuba', lived: false },
+      { code: 'MEX', name: 'Mexico', lived: false },
+      { code: 'USA', name: 'United States', lived: true },
+      { code: 'EGY', name: 'Egypt', lived: false },
+      { code: 'CHN', name: 'China', lived: false },
+      { code: 'ISR', name: 'Israel', lived: false },
+      { code: 'JOR', name: 'Jordan', lived: false },
+      { code: 'LBN', name: 'Lebanon', lived: false },
+      { code: 'AUS', name: 'Australia', lived: false },
+      { code: 'VAT', name: 'Vatican City', lived: false },
+      { code: 'JPN', name: 'Japan', lived: false },
+      { code: 'VNM', name: 'Vietnam', lived: false },
+      { code: 'SGP', name: 'Singapore', lived: false },
+      { code: 'KOR', name: 'South Korea', lived: false },
+      { code: 'MYS', name: 'Malaysia', lived: false },
+      { code: 'IDN', name: 'Indonesia', lived: false },
+      { code: 'BHS', name: 'Bahamas', lived: false },
+      { code: 'FRA', name: 'France', lived: false },
+      { code: 'THA', name: 'Thailand', lived: false },
+      { code: 'TWN', name: 'Taiwan', lived: false }
+    ];
+
+    // Create arrays of just visited and lived countries for convenience
+    const visitedCountries = countriesData;
+    const livedCountries = countriesData.filter(country => country.lived);
+
+    // Fetch GeoJSON data for country boundaries
+    fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+      .then(response => response.json())
+      .then(data => {
+        // Log the first feature to see its structure
+        console.log('First feature:', data.features[0]);
+
+        // Create lookup maps for visited and lived countries
+        const visitedCountryMap = {};
+        const livedCountryMap = {};
+
+        // Populate the lookup maps with multiple name variations for better matching
+        countriesData.forEach(country => {
+          // Add the country name and variations to the appropriate map
+          if (country.lived) {
+            livedCountryMap[country.name.toLowerCase()] = true;
+            // Special case for USA
+            if (country.name === 'United States') {
+              livedCountryMap['united states of america'] = true;
+              livedCountryMap['usa'] = true;
+            }
+            // Special case for UK
+            if (country.name === 'United Kingdom') {
+              livedCountryMap['uk'] = true;
+              livedCountryMap['great britain'] = true;
+            }
+          } else {
+            visitedCountryMap[country.name.toLowerCase()] = true;
+            // Special case for USA
+            if (country.name === 'United States') {
+              visitedCountryMap['united states of america'] = true;
+              visitedCountryMap['usa'] = true;
+            }
+            // Special case for UK
+            if (country.name === 'United Kingdom') {
+              visitedCountryMap['uk'] = true;
+              visitedCountryMap['great britain'] = true;
+            }
+          }
+        });
+
+        // Debug
+        console.log('Visited countries:', Object.keys(visitedCountryMap));
+        console.log('Lived countries:', Object.keys(livedCountryMap));
+
+        // Create a direct mapping from GeoJSON country names to our status
+        const countryStatusMap = {};
+
+        // Manually map each GeoJSON country name to its status
+        data.features.forEach(feature => {
+          const geoJsonName = feature.properties.name;
+
+          // Check if this is a country we've lived in
+          if (
+            geoJsonName === 'Netherlands' ||
+            geoJsonName === 'Canada' ||
+            geoJsonName === 'United States of America' ||
+            geoJsonName === 'United States'
+          ) {
+            countryStatusMap[geoJsonName] = 'lived';
+          }
+          // Check if this is a country we've visited
+          else if (
+            geoJsonName === 'Austria' ||
+            geoJsonName === 'Belgium' ||
+            geoJsonName === 'Germany' ||
+            geoJsonName === 'Italy' ||
+            geoJsonName === 'United Kingdom' ||
+            geoJsonName === 'Cuba' ||
+            geoJsonName === 'Mexico' ||
+            geoJsonName === 'Egypt' ||
+            geoJsonName === 'China' ||
+            geoJsonName === 'Israel' ||
+            geoJsonName === 'Jordan' ||
+            geoJsonName === 'Lebanon' ||
+            geoJsonName === 'Australia' ||
+            geoJsonName === 'Vatican' ||
+            geoJsonName === 'Japan' ||
+            geoJsonName === 'Vietnam' ||
+            geoJsonName === 'Singapore' ||
+            geoJsonName === 'Malaysia' ||
+            geoJsonName === 'Indonesia' ||
+            geoJsonName === 'The Bahamas' ||
+            geoJsonName === 'Bahamas' ||
+            geoJsonName === 'France' ||
+            geoJsonName === 'Thailand' ||
+            geoJsonName === 'Taiwan' ||
+            geoJsonName === 'South Korea'
+          ) {
+            countryStatusMap[geoJsonName] = 'visited';
+          }
+        });
+
+        console.log('Country status map:', countryStatusMap);
+
+        // Add GeoJSON layer to the map
+        const geojsonLayer = L.geoJSON(data.features, {
+          style: function(feature) {
+            const countryName = feature.properties.name;
+            const status = countryStatusMap[countryName];
+            const hasLived = status === 'lived';
+            const hasVisited = status === 'visited';
+
+            // Different styling based on status
+            if (hasLived) {
+              return {
+                fillColor: '#0ea5e9', // Vibrant sky blue for countries lived in
+                weight: 2,
+                opacity: 1,
+                color: '#0284c7',
+                fillOpacity: 0.75,
+                dashArray: ''
+              };
+            } else if (hasVisited) {
+              return {
+                fillColor: '#8b5cf6', // Purple for countries visited
+                weight: 2,
+                opacity: 1,
+                color: '#7c3aed',
+                fillOpacity: 0.6,
+                dashArray: ''
+              };
+            } else {
+              return {
+                fillColor: '#f1f5f9', // Light gray for countries not visited
+                weight: 1,
+                opacity: 1,
+                color: '#94a3b8',
+                fillOpacity: 0.2,
+                dashArray: '3'
+              };
+            }
+          },
+          onEachFeature: function(feature, layer) {
+            const countryName = feature.properties.name;
+            const status = countryStatusMap[countryName];
+            const hasLived = status === 'lived';
+            const hasVisited = status === 'visited';
+
+            if (hasLived || hasVisited) {
+              // Create a more informative popup based on status
+              let popupContent = `<strong>${countryName}</strong>`;
+              if (hasLived) {
+                popupContent += `<br><span style="color:#059669">✓ Lived here</span>`;
+              }
+              layer.bindPopup(popupContent);
+
+              // Add hover effects based on status
+              layer.on({
+                mouseover: function() {
+                  if (hasLived) {
+                    // Sky blue hover effect for lived-in countries
+                    this.setStyle({
+                      weight: 3,
+                      color: '#0369a1',
+                      fillOpacity: 0.9,
+                      fillColor: '#38bdf8'
+                    });
+                  } else {
+                    // Purple hover effect for visited countries
+                    this.setStyle({
+                      weight: 3,
+                      color: '#6d28d9',
+                      fillOpacity: 0.8,
+                      fillColor: '#a78bfa'
+                    });
+                  }
+                  this.bringToFront();
+                },
+                mouseout: function() {
+                  if (hasLived) {
+                    // Reset to sky blue for lived-in countries
+                    this.setStyle({
+                      weight: 2,
+                      color: '#0284c7',
+                      fillOpacity: 0.75,
+                      fillColor: '#0ea5e9'
+                    });
+                  } else {
+                    // Reset to purple for visited countries
+                    this.setStyle({
+                      weight: 2,
+                      color: '#7c3aed',
+                      fillOpacity: 0.6,
+                      fillColor: '#8b5cf6'
+                    });
+                  }
+                },
+                click: function() {
+                  map.fitBounds(this.getBounds());
+                }
+              });
+            }
+          }
+        }).addTo(map);
+
+        // Separate countries into visited and lived
+        const countriesVisited = countriesData.filter(country => !country.lived);
+        const countriesLived = countriesData.filter(country => country.lived);
+
+        // Populate the visited countries grid
+        const countriesGrid = document.getElementById('countries-grid');
+        countriesVisited.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
+          const countryElement = document.createElement('div');
+          countryElement.className = 'country-item';
+          countryElement.textContent = country.name;
+          countriesGrid.appendChild(countryElement);
+        });
+
+        // Populate the lived countries grid
+        const livedCountriesGrid = document.getElementById('lived-countries-grid');
+        countriesLived.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
+          const countryElement = document.createElement('div');
+          countryElement.className = 'country-item lived';
+          countryElement.textContent = country.name;
+          livedCountriesGrid.appendChild(countryElement);
+        });
+
+        // Update countries count (total of both visited and lived)
+        document.getElementById('countries-count').textContent = countriesData.length;
+      });
+  });
+</script>
+
+<style>
+  .travel-stats {
+    margin: 40px 0;
+  }
+
+  .stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .stat-card {
+    background-color: var(--background-alt);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    min-width: 150px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: var(--text-light);
+  }
+
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .country-item {
+    background-color: var(--background-alt);
+    border-radius: var(--border-radius);
+    padding: 10px 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .country-item.lived {
+    background-color: rgba(16, 185, 129, 0.1); /* Light green background */
+    border-left: 3px solid #10b981; /* Green border on the left */
+    font-weight: 500;
+  }
+
+  .travel-map-container {
+    width: 100%;
+    height: 500px;
+    border-radius: var(--border-radius);
+    border: 1px solid gray;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1; /* Lower z-index to prevent overlapping with header */
+  }
+
+  .map-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+    padding: 10px;
+    background: var(--background-alt);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid black;
+  }
+
+  .legend-color.lived {
+    background-color: #0ea5e9;
+    opacity: 0.75;
+  }
+
+  .legend-color.visited {
+    background-color: #8b5cf6;
+    opacity: 0.6;
+  }
+
+  .legend-color.not-visited {
+    background-color: #f1f5f9;
+    opacity: 0.2;
+    border-color: black;
+  }
+
+  .legend-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+  }
+
+  .legend-tip {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid var(--border-color);
+  }
+
+  @media (max-width: 768px) {
+    .stats-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .stat-card {
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .map-legend {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 15px;
+    }
+
+    .legend-tip {
+      margin-left: 0;
+      padding-left: 0;
+      border-left: none;
+      margin-top: 10px;
+    }
+  }
+</style>

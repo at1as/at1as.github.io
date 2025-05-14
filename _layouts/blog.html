@@ -1,16 +1,336 @@
 
-{% include header.html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | Jason Willems</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  {% include header.html %}
 
-    <div id="middle">
-        <div id="body" class="center">
+<article class="blog-post">
+  <div class="container">
+    <div class="post-wrapper">
+      <header class="post-header">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <div class="post-meta">
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+          {% if page.categories.size > 0 %}
+            <span class="post-categories">
+              {% for category in page.categories %}
+                <a href="/blog/categories/{{ category | slugify }}" class="post-category">{{ category }}</a>
+              {% endfor %}
+            </span>
+          {% endif %}
 
-        {{content}}
-
+          {% if page.tags.size > 0 %}
+            <span class="post-tags-meta">
+              {% for tag in page.tags %}
+                <a href="/blog/tags/{{ tag | slugify }}" class="post-tag-meta">#{{ tag }}</a>
+              {% endfor %}
+            </span>
+          {% endif %}
         </div>
-    </div>
+      </header>
 
-<script>
-document.getElementById('bloglink').className = "activeHeaderLink";
-</script>
+      <div class="post-content">
+        {{ content }}
+      </div>
+
+      <div class="post-navigation">
+        {% if page.previous.url %}
+          <a class="prev-post" href="{{ page.previous.url }}">
+            <span class="nav-label"><i class="fas fa-arrow-left"></i> Previous</span>
+            <span class="post-title">{{ page.previous.title }}</span>
+          </a>
+        {% endif %}
+
+        {% if page.next.url %}
+          <a class="next-post" href="{{ page.next.url }}">
+            <span class="nav-label">Next <i class="fas fa-arrow-right"></i></span>
+            <span class="post-title">{{ page.next.title }}</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .blog-post {
+    margin-bottom: 60px;
+  }
+
+  .post-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .post-header {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .post-title {
+    font-size: 2.75rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #111;
+  }
+
+  .post-meta {
+    color: var(--text-light);
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .post-categories {
+    display: flex;
+    gap: 10px;
+  }
+
+  .post-category {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+
+  .post-tags-meta {
+    display: flex;
+    gap: 8px;
+  }
+
+  .post-tag-meta {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .post-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #292929;
+    margin-bottom: 50px;
+    font-family: 'Georgia', serif;
+  }
+
+  .post-content h1, .post-content h2, .post-content h3,
+  .post-content h4, .post-content h5, .post-content h6 {
+    font-family: 'Inter', sans-serif;
+    color: #111;
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+    font-weight: 700;
+  }
+
+  .post-content h2 {
+    font-size: 2rem;
+    margin-top: 2.5em;
+  }
+
+  .post-content h3 {
+    font-size: 1.6rem;
+  }
+
+  .post-content p {
+    margin-bottom: 30px;
+  }
+
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 40px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-content ul,
+  .post-content ol {
+    margin: 0 0 30px 25px;
+  }
+
+  .post-content li {
+    margin-bottom: 15px;
+  }
+
+  .post-content blockquote {
+    border-left: 3px solid #333;
+    padding: 0 0 0 23px;
+    margin: 35px 0;
+    color: #555;
+    font-style: italic;
+    font-size: 1.25rem;
+  }
+
+  .post-content code {
+    background-color: #f1f1f1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'Menlo', 'Monaco', monospace;
+    font-size: 0.9em;
+  }
+
+  .post-content pre {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 30px 0;
+    border: 1px solid #eee;
+  }
+
+  .post-content pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .post-content a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-decoration-color: rgba(37, 99, 235, 0.3);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .post-content a:hover {
+    text-decoration-color: rgba(37, 99, 235, 1);
+  }
+
+  /* First paragraph styling for Medium-like experience */
+  .post-content p:first-of-type {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #111;
+  }
+
+  /* Drop cap for first paragraph */
+  .post-content p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.5rem;
+    line-height: 1;
+    font-weight: 700;
+    margin-right: 8px;
+    margin-top: 6px;
+    color: var(--primary-color);
+    font-family: 'Georgia', serif;
+  }
+
+  .post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 35px;
+  }
+
+  .prev-post,
+  .next-post {
+    display: flex;
+    flex-direction: column;
+    max-width: 45%;
+    transition: transform 0.2s ease;
+  }
+
+  .prev-post:hover,
+  .next-post:hover {
+    transform: translateY(-3px);
+  }
+
+  .next-post {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .nav-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .post-navigation .post-title {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: 600;
+    letter-spacing: normal;
+  }
+
+  /* Custom blog styles to handle existing HTML content */
+  .blogSubheading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 40px 0 20px;
+    color: #111;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .blogText {
+    margin-bottom: 30px;
+  }
+
+  .blogBold {
+    font-weight: 700;
+  }
+
+  .inlineCode {
+    background-color: #f1f1f1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'Menlo', 'Monaco', monospace;
+    font-size: 0.9em;
+  }
+
+  .ul-blog {
+    margin: 0 0 30px 25px;
+  }
+
+  .li-blog {
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 768px) {
+    .post-title {
+      font-size: 2.2rem;
+    }
+
+    .post-content {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .post-navigation {
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .prev-post,
+    .next-post {
+      max-width: 100%;
+    }
+
+    .next-post {
+      text-align: left;
+    }
+
+    .post-content p:first-of-type::first-letter {
+      font-size: 3rem;
+    }
+  }
+</style>
+
+  {% include simple-footer.html %}
 </body>
 </html>
