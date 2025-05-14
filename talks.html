@@ -10,6 +10,7 @@ title: Talks
       <p class="talks-subtitle">Here you'll find a collection of my speaking engagements, papers, and presentations at conferences, meetups, and other events</p>
     </div>
 
+    <!--<h2 class="section-subtitle">Past Talks</h2>-->
     <div class="talks-list">
 
       <!-- Example talk - replace with your actual talks -->
@@ -41,7 +42,7 @@ title: Talks
 
     <div class="upcoming-talks">
       <h2 class="section-subtitle">Upcoming Talks</h2>
-      <p>Stay tuned for upcoming speaking engagements!</p>
+      <p style="text-align: center;">Stay tuned for upcoming speaking engagements!</p>
 
       <!-- Uncomment and modify when you have upcoming talks
       <div class="talk-item upcoming">
@@ -107,12 +108,12 @@ title: Talks
   // Open the photo gallery
   function openPhotoGallery(galleryId) {
     if (!galleryConfig[galleryId]) return;
-    
+
     currentGallery = galleryId;
     currentPhotoIndex = 0;
     showPhoto(currentPhotoIndex);
     modal.style.display = 'block';
-    
+
     // Prevent scrolling on the body when modal is open
     document.body.style.overflow = 'hidden';
   }
@@ -121,11 +122,11 @@ title: Talks
   function showPhoto(index) {
     const gallery = galleryConfig[currentGallery];
     if (!gallery) return;
-    
+
     const photos = gallery.photos;
     if (index >= photos.length) index = 0;
     if (index < 0) index = photos.length - 1;
-    
+
     currentPhotoIndex = index;
     modalImg.src = photos[index].src;
     caption.textContent = photos[index].caption || '';
@@ -236,7 +237,6 @@ title: Talks
   .upcoming-talks {
     margin-top: 60px;
     padding-top: 40px;
-    border-top: 1px solid var(--border-color);
   }
 
   .talk-item.upcoming {
