@@ -157,15 +157,36 @@ img {
 }
 
 .section-subtitle {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 20px;
   color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-subtitle::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.section-subtitle::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background-color: var(--border-color);
+  flex-grow: 1;
+  margin-left: 10px;
 }
 
 /* Hero Section */
 .hero {
-  padding: 80px 0;
+  padding: 78px 0;
   background-color: var(--background-alt);
   text-align: center;
 }

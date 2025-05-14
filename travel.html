@@ -30,7 +30,6 @@ title: Places I've Traveled
     </div>
 
     <div class="travel-stats">
-      <h2 class="section-subtitle">Highlights</h2>
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-number" id="countries-count">24</div>
@@ -48,14 +47,14 @@ title: Places I've Traveled
     </div>
 
     <div class="country-list">
-      <h2 class="section-subtitle">Lived</h2>
+      <h2 class="section-subtitle" id="lived-heading">Lived</h2>
       <div class="countries-grid" id="lived-countries-grid">
         <!-- Countries lived will be populated by JavaScript -->
       </div>
     </div>
 
     <div class="country-list" style="margin-top:40px;">
-      <h2 class="section-subtitle">Visited</h2>
+      <h2 class="section-subtitle" id="visited-heading">Visited</h2>
       <div class="countries-grid" id="countries-grid">
         <!-- Countries will be populated by JavaScript -->
       </div>
@@ -313,15 +312,13 @@ title: Places I've Traveled
         const countriesVisited = countriesData.filter(country => !country.lived);
         const countriesLived = countriesData.filter(country => country.lived);
 
-        // Populate the visited countries grid
-        const countriesGrid = document.getElementById('countries-grid');
-        countriesVisited.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
-          const countryElement = document.createElement('div');
-          countryElement.className = 'country-item';
-          countryElement.textContent = country.name;
-          countriesGrid.appendChild(countryElement);
-        });
-
+        // Update the counts
+        document.getElementById('countries-count').textContent = countriesData.length;
+        document.getElementById('continents-count').textContent = [...new Set(countriesData.map(c => c.continent))].length;
+        
+        // Update section headings with counts
+        document.getElementById('lived-heading').textContent = `Lived (${countriesLived.length})`;
+        document.getElementById('visited-heading').textContent = `Visited (${countriesVisited.length})`;
         // Populate the lived countries grid
         const livedCountriesGrid = document.getElementById('lived-countries-grid');
         countriesLived.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
@@ -329,6 +326,15 @@ title: Places I've Traveled
           countryElement.className = 'country-item lived';
           countryElement.textContent = country.name;
           livedCountriesGrid.appendChild(countryElement);
+        });
+
+        // Populate the visited countries grid
+        const countriesGrid = document.getElementById('countries-grid');
+        countriesVisited.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
+          const countryElement = document.createElement('div');
+          countryElement.className = 'country-item';
+          countryElement.textContent = country.name;
+          countriesGrid.appendChild(countryElement);
         });
 
         // Update countries count (total of both visited and lived)
