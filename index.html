@@ -2,57 +2,87 @@
 layout: default
 ---
 
-<div id="middle" class="center">
-  <div id="body"  class="center">
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <img src="/photos/jason-july2015.jpg" alt="Jason Willems" class="hero-image">
 
-    <h1> More About Me Here </h1>
-      <div id="subbody" class="indentlink" style="width:980px; margin-left:auto;margin-right:auto; text-align:center;">
+      <div class="social-links">
+        <a href="https://github.com/at1as" class="social-link" aria-label="GitHub" style="color:black;">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://twitter.com/jasonwillems" class="social-link" aria-label="Twitter" style="color:black;">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://ca.linkedin.com/in/jasonmwillems" class="social-link" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://rubygems.org/profiles/at1as" class="social-link" aria-label="RubyGems" style="color:#cb0101;">
+          <i class="fas fa-gem"></i>
+        </a>
+        <a href="https://lead.app" class="social-link" aria-label="LEAD">
+          <img src="/assets/images/icons/cropped-lead_icon-180x180.png" alt="LEAD" style="width: 28px; height: 28px; border-radius: 0;">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div style="margin-left:auto; margin-right:auto; text-align:center; width:100%; margin-top:40px;">
-          <img src="/photos/jason-july2015.jpg" style="border-radius:100px;" height="200px">
+<!-- About Section -->
+<section class="section" style="margin-top: 0; padding-top: 40px; max-width: 675px; margin: 0 auto;">
+  <div class="container">
+    <div class="about-content">
+      <p>Hi, I'm <b>Jason Willems</b> — a technical founder, engineering leader, and product builder based in New York. I've spent the past decade scaling systems, leading teams, and turning ideas into products used by thousands.</p>
+      <br/>
+      <p>Outside of work, I'm usually exploring new places, behind a camera, or hosting conversations at the intersection of tech, people, and impact.</p>
+    </div>
+
+    <p class="location">📍 New York City</p>
+  </div>
+</section>
+
+
+{% comment %}
+<section class="section" style="background-color: var(--background-alt); padding: 60px 0; margin-top: 0;">
+  <div class="container">
+    <h2 class="section-title">Featured Content</h2>
+
+    <div class="grid">
+      <!-- Travel Card -->
+      <div class="card">
+        <img src="/assets/images/travel-thumbnail.jpg" alt="World Map" class="card-image" onerror="this.src='https://via.placeholder.com/400x200?text=Travel+Map';this.onerror='';">
+        <div class="card-content">
+          <h3 class="card-title">Places I've Traveled</h3>
+          <p class="card-text">Explore the countries and cities I've visited around the globe.</p>
+          <a href="/travel" class="btn">View Map</a>
         </div>
+      </div>
 
-        <div style="display:inline-block; margin-top:30px; margin-bottom:50px; margin-left:auto; margin-right:auto; width:100%">
-          <ul>
-            <li style="display:inline-block; padding-left:20px; padding-right:20px; vertical-align:middle;">
-              <a href="https://rubygems.org/profiles/at1as" style="display:block; border-radius:5px;">
-                <i class="devicons devicons-ruby" style="padding-left:5px; padding-right:5px; font-size:40px;"></i>
-              </a>
-            </li>
-            <li style="display:inline-block; padding-left:20px; padding-right:20px; vertical-align:middle;">
-              <a href="https://ca.linkedin.com/in/jasonmwillems" style="display:block; border-radius:5px;">
-                <i class="fa fa-linkedin fa-3x" style="padding-left:5px; padding-right:5px"></i>
-              </a>
-            </li>
-            
-            <li style="display:inline-block; padding-left:20px; padding-right:20px; vertical-align:middle;">
-              <a href="https://twitter.com/jasonwillems" style="display:block; border-radius:5px;">
-                <i class="fa fa-twitter fa-3x" style="padding-left:5px; padding-right:5px;"></i>
-              </a>
-            </li>
-            
-            <li style="display:inline-block; padding-left:20px; padding-right:20px; vertical-align:middle;">
-              <a href="https://github.com/at1as" style="display:block; border-radius:5px;">
-                <i class="fa fa-github fa-3x" style="padding-left:5px; padding-right:5px;"></i>
-              </a>
-            </li>
-            
-          </ul>  
+      <!-- Talks Card -->
+      <div class="card">
+        <img src="/assets/images/talks-thumbnail.jpg" alt="Speaking at Conference" class="card-image" onerror="this.src='https://via.placeholder.com/400x200?text=Tech+Talks';this.onerror='';">
+        <div class="card-content">
+          <h3 class="card-title">Tech Talks</h3>
+          <p class="card-text">Presentations and talks I've given at conferences and meetups.</p>
+          <a href="/talks" class="btn">View Talks</a>
         </div>
-      
-      </div><!-- subbody -->
-    </div><!-- body -->
-  </div><!-- middle -->
+      </div>
 
-<!-- Extra closing elements below here for headers -->
-</div>
-    
-<div id="footer" class="center">
-  <a href="mailto:hello@jasonwillems.com?subject=hello">Site Design by Jason Willems</a>
-</div>
+      <!-- Blog Card -->
+      <div class="card">
+        <img src="/assets/images/blog-thumbnail.jpg" alt="Blog" class="card-image" onerror="this.src='https://via.placeholder.com/400x200?text=Blog+Posts';this.onerror='';">
+        <div class="card-content">
+          <h3 class="card-title">Blog</h3>
+          <p class="card-text">My thoughts on technology, travel, and other interests.</p>
+          <a href="/blog" class="btn">Read Blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endcomment %}
 
 <script>
-  document.getElementById('homelink').className = "activeHeaderLink";
+  document.getElementById('homelink').classList.add('active');
 </script>
-</body>
-</html>

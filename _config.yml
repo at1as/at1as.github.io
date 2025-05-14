@@ -1,12 +1,38 @@
+# Site settings
+title: "Jason Willems"
 name: "Jason"
-description: "Jason Willems' Blog"
+description: "Jason Willems - Software Engineer, Traveler, Speaker"
+author: Jason Willems
+email: hello@jasonwillems.com
 
-url: "www.jasonwillems.com/blog"
+# URL settings
+url: "https://jasonwillems.com"
+baseurl: ""
 
-gems: [jekyll-paginate]
-paginate: 4
-paginate_path: /blog/page:num
-
-markdown: rdiscount
-permalink: pretty
+# Build settings
+markdown: kramdown
 highlighter: rouge
+permalink: pretty
+
+# Pagination for blog
+paginate: 6
+paginate_path: "/blog/page:num/"
+
+# Collections for content types
+collections:
+  talks:
+    output: true
+    permalink: /talks/:path/
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

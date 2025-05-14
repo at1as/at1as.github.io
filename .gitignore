@@ -1,3 +1,28 @@
-.DS_Store
+# Jekyll build files
 _site/
 .jekyll-metadata
+.jekyll-cache/
+.sass-cache/
+
+# Ruby dependencies
+vendor/
+.bundle/
+Gemfile.lock
+
+# System files
+.DS_Store
+*.swp
+*~
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# Local environment files
+.env
+.env.*

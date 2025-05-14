@@ -1,40 +1,197 @@
 ---
-title: Jason's Blog
-layout: blog
+layout: default
+title: Blog
 ---
 
-{% for post in paginator.posts %}         
+<section class="section">
+  <div class="container">
 
-{% if post.content contains '<!--more-->' %}
-{{ post.content | split:'<!--more-->' | first }}
-<span class="blogExpand">
-  <a href="{{ post.url }}">Read More...</a>
-</span>
-{% else %}
-{{ post.content }}
-{% endif %}
+    <div class="blog-intro">
+    </div>
 
-</div>
-</div>
-<br/><br/><br/>
-{% endfor %}
-</div>
+    <div class="blog-posts">
+      {% assign visible_posts = false %}
+      {% for post in paginator.posts %}
+        {% unless post.hidden %}  <!-- Skip hidden posts -->
+          {% assign visible_posts = true %}
+          <article class="blog-post">
+            <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
 
+            <div class="post-meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+              {% if post.categories.size > 0 %}
+                <span class="post-categories">
+                  {% for category in post.categories %}
+                    <a href="/blog/categories/{{ category | slugify }}" class="post-category">{{ category }}</a>
+                  {% endfor %}
+                </span>
+              {% endif %}
+            </div>
 
+            <div class="post-excerpt">
+              {% if post.excerpt %}
+                {{ post.excerpt }}
+              {% elsif post.content contains '<!--more-->' %}
+                {{ post.content | split:'<!--more-->' | first }}
+              {% else %}
+                {{ post.content | strip_html | truncatewords: 50 }}
+              {% endif %}
+            </div>
 
-<div id="navigationBar"  class="center">
-  <div id="nextimage" class="center" style="text-align:center; margin-left:auto; margin-right: auto; width:100%; vertical-align:middle;">
-    <div class="pagination" style="text-align:center; margin-left:auto; margin-right: auto;">
-      {% if paginator.next_page %}
-      <a class="blogSelect" href="/blog/page{{paginator.next_page}}" style="float:left">&lt;&lt; Prev</a>
-      {% endif %}
-      {% if paginator.previous_page %}
-        {% if paginator.page == 2 %}
-        <a class="blogSelect" href="/blog" style="float:right">Next &gt;&gt;</a>
-        {% else %}
-        <a class="blogSelect" href="/blog/page{{paginator.previous_page}}" style="float:right">Next &gt;&gt;</a>
-        {% endif %}
+            <a href="{{ post.url }}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </article>
+        {% endunless %}
+      {% endfor %}
+      
+      {% if visible_posts == false %}
+        <div class="no-posts-message">
+          <h2>Coming Soon</h2>
+          <p>New blog posts are in the works. Check back later for updates!</p>
+        </div>
       {% endif %}
     </div>
+
+    <!-- Pagination -->
+    {% if paginator.total_pages > 1 %}
+    <div class="pagination">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-item prev">
+          <i class="fas fa-chevron-left"></i> Newer Posts
+        </a>
+      {% endif %}
+
+      <span class="pagination-info">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-item next">
+          Older Posts <i class="fas fa-chevron-right"></i>
+        </a>
+      {% endif %}
+    </div>
+    {% endif %}
   </div>
-</div>
+</section>
+
+<style>
+  .blog-intro {
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+  }
+
+  .blog-posts {
+    margin-bottom: 60px;
+  }
+
+  .blog-post {
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .blog-post:last-child {
+    border-bottom: none;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .post-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+  }
+
+  .post-title a:hover {
+    color: var(--primary-color);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .post-categories {
+    display: flex;
+    gap: 10px;
+  }
+
+  .post-category {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+
+  .post-excerpt {
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+
+  .read-more i {
+    transition: transform var(--transition-speed) ease;
+  }
+
+  .read-more:hover i {
+    transform: translateX(5px);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .pagination-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: var(--background-alt);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+  }
+
+  .pagination-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  .pagination-info {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .post-title {
+      font-size: 1.75rem;
+    }
+
+    .pagination {
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('bloglink').classList.add('active');
+</script>
