@@ -24,6 +24,9 @@
 
   <!-- Feed -->
   {% feed_meta %}
+
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
 </head>
 
 <body class="{% if page.url == '/' %}home{% else %}{{ page.layout | default: 'page' }}{% endif %}">
