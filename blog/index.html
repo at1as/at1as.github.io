@@ -4,7 +4,7 @@ title: Blog
 ---
 
 <section class="section">
-  <div class="container">
+  <div class="container blog-container">
 
     <div class="blog-intro">
     </div>
@@ -22,7 +22,14 @@ title: Blog
               {% if post.categories.size > 0 %}
                 <span class="post-categories">
                   {% for category in post.categories %}
-                    <a href="/blog/categories/{{ category | slugify }}" class="post-category">{{ category }}</a>
+                    <span class="post-category">{{ category }}</span>
+                  {% endfor %}
+                </span>
+              {% endif %}
+              {% if post.tags.size > 0 %}
+                <span class="post-tags">
+                  {% for tag in post.tags %}
+                    <span class="post-tag">#{{ tag }}</span>
                   {% endfor %}
                 </span>
               {% endif %}
