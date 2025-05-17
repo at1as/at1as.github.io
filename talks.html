@@ -6,12 +6,28 @@ title: Talks
 <section class="section">
   <div class="container">
 
-    <div class="talks-intro">
+    <!-- UPCOMING -->
+    <div class="upcoming-talks">
+      <h2 class="section-subtitle">Upcoming Talks</h2>
       <p class="talks-subtitle">Here you'll find a collection of my speaking engagements, papers, and presentations at conferences, meetups, and other events</p>
+      <p style="text-align: center;">Stay tuned for upcoming speaking engagements!</p>
+
+      <!-- Uncomment and modify when you have upcoming talks
+      <div class="talk-item upcoming">
+        <h2 class="talk-title">Title of Upcoming Talk</h2>
+        <div class="talk-event">Event Name</div>
+        <div class="talk-date">Future Date</div>
+        <div class="talk-description">
+          <p>Brief description of the talk.</p>
+        </div>
+      </div>
+      -->
     </div>
 
+    <!-- PAST TALKS -->
     <!--<h2 class="section-subtitle">Past Talks</h2>-->
     <div class="talks-list">
+      <h2 class="section-subtitle">Past Talks</h2>
 
       <!-- Example talk - replace with your actual talks -->
       <div class="talk-item">
@@ -35,26 +51,8 @@ title: Talks
           <a href="https://www.lead.app" class="talk-link"><i class="fas fa-link"></i>Partner</a>
         </div>
       </div>
-
     </div>
 
-
-
-    <div class="upcoming-talks">
-      <h2 class="section-subtitle">Upcoming Talks</h2>
-      <p style="text-align: center;">Stay tuned for upcoming speaking engagements!</p>
-
-      <!-- Uncomment and modify when you have upcoming talks
-      <div class="talk-item upcoming">
-        <h2 class="talk-title">Title of Upcoming Talk</h2>
-        <div class="talk-event">Event Name</div>
-        <div class="talk-date">Future Date</div>
-        <div class="talk-description">
-          <p>Brief description of the talk.</p>
-        </div>
-      </div>
-      -->
-    </div>
   </div>
 </section>
 
@@ -234,16 +232,23 @@ title: Talks
     color: white;
   }
 
-  .upcoming-talks {
-    margin-top: 60px;
-    padding-top: 40px;
-  }
-
   .talk-item.upcoming {
     background-color: var(--background-alt);
     padding: 25px;
     border-radius: var(--border-radius);
     border-bottom: none;
+  }
+
+  .talks-list {
+    margin-top: 40px;
+  }
+
+  .talks-subtitle {
+    margin-top: 35px;
+  }
+
+  .upcoming-talks {
+    margin-top: 20px;
   }
 </style>
 
