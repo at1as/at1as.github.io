@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: post
 title: "Introducing: Founderwear"
 date: 2025-05-30 12:00:00 -0400
 categories: [startup]
