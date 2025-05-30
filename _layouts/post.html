@@ -18,11 +18,11 @@ layout: default
           {% endif %}
         </div>
       </header>
-      
+
       <div class="post-content">
         {{ content }}
       </div>
-    
+
       {% if page.tags.size > 0 %}
         <div class="post-tags">
           {% for tag in page.tags %}
@@ -30,7 +30,7 @@ layout: default
           {% endfor %}
         </div>
       {% endif %}
-      
+
       <div class="post-navigation">
         {% if page.previous.url %}
           <a class="prev-post" href="{{ page.previous.url }}">
@@ -38,7 +38,7 @@ layout: default
             <span class="post-title">{{ page.previous.title }}</span>
           </a>
         {% endif %}
-        
+
         {% if page.next.url %}
           <a class="next-post" href="{{ page.next.url }}">
             <span class="nav-label">Next <i class="fas fa-arrow-right"></i></span>
@@ -54,18 +54,18 @@ layout: default
   .post {
     margin-bottom: 60px;
   }
-  
+
   .post-wrapper {
     max-width: 720px;
     margin: 0 auto;
     padding: 0 20px;
   }
-  
+
   .post-header {
     margin-bottom: 50px;
     text-align: center;
   }
-  
+
   .post-title {
     font-size: 2.75rem;
     margin-bottom: 20px;
@@ -74,7 +74,7 @@ layout: default
     letter-spacing: -0.02em;
     color: #111;
   }
-  
+
   .post-meta {
     color: var(--text-light);
     font-size: 1rem;
@@ -83,12 +83,12 @@ layout: default
     gap: 15px;
     flex-wrap: wrap;
   }
-  
+
   .post-categories {
     display: flex;
     gap: 10px;
   }
-  
+
   .post-category {
     background-color: var(--primary-color);
     color: white;
@@ -96,7 +96,7 @@ layout: default
     border-radius: 20px;
     font-size: 0.8rem;
   }
-  
+
   .post-content {
     font-size: 1.2rem;
     line-height: 1.8;
@@ -104,7 +104,7 @@ layout: default
     margin-bottom: 50px;
     font-family: 'Georgia', serif;
   }
-  
+
   .post-content h2 {
     font-size: 2rem;
     margin: 50px 0 25px;
@@ -112,7 +112,7 @@ layout: default
     font-family: 'Inter', sans-serif;
     color: #111;
   }
-  
+
   .post-content h3 {
     font-size: 1.6rem;
     margin: 40px 0 20px;
@@ -120,28 +120,28 @@ layout: default
     font-family: 'Inter', sans-serif;
     color: #111;
   }
-  
+
   .post-content p {
     margin-bottom: 30px;
   }
-  
+
   .post-content img {
     max-width: 100%;
     height: auto;
     border-radius: var(--border-radius);
-    margin: 40px 0;
+    margin: 20px 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
-  
-  .post-content ul, 
+
+  .post-content ul,
   .post-content ol {
     margin: 0 0 30px 25px;
   }
-  
+
   .post-content li {
     margin-bottom: 15px;
   }
-  
+
   .post-content blockquote {
     border-left: 3px solid #333;
     padding: 0 0 0 23px;
@@ -150,7 +150,7 @@ layout: default
     font-style: italic;
     font-size: 1.25rem;
   }
-  
+
   .post-content code {
     background-color: #f1f1f1;
     padding: 2px 5px;
@@ -158,7 +158,7 @@ layout: default
     font-family: 'Menlo', 'Monaco', monospace;
     font-size: 0.9em;
   }
-  
+
   .post-content pre {
     background-color: #f8f8f8;
     padding: 20px;
@@ -167,14 +167,14 @@ layout: default
     margin: 30px 0;
     border: 1px solid #eee;
   }
-  
+
   .post-content pre code {
     background-color: transparent;
     padding: 0;
     font-size: 0.9rem;
     line-height: 1.6;
   }
-  
+
   .post-content a {
     color: var(--primary-color);
     text-decoration: underline;
@@ -182,18 +182,18 @@ layout: default
     text-underline-offset: 2px;
     transition: text-decoration-color 0.2s ease;
   }
-  
+
   .post-content a:hover {
     text-decoration-color: rgba(37, 99, 235, 1);
   }
-  
+
   .post-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 50px;
   }
-  
+
   .post-tag {
     background-color: #f1f5f9;
     color: #64748b;
@@ -202,12 +202,12 @@ layout: default
     font-size: 0.9rem;
     transition: all 0.2s ease;
   }
-  
+
   .post-tag:hover {
     background-color: var(--primary-color);
     color: white;
   }
-  
+
   .post-navigation {
     display: flex;
     justify-content: space-between;
@@ -215,7 +215,7 @@ layout: default
     border-top: 1px solid #e2e8f0;
     padding-top: 35px;
   }
-  
+
   .prev-post,
   .next-post {
     display: flex;
@@ -223,24 +223,24 @@ layout: default
     max-width: 45%;
     transition: transform 0.2s ease;
   }
-  
+
   .prev-post:hover,
   .next-post:hover {
     transform: translateY(-3px);
   }
-  
+
   .next-post {
     text-align: right;
     margin-left: auto;
   }
-  
+
   .nav-label {
     color: var(--text-light);
     font-size: 0.9rem;
     margin-bottom: 8px;
     font-weight: 500;
   }
-  
+
   .post-navigation .post-title {
     font-size: 1.1rem;
     margin: 0;
@@ -248,14 +248,14 @@ layout: default
     font-weight: 600;
     letter-spacing: normal;
   }
-  
+
   /* First paragraph styling for Medium-like experience */
   .post-content p:first-of-type {
     font-size: 1.3rem;
     line-height: 1.7;
     color: #111;
   }
-  
+
   /* Drop cap for first paragraph */
   .post-content p:first-of-type::first-letter {
     float: left;
@@ -267,31 +267,31 @@ layout: default
     color: var(--primary-color);
     font-family: 'Georgia', serif;
   }
-  
+
   @media (max-width: 768px) {
     .post-title {
       font-size: 2.2rem;
     }
-    
+
     .post-content {
       font-size: 1.1rem;
       line-height: 1.7;
     }
-    
+
     .post-navigation {
       flex-direction: column;
       gap: 25px;
     }
-    
+
     .prev-post,
     .next-post {
       max-width: 100%;
     }
-    
+
     .next-post {
       text-align: left;
     }
-    
+
     .post-content p:first-of-type::first-letter {
       font-size: 3rem;
     }
