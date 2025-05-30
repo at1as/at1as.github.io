@@ -276,6 +276,12 @@ img {
   border-color: var(--primary-color);
 }
 
+.small-img {
+  width: 65% !important;
+  display: block !important;
+  margin: 20px auto !important; /* 20px top/bottom, auto left/right */
+}
+
 /* Card Styles */
 .card {
   background-color: var(--background-color);
@@ -359,7 +365,7 @@ img {
 
 .post-content img {
   border-radius: var(--border-radius);
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .post-content code {
@@ -913,4 +919,24 @@ img {
   .grid {
     grid-template-columns: 1fr;
   }
+}
+
+figure {
+  margin-bottom: 2em; /* Add some space below the figure */
+}
+
+figure img {
+  display: block; /* Remove extra space below the image */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+figure figcaption {
+  margin-top: 0.25em; /* Reduce space between image and caption */
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9em;
+  color: #555;
 }
