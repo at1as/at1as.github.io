@@ -277,9 +277,43 @@ img {
 }
 
 .small-img {
-  width: 65% !important;
+  width: 70% !important;
   display: block !important;
   margin: 20px auto !important; /* 20px top/bottom, auto left/right */
+}
+
+.centered-table-large-font table {
+  width: auto;
+  min-width: 50%;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.1em;
+  border-collapse: collapse; /* Ensures borders are neat */
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow: hidden; /* Important for border-radius with collapsed borders */
+}
+
+.centered-table-large-font th,
+.centered-table-large-font td {
+  border: 1px solid #ddd; /* Light grey border */
+  padding: 10px 12px; /* Increased padding */
+  text-align: left;
+}
+
+.centered-table-large-font th {
+  background-color: #e9ecef; /* Darker header background */
+  color: #495057; /* Darker header text */
+  font-weight: bold;
+}
+
+.centered-table-large-font tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* Zebra striping for even rows */
+}
+
+.centered-table-large-font tbody tr:hover {
+  background-color: #e2e6ea; /* Hover effect for rows */
 }
 
 /* Card Styles */

@@ -51,4 +51,9 @@ You'll find references to things like fundraising, pivoting, YC, and demo days (
   <figcaption>Savor the moment — eventually it will just be called "coding"</figcaption>
 </figure>
 
+<figure>
+  <a href="https://founderwear.creator-spring.com/listing/canada-s-11th-province?"><img src="/assets/images/posts/2025-05-30-Founderwear/11th-province.jpg" alt="11th Province" class="small-img"></a>
+  <figcaption>Silicon Valley: where Canadian founders go to raise, build, <br/> and accidentally say “sorry” during meetings.</figcaption>
+</figure>
+
 I've always liked the idea of building small things in public, and this one was a chance to combine a few interests — tech, design, and a bit of founder humor. Thanks for checking it out.
