@@ -56,4 +56,9 @@ You'll find references to things like fundraising, pivoting, YC, and demo days (
   <figcaption>Silicon Valley: where Canadian founders go to raise, build, <br/> and accidentally say “sorry” during meetings.</figcaption>
 </figure>
 
+<figure>
+  <a href="https://founderwear.creator-spring.com/listing/new-founder-mode"><img src="/assets/images/posts/2025-05-30-Founderwear/founder-mode-stickers.jpg" alt="Founder Mode" class="small-img"></a>
+  <figcaption>Founder Mode — for when Do Not Disturb isn’t enough.</figcaption>
+</figure>
+
 I've always liked the idea of building small things in public, and this one was a chance to combine a few interests — tech, design, and a bit of founder humor. Thanks for checking it out.
