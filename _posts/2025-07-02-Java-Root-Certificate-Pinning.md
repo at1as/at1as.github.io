@@ -59,8 +59,7 @@ We started by checking some obvious things:
 After ruling out basic misconfigurations, we began to suspect the root cause was related to missing or outdated certificates in the JVM truststore. We found similar issues reported in [Adoptium's GitHub](https://github.com/adoptium/temurin-build/issues/2783), as noted in their [security docs](https://github.com/adoptium/temurin-build/blob/0829acbf6e6118b8afe50e5a554e2c144cfa7999/security/README.md).
 
 To better understand the intermittent cert failures (possibly due to load balancers serving different chains), we ran the following script (note that Java was used to best mirror the environment in which the error occurred):
-```
-cat SSLCertCheck.java
+```java
 import javax.net.ssl.*;
 import java.net.InetAddress;
 import java.net.URL;
@@ -162,7 +161,7 @@ After confirming that we were indeed using the default Java Truststore, we opted
 
 While the intermediate certificates may not strictly be required, we included them for completeness and future-proofing.
 
-```
+```bash
 #!/bin/bash
 set -euo pipefail
 
@@ -247,7 +246,7 @@ C1AD7778796D20BCA65C889A2655021156528BB62FF5FA43E1B8E5A83E3D2EAA.pem
 We created a new directory `src/main/resources/certificates` and placed the 4 extracted certificates there.
 
 Then, we updated our Dockerfile to import these certificates into the JVM truststore during the build process:
-```
+```dockerfile
 FROM eclipse-temurin:17-jdk
 
 # Certs required for Microsoft
@@ -280,7 +279,7 @@ ENTRYPOINT ["sh", "/app/start.sh"]
 ```
 
 And for good measure, we added a script to remove any expired certificates from the truststore during the Docker build:
-```
+```bash
 #!/bin/bash
 set -euo pipefail
 
