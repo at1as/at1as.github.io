@@ -28,27 +28,93 @@ Each is powerful in its own way, but they solve different problems. Used togethe
 
 *Different tools for different tasks:*
 
-| Task                                               | Best Tool            | Why                                        |
-| -------------------------------------------------- | -------------------- | ------------------------------------------ |
-| Search for semantically similar messages           | **Embeddings**       | Fast, flexible, works across entire corpus |
-| Group similar messages                             | **Embeddings**       | Cluster by vector similarity               |
-| Label a message as "user feedback" or "bug report" | **LLM**              | Can infer subtle context                   |
-| Summarize what a group of messages is about        | **LLM**              | Turns examples into human-readable insight |
-| Visualize themes                                   | **Embeddings + LLM** | Cluster first (via vectors), then explain  |
+<div class="premium-table">
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Best Tool</th>
+      <th>Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Search for semantically similar messages</td>
+      <td><strong>Embeddings</strong></td>
+      <td class="highlight-cell">Fast, flexible, works across entire corpus</td>
+    </tr>
+    <tr>
+      <td>Group similar messages</td>
+      <td><strong>Embeddings</strong></td>
+      <td class="highlight-cell">Cluster by vector similarity</td>
+    </tr>
+    <tr>
+      <td>Label a message as "user feedback" or "bug report"</td>
+      <td><strong>LLM (Best), Embeddings (Possible)</strong></td>
+      <td class="highlight-cell">Can infer subtle context</td>
+    </tr>
+    <tr>
+      <td>Summarize what a group of messages is about</td>
+      <td><strong>LLM</strong></td>
+      <td class="highlight-cell">Turns examples into human-readable insight</td>
+    </tr>
+    <tr>
+      <td>Visualize themes</td>
+      <td><strong>Embeddings + LLM</strong></td>
+      <td class="highlight-cell">Cluster first (via vectors), then explain</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 ## Relative Strengths
 
 The table below highlights the relative strengths of embeddings and LLMs:
 
-| Aspect                     | **Embeddings**                                | **LLMs**                                  |
-| -------------------------- | --------------------------------------------- | ----------------------------------------- |
-| **Speed at scale**         | ✅ Extremely fast (especially with vector DBs) | ❌ Slow — must process one chunk at a time |
-| **Cost**                   | ✅ Cheap once generated                        | ❌ Expensive to run repeatedly             |
-| **Context awareness**      | ❌ No true understanding (just patterns)       | ✅ Rich understanding of meaning           |
-| **Reusability**            | ✅ Reusable for infinite queries               | ❌ One-time output unless stored           |
-| **Global analysis**        | ✅ Can structure entire dataset at once        | ❌ Limited by context window               |
-| **Human interpretability** | ❌ Opaque without clustering or inspection     | ✅ Fluent, explainable output              |
+<div class="premium-table">
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Embeddings</th>
+      <th>LLMs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Speed at scale</strong></td>
+      <td><span class="check">✅</span> Extremely fast (especially with vector DBs)</td>
+      <td><span class="x-mark">❌</span> Slow — must process one chunk at a time</td>
+    </tr>
+    <tr>
+      <td><strong>Cost</strong></td>
+      <td><span class="check">✅</span> Cheap once generated</td>
+      <td><span class="x-mark">❌</span> Expensive to run repeatedly</td>
+    </tr>
+    <tr>
+      <td><strong>Context awareness</strong></td>
+      <td><span class="x-mark">❌</span> No true understanding (just patterns)</td>
+      <td><span class="check">✅</span> Rich understanding of meaning</td>
+    </tr>
+    <tr>
+      <td><strong>Reusability</strong></td>
+      <td><span class="check">✅</span> Reusable for infinite queries</td>
+      <td><span class="x-mark">❌</span> One-time output unless stored</td>
+    </tr>
+    <tr>
+      <td><strong>Global analysis</strong></td>
+      <td><span class="check">✅</span> Can structure entire dataset at once</td>
+      <td><span class="x-mark">❌</span> Limited by context window</td>
+    </tr>
+    <tr>
+      <td><strong>Human interpretability</strong></td>
+      <td><span class="x-mark">❌</span> Opaque without clustering or inspection</td>
+      <td><span class="check">✅</span> Fluent, explainable output</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 ## Benchmarks
