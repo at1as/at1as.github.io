@@ -321,6 +321,7 @@ img {
   width: 100%;
   margin: 2.5rem 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: auto;
 }
 
 .premium-table table {
