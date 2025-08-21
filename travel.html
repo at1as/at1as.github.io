@@ -79,34 +79,35 @@ title: Places I've Traveled
 
     // Countries data with ISO codes, names, and whether I've lived there
     const countriesData = [
-      { code: 'AUT', name: 'Austria', lived: false },
-      { code: 'BEL', name: 'Belgium', lived: false },
-      { code: 'DEU', name: 'Germany', lived: false },
-      { code: 'ITA', name: 'Italy', lived: false },
-      { code: 'NLD', name: 'Netherlands', lived: true },
-      { code: 'GBR', name: 'United Kingdom', lived: false },
-      { code: 'CAN', name: 'Canada', lived: true },
-      { code: 'CUB', name: 'Cuba', lived: false },
-      { code: 'MEX', name: 'Mexico', lived: false },
-      { code: 'USA', name: 'United States', lived: true },
-      { code: 'EGY', name: 'Egypt', lived: false },
-      { code: 'CHN', name: 'China', lived: false },
-      { code: 'ISR', name: 'Israel', lived: false },
-      { code: 'JOR', name: 'Jordan', lived: false },
-      { code: 'LBN', name: 'Lebanon', lived: false },
-      { code: 'AUS', name: 'Australia', lived: false },
-      { code: 'VAT', name: 'Vatican City', lived: false },
-      { code: 'JPN', name: 'Japan', lived: false },
-      { code: 'VNM', name: 'Vietnam', lived: false },
-      { code: 'SGP', name: 'Singapore', lived: false },
-      { code: 'KOR', name: 'South Korea', lived: false },
-      { code: 'MYS', name: 'Malaysia', lived: false },
-      { code: 'IDN', name: 'Indonesia', lived: false },
-      { code: 'BHS', name: 'Bahamas', lived: false },
-      { code: 'FRA', name: 'France', lived: false },
-      { code: 'THA', name: 'Thailand', lived: false },
-      { code: 'TWN', name: 'Taiwan', lived: false },
-      { code: 'CHE', name: 'Switzerland', lived: false },
+      { code: 'AUT', name: 'Austria', lived: false, continent: 'Europe' },
+      { code: 'BEL', name: 'Belgium', lived: false, continent: 'Europe' },
+      { code: 'DEU', name: 'Germany', lived: false, continent: 'Europe' },
+      { code: 'ITA', name: 'Italy', lived: false, continent: 'Europe' },
+      { code: 'NLD', name: 'Netherlands', lived: true, continent: 'Europe' },
+      { code: 'GBR', name: 'United Kingdom', lived: false, continent: 'Europe' },
+      { code: 'CAN', name: 'Canada', lived: true, continent: 'North America' },
+      { code: 'CUB', name: 'Cuba', lived: false, continent: 'North America' },
+      { code: 'MEX', name: 'Mexico', lived: false, continent: 'North America' },
+      { code: 'USA', name: 'United States', lived: true, continent: 'North America' },
+      { code: 'EGY', name: 'Egypt', lived: false, continent: 'Africa' },
+      { code: 'CHN', name: 'China', lived: false, continent: 'Asia' },
+      { code: 'ISR', name: 'Israel', lived: false, continent: 'Asia' },
+      { code: 'JOR', name: 'Jordan', lived: false, continent: 'Asia' },
+      { code: 'LBN', name: 'Lebanon', lived: false, continent: 'Asia' },
+      { code: 'AUS', name: 'Australia', lived: false, continent: 'Oceania' },
+      { code: 'VAT', name: 'Vatican City', lived: false, continent: 'Europe' },
+      { code: 'JPN', name: 'Japan', lived: false, continent: 'Asia' },
+      { code: 'VNM', name: 'Vietnam', lived: false, continent: 'Asia' },
+      { code: 'SGP', name: 'Singapore', lived: false, continent: 'Asia' },
+      { code: 'KOR', name: 'South Korea', lived: false, continent: 'Asia' },
+      { code: 'MYS', name: 'Malaysia', lived: false, continent: 'Asia' },
+      { code: 'IDN', name: 'Indonesia', lived: false, continent: 'Asia' },
+      { code: 'BHS', name: 'Bahamas', lived: false, continent: 'North America' },
+      { code: 'FRA', name: 'France', lived: false, continent: 'Europe' },
+      { code: 'THA', name: 'Thailand', lived: false, continent: 'Asia' },
+      { code: 'TWN', name: 'Taiwan', lived: false, continent: 'Asia' },
+      { code: 'CHE', name: 'Switzerland', lived: false, continent: 'Europe' },
+      { code: 'ESP', name: 'Spain', lived: false, continent: 'Europe' },
     ];
 
     // Create arrays of just visited and lived countries for convenience
@@ -201,6 +202,7 @@ title: Places I've Traveled
             geoJsonName === 'Thailand' ||
             geoJsonName === 'Taiwan' ||
             geoJsonName === 'South Korea' ||
+            geoJsonName === 'Spain' ||
             geoJsonName === 'Switzerland'
           ) {
             countryStatusMap[geoJsonName] = 'visited';
@@ -317,7 +319,7 @@ title: Places I've Traveled
         // Update the counts
         document.getElementById('countries-count').textContent = countriesData.length;
         document.getElementById('continents-count').textContent = [...new Set(countriesData.map(c => c.continent))].length;
-        
+
         // Update section headings with counts
         document.getElementById('lived-heading').textContent = `Lived (${countriesLived.length})`;
         document.getElementById('visited-heading').textContent = `Visited (${countriesVisited.length})`;
