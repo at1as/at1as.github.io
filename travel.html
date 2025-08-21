@@ -106,7 +106,8 @@ title: Places I've Traveled
       { code: 'FRA', name: 'France', lived: false, continent: 'Europe' },
       { code: 'THA', name: 'Thailand', lived: false, continent: 'Asia' },
       { code: 'TWN', name: 'Taiwan', lived: false, continent: 'Asia' },
-      { code: 'ESP', name: 'Spain', lived: false, continent: 'Europe' }
+      { code: 'CHE', name: 'Switzerland', lived: false, continent: 'Europe' },
+      { code: 'ESP', name: 'Spain', lived: false, continent: 'Europe' },
     ];
 
     // Create arrays of just visited and lived countries for convenience
@@ -201,7 +202,8 @@ title: Places I've Traveled
             geoJsonName === 'Thailand' ||
             geoJsonName === 'Taiwan' ||
             geoJsonName === 'South Korea' ||
-            geoJsonName === 'Spain'
+            geoJsonName === 'Spain' ||
+            geoJsonName === 'Switzerland'
           ) {
             countryStatusMap[geoJsonName] = 'visited';
           }
