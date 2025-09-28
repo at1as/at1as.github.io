@@ -45,7 +45,7 @@ Well, this weekend I decided to _try_ to build a space where people can delibera
 
 ## What AI Dojo Is
 
-AI Dojo is a lightweight open-source tool for practicing real-world prompting. It works like this:
+[AI Dojo](https://github.com/at1as/AI-Dojo) is a lightweight open-source tool for practicing real-world prompting. It works like this:
 
 * You pick a task—“fix this OpenAPI spec and confirm it validates,” “write a SQL query to calculate user spending,” etc.
 * You work through the problem with an AI assistant.
@@ -157,4 +157,4 @@ Here's a sample to a question we viewed above - easy to modify right in the YAML
 
 ## Availablity
 
-AI Dojo will be available very soon! Stay tuned!
+AI Dojo is open source, MIT licensed, and [available now](https://github.com/at1as/AI-Dojo).
