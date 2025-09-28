@@ -45,7 +45,7 @@ Well, this weekend I decided to _try_ to build a space where people can delibera
 
 ## What AI Dojo Is
 
-AI Dojo is a lightweight tool for practicing real-world prompting. It works like this:
+AI Dojo is a lightweight open-source tool for practicing real-world prompting. It works like this:
 
 * You pick a task—“fix this OpenAPI spec and confirm it validates,” “write a SQL query to calculate user spending,” etc.
 * You work through the problem with an AI assistant.
@@ -55,15 +55,15 @@ AI Dojo is a lightweight tool for practicing real-world prompting. It works like
 The conversation itself is graded to provide feedback about your prompting and the completeness of the solution. Rather than complex problems, these are mostly simple tasks that practise conversing with an LLM across a range of topics and domains. We aim to turn something subjective into a more objective measure with specific feedback on the user's interactions with the LLM.
 
 <figure>
-  <img src="/assets/images/posts/2025-09-28-introducing-ai-dojo/task-list.png" alt="AI Dojo Task list" class="medium-img">
+  <img src="/assets/images/posts/2025-09-28-Introducing-AI-Dojo/task-list.png" alt="AI Dojo Task list" class="medium-img">
   <figcaption>
     List of tasks for the user to choose from
   </figcaption>
-</figure>
+  </figure>
 
 
 <figure>
-  <img src="/assets/images/posts/2025-09-28-introducing-ai-dojo/task-llm-conversation.png" alt="AI Dojo Task: LLM pair debugging" class="medium-img">
+  <img src="/assets/images/posts/2025-09-28-Introducing-AI-Dojo/task-llm-conversation.png" alt="AI Dojo Task: LLM pair debugging" class="medium-img">
   <figcaption>
     Problem solve alongside the LLM assistant
   </figcaption>
@@ -76,21 +76,21 @@ The conversation itself is graded to provide feedback about your prompting and t
 * ✅ **Objective grading for structured tasks**: SQL queries run against a test database, OpenAPI specs checked for validity.
 
 <figure>
-  <img src="/assets/images/posts/2025-09-28-introducing-ai-dojo/openapi-spec-validation.png" alt="AI Dojo Task: OpenAPI Spec Validation" class="medium-img">
+  <img src="/assets/images/posts/2025-09-28-Introducing-AI-Dojo/openapi-spec-validation.png" alt="AI Dojo Task: OpenAPI Spec Validation" class="medium-img">
   <figcaption>
     Task: Repair the OpenAPI YAML spec
   </figcaption>
 </figure>
 
 <figure>
-  <img src="/assets/images/posts/2025-09-28-introducing-ai-dojo/SQL-query-compose.png" alt="AI Dojo Task: Compose SQL" class="medium-img">
+  <img src="/assets/images/posts/2025-09-28-Introducing-AI-Dojo/SQL-query-compose.png" alt="AI Dojo Task: Compose SQL" class="medium-img">
   <figcaption>
     Task: Compose a SQL query to calculate user spending
   </figcaption>
 </figure>
 
 <figure>
-  <img src="/assets/images/posts/2025-09-28-introducing-ai-dojo/select-the-prompt.png" alt="AI Dojo Task: Select the better prompt" class="medium-img">
+  <img src="/assets/images/posts/2025-09-28-Introducing-AI-Dojo/select-the-prompt.png" alt="AI Dojo Task: Select the better prompt" class="medium-img">
   <figcaption>
     Task: Select the better prompt for the given task
   </figcaption>
@@ -120,7 +120,7 @@ That’s what we’re trying to build with AI Dojo.
 
 #### Was this repo itself written by an LLM?
 
-Yes, much of this repo was written by an LLM. In this house we [vibe code](https://founderwear.creator-spring.com/listing/new-vibe-coding?product=1565)
+Yes, much of this repo was written by an LLM 🎉. In our house we [vibe code](https://founderwear.creator-spring.com/listing/new-vibe-coding?product=1565)
 
 
 #### Do you have any tips for vibe coding?
