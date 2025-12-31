@@ -65,9 +65,10 @@ Looking at my own purchases from 2025, the pattern becomes obvious:
 - Bambu Labs P1S 3D printer
 - Kindle (finally retiring my last mini-USB device)
 - Oura Ring
-- iPad (single-purpose: as a second display while traveling)
+- Abbott Lingo glucose sensor
+- iPad (single-purpose: as a second MacBook display while traveling)
 - More mechanical watches than I can count (while not tech per se, it does reduce the breadth of the Apple ecosystem)
 
-This is more than I've bought in the last 5 years, and I'm already excited for 2026. While Meta, Apple, Amazon, and Google still appear, their purposes are narrower for me than in the past, and their appearance is often no longer part of a two-player market. To be clear, these companies make great products and should exist, but they should be easy to use as standalone à la carte offerings, not omakase experiences.
+This is more than I've bought in the last 5 years, and I'm already excited for 2026. While Meta, Apple, Amazon, and Google still appear in my list, their purposes are narrower for me than in the past, and their presence is often no longer part of a two-player market. To be clear, these companies often make great products and should exist, but they should be easy to use as standalone à la carte offerings, not forced omakase experiences.
 
 We'll never recreate the late 80s or mid-90s. SaaS, subscription pricing, and centralized platforms are here to stay. But this feels like the beginning of another golden era—one defined less by consolidation and more by variety, personality, and choice.
