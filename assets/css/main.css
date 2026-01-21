@@ -39,6 +39,12 @@ body {
   background-color: var(--background-color);
 }
 
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .site-wrapper {
   min-height: 100vh;
   display: flex;
