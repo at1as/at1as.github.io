@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Tech Monoculture is Finally Breaking"
+title: "Tech is Fun Again: The Tech Monoculture is Finally Breaking"
 date: 2025-12-17 12:00:00 -0400
 categories: [technology]
 tags: [tech, history]
