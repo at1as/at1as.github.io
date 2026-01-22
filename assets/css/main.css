@@ -151,6 +151,9 @@ img {
   background: none;
   border: none;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: var(--header-height);
 }
 
 /* Main Content Styles */
@@ -1215,7 +1218,7 @@ img {
   }
 
   .mobile-menu-toggle {
-    display: block;
+    display: flex;
   }
 
   .hamburger-icon,
