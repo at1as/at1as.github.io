@@ -7,25 +7,21 @@ layout: default
   <div class="container">
     <div class="hero-content">
       <img src="/photos/jason-july2015.jpg" alt="Jason Willems" class="hero-image">
+      <h1 class="hero-title">Jason Willems</h1>
+      <p class="hero-subtitle">Technical founder, engineering leader, product builder</p>
 
       <div class="social-links">
-        <a href="https://github.com/at1as" class="social-link" aria-label="GitHub" style="color:black;">
+        <a href="https://github.com/at1as" class="social-link" aria-label="GitHub">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://twitter.com/jasonwillems" class="social-link" aria-label="Twitter" style="color:black;">
+        <a href="https://twitter.com/jasonwillems" class="social-link" aria-label="Twitter">
           <i class="fab fa-x-twitter"></i>
         </a>
         <!--<a href="https://ca.linkedin.com/in/jasonmwillems" class="social-link" aria-label="LinkedIn">
           <i class="fab fa-linkedin-in"></i>
         </a>-->
-        <a href="https://rubygems.org/profiles/at1as" class="social-link" aria-label="RubyGems" style="color:#cb0101;">
-          <i class="fas fa-gem"></i>
-        </a>
-        <a href="https://founderwear.creator-spring.com/" class="social-link" aria-label="TeeSpring" style="color:#39b3e6;">
-          <i class="fas fa-tshirt"></i>
-        </a>
-        <a href="https://lead.app" class="social-link" aria-label="LEAD">
-          <img src="/assets/images/icons/cropped-lead_icon-180x180.png" alt="LEAD" style="width: 28px; height: 28px; border-radius: 0;">
+        <a href="https://lead.app" class="social-link social-link-lead" aria-label="LEAD">
+          <img src="/assets/images/icons/cropped-lead_icon-180x180.png" alt="LEAD">
         </a>
         <a href="https://sunrizeapp.com" class="social-link" aria-label="Sunrize">
           <img src="/assets/images/icons/android-chrome-192x192.png" alt="Sunrize" style="width: 28px; height: 28px; border-radius: 0;">
@@ -36,58 +32,37 @@ layout: default
 </section>
 
 <!-- About Section -->
-<section class="section" style="margin-top: 0; padding-top: 40px; max-width: 675px; margin: 0 auto;">
+<section class="about-section">
   <div class="container">
     <div class="about-content">
-      <p>Hi, I'm <b>Jason Willems</b> — a technical founder, engineering leader, and product builder based in New York. I've spent the past decade scaling systems, leading teams, and turning ideas into products used by thousands of organizations.</p>
-      <br/>
-      <p>Outside of work, I'm usually exploring new places, behind a camera, or hosting conversations at the intersection of tech, people, and impact.</p>
+      <p style="text-align: left;">Hi, I'm <b>Jason Willems</b> — a technical founder, engineering leader, and product builder based in New York. I've spent the past decade scaling systems, leading teams, and turning ideas into products used by thousands of organizations.</p>
+      <p style="text-align: left;">I'm originally from the Netherlands, grew up in Toronto and Montréal, and spent nearly a decade in San Francisco building and scaling startups through rapid growth and an IPO. I now call New York home. Outside of work, I'm usually exploring new places, behind a camera, or hosting conversations at the intersection of tech and people.</p>
     </div>
-
     <p class="location">📍 New York City</p>
   </div>
 </section>
 
 
-{% comment %}
-<section class="section" style="background-color: var(--background-alt); padding: 60px 0; margin-top: 0;">
+<!-- Featured Content -->
+<section class="featured-section">
   <div class="container">
-    <h2 class="section-title">Featured Content</h2>
+    <div class="featured-grid">
 
-    <div class="grid">
-      <!-- Travel Card -->
-      <div class="card">
-        <img src="/assets/images/travel-thumbnail.jpg" alt="World Map" class="card-image" onerror="this.src='https://via.placeholder.com/400x200?text=Travel+Map';this.onerror='';">
-        <div class="card-content">
-          <h3 class="card-title">Places I've Traveled</h3>
-          <p class="card-text">Explore the countries and cities I've visited around the globe.</p>
-          <a href="/travel" class="btn">View Map</a>
-        </div>
-      </div>
+       <a href="/blog" class="featured-card">
+        <div class="featured-icon">✍️</div>
+        <h3 class="featured-title">Blog</h3>
+        <p class="featured-text">Thoughts on tech, AI, and more</p>
+      </a>
 
-      <!-- Talks Card -->
-      <div class="card">
-        <img src="/assets/images/talks-thumbnail.jpg" alt="Speaking at Conference" class="card-image" onerror="this.src='https://via.placeholder.com/400x200?text=Tech+Talks';this.onerror='';">
-        <div class="card-content">
-          <h3 class="card-title">Tech Talks</h3>
-          <p class="card-text">Presentations and talks I've given at conferences and meetups.</p>
-          <a href="/talks" class="btn">View Talks</a>
-        </div>
-      </div>
+      <a href="/contact" class="featured-card">
+        <div class="featured-icon">🗺️</div>
+        <h3 class="featured-title">Contact</h3>
+        <p class="featured-text">Let's connect</p>
+      </a>
 
-      <!-- Blog Card -->
-      <div class="card">
-        <img src="/assets/images/blog-thumbnail.jpg" alt="Blog" class="card-image" onerror="this.src='https://via.placeholder.com/400x200?text=Blog+Posts';this.onerror='';">
-        <div class="card-content">
-          <h3 class="card-title">Blog</h3>
-          <p class="card-text">My thoughts on technology, travel, and other interests.</p>
-          <a href="/blog" class="btn">Read Blog</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
-{% endcomment %}
 
 <script>
   document.getElementById('homelink').classList.add('active');

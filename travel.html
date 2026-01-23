@@ -10,6 +10,12 @@ title: Places I've Traveled
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+    <!--<h1 class="section-title">Places I've Traveled</h1>-->
+    <p class="travel-intro">
+      Spending time in different countries—sometimes briefly, sometimes for years—has helped me discover what I value in life and taught me a lot about people.
+      More than anything, it's left me optimistic, perhaps to a fault, about our future.
+    </p>
+
     <!-- Map Container -->
     <div class="travel-map-container" id="travel-map"></div>
 
@@ -17,15 +23,14 @@ title: Places I've Traveled
     <div class="map-legend">
       <div class="legend-item">
         <div class="legend-color lived"></div>
-        <div class="legend-label">Lived</div>
+        <div class="legend-label">Lived <span class="legend-emoji" aria-hidden="true">🏠</span></div>
       </div>
+
+      <div class="legend-divider" aria-hidden="true"></div>
+
       <div class="legend-item">
         <div class="legend-color visited"></div>
-        <div class="legend-label">Visited</div>
-      </div>
-      <div class="legend-item">
-        <div class="legend-color not-visited"></div>
-        <div class="legend-label">Not Yet Visited</div>
+        <div class="legend-label">Visited <span class="legend-emoji" aria-hidden="true">✈️</span></div>
       </div>
     </div>
 
@@ -53,7 +58,7 @@ title: Places I've Traveled
       </div>
     </div>
 
-    <div class="country-list" style="margin-top:40px;">
+    <div class="country-list country-list-spacing">
       <h2 class="section-subtitle" id="visited-heading">Visited</h2>
       <div class="countries-grid" id="countries-grid">
         <!-- Countries will be populated by JavaScript -->
@@ -69,7 +74,37 @@ title: Places I've Traveled
     document.getElementById('travellink').classList.add('active');
 
     // Initialize the map
-    const map = L.map('travel-map').setView([20, 0], 2);
+    const initialCenter = [20, 0];
+    const initialZoom = 2;
+    const worldBounds = L.latLngBounds([[-90, -180], [90, 180]]);
+
+    const map = L.map('travel-map', {
+      worldCopyJump: true,
+      maxBounds: worldBounds,
+      maxBoundsViscosity: 0.8
+    }).setView(initialCenter, initialZoom);
+
+    const RecenterControl = L.Control.extend({
+      options: { position: 'topright' },
+      onAdd: function() {
+        const container = L.DomUtil.create('div', 'leaflet-bar recenter-control');
+        const button = L.DomUtil.create('a', 'recenter-btn', container);
+        button.href = '#';
+        button.title = 'Re-center map';
+        button.setAttribute('aria-label', 'Re-center map');
+        button.innerHTML = '⟳';
+
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.on(button, 'click', function(e) {
+          L.DomEvent.preventDefault(e);
+          map.setView(initialCenter, initialZoom, { animate: true, duration: 0.35 });
+        });
+
+        return container;
+      }
+    });
+
+    map.addControl(new RecenterControl());
 
     // Add the base map layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -109,6 +144,47 @@ title: Places I've Traveled
       { code: 'CHE', name: 'Switzerland', lived: false, continent: 'Europe' },
       { code: 'ESP', name: 'Spain', lived: false, continent: 'Europe' },
     ];
+
+    const iso3ToIso2 = {
+      AUT: 'AT',
+      BEL: 'BE',
+      DEU: 'DE',
+      ITA: 'IT',
+      NLD: 'NL',
+      GBR: 'GB',
+      CAN: 'CA',
+      CUB: 'CU',
+      MEX: 'MX',
+      USA: 'US',
+      EGY: 'EG',
+      CHN: 'CN',
+      ISR: 'IL',
+      JOR: 'JO',
+      LBN: 'LB',
+      AUS: 'AU',
+      VAT: 'VA',
+      JPN: 'JP',
+      VNM: 'VN',
+      SGP: 'SG',
+      KOR: 'KR',
+      MYS: 'MY',
+      IDN: 'ID',
+      BHS: 'BS',
+      FRA: 'FR',
+      THA: 'TH',
+      TWN: 'TW',
+      CHE: 'CH',
+      ESP: 'ES'
+    };
+
+    function iso2ToFlagEmoji(iso2) {
+      if (!iso2 || typeof iso2 !== 'string' || iso2.length !== 2) return '';
+      const codePoints = iso2
+        .toUpperCase()
+        .split('')
+        .map(char => 127397 + char.charCodeAt(0));
+      return String.fromCodePoint(...codePoints);
+    }
 
     // Create arrays of just visited and lived countries for convenience
     const visitedCountries = countriesData;
@@ -159,53 +235,29 @@ title: Places I've Traveled
         console.log('Visited countries:', Object.keys(visitedCountryMap));
         console.log('Lived countries:', Object.keys(livedCountryMap));
 
-        // Create a direct mapping from GeoJSON country names to our status
+        // Create name variations map for better matching
+        const nameVariations = {
+          'United States': ['United States of America', 'USA', 'US'],
+          'United Kingdom': ['UK', 'Great Britain'],
+          'South Korea': ['Korea, Republic of', 'Republic of Korea'],
+          'Vatican City': ['Vatican', 'Holy See'],
+          'Bahamas': ['The Bahamas'],
+          'Netherlands': ['Holland']
+        };
+
+        // Build a comprehensive lookup map
         const countryStatusMap = {};
+        countriesData.forEach(country => {
+          const status = country.lived ? 'lived' : 'visited';
 
-        // Manually map each GeoJSON country name to its status
-        data.features.forEach(feature => {
-          const geoJsonName = feature.properties.name;
+          // Add primary name
+          countryStatusMap[country.name.toLowerCase()] = status;
 
-          // Check if this is a country we've lived in
-          if (
-            geoJsonName === 'Netherlands' ||
-            geoJsonName === 'Canada' ||
-            geoJsonName === 'United States of America' ||
-            geoJsonName === 'United States'
-          ) {
-            countryStatusMap[geoJsonName] = 'lived';
-          }
-          // Check if this is a country we've visited
-          else if (
-            geoJsonName === 'Austria' ||
-            geoJsonName === 'Belgium' ||
-            geoJsonName === 'Germany' ||
-            geoJsonName === 'Italy' ||
-            geoJsonName === 'United Kingdom' ||
-            geoJsonName === 'Cuba' ||
-            geoJsonName === 'Mexico' ||
-            geoJsonName === 'Egypt' ||
-            geoJsonName === 'China' ||
-            geoJsonName === 'Israel' ||
-            geoJsonName === 'Jordan' ||
-            geoJsonName === 'Lebanon' ||
-            geoJsonName === 'Australia' ||
-            geoJsonName === 'Vatican' ||
-            geoJsonName === 'Japan' ||
-            geoJsonName === 'Vietnam' ||
-            geoJsonName === 'Singapore' ||
-            geoJsonName === 'Malaysia' ||
-            geoJsonName === 'Indonesia' ||
-            geoJsonName === 'The Bahamas' ||
-            geoJsonName === 'Bahamas' ||
-            geoJsonName === 'France' ||
-            geoJsonName === 'Thailand' ||
-            geoJsonName === 'Taiwan' ||
-            geoJsonName === 'South Korea' ||
-            geoJsonName === 'Spain' ||
-            geoJsonName === 'Switzerland'
-          ) {
-            countryStatusMap[geoJsonName] = 'visited';
+          // Add variations if they exist
+          if (nameVariations[country.name]) {
+            nameVariations[country.name].forEach(variation => {
+              countryStatusMap[variation.toLowerCase()] = status;
+            });
           }
         });
 
@@ -215,7 +267,7 @@ title: Places I've Traveled
         const geojsonLayer = L.geoJSON(data.features, {
           style: function(feature) {
             const countryName = feature.properties.name;
-            const status = countryStatusMap[countryName];
+            const status = countryStatusMap[countryName.toLowerCase()];
             const hasLived = status === 'lived';
             const hasVisited = status === 'visited';
 
@@ -251,7 +303,7 @@ title: Places I've Traveled
           },
           onEachFeature: function(feature, layer) {
             const countryName = feature.properties.name;
-            const status = countryStatusMap[countryName];
+            const status = countryStatusMap[countryName.toLowerCase()];
             const hasLived = status === 'lived';
             const hasVisited = status === 'visited';
 
@@ -321,14 +373,22 @@ title: Places I've Traveled
         document.getElementById('continents-count').textContent = [...new Set(countriesData.map(c => c.continent))].length;
 
         // Update section headings with counts
-        document.getElementById('lived-heading').textContent = `Lived (${countriesLived.length})`;
-        document.getElementById('visited-heading').textContent = `Visited (${countriesVisited.length})`;
+        document.getElementById('lived-heading').innerHTML = `Lived <span class="heading-count">(${countriesLived.length})</span>`;
+        document.getElementById('visited-heading').innerHTML = `Visited <span class="heading-count">(${countriesVisited.length})</span>`;
         // Populate the lived countries grid
         const livedCountriesGrid = document.getElementById('lived-countries-grid');
         countriesLived.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
           const countryElement = document.createElement('div');
           countryElement.className = 'country-item lived';
-          countryElement.textContent = country.name;
+
+          const iso2 = iso3ToIso2[country.code];
+          const flag = iso2ToFlagEmoji(iso2);
+          if (flag) {
+            countryElement.classList.add('has-flag');
+            countryElement.innerHTML = `<span class="country-flag" aria-hidden="true">${flag}</span><span class="country-name">${country.name}</span>`;
+          } else {
+            countryElement.textContent = country.name;
+          }
           livedCountriesGrid.appendChild(countryElement);
         });
 
@@ -337,7 +397,15 @@ title: Places I've Traveled
         countriesVisited.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
           const countryElement = document.createElement('div');
           countryElement.className = 'country-item';
-          countryElement.textContent = country.name;
+
+          const iso2 = iso3ToIso2[country.code];
+          const flag = iso2ToFlagEmoji(iso2);
+          if (flag) {
+            countryElement.classList.add('has-flag');
+            countryElement.innerHTML = `<span class="country-flag" aria-hidden="true">${flag}</span><span class="country-name">${country.name}</span>`;
+          } else {
+            countryElement.textContent = country.name;
+          }
           countriesGrid.appendChild(countryElement);
         });
 
@@ -348,8 +416,30 @@ title: Places I've Traveled
 </script>
 
 <style>
+  .travel-intro {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
   .travel-stats {
     margin: 40px 0;
+  }
+
+  .section-subtitle {
+    color: var(--text-color);
+  }
+
+  .heading-count {
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-left: 6px;
+    letter-spacing: 0.01em;
   }
 
   .stats-grid {
@@ -366,6 +456,19 @@ title: Places I've Traveled
     text-align: center;
     min-width: 150px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.7);
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.06);
+    border-color: rgba(226, 232, 240, 1);
+  }
+
+  .stat-card:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
   }
 
   .stat-number {
@@ -382,7 +485,7 @@ title: Places I've Traveled
 
   .countries-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 15px;
     margin-top: 20px;
   }
@@ -392,38 +495,129 @@ title: Places I've Traveled
     border-radius: var(--border-radius);
     padding: 10px 15px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.7);
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    cursor: default;
+  }
+
+  .country-item.has-flag {
+    justify-content: flex-start;
+    text-align: left;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .country-flag {
+    font-size: 1.05rem;
+    line-height: 1;
+    width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 8px;
+    border-right: 1px solid rgba(203, 211, 222, 0.45);
+    background: aliceblue;
+    color: var(--text-color);
+  }
+
+  .country-name {
+    line-height: 1.2;
+    padding: 10px 12px;
+    color: var(--text-color);
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .country-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    border-color: rgba(226, 232, 240, 1);
+  }
+
+  .country-item.has-flag:not(.lived):hover {
+    border-left-color: rgba(139, 92, 246, 0.55);
+  }
+
+  .country-item:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
   }
 
   .country-item.lived {
-    background-color: rgba(16, 185, 129, 0.1); /* Light green background */
-    border-left: 3px solid #10b981; /* Green border on the left */
+    background-color: rgba(14, 165, 233, 0.12); /* Light blue background */
+    border-left: 3px solid #0ea5e9; /* Blue border matching map */
     font-weight: 500;
+  }
+
+  .country-item.lived:hover {
+    box-shadow: 0 5px 12px rgba(14, 165, 233, 0.14);
+    border-color: rgba(14, 165, 233, 0.25);
+  }
+
+  .country-list-spacing {
+    margin-top: 40px;
   }
 
   .travel-map-container {
     width: 100%;
     height: 500px;
     border-radius: var(--border-radius);
-    border: 1px solid gray;
+    border: 1px solid rgba(203, 211, 222, 0.9);
     overflow: hidden;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.65);
     position: relative;
-    z-index: 1; /* Lower z-index to prevent overlapping with header */
+    z-index: 1;
+  }
+
+  .recenter-control .recenter-btn {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(203, 211, 222, 0.9);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  }
+
+  .recenter-control .recenter-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.09);
+  }
+
+  .recenter-control .recenter-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   }
 
   .map-legend {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 30px;
     margin-top: 15px;
-    padding: 10px;
+    margin-bottom: 40px;
+    padding: 15px 25px;
     background: var(--background-alt);
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    max-width: 500px;
+    border: 1px solid rgba(226, 232, 240, 0.7);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    max-width: 350px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -434,11 +628,18 @@ title: Places I've Traveled
     gap: 8px;
   }
 
-  .legend-color {
-    width: 20px;
+  .legend-divider {
     height: 20px;
+    width: 1px;
+    background: rgba(203, 211, 222, 0.8);
+    flex: 0 0 1px;
+  }
+
+  .legend-color {
+    width: 24px;
+    height: 24px;
     border-radius: 4px;
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.2);
   }
 
   .legend-color.lived {
@@ -451,15 +652,19 @@ title: Places I've Traveled
     opacity: 0.6;
   }
 
-  .legend-color.not-visited {
-    background-color: #f1f5f9;
-    opacity: 0.2;
-    border-color: black;
-  }
 
   .legend-label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .legend-emoji {
+    font-size: 1.2em;
+    margin-left: 5px;
+    line-height: 1;
+    display: inline-block;
+    transform: translateY(1px);
   }
 
   .legend-tip {
@@ -488,6 +693,10 @@ title: Places I've Traveled
       gap: 10px;
       align-items: flex-start;
       padding: 15px;
+    }
+
+    .legend-divider {
+      display: none;
     }
 
     .legend-tip {
