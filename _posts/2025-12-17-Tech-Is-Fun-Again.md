@@ -5,6 +5,7 @@ date: 2025-12-17 12:00:00 -0400
 categories: [technology]
 tags: [tech, history]
 hidden: false
+popular: true
 ---
 
 Growing up in the 90s and early 2000s, tech was a foundational part of my childhood.
