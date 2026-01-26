@@ -4,7 +4,7 @@ title: "AI Didn't Break Copyright Law—It Just Exposed How Broken It Already Wa
 date: 2026-01-23 12:00:00 -0400
 categories: [technology]
 tags: [tech, history]
-hidden: false
+hidden: hidden
 ---
 
 If you paint a picture of Sonic the Hedgehog in your living room, that's fine. You're essentially allowed to make private, noncommercial art. Gift it to a friend? Still tolerated—a technical act of distribution that copyright law mostly ignores in practice. Take a photo and post it on Instagram? Now you've crossed into public distribution of a derivative work without permission. Under the letter of the law, that's infringement, although a fair-use defense *might* apply and Sega almost certainly won't care. It's fan engagement, free marketing, and good PR.
