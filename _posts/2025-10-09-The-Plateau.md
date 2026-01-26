@@ -5,6 +5,7 @@ date: 2025-10-09 12:00:00 -0400
 categories: [ai]
 tags: [ai, commentary]
 hidden: false
+popular: true
 ---
 
 For most of history, humanity's greatest accomplishment has been its ability to out-accelerate its own existential problems.
