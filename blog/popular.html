@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Blog
+title: Popular Posts
+permalink: /blog/popular/
 ---
 
 <section class="section">
@@ -8,18 +9,17 @@ title: Blog
 
     <div class="blog-filter-nav">
       <div class="filter-tabs-container">
-        <a href="/blog/" class="filter-tab active">All Posts</a>
-        <a href="/blog/popular/" class="filter-tab">Popular</a>
+        <a href="/blog/" class="filter-tab">All Posts</a>
+        <a href="/blog/popular/" class="filter-tab active">Popular</a>
       </div>
     </div>
 
-    <div class="blog-intro">
-    </div>
-
     <div class="blog-posts">
+      {% assign popular_posts = site.posts | where: "popular", true %}
       {% assign visible_posts = false %}
-      {% for post in paginator.posts %}
-        {% unless post.hidden %}  <!-- Skip hidden posts -->
+
+      {% for post in popular_posts %}
+        {% unless post.hidden %}
           {% assign visible_posts = true %}
           <article class="blog-post">
             <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
@@ -67,30 +67,12 @@ title: Blog
 
       {% if visible_posts == false %}
         <div class="no-posts-message">
-          <h2>Coming Soon</h2>
-          <p>New blog posts are in the works. Check back later for updates!</p>
+          <h2>No Popular Posts Yet</h2>
+          <p>Check back later for highlighted content!</p>
         </div>
       {% endif %}
     </div>
 
-    <!-- Pagination -->
-    {% if paginator.total_pages > 1 %}
-    <div class="pagination">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-item prev">
-          <i class="fas fa-chevron-left"></i> Newer Posts
-        </a>
-      {% endif %}
-
-      <span class="pagination-info">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-item next">
-          Older Posts <i class="fas fa-chevron-right"></i>
-        </a>
-      {% endif %}
-    </div>
-    {% endif %}
   </div>
 </section>
 
@@ -107,7 +89,7 @@ title: Blog
     padding: 4px;
     background-color: var(--background-alt);
     border-radius: 8px;
-    border: 1px solid #d4e8f9;
+    border: 1px solid #d4e8f9
   }
 
   .filter-tab {
@@ -237,43 +219,30 @@ title: Blog
     transform: translateX(5px);
   }
 
-  .pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 60px;
-  }
-
-  .pagination-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
+  .no-posts-message {
+    text-align: center;
+    padding: 60px 0;
     background-color: var(--background-alt);
     border-radius: var(--border-radius);
-    font-weight: 500;
-    transition: all var(--transition-speed) ease;
+    margin: 40px 0;
   }
 
-  .pagination-item:hover {
-    background-color: var(--primary-color);
-    color: white;
+  .no-posts-message h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
   }
 
-  .pagination-info {
+  .no-posts-message p {
     color: var(--text-light);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   @media (max-width: 768px) {
     .post-title {
       font-size: 1.75rem;
-    }
-
-    .pagination {
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
     }
   }
 </style>
