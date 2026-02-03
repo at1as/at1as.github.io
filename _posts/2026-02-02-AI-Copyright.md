@@ -3,7 +3,7 @@ layout: post
 title: "AI Didn't Break Copyright Law, It Just Exposed How Broken It Already Was"
 date: 2026-02-02 12:00:00 -0400
 categories: [technology]
-tags: [tech, history]
+tags: [tech, history, legal]
 hidden: false
 ---
 
