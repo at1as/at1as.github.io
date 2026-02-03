@@ -13,7 +13,7 @@ Gift it to a friend? Still functionally tolerated—a technical act of distribut
 
 Sell that painting, though, and the tolerance disappears. You're no longer a fan, you're a competitor.
 
-This gap between the written law and its practical application isn't an AI problem. It's something that has been quietly tolerated for decades. The system works not because the rules are clear, but because enforcement has been selectively targeted for impact and the scale has been human. With generative AI, that ambiguity suddenly represents billions of dollars in potential damages, forcing a reckoning that makes long-implicit assumptions explicit.
+This gap between the written law and its practical application isn't an AI problem. It's something that has been quietly tolerated for decades. The system works not because the rules are clear, but because enforcement has been selectively targeted for impact and the scale has been human. With generative AI, that ambiguity suddenly represents billions of dollars in litigation and potential damages, transforming what was once informal tolerance into an existential legal battle that forces long-implicit assumptions into the open.
 
 ## Copyright Law Was Built for Human Scale
 
