@@ -7,7 +7,9 @@ tags: [tech, history]
 hidden: false
 ---
 
-If you paint a picture of Sonic the Hedgehog in your living room, you are technically creating an unauthorized derivative work—but in practice, no one cares. Private, noncommercial creation has always lived in a space where copyright law exists on paper but is rarely enforced. Gift it to a friend? Still functionally tolerated—a technical act of distribution that copyright law mostly ignores at human scale. Take a photo and post it on Instagram? Now you've crossed into public distribution of a derivative work without permission. Under the letter of the law, that's infringement, although a fair-use defense *might* apply and Sega almost certainly won't care. It's fan engagement, free marketing, and good PR.
+If you paint a picture of Sonic the Hedgehog in your living room, you are technically creating an unauthorized derivative work—but in practice, no one cares. Private, noncommercial creation has always lived in a space where copyright law exists on paper but is rarely enforced.
+
+Gift it to a friend? Still functionally tolerated—a technical act of distribution that copyright law mostly ignores at human scale. Take a photo and post it on Instagram? Now you've crossed into public distribution of a derivative work without permission. Under the letter of the law, that's infringement, although a fair-use defense *might* apply and Sega almost certainly won't care. It's fan engagement, free marketing, and good PR.
 
 Sell that painting, though, and the tolerance disappears. You're no longer a fan, you're a competitor.
 
