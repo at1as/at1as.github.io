@@ -6,6 +6,7 @@ categories: [technology]
 tags: [tech, history]
 hidden: false
 popular: true
+hackernews_id: 46733624
 ---
 
 Growing up in the 90s and early 2000s, tech was a foundational part of my childhood.

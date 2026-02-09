@@ -16,6 +16,12 @@ layout: default
               {% endfor %}
             </span>
           {% endif %}
+          {% if page.hackernews_id %}
+            <a href="https://news.ycombinator.com/item?id={{ page.hackernews_id }}" class="hackernews-link" target="_blank" rel="noopener" data-hn-id="{{ page.hackernews_id }}">
+              <i class="fab fa-y-combinator"></i>
+              <span class="hn-score">...</span>
+            </a>
+          {% endif %}
         </div>
       </header>
 
@@ -95,6 +101,29 @@ layout: default
     padding: 3px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
+  }
+
+  .hackernews-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #ff6600;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .hackernews-link:hover {
+    background-color: #e55a00;
+    color: white;
+  }
+
+  .hackernews-link i {
+    font-size: 0.9rem;
   }
 
   .post-content {
@@ -297,3 +326,27 @@ layout: default
     }
   }
 </style>
+
+<script>
+(function() {
+  const hnLink = document.querySelector('.hackernews-link');
+  if (!hnLink) return;
+
+  const hnId = hnLink.dataset.hnId;
+  if (!hnId) return;
+
+  fetch('https://hn.algolia.com/api/v1/items/' + hnId)
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.points !== undefined) {
+        const scoreEl = hnLink.querySelector('.hn-score');
+        if (scoreEl) {
+          scoreEl.textContent = data.points + ' points';
+        }
+      }
+    })
+    .catch(() => {
+      // Silently fail - keep the ... or hide it
+    });
+})();
+</script>
