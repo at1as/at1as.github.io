@@ -6,6 +6,7 @@ categories: [technology]
 tags: [tech, history, legal]
 hidden: false
 popular: true
+hackernews_id: 46872562
 ---
 
 If you paint a picture of Sonic the Hedgehog in your living room, you are technically creating an unauthorized derivative work—but in practice, no one cares. Private, noncommercial creation has always lived in a space where copyright law exists on paper but is rarely enforced.

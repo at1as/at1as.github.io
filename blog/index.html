@@ -34,6 +34,11 @@ title: Blog
                   Popular
                 </span>
               {% endif %}
+              {% if post.hackernews_id %}
+                <a href="https://news.ycombinator.com/item?id={{ post.hackernews_id }}" class="hn-list-link" target="_blank" rel="noopener" title="Discuss on HackerNews">
+                  <i class="fab fa-y-combinator"></i>
+                </a>
+              {% endif %}
               {% if post.categories.size > 0 %}
                 <span class="post-categories">
                   {% for category in post.categories %}
@@ -191,6 +196,24 @@ title: Blog
     width: 14px;
     height: 14px;
     stroke-width: 2.5;
+  }
+
+  .hn-list-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff6600;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .hn-list-link:hover {
+    background-color: #e55a00;
   }
 
   .post-meta {
