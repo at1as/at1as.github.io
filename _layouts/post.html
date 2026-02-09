@@ -37,6 +37,21 @@ layout: default
         </div>
       {% endif %}
 
+      <div class="post-subscribe">
+        <h3>Enjoyed this post?</h3>
+        <p>Get new essays delivered to your inbox. No spam, unsubscribe anytime.</p>
+        <form
+          action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
+          method="post"
+          class="subscribe-form"
+        >
+          <div class="form-row">
+            <input type="email" name="email" placeholder="your@email.com" required />
+            <button type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+
       <div class="post-navigation">
         {% if page.previous.url %}
           <a class="prev-post" href="{{ page.previous.url }}">
@@ -278,6 +293,69 @@ layout: default
     letter-spacing: normal;
   }
 
+  .post-subscribe {
+    margin-top: 60px;
+    padding: 40px;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+  }
+
+  .post-subscribe h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: #1f2937;
+    font-weight: 600;
+  }
+
+  .post-subscribe p {
+    color: #64748b;
+    margin-bottom: 24px;
+    font-size: 1rem;
+  }
+
+  .subscribe-form .form-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: white;
+    transition: border-color 0.2s ease;
+  }
+
+  .subscribe-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  .subscribe-form button {
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+  }
+
+  .subscribe-form button:hover {
+    background-color: #1d4ed8;
+  }
+
   /* First paragraph styling for Medium-like experience */
   .post-content p:first-of-type {
     font-size: 1.3rem;
@@ -323,6 +401,18 @@ layout: default
 
     .post-content p:first-of-type::first-letter {
       font-size: 3rem;
+    }
+
+    .post-subscribe {
+      padding: 30px 20px;
+    }
+
+    .subscribe-form .form-row {
+      flex-direction: column;
+    }
+
+    .subscribe-form button {
+      width: 100%;
     }
   }
 </style>
