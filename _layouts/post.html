@@ -45,6 +45,7 @@ layout: default
           method="post"
           class="subscribe-form"
         >
+          <input type="hidden" name="metadata__source" value="{{ page.url }}" />
           <div class="form-row">
             <input type="email" name="email" placeholder="your@email.com" required />
             <button type="submit">Subscribe</button>
