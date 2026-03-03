@@ -6,7 +6,12 @@ permalink: /aws-azure-migration-guide/guides/chapter5-azure-db-migration/
 
 # PostgreSQL Migration from AWS RDS to Azure: How We Cut Over with (Almost**) Zero Downtime
 
-*<span class="reading-time">{% include reading_time.html %}</span> • Infrastructure Guide • RDS → Azure Database*
+<div class="chapter-meta-line">
+  <span class="chapter-number">Chapter 5</span>
+  <span class="reading-time-wrapper">{% include reading_time.html %}</span>
+  <span class="category">Infrastructure Guide</span>
+  <span class="migration-path"><strong>RDS</strong> → <strong>Azure Database</strong></span>
+</div>
 
 <div class="chapter-intro">
   This is <b>Part V</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our Postgres Databases from AWS RDS to Azure Database for PostgreSQL.
