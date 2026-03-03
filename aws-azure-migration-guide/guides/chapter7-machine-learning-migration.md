@@ -6,6 +6,13 @@ permalink: /aws-azure-migration-guide/guides/chapter7-machine-learning-migration
 
 # Machine Learning Migration
 
+<div class="chapter-meta-line">
+  <span class="chapter-number">Chapter 7</span>
+  <span class="reading-time-wrapper">{% include reading_time.html %}</span>
+  <span class="category">ML/AI Guide</span>
+  <span class="migration-path"><strong>SageMaker</strong> → <strong>Azure ML</strong></span>
+</div>
+
 <div class="chapter-intro">
 This is <b>Part VII</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of machine learning workloads from AWS to Azure.
   <div class="chapter-nav">
@@ -15,8 +22,6 @@ This is <b>Part VII</b> of our ongoing series on migrating LEAD's enterprise pla
   <div></div>
 </div>
 </div>
-
-*<span class="reading-time">{% include reading_time.html %}</span> • ML/AI Guide • SageMaker → Azure ML*
 
 # Coming Soon
 

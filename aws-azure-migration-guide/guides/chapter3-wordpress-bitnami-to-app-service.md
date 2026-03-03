@@ -6,7 +6,12 @@ permalink: /aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-s
 
 # WordPress on Bitnami to Azure App Service Migration
 
-*<span class="reading-time">{% include reading_time.html %}</span> • Migration Guide • WordPress, Azure, App Service*
+<div class="chapter-meta-line">
+  <span class="chapter-number">Chapter 3</span>
+  <span class="reading-time-wrapper">{% include reading_time.html %}</span>
+  <span class="category">Migration Guide</span>
+  <span class="migration-path"><strong>WordPress</strong> → <strong>App Service</strong></span>
+</div>
 
 <div class="chapter-intro">
 This is <b>Part III</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our WordPress properties from AWS Lightsail with Bitnami to Azure App Service.

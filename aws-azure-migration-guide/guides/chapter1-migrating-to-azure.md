@@ -4,10 +4,14 @@ title: "From AWS to Azure — Migrating LEAD's Infrastructure Without Missing a 
 permalink: /aws-azure-migration-guide/guides/chapter1-migrating-to-azure/
 ---
 
-# From AWS to Azure — Migrating LEAD's Infrastructure Without Missing a Beat
+# From AWS to Azure — Migrating to Azure
 
-*May 14, 2025 • {% include reading_time.html %} • LEAD, AWS, Azure, Startup*
-
+<div class="chapter-meta-line">
+  <span class="chapter-number">Chapter 1</span>
+  <span class="reading-time-wrapper">{% include reading_time.html %}</span>
+  <span class="category">Strategic Guide</span>
+  <span class="migration-path"><strong>AWS</strong> → <strong>Azure</strong></span>
+</div>
 <div class="chapter-intro">
 This is <b>Part I</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the executive summary and strategic overview of our migration journey.
 
@@ -221,6 +225,7 @@ A few high-level takeaways covered in the next chapters:
 Each of these deserves its own explanation — and will get one
 
 <div class="next-chapter-section">
+  <a href="/aws-azure-migration-guide/" class="back-to-toc">← Back to Guide Overview</a>
   <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="next-chapter-button">
     <span class="button-content">
       <span class="button-text">Next Chapter</span>

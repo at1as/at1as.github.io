@@ -6,6 +6,13 @@ permalink: /aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/
 
 # Azure DNS Zones Setup
 
+<div class="chapter-meta-line">
+  <span class="chapter-number">Chapter 6</span>
+  <span class="reading-time-wrapper">{% include reading_time.html %}</span>
+  <span class="category">Network Guide</span>
+  <span class="migration-path"><strong>Route 53</strong> → <strong>DNS Zones</strong></span>
+</div>
+
 <div class="chapter-intro">
 This is <b>Part VI</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our DNS infrastructure from AWS Route53 to Azure DNS Zones.
   <div class="chapter-nav">
@@ -18,7 +25,6 @@ This is <b>Part VI</b> of our ongoing series on migrating LEAD's enterprise plat
 </div>
 </div>
 
-*<span class="reading-time">{% include reading_time.html %}</span> • Network Guide • Route 53 → DNS Zones*
 
 ## Step 1: Purchase or Keep Your Domain with a Registrar
 

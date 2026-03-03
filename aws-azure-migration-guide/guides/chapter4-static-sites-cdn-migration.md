@@ -6,7 +6,12 @@ permalink: /aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration
 
 # Static Sites & CDN Migration
 
-*<span class="reading-time">{% include reading_time.html %}</span> • Infrastructure Guide • S3 → Static Apps*
+<div class="chapter-meta-line">
+  <span class="chapter-number">Chapter 4</span>
+  <span class="reading-time-wrapper">{% include reading_time.html %}</span>
+  <span class="category">Infrastructure Guide</span>
+  <span class="migration-path"><strong>S3</strong> → <strong>Static Apps</strong></span>
+</div>
 
 <div class="chapter-intro">
 This is <b>Part IV</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our static sites from AWS S3 to Azure Static Web Apps.

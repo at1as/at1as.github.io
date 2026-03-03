@@ -6,7 +6,12 @@ permalink: /aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/
 
 # Chapter 2: From Amazon ECS to Azure App Service — A Real-World Container Migration
 
-*May 14, 2025 • {% include reading_time.html %} • LEAD, AWS, Azure, Startup*
+<div class="chapter-meta-line">
+  <span class="chapter-number">Chapter 2</span>
+  <span class="reading-time-wrapper">{% include reading_time.html %}</span>
+  <span class="category">Container Migration</span>
+  <span class="migration-path"><strong>ECS</strong> → <strong>App Service</strong></span>
+</div>
 
 <div class="chapter-intro">
 This is <b>Part II</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the first major workloads we moved from AWS ECS & EC2 to Azure App Service as well as the broader lessons we learned
