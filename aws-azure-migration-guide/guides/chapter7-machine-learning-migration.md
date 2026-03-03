@@ -19,6 +19,9 @@ This is <b>Part VII</b> of our ongoing series on migrating LEAD's enterprise pla
   <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="chapter-nav-button back">
     <span class="arrow">←</span>Previous Chapter
   </a>
+  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
+    <i class="fas fa-home"></i> Home
+  </a>
   <div></div>
 </div>
 </div>
@@ -47,11 +50,7 @@ This chapter will be published as we complete our machine learning migration wor
 
 
 <div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="next-chapter-button">
-    <span class="button-content">
-      <span class="button-text">Previous Chapter</span>
-      <span class="button-subtitle">Azure DNS Zones Setup</span>
-      <span class="arrow">→</span>
-    </span>
+  <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="back-to-toc">
+    <i class="fas fa-arrow-left"></i> Previous Chapter
   </a>
 </div>

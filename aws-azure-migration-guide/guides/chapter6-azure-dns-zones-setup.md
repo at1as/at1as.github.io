@@ -15,9 +15,12 @@ permalink: /aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/
 
 <div class="chapter-intro">
 This is <b>Part VI</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our DNS infrastructure from AWS Route53 to Azure DNS Zones.
-  <div class="chapter-nav">
+<div class="chapter-nav">
   <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="chapter-nav-button back">
     <span class="arrow">←</span>Previous Chapter
+  </a>
+  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
+    <i class="fas fa-home"></i> Home
   </a>
   <a href="/aws-azure-migration-guide/guides/chapter7-machine-learning-migration/" class="chapter-nav-button next">
     Next Chapter: ML Migration<span class="arrow">→</span>
@@ -132,10 +135,13 @@ DNS migration is straightforward (but high risk, so needs to be executed careful
 That's all. From here, the rest of your Azure migration builds on top of this foundation.
 
 <div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter1-migrating-to-azure/" class="next-chapter-button">
+  <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="back-to-toc">
+    <i class="fas fa-arrow-left"></i> Previous Chapter
+  </a>
+  <a href="/aws-azure-migration-guide/guides/chapter7-machine-learning-migration/" class="next-chapter-button">
     <span class="button-content">
-      <span class="button-text">Back to Start</span>
-      <span class="button-subtitle">Executive Summary & Overview</span>
+      <span class="button-text">Next Chapter</span>
+      <span class="button-subtitle">Machine Learning Migration</span>
       <span class="arrow">→</span>
     </span>
   </a>

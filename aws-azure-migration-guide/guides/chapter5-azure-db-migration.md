@@ -19,11 +19,16 @@ permalink: /aws-azure-migration-guide/guides/chapter5-azure-db-migration/
   <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="chapter-nav-button back">
     <span class="arrow">←</span>Previous Chapter
   </a>
+  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
+    <i class="fas fa-home"></i> Home
+  </a>
   <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="chapter-nav-button next">
-    Next Chapter: DNS Migration<span class="arrow">→</span>
+    Next Chapter: DNS Zones Setup<span class="arrow">→</span>
   </a>
 </div>
 </div>
+
+## Overview
 
 Our PostgreSQL instance at Sunrize runs under constant write pressure, 24 hours a day. There is no natural quiet window where connections drain and background jobs pause; the system is always doing something.
 
@@ -371,7 +376,7 @@ Here's the process we went through
 
 Our migration required ~4 minutes of downtime for the initial RDS reboot to enable logical replication. Everything after that ran without interruption. We targeted a weekend (in all timezones to minimize impact)
 
-We determined that we could afford this without negatively impacting our users. Eliminating even that 4-minute window would require significantly more engineering effort.
+We come from environments in which we'd sooner accept 12 extra months of active migration work instead of a single digit number of minutes of unavailability, but in this case we were fortunate that we were able to determine we could afford this without negatively impacting our users. Eliminating even that 4-minute window would require significantly more engineering effort.
 
 Possible approaches:
 
@@ -406,6 +411,9 @@ Total app downtime: ~4 minutes for the RDS parameter group restart, which we sch
 The new database is measurably faster on read-heavy queries (more memory helps) and we're no longer watching CPU credit balances. Zone redundancy comes included. On balance, it's a clear improvement, and the migration path — while not simple — was well within reach for a small team.
 
 <div class="next-chapter-section">
+  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="back-to-toc">
+    <i class="fas fa-arrow-left"></i> Previous Chapter
+  </a>
   <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="next-chapter-button">
     <span class="button-content">
       <span class="button-text">Next Chapter</span>
