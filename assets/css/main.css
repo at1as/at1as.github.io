@@ -1677,104 +1677,143 @@ body.migration-guide .page-content hr {
 }
 
 .toc-appendix h2 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 2rem;
-  text-align: center;
+  font-size: 1.8rem !important;
+  margin-bottom: 30px !important;
+  color: #333 !important;
+  border-bottom: 2px solid #0078D4 !important;
+  padding-bottom: 7.5px !important;
+  font-weight: 600 !important;
+}
+
+.toc-appendix-section {
+  background: #f8f9fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  padding: 30px;
+  margin-bottom: 30px;
 }
 
 .toc-appendix-section h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333 !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
 }
 
-.migration-matrix {
+.toc-appendix-section .migration-matrix {
   overflow-x: auto;
+  margin-top: 15px !important;
 }
 
-.migration-matrix table {
-  width: 100%;
+.toc-appendix-section .migration-matrix table {
+  width: 100% !important;
   border-collapse: collapse;
-  margin: 1rem 0;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 0.85rem !important;
 }
 
-.migration-matrix th,
-.migration-matrix td {
-  padding: 0.75rem;
-  text-align: left;
+.toc-appendix-section .migration-matrix th {
+  background: #0078D4 !important;
+  color: white !important;
+  padding: 8px !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+}
+
+.toc-appendix-section .migration-matrix td {
+  padding: 6px 8px !important;
   border-bottom: 1px solid #e1e4e8;
 }
 
-.migration-matrix th {
-  background-color: #f8f9fa;
-  font-weight: 600;
+.toc-appendix-section .migration-matrix td a {
+  color: #0078D4;
+  text-decoration: none;
 }
 
-.complexity-low {
+.toc-appendix-section .migration-matrix td a:hover {
+  text-decoration: underline;
+}
+
+.toc-appendix-section .migration-matrix .complexity-low {
   color: #28a745;
   font-weight: 500;
 }
 
-.complexity-medium {
+.toc-appendix-section .migration-matrix .complexity-medium {
   color: #ffc107;
   font-weight: 500;
 }
 
-.complexity-high {
+.toc-appendix-section .migration-matrix .complexity-high {
   color: #dc3545;
   font-weight: 500;
 }
+
 
 .lessons-preview {
   margin-top: 3rem;
 }
 
 .lessons-preview h2 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 2rem;
-  text-align: center;
+  font-size: 1.8rem !important;
+  margin-bottom: 30px !important;
+  color: #333 !important;
+  border-bottom: 2px solid #0078D4 !important;
+  padding-bottom: 7.5px !important;
+  font-weight: 600 !important;
 }
-
 .lessons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
 .lesson-card {
-  background: white;
+  background: #f8f9fa;
   border: 1px solid #e1e4e8;
   border-radius: 8px;
-  padding: 1.5rem;
-  text-align: center;
+  padding: 30px;
 }
 
 .lesson-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  display: block;
+width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
 }
 
 .lesson-icon.success {
-  color: #28a745;
+  color: #28a745 !important;
+  background-color: rgba(40,167,69,0.1) !important;
 }
 
 .lesson-icon.warning {
-  color: #ffc107;
+  color: #ffc107 !important;
+  background-color: rgb(242, 233, 206) !important;
 }
 
 .lesson-card h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
-  color: #333;
+  margin: 0 0 15px 0 !important;
+  color: #333 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
 }
 
 .lesson-card p {
-  margin: 0;
-  color: #666;
-  font-size: 0.95rem;
+  color: #6c757d !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+  font-size: 0.9rem !important;
 }
 
 .chapter-intro {
