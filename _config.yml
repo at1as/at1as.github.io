@@ -40,3 +40,4 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - lead-migration-docs

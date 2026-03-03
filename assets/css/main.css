@@ -1293,3 +1293,557 @@ figure figcaption {
   font-size: 0.9em;
   color: #555;
 }
+
+/* Migration Guide Styles */
+.migration-guide-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Individual guide chapters */
+body.migration-guide .page-content {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* Migration guide content styling */
+body.migration-guide .page-content h1,
+body.migration-guide .page-content h2,
+body.migration-guide .page-content h3,
+body.migration-guide .page-content h4,
+body.migration-guide .page-content h5,
+body.migration-guide .page-content h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: #333;
+}
+
+body.migration-guide .page-content h1 {
+  font-size: 2.5rem;
+  margin-top: 0;
+}
+
+body.migration-guide .page-content h2 {
+  font-size: 2rem;
+  border-bottom: 2px solid #e1e4e8;
+  padding-bottom: 0.5rem;
+}
+
+body.migration-guide .page-content h3 {
+  font-size: 1.5rem;
+}
+
+body.migration-guide .page-content h4 {
+  font-size: 1.25rem;
+}
+
+body.migration-guide .page-content p {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+body.migration-guide .page-content ul,
+body.migration-guide .page-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+body.migration-guide .page-content li {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+body.migration-guide .page-content blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  border-left: 4px solid #2a7ae2;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+
+body.migration-guide .page-content code {
+  background-color: #f1f3f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+}
+
+body.migration-guide .page-content pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0;
+}
+
+body.migration-guide .page-content pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+body.migration-guide .page-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+body.migration-guide .page-content th,
+body.migration-guide .page-content td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+body.migration-guide .page-content th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+body.migration-guide .page-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.migration-guide .page-content hr {
+  border: none;
+  height: 2px;
+  background-color: #e1e4e8;
+  margin: 2rem 0;
+}
+
+.migration-guide-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 3rem 0;
+}
+
+.migration-guide-header .page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.migration-guide-header .page-subtitle {
+  font-size: 1.25rem;
+  color: #666 !important;
+  margin-bottom: 3rem !important;
+  margin-top: 1rem !important;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.cta-section {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Migration Guide Specific Button Styles - High Specificity */
+.migration-guide-container .cta-section .btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.migration-guide-container .cta-section .btn-primary {
+  background-color: #2a7ae2;
+  color: white;
+}
+
+.migration-guide-container .cta-section .btn-primary:hover {
+  background-color: #1a5fb4;
+}
+
+.migration-guide-container .cta-section .btn-secondary {
+  background-color: white;
+  color: #2a7ae2;
+  border: 2px solid #2a7ae2;
+}
+
+.migration-guide-container .cta-section .btn-secondary:hover {
+  background-color: #f8f9fa;
+  border-color: #1a5fb4;
+  color: #495057;
+}
+
+.table-of-contents {
+  border-radius: 12px;
+  padding: 22.5px 30px;
+  margin-bottom: 3rem;
+}
+
+.toc-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.book-info {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+  color: #6c757d;
+}
+
+/* Migration Guide Specific Reading Time Badge */
+.migration-guide-container .table-of-contents .book-info .reading-time-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #e1e4e8;
+  font-size: 0.9rem;
+}
+
+.migration-guide-container .table-of-contents .book-info .reading-time-badge i {
+  margin-right: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.migration-guide-container .table-of-contents .book-info .reading-time-badge .total-reading-time {
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.migration-guide-container .table-of-contents .book-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #e1e4e8;
+  font-size: 0.9rem;
+}
+
+.migration-guide-container .table-of-contents .book-info-item i {
+  margin-right: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.toc-part {
+  margin-bottom: 4rem;
+}
+
+.toc-part h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid #2a7ae2;
+  padding-bottom: 0.5rem;
+}
+
+.toc-chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Part II: Service Migration - full width stacked */
+.toc-part:nth-child(2) .toc-chapters-grid {
+  grid-template-columns: 1fr;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.toc-chapter {
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.toc-chapter:hover {
+  border-color: #2a7ae2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.chapter-link {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+  align-items: stretch;
+}
+
+.chapter-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chapter-number {
+  flex: 0 0 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2a7ae2;
+  background: #f8f6f6;
+  border-right: 1px solid #e1e4e8;
+  padding: 1.25rem 0;
+}
+
+.chapter-info {
+  flex: 1;
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chapter-info h4 {
+  margin: 0 0 0.5rem 0 !important;
+  font-size: 1.3rem;
+  color: #333;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.chapter-info h4:hover {
+  color: #2a7ae2;
+}
+
+.chapter-description {
+  margin: 0 0 1rem 0 !important;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #6c757d !important;
+  font-weight: 400;
+}
+
+.chapter-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #999;
+  flex-wrap: wrap;
+}
+
+.read-time {
+  font-weight: 500;
+  color: #95a5a6;
+}
+
+.chapter-type {
+  background: #fdfdfd;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid #e1e4e8;
+  font-weight: 400;
+  color: #95a5a6;
+  font-size: 0.9rem;
+}
+
+.services {
+  background: rgba(42, 122, 226, 0.1);
+  color: #2a7ae2;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.toc-appendix {
+  margin-top: 3rem;
+}
+
+.toc-appendix h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.toc-appendix-section h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.migration-matrix {
+  overflow-x: auto;
+}
+
+.migration-matrix table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.migration-matrix th,
+.migration-matrix td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.migration-matrix th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.complexity-low {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.complexity-medium {
+  color: #ffc107;
+  font-weight: 500;
+}
+
+.complexity-high {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+.lessons-preview {
+  margin-top: 3rem;
+}
+
+.lessons-preview h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.lesson-card {
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.lesson-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.lesson-icon.success {
+  color: #28a745;
+}
+
+.lesson-icon.warning {
+  color: #ffc107;
+}
+
+.lesson-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.lesson-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.chapter-intro {
+  background: #f8f9fa;
+  border-left: 4px solid #2a7ae2;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.chapter-nav-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #2a7ae2;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.chapter-nav-button:hover {
+  background-color: #1a5fb4;
+  color: white;
+  text-decoration: none;
+}
+
+.chapter-nav-button.back {
+  background: #6c757d;
+}
+
+.chapter-nav-button.back:hover {
+  background: #545b62;
+}
+
+.arrow {
+  margin: 0 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .migration-guide-container {
+    padding: 1rem;
+  }
+
+  .migration-guide-header .page-title {
+    font-size: 2rem;
+  }
+
+  .toc-chapters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lessons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chapter-nav {
+    flex-direction: column;
+  }
+
+  .book-info {
+    flex-direction: column;
+    align-items: center;
+  }
+}
