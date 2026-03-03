@@ -16,14 +16,16 @@ permalink: /aws-azure-migration-guide/guides/chapter1-migrating-to-azure/
 This is <b>Part I</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the executive summary and strategic overview of our migration journey.
 
 <div class="chapter-nav">
-  <a href="/aws-azure-migration-guide/" class="chapter-nav-button back">
-    <span class="arrow">←</span>Back to Guide Overview
+  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
+    <i class="fas fa-home"></i> Home
   </a>
   <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="chapter-nav-button next">
     Next Chapter: App Service Migration<span class="arrow">→</span>
   </a>
 </div>
 </div>
+
+## Overview
 
 In 2025, we successfully migrated the infrastructure and services behind [LEAD.bot](https://www.lead.app) and [Sunrize](https://www.lead.app/sunrize-app-for-slack/) — two core components of our enterprise knowledge platform — from Amazon Web Services (AWS) to Microsoft Azure.
 
@@ -191,22 +193,21 @@ At a high level, these are the Azure equivalents we chose for each of our AWS se
 This migration wasn't a single event, but done in phases (the ordering of which impacts the process). We'll cover the following aspects of it in the following chapters:
 
 **Part I — Strategic Migration**
-- Executive summary and business context _(you are here)_
+- Guide summary and business context _(you are here!)_
 
 **Part II — Container Migration**
-- ECS & EC2 to Azure App Service
-- WordPress migration
-- Static sites and CDN setup
+- [ECS & EC2 to Azure App Service](/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/)
+- [WordPress migration](/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/)
+- [Static sites and CDN setup](/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/)
 
 **Part III — Database Migration**
-- Zero-downtime PostgreSQL strategy
-- Storage migration from S3 to Blob Storage
+- [Zero-downtime PostgreSQL strategy](/aws-azure-migration-guide/guides/chapter5-azure-db-migration/)
 
 **Part IV — Network & Infrastructure**
-- Azure DNS Zones and internal routing patterns
+- [Azure DNS Zones and internal routing patterns](/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/)
 
 **Part V — Machine Learning**
-- Migration of ML pipelines and AI workflows to Azure-native services
+- <span class="coming-soon">(Coming Soon!) [Migration of ML pipelines and AI workflows to Azure-native services](/aws-azure-migration-guide/guides/chapter7-machine-learning-migration/)</span>
 
 Each chapter focuses on implementation details, tradeoffs, and real-world lessons.
 

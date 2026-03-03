@@ -20,6 +20,9 @@ This is <b>Part II</b> of our ongoing series on migrating LEAD's enterprise plat
   <a href="/aws-azure-migration-guide/guides/chapter1-migrating-to-azure/" class="chapter-nav-button back">
     <span class="arrow">←</span>Previous Chapter
   </a>
+  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
+    <i class="fas fa-home"></i> Home
+  </a>
   <a href="/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/" class="chapter-nav-button next">
     Next Chapter: WordPress Migration<span class="arrow">→</span>
   </a>
@@ -445,6 +448,9 @@ if __name__ == "__main__":
 ```
 
 <div class="next-chapter-section">
+  <a href="/aws-azure-migration-guide/guides/chapter1-migrating-to-azure/" class="back-to-toc">
+    <i class="fas fa-arrow-left"></i> Previous Chapter
+  </a>
   <a href="/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/" class="next-chapter-button">
     <span class="button-content">
       <span class="button-text">Next Chapter</span>
