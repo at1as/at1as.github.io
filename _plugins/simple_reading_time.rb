@@ -15,29 +15,18 @@ module Jekyll
         return reading_time(page)
       end
 
-      file_path = if page.respond_to?(:path)
-        page.path
-      elsif page.respond_to?(:[])
-        page["path"]
-      end
-
+      # Use the page's processed content, don't read raw file
       content = if page.respond_to?(:content)
         page.content
       elsif page.respond_to?(:[])
         page["content"]
-      end
-
-      if file_path && !file_path.empty?
-        site_source = @context&.registers&.dig(:site)&.source
-        file_path = File.join(site_source, file_path) if site_source && !File.exist?(file_path)
-
-        if File.exist?(file_path)
-          content = File.read(file_path)
-        end
+      else
+        return "0"
       end
 
       return "0" if content.nil? || content.empty?
 
+      # Remove front matter if present
       content = content.gsub(/^---.*?---/m, '')
       words = content.gsub(/<[^>]*>/, '').split(/\s+/).size
       (words / 225.0).ceil.to_s
