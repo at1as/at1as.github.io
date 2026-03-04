@@ -225,6 +225,22 @@ A few high-level takeaways covered in the next chapters:
 
 Each of these deserves its own explanation — and will get one
 
+<div class="chapter-subscribe">
+  <h3>Enjoying this migration guide?</h3>
+  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
+    method="post"
+    class="subscribe-form"
+  >
+    <input type="hidden" name="metadata__source" value="{{ page.url }}" />
+    <div class="form-row">
+      <input type="email" name="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe</button>
+    </div>
+  </form>
+</div>
+
 <div class="next-chapter-section">
   <a href="/aws-azure-migration-guide/" class="back-to-toc">← Back to Guide Overview</a>
   <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="next-chapter-button">

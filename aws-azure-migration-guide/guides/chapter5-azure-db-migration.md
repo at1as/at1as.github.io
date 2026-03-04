@@ -410,6 +410,22 @@ Total app downtime: ~4 minutes for the RDS parameter group restart, which we sch
 
 The new database is measurably faster on read-heavy queries (more memory helps) and we're no longer watching CPU credit balances. Zone redundancy comes included. On balance, it's a clear improvement, and the migration path — while not simple — was well within reach for a small team.
 
+<div class="chapter-subscribe">
+  <h3>Enjoying this migration guide?</h3>
+  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
+    method="post"
+    class="subscribe-form"
+  >
+    <input type="hidden" name="metadata__source" value="{{ page.url }}" />
+    <div class="form-row">
+      <input type="email" name="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe</button>
+    </div>
+  </form>
+</div>
+
 <div class="next-chapter-section">
   <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="back-to-toc">
     <i class="fas fa-arrow-left"></i> Previous Chapter

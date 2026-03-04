@@ -491,6 +491,22 @@ Migrating WordPress from Bitnami on AWS Lightsail to Azure App Service provides 
 
 The migration process typically takes 3–4 hours for a complete site, with most time spent on import and domain transfer. Post-migration optimization can further improve performance and long-term stability.
 
+<div class="chapter-subscribe">
+  <h3>Enjoying this migration guide?</h3>
+  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
+    method="post"
+    class="subscribe-form"
+  >
+    <input type="hidden" name="metadata__source" value="{{ page.url }}" />
+    <div class="form-row">
+      <input type="email" name="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe</button>
+    </div>
+  </form>
+</div>
+
 <div class="next-chapter-section">
   <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="back-to-toc">
     <i class="fas fa-arrow-left"></i> Previous Chapter
