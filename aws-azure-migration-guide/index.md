@@ -147,7 +147,7 @@ permalink: /aws-azure-migration-guide/
         </div>
 
         <div class="toc-part">
-          <h3>Part VII: Machine Learning</h3>
+          <h3>Part V: Machine Learning</h3>
           <div class="toc-chapters-grid">
             <div class="toc-chapter">
               <a href="/aws-azure-migration-guide/guides/chapter7-machine-learning-migration/" class="chapter-link">

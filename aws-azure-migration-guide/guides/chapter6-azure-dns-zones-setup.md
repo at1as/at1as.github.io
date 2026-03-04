@@ -134,6 +134,22 @@ DNS migration is straightforward (but high risk, so needs to be executed careful
 
 That's all. From here, the rest of your Azure migration builds on top of this foundation.
 
+<div class="chapter-subscribe">
+  <h3>Enjoying this migration guide?</h3>
+  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
+    method="post"
+    class="subscribe-form"
+  >
+    <input type="hidden" name="metadata__source" value="{{ page.url }}" />
+    <div class="form-row">
+      <input type="email" name="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe</button>
+    </div>
+  </form>
+</div>
+
 <div class="next-chapter-section">
   <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="back-to-toc">
     <i class="fas fa-arrow-left"></i> Previous Chapter

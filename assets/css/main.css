@@ -2187,3 +2187,79 @@ body.migration-guide .series-overview .coming-soon a:hover {
     align-items: center;
   }
 }
+
+/* Chapter Subscribe Form */
+.chapter-subscribe {
+  margin: 40px 0;
+  padding: 30px;
+  background-color: #f8fafc;
+  border-radius: var(--border-radius);
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.chapter-subscribe h3 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.chapter-subscribe p {
+  color: #64748b;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+
+.chapter-subscribe .subscribe-form .form-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.chapter-subscribe .subscribe-form input[type="email"] {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.chapter-subscribe .subscribe-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.chapter-subscribe .subscribe-form button {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: inherit;
+}
+
+.chapter-subscribe .subscribe-form button:hover {
+  background-color: #1d4ed8;
+}
+
+@media (max-width: 768px) {
+  .chapter-subscribe {
+    padding: 25px 20px;
+  }
+
+  .chapter-subscribe .subscribe-form .form-row {
+    flex-direction: column;
+  }
+
+  .chapter-subscribe .subscribe-form button {
+    width: 100%;
+  }
+}
