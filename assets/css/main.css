@@ -2166,8 +2166,48 @@ body.migration-guide .series-overview .coming-soon a:hover {
     padding: 1rem;
   }
 
+  /* Fix mobile padding for migration guide chapters */
+  body.migration-guide .page-content {
+    padding: 40px 20px;
+    max-width: 100%;
+  }
+
+  body.migration-guide .page-content h1 {
+    font-size: 1.75rem;
+  }
+
+  body.migration-guide .page-content h2 {
+    font-size: 1.5rem;
+  }
+
+  body.migration-guide .page-content h3 {
+    font-size: 1.25rem;
+  }
+
+  body.migration-guide .page-content table {
+    font-size: 0.9rem;
+  }
+
+  body.migration-guide .page-content th,
+  body.migration-guide .page-content td {
+    padding: 0.75rem 0.5rem;
+  }
+
   .migration-guide-header .page-title {
     font-size: 2rem;
+    line-height: 1.2;
+    word-wrap: break-word;
+    hyphens: auto;
+    padding: 0 1rem;
+  }
+
+  .migration-guide-header .page-subtitle {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+
+  .migration-guide-header {
+    padding: 2rem 1rem;
   }
 
   .toc-chapters-grid {
@@ -2185,6 +2225,22 @@ body.migration-guide .series-overview .coming-soon a:hover {
   .book-info {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* Extra small screens (phones in portrait) */
+@media (max-width: 480px) {
+  .migration-guide-header .page-title {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .migration-guide-header .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .migration-guide-header {
+    padding: 1.5rem 1rem;
   }
 }
 
