@@ -2226,6 +2226,19 @@ body.migration-guide .series-overview .coming-soon a:hover {
     flex-direction: column;
     align-items: center;
   }
+
+  .table-of-contents {
+    padding: 20px 15px;
+  }
+
+  .toc-chapters-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .toc-part {
+    margin-bottom: 2rem;
+  }
 }
 
 /* Extra small screens (phones in portrait) */
