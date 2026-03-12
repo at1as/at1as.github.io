@@ -48,10 +48,10 @@ permalink: /blog/popular/
             </div>
 
             <div class="post-excerpt">
-              {% if post.excerpt %}
-                {{ post.excerpt }}
-              {% elsif post.content contains '<!--more-->' %}
+              {% if post.content contains '<!--more-->' %}
                 {{ post.content | split:'<!--more-->' | first }}
+              {% elsif post.excerpt %}
+                {{ post.excerpt }}
               {% else %}
                 {{ post.content | strip_html | truncatewords: 50 }}
               {% endif %}
@@ -216,6 +216,14 @@ permalink: /blog/popular/
   .post-excerpt {
     margin-bottom: 16px;
     line-height: 1.6;
+  }
+
+  .post-excerpt p {
+    margin-bottom: 1em;
+  }
+
+  .post-excerpt p:last-child {
+    margin-bottom: 0;
   }
 
   .read-more {
