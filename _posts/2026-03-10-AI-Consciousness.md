@@ -14,18 +14,19 @@ This may seem jarring: large language models generate text by predicting the nex
 
 But both the claim and the dismissal miss the deeper question.
 
-The statement _"AI might be conscious”_ is not really a claim about AI; it’s an implicit claim about the nature of consciousness.
+<!--more-->
+
+The statement _"AI might be conscious"_ is not really a claim about AI; it’s an implicit claim about the nature of consciousness.
 
 Whether AI _could_ be conscious depends almost entirely on which theory of consciousness you subscribe to. We are nowhere close to having a single agreed-upon theory. Instead, we have several competing explanations — many mutually incompatible — and no consensus on which, if any, is correct.
 
 Before we can meaningfully debate whether AI systems are conscious, we need to answer a deeper question: **What do we mean by _consciousness_ at all?**
 
-
 ## The Easy Problem and the Hard Problem
 
 Philosopher David Chalmers famously drew a distinction between two kinds of problems in consciousness research.
 
-The *easy problems* concern explaining how the brain processes information and drives behavior — how we integrate sensory input, direct attention, form memories, and produce speech. These problems are "easy” only in the sense that they appear explainable through ordinary scientific methods. Neuroscience and computation may eventually provide complete objective accounts of these mechanisms.
+The *easy problems* concern explaining how the brain processes information and drives behavior — how we integrate sensory input, direct attention, form memories, and produce speech. These problems are "easy" only in the sense that they appear explainable through ordinary scientific methods. Neuroscience and computation may eventually provide complete objective accounts of these mechanisms.
 
 The *hard problem* asks something very different:
 
@@ -48,7 +49,7 @@ Taken together, these views span almost the entire spectrum of possible answers.
 
 Associated with philosophers like the late Daniel C. Dennett, illusionism argues that the mystery of consciousness is largely a mistake.
 
-According to this view, there are no special "qualia” or irreducible inner experiences. Instead, the brain builds a self-model that represents its own internal processes, and we interpret that model as a rich inner life.
+According to this view, there are no special "qualia" or irreducible inner experiences. Instead, the brain builds a self-model that represents its own internal processes, and we interpret that model as a rich inner life.
 
 In other words, consciousness may simply be the brain describing its own activity.
 

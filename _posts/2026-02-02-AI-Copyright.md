@@ -17,6 +17,8 @@ Sell that painting, though, and the tolerance disappears. You're no longer a fan
 
 This gap between the written law and its practical application isn't an AI problem. It's something that has been quietly tolerated for decades. The system works not because the rules are clear, but because enforcement has been selectively targeted for impact and the scale has been human. With generative AI, that ambiguity suddenly represents billions of dollars in litigation and potential damages, transforming what was once informal tolerance into an existential legal battle that forces long-implicit assumptions into the open.
 
+<!--more-->
+
 ## Copyright Law Was Built for Human Scale
 
 Copyright law has always relied on a set of quiet assumptions that were never written down but broadly understood: creation and transformation are slow, distribution is costly, and enforcement can be discretionary. Most infringement has been tolerated not because it was legal, but because it was rare, small, and culturally useful.

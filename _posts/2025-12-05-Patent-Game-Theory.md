@@ -13,6 +13,8 @@ The core issue is that offensive and defensive patent stockpiles look identical 
 
 Patents are meant to protect specific inventions, but in software where ideas spread quickly, they have taken the role of strategic assets in an arms race. Useful concepts are rediscovered independently or unintentionally overlapped. As a result, nearly every company is vulnerable to infringement claims at all times, often through no fault of their own.
 
+<!--more-->
+
 That vulnerability has different consequences at different scales. For small companies, a single patent lawsuit can be existential. Even a successful defense can be financially ruinous. As companies grow, the threat changes shape. Individual lawsuits may no longer be fatal, but the frequency and scope of litigation tend to increase.
 
 The rational response is to accumulate patents as a form of deterrence. When two firms with substantial portfolios face off, outcomes become unpredictable, which is often enough to prevent litigation altogether.
