@@ -12,6 +12,8 @@ _The End of the Crawlable Web_ : For most of the modern internet, there was an i
 
 It wasn't always perfect — news aggregators and social media links were persistent points of contention — but the incentives aligned well enough that the web became broadly searchable. You could discover obscure blogs, old research papers, forum discussions from fifteen years ago, or technical documentation buried deep in a site.
 
+<!--more-->
+
 For researchers, developers, and curious people in general, this was an extraordinary capability. A few well-crafted queries could surface material that previously required access to specialized libraries or institutional databases.
 
 But that contract is beginning to break, largely because of **AI**.

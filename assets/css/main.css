@@ -930,6 +930,14 @@ img {
   max-width: 700px;
 }
 
+.post-excerpt p {
+  margin-bottom: 1em;
+}
+
+.post-excerpt p:last-child {
+  margin-bottom: 0;
+}
+
 .read-more {
   display: inline-flex;
   align-items: center;

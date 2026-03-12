@@ -11,6 +11,8 @@ The rapid expansion of context windows has become one of the most visible metric
 
 In practice, it's a bit more complicated. Longer context windows unlock new use cases, but they also introduce costs, failure modes, and design tradeoffs that are easy to overlook. For teams building production systems, these tradeoffs matter as much as raw capability.
 
+<!--more-->
+
 ## Cost Scaling and Unit Economics
 
 Most transformer-based models rely on attention mechanisms whose cost grows faster than linearly with context length. As context increases, both compute and memory requirements rise sharply, which shows up directly in inference cost and latency.

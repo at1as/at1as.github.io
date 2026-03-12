@@ -16,6 +16,7 @@ But there's a quieter change brewing while we've been distracted by the expandin
 
 And once cost becomes the bottleneck, software stops being democratic very quickly.
 
+<!--more-->
 
 ## To March Towards a Democratized Software Industry
 

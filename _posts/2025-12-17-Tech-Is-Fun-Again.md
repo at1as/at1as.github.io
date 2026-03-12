@@ -13,6 +13,8 @@ Growing up in the 90s and early 2000s, tech was a foundational part of my childh
 
 I built more physical computers than I can remember. We went from paper maps to GPS (which itself evolved from DVDs with static maps to internet-connected real-time navigation). CD players became MP3 players, then streaming services. We had Palm Pilots and early attempts at "smart" phones, which were anything but. Our computers could search for extraterrestrial life through SETI. We emerged from the pager era to portable phones to the entire internet in our pocket (which evolved from charging per SMS or megabyte to unlimited data plans).
 
+<!--more-->
+
 We went through what I still think of as a golden era of console gaming: the N64 & PlayStation, then PS2, Xbox, and GameCube. Meanwhile, our bulky CRT monitors became flat (with a misadventure toward "projection" TVs in between). We could buy gadgets for everything. Best Buy and RadioShack felt like amusement parks we'd visit without intention, ready to be drawn in by something new. A trip to Asia's electronics stores felt like a genuine step into the future.
 
 Today, we have everything we did back then, and much more. And yet it somehow feels like we've been left with less.
