@@ -17,6 +17,8 @@ This acceleration has enabled humanity to adapt and flourish despite a constant 
 
 But what if that era is ending — as we approach limits imposed by physics across a variety of domains?
 
+<!--more-->
+
 Since the “_ChatGPT moment_,” the cultural zeitgeist has centered on the idea of runaway progress: artificial intelligence recursively improving itself until we become subservient to it.
 
 That scenario is not impossible. But far more plausible, in my view, is the opposite — a world where the curve flattens and our rate of progress slows to a crawl.
