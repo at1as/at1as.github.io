@@ -1,0 +1,68 @@
+<!-- Structured Data for SEO -->
+{% if page.url == '/' %}
+<!-- Homepage: Person Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jason Willems",
+  "url": "{{ site.url }}",
+  "sameAs": [
+    "https://github.com/at1as",
+    "https://twitter.com/jasonwillems",
+    "https://lead.app",
+    "https://sunrizeapp.com",
+    "https://behaviorgraph.com/"
+  ],
+  "jobTitle": "Technical Founder, Engineering Leader",
+  "description": "{{ site.description }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "New York",
+    "addressCountry": "United States"
+  },
+  "knowsAbout": ["Software Engineering", "Startups", "AI", "Cloud Computing", "Product Development"]
+}
+</script>
+{% elsif page.layout == "post" %}
+<!-- Blog Post: Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title | escape }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": "Jason Willems",
+    "url": "{{ site.url }}",
+    "sameAs": ["https://twitter.com/jasonwillems"]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jason Willems",
+    "url": "{{ site.url }}"
+  },
+  "description": "{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}",
+  "mainEntityOfPage": "{{ site.url }}{{ page.url }}",
+  "image": "{{ site.url }}/photos/jason-july2015.jpg"
+}
+</script>
+{% else %}
+<!-- General Page: WebPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title }}{% endif %}",
+  "description": "{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}{% else %}{{ site.description }}{% endif %}",
+  "url": "{{ site.url }}{{ page.url }}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}"
+  }
+}
+</script>
+{% endif %}

@@ -1,0 +1,93 @@
+{% if page.url contains '/blog/' and page.url != '/blog/' and page.url != '/blog/index.html' %}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <div class="container">
+    <ol class="breadcrumb-list">
+      <li class="breadcrumb-item">
+        <a href="/" class="breadcrumb-link">Home</a>
+      </li>
+
+      {% if page.url contains '/blog/' %}
+      <li class="breadcrumb-item">
+        <a href="/blog" class="breadcrumb-link">Blog</a>
+      </li>
+      {% elsif page.url contains '/categories/' %}
+      <li class="breadcrumb-item">
+        <a href="/blog" class="breadcrumb-link">Blog</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="/categories" class="breadcrumb-link">Categories</a>
+      </li>
+      {% elsif page.url contains '/tags/' %}
+      <li class="breadcrumb-item">
+        <a href="/blog" class="breadcrumb-link">Blog</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="/tags" class="breadcrumb-link">Tags</a>
+      </li>
+      {% endif %}
+
+      {% if page.title %}
+      <li class="breadcrumb-item active" aria-current="page">
+        {{ page.title | escape }}
+      </li>
+      {% endif %}
+    </ol>
+  </div>
+</nav>
+
+<style>
+.breadcrumbs {
+  padding: 1rem 0;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.9rem;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+  content: "/";
+  margin-left: 0.5rem;
+  color: #6c757d;
+}
+
+.breadcrumb-link {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    padding: 0.75rem 0;
+    font-size: 0.8rem;
+  }
+
+  .breadcrumb-list {
+    flex-wrap: wrap;
+  }
+}
+</style>
+{% endif %}
