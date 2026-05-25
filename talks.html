@@ -71,6 +71,24 @@ title: Talks
           <a href="https://www.lead.app" class="talk-link"><i class="fas fa-link"></i>Partner</a>
         </div>
       </div>
+
+      <!-- Building Secure Search Infrastructure for Fraud and Trust Operations -->
+      <div class="talk-item">
+        <div class="talk-title-wrapper">
+          <h2 class="talk-title">Building Secure Search Infrastructure for Fraud and Trust Operations</h2>
+        </div>
+        <div class="talk-event"><i class="fas fa-map-pin"></i> AWS, Seattle</div>
+        <div class="talk-date">February 28, 2024</div>
+        <div class="talk-description">
+          <p>
+            At Twilio, I led work on an internal OpenSearch-based platform that helped Consumer Trust teams investigate fraud, spam, account takeover, and terms-of-service violations across customer usage data.
+          </p>
+          <p>
+            I presented the architecture and operational lessons to several hundred participants, including how we handled sensitive data access, SAML authentication, privileged reviewer roles, audit logging, high-cardinality search, ingestion latency, cluster sizing, indexing behavior, monitoring, and predictable traffic spikes.
+            The exact data volumes and internal details are not public, but the talk centered on the practical challenges of building secure, reliable search infrastructure for compliance-sensitive workflows at Twilio scale.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -227,6 +245,10 @@ title: Talks
 
   .talk-description {
     margin-bottom: 36px;
+  }
+
+  .talk-description p + p {
+    margin-top: 1rem;
   }
 
   .talk-links {
