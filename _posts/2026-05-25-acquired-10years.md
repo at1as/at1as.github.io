@@ -20,7 +20,7 @@ Here is how some of the predictions, frameworks, and narratives of that era have
 
 An abridged version of this is available in the following X/Twitter thread:
 
-<div style="display:flex; justify-content:center">
+<div class="tweet-embed">
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I’ve been listening to the <a href="https://twitter.com/AcquiredFM?ref_src=twsrc%5Etfw">@AcquiredFM</a> podcast in reverse chronological order, and I’m now through the last 10 years of episodes.<br><br>One interesting part of doing this backwards is hearing old predictions with the benefit of hindsight.<br><br>Their 2016 review / 2017 predictions…</p>&mdash; Jason Willems (@jasonwillems) <a href="https://twitter.com/jasonwillems/status/2050679194351284320?ref_src=twsrc%5Etfw">May 2, 2026</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 

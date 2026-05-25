@@ -196,6 +196,51 @@ layout: default
     font-size: 1.25rem;
   }
 
+  .post-content .tweet-embed {
+    width: 100%;
+    max-width: 550px;
+    margin: 35px auto;
+  }
+
+  .post-content .tweet-embed iframe {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .post-content .tweet-embed blockquote.twitter-tweet {
+    width: 100%;
+    max-width: 550px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 18px 20px;
+    border: 1px solid #dbe3ea;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 8px;
+    background-color: #f8fafc;
+    color: #334155;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.55;
+  }
+
+  .post-content .tweet-embed blockquote.twitter-tweet p {
+    margin-bottom: 16px;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  .post-content .tweet-embed blockquote.twitter-tweet p:first-of-type::first-letter {
+    float: none;
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    color: inherit;
+  }
+
   .post-content code {
     background-color: #f1f1f1;
     padding: 2px 5px;
@@ -358,14 +403,14 @@ layout: default
   }
 
   /* First paragraph styling for Medium-like experience */
-  .post-content p:first-of-type {
+  .post-content > p:first-of-type {
     font-size: 1.3rem;
     line-height: 1.7;
     color: #111;
   }
 
   /* Drop cap for first paragraph */
-  .post-content p:first-of-type::first-letter {
+  .post-content > p:first-of-type::first-letter {
     float: left;
     font-size: 3.5rem;
     line-height: 1;
@@ -400,7 +445,7 @@ layout: default
       text-align: left;
     }
 
-    .post-content p:first-of-type::first-letter {
+    .post-content > p:first-of-type::first-letter {
       font-size: 3rem;
     }
 
