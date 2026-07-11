@@ -4,10 +4,11 @@
  */
 
 :root {
-  --primary-color: #0ea5e9;
+  --primary-color: #0b9edc;
   --primary-dark: #0284c7;
   --secondary-color: #64748b;
   --text-color: #1e293b;
+  --title-color: #334155;
   --text-light: #64748b;
   --background-color: #ffffff;
   --background-alt: #f8fafc;
@@ -645,18 +646,19 @@ img {
   padding: 20px 25px;
   border-radius: var(--border-radius);
   background-color: var(--background-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
   border: 1px solid var(--border-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .talk-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-  background: #f0f8ff40;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  border-color: rgba(11, 158, 220, 0.2);
+  background-color: #fbfdff;
 }
 
 .talk-title-wrapper {
@@ -682,11 +684,14 @@ img {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: var(--primary-dark);
+  background-color: rgba(11, 158, 220, 0.08);
+  border: 1px solid rgba(11, 158, 220, 0.15);
 }
 
 .tag-cohost {
-  background-color: var(--primary-color);
-  color: white;
+  color: var(--primary-dark);
+  background-color: rgba(11, 158, 220, 0.08);
 }
 
 .talk-event {

@@ -6,36 +6,19 @@ title: Talks
 <section class="section">
   <div class="container">
 
-    <!-- UPCOMING -->
-    <div class="upcoming-talks">
-      <h2 class="section-subtitle">Upcoming Talks & Media</h2>
-      <p class="talks-subtitle">Here you'll find a collection of my speaking engagements, papers, and presentations at conferences, meetups, and other events</p>
-      <p style="text-align: center;">Stay tuned for upcoming speaking engagements!</p>
-
-      <!-- Uncomment and modify when you have upcoming talks
-      <div class="talk-item upcoming">
-        <h2 class="talk-title">Title of Upcoming Talk</h2>
-        <div class="talk-event">Event Name</div>
-        <div class="talk-date">Future Date</div>
-        <div class="talk-description">
-          <p>Brief description of the talk.</p>
-        </div>
-      </div>
-      -->
+    <div class="talks-intro">
+      <h1 class="talks-title">Talks & Media</h1>
+      <p class="talks-subtitle">Selected talks, podcast appearances, papers, and presentations</p>
     </div>
 
-    <!-- PAST TALKS -->
-    <!--<h2 class="section-subtitle">Past Talks</h2>-->
     <div class="talks-list">
-      <h2 class="section-subtitle">Past Talks & Media</h2>
-
       <!-- Changelog Podcast Feature -->
       <div class="talk-item">
         <div class="talk-title-wrapper">
           <h2 class="talk-title">The Tech Monoculture Is Finally Breaking</h2>
           <span class="talk-tag">Podcast Feature</span>
         </div>
-        <div class="talk-event">🎙️ The Changelog Podcast</div>
+        <div class="talk-event"><i class="fas fa-microphone"></i> The Changelog Podcast</div>
         <div class="talk-date">February 2, 2026</div>
         <div class="talk-description">
           <p>
@@ -55,7 +38,7 @@ title: Talks
           <h2 class="talk-title">Future of Enterprise Tech & Startup Showcase</h2>
           <span class="talk-tag tag-cohost">Co-host</span>
         </div>
-        <div class="talk-event">📍 Manhattan, New York</div>
+        <div class="talk-event"><i class="fas fa-map-pin"></i> Manhattan, New York</div>
         <div class="talk-date">April 30, 2025</div>
         <div class="talk-description">
           <p>
@@ -64,8 +47,6 @@ title: Talks
           </p>
         </div>
         <div class="talk-links">
-          <a href="#" class="talk-link unavailable"><i class="fas fa-file-powerpoint"></i> Slides</a>
-          <a href="#" class="talk-link unavailable"><i class="fab fa-youtube"></i> Video</a>
           <a href="javascript:void(0)" class="talk-link" onclick="openPhotoGallery('future-enterprise-tech-2025')"><i class="fas fa-camera"></i> Photos</a>
           <a href="https://lu.ma/ajn6c01w" class="talk-link"><i class="fas fa-link"></i>Event Link</a>
           <a href="https://www.lead.app" class="talk-link"><i class="fas fa-link"></i>Partner</a>
@@ -81,7 +62,7 @@ title: Talks
         <div class="talk-date">February 28, 2024</div>
         <div class="talk-description">
           <p>
-            At Twilio, I led work on an internal OpenSearch-based platform that helped Consumer Trust teams investigate fraud, spam, account takeover, and terms-of-service violations across customer usage data.
+            At Twilio, I led the team responsible for an internal OpenSearch-based platform used by trust and safety teams to investigate fraud, spam, account takeover, and terms-of-service violations across customer usage data.
           </p>
           <p>
             I presented the architecture and operational lessons to several hundred participants, including how we handled sensitive data access, SAML authentication, privileged reviewer roles, audit logging, high-cardinality search, ingestion latency, cluster sizing, indexing behavior, monitoring, and predictable traffic spikes.
@@ -226,15 +207,19 @@ title: Talks
 
   .talk-title {
     font-size: 1.75rem;
-    color: var(--text-color);
+    color: var(--title-color);
   }
 
   .talk-event {
-    font-weight: 600;
-    color: var(--primary-color);
+    font-weight: 500;
+    color: var(--text-light);
     margin-bottom: 5px;
     font-size: 1.1rem;
-    color: #980000;
+  }
+
+  .talk-event i {
+    color: var(--primary-color);
+    margin-right: 4px;
   }
 
   .talk-date {
@@ -281,15 +266,11 @@ title: Talks
   }
 
   .talks-list {
-    margin-top: 50px;
+    margin-top: 0;
   }
 
   .talks-subtitle {
-    margin-top: 35px;
-  }
-
-  .upcoming-talks {
-    margin-top: 20px;
+    margin-top: 0;
   }
 </style>
 
