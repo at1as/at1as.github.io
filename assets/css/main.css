@@ -223,7 +223,7 @@ img {
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 8px;
-  color: var(--text-color);
+  color: var(--title-color);
   letter-spacing: -0.02em;
 }
 
@@ -1007,16 +1007,16 @@ img {
   background-color: var(--background-alt);
   border-radius: var(--border-radius);
   text-align: center;
-  transition: all var(--transition-speed) ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   border: 1px solid transparent;
   text-decoration: none;
 }
 
 .featured-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border-color: var(--border-color);
-  background-color: var(--background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  border-color: rgba(11, 158, 220, 0.2);
+  background-color: #fbfdff;
 }
 
 .featured-icon {
