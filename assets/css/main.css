@@ -355,91 +355,118 @@ img {
   background-color: #e2e6ea; /* Hover effect for rows */
 }
 
-/* Premium Table Styling */
+/* Editorial tables: quiet, readable, and allowed to exceed the prose measure. */
 .premium-table {
-  width: 100%;
-  margin: 2.5rem 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  width: min(960px, calc(100vw - 48px));
+  margin: 3rem 0;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   overflow-x: auto;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: #cbd5e1 transparent;
+  scrollbar-width: thin;
 }
 
 .premium-table table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.05);
-  background: white;
-  transform: translateY(0);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 680px;
+  border-collapse: collapse;
+  border-top: 1px solid #111827;
+  border-bottom: 1px solid #cbd5e1;
+  background: transparent;
 }
 
 .premium-table table:hover {
   transform: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
 }
 
 .premium-table thead {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  color: white;
+  background: transparent;
+  color: #64748b;
 }
 
 .premium-table th {
-  padding: 18px 24px;
-  text-align: left;
+  padding: 0.85rem 1rem 0.75rem;
+  border-bottom: 1px solid #94a3b8;
+  color: #64748b;
+  font-size: 0.72rem;
   font-weight: 600;
-  font-size: 1.1rem;
-  letter-spacing: 0.03em;
-  border: none;
-  position: relative;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-align: left;
+  text-transform: uppercase;
+  vertical-align: middle;
 }
 
 .premium-table th:not(:last-child):after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 30%;
-  height: 40%;
-  width: 1px;
-  background-color: rgba(255, 255, 255, 0.3);
+  display: none;
 }
 
 .premium-table td {
-  padding: 16px 24px;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-  color: var(--text-color);
-  font-size: 1rem;
-  line-height: 1.5;
-  vertical-align: middle;
-  transition: background-color 0.2s ease;
+  padding: 1.15rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #334155;
+  font-size: 0.94rem;
+  line-height: 1.58;
+  vertical-align: top;
 }
 
 .premium-table tr:last-child td {
   border-bottom: none;
 }
 
-.premium-table tbody tr {
-  transition: all 0.2s ease;
-}
-
-.premium-table tbody tr:nth-child(even) {
-  background-color: rgba(247, 250, 252, 0.7);
-}
-
+.premium-table tbody tr:nth-child(even),
 .premium-table tbody tr:hover td {
-  background-color: rgba(236, 246, 255, 0.6);
+  background: transparent;
 }
 
 .premium-table strong {
-  font-weight: 600;
-  color: var(--primary-dark);
-  font-size: 1.05rem;
+  color: #111827;
+  font-size: inherit;
+  font-weight: 650;
 }
 
-/* Column styling */
 .premium-table td:first-child {
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.post-content .premium-table td a {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration-color: #cbd5e1;
+  text-transform: uppercase;
+}
+
+.comparison-table table {
+  table-layout: fixed;
+}
+
+.comparison-table th:nth-child(1),
+.comparison-table td:nth-child(1) {
+  width: 16%;
+}
+
+.comparison-table th:nth-child(2),
+.comparison-table td:nth-child(2) {
+  width: 25%;
+}
+
+.comparison-table th:nth-child(3),
+.comparison-table td:nth-child(3) {
+  width: 59%;
+}
+
+.post-content .revision-table td a {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 /* For checkmarks and X marks */
@@ -477,16 +504,116 @@ img {
   color: var(--primary-dark);
 }
 
-/* Responsive adjustments */
+/* Compact tables scroll; long-form comparisons become editorial entries. */
 @media (max-width: 768px) {
-  .premium-table th,
-  .premium-table td {
-    padding: 12px 16px;
+  .premium-table {
+    width: 100%;
+    margin: 2.25rem 0;
+    left: auto;
+    transform: none;
   }
 
-  .premium-table th {
-    font-size: 1rem;
+  .premium-table table {
+    min-width: 620px;
   }
+
+  .premium-table:not(.comparison-table)::before {
+    content: 'Scroll to view all columns \2192';
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #94a3b8;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  .premium-table th,
+  .premium-table td {
+    padding: 0.8rem 0.75rem;
+  }
+
+  .comparison-table {
+    overflow: visible;
+  }
+
+  .comparison-table table,
+  .comparison-table tbody,
+  .comparison-table tr,
+  .comparison-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .comparison-table table {
+    border: 0;
+  }
+
+  .comparison-table thead {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+    white-space: nowrap;
+  }
+
+  .comparison-table tbody {
+    border-top: 1px solid #111827;
+    border-bottom: 1px solid #cbd5e1;
+  }
+
+  .comparison-table tbody tr {
+    padding: 1.35rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .comparison-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .comparison-table td {
+    padding: 0;
+    border: 0;
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+
+  .comparison-table td:first-child {
+    width: 100%;
+    margin-bottom: 0.35rem;
+    color: #64748b;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .comparison-table td:nth-child(2) {
+    width: 100%;
+    margin-bottom: 0.7rem;
+    color: #111827;
+    font-size: 1.08rem;
+    line-height: 1.4;
+  }
+
+  .comparison-table td:nth-child(3) {
+    width: 100%;
+    color: #374151;
+  }
+
+  .comparison-table td:first-child strong {
+    color: #64748b;
+  }
+
+  .comparison-table td:nth-child(2) strong {
+    color: #111827;
+  }
+
 }
 
 /* Card Styles */
