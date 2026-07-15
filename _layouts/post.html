@@ -94,7 +94,7 @@ layout: default
     line-height: 1.2;
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: #111;
+    color: var(--title-color);
   }
 
   .post-meta {
@@ -144,7 +144,7 @@ layout: default
 
   .post-content {
     font-size: 1.25rem;
-    line-height: 1.8;
+    line-height: 1.72;
     color: #292929;
     margin-bottom: 50px;
     font-family: 'Georgia', serif;
@@ -266,15 +266,16 @@ layout: default
   }
 
   .post-content a {
-    color: var(--primary-color);
+    color: #0369a1;
     text-decoration: underline;
-    text-decoration-color: rgba(37, 99, 235, 0.3);
+    text-decoration-color: rgba(3, 105, 161, 0.35);
     text-underline-offset: 2px;
-    transition: text-decoration-color 0.2s ease;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
   }
 
   .post-content a:hover {
-    text-decoration-color: rgba(37, 99, 235, 1);
+    color: #075985;
+    text-decoration-color: #075985;
   }
 
   .post-tags {
@@ -402,25 +403,6 @@ layout: default
     background-color: #1d4ed8;
   }
 
-  /* First paragraph styling for Medium-like experience */
-  .post-content > p:first-of-type {
-    font-size: 1.3rem;
-    line-height: 1.7;
-    color: #111;
-  }
-
-  /* Drop cap for first paragraph */
-  .post-content > p:first-of-type::first-letter {
-    float: left;
-    font-size: 3.5rem;
-    line-height: 1;
-    font-weight: 700;
-    margin-right: 8px;
-    margin-top: 6px;
-    color: var(--primary-color);
-    font-family: 'Georgia', serif;
-  }
-
   @media (max-width: 768px) {
     .post-title {
       font-size: 2.2rem;
@@ -428,7 +410,7 @@ layout: default
 
     .post-content {
       font-size: 1.1rem;
-      line-height: 1.7;
+      line-height: 1.68;
     }
 
     .post-navigation {
@@ -443,10 +425,6 @@ layout: default
 
     .next-post {
       text-align: left;
-    }
-
-    .post-content > p:first-of-type::first-letter {
-      font-size: 3rem;
     }
 
     .post-subscribe {
