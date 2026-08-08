@@ -16,9 +16,13 @@
         <h2 id="page_title">AMT Tax Calculator</h2>
         <!--<p class="lead">Taxes are tough. The math behind them, however, isn't. AMT Tax bills should not come as a end of year shock, and it shouldn't cost hundreds of dollars to have tax accountants explain the financial consequences of exercising stock</p>-->
         <p class="lead">Proactively plan around AMT <span style="font-style:italic">before</span> you exercise</p>
-        <span style="color:#444; font-weight:100; font-style:italic; color:red; font-size:0.75rem">
-          This provides neither legal nor reliable tax advice. Talk to a tax lawyer to discuss your specific situation
-        </span>
+        <p class="mb-1" style="font-weight:100; font-style:italic; color:red; font-size:0.75rem">
+          This planning estimate is not legal or tax advice. Discuss your specific situation with a qualified tax professional.
+        </p>
+        <p class="text-muted mx-auto" style="font-size:0.75rem; max-width:48rem">
+          Uses the standard deduction and only the income shown below. It does not model credits, itemized or other deductions,
+          preferential capital-gain rates, payroll taxes, state taxes, or every adjustment required by Forms 1040 and 6251.
+        </p>
       </div>
  
       <div class="row">
@@ -31,26 +35,26 @@
           <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <h6 class="my-0">Federal Tax Calculation</h6>
-                <small class="text-muted">Conventional Income Tax</small>
+                <h6 class="my-0">Regular Tax Calculation</h6>
+                <small class="text-muted">Estimated federal income tax</small>
               </div>
               <span class="text-muted" id="tax_bill">$0</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">AMT Calculation</h6>
-                <small class="text-muted">Alternate Minimum Tax</small>
+                <small class="text-muted">Tentative minimum tax</small>
               </div>
               <span class="text-muted" id="amt_bill">$0</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span>Delta</span>
+              <span>Additional AMT</span>
               <strong id="tax_amt_delta" >$0</strong>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-light">
               <div>
                 <h6 class="my-0">Tax Method</h6>
-                <small id="type_of_tax_owed">You must pay conventional federal tax</small>
+                <small id="type_of_tax_owed">Regular federal income tax applies</small>
               </div>
             </li>
           </ul>
@@ -65,13 +69,23 @@
             <div class="row">
               <div class="mb-3 col-md-6">
                 <label for="inputYear">Year</label>
-                <input type="number" class="form-control" id="inputYear" value="2018" readonly>
+                <select class="form-control" id="inputYear">
+                  <option value="2026" selected>2026</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                </select>
               </div>
               <div class="mb-3 col-md-6">
                 <label for="inputFilingStatus">Filing Status</label>
                 <select id="inputFilingStatus" class="form-control">
                   <option value="single" selected>Single</option>
-                  <option value="married_joint">Married</option>
+                  <option value="married_joint">Married Filing Jointly</option>
                   <option value="married_separate">Married Filing Separately</option>
                   <option value="head_of_household">Head of Household</option>
                 </select>
@@ -95,7 +109,7 @@
               </div>
               <div class="md-3 col-md-6">
                 <label for="rsuIncome" style="width:100%">Restricted Stock Unit Income (<span style="font-weight:500">RSUs</span>)
-                  <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Total pre-tax value of RSUs that vested during 2018.<br/><br/>For instance, if you were given a total of 100 shares in 2018 and their market price at time of vest was <b>$50.00</b>, this value would be (<em>100 shares * $50.00</em>) = <u>$5000</u>.<br/><br/> If you vest quarterly, take into account the market price each quarter."></i>
+                  <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Total pre-tax value of RSUs that vested during the selected tax year.<br/><br/>For instance, if 100 shares vested at a market price of <b>$50.00</b>, this value would be (<em>100 shares × $50.00</em>) = <u>$5,000</u>.<br/><br/>If you vest multiple times, use the market price at each vesting date."></i>
                 </label>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -107,7 +121,7 @@
             </div>
             <div class="mb-3">
               <label for="isoGains" style="width:100%">Incentive Stock Option Gains (<span style="font-weight:500">ISOs</span>)
-                <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Total gains from exercised ISOs in 2018.<br/><br/>For example, if 20 shares vested in 2018, but you only exercised 10 of them at a strike price of $10 with a market value of $40 at time of exercise, your gains would be <em>10 exercised shares * ($40 market price - $10 option price)</em> = <u>$300</u>.<br/><br/>If you exercised multiple times during the year, take into account the varying market price at time of exercise."></i>
+                <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Total ISO bargain element for shares exercised and held through the end of the selected tax year.<br/><br/>For example, exercising 10 shares at a $10 strike price when fair market value is $40 creates <em>10 shares × ($40 market value − $10 strike price)</em> = <u>$300</u>.<br/><br/>A same-year sale can receive different treatment; consult a tax professional."></i>
               </label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -117,8 +131,8 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="pensionContributions" style="width:100%">Personal Pension Contributions (<span style="font-weight:500">401k</span>)
-                <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Total value of personal contributions to a 401K account.<br/><br/>Do not include Roth IRA or employer contributions to your 401K in your calculation.<br/><br/>Note that 401K contributions are one of the only deductible items from your adjusted income for AMT."></i>
+              <label for="pensionContributions" style="width:100%">Pre-tax 401(k) Contributions
+                <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Employee pre-tax 401(k) contributions for the selected tax year.<br/><br/>Enter this only if the Salary field is your gross salary before those contributions. Do not enter it again if Salary is based on W-2 box 1, which generally already excludes pre-tax 401(k) deferrals. Do not include Roth or employer contributions."></i>
               </label>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -137,20 +151,20 @@
                 </button>
               </div>
             </div>
+          </form>
         </div>
         <!-- END TAX INPUT SECTION -->
       </div>
 
       <!-- BEGIN FOOTER -->
       <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">© 2018 Jason Willems</p>
+        <p class="mb-1">© 2018–2026 Jason Willems</p>
         <ul class="list-inline">
           <li class="list-inline-item"><a href="https://github.com/at1as/amt_calculator_website">Github</a></li>
         </ul>
       </footer>
       <!-- END FOOTER -->
     </div>
-  <body>
-  <script src="./amt.js"></script>
+    <script src="./amt.js"></script>
+  </body>
 </html>
-
