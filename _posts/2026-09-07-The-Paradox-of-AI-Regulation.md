@@ -8,8 +8,6 @@ hidden: false
 popular: false
 ---
 
-# Not Regulating AI Is Still a Regulatory Choice
-
 In late August, MIT closed its chemistry building after a graduate student reported synthesizing dimethylmercury, a highly toxic compound that is fatal in small doses and can pass through ordinary latex gloves. Fortunately, the subsequent reporting was much less alarming: MIT questioned whether the compound had actually been made, and reported blood tests did not indicate dimethylmercury exposure. The building reopened after a prolonged decontamination. ([The Tech](https://thetech.com/2026/08/30/building-18-closure-2026))
 
 Nothing in that reporting suggests AI was involved. But suppose an investigation into a similar incident found that an LLM had materially helped someone carry out a dangerous, unauthorized experiment.
@@ -28,7 +26,7 @@ That does not mean an AI lab is *automatically* liable whenever its model causes
 
 The difficult part is deciding how AI fits. Copyright cases have attracted plenty of attention. As LLMs become more capable, we will witness a proliferation of high-profile disputes across many other areas.
 
-If a model invents (“hallucinates”) an accusation about someone, should the laws treat that provider as a publisher? Can dangerous advice be protected speech? Can a system with nondeterministic outputs shelter itself from liability behind claims of a defective product? When does intent matter, and whose intent counts? How much responsibility belongs to the user or the company that deployed the model? Could liability extend to whoever supplied the training data?
+If a model invents (“hallucinates”) an accusation about someone, should the laws treat that provider as a publisher? Can dangerous advice be protected speech? When should harmful model outputs be treated as a product defect, and when should the provider be responsible? When does intent matter, and whose intent counts? How much responsibility belongs to the user or the company that deployed the model? Could liability extend to whoever supplied the training data?
 
 Courts will be asked to answer those questions whether or not legislators act. The resulting decisions will influence what companies build, what they refuse to answer, what they charge to cover the risk, and how deeply they choose to vet their own customers.
 
@@ -66,7 +64,7 @@ An “Anarchist Cookbook”-flavored LLM would not be automatically illegal beca
 
 The harder cases are less obvious. A legitimate scientist and a malicious user can ask similar questions. A model sees prompts, not the full circumstances of the work. Nefarious uses may be obvious in retrospect, but models do not have unlimited context or memory, or exercise judgment in exactly the same way a person does.
 
-When Anthropic first released Fable 5, it routed most biology and chemistry requests to an older model, explicitly accepting overly broad safeguards to ship sooner. It has since narrowed those safeguards. The initial tradeoff was nevertheless real: legitimate users lost access to the strongest capabilities in the very fields where those capabilities could be valuable. ([Anthropic](https://www.anthropic.com/news/claude-fable-5-mythos-5))
+When Anthropic first released Fable 5, it routed most biology and chemistry requests to an older model, explicitly accepting overly broad safeguards to ship sooner. It has since narrowed those safeguards. ([Anthropic’s August update](https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards)) The initial tradeoff was nevertheless real: legitimate users lost access to the strongest capabilities in the very fields where those capabilities could be valuable. ([Anthropic](https://www.anthropic.com/news/claude-fable-5-mythos-5))
 
 Better safeguards can improve that tradeoff. “Never help anyone cause harm” is still a much less useful engineering specification than it sounds. “Harm” is not a rigid threshold, and even a hypothetical 99.9999% detection rate leaves some harmful requests undetected at scale. Tightening an imperfect filter to catch more of them can also mean rejecting legitimate work.
 
@@ -90,9 +88,9 @@ And yet, even a well-designed and executed domestic regime runs into a larger co
 
 We could require foreign services offered to Americans to meet the same standards as domestic ones. But a market-access rule is different from making a capability unavailable. We cannot assume that every provider will comply, or that every capable model will remain behind an API we can regulate.
 
-Open weights make the problem especially difficult. Once copies circulate, the original developer cannot reliably recall them or enforce safeguards on every modified version. A locally operated model does not need permission from a hosted service to answer a question. ([CNAS](https://www.cnas.org/publications/commentary/response-to-ntia-request-for-comment-dual-use-foundation-artificial-intelligence-models-with-widely-available-model-weights)) Decades of efforts to stop media piracy have not eliminated it. Preventing the circulation of capable models seems likely to be *more* difficult. ([EUIPO](https://www.euipo.europa.eu/en/news/observatory/the-state-of-online-piracy-and-copyright-infringement-in-europe?utm_source=chatgpt.com))
+Open weights make the problem especially difficult. Once copies circulate, the original developer cannot reliably recall them or enforce safeguards on every modified version. A locally operated model does not need permission from a hosted service to answer a question. ([CNAS](https://www.cnas.org/publications/commentary/response-to-ntia-request-for-comment-dual-use-foundation-artificial-intelligence-models-with-widely-available-model-weights)) Decades of efforts to stop media piracy have not eliminated it. Preventing the circulation of capable models faces similar enforcement problems. ([EUIPO](https://www.euipo.europa.eu/en/news/observatory/the-state-of-online-piracy-and-copyright-infringement-in-europe))
 
-These are also the properties that make open models valuable: independent research, competition, price pressure, private inference, and the ability to build without a provider’s ongoing approval. A safety rule can restrict those benefits even when that isn’t its stated purpose. ([NTIA](https://www.ntia.gov/press-release/2024/ntia-supports-open-models-promote-ai-innovation?utm_source=chatgpt.com))
+These are also the properties that make open models valuable: independent research, competition, price pressure, private inference, and the ability to build without a provider’s ongoing approval. A safety rule can restrict those benefits even when that isn’t its stated purpose. ([NTIA](https://www.ntia.gov/press-release/2024/ntia-supports-open-models-promote-ai-innovation))
 
 A rule applying only to today’s frontier labs also has a shelf life. If much smaller models eventually acquire the capabilities that justified the rule, a capability-based standard expands to cover them. Exempting them preserves openness, but leaves the capability that motivated the rule available elsewhere. Further, thresholds based on proxies such as parameter count can encourage gamesmanship, giving developers an incentive to increase capabilities in ways the rules don’t measure.
 
