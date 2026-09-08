@@ -338,6 +338,6 @@ In a future post, we’ll look at chaining multiple tools, integrating with sear
 
 In the meantime, want to explore more? I've also written about:
 
-- [RAG vs Fine-Tuning](/posts/2025-07-26-LLMs-customer-support)
-- [Embedding + LLM workflows](/posts/2025-07-25-LLMs-and-Embeddings)
-- [LLM Benchmarks](/posts/2025-07-18-LLM-Benchmarks)
+- [RAG vs Fine-Tuning]({% post_url 2025-07-26-LLMs-customer-support %})
+- [Embedding + LLM workflows]({% post_url 2025-07-25-LLMs-and-Embeddings %})
+- [LLM Benchmarks]({% post_url 2025-07-18-LLM-Benchmarks %})

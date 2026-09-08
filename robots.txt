@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://jasonwillems.com/sitemap.xml
+Sitemap: https://www.jasonwillems.com/sitemap.xml
 
 # Block common non-content paths
 Disallow: /_site/
