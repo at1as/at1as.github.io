@@ -17,7 +17,7 @@ Testing is of course a key part of the mitigation - but even that has blind spot
 
 The great thing, however, is that even though we'll need to contend with these issues, LLMs can also provide various tools to mitigate these impacts. Tests can be generated more comprehensively and less expensively. And LLMs can also act as their own exploratory tool to look for issues.
 
-Recently, I [open sourced](https://www.jasonwillems.com/ai/llm/2025/09/28-Introducing-AI-Dojo) a [codebase](https://github.com/at1as/AI-Dojo) I had developed in private initially. It was heavily vibe coded, so in addition to a manual review, I asked the LLM to help.
+Recently, I [open sourced]({% post_url 2025-09-28-Introducing-AI-Dojo %}) a [codebase](https://github.com/at1as/AI-Dojo) I had developed in private initially. It was heavily vibe coded, so in addition to a manual review, I asked the LLM to help.
 
 
 ### Prompt

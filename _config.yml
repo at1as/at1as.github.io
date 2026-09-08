@@ -2,17 +2,34 @@
 title: "Jason Willems"
 name: "Jason"
 description: "Jason Willems – Building products, exploring the world, sharing what I learn"
-author: Jason Willems
+author:
+  name: Jason Willems
+  url: "https://www.jasonwillems.com"
+  twitter: jasonwillems
 email: hello@jasonwillems.com
 
 # URL settings
-url: "https://jasonwillems.com"
+url: "https://www.jasonwillems.com"
 baseurl: ""
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
+# Match GitHub Pages builds so post dates and URLs are stable locally.
+timezone: UTC
+
+# Shared metadata consumed by jekyll-seo-tag.
+twitter:
+  username: jasonwillems
+  card: summary_large_image
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /photos/jason-july2015.jpg
+        alt: Jason Willems
 
 # Pagination for blog
 paginate: 8
