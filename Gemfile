@@ -2,6 +2,13 @@ source "https://rubygems.org"
 
 gem "jekyll", "~> 4.2.0"
 
+# Jekyll 4.2 uses libraries no longer bundled with recent Ruby releases.
+gem "logger"
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "webrick"
+
 # Explicitly specify FFI version that works well with macOS
 gem "ffi", "~> 1.15.0"
 

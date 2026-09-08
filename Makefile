@@ -5,6 +5,6 @@ help:
 	@echo "  serve  - Start the Jekyll development server with live reload"
 
 serve:
-	bundle exec jekyll serve --livereload
+	bundle exec ruby -E UTF-8 -S jekyll serve --livereload
 
 .PHONY: help serve
