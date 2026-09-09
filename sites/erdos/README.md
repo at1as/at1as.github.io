@@ -2,7 +2,7 @@
 
 Subsite at `/sites/erdos/`, published by the repository's existing Jekyll / GitHub Pages workflow. It includes a compact date slider, date picker, play/pause, and 1× / 2× / 4× / 8× / 16× playback. Every selection updates the diagram, title, attribute cards, text table, source revision, and SVG download. In the table, problem counts show their percentage of all problems; Lean columns show their percentage within that status. Percentages are rounded to one decimal place; an empty status has no within-status percentage.
 
-[D3 Sankey](https://github.com/d3/d3-sankey) computes all layouts at generation time using one shared count-to-pixel scale. Browser JavaScript animates those precomputed layouts. All assets and historical data are served locally; no CDN, live GitHub requests, API credentials, or server is needed in production. Without JavaScript, the latest diagram, cards, table, and SVG download remain available.
+[D3 Sankey](https://github.com/d3/d3-sankey) computes all layouts at generation time using one shared count-to-pixel scale. Browser JavaScript animates those precomputed layouts. All chart assets and historical data are served locally; the visualization needs no CDN, live GitHub requests, API credentials, or application server. The production page also loads Google Analytics. Without JavaScript, the latest diagram, cards, table, and SVG download remain available.
 
 ## Update the data
 
@@ -43,6 +43,14 @@ Hover or keyboard-focus a marker for its model and date; select it to pause play
 
 Because the slider steps through recorded snapshots, marker positions interpolate between the surrounding snapshot indices, rather than treating the whole slider as a uniform calendar scale. Releases outside the saved history are omitted. To add or correct a release, edit `model-releases.json`, include an official date source, and rerun `_generate.py`; the list is embedded in the page, with no extra network request at runtime.
 
+## Discovery and analytics
+
+The generated page includes a descriptive title, description, canonical URL, Open Graph and Twitter summary metadata, and WebPage JSON-LD with author and upstream source attribution. The chart and expanded data table are present in the initial HTML. The root `sitemap.xml` explicitly includes `/sites/erdos/`, because this static page is not part of Jekyll’s `site.html_pages`; `robots.txt` already allows it and advertises that sitemap.
+
+The generator reads the production URL and GA4 measurement ID from the root `_config.yml`. Rerun it after changing those settings. `analytics.js` loads the [Google tag](https://developers.google.com/tag-platform/gtagjs) on the HTTPS production hostname (with or without `www`) only, so localhost and preview hosts do not affect reporting. It sends the [default pageview](https://developers.google.com/analytics/devguides/collection/ga4/views) once, retains campaign parameters, and uses a stable page title. Moving the slider or playing the timeline does not send additional pageviews.
+
+The prominent header and footer links back to Jason’s site, plus the breadcrumb, send a `site_visit` event with `link_location` and `link_url`. Navigation does not wait on analytics. Automated tests simulate the tag queue without sending test traffic to Google. After publishing, GA4 Realtime or Tag Assistant can confirm receipt in the property; local tests cannot verify Google’s account-side processing.
+
 ## Source consistency and historical coverage
 
 The source is always [`teorth/erdosproblems`](https://github.com/teorth/erdosproblems). History is reconstructed from `data/problems.yaml` along the `main` branch's first-parent history. Each slider step is the latest valid data revision on a recorded UTC date, with an immutable commit URL and its timestamp. The slider advances through **recorded snapshots**, not uniformly spaced calendar days. It does not invent values for missing dates. Playback interpolates chart geometry between snapshots; displayed counts remain actual recorded integers.
@@ -68,7 +76,7 @@ npm test --prefix sites/erdos/_chart
 bundle exec ruby -E UTF-8 -S jekyll build
 ```
 
-Tests cover historical counting rules, legacy/primitive status migration, overlaps, invalid states, duplicate rows, conservation and common scale across every saved date, controls, pause/replay/end behavior, reduced motion, selected-date export, failed-load recovery, release placement across date gaps, release selection, and marker hit-target separation.
+Tests cover historical counting rules, legacy/primitive status migration, overlaps, invalid states, duplicate rows, conservation and common scale across every saved date, controls, pause/replay/end behavior, reduced motion, selected-date export, failed-load recovery, release placement across date gaps, release selection, marker hit-target separation, SEO metadata, analytics initialization, preview exclusion, and links back to the main site.
 
 ## Attribution
 
