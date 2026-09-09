@@ -1,0 +1,81 @@
+[
+  {
+    "id": "sonnet-4-5",
+    "name": "Claude Sonnet 4.5",
+    "date": "2025-09-29",
+    "kind": "Public release",
+    "source": "https://www.anthropic.com/news/claude-sonnet-4-5"
+  },
+  {
+    "id": "gpt-5-1",
+    "name": "GPT-5.1",
+    "date": "2025-11-13",
+    "kind": "API release",
+    "source": "https://developers.openai.com/api/docs/changelog"
+  },
+  {
+    "id": "opus-4-5",
+    "name": "Claude Opus 4.5",
+    "date": "2025-11-24",
+    "kind": "Public release",
+    "source": "https://www.anthropic.com/news/claude-opus-4-5"
+  },
+  {
+    "id": "gpt-5-2",
+    "name": "GPT-5.2",
+    "date": "2025-12-11",
+    "kind": "API release",
+    "source": "https://developers.openai.com/api/docs/changelog"
+  },
+  {
+    "id": "opus-4-6",
+    "name": "Claude Opus 4.6",
+    "date": "2026-02-05",
+    "kind": "Public release",
+    "source": "https://www.anthropic.com/news/claude-opus-4-6"
+  },
+  {
+    "id": "gpt-5-4",
+    "name": "GPT-5.4",
+    "date": "2026-03-05",
+    "kind": "API release",
+    "source": "https://developers.openai.com/api/docs/changelog"
+  },
+  {
+    "id": "gpt-5-5",
+    "name": "GPT-5.5",
+    "date": "2026-04-24",
+    "kind": "API release",
+    "source": "https://developers.openai.com/api/docs/changelog"
+  },
+  {
+    "id": "fable-5",
+    "name": "Claude Fable 5",
+    "date": "2026-06-09",
+    "kind": "Public release",
+    "source": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+    "note": "Access paused June 12; restored July 1, 2026.",
+    "note_source": "https://www.anthropic.com/news/redeploying-fable-5"
+  },
+  {
+    "id": "gpt-5-6",
+    "name": "GPT-5.6 · Sol, Terra & Luna",
+    "date": "2026-07-09",
+    "kind": "API release",
+    "source": "https://developers.openai.com/api/docs/changelog"
+  },
+  {
+    "id": "fable-5-1",
+    "name": "Claude Fable 5.1",
+    "date": "2026-09-01",
+    "kind": "Public release",
+    "source": "https://www.anthropic.com/claude/fable"
+  },
+  {
+    "id": "astra",
+    "name": "GPT-6 Astra",
+    "date": "2026-09-03",
+    "kind": "API release",
+    "source": "https://developers.openai.com/api/docs/changelog"
+  }
+]

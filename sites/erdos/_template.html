@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Erdős Problems Database — $total problems</title>
+  <meta name="description" content="A Sankey diagram of the Erdős Problems Database: resolved and open problems, Lean formalization, prizes, and OEIS connections.">
+  <link rel="canonical" href="https://www.jasonwillems.com/sites/erdos/">
+  <link rel="icon" href="../../favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script id="model-releases" type="application/json">$releases</script>
+  <script src="timeline.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#text-summary">Skip to data table</a>
+  <main class="page">
+    <section class="flow-panel" aria-labelledby="page-title">
+      <header>
+        <h1 id="page-title">Erdős Problems Database <span>— <span data-total>$total</span> problems</span></h1>
+        <p class="subtitle">The status of the problems, and how many solutions have been formalized in Lean.</p>
+        <div class="chart-meta">
+          <div class="source-links">
+            <a class="repository-link" href="https://github.com/teorth/erdosproblems">View on GitHub <span aria-hidden="true">↗</span></a>
+            <a id="source-revision" href="$source_url">Source revision <span aria-hidden="true">↗</span></a>
+            <span class="visually-hidden">Snapshot <time id="snapshot-date" datetime="$iso_date">$date</time></span>
+          </div>
+          <a id="download-svg" href="diagram.svg" download="erdos-problems-sankey.svg">Download SVG <span aria-hidden="true">↗</span></a>
+        </div>
+        <section class="timeline" aria-label="Explore the database over time">
+          <div class="timeline-toolbar">
+            <button id="play-timeline" class="play-button" type="button" disabled aria-label="Play history">▶ <span>Play</span></button>
+            <div class="speed-control"><label class="visually-hidden" for="playback-speed">Playback speed</label><select id="playback-speed" disabled><option value="800">1×</option><option value="400">2×</option><option value="200">4×</option><option value="100">8×</option><option value="50">16×</option></select></div>
+            <div class="timeline-range">
+              <div class="timeline-track">
+                <input id="time-slider" type="range" min="0" max="0" value="0" step="1" aria-label="Snapshot date" aria-describedby="timeline-position" disabled>
+                <div id="release-markers" class="release-markers" role="group" aria-label="Model releases; select to view the first snapshot on or after a release" hidden></div>
+              </div>
+              <div class="timeline-labels"><span id="first-date">Earlier</span><span id="last-date">Latest</span></div>
+              <span id="timeline-position" class="visually-hidden"></span>
+            </div>
+            <div class="date-control"><label class="visually-hidden" for="snapshot-picker">Snapshot date</label><select id="snapshot-picker" disabled><option>$date</option></select></div>
+          </div>
+          <div id="release-info" class="release-info" hidden>
+            <span class="release-heading">Model releases</span>
+            <span id="release-current"></span>
+          </div>
+          <p id="timeline-message" class="timeline-note" role="status">Loading historical snapshots…</p>
+          <button id="retry-history" type="button" hidden>Retry loading history</button>
+          <noscript><p>The latest snapshot is shown. Enable JavaScript to use the date slider and playback.</p></noscript>
+        </section>
+      </header>
+      <figure>
+        <p class="scroll-hint">Scroll sideways to explore the diagram, or <a href="#text-summary">read the data table</a>.</p>
+        <div class="chart-scroll" tabindex="0" role="region" aria-label="Sankey diagram; scroll horizontally on small screens">
+          $diagram
+        </div>
+        <figcaption>Bar heights and ribbon widths are proportional to problem counts. The attributes on the right overlap with these categories and are not part of the flow. Layout by <a href="https://github.com/d3/d3-sankey">D3 Sankey</a>.</figcaption>
+      </figure>
+      <details id="text-summary" open>
+        <summary>View as table</summary>
+        <div class="table-scroll">
+          <table>
+            <caption>Problem status in the <span id="table-date">$date</span> snapshot.<span class="table-guide">Problems: % of all problems. Lean columns: % within that status; — if the status is empty.</span></caption>
+            <thead><tr><th scope="col">Status</th><th scope="col">Problems</th><th scope="col">Lean-formalized</th><th scope="col">Not Lean-formalized</th></tr></thead>
+            <tbody>$rows</tbody>
+            <tfoot><tr><th scope="row">All problems</th><td><span data-total>$total</span> <span class="percentage">(100.0%)</span></td><td>—</td><td>—</td></tr></tfoot>
+          </table>
+        </div>
+      </details>
+    </section>
+    <aside class="attributes" aria-labelledby="attributes-title">
+      <h2 id="attributes-title">Overlapping attributes</h2>
+      <p class="aside-intro">Not mutually exclusive with the status categories.</p>
+      <div class="metric-list">$cards</div>
+    </aside>
+    <footer>
+      <p>Data: <a href="https://github.com/teorth/erdosproblems">Erdős problems database contributors</a>. Maintained by Thomas Bloom and Terence Tao. <a href="https://github.com/teorth/erdosproblems/blob/main/LICENSE">Apache 2.0</a>.</p>
+      <p>An independent visualization by <a href="https://www.jasonwillems.com/">Jason Willems</a>. <a href="https://www.erdosproblems.com/">Erdős Problems</a> · <a href="https://teorth.github.io/erdosproblems/">Explore the database</a> · <a href="snapshot.json">Snapshot data</a></p>
+      <p>Viewing <span id="footer-date">$date</span>. Category links open today’s database; use “Source revision” for the selected historical data. <a href="history.json">History data &amp; methodology</a>.</p>
+      <p>Recorded dates only; gaps include days without updates or valid data. Counts reflect database additions and corrections as well as mathematical progress.</p>
+      <p>Model markers show selected public or API releases, using each provider’s announcement dates. Select a marker for its source and the first available snapshot on or after release. They provide context, not attribution of solutions to a model.</p>
+      <p>“Open / unresolved” groups all seven non-resolved statuses, including independence from ZFC. Ambiguous statements and literature reviews are overlapping attributes. A dash in the table means this snapshot does not break out Lean formalization for that status.</p>
+    </footer>
+
+  </main>
+</body>
+</html>
