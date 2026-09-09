@@ -1,0 +1,14 @@
+{
+  "name": "erdos-sankey-renderer",
+  "private": true,
+  "description": "Build-time D3 Sankey renderer for the static Erdős subsite",
+  "scripts": {
+    "test": "node --test timeline.test.cjs"
+  },
+  "dependencies": {
+    "d3-sankey": "0.12.3"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}

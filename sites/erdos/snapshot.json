@@ -1,0 +1,39 @@
+{
+  "as_of": "2026-09-09",
+  "recorded_at": "2026-09-09T17:50:41+00:00",
+  "commit": "5ca6b58dccc3e7a41d7db5f2cafdb944599edc4c",
+  "source": "https://github.com/teorth/erdosproblems/blob/5ca6b58dccc3e7a41d7db5f2cafdb944599edc4c/data/problems.yaml",
+  "total": 1217,
+  "statuses": {
+    "proved": 334,
+    "disproved": 139,
+    "solved": 101,
+    "open": 591,
+    "decidable": 9,
+    "falsifiable": 25,
+    "verifiable": 7,
+    "not provable": 3,
+    "not disprovable": 4,
+    "independent": 4
+  },
+  "lean": {
+    "proved": 176,
+    "disproved": 91,
+    "solved": 29
+  },
+  "attributes": {
+    "prize": 106,
+    "statements": 671,
+    "solutions": 298,
+    "oeis_linked": 324,
+    "oeis_distinct": 423,
+    "oeis_links": 502,
+    "oeis_new": 80,
+    "oeis_possible": 324,
+    "oeis_unlinked": 266,
+    "oeis_inprogress": 1,
+    "oeis_submitted": 0,
+    "ambiguous": 10,
+    "literature": 0
+  }
+}
