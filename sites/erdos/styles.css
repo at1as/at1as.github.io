@@ -23,6 +23,10 @@ a:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 3px 
 .site-breadcrumb > a { color: #17253c; font-weight: 600; }
 .current-site { display: flex; gap: 16px; }
 .current-site > span { color: #9aa6b7; }
+.explorer-tabs { display:flex; gap:6px; margin:18px 0 0; border-bottom:1px solid #dde4ed; font-size:.875rem; }
+.explorer-tabs a { display:block; padding:10px 14px; text-decoration:none; color:#59657d; border-bottom:2px solid transparent; margin-bottom:-1px; }
+.explorer-tabs a[aria-current="page"] { color:#24558e; border-bottom-color:#3977bd; font-weight:600; }
+.explorer-tabs a:hover { color:#24558e; background:#f4f7fb; }
 .page { width: calc(100% - 32px); max-width: 1888px; margin: 0 auto 24px; padding: 24px; display: grid; grid-template-columns: minmax(0, 3fr) minmax(310px, 1fr); column-gap: 24px; background: #fff; border: 1px solid #e0e6ee; border-radius: 12px; box-shadow: 0 2px 8px #172f5204; }
 .flow-panel { min-width: 0; }
 h1 { font-size: clamp(2rem, 3.25vw, 3.9rem); line-height: 1.1; letter-spacing: -.035em; margin: 0; font-weight: 750; }

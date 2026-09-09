@@ -236,8 +236,23 @@ def main():
                ('snapshot.json', json.dumps(data, indent=2, ensure_ascii=False) + '\n')]
     if history:
         outputs.append(('history.json', json.dumps(history, separators=(',', ':'), ensure_ascii=False) + '\n'))
+        from _insights import build, matches
+        from _trends import render as render_trends
+        insights_path = HERE / 'insights.json'
+        insights = json.loads(insights_path.read_text()) if insights_path.exists() else None
+        if args.refresh or args.history_repo:
+            insights = build(history, args.history_repo or HERE / '_cache/upstream.git')
+        if insights is None or not matches(insights, history):
+            raise ValueError('Run --refresh or --history-repo to build matching problem-level trends.')
+        outputs.extend([
+            ('insights.json', json.dumps(insights, separators=(',', ':')) + '\n'),
+            ('trends/index.html', render_trends(insights, releases, site_home, analytics_id)),
+            ('d3.min.js', (HERE / '_chart/node_modules/d3/dist/d3.min.js').read_text()),
+            ('D3-LICENSE.txt', (HERE / '_chart/node_modules/d3/LICENSE').read_text()),
+        ])
     for filename, content in outputs:
         destination = HERE / filename
+        destination.parent.mkdir(parents=True, exist_ok=True)
         temporary = destination.with_suffix(destination.suffix + '.tmp')
         temporary.write_text(content, encoding='utf-8')
         temporary.replace(destination)

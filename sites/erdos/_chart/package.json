@@ -6,9 +6,8 @@
     "test": "node --test *.test.cjs"
   },
   "dependencies": {
-    "d3-sankey": "0.12.3"
-  },
-  "devDependencies": {
+    "d3": "7.9.0",
+    "d3-sankey": "0.12.3",
     "jsdom": "26.1.0"
   }
 }

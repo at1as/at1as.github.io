@@ -2,6 +2,8 @@
 
 Subsite at `/sites/erdos/`, published by the repository's existing Jekyll / GitHub Pages workflow. It includes a compact date slider, date picker, play/pause, and 1× / 2× / 4× / 8× / 16× playback. Every selection updates the diagram, title, attribute cards, text table, source revision, and SVG download. In the table, problem counts show their percentage of all problems; Lean columns show their percentage within that status. Percentages are rounded to one decimal place; an empty status has no within-status percentage.
 
+The **Trends & rates** view at `/sites/erdos/trends/` adds a D3 rate chart with model-release references, monthly change decomposition, problem-level evidence, the Lean formalization backlog, and equal-window comparisons around releases. Its default charts and monthly totals are generated as HTML/SVG so they remain available without browser JavaScript.
+
 [D3 Sankey](https://github.com/d3/d3-sankey) computes all layouts at generation time using one shared count-to-pixel scale. Browser JavaScript animates those precomputed layouts. All chart assets and historical data are served locally; the visualization needs no CDN, live GitHub requests, API credentials, or application server. The production page also loads Google Analytics. Without JavaScript, the latest diagram, cards, table, and SVG download remain available.
 
 ## Update the data
@@ -33,7 +35,20 @@ To import from an existing local bare clone:
 python3 sites/erdos/_generate.py --history-repo /path/to/erdosproblems.git
 ```
 
-`history.json`, `snapshot.json`, `index.html`, and `diagram.svg` are generated. Edit `_template.html` and `styles.css` for the page, `timeline.js` for the controls, `_history.py` for extraction, and `_chart/render.cjs` for D3 configuration. Jekyll ignores the underscore-prefixed tools and dependency directory. Git ignores cached upstream data and `node_modules`.
+`history.json`, `snapshot.json`, `index.html`, `diagram.svg`, `insights.json`, `trends/index.html`, and the local `d3.min.js` / license copy are generated. Edit `_template.html` and `styles.css` for the snapshot page, `timeline.js` for its controls, `_history.py` for extraction, and `_chart/render.cjs` for Sankey configuration. The Trends view uses `_trends_template.html`, `trends.css`, `trends.js`, and `trends-charts.js`. Jekyll ignores the underscore-prefixed tools and dependency directory. Git ignores cached upstream data and `node_modules`.
+
+Both refresh commands rebuild the problem-level transition data from the same selected commits. Offline generation reuses `insights.json` only if its commit sequence matches the saved history; a mismatch requires `--refresh` or `--history-repo`. The generator validates all counts and renders both views before replacing output files.
+
+## What the trend charts measure
+
+`_insights.py` matches problem numbers across each pair of saved snapshots. For resolved status, Lean solutions, and Lean statements, it separates four types of change: an existing entry gains or loses the property, and a qualifying entry is added or removed. A switch from proved to disproved remains within the resolved group and is not a gain. Lean status can change independently of informal resolution. Duplicate IDs in either snapshot are excluded from identity matching; any residual count change is shown as an unmatched-row adjustment. All five components reconcile to the aggregate change for every interval and every monthly total.
+
+- **Pace:** existing-entry gains divided by elapsed calendar days. For a selected trailing window, the baseline is the last saved snapshot on or before the intended start; the readout shows the actual start, duration, and event count. Initial points without a full trailing window are omitted. No interpolation invents extra events. Longer snapshot gaps are shaded.
+- **Monthly composition:** events are assigned to the first saved snapshot observing them. The first and last months are marked partial. Selecting a bar exposes the underlying problem numbers, observation intervals, and source revision comparisons. Counts are transition events, so a problem can contribute more than once after losing and regaining a status.
+- **Formalization backlog:** resolved total minus Lean solutions within the resolved group. Coverage uses the resolved total as denominator; it excludes Lean solutions whose informal status is unresolved.
+- **Release windows:** gains first observed in `[release − 30 days, release)` and `[release, release + 30 days)`. A window extending beyond available history has no rate or multiplier. A zero preceding count has no multiplier. Different releases’ windows overlap.
+
+These are rates of **recorded database changes**, not verified discovery dates or model contributions. Additions, corrections, missing snapshots, and transitions that appear and disappear between snapshots limit interpretation. Model release dates provide context; the status data does not consistently record which model helped. `trends-data.js` contains the calculations shared by the browser, the static renderer, and tests.
 
 ## Model release annotations
 
@@ -45,7 +60,7 @@ Because the slider steps through recorded snapshots, marker positions interpolat
 
 ## Discovery and analytics
 
-The generated page includes a descriptive title, description, canonical URL, Open Graph and Twitter summary metadata, and WebPage JSON-LD with author and upstream source attribution. The chart and expanded data table are present in the initial HTML. The root `sitemap.xml` explicitly includes `/sites/erdos/`, because this static page is not part of Jekyll’s `site.html_pages`; `robots.txt` already allows it and advertises that sitemap.
+Both generated pages include descriptive titles, descriptions, canonical URLs, Open Graph and Twitter summary metadata, and WebPage JSON-LD with author and upstream source attribution. The charts and data tables are present in the initial HTML. The root `sitemap.xml` explicitly includes `/sites/erdos/` and `/sites/erdos/trends/`, because these static pages are not part of Jekyll’s `site.html_pages`; `robots.txt` already allows them and advertises that sitemap.
 
 The generator reads the production URL and GA4 measurement ID from the root `_config.yml`. Rerun it after changing those settings. `analytics.js` loads the [Google tag](https://developers.google.com/tag-platform/gtagjs) on the HTTPS production hostname (with or without `www`) only, so localhost and preview hosts do not affect reporting. It sends the [default pageview](https://developers.google.com/analytics/devguides/collection/ga4/views) once, retains campaign parameters, and uses a stable page title. Moving the slider or playing the timeline does not send additional pageviews.
 
@@ -72,11 +87,14 @@ Counting follows the current upstream `scripts/generate_readme.py` and `primitiv
 
 ```sh
 python3 -B sites/erdos/_history_test.py
+python3 -B sites/erdos/_insights_test.py
 npm test --prefix sites/erdos/_chart
 bundle exec ruby -E UTF-8 -S jekyll build
 ```
 
 Tests cover historical counting rules, legacy/primitive status migration, overlaps, invalid states, duplicate rows, conservation and common scale across every saved date, controls, pause/replay/end behavior, reduced motion, selected-date export, failed-load recovery, release placement across date gaps, release selection, marker hit-target separation, SEO metadata, analytics initialization, preview exclusion, and links back to the main site.
+
+Trend checks also reconcile every interval/month to the Sankey source, distinguish imports from state changes, exercise duplicate IDs, verify elapsed-time rates and release-window boundaries, and run the actual D3 renderer and interactive controls in JSDOM. D3 is pinned to 7.9.0 and its ISC license is copied alongside the local browser bundle.
 
 ## Attribution
 

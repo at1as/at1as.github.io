@@ -21,4 +21,7 @@
   <url>
     <loc>{{ '/sites/erdos/' | absolute_url | xml_escape }}</loc>
   </url>
+  <url>
+    <loc>{{ '/sites/erdos/trends/' | absolute_url | xml_escape }}</loc>
+  </url>
 </urlset>
