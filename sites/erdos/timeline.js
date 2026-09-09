@@ -207,7 +207,7 @@
     $('#source-revision').href = `https://github.com/teorth/erdosproblems/blob/${snapshot.commit}/data/problems.yaml`;
     $('#source-revision').title = `Recorded ${snapshot.recorded_at}`;
     document.querySelectorAll('[data-total]').forEach(el => { el.textContent = count(snapshot.total); });
-    document.title = `Erdős Problems — ${count(snapshot.total)} problems · ${date}`;
+    document.title = `Erdős Problems Sankey — ${date} | Jason Willems`;
     document.querySelectorAll('[data-attribute]').forEach(el => { el.textContent = count(snapshot.attributes[el.dataset.attribute]); });
     const resolvedLean = Object.values(snapshot.lean).reduce((a, b) => a + b, 0);
     $('[data-derived="resolved-lean"]').textContent = count(resolvedLean);

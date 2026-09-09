@@ -17,4 +17,8 @@
       {% if modified %}<lastmod>{{ modified | date_to_xmlschema }}</lastmod>{% endif %}
     </url>
   {% endfor %}
+  <!-- This generated subsite has no Jekyll front matter, so it is not in site.html_pages. -->
+  <url>
+    <loc>{{ '/sites/erdos/' | absolute_url | xml_escape }}</loc>
+  </url>
 </urlset>

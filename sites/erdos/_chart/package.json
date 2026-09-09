@@ -3,7 +3,7 @@
   "private": true,
   "description": "Build-time D3 Sankey renderer for the static Erdős subsite",
   "scripts": {
-    "test": "node --test timeline.test.cjs"
+    "test": "node --test *.test.cjs"
   },
   "dependencies": {
     "d3-sankey": "0.12.3"

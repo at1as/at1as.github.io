@@ -3,16 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Erdős Problems Database — 1,217 problems</title>
-  <meta name="description" content="A Sankey diagram of the Erdős Problems Database: resolved and open problems, Lean formalization, prizes, and OEIS connections.">
+  <title>Erdős Problems Sankey &amp; History | Jason Willems</title>
+  <meta name="description" content="Explore 1,217 Erdős problems in an interactive Sankey diagram. Replay the database’s history and compare solved, open, and Lean-formalized problems.">
+  <meta name="author" content="Jason Willems">
   <link rel="canonical" href="https://www.jasonwillems.com/sites/erdos/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jason Willems">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Erdős Problems Sankey &amp; History | Jason Willems">
+  <meta property="og:description" content="Explore 1,217 Erdős problems in an interactive Sankey diagram. Replay the database’s history and compare solved, open, and Lean-formalized problems.">
+  <meta property="og:url" content="https://www.jasonwillems.com/sites/erdos/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@jasonwillems">
+  <meta name="twitter:title" content="Erdős Problems Sankey &amp; History | Jason Willems">
+  <meta name="twitter:description" content="Explore 1,217 Erdős problems in an interactive Sankey diagram. Replay the database’s history and compare solved, open, and Lean-formalized problems.">
   <link rel="icon" href="../../favicon.png">
   <link rel="stylesheet" href="styles.css">
   <script id="model-releases" type="application/json">[{"id": "sonnet-4-5", "name": "Claude Sonnet 4.5", "date": "2025-09-29", "kind": "Public release", "source": "https://www.anthropic.com/news/claude-sonnet-4-5"}, {"id": "gpt-5-1", "name": "GPT-5.1", "date": "2025-11-13", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "opus-4-5", "name": "Claude Opus 4.5", "date": "2025-11-24", "kind": "Public release", "source": "https://www.anthropic.com/news/claude-opus-4-5"}, {"id": "gpt-5-2", "name": "GPT-5.2", "date": "2025-12-11", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "opus-4-6", "name": "Claude Opus 4.6", "date": "2026-02-05", "kind": "Public release", "source": "https://www.anthropic.com/news/claude-opus-4-6"}, {"id": "gpt-5-4", "name": "GPT-5.4", "date": "2026-03-05", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "gpt-5-5", "name": "GPT-5.5", "date": "2026-04-24", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "fable-5", "name": "Claude Fable 5", "date": "2026-06-09", "kind": "Public release", "source": "https://www.anthropic.com/news/claude-fable-5-mythos-5", "note": "Access paused June 12; restored July 1, 2026.", "note_source": "https://www.anthropic.com/news/redeploying-fable-5"}, {"id": "gpt-5-6", "name": "GPT-5.6 · Sol, Terra & Luna", "date": "2026-07-09", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "fable-5-1", "name": "Claude Fable 5.1", "date": "2026-09-01", "kind": "Public release", "source": "https://www.anthropic.com/claude/fable"}, {"id": "astra", "name": "GPT-6 Astra", "date": "2026-09-03", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}]</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.jasonwillems.com/sites/erdos/#webpage", "url": "https://www.jasonwillems.com/sites/erdos/", "name": "Erdős Problems Sankey & History | Jason Willems", "description": "Explore 1,217 Erdős problems in an interactive Sankey diagram. Replay the database’s history and compare solved, open, and Lean-formalized problems.", "inLanguage": "en", "author": {"@type": "Person", "name": "Jason Willems", "url": "https://www.jasonwillems.com/"}, "isPartOf": {"@type": "WebSite", "name": "Jason Willems", "url": "https://www.jasonwillems.com/"}, "about": {"@type": "Thing", "name": "Erdős problems", "url": "https://www.erdosproblems.com/"}, "isBasedOn": "https://github.com/teorth/erdosproblems/blob/5ca6b58dccc3e7a41d7db5f2cafdb944599edc4c/data/problems.yaml", "citation": "https://github.com/teorth/erdosproblems"}</script>
+  <script id="analytics-config" type="application/json">{"measurementId": "G-Q5N6H3PVG2", "hostname": "www.jasonwillems.com", "pageTitle": "Erdős Problems Sankey & History | Jason Willems"}</script>
+  <script src="analytics.js" defer></script>
   <script src="timeline.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#text-summary">Skip to data table</a>
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="site-breadcrumb"><a href="https://www.jasonwillems.com/" data-site-link="breadcrumb">Jason Willems</a><span class="current-site"><span aria-hidden="true">/</span> Erdős explorer</span></div>
+    <div class="site-nav-links">
+      <a href="#about-data">About the data <span aria-hidden="true">↓</span></a>
+      <a class="site-home-link" href="https://www.jasonwillems.com/" data-site-link="header">More from Jason <span aria-hidden="true">↗</span></a>
+      <a class="site-home-link" href="https://www.jasonwillems.com/blog/" data-site-link="header-blog">Blog <span aria-hidden="true">↗</span></a>
+    </div>
+  </nav>
   <main class="page">
     <section class="flow-panel" aria-labelledby="page-title">
       <header>
@@ -20,7 +42,7 @@
         <p class="subtitle">The status of the problems, and how many solutions have been formalized in Lean.</p>
         <div class="chart-meta">
           <div class="source-links">
-            <a class="repository-link" href="https://github.com/teorth/erdosproblems">View on GitHub <span aria-hidden="true">↗</span></a>
+            <a class="repository-link" href="https://github.com/teorth/erdosproblems">Source data on GitHub <span aria-hidden="true">↗</span></a>
             <a id="source-revision" href="https://github.com/teorth/erdosproblems/blob/5ca6b58dccc3e7a41d7db5f2cafdb944599edc4c/data/problems.yaml">Source revision <span aria-hidden="true">↗</span></a>
             <span class="visually-hidden">Snapshot <time id="snapshot-date" datetime="2026-09-09">September 9, 2026</time></span>
           </div>
@@ -297,13 +319,17 @@
 <article class="metric gray"><h3>Literature reviews requested</h3><div class="metric-body"><strong class="metric-value" data-attribute="literature">0</strong><div class="metric-description"></div></div></article>
 <article class="metric gray"><h3>Ambiguous statements</h3><div class="metric-body"><strong class="metric-value" data-attribute="ambiguous">10</strong><div class="metric-description">problems have ambiguous statements.</div></div></article></div>
     </aside>
-    <footer>
+    <footer id="about-data">
       <p>Data: <a href="https://github.com/teorth/erdosproblems">Erdős problems database contributors</a>. Maintained by Thomas Bloom and Terence Tao. <a href="https://github.com/teorth/erdosproblems/blob/main/LICENSE">Apache 2.0</a>.</p>
       <p>An independent visualization by <a href="https://www.jasonwillems.com/">Jason Willems</a>. <a href="https://www.erdosproblems.com/">Erdős Problems</a> · <a href="https://teorth.github.io/erdosproblems/">Explore the database</a> · <a href="snapshot.json">Snapshot data</a></p>
       <p>Viewing <span id="footer-date">September 9, 2026</span>. Category links open today’s database; use “Source revision” for the selected historical data. <a href="history.json">History data &amp; methodology</a>.</p>
       <p>Recorded dates only; gaps include days without updates or valid data. Counts reflect database additions and corrections as well as mathematical progress.</p>
       <p>Model markers show selected public or API releases, using each provider’s announcement dates. Select a marker for its source and the first available snapshot on or after release. They provide context, not attribution of solutions to a model.</p>
       <p>“Open / unresolved” groups all seven non-resolved statuses, including independence from ZFC. Ambiguous statements and literature reviews are overlapping attributes. A dash in the table means this snapshot does not break out Lean formalization for that status.</p>
+      <div class="continue-reading">
+        <div><p class="continue-title">More from Jason Willems</p><p>Projects and writing on software, AI, and building products.</p></div>
+        <a href="https://www.jasonwillems.com/" data-site-link="footer">Explore my site <span aria-hidden="true">→</span></a>
+      </div>
     </footer>
 
   </main>

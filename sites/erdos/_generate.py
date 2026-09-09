@@ -14,7 +14,9 @@ from pathlib import Path
 import re
 import subprocess
 from string import Template
-from urllib.parse import parse_qs, urlencode
+from urllib.parse import parse_qs, urlencode, urlparse
+
+import yaml
 
 HERE = Path(__file__).resolve().parent
 SOURCE = "https://github.com/teorth/erdosproblems"
@@ -192,6 +194,27 @@ def main():
                                 input=json.dumps(history), text=True, capture_output=True, check=True)
         history = json.loads(result.stdout)
     svg = diagram(data)
+    site = yaml.safe_load((HERE.parent.parent / '_config.yml').read_text(encoding='utf-8'))
+    site_home = site['url'].rstrip('/') + site.get('baseurl', '').rstrip('/') + '/'
+    canonical = site_home + 'sites/erdos/'
+    analytics_id = site.get('google_analytics') or ''
+    if analytics_id and not re.fullmatch(r'G-[A-Z0-9]+', analytics_id):
+        raise ValueError('google_analytics must be a GA4 measurement ID or empty.')
+    page_title = 'Erdős Problems Sankey & History | Jason Willems'
+    description = (f'Explore {data["total"]:,} Erdős problems in an interactive Sankey diagram. '
+                   'Replay the database’s history and compare solved, open, and Lean-formalized problems.')
+    structured_data = {
+        '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical + '#webpage',
+        'url': canonical, 'name': page_title, 'description': description, 'inLanguage': 'en',
+        'author': {'@type': 'Person', 'name': 'Jason Willems', 'url': site_home},
+        'isPartOf': {'@type': 'WebSite', 'name': 'Jason Willems', 'url': site_home},
+        'about': {'@type': 'Thing', 'name': 'Erdős problems', 'url': 'https://www.erdosproblems.com/'},
+        'isBasedOn': data['source'], 'citation': SOURCE,
+    }
+    analytics_config = {'measurementId': analytics_id, 'hostname': urlparse(site_home).hostname,
+                        'pageTitle': page_title}
+    def script_json(value):
+        return json.dumps(value, ensure_ascii=False).replace('<', '\\u003c')
     releases = json.loads((HERE / 'model-releases.json').read_text(encoding='utf-8'))
     release_ids = set()
     for release in releases:
@@ -203,7 +226,10 @@ def main():
     page = Template((HERE / '_template.html').read_text(encoding='utf-8')).substitute(
         total=f'{data["total"]:,}', date=date, iso_date=data['as_of'],
         diagram=svg, cards=cards(data), rows=table(data),
-        releases=json.dumps(releases, ensure_ascii=False).replace('<', '\\u003c'),
+        releases=script_json(releases), structured_data=script_json(structured_data),
+        analytics_config=script_json(analytics_config), site_home=escape(site_home, quote=True),
+        canonical=escape(canonical, quote=True), page_title=escape(page_title, quote=True),
+        description=escape(description, quote=True),
         source_url=escape(data['source'], quote=True))
     # Parse and validate everything before replacing any generated output.
     outputs = [('index.html', page), ('diagram.svg', svg + '\n'),
