@@ -82,7 +82,7 @@ test('generated page exposes consistent metadata, source attribution, and conten
   const dom = new JSDOM(html);
   const d = dom.window.document;
   const q = selector => d.querySelector(selector);
-  assert.match(d.title, /Erdős Problems Sankey.*History.*Jason Willems/);
+  assert.match(d.title, /Erdős problems in the AI era.*Sankey.*History.*Jason Willems/);
   assert.equal(q('link[rel="canonical"]').href, productionURL);
   assert.equal(q('meta[property="og:url"]').content, productionURL);
   assert.equal(q('meta[property="og:title"]').content, d.title);

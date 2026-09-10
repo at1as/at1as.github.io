@@ -17,7 +17,7 @@ for(const id of ['pace','composition','formal']) {
   out[id+'_readout']=svg.parentElement.querySelector('.chart-readout').textContent;
 }
 out.months=w.ErdosTrends.monthly(data,'resolved');
-out.peak=out.months.reduce((a,b)=>b.gained>a.gained?b:a).date.slice(0,7);
-out.events=w.ErdosTrends.events(data,'resolved',out.peak);
+out.recent=w.ErdosTrends.rolling(data,'resolved',30).at(-1);
+out.events=w.ErdosTrends.events(data,'resolved',out.recent,['gained']);
 process.stdout.write(JSON.stringify(out));
 dom.window.close();

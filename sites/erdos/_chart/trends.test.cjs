@@ -35,6 +35,7 @@ test('rolling rates use actual elapsed time across gaps and do not treat additio
       assert.ok(row.days>=days);
       const expected=data.intervals.filter(i=>i.end>row.start&&i.end<=row.date).reduce((n,i)=>n+i.changes.resolved.gained.length,0);
       assert.equal(row.events,expected);
+      assert.equal(T.events(data,'resolved',row,['gained']).length,expected);
       assert.equal(row.value,expected/((T.time(row.date)-T.time(row.start))/T.DAY));
       const next=data.points.find(p=>p.date>row.start);
       assert.ok(T.time(next.date)>T.time(row.date)-days*T.DAY,'Baseline is the last snapshot on/before the intended start');
@@ -53,8 +54,8 @@ test('release windows assign launch-day observations once and suppress incomplet
   assert.equal(full.after.rate,full.after.count/30);
 });
 
-async function boot(fail=false) {
-  const dom=new JSDOM(fs.readFileSync(path.join(site,'trends/index.html'),'utf8'),{url:'https://example.com/sites/erdos/trends/',runScripts:'outside-only',pretendToBeVisual:true});
+async function boot(fail=false,hash='') {
+  const dom=new JSDOM(fs.readFileSync(path.join(site,'trends/index.html'),'utf8'),{url:'https://example.com/sites/erdos/trends/'+hash,runScripts:'outside-only',pretendToBeVisual:true});
   const w=dom.window;
   w.fetch=async()=>{if(fail)throw Error('offline');return{ok:true,json:async()=>structuredClone(data)};};
   w.matchMedia=()=>({matches:true});w.AbortSignal.timeout=()=>new w.AbortController().signal;
@@ -80,10 +81,14 @@ test('trends controls render all measures, period evidence, and release comparis
       const readout=app.q('#pace').closest('.chart-card').querySelector('.chart-readout').textContent;
       assert.ok(readout.includes(`${latest.events} ${app.w.ErdosTrendCharts.copy[metric].counted} in the previous ${latest.days} days`));
       assert.ok(readout.endsWith(`${latest.value.toFixed(2)} per day on average`));
+      const records=T.events(data,metric,latest,['gained']);
+      assert.equal(app.q('#records-month').value,'recent');
+      assert.equal(app.q('#record-rows').children.length,records.length||1);
+      assert.match(app.q('#records-count').textContent,new RegExp(`^${records.length} changes? across ${new Set(records.map(e=>e.number)).size} distinct problems?`));
     }
     for(const path of app.w.document.querySelectorAll('.trend-plot path')) assert.doesNotMatch(path.getAttribute('d')||'',/NaN|Infinity/);
-    const month=app.q('#records-month').value;
-    const events=T.events(data,metric,month);
+    app.change('#records-month','2025-10');
+    const events=T.events(data,metric,'2025-10');
     assert.equal(app.q('#record-rows').children.length,events.length||1);
     assert.match(app.q('#monthly-rows').textContent,/partial/);
   }
@@ -100,7 +105,9 @@ test('trends controls render all measures, period evidence, and release comparis
   assert.equal(app.q('#formal-total-key').hidden,true);
   const monthButton=app.q('#composition g[role="button"]');
   monthButton.dispatchEvent(new app.w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
-  assert.equal(app.q('#problem-changes').open,true);
+  assert.equal(app.q('#problem-changes').tagName,'SECTION');
+  assert.equal(app.q('#records-month').value,'2025-09');
+  assert.equal(app.w.document.activeElement,app.q('#changes-title'));
   const marker=app.q('#pace .release-reference');
   marker.dispatchEvent(new app.w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
   assert.equal(app.q('#compare-release').value,'sonnet-4-5');
@@ -142,13 +149,70 @@ test('every model release has a readable label on its date, with no label collis
   app.dom.window.close();
 });
 
-test('failed loading preserves the static SVGs and monthly table, and retry recovers',async()=>{
-  const app=await boot(true);
+test('failed loading preserves charts, recent evidence, and readable methodology; retry recovers',async()=>{
+  const app=await boot(true,'#methodology');
   assert.equal(app.q('#retry-trends').hidden,false); assert.equal(app.q('#trend-metric').disabled,true);
   assert.ok(app.q('#pace path')); assert.ok(app.q('#monthly-rows tr'));
+  assert.equal(app.q('#methodology').open,true);
+  const latest=T.rolling(data,'resolved',30).at(-1);
+  assert.equal(app.q('#record-rows').children.length,latest.events);
+  assert.ok(app.q('#record-rows a').href.startsWith('https://www.erdosproblems.com/'));
+  assert.doesNotMatch(app.q('#record-rows').textContent,/Loading/);
   app.w.fetch=async()=>({ok:true,json:async()=>structuredClone(data)});
   app.q('#retry-trends').click();
   for(let i=0;i<5;i++)await new Promise(setImmediate);
   assert.equal(app.q('#retry-trends').hidden,true);assert.equal(app.q('#trend-metric').disabled,false);
+  app.dom.window.close();
+});
+
+test('rate evidence retains repeated changes, excludes imports, and follows the exact snapshot boundaries',()=>{
+  const intervals=[
+    {start:'2026-01-01',end:'2026-01-02',changes:{resolved:{gained:['1'],added:['2'],lost:[],removed:[]}}},
+    {start:'2026-01-02',end:'2026-01-03',changes:{resolved:{gained:[],added:[],lost:['1'],removed:[]}}},
+    {start:'2026-01-03',end:'2026-01-04',changes:{resolved:{gained:['1'],added:[],lost:[],removed:[]}}}
+  ];
+  const records=T.events({intervals},'resolved',{start:'2026-01-01',date:'2026-01-04'},['gained']);
+  assert.equal(records.length,2);
+  assert.equal(new Set(records.map(e=>e.number)).size,1);
+  assert.equal(T.events({intervals},'resolved',{start:'2026-01-02',date:'2026-01-03'},['gained']).length,0);
+  assert.equal(T.events({intervals},'resolved','2026-01').length,4);
+});
+
+test('a rate point opens the matching problem and revision evidence by keyboard, pointer, or button',async()=>{
+  const app=await boot();
+  const recordsFor=point=>T.events(data,'resolved',point,['gained']);
+  const check=point=> {
+    const records=recordsFor(point);
+    assert.equal(app.q('#records-month').value,'selected');
+    assert.equal(app.q('#record-rows').children.length,records.length||1);
+    assert.ok(app.q('#records-selected').textContent.includes(`${point.days} days`));
+    assert.ok(app.q('#records-scope').textContent.includes(`(${point.days} days)`));
+    records.forEach((record,i)=> {
+      const links=app.q('#record-rows').children[i].querySelectorAll('a');
+      assert.equal(links[0].href,`https://www.erdosproblems.com/${record.number}`);
+      assert.equal(links[1].href,`https://github.com/teorth/erdosproblems/compare/${record.before}...${record.after}`);
+    });
+  };
+  const series=T.rolling(data,'resolved',30);
+  app.q('#pace').dispatchEvent(new app.w.KeyboardEvent('keydown',{key:'ArrowLeft',bubbles:true}));
+  app.q('#pace').dispatchEvent(new app.w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+  check(series.at(-2));
+  const point=series.find(p=>p.days>30&&p.events>0);
+  const x=52+(T.time(point.date)-T.time(data.points[0].date))/(T.time(data.points.at(-1).date)-T.time(data.points[0].date))*888;
+  app.q('#pace .chart-inspect-hit').dispatchEvent(new app.w.MouseEvent('click',{clientX:x,clientY:160,bubbles:true}));
+  check(point);
+  app.change('#pace-window','7');
+  assert.equal(app.q('#records-month').value,'recent');
+  assert.equal(app.q('#records-selected').hidden,true);
+  app.q('#show-pace-changes').click();
+  const latest=T.rolling(data,'resolved',7).at(-1);
+  check(latest);
+  // Returning from a hover preview restores the point selected through the button.
+  app.q('#pace .chart-inspect-hit').dispatchEvent(new app.w.MouseEvent('pointermove',{clientX:200,clientY:160,bubbles:true}));
+  app.q('#pace .chart-inspect-hit').dispatchEvent(new app.w.MouseEvent('pointerleave',{bubbles:true}));
+  app.q('#show-pace-changes').click();
+  check(latest);
+  app.q('.methodology-link').click();
+  assert.equal(app.q('#methodology').open,true);
   app.dom.window.close();
 });
