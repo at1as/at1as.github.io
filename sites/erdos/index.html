@@ -18,32 +18,40 @@
   <meta name="twitter:title" content="Erdős Problems Sankey &amp; History | Jason Willems">
   <meta name="twitter:description" content="Explore 1,217 Erdős problems in an interactive Sankey diagram. Replay the database’s history and compare solved, open, and Lean-formalized problems.">
   <link rel="icon" href="../../favicon.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=9c4f123f1dc8">
   <script id="model-releases" type="application/json">[{"id": "sonnet-4-5", "name": "Claude Sonnet 4.5", "date": "2025-09-29", "kind": "Public release", "source": "https://www.anthropic.com/news/claude-sonnet-4-5"}, {"id": "gpt-5-1", "name": "GPT-5.1", "date": "2025-11-13", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "opus-4-5", "name": "Claude Opus 4.5", "date": "2025-11-24", "kind": "Public release", "source": "https://www.anthropic.com/news/claude-opus-4-5"}, {"id": "gpt-5-2", "name": "GPT-5.2", "date": "2025-12-11", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "opus-4-6", "name": "Claude Opus 4.6", "date": "2026-02-05", "kind": "Public release", "source": "https://www.anthropic.com/news/claude-opus-4-6"}, {"id": "gpt-5-4", "name": "GPT-5.4", "date": "2026-03-05", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "gpt-5-5", "name": "GPT-5.5", "date": "2026-04-24", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "fable-5", "name": "Claude Fable 5", "date": "2026-06-09", "kind": "Public release", "source": "https://www.anthropic.com/news/claude-fable-5-mythos-5", "note": "Access paused June 12; restored July 1, 2026.", "note_source": "https://www.anthropic.com/news/redeploying-fable-5"}, {"id": "gpt-5-6", "name": "GPT-5.6 · Sol, Terra & Luna", "date": "2026-07-09", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}, {"id": "fable-5-1", "name": "Claude Fable 5.1", "date": "2026-09-01", "kind": "Public release", "source": "https://www.anthropic.com/claude/fable"}, {"id": "astra", "name": "GPT-6 Astra", "date": "2026-09-03", "kind": "API release", "source": "https://developers.openai.com/api/docs/changelog"}]</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.jasonwillems.com/sites/erdos/#webpage", "url": "https://www.jasonwillems.com/sites/erdos/", "name": "Erdős Problems Sankey & History | Jason Willems", "description": "Explore 1,217 Erdős problems in an interactive Sankey diagram. Replay the database’s history and compare solved, open, and Lean-formalized problems.", "inLanguage": "en", "author": {"@type": "Person", "name": "Jason Willems", "url": "https://www.jasonwillems.com/"}, "isPartOf": {"@type": "WebSite", "name": "Jason Willems", "url": "https://www.jasonwillems.com/"}, "about": {"@type": "Thing", "name": "Erdős problems", "url": "https://www.erdosproblems.com/"}, "isBasedOn": "https://github.com/teorth/erdosproblems/blob/5ca6b58dccc3e7a41d7db5f2cafdb944599edc4c/data/problems.yaml", "citation": "https://github.com/teorth/erdosproblems"}</script>
   <script id="analytics-config" type="application/json">{"measurementId": "G-Q5N6H3PVG2", "hostname": "www.jasonwillems.com", "pageTitle": "Erdős Problems Sankey & History | Jason Willems"}</script>
-  <script src="analytics.js" defer></script>
-  <script src="timeline.js" defer></script>
+  <script src="analytics.js?v=4e1218c38ede" defer></script>
+  <script src="timeline.js?v=599c17d95ebf" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#text-summary">Skip to data table</a>
-  <nav class="site-nav" aria-label="Site navigation">
-    <div class="site-breadcrumb"><a href="https://www.jasonwillems.com/" data-site-link="breadcrumb">Jason Willems</a><span class="current-site"><span aria-hidden="true">/</span> Erdős explorer</span></div>
+    <nav class="site-nav" aria-label="Site navigation">
+    <div class="site-breadcrumb"><a href="https://www.jasonwillems.com/" data-site-link="breadcrumb">Jason Willems</a><span class="current-site"><span aria-hidden="true">/</span> <a href="./?v=1d4c0c515cdc">Erdős explorer</a></span></div>
     <div class="site-nav-links">
       <a href="#about-data">About the data <span aria-hidden="true">↓</span></a>
       <a class="site-home-link" href="https://www.jasonwillems.com/" data-site-link="header">More from Jason <span aria-hidden="true">↗</span></a>
       <a class="site-home-link" href="https://www.jasonwillems.com/blog/" data-site-link="header-blog">Blog <span aria-hidden="true">↗</span></a>
     </div>
   </nav>
-  <main class="page">
-    <section class="flow-panel" aria-labelledby="page-title">
-      <header>
-        <h1 id="page-title">Erdős Problems Database <span>— <span data-total>1,217</span> problems</span></h1>
-        <p class="subtitle">The status of the problems, and how many solutions have been formalized in Lean.</p>
-        <nav class="explorer-tabs" aria-label="Erdős explorer views"><a href="./" aria-current="page">Snapshot</a><a href="trends/">Trends &amp; rates</a></nav>
-        <div class="chart-meta">
+
+  <main class="page snapshot-page">
+        <header class="explorer-header">
+      <h1 id="page-title">Erdős Problems Database</h1>
+      <p class="subtitle">Track problem statuses and Lean formalizations over time.</p>
+      <div class="explorer-toolbar">
+        <nav class="explorer-tabs" aria-label="Erdős explorer views">
+          <a href="./?v=1d4c0c515cdc" aria-current="page"><span class="view-name">Snapshot</span><span class="view-description">Status breakdown</span></a>
+          <a href="./trends/?v=1d4c0c515cdc"><span class="view-name">Trends &amp; rates</span><span class="view-description">Progress over time</span></a>
+        </nav>
+        <a class="repository-link" href="https://github.com/teorth/erdosproblems">Source data on GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+        <div class="view-meta">
           <div class="source-links">
-            <a class="repository-link" href="https://github.com/teorth/erdosproblems">Source data on GitHub <span aria-hidden="true">↗</span></a>
+            <p class="snapshot-count"><strong data-total>1,217</strong> problems</p>
             <a id="source-revision" href="https://github.com/teorth/erdosproblems/blob/5ca6b58dccc3e7a41d7db5f2cafdb944599edc4c/data/problems.yaml">Source revision <span aria-hidden="true">↗</span></a>
             <span class="visually-hidden">Snapshot <time id="snapshot-date" datetime="2026-09-09">September 9, 2026</time></span>
           </div>
@@ -52,7 +60,7 @@
         <section class="timeline" aria-label="Explore the database over time">
           <div class="timeline-toolbar">
             <button id="play-timeline" class="play-button" type="button" disabled aria-label="Play history">▶ <span>Play</span></button>
-            <div class="speed-control"><label class="visually-hidden" for="playback-speed">Playback speed</label><select id="playback-speed" disabled><option value="800">1×</option><option value="400">2×</option><option value="200">4×</option><option value="100">8×</option><option value="50">16×</option></select></div>
+            <div class="speed-control"><label class="visually-hidden" for="playback-speed">Playback speed</label><select id="playback-speed" disabled><option value="800">1×</option><option value="400">2×</option><option value="200">4×</option><option value="100">8×</option><option value="50">16×</option><option value="25">32×</option></select></div>
             <div class="timeline-range">
               <div class="timeline-track">
                 <input id="time-slider" type="range" min="0" max="0" value="0" step="1" aria-label="Snapshot date" aria-describedby="timeline-position" disabled>
@@ -71,7 +79,8 @@
           <button id="retry-history" type="button" hidden>Retry loading history</button>
           <noscript><p>The latest snapshot is shown. Enable JavaScript to use the date slider and playback.</p></noscript>
         </section>
-      </header>
+    <div class="snapshot-layout">
+    <section class="flow-panel" aria-labelledby="page-title">
       <figure>
         <p class="scroll-hint">Scroll sideways to explore the diagram, or <a href="#text-summary">read the data table</a>.</p>
         <div class="chart-scroll" tabindex="0" role="region" aria-label="Sankey diagram; scroll horizontally on small screens">
@@ -284,13 +293,13 @@
 </a>
 </svg>
         </div>
-        <figcaption>Bar heights and ribbon widths are proportional to problem counts. The attributes on the right overlap with these categories and are not part of the flow. Layout by <a href="https://github.com/d3/d3-sankey">D3 Sankey</a>.</figcaption>
+        <figcaption>Bar heights and flow widths show problem counts. Attributes overlap and are counted separately. Chart: <a href="https://github.com/d3/d3-sankey">D3 Sankey</a>.</figcaption>
       </figure>
-      <details id="text-summary" open>
-        <summary>View as table</summary>
+      <section id="text-summary" class="data-table" aria-labelledby="table-title">
+        <h2 id="table-title">Problem status</h2>
+        <p id="table-caption" class="table-caption">Snapshot: <span id="table-date">September 9, 2026</span>.<span class="table-guide">“Problems”: % of all problems. Lean columns: % within each status. A dash means no data or an empty status.</span></p>
         <div class="table-scroll">
-          <table>
-            <caption>Problem status in the <span id="table-date">September 9, 2026</span> snapshot.<span class="table-guide">Problems: % of all problems. Lean columns: % within that status; — if the status is empty.</span></caption>
+          <table aria-labelledby="table-title" aria-describedby="table-caption">
             <thead><tr><th scope="col">Status</th><th scope="col">Problems</th><th scope="col">Lean-formalized</th><th scope="col">Not Lean-formalized</th></tr></thead>
             <tbody><tr data-status="proved"><th scope="row"><a href="https://teorth.github.io/erdosproblems/?status=proved">Proved</a></th><td><span class="table-count">334</span> <span class="percentage">(27.4%)</span></td><td><span class="table-count">176</span> <span class="percentage">(52.7%)</span></td><td><span class="table-count">158</span> <span class="percentage">(47.3%)</span></td></tr>
 <tr data-status="disproved"><th scope="row"><a href="https://teorth.github.io/erdosproblems/?status=disproved">Disproved</a></th><td><span class="table-count">139</span> <span class="percentage">(11.4%)</span></td><td><span class="table-count">91</span> <span class="percentage">(65.5%)</span></td><td><span class="table-count">48</span> <span class="percentage">(34.5%)</span></td></tr>
@@ -305,28 +314,29 @@
             <tfoot><tr><th scope="row">All problems</th><td><span data-total>1,217</span> <span class="percentage">(100.0%)</span></td><td>—</td><td>—</td></tr></tfoot>
           </table>
         </div>
-      </details>
+      </section>
     </section>
     <aside class="attributes" aria-labelledby="attributes-title">
-      <h2 id="attributes-title">Overlapping attributes</h2>
-      <p class="aside-intro">Not mutually exclusive with the status categories.</p>
+      <h2 id="attributes-title">Other attributes</h2>
+      <p class="aside-intro">A problem can appear in several groups.</p>
       <div class="metric-list"><article class="metric gold"><h3><a href="https://teorth.github.io/erdosproblems/?prize=yes">Monetary prize</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="prize">106</strong><div class="metric-description">problems carry a monetary prize.</div></div></article>
 <article class="metric blue"><h3><a href="https://teorth.github.io/erdosproblems/?formalized=yes">Statements formalized in Lean</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="statements">671</strong><div class="metric-description">problems have statements formalized in <a href="https://lean-lang.org/">Lean</a> in the <a href="https://github.com/google-deepmind/formal-conjectures">Formal Conjectures Repository</a>.</div></div></article>
-<article class="metric green"><h3><a href="https://teorth.github.io/erdosproblems/?formal=Lean">Solutions formalized in Lean</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="solutions">298</strong><div class="metric-description">problems have a solution formalized in Lean.<p>This includes <strong data-derived="extra-lean">2</strong> outside the <span data-derived="resolved-lean">296</span> in the three resolved categories. A formalized solution can retain an informal status such as “open” until reviewed by a human.</p></div></div></article>
-<article class="metric purple"><h3><a href="https://teorth.github.io/erdosproblems/?oeis=linked">Linked to OEIS</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="oeis_linked">324</strong><div class="metric-description">problems link to <strong data-attribute="oeis_distinct">423</strong> distinct <a href="https://oeis.org/">OEIS</a> sequences, with <strong data-attribute="oeis_links">502</strong> links in total.<p><strong data-attribute="oeis_new">80</strong> sequences were added since this database began (A387000 onwards).</p></div></div></article>
-<article class="metric purple"><h3><a href="https://teorth.github.io/erdosproblems/?oeis=possible">Potentially related to an OEIS sequence not already listed</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="oeis_possible">324</strong><div class="metric-description">problems may relate to an unlisted OEIS sequence.<p>Of these, <strong data-attribute="oeis_unlinked">266</strong> have no existing OEIS link.</p></div></div></article>
-<article class="metric gray"><h3><a href="https://teorth.github.io/erdosproblems/?oeis=inprogress">Related sequence generation in progress</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="oeis_inprogress">1</strong><div class="metric-description">with a related sequence being generated.</div></div></article>
+<article class="metric green"><h3><a href="https://teorth.github.io/erdosproblems/?formal=Lean">Solutions formalized in Lean</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="solutions">298</strong><div class="metric-description"><span data-derived="resolved-lean">296</span> resolved; <strong data-derived="extra-lean">2</strong> still unresolved.<p>A Lean solution may be recorded before a human reviews it and updates the status.</p></div></div></article>
+<article class="metric purple"><h3><a href="https://teorth.github.io/erdosproblems/?oeis=linked">Linked to OEIS</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="oeis_linked">324</strong><div class="metric-description">problems linked to <strong data-attribute="oeis_distinct">423</strong> integer sequences in <a href="https://oeis.org/">OEIS</a>, through <strong data-attribute="oeis_links">502</strong> links.<p><strong data-attribute="oeis_new">80</strong> sequences added since this database began (A387000 onwards).</p></div></div></article>
+<article class="metric purple"><h3><a href="https://teorth.github.io/erdosproblems/?oeis=possible">Possible OEIS links</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="oeis_possible">324</strong><div class="metric-description">problems with potential OEIS links not yet listed here.<p><strong data-attribute="oeis_unlinked">266</strong> currently have no OEIS links.</p></div></div></article>
+<article class="metric gray"><h3><a href="https://teorth.github.io/erdosproblems/?oeis=inprogress">Sequence generation in progress</a></h3><div class="metric-body"><strong class="metric-value" data-attribute="oeis_inprogress">1</strong><div class="metric-description">with a related sequence being generated.</div></div></article>
 <article class="metric gray"><h3>Related sequences being submitted to OEIS</h3><div class="metric-body"><strong class="metric-value" data-attribute="oeis_submitted">0</strong><div class="metric-description"></div></div></article>
 <article class="metric gray"><h3>Literature reviews requested</h3><div class="metric-body"><strong class="metric-value" data-attribute="literature">0</strong><div class="metric-description"></div></div></article>
 <article class="metric gray"><h3>Ambiguous statements</h3><div class="metric-body"><strong class="metric-value" data-attribute="ambiguous">10</strong><div class="metric-description">problems have ambiguous statements.</div></div></article></div>
     </aside>
+    </div>
     <footer id="about-data">
       <p>Data: <a href="https://github.com/teorth/erdosproblems">Erdős problems database contributors</a>. Maintained by Thomas Bloom and Terence Tao. <a href="https://github.com/teorth/erdosproblems/blob/main/LICENSE">Apache 2.0</a>.</p>
       <p>An independent visualization by <a href="https://www.jasonwillems.com/">Jason Willems</a>. <a href="https://www.erdosproblems.com/">Erdős Problems</a> · <a href="https://teorth.github.io/erdosproblems/">Explore the database</a> · <a href="snapshot.json">Snapshot data</a></p>
-      <p>Viewing <span id="footer-date">September 9, 2026</span>. Category links open today’s database; use “Source revision” for the selected historical data. <a href="history.json">History data &amp; methodology</a>.</p>
-      <p>Recorded dates only; gaps include days without updates or valid data. Counts reflect database additions and corrections as well as mathematical progress.</p>
-      <p>Model markers show selected public or API releases, using each provider’s announcement dates. Select a marker for its source and the first available snapshot on or after release. They provide context, not attribution of solutions to a model.</p>
-      <p>“Open / unresolved” groups all seven non-resolved statuses, including independence from ZFC. Ambiguous statements and literature reviews are overlapping attributes. A dash in the table means this snapshot does not break out Lean formalization for that status.</p>
+      <p>Viewing <span id="footer-date">September 9, 2026</span>. Category links show today’s database; “Source revision” shows the selected date. <a href="history.json">History &amp; methodology</a>.</p>
+      <p>Dates reflect database updates, including additions and corrections. Gaps mean no updates or no valid snapshot.</p>
+      <p>Model markers use providers’ public or API release dates. Select one for its source and the first snapshot on or after release. Dates do not show whether a model helped solve a problem.</p>
+      <p>“Open / unresolved” includes all seven unresolved statuses, including ZFC independence. Ambiguous statements and literature reviews are counted separately.</p>
       <div class="continue-reading">
         <div><p class="continue-title">More from Jason Willems</p><p>Projects and writing on software, AI, and building products.</p></div>
         <a href="https://www.jasonwillems.com/" data-site-link="footer">Explore my site <span aria-hidden="true">→</span></a>

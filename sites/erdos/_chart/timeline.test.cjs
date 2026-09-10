@@ -168,7 +168,7 @@ test('play replays from the start, supports speed/pause, and stops at the end', 
   assert.equal(app.q('#time-slider').value, '0');
   assert.equal(app.q('#play-timeline').textContent.trim(), 'Ⅱ Pause');
   app.tick(); assert.equal(app.q('#time-slider').value, '1');
-  for (const delay of [200, 100, 50]) {
+  for (const delay of [200, 100, 50, 25]) {
     app.q('#playback-speed').value = String(delay); app.event('#playback-speed', 'change');
     assert.equal(app.timers.values().next().value.delay, delay);
     app.tick();

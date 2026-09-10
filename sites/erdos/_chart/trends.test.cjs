@@ -71,7 +71,16 @@ test('trends controls render all measures, period evidence, and release comparis
   assert.equal(app.q('#trends-message').hidden,true);
   for(const metric of ['resolved','lean','statements']) {
     app.change('#trend-metric',metric);
-    for(const window of ['7','30','90']) app.change('#pace-window',window);
+    for(const window of ['7','30','90']) {
+      app.change('#pace-window',window);
+      assert.match(app.q('#pace-title').textContent,/daily average/);
+      assert.ok(app.q('#pace-description').textContent.includes(`previous ${window} days`));
+      assert.ok(app.q('#pace-example').textContent.includes(`over ${window} days`));
+      const latest=T.rolling(data,metric,Number(window)).at(-1);
+      const readout=app.q('#pace').closest('.chart-card').querySelector('.chart-readout').textContent;
+      assert.ok(readout.includes(`${latest.events} ${app.w.ErdosTrendCharts.copy[metric].counted} in the previous ${latest.days} days`));
+      assert.ok(readout.endsWith(`${latest.value.toFixed(2)} per day on average`));
+    }
     for(const path of app.w.document.querySelectorAll('.trend-plot path')) assert.doesNotMatch(path.getAttribute('d')||'',/NaN|Infinity/);
     const month=app.q('#records-month').value;
     const events=T.events(data,metric,month);
@@ -87,7 +96,7 @@ test('trends controls render all measures, period evidence, and release comparis
   assert.ok(app.q('#release-source a').href.startsWith('https://developers.openai.com/'));
   app.change('#formal-mode','coverage');
   assert.match(app.q('#formal').getAttribute('aria-label'),/Share of resolved/);
-  assert.match(app.q('#formal-description').textContent,/all problems marked resolved at each date/);
+  assert.match(app.q('#formal-description').textContent,/Share of resolved problems.*at each date/);
   assert.equal(app.q('#formal-total-key').hidden,true);
   const monthButton=app.q('#composition g[role="button"]');
   monthButton.dispatchEvent(new app.w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
@@ -102,7 +111,7 @@ test('every model release has a readable label on its date, with no label collis
   const app=await boot();
   const releases=JSON.parse(app.q('#model-releases').textContent);
   const visible=releases.filter(r=>r.date>=data.points[0].date&&r.date<=data.points.at(-1).date);
-  for(const width of [340,480,768,960,1400]) {
+  for(const width of [240,268,314,340,480,768,960,1400]) {
     const plot=app.q('#pace');
     plot.getBoundingClientRect=()=>({width});
     for(const selected of ['astra','gpt-5-6']) {

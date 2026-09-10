@@ -4,35 +4,46 @@
   const colors = {resolved:'#3977bd', lean:'#298761', gained:'#3977bd', added:'#9fbfe3', lost:'#dd7b80', removed:'#a74559', unmatched:'#9b94ae'};
   const copy = {
     resolved: {
-      title:'Problems marked resolved per day',
-      description:'Counts changes from unresolved to resolved among problems already in the database.',
-      monthly:'Separates problems marked resolved from problems added as already resolved. Select a bar to see which problems changed.',
+      title:'Problems marked resolved — daily average',
+      monthly:'Status changes and database additions, shown separately. Select a bar to see the problems.',
       release:'Compare problems marked resolved in the 30 days before and after release. The data does not tell us whether the model helped.',
-      counted:'marked resolved',
+      counted:'problems marked resolved',
+      unit:'problems',
       changes:{gained:'Marked resolved',added:'Added as resolved',lost:'No longer resolved'}
     },
     lean: {
-      title:'Solutions added to Lean per day',
-      description:'Counts existing problems whose solutions became formalized in Lean.',
-      monthly:'Separates solutions newly in Lean from problems added with a Lean solution already recorded. Select a bar to see which problems changed.',
+      title:'Solutions added to Lean — daily average',
+      monthly:'Lean solution changes and database additions, shown separately. Select a bar to see the problems.',
       release:'Compare solutions added to Lean in the 30 days before and after release. The data does not tell us whether the model helped.',
       counted:'solutions added to Lean',
-      changes:{gained:'Newly in Lean',added:'Added with a Lean solution',lost:'Lean solution flag removed'}
+      unit:'solutions',
+      changes:{gained:'Newly in Lean',added:'Added with a Lean solution',lost:'Lean solution no longer listed'}
     },
     statements: {
-      title:'Statements added to Lean per day',
-      description:'Counts existing problems whose statements became formalized in Lean.',
-      monthly:'Separates statements newly in Lean from problems added with a Lean statement already recorded. Select a bar to see which problems changed.',
+      title:'Statements added to Lean — daily average',
+      monthly:'Lean statement changes and database additions, shown separately. Select a bar to see the problems.',
       release:'Compare statements added to Lean in the 30 days before and after release. The data does not tell us whether the model helped.',
       counted:'statements added to Lean',
-      changes:{gained:'Newly in Lean',added:'Added with a Lean statement',lost:'Lean statement flag removed'}
+      unit:'statements',
+      changes:{gained:'Newly in Lean',added:'Added with a Lean statement',lost:'Lean statement no longer listed'}
     }
   };
   const date = value => new Date(T.time(value));
   const label = value => d3.utcFormat('%b %-d, %Y')(date(value));
   const format = value => value.toLocaleString('en-US');
+  function paceText(metric, days) {
+    const words = copy[metric], examples = {7:1, 30:6, 90:18};
+    const count = examples[days], rate = Number((count / days).toFixed(2));
+    const unit = count === 1 ? words.unit.slice(0, -1) : words.unit;
+    return {
+      title: words.title,
+      description: `Each point is a daily average over the previous ${days} days.`,
+      example: `Example: ${count} ${unit} over ${days} days ${days === 7 ? '≈' : '='} ${rate} per day (one every ${days / count} days on average).`,
+      note: 'Counts changes to existing problems. Gaps between snapshots can lengthen the averaging window.'
+    };
+  }
   function frame(element, title, domain, height=330) {
-    const width = Math.max(340, Math.round(element.getBoundingClientRect().width) || 960);
+    const width = Math.max(240, Math.round(element.getBoundingClientRect().width) || 960);
     const margin = {top:38, right:20, bottom:38, left:52};
     const svg = d3.select(element).attr('viewBox', `0 0 ${width} ${height}`).attr('role','img').attr('aria-label',title).attr('tabindex',0);
     svg.selectAll('*').remove(); svg.append('title').text(title);
@@ -75,7 +86,7 @@
   }
   function pace(element,data,metric,days,releases,selected,onRelease) {
     const series = T.rolling(data,metric,days);
-    const f = frame(element,copy[metric].title,[data.points[0].date,data.points.at(-1).date]);
+    const f = frame(element,`${copy[metric].title}, looking back ${days} days`,[data.points[0].date,data.points.at(-1).date]);
     const {svg,x,y,margin,say} = f;
     // Keep every release on its date. Labels use separate rows when they overlap.
     const layer = svg.append('g').attr('class','release-labels');
@@ -107,7 +118,7 @@
     const line = d3.line().x(p=>x(date(p.date))).y(p=>y(p.value)).curve(d3.curveStepAfter);
     svg.append('path').datum(series).attr('d',d3.area().x(p=>x(date(p.date))).y0(y(0)).y1(p=>y(p.value)).curve(d3.curveStepAfter)).attr('fill',colors[metric]||'#8f6ab3').attr('opacity',.09);
     svg.append('path').datum(series).attr('d',line).attr('fill','none').attr('stroke',colors[metric]||'#8f6ab3').attr('stroke-width',2.5);
-    inspect(f,series,p=>`${label(p.date)} · ${p.value.toFixed(2)} per day · ${p.events} ${copy[metric].counted} in the previous ${p.days} days`);
+    inspect(f,series,p=>`${label(p.date)} · ${p.events} ${copy[metric].counted} in the previous ${p.days} days · ${p.value.toFixed(2)} per day on average`);
     const guides=svg.append('g').attr('class','release-guides').attr('pointer-events','none');
     layer.raise();
     markers.forEach(({r,g,text,width,at,left,lane})=> {
@@ -166,5 +177,5 @@
     }
     inspect(f,points,p=>`${label(p.date)} · ${format(p.resolved)} resolved · ${format(p.resolved_lean)} of those in Lean (${(100*p.resolved_lean/p.resolved).toFixed(1)}%) · ${format(p.resolved-p.resolved_lean)} without Lean formalization`);
   }
-  root.ErdosTrendCharts={pace,composition,formal,copy};
+  root.ErdosTrendCharts={pace,composition,formal,copy,paceText};
 })(typeof window==='undefined'?globalThis:window);

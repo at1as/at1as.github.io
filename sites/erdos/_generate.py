@@ -130,12 +130,12 @@ def cards(data):
         ("Statements formalized in Lean", "statements", "blue", link(formalized="yes"),
          'problems have statements formalized in <a href="https://lean-lang.org/">Lean</a> in the <a href="https://github.com/google-deepmind/formal-conjectures">Formal Conjectures Repository</a>.'),
         ("Solutions formalized in Lean", "solutions", "green", link(formal="Lean"),
-         f'problems have a solution formalized in Lean.<p>This includes <strong data-derived="extra-lean">{extra:,}</strong> outside the <span data-derived="resolved-lean">{resolved_lean:,}</span> in the three resolved categories. A formalized solution can retain an informal status such as “open” until reviewed by a human.</p>'),
+         f'<span data-derived="resolved-lean">{resolved_lean:,}</span> resolved; <strong data-derived="extra-lean">{extra:,}</strong> still unresolved.<p>A Lean solution may be recorded before a human reviews it and updates the status.</p>'),
         ("Linked to OEIS", "oeis_linked", "purple", link(oeis="linked"),
-         f'problems link to <strong data-attribute="oeis_distinct">{a["oeis_distinct"]:,}</strong> distinct <a href="https://oeis.org/">OEIS</a> sequences, with <strong data-attribute="oeis_links">{a["oeis_links"]:,}</strong> links in total.<p><strong data-attribute="oeis_new">{a["oeis_new"]:,}</strong> sequences were added since this database began (A387000 onwards).</p>'),
-        ("Potentially related to an OEIS sequence not already listed", "oeis_possible", "purple", link(oeis="possible"),
-         f'problems may relate to an unlisted OEIS sequence.<p>Of these, <strong data-attribute="oeis_unlinked">{a["oeis_unlinked"]:,}</strong> have no existing OEIS link.</p>'),
-        ("Related sequence generation in progress", "oeis_inprogress", "gray", link(oeis="inprogress"),
+         f'problems linked to <strong data-attribute="oeis_distinct">{a["oeis_distinct"]:,}</strong> integer sequences in <a href="https://oeis.org/">OEIS</a>, through <strong data-attribute="oeis_links">{a["oeis_links"]:,}</strong> links.<p><strong data-attribute="oeis_new">{a["oeis_new"]:,}</strong> sequences added since this database began (A387000 onwards).</p>'),
+        ("Possible OEIS links", "oeis_possible", "purple", link(oeis="possible"),
+         f'problems with potential OEIS links not yet listed here.<p><strong data-attribute="oeis_unlinked">{a["oeis_unlinked"]:,}</strong> currently have no OEIS links.</p>'),
+        ("Sequence generation in progress", "oeis_inprogress", "gray", link(oeis="inprogress"),
          'with a related sequence being generated.'),
         ("Related sequences being submitted to OEIS", "oeis_submitted", "gray", None, ''),
         ("Literature reviews requested", "literature", "gray", None, ''),
@@ -223,14 +223,16 @@ def main():
             raise ValueError('Model releases require unique IDs and HTTPS sources.')
         release_ids.add(release['id'])
     date = datetime.strptime(data['as_of'], '%Y-%m-%d').strftime('%B %d, %Y').replace(' 0', ' ')
-    page = Template((HERE / '_template.html').read_text(encoding='utf-8')).substitute(
+    from _shared import chrome, version_assets
+    page = version_assets(Template((HERE / '_template.html').read_text(encoding='utf-8')).substitute(
+        **chrome(site_home, 'snapshot'),
         total=f'{data["total"]:,}', date=date, iso_date=data['as_of'],
         diagram=svg, cards=cards(data), rows=table(data),
         releases=script_json(releases), structured_data=script_json(structured_data),
         analytics_config=script_json(analytics_config), site_home=escape(site_home, quote=True),
         canonical=escape(canonical, quote=True), page_title=escape(page_title, quote=True),
         description=escape(description, quote=True),
-        source_url=escape(data['source'], quote=True))
+        source_url=escape(data['source'], quote=True)))
     # Parse and validate everything before replacing any generated output.
     outputs = [('index.html', page), ('diagram.svg', svg + '\n'),
                ('snapshot.json', json.dumps(data, indent=2, ensure_ascii=False) + '\n')]

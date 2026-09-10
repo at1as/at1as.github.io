@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import subprocess
 from string import Template
+from _shared import chrome, version_assets
 
 HERE = Path(__file__).parent
 
@@ -33,14 +34,18 @@ def render(data, releases, site_home, analytics_id):
     added = sum(len(i['changes']['resolved']['added']) for i in data['intervals'])
     coverage = last['resolved_lean']/last['resolved']*100
     backlog, old_backlog = last['resolved']-last['resolved_lean'], first['resolved']-first['resolved_lean']
-    values = dict(title=escape(title),description=escape(description,quote=True),canonical=canonical,site_home=site_home,
+    date_label = lambda value: date.fromisoformat(value).strftime('%b %d, %Y').replace(' 0', ' ')
+    values = dict(**chrome(site_home, 'trends'),
+                  title=escape(title),description=escape(description,quote=True),canonical=canonical,site_home=site_home,
                   structured_data=script_json(structured), releases=script_json(releases),
                   analytics_config=script_json(dict(measurementId=analytics_id,hostname=site_home.split('/')[2],pageTitle=title)),
                   first_date=first['date'],last_date=last['date'],resolved=f'{last["resolved"]:,}',resolved_delta=f'{last["resolved"]-first["resolved"]:+,}',
+                  first_date_label=date_label(first['date']),last_date_label=date_label(last['date']),
                   gains=gains,added=added,coverage=f'{coverage:.1f}%',old_coverage=f'{first["resolved_lean"]/first["resolved"]*100:.1f}%',
                   backlog=backlog,backlog_change=f'{abs(backlog-old_backlog):,} '+('fewer' if backlog<old_backlog else 'more'),
                   first_share=f'{first["resolved"]/first["total"]*100:.1f}%',last_share=f'{last["resolved"]/last["total"]*100:.1f}%',
                   total_delta=last['total']-first['total'],first_open=first['total']-first['resolved'],last_open=last['total']-last['resolved'],
                   month_options=month_options,release_options=release_options,monthly_rows=monthly_rows,
+                  **{f'pace_{key}':escape(value) for key,value in charts['pace_text'].items()},
                   **{key:charts[key] for key in ['pace','composition','formal','pace_readout','composition_readout','formal_readout']})
-    return Template((HERE / '_trends_template.html').read_text()).substitute(values)
+    return version_assets(Template((HERE / '_trends_template.html').read_text()).substitute(values))

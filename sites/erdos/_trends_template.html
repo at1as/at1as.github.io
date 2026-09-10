@@ -15,47 +15,43 @@
 </head>
 <body>
   <a class="skip-link" href="#monthly-table">Skip to monthly data</a>
-  <nav class="site-nav" aria-label="Site navigation">
-    <div class="site-breadcrumb"><a href="$site_home" data-site-link="breadcrumb">Jason Willems</a><span class="current-site"><span aria-hidden="true">/</span> <a href="../">Erdős explorer</a></span></div>
-    <div class="site-nav-links"><a class="site-home-link" href="$site_home" data-site-link="header">More from Jason ↗</a><a class="site-home-link" href="${site_home}blog/" data-site-link="header-blog">Blog ↗</a></div>
-  </nav>
-  <main class="trends-page">
-    <header class="trends-header">
-      <nav class="explorer-tabs" aria-label="Erdős explorer views"><a href="../">Snapshot</a><a href="./" aria-current="page">Trends &amp; rates</a></nav>
-      <div class="trends-heading"><div><h1>Erdős problems over time</h1><p class="subtitle">Track resolved problems, Lean formalizations, and changes around model releases.</p></div><a class="trend-source" href="https://github.com/teorth/erdosproblems">Source data on GitHub ↗</a></div>
-      <p class="coverage-note">$first_date — $last_date · Same snapshots and categories as the <a href="../">Sankey</a>.</p>
-    </header>
+  $site_navigation
+  <main class="page trends-page">
+    $explorer_header
+    <div class="view-meta"><p>History: <time datetime="$first_date">$first_date_label</time> — <time datetime="$last_date">$last_date_label</time></p></div>
     <div class="trend-stats">
       <article><span>Resolved problems</span><strong>$resolved</strong><p>$resolved_delta since the first snapshot</p></article>
-      <article><span>Marked resolved since start</span><strong>$gains</strong><p>Plus $added problems added as already resolved</p></article>
+      <article><span>Marked resolved since start</span><strong>$gains</strong><p>Plus $added added as already resolved</p></article>
       <article><span>Resolved problems in Lean</span><strong>$coverage</strong><p>Up from $old_coverage of resolved problems</p></article>
       <article><span>Resolved without Lean</span><strong>$backlog</strong><p>$backlog_change than in the first snapshot</p></article>
     </div>
-    <p class="trend-finding">The share of resolved problems rose from <strong>$first_share to $last_share</strong>. With $total_delta more problems in the database, the number still unresolved went from $first_open to $last_open.</p>
+    <p class="trend-finding">The resolved share rose from <strong>$first_share to $last_share</strong>. The database grew by $total_delta problems; unresolved problems went from $first_open to $last_open.</p>
     <div class="trend-controls"><label for="trend-metric">Show</label><select id="trend-metric" disabled><option value="resolved">Resolved problems</option><option value="lean">Solutions in Lean</option><option value="statements">Statements in Lean</option></select><span id="metric-definition">“Resolved” includes proved, disproved, and otherwise solved.</span></div>
     <p id="trends-message" role="status">Loading chart controls…</p><button id="retry-trends" hidden>Retry</button>
     <noscript><p>The default charts and monthly table are available below. Enable JavaScript to change measures and inspect individual problem changes.</p></noscript>
     <div class="trends-grid">
       <section class="chart-card wide" aria-labelledby="pace-title">
-        <div class="card-heading"><h2 id="pace-title">Problems marked resolved per day</h2><label class="compact-control">Average over <select id="pace-window" disabled><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option></select></label></div>
-        <p id="pace-description" class="chart-explanation">Counts changes from unresolved to resolved among problems already in the database.</p>
+        <div class="card-heading"><h2 id="pace-title">$pace_title</h2><label class="compact-control">Look back <select id="pace-window" disabled><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option></select></label></div>
+        <p id="pace-description" class="chart-explanation">$pace_description</p>
+        <p id="pace-example" class="chart-explanation">$pace_example</p>
         <div class="trend-plot">$pace</div><p class="chart-readout" aria-live="polite">$pace_readout</p>
-        <p class="chart-note">Vertical lines mark model releases. Select a model to compare before and after. Grey bands mark gaps of more than a week between snapshots.</p>
+        <p id="pace-note" class="chart-note">$pace_note</p>
+        <p class="chart-note">Lines mark model releases; grey bands mark gaps over a week. Select a model to compare before and after.</p>
       </section>
       <section class="chart-card wide" aria-labelledby="composition-title">
         <div class="card-heading"><h2 id="composition-title">Monthly changes</h2><a href="../insights.json" download>Download data ↗</a></div>
-        <p id="composition-description" class="chart-explanation">Separates problems marked resolved from problems added as already resolved. Select a bar to see which problems changed.</p>
+        <p id="composition-description" class="chart-explanation">Status changes and database additions, shown separately. Select a bar to see the problems.</p>
         <div class="chart-legend"><span><i style="--key:#3977bd"></i><span data-change-label="gained">Marked resolved</span></span><span><i style="--key:#9fbfe3"></i><span data-change-label="added">Added as resolved</span></span><span><i style="--key:#dd7b80"></i><span data-change-label="lost">No longer resolved</span></span><span><i style="--key:#a74559"></i>Removed from database</span><span><i style="--key:#9b94ae"></i>Unmatched changes</span><span><i class="dot" style="--key:#17253c"></i>Net change</span></div>
         <div class="trend-plot">$composition</div><p class="chart-readout" aria-live="polite">$composition_readout</p>
         <details id="monthly-table"><summary>View monthly totals</summary><div class="table-scroll"><table><thead><tr><th scope="col">Month</th><th scope="col" data-change-label="gained">Marked resolved</th><th scope="col" data-change-label="added">Added as resolved</th><th scope="col" data-change-label="lost">No longer resolved</th><th scope="col">Removed</th><th scope="col">Unmatched</th><th scope="col">Net change</th></tr></thead><tbody id="monthly-rows">$monthly_rows</tbody></table></div></details>
-        <details id="problem-changes"><summary>View changed problems</summary><div class="records-controls"><label for="records-month">Month</label><select id="records-month" disabled>$month_options</select><span id="records-count"></span></div><p class="chart-note">Problem links open the current page. “View revisions” shows the database changes between the two snapshots.</p><div class="records-scroll" tabindex="0" role="region" aria-label="Recorded problem changes"><table><thead><tr><th scope="col">Problem</th><th scope="col">Recorded on</th><th scope="col">Change</th><th scope="col">Between snapshots</th><th scope="col">Source</th></tr></thead><tbody id="record-rows"><tr><td colspan="5">Loading problem changes…</td></tr></tbody></table></div></details>
+        <details id="problem-changes"><summary>View changed problems</summary><div class="records-controls"><label for="records-month">Month</label><select id="records-month" disabled>$month_options</select><span id="records-count"></span></div><p class="chart-note">Problem links show today’s page. “View revisions” shows the historical changes.</p><div class="records-scroll" tabindex="0" role="region" aria-label="Recorded problem changes"><table><thead><tr><th scope="col">Problem</th><th scope="col">Recorded on</th><th scope="col">Change</th><th scope="col">Between snapshots</th><th scope="col">Source</th></tr></thead><tbody id="record-rows"><tr><td colspan="5">Loading problem changes…</td></tr></tbody></table></div></details>
       </section>
       <section class="chart-card" aria-labelledby="formal-title">
-        <div class="card-heading"><h2 id="formal-title">How many resolved problems are in Lean?</h2><label class="compact-control"><span class="visually-hidden">Formalization view</span><select id="formal-mode" disabled><option value="counts">Number of problems</option><option value="coverage">Percentage in Lean</option></select></label></div>
-        <p id="formal-description" class="chart-explanation">The shaded gap shows resolved problems whose solutions are not yet formalized in Lean.</p>
+        <div class="card-heading"><h2 id="formal-title">Resolved problems in Lean</h2><label class="compact-control"><span class="visually-hidden">Formalization view</span><select id="formal-mode" disabled><option value="counts">Number of problems</option><option value="coverage">Percentage in Lean</option></select></label></div>
+        <p id="formal-description" class="chart-explanation">The shaded gap shows resolved problems with no Lean solution recorded.</p>
         <div class="chart-legend"><span id="formal-total-key"><i style="--key:#3977bd"></i>Resolved</span><span><i style="--key:#298761"></i>Of those, in Lean</span></div>
         <div class="trend-plot">$formal</div><p class="chart-readout" aria-live="polite">$formal_readout</p>
-        <p class="chart-note">Only resolved problems are included here. A solution can be in Lean while the database still lists the problem as unresolved.</p>
+        <p class="chart-note">Excludes problems still listed as unresolved.</p>
       </section>
       <section class="chart-card" id="release-comparison" aria-labelledby="release-title">
         <h2 id="release-title">Before and after a model release</h2>
@@ -64,15 +60,16 @@
         <p id="release-source"></p>
         <div class="window-comparison"><article><span>30 days before</span><strong id="before-rate">—</strong><p id="before-count">Choose a release to compare.</p><small id="before-range"></small></article><article><span>30 days after</span><strong id="after-rate">—</strong><p id="after-count">Choose a release to compare.</p><small id="after-range"></small></article></div>
         <p id="window-verdict" class="window-verdict" aria-live="polite"></p>
-        <p class="chart-note">Comparisons need a full 30 days on each side. Periods for nearby releases overlap.</p>
+        <p class="chart-note">Requires 30 days on each side. Nearby release windows can overlap.</p>
       </section>
     </div>
-    <footer class="trends-footer">
-      <p>Dates show when changes appeared in the database; the mathematical work may have happened earlier. Model releases provide context. The data does not consistently identify which models, if any, helped solve a problem.</p>
+    <footer id="about-data" class="trends-footer">
+      <p>Dates reflect database updates, which may lag the mathematical work. Model use is not consistently recorded.</p>
       <details class="trend-method"><summary>How the numbers are counted</summary>
-        <p>We compare problem numbers across the same saved snapshots as the Sankey. A change is counted each time it appears, so a problem can be counted more than once if its status changes back and forth. Problems added to or removed from the database are counted separately.</p>
-        <p>Rates count changes to existing problems. The average starts from the last snapshot on or before the chosen period and uses the actual number of days between snapshots. Monthly bars assign each change to the month it first appears. The first and last months cover only the available dates.</p>
-        <p>Gaps include days without updates and revisions skipped because of invalid status data. Changes between snapshots may be missed or recorded later. Duplicate problem numbers cannot be matched reliably; their effect on the total is shown as “unmatched changes.” All monthly counts add up to the net change.</p>
+        <p>We match problem numbers across the same snapshots as the Sankey. Repeated status changes are counted each time. Database additions and removals are counted separately.</p>
+        <p>Daily averages count changes to existing problems. Each window starts at the last snapshot on or before its target start date. The count is divided by the actual days elapsed, shown below the chart.</p>
+        <p>Monthly bars count changes in the month they first appear. The first and last months may be partial. All categories add up to the net change.</p>
+        <p>Gaps include days without updates and revisions skipped for invalid status data. Changes between snapshots may be missed or recorded later. Duplicate problem numbers cannot be matched reliably; their effect appears as “unmatched changes.”</p>
       </details>
       <p>Data: <a href="https://github.com/teorth/erdosproblems">Erdős problems database contributors</a>, maintained by Thomas Bloom and Terence Tao. <a href="https://github.com/teorth/erdosproblems/blob/main/LICENSE">Apache 2.0</a>. Charts: <a href="https://d3js.org/">D3</a>. <a href="../insights.json">Change history</a> · <a href="../history.json">Saved snapshots</a>.</p>
       <div class="continue-reading"><div><p class="continue-title">More from Jason Willems</p><p>Projects and writing on software, AI, and building products.</p></div><a href="$site_home" data-site-link="footer">Explore my site →</a></div>
