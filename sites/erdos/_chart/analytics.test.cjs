@@ -96,6 +96,8 @@ test('generated page exposes consistent metadata, source attribution, and conten
   assert.equal(d.querySelectorAll('h1').length, 1);
   assert.equal(d.querySelectorAll('[data-status]').length, 10);
   assert.ok(q('figure svg'));
-  assert.ok(q('#text-summary').open);
+  assert.equal(q('#text-summary').tagName, 'SECTION');
+  assert.equal(q('#text-summary summary'), null);
+  assert.ok(q('#text-summary table'));
   dom.window.close();
 });

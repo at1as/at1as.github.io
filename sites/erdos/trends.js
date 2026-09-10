@@ -7,7 +7,9 @@
   let data=null, resizeFrame=null;
   const metric=()=>$('#trend-metric').value;
   function renderPace() {
-    C.pace($('#pace'),data,metric(),Number($('#pace-window').value),releases,$('#compare-release').value,id=> {
+    const days=Number($('#pace-window').value);
+    for(const [key,text] of Object.entries(C.paceText(metric(),days))) $('#pace-'+key).textContent=text;
+    C.pace($('#pace'),data,metric(),days,releases,$('#compare-release').value,id=> {
       $('#compare-release').value=id; renderPace(); renderWindow();
       $('#release-comparison').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
     });
@@ -21,7 +23,7 @@
     const mode=$('#formal-mode').value;
     C.formal($('#formal'),data,mode);
     $('#formal-total-key').hidden=mode==='coverage';
-    $('#formal-description').textContent=mode==='coverage' ? 'Of all problems marked resolved at each date, the percentage with a solution formalized in Lean.' : 'The shaded gap shows resolved problems whose solutions are not yet formalized in Lean.';
+    $('#formal-description').textContent=mode==='coverage' ? 'Share of resolved problems with a Lean solution at each date.' : 'The shaded gap shows resolved problems with no Lean solution recorded.';
   }
   function renderWindow() {
     const release=releases.find(r=>r.id===$('#compare-release').value);
@@ -58,7 +60,7 @@
       });
       return tr;
     });
-    if(!rows.length) { const tr=document.createElement('tr'),td=document.createElement('td'); td.colSpan=5;td.textContent='No changes to show for this month.';tr.append(td);rows.push(tr); }
+    if(!rows.length) { const tr=document.createElement('tr'),td=document.createElement('td'); td.colSpan=5;td.textContent='No changes this month.';tr.append(td);rows.push(tr); }
     $('#record-rows').replaceChildren(...rows);
     const unmatched=data.intervals.filter(i=>i.end.startsWith(month)).reduce((sum,i)=>sum+i.changes[metric()].unmatched,0);
     $('#records-count').textContent=`${events.length} ${events.length===1?'change':'changes'}${unmatched?` · ${unmatched>0?'+':''}${unmatched} unmatched`:''}`;
@@ -78,8 +80,6 @@
     if(!data) return;
     $('#metric-definition').textContent=definitions[metric()];
     const copy=C.copy[metric()];
-    $('#pace-title').textContent=copy.title;
-    $('#pace-description').textContent=copy.description;
     $('#composition-description').textContent=copy.monthly;
     $('#release-description').textContent=copy.release;
     document.querySelectorAll('[data-change-label]').forEach(el=>el.textContent=copy.changes[el.dataset.changeLabel]);

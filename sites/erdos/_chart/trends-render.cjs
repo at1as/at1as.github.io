@@ -10,7 +10,7 @@ w.ErdosTrends.validate(data);
 w.ErdosTrendCharts.pace(w.document.getElementById('pace'),data,'resolved',30,releases,selected);
 w.ErdosTrendCharts.composition(w.document.getElementById('composition'),data,'resolved');
 w.ErdosTrendCharts.formal(w.document.getElementById('formal'),data);
-const out={};
+const out={pace_text:w.ErdosTrendCharts.paceText('resolved',30)};
 for(const id of ['pace','composition','formal']) {
   const svg=w.document.getElementById(id);
   out[id]=svg.outerHTML;

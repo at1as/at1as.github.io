@@ -1,10 +1,3 @@
-.trends-page { max-width: 1560px; padding: 0 32px 32px; margin: 0 auto; }
-.trends-header { margin: 4px 0 24px; }
-.trends-heading { display:flex; justify-content:space-between; align-items:center; gap:24px; margin-top:22px; }
-.trends-heading h1 { font-size:clamp(1.8rem,3vw,2.8rem); }
-.trends-heading .subtitle { font-size:1.0625rem; margin-top:10px; }
-.trend-source { flex-shrink:0; font-size:.875rem; color:#294e7b; }
-.coverage-note { font-size:.8125rem; color:#59657d; margin:12px 0 0; }
 .trend-stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
 .trend-stats article { background:#fff; border:1px solid #e0e6ee; border-radius:10px; padding:20px; }
 .trend-stats span { font-size:.875rem; color:#59657d; }
@@ -13,15 +6,16 @@
 .trend-finding { padding:16px 0; margin:0; line-height:1.5; font-size:.9375rem; color:#354560; }
 .trend-controls { display:flex; align-items:center; flex-wrap:wrap; gap:12px; padding:14px 0 20px; }
 .trend-controls label { font-weight:600; }
-.trends-page select { padding:7px 10px; font-size:.875rem; max-width:100%; }
 #metric-definition { font-size:.875rem; color:#59657d; }
-.trends-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.trends-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
 .chart-card { min-width:0; padding:24px; background:white; border:1px solid #e0e6ee; border-radius:12px; }
 .chart-card.wide { grid-column:1/-1; }
 .card-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
 .card-heading > a { color:#59657d; font-size:.8125rem; }
 .chart-card h2 { font-size:1.25rem; letter-spacing:-.02em; margin:0; }
-.chart-explanation { color:#59657d; font-size:.9375rem; line-height:1.5; margin:12px 0 16px; max-width:100ch; }
+.chart-explanation { color:#59657d; font-size:.9375rem; line-height:1.5; margin:12px 0 16px; }
+#pace-description { margin-bottom:4px; }
+#pace-example { margin-top:0; color:#354560; }
 .compact-control { display:flex; align-items:center; gap:10px; font-size:.8125rem; color:#59657d; }
 .trend-plot { min-width:0; }
 .trend-plot svg { display:block; width:100%; height:330px; overflow:visible; }
@@ -51,7 +45,7 @@
 .release-picker { display:flex; flex-direction:column; gap:8px; color:#59657d; font-size:.8125rem; }
 .release-picker select { color:#17253c; }
 #release-source { font-size:.8125rem; color:#59657d; line-height:1.5; }
-.window-comparison { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:22px; }
+.window-comparison { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:22px; }
 .window-comparison article { background:#f5f7fa; padding:16px; border-radius:8px; }
 .window-comparison span { font-size:.8125rem; color:#59657d; }
 .window-comparison strong { display:block; font-size:1.8rem; margin:10px 0 5px; }
@@ -60,6 +54,8 @@
 .trends-footer { margin-top:24px; }
 .trend-method { max-width:100ch; }
 .trend-method p { margin:12px 16px; }
-@media(max-width:1000px) { .trends-grid { grid-template-columns:1fr; } .trends-heading { align-items:flex-start; flex-direction:column; gap:14px; } }
-@media(max-width:650px) { .trends-page { padding:0 16px 24px; } .trend-stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } .trend-stats article { padding:14px; } .trend-stats strong { font-size:1.8rem; } .chart-card { padding:18px 12px; } .window-comparison article { padding:12px; } }
-@media print { .trends-page { max-width:none; padding:0; } .trend-controls, .explorer-tabs, .compact-control, .release-picker { display:none; } .chart-card { break-inside:avoid; } .trends-grid { display:block; } .chart-card { margin-bottom:20px; } }
+@media(max-width:1100px) { .trends-grid { grid-template-columns:1fr; } }
+@media(max-width:600px) { .trend-stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } .trend-stats article { padding:14px; } .trend-stats strong { font-size:1.8rem; } .chart-card { padding:18px 12px; } .window-comparison article { padding:12px; } }
+@media(max-width:600px) { .window-comparison strong { font-size:1.25rem; } }
+@media(max-width:380px) { .window-comparison { grid-template-columns:minmax(0,1fr); } }
+@media print { .trend-controls, .compact-control, .release-picker { display:none; } .chart-card { break-inside:avoid; } .trends-grid { display:block; } .chart-card { margin-bottom:20px; } }
