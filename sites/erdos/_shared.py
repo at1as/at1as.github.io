@@ -27,8 +27,11 @@ def chrome(site_home, view):
     ui_version = sha256(b'\0'.join((HERE / name).read_bytes() for name in ui_files)).hexdigest()[:12]
     values = dict(site_home=escape(site_home, quote=True), snapshot_href=root + '?v=' + ui_version,
                   trends_href=root + 'trends/?v=' + ui_version,
+                  methodology_href='#methodology' if view == 'trends' else root + 'trends/?v=' + ui_version + '#methodology',
                   snapshot_current=' aria-current="page"' if view == 'snapshot' else '',
                   trends_current=' aria-current="page"' if view == 'trends' else '')
-    return {key: Template((HERE / filename).read_text()).substitute(values)
+    return dict(trends_href=values['trends_href'], methodology_href=values['methodology_href'],
+                visualization_source='https://github.com/at1as/at1as.github.io/tree/master/sites/erdos',
+                **{key: Template((HERE / filename).read_text()).substitute(values)
             for key, filename in [('site_navigation', '_navigation.html'),
-                                  ('explorer_header', '_explorer_header.html')]}
+                                  ('explorer_header', '_explorer_header.html')]})

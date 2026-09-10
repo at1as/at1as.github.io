@@ -1,0 +1,60 @@
+---
+layout: default
+title: Sites
+description: Tools, visualizations, and small experiments by Jason Willems.
+permalink: /sites/
+sites:
+  - title: Erdős problems in the AI era
+    url: /sites/erdos/
+    description: Explore recorded resolutions and formalized proofs over time, alongside AI model releases
+  - title: AMT Calculator
+    url: /sites/amtcalculator/
+    description: Estimate alternative minimum tax from income and stock option exercises.
+  - title: Hiragana Quiz
+    url: /sites/hiragana/
+    description: Practice reading Japanese hiragana.
+  - title: Elixir Flashcards
+    url: /sites/flashcards/q1.html
+    description: Elixir questions and answers. Navigate with the arrow keys.
+  - title: Movie & TV Database
+    url: /sites/mediadatabase/output/
+    description: Browse movies and TV series by title, year, and rating.
+---
+
+<style>
+  .site-directory { max-width: 860px; }
+  .site-directory-home { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: .9375rem; }
+  .site-directory-header { margin: 12px 0 28px; }
+  .site-directory h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.15; letter-spacing: -.035em; }
+  .site-directory-header p { color: var(--text-light); }
+  .site-directory-list { display: grid; gap: 12px; list-style: none; margin: 0; padding: 0; }
+  .site-directory-link { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 24px; border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-color); background: var(--background-color); transition: border-color .15s, background-color .15s; }
+  .site-directory-link:hover { color: var(--text-color); border-color: var(--primary-color); background: var(--background-alt); }
+  .site-directory-link:focus-visible, .site-directory-home:focus-visible { outline: 3px solid var(--primary-color); outline-offset: 4px; }
+  .site-directory-link h2 { margin: 0 0 5px; font-size: 1.125rem; line-height: 1.35; font-weight: 600; }
+  .site-directory-link p { margin: 0; color: var(--text-light); font-size: 1rem; line-height: 1.5; }
+  .site-directory-arrow { flex: 0 0 auto; color: var(--primary-color); font-size: 1.25rem; }
+  @media (max-width: 600px) { .site-directory-link { padding: 18px; gap: 14px; } }
+  @media (prefers-reduced-motion: reduce) { .site-directory-link { transition: none; } }
+</style>
+
+<section class="container site-directory" aria-labelledby="sites-title">
+  <a class="site-directory-home" href="{{ '/' | relative_url }}"><span aria-hidden="true">←</span> Back home</a>
+  <header class="site-directory-header">
+    <h1 id="sites-title">Sites</h1>
+    <p>Tools, visualizations, and small experiments.</p>
+  </header>
+  <ul class="site-directory-list">
+    {% for project in page.sites %}
+    <li>
+      <a class="site-directory-link" href="{{ project.url | relative_url }}">
+        <div>
+          <h2>{{ project.title | escape }}</h2>
+          <p>{{ project.description | escape }}</p>
+        </div>
+        <span class="site-directory-arrow" aria-hidden="true">→</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

@@ -29,14 +29,18 @@
 .release-reference:hover .release-name, .release-reference:focus .release-name { fill:#74559d; }
 .release-reference:focus .release-label-hit { stroke:#74559d; stroke-width:1; }
 .chart-readout { min-height:42px; color:#354560; font-size:.8125rem; line-height:1.5; padding:10px 12px; background:#f5f7fa; border-radius:6px; margin:10px 0; font-variant-numeric:tabular-nums; }
+.readout-row { display:flex; align-items:center; flex-wrap:wrap; gap:0 12px; }
+.readout-row .chart-readout { flex:1 1 340px; }
+.evidence-button { min-height:44px; padding:10px 14px; color:#24558e; font-size:.875rem; font-weight:600; }
+.evidence-button:hover:not(:disabled) { background:#f0f5fb; border-color:#9bb1cd; }
+#pace .chart-inspect-hit { cursor:crosshair; }
 .chart-note { color:#65728a; font-size:.8125rem; line-height:1.5; margin:10px 0 0; }
 .chart-legend { display:flex; gap:10px 18px; flex-wrap:wrap; margin:14px 0 6px; color:#59657d; font-size:.8125rem; }
 .chart-legend span { display:inline-flex; align-items:center; gap:7px; }
 .chart-legend i { width:10px; height:10px; background:var(--key); border-radius:2px; }
 .chart-legend i.dot { border-radius:50%; width:7px; height:7px; }
-.records-controls { display:flex; align-items:center; flex-wrap:wrap; gap:12px; padding:14px; }
-.records-controls span { color:#59657d; font-size:.8125rem; }
-#problem-changes > .chart-note { padding:0 14px 12px; margin:0; }
+.records-controls { display:flex; align-items:center; flex-wrap:wrap; gap:10px; color:#59657d; font-size:.875rem; }
+.records-count { color:#17253c; font-size:1rem; font-weight:600; margin:16px 0 0; }
 .records-scroll { max-height:360px; overflow:auto; padding:0 8px; }
 .records-scroll table, #monthly-table table { max-width:none; font-size:.875rem; }
 .records-scroll th, .records-scroll td { text-align:left; }
@@ -54,6 +58,7 @@
 .trends-footer { margin-top:24px; }
 .trend-method { max-width:100ch; }
 .trend-method p { margin:12px 16px; }
+.count-reconciliation { padding:12px; background:#f5f7fa; border-radius:6px; font-variant-numeric:tabular-nums; }
 @media(max-width:1100px) { .trends-grid { grid-template-columns:1fr; } }
 @media(max-width:600px) { .trend-stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } .trend-stats article { padding:14px; } .trend-stats strong { font-size:1.8rem; } .chart-card { padding:18px 12px; } .window-comparison article { padding:12px; } }
 @media(max-width:600px) { .window-comparison strong { font-size:1.25rem; } }

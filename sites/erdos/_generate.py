@@ -126,20 +126,20 @@ def cards(data):
     extra = a["solutions"] - sum(data["lean"].values())
     resolved_lean = sum(data["lean"].values())
     definitions = [
-        ("Monetary prize", "prize", "gold", link(prize="yes"), "problems carry a monetary prize."),
+        ("Monetary prize", "prize", "gold", link(prize="yes"), "problems carry a monetary prize"),
         ("Statements formalized in Lean", "statements", "blue", link(formalized="yes"),
-         'problems have statements formalized in <a href="https://lean-lang.org/">Lean</a> in the <a href="https://github.com/google-deepmind/formal-conjectures">Formal Conjectures Repository</a>.'),
+         'problems have statements formalized in <a href="https://lean-lang.org/">Lean</a> in the <a href="https://github.com/google-deepmind/formal-conjectures">Formal Conjectures Repository</a>'),
         ("Solutions formalized in Lean", "solutions", "green", link(formal="Lean"),
-         f'<span data-derived="resolved-lean">{resolved_lean:,}</span> resolved; <strong data-derived="extra-lean">{extra:,}</strong> still unresolved.<p>A Lean solution may be recorded before a human reviews it and updates the status.</p>'),
+         f'<span data-derived="resolved-lean">{resolved_lean:,}</span> resolved; <strong data-derived="extra-lean">{extra:,}</strong> still unresolved<p>A Lean solution may be recorded before a human reviews it and updates the status</p>'),
         ("Linked to OEIS", "oeis_linked", "purple", link(oeis="linked"),
-         f'problems linked to <strong data-attribute="oeis_distinct">{a["oeis_distinct"]:,}</strong> integer sequences in <a href="https://oeis.org/">OEIS</a>, through <strong data-attribute="oeis_links">{a["oeis_links"]:,}</strong> links.<p><strong data-attribute="oeis_new">{a["oeis_new"]:,}</strong> sequences added since this database began (A387000 onwards).</p>'),
+         f'problems linked to <strong data-attribute="oeis_distinct">{a["oeis_distinct"]:,}</strong> integer sequences in <a href="https://oeis.org/">OEIS</a>, through <strong data-attribute="oeis_links">{a["oeis_links"]:,}</strong> links<p><strong data-attribute="oeis_new">{a["oeis_new"]:,}</strong> sequences added since this database began (A387000 onwards)</p>'),
         ("Possible OEIS links", "oeis_possible", "purple", link(oeis="possible"),
-         f'problems with potential OEIS links not yet listed here.<p><strong data-attribute="oeis_unlinked">{a["oeis_unlinked"]:,}</strong> currently have no OEIS links.</p>'),
+         f'problems with potential OEIS links not yet listed here<p><strong data-attribute="oeis_unlinked">{a["oeis_unlinked"]:,}</strong> currently have no OEIS links</p>'),
         ("Sequence generation in progress", "oeis_inprogress", "gray", link(oeis="inprogress"),
-         'with a related sequence being generated.'),
+         'with a related sequence being generated'),
         ("Related sequences being submitted to OEIS", "oeis_submitted", "gray", None, ''),
         ("Literature reviews requested", "literature", "gray", None, ''),
-        ("Ambiguous statements", "ambiguous", "gray", None, 'problems have ambiguous statements.'),
+        ("Ambiguous statements", "ambiguous", "gray", None, 'problems have ambiguous statements'),
     ]
     output = []
     for title, key, color, href, description in definitions:
@@ -200,9 +200,8 @@ def main():
     analytics_id = site.get('google_analytics') or ''
     if analytics_id and not re.fullmatch(r'G-[A-Z0-9]+', analytics_id):
         raise ValueError('google_analytics must be a GA4 measurement ID or empty.')
-    page_title = 'Erdős Problems Sankey & History | Jason Willems'
-    description = (f'Explore {data["total"]:,} Erdős problems in an interactive Sankey diagram. '
-                   'Replay the database’s history and compare solved, open, and Lean-formalized problems.')
+    page_title = 'Erdős problems in the AI era — Sankey & History | Jason Willems'
+    description = 'Explore recorded resolutions and formalized proofs over time, alongside AI model releases'
     structured_data = {
         '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical + '#webpage',
         'url': canonical, 'name': page_title, 'description': description, 'inLanguage': 'en',

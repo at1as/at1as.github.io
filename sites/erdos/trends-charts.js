@@ -4,27 +4,30 @@
   const colors = {resolved:'#3977bd', lean:'#298761', gained:'#3977bd', added:'#9fbfe3', lost:'#dd7b80', removed:'#a74559', unmatched:'#9b94ae'};
   const copy = {
     resolved: {
-      title:'Problems marked resolved — daily average',
-      monthly:'Status changes and database additions, shown separately. Select a bar to see the problems.',
-      release:'Compare problems marked resolved in the 30 days before and after release. The data does not tell us whether the model helped.',
-      counted:'problems marked resolved',
-      unit:'problems',
+      title:'Changes to resolved — daily average',
+      monthly:'Resolved status changes and database additions, shown separately. Select a bar to see the problems.',
+      release:'Compare changes to resolved in the 30 days before and after release. The data does not tell us whether the model helped.',
+      counted:'changes to resolved',
+      unit:'status changes',
+      scope:'resolved status',
       changes:{gained:'Marked resolved',added:'Added as resolved',lost:'No longer resolved'}
     },
     lean: {
-      title:'Solutions added to Lean — daily average',
+      title:'Lean solution additions — daily average',
       monthly:'Lean solution changes and database additions, shown separately. Select a bar to see the problems.',
-      release:'Compare solutions added to Lean in the 30 days before and after release. The data does not tell us whether the model helped.',
-      counted:'solutions added to Lean',
-      unit:'solutions',
+      release:'Compare Lean solution additions in the 30 days before and after release. The data does not tell us whether the model helped.',
+      counted:'Lean solution additions',
+      unit:'additions',
+      scope:'Lean solutions',
       changes:{gained:'Newly in Lean',added:'Added with a Lean solution',lost:'Lean solution no longer listed'}
     },
     statements: {
-      title:'Statements added to Lean — daily average',
+      title:'Lean statement additions — daily average',
       monthly:'Lean statement changes and database additions, shown separately. Select a bar to see the problems.',
-      release:'Compare statements added to Lean in the 30 days before and after release. The data does not tell us whether the model helped.',
-      counted:'statements added to Lean',
-      unit:'statements',
+      release:'Compare Lean statement additions in the 30 days before and after release. The data does not tell us whether the model helped.',
+      counted:'Lean statement additions',
+      unit:'additions',
+      scope:'Lean statements',
       changes:{gained:'Newly in Lean',added:'Added with a Lean statement',lost:'Lean statement no longer listed'}
     }
   };
@@ -37,9 +40,9 @@
     const unit = count === 1 ? words.unit.slice(0, -1) : words.unit;
     return {
       title: words.title,
-      description: `Each point is a daily average over the previous ${days} days.`,
-      example: `Example: ${count} ${unit} over ${days} days ${days === 7 ? '≈' : '='} ${rate} per day (one every ${days / count} days on average).`,
-      note: 'Counts changes to existing problems. Gaps between snapshots can lengthen the averaging window.'
+      description: `Each point is a daily average over the previous ${days} days`,
+      example: `Example: ${count} ${unit} over ${days} days ${days === 7 ? '≈' : '='} ${rate} per day (one every ${days / count} days on average)`,
+      note: 'Counts changes to existing problems, including repeats. Grey bands mark snapshots more than a week apart; windows may be longer.'
     };
   }
   function frame(element, title, domain, height=330) {
@@ -63,28 +66,34 @@
     if (categorical && width<600) axis.tickValues(x.domain().filter((_,i)=>i%3===0));
     svg.append('g').attr('class','chart-axis').attr('transform',`translate(0,${height-margin.bottom})`).call(axis.tickSize(0).tickPadding(12));
   }
-  function inspect(f, points, describe) {
+  function inspect(f, points, describe, {onPreview, onSelect, selectedDate} = {}) {
     if (!points.length) return;
     const {svg,x,y,margin,width,height,say} = f;
     const guide = svg.append('line').attr('class','chart-crosshair').attr('y1',margin.top).attr('y2',height-margin.bottom).attr('visibility','hidden');
-    let current = points.length-1;
+    let pinned = selectedDate ? points.findIndex(p=>p.date===selectedDate) : -1;
+    let current = pinned >= 0 ? pinned : points.length-1;
     function show(i) {
       current = Math.max(0,Math.min(points.length-1,i));
       guide.attr('x1',x(date(points[current].date))).attr('x2',x(date(points[current].date))).attr('visibility','visible');
       say(describe(points[current]));
+      onPreview?.(points[current]);
     }
-    svg.append('rect').attr('x',margin.left).attr('y',margin.top).attr('width',width-margin.left-margin.right).attr('height',height-margin.top-margin.bottom)
-      .attr('fill','transparent').on('pointermove',function(event) {
-        const value = +x.invert(d3.pointer(event,svg.node())[0]);
-        show(d3.bisector(p=>T.time(p.date)).center(points,value));
-      }).on('pointerleave',()=>guide.attr('visibility','hidden'));
+    const pointAt = event => d3.bisector(p=>T.time(p.date)).center(points,+x.invert(d3.pointer(event,svg.node())[0]));
+    const select = () => { pinned=current; onSelect?.(points[current]); };
+    svg.append('rect').attr('class','chart-inspect-hit').attr('x',margin.left).attr('y',margin.top).attr('width',width-margin.left-margin.right).attr('height',height-margin.top-margin.bottom)
+      .attr('fill','transparent').on('pointermove',event=>show(pointAt(event)))
+      .on('pointerleave',()=>{if(pinned>=0)show(pinned);else guide.attr('visibility','hidden');})
+      .on('click',event=>{if(onSelect){show(pointAt(event));select();}});
     svg.on('keydown',event=> {
+      if(event.target!==svg.node()) return;
       if (event.key==='ArrowLeft' || event.key==='ArrowRight') { event.preventDefault(); show(current+(event.key==='ArrowLeft'?-1:1)); }
+      if ((event.key==='Enter'||event.key===' ') && onSelect) { event.preventDefault(); show(current); select(); }
       if (event.key==='Escape') guide.attr('visibility','hidden');
     });
-    say(describe(points.at(-1)));
+    if(pinned>=0) show(pinned);
+    else { say(describe(points[current])); onPreview?.(points[current]); }
   }
-  function pace(element,data,metric,days,releases,selected,onRelease) {
+  function pace(element,data,metric,days,releases,selected,onRelease,inspection) {
     const series = T.rolling(data,metric,days);
     const f = frame(element,`${copy[metric].title}, looking back ${days} days`,[data.points[0].date,data.points.at(-1).date]);
     const {svg,x,y,margin,say} = f;
@@ -118,7 +127,7 @@
     const line = d3.line().x(p=>x(date(p.date))).y(p=>y(p.value)).curve(d3.curveStepAfter);
     svg.append('path').datum(series).attr('d',d3.area().x(p=>x(date(p.date))).y0(y(0)).y1(p=>y(p.value)).curve(d3.curveStepAfter)).attr('fill',colors[metric]||'#8f6ab3').attr('opacity',.09);
     svg.append('path').datum(series).attr('d',line).attr('fill','none').attr('stroke',colors[metric]||'#8f6ab3').attr('stroke-width',2.5);
-    inspect(f,series,p=>`${label(p.date)} · ${p.events} ${copy[metric].counted} in the previous ${p.days} days · ${p.value.toFixed(2)} per day on average`);
+    inspect(f,series,p=>`${label(p.date)} · ${p.events} ${copy[metric].counted} in the previous ${p.days} days · ${p.value.toFixed(2)} per day on average`,inspection);
     const guides=svg.append('g').attr('class','release-guides').attr('pointer-events','none');
     layer.raise();
     markers.forEach(({r,g,text,width,at,left,lane})=> {

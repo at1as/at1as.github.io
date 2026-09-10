@@ -65,9 +65,11 @@
     };
     return {before: evaluate(release - days * DAY, release), after: evaluate(release, release + days * DAY)};
   }
-  function events(data, metric, month) {
-    return data.intervals.filter(i => i.end.startsWith(month)).flatMap(interval =>
-      ['gained', 'added', 'lost', 'removed'].flatMap(kind => interval.changes[metric][kind].map(number => ({number, kind, ...interval}))))
+  function events(data, metric, period, kinds = ['gained', 'added', 'lost', 'removed']) {
+    // Rate windows use the same baseline-exclusive, end-inclusive observations
+    // as rolling(); month selections include every recorded kind of change.
+    return data.intervals.filter(i => typeof period === 'string' ? i.end.startsWith(period) : i.end > period.start && i.end <= period.date).flatMap(interval =>
+      kinds.flatMap(kind => interval.changes[metric][kind].map(number => ({number, kind, ...interval}))))
       .sort((a,b) => b.end.localeCompare(a.end) || Number(a.number) - Number(b.number));
   }
   return {DAY, time, iso, net, validate, monthly, rolling, releaseWindow, events};

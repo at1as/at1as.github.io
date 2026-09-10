@@ -36,7 +36,7 @@
             <a id="source-revision" href="$source_url">Source revision <span aria-hidden="true">↗</span></a>
             <span class="visually-hidden">Snapshot <time id="snapshot-date" datetime="$iso_date">$date</time></span>
           </div>
-          <a id="download-svg" href="diagram.svg" download="erdos-problems-sankey.svg">Download SVG <span aria-hidden="true">↗</span></a>
+          <div class="view-actions"><a class="changes-link" href="$trends_href#problem-changes">See recent changes <span aria-hidden="true">→</span></a><a id="download-svg" href="diagram.svg" download="erdos-problems-sankey.svg">Download SVG <span aria-hidden="true">↗</span></a></div>
         </div>
         <section class="timeline" aria-label="Explore the database over time">
           <div class="timeline-toolbar">
@@ -63,7 +63,7 @@
     <div class="snapshot-layout">
     <section class="flow-panel" aria-labelledby="page-title">
       <figure>
-        <p class="scroll-hint">Scroll sideways to explore the diagram, or <a href="#text-summary">read the data table</a>.</p>
+        <p class="scroll-hint">Scroll sideways to explore the diagram, or <a href="#text-summary">read the data table</a></p>
         <div class="chart-scroll" tabindex="0" role="region" aria-label="Sankey diagram; scroll horizontally on small screens">
           $diagram
         </div>
@@ -71,7 +71,7 @@
       </figure>
       <section id="text-summary" class="data-table" aria-labelledby="table-title">
         <h2 id="table-title">Problem status</h2>
-        <p id="table-caption" class="table-caption">Snapshot: <span id="table-date">$date</span>.<span class="table-guide">“Problems”: % of all problems. Lean columns: % within each status. A dash means no data or an empty status.</span></p>
+        <p id="table-caption" class="table-caption">Snapshot: <span id="table-date">$date</span><span class="table-guide">“Problems”: % of all problems. Lean columns: % within each status. A dash means no data or an empty status.</span></p>
         <div class="table-scroll">
           <table aria-labelledby="table-title" aria-describedby="table-caption">
             <thead><tr><th scope="col">Status</th><th scope="col">Problems</th><th scope="col">Lean-formalized</th><th scope="col">Not Lean-formalized</th></tr></thead>
@@ -83,19 +83,19 @@
     </section>
     <aside class="attributes" aria-labelledby="attributes-title">
       <h2 id="attributes-title">Other attributes</h2>
-      <p class="aside-intro">A problem can appear in several groups.</p>
+      <p class="aside-intro">A problem can appear in several groups</p>
       <div class="metric-list">$cards</div>
     </aside>
     </div>
     <footer id="about-data">
       <p>Data: <a href="https://github.com/teorth/erdosproblems">Erdős problems database contributors</a>. Maintained by Thomas Bloom and Terence Tao. <a href="https://github.com/teorth/erdosproblems/blob/main/LICENSE">Apache 2.0</a>.</p>
       <p>An independent visualization by <a href="https://www.jasonwillems.com/">Jason Willems</a>. <a href="https://www.erdosproblems.com/">Erdős Problems</a> · <a href="https://teorth.github.io/erdosproblems/">Explore the database</a> · <a href="snapshot.json">Snapshot data</a></p>
-      <p>Viewing <span id="footer-date">$date</span>. Category links show today’s database; “Source revision” shows the selected date. <a href="history.json">History &amp; methodology</a>.</p>
+      <p>Viewing <span id="footer-date">$date</span>. Category links show today’s database; “Source revision” shows the selected date. <a href="$methodology_href">Methodology</a> · <a href="history.json">Historical data · JSON</a> · <a href="$visualization_source">Visualization source code</a>.</p>
       <p>Dates reflect database updates, including additions and corrections. Gaps mean no updates or no valid snapshot.</p>
       <p>Model markers use providers’ public or API release dates. Select one for its source and the first snapshot on or after release. Dates do not show whether a model helped solve a problem.</p>
       <p>“Open / unresolved” includes all seven unresolved statuses, including ZFC independence. Ambiguous statements and literature reviews are counted separately.</p>
       <div class="continue-reading">
-        <div><p class="continue-title">More from Jason Willems</p><p>Projects and writing on software, AI, and building products.</p></div>
+        <div><p class="continue-title">More from Jason Willems</p><p>Projects and writing on software, AI, and building products</p></div>
         <a href="$site_home" data-site-link="footer">Explore my site <span aria-hidden="true">→</span></a>
       </div>
     </footer>
