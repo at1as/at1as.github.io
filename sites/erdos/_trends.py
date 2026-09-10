@@ -38,7 +38,7 @@ def render(data, releases, site_home, analytics_id):
                   analytics_config=script_json(dict(measurementId=analytics_id,hostname=site_home.split('/')[2],pageTitle=title)),
                   first_date=first['date'],last_date=last['date'],resolved=f'{last["resolved"]:,}',resolved_delta=f'{last["resolved"]-first["resolved"]:+,}',
                   gains=gains,added=added,coverage=f'{coverage:.1f}%',old_coverage=f'{first["resolved_lean"]/first["resolved"]*100:.1f}%',
-                  backlog=backlog,backlog_delta=f'{backlog-old_backlog:+}',
+                  backlog=backlog,backlog_change=f'{abs(backlog-old_backlog):,} '+('fewer' if backlog<old_backlog else 'more'),
                   first_share=f'{first["resolved"]/first["total"]*100:.1f}%',last_share=f'{last["resolved"]/last["total"]*100:.1f}%',
                   total_delta=last['total']-first['total'],first_open=first['total']-first['resolved'],last_open=last['total']-last['resolved'],
                   month_options=month_options,release_options=release_options,monthly_rows=monthly_rows,

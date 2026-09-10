@@ -87,7 +87,7 @@ test('trends controls render all measures, period evidence, and release comparis
   assert.ok(app.q('#release-source a').href.startsWith('https://developers.openai.com/'));
   app.change('#formal-mode','coverage');
   assert.match(app.q('#formal').getAttribute('aria-label'),/Share of resolved/);
-  assert.match(app.q('#formal-description').textContent,/denominator/);
+  assert.match(app.q('#formal-description').textContent,/all problems marked resolved at each date/);
   assert.equal(app.q('#formal-total-key').hidden,true);
   const monthButton=app.q('#composition g[role="button"]');
   monthButton.dispatchEvent(new app.w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
@@ -95,6 +95,41 @@ test('trends controls render all measures, period evidence, and release comparis
   const marker=app.q('#pace .release-reference');
   marker.dispatchEvent(new app.w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
   assert.equal(app.q('#compare-release').value,'sonnet-4-5');
+  app.dom.window.close();
+});
+
+test('every model release has a readable label on its date, with no label collisions at narrow or wide widths',async()=>{
+  const app=await boot();
+  const releases=JSON.parse(app.q('#model-releases').textContent);
+  const visible=releases.filter(r=>r.date>=data.points[0].date&&r.date<=data.points.at(-1).date);
+  for(const width of [340,480,768,960,1400]) {
+    const plot=app.q('#pace');
+    plot.getBoundingClientRect=()=>({width});
+    for(const selected of ['astra','gpt-5-6']) {
+      app.change('#compare-release',selected);
+      const markers=[...plot.querySelectorAll('.release-reference')];
+      assert.equal(markers.length,visible.length);
+      assert.equal(plot.querySelectorAll('[aria-pressed="true"]').length,1);
+      const boxes=markers.map(marker=> {
+        const release=visible.find(r=>r.id===marker.dataset.release);
+        assert.ok(release);
+        const line=plot.querySelector(`.release-line[data-release="${release.id}"]`);
+        const expected=52+(T.time(release.date)-T.time(data.points[0].date))/(T.time(data.points.at(-1).date)-T.time(data.points[0].date))*(width-72);
+        assert.ok(Math.abs(Number(line.getAttribute('x1'))-expected)<1e-6,'Vertical line stays on the release date');
+        assert.equal(line.getAttribute('x1'),line.getAttribute('x2'));
+        const label=marker.querySelector('.release-name');
+        assert.ok(label.textContent.length>0);
+        assert.equal(label.getAttribute('fill'),release.id===selected?'#74559d':'#65728a');
+        const box=marker.querySelector('.release-label-hit');
+        const x=Number(box.getAttribute('x')), y=Number(box.getAttribute('y'));
+        const right=x+Number(box.getAttribute('width')),bottom=y+Number(box.getAttribute('height'));
+        assert.ok(x>=52&&right<=width-20,'Label fits inside the chart');
+        assert.ok(bottom<Number(line.getAttribute('y1')),'Label is above the data');
+        return {x,y,right,bottom};
+      });
+      boxes.forEach((a,i)=>boxes.slice(i+1).forEach(b=>assert.ok(a.right<=b.x||b.right<=a.x||a.bottom<=b.y||b.bottom<=a.y,'Release labels do not overlap')));
+    }
+  }
   app.dom.window.close();
 });
 

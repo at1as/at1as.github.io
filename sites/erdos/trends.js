@@ -2,9 +2,7 @@
   'use strict';
   const $=selector=>document.querySelector(selector), T=window.ErdosTrends, C=window.ErdosTrendCharts;
   const releases=JSON.parse($('#model-releases').textContent);
-  const names={resolved:'resolved status',lean:'Lean solutions',statements:'Lean statements'};
-  const definitions={resolved:'“Resolved” combines proved, disproved, and otherwise solved.',lean:'All solutions marked Lean, including those with an unresolved informal status.',statements:'Problem statements marked as formalized in Lean.'};
-  const kinds={gained:'State gain',added:'Listed already qualifying',lost:'State loss',removed:'Removed from catalogue'};
+  const definitions={resolved:'“Resolved” includes proved, disproved, and otherwise solved.',lean:'Solutions formalized in Lean, including problems still listed as unresolved.',statements:'Problem statements written in Lean. This does not mean they are solved.'};
   const format=date=>new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(T.time(date)));
   let data=null, resizeFrame=null;
   const metric=()=>$('#trend-metric').value;
@@ -23,7 +21,7 @@
     const mode=$('#formal-mode').value;
     C.formal($('#formal'),data,mode);
     $('#formal-total-key').hidden=mode==='coverage';
-    $('#formal-description').textContent=mode==='coverage' ? 'Percentage of resolved problems whose solutions are formalized in Lean. The denominator is the resolved total at each snapshot.' : 'Resolved problems versus those whose solutions are formalized in Lean. The shaded gap is the remaining formalization work.';
+    $('#formal-description').textContent=mode==='coverage' ? 'Of all problems marked resolved at each date, the percentage with a solution formalized in Lean.' : 'The shaded gap shows resolved problems whose solutions are not yet formalized in Lean.';
   }
   function renderWindow() {
     const release=releases.find(r=>r.id===$('#compare-release').value);
@@ -34,19 +32,20 @@
     for(const side of ['before','after']) {
       const window=result[side];
       $(`#${side}-rate`).textContent=window.complete?`${window.rate.toFixed(2)}/day`:'Incomplete';
-      $(`#${side}-count`).textContent=`${window.count} gains recorded${window.complete?'':' in available snapshots'}`;
+      $(`#${side}-count`).textContent=`${window.count} ${C.copy[metric()].counted}${window.complete?'':' in available snapshots'}`;
       $(`#${side}-range`).textContent=`${format(window.start)}–${format(T.iso(T.time(window.end)-T.DAY))}`;
     }
     const a=result.before,b=result.after;
-    $('#window-verdict').textContent= !a.complete||!b.complete ? 'Not enough saved history for both full windows. A rate comparison would be premature.' :
-      a.count===0 ? `The preceding window recorded no gains; the following window recorded ${b.count}. A multiplier is undefined.` :
-      `${(b.count/a.count).toFixed(2)}× the recorded pace in the following window (${b.count-a.count>=0?'+':''}${b.count-a.count} gains). Timing alone does not establish a model’s contribution.`;
+    $('#window-verdict').textContent= !a.complete||!b.complete ? 'Not enough history for a full 30 days on both sides.' :
+      a.count===b.count ? `The same number of changes before and after release (${a.count}).` :
+      a.count===0 ? `No changes in the 30 days before release; ${b.count} in the 30 days after.` :
+      `${(b.count/a.count).toFixed(2)}× as many changes after release (${b.count} vs ${a.count}).`;
   }
   function renderRecords() {
     const month=$('#records-month').value, events=T.events(data,metric(),month);
     const rows=events.map(event=>{
       const tr=document.createElement('tr');
-      const values=[event.number,event.end,kinds[event.kind],`${event.start} → ${event.end}`,'View revisions ↗'];
+      const values=[event.number,event.end,C.copy[metric()].changes[event.kind]||'Removed from database',`${event.start} → ${event.end}`,'View revisions ↗'];
       values.forEach((value,i)=>{
         const td=document.createElement(i===0?'th':'td');
         if(i===0) td.scope='row';
@@ -59,10 +58,10 @@
       });
       return tr;
     });
-    if(!rows.length) { const tr=document.createElement('tr'),td=document.createElement('td'); td.colSpan=5;td.textContent='No matched changes recorded in this month.';tr.append(td);rows.push(tr); }
+    if(!rows.length) { const tr=document.createElement('tr'),td=document.createElement('td'); td.colSpan=5;td.textContent='No changes to show for this month.';tr.append(td);rows.push(tr); }
     $('#record-rows').replaceChildren(...rows);
     const unmatched=data.intervals.filter(i=>i.end.startsWith(month)).reduce((sum,i)=>sum+i.changes[metric()].unmatched,0);
-    $('#records-count').textContent=`${events.length} matched change events${unmatched?` · ${unmatched>0?'+':''}${unmatched} unmatched row adjustment`:''}`;
+    $('#records-count').textContent=`${events.length} ${events.length===1?'change':'changes'}${unmatched?` · ${unmatched>0?'+':''}${unmatched} unmatched`:''}`;
   }
   function renderMonths() {
     const rows=T.monthly(data,metric());
@@ -78,7 +77,12 @@
   function renderAll() {
     if(!data) return;
     $('#metric-definition').textContent=definitions[metric()];
-    document.querySelectorAll('.selected-measure').forEach(el=>el.textContent=names[metric()]);
+    const copy=C.copy[metric()];
+    $('#pace-title').textContent=copy.title;
+    $('#pace-description').textContent=copy.description;
+    $('#composition-description').textContent=copy.monthly;
+    $('#release-description').textContent=copy.release;
+    document.querySelectorAll('[data-change-label]').forEach(el=>el.textContent=copy.changes[el.dataset.changeLabel]);
     renderPace(); renderComposition(); renderMonths(); renderRecords(); renderWindow();
     renderFormal();
   }
