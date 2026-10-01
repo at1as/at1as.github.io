@@ -56,7 +56,7 @@ These are rates of **recorded database changes**, not verified discovery dates o
 
 ## Model release annotations
 
-`model-releases.json` contains a curated selection of public Claude releases and OpenAI API releases, each with an official source. Dates are verified as of September 9, 2026. Fable 5 uses its initial June 9 launch date; its annotation also links the subsequent access interruption and July 1 return. These markers provide context and do not attribute problem solutions to any model.
+`model-releases.json` contains a curated selection of public Claude releases and OpenAI API releases, each with an official source. The list was checked on October 1, 2026 and includes releases through September 29. Fable 5 uses its initial June 9 launch date; its annotation also links the subsequent access interruption and July 1 return. These markers provide context and do not attribute problem solutions to any model. Releases after the latest data snapshot appear only in the comparison selector, with incomplete windows clearly labeled.
 
 Hover or keyboard-focus a marker for its model and date; select it to pause playback and show the first recorded snapshot on or after release. If there is a gap, the annotation identifies the actual snapshot shown. During playback, the annotation follows the latest listed release on or before the selected snapshot. Nearby hit targets alternate below and above the slider, with stems connecting each marker to its exact position on the axis. Drag the slider, use its native keyboard controls, or choose a date from the picker to navigate.
 
@@ -74,7 +74,7 @@ The prominent header and footer links back to Jason’s site, plus the breadcrum
 
 The source is always [`teorth/erdosproblems`](https://github.com/teorth/erdosproblems). History is reconstructed from `data/problems.yaml` along the `main` branch's first-parent history. Each slider step is the latest valid data revision on a recorded UTC date, with an immutable commit URL and its timestamp. The slider advances through **recorded snapshots**, not uniformly spaced calendar days. It does not invent values for missing dates. Playback interpolates chart geometry between snapshots; displayed counts remain actual recorded integers.
 
-Coverage begins **September 3, 2025**, after the initial import and broad “solved” category were replaced by the more detailed status categories. The preceding two days also contain the invalid status `solprovedved`. As of September 9, 2026, 256 usable dates are included. The number of database entries changes over time, so changes reflect additions and corrections as well as mathematical progress.
+Coverage begins **September 3, 2025**, after the initial import and broad “solved” category were replaced by the more detailed status categories. The preceding two days also contain the invalid status `solprovedved`. The October 1, 2026 refresh includes 264 usable dates through September 28, 2026, the latest upstream data revision. The number of database entries changes over time, so changes reflect additions and corrections as well as mathematical progress.
 
 Counting follows the current upstream `scripts/generate_readme.py` and `primitive_states` logic from `scripts/derive_status.py`:
 
