@@ -4,6 +4,8 @@ Subsite at `/sites/erdos/`, published by the repository's existing Jekyll / GitH
 
 The **Trends & rates** view at `/sites/erdos/trends/` adds a D3 rate chart with model-release references, monthly change decomposition, problem-level evidence, the Lean formalization backlog, and equal-window comparisons around releases. Its default charts, monthly totals, and recent problem records are generated as HTML/SVG so they remain available without browser JavaScript.
 
+When fresh data loads, the Trends summary, history dates, reconciliation, and month selector update from the same dataset as the charts. Selecting a model-release marker moves keyboard focus to the comparison selector.
+
 The visible **What changed** section defaults to the latest rate window and reports both transition counts and distinct problem counts. Clicking/tapping a rate point, pressing Enter after inspecting with the arrow keys, or using **View these changes** shows the exact gains behind that point, with links to current problem pages and immutable revision comparisons. Monthly selections include gains, losses, additions, and removals. **Methodology** opens the readable counting explanation at `/sites/erdos/trends/#methodology`; raw JSON and the visualization source have separate links.
 
 Both views share the page container, header, tabs, source link, and responsive spacing. `_shared.py` renders `_navigation.html` and `_explorer_header.html` for both routes; their common layout lives in `styles.css`. Navigation and first-party assets carry content versions so cached pages cannot bring back an older interface when switching views. Canonical URLs remain unversioned. The snapshot table is always visible beneath the Sankey.
@@ -98,7 +100,7 @@ bundle exec ruby -E UTF-8 -S jekyll build
 
 Tests cover historical counting rules, legacy/primitive status migration, overlaps, invalid states, duplicate rows, conservation and common scale across every saved date, controls, pause/replay/end behavior, reduced motion, selected-date export, failed-load recovery, release placement across date gaps, release selection, marker hit-target separation, SEO metadata, analytics initialization, preview exclusion, and links back to the main site.
 
-Trend checks also reconcile every interval/month to the Sankey source, distinguish imports from state changes, exercise duplicate IDs, verify elapsed-time rates and release-window boundaries, and run the actual D3 renderer and interactive controls in JSDOM. D3 is pinned to 7.9.0 and its ISC license is copied alongside the local browser bundle.
+Trend checks also reconcile every interval/month to the Sankey source, distinguish imports from state changes, exercise duplicate IDs, verify elapsed-time rates and release-window boundaries, and run the actual D3 renderer and interactive controls in JSDOM. Regression checks cover fresh data with cached HTML, month rollover, and keyboard focus after release selection. D3 is pinned to 7.9.0 and its ISC license is copied alongside the local browser bundle.
 
 ## Attribution
 
