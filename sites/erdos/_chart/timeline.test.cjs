@@ -97,9 +97,14 @@ test('slider and date selection synchronize all displayed data and source revisi
 
 test('release markers map to snapshot spacing, pause playback, and link official sources', async () => {
   const app = await boot();
-  assert.equal(app.w.document.querySelectorAll('.release-marker').length, releases.length);
+  const inRange = releases.filter(release => release.date >= history.snapshots[0].as_of && release.date <= history.snapshots.at(-1).as_of);
+  assert.equal(app.w.document.querySelectorAll('.release-marker').length, inRange.length);
   for (const release of releases) {
     const selector = `[data-release="${release.id}"]`;
+    if (!inRange.includes(release)) {
+      assert.equal(app.q(selector), null, 'A release outside the saved history has no snapshot marker');
+      continue;
+    }
     const index = history.snapshots.findIndex(snapshot => snapshot.as_of >= release.date);
     const before = history.snapshots[index - 1];
     const after = history.snapshots[index];
