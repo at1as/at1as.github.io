@@ -7,6 +7,38 @@
   let data=null, resizeFrame=null, previewPoint=null, evidenceDate=null;
   const metric=()=>$('#trend-metric').value;
   const days=()=>Number($('#pace-window').value);
+  function renderSummary() {
+    const first=data.points[0],last=data.points.at(-1);
+    const number=value=>value.toLocaleString('en-US');
+    const signed=value=>(value>=0?'+':'')+number(value);
+    const percent=(part,total)=>(part/total*100).toFixed(1)+'%';
+    const strong=text=>{const el=document.createElement('strong');el.textContent=text;return el;};
+    const changes=data.intervals.map(i=>i.changes.resolved);
+    const gains=changes.flatMap(change=>change.gained);
+    const count=kind=>changes.reduce((sum,change)=>sum+change[kind].length,0);
+    const unmatched=changes.reduce((sum,change)=>sum+change.unmatched,0);
+    const backlog=last.resolved-last.resolved_lean,oldBacklog=first.resolved-first.resolved_lean;
+    const summary=[
+      [number(last.resolved),`${signed(last.resolved-first.resolved)} since the first snapshot`],
+      [number(gains.length),`${number(new Set(gains).size)} distinct problems since start`],
+      [percent(last.resolved_lean,last.resolved),`Up from ${percent(first.resolved_lean,first.resolved)} of resolved problems`],
+      [number(backlog),`${number(Math.abs(backlog-oldBacklog))} ${backlog<oldBacklog?'fewer':'more'} than in the first snapshot`]
+    ];
+    document.querySelectorAll('.trend-stats article').forEach((article,i)=>{
+      article.querySelector('strong').textContent=summary[i][0];
+      article.querySelector('p').textContent=summary[i][1];
+    });
+    document.querySelectorAll('.view-meta time').forEach((el,i)=>{
+      el.dateTime=[first,last][i].date;el.textContent=format(el.dateTime);
+    });
+    $('.trend-finding').replaceChildren('The resolved share rose from ',
+      strong(`${percent(first.resolved,first.total)} to ${percent(last.resolved,last.total)}`),
+      `. The database grew by ${number(last.total-first.total)} problems; unresolved problems went from ${number(first.total-first.resolved)} to ${number(last.total-last.resolved)}.`);
+    $('.count-reconciliation').replaceChildren(strong(number(first.resolved)),
+      ` initially resolved + ${number(gains.length)} changes to resolved + ${number(count('added'))} added as already resolved − ${number(count('lost'))} changes back to unresolved − ${number(count('removed'))} removed from the database`,
+      unmatched?` ${signed(unmatched)} unmatched changes`:'',
+      ' = ',strong(number(last.resolved)),' currently resolved. New database entries can describe old results.');
+  }
   function goToRecords() {
     $('#problem-changes').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
     $('#changes-title').focus({preventScroll:true});
@@ -28,6 +60,7 @@
     C.pace($('#pace'),data,metric(),length,releases,$('#compare-release').value,id=> {
       $('#compare-release').value=id; renderPace(); renderWindow();
       $('#release-comparison').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
+      $('#compare-release').focus({preventScroll:true});
     },{
       selectedDate:$('#records-month').value==='selected'?evidenceDate:null,
       onPreview:point=>{previewPoint=point;$('#show-pace-changes').disabled=false;},
@@ -107,6 +140,13 @@
   }
   function renderMonths() {
     const rows=T.monthly(data,metric());
+    const select=$('#records-month'),selected=select.value;
+    select.replaceChildren($('#records-recent'),$('#records-selected'),...rows.map(row=>{
+      const option=document.createElement('option');
+      option.value=row.date.slice(0,7);option.textContent=option.value;return option;
+    }));
+    select.value=selected;
+    if(!select.value) select.value='recent';
     $('#monthly-rows').replaceChildren(...rows.map(row=> {
       const tr=document.createElement('tr');
       [row.date.slice(0,7)+(row.partial?' (partial)':''),row.gained,row.added,row.lost,row.removed,row.unmatched,(row.net>=0?'+':'')+row.net].forEach((value,i)=> {
@@ -122,7 +162,7 @@
     $('#composition-description').textContent=copy.monthly;
     $('#release-description').textContent=copy.release;
     document.querySelectorAll('[data-change-label]').forEach(el=>el.textContent=copy.changes[el.dataset.changeLabel]);
-    renderPace(); renderComposition(); renderMonths(); renderRecords(); renderWindow();
+    renderMonths(); renderPace(); renderComposition(); renderRecords(); renderWindow();
     renderFormal();
   }
   $('#trend-metric').addEventListener('change',renderAll);
@@ -141,7 +181,7 @@
       if(!T||!C) throw Error('Chart scripts unavailable');
       const response=await fetch('../insights.json',{cache:'no-cache',signal:AbortSignal.timeout(15000)});
       if(!response.ok) throw Error('Trends unavailable');
-      data=T.validate(await response.json()); renderAll();
+      data=T.validate(await response.json()); renderSummary(); renderAll();
       document.querySelectorAll('select').forEach(el=>el.disabled=false);
       $('#trends-message').hidden=true;
     } catch(error) {

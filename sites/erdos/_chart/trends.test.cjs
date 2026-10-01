@@ -54,10 +54,10 @@ test('release windows assign launch-day observations once and suppress incomplet
   assert.equal(full.after.rate,full.after.count/30);
 });
 
-async function boot(fail=false,hash='') {
+async function boot(fail=false,hash='',payload=data) {
   const dom=new JSDOM(fs.readFileSync(path.join(site,'trends/index.html'),'utf8'),{url:'https://example.com/sites/erdos/trends/'+hash,runScripts:'outside-only',pretendToBeVisual:true});
   const w=dom.window;
-  w.fetch=async()=>{if(fail)throw Error('offline');return{ok:true,json:async()=>structuredClone(data)};};
+  w.fetch=async()=>{if(fail)throw Error('offline');return{ok:true,json:async()=>structuredClone(payload)};};
   w.matchMedia=()=>({matches:true});w.AbortSignal.timeout=()=>new w.AbortController().signal;
   w.HTMLElement.prototype.scrollIntoView=()=>{};
   for(const name of ['d3.min.js','trends-data.js','trends-charts.js','trends.js']) w.eval(fs.readFileSync(path.join(site,name),'utf8'));
@@ -66,6 +66,75 @@ async function boot(fail=false,hash='') {
   const change=(s,value)=>{q(s).value=value;q(s).dispatchEvent(new w.Event('change',{bubbles:true}));};
   return {dom,w,q,change};
 }
+
+function nextMonthData() {
+  const payload=structuredClone(data),last=payload.points.at(-1);
+  const nextDate=new Date(T.time(last.date));
+  nextDate.setUTCDate(1);nextDate.setUTCMonth(nextDate.getUTCMonth()+1);
+  const next={...last,date:T.iso(+nextDate),commit:'f'.repeat(40),total:last.total+3,
+    resolved:last.resolved+2,resolved_lean:last.resolved_lean+1,lean:last.lean+1,statements:last.statements+1};
+  payload.points.push(next);
+  payload.intervals.push({start:last.date,end:next.date,days:(T.time(next.date)-T.time(last.date))/T.DAY,
+    before:last.commit,after:next.commit,ambiguous_ids:[],changes:Object.fromEntries(
+      ['resolved','lean','statements'].map(metric=>[metric,{gained:metric==='resolved'?['9001','9002']:['9001'],
+        lost:[],added:[],removed:[],unmatched:0}]))});
+  return payload;
+}
+
+test('fresh data updates cached summary figures, coverage dates, and the reconciliation',async()=>{
+  const payload=nextMonthData(),first=payload.points[0],last=payload.points.at(-1);
+  const app=await boot(false,'',payload);
+  try {
+    assert.equal(app.q('.view-meta time:last-of-type').dateTime,last.date);
+    const stats=[...app.w.document.querySelectorAll('.trend-stats article')];
+    assert.equal(stats[0].querySelector('strong').textContent,last.resolved.toLocaleString('en-US'));
+    assert.equal(stats[0].querySelector('p').textContent,`+${last.resolved-first.resolved} since the first snapshot`);
+    const gains=payload.intervals.flatMap(i=>i.changes.resolved.gained);
+    assert.equal(stats[1].querySelector('strong').textContent,String(gains.length));
+    assert.equal(stats[1].querySelector('p').textContent,`${new Set(gains).size} distinct problems since start`);
+    assert.equal(stats[2].querySelector('strong').textContent,`${(100*last.resolved_lean/last.resolved).toFixed(1)}%`);
+    assert.equal(stats[3].querySelector('strong').textContent,String(last.resolved-last.resolved_lean));
+    assert.ok(app.q('.trend-finding').textContent.includes(`grew by ${last.total-first.total} problems`));
+    assert.ok(app.q('.trend-finding').textContent.endsWith(`to ${last.total-last.resolved}.`));
+    assert.ok(app.q('.count-reconciliation').textContent.includes(`+ ${gains.length} changes to resolved`));
+    assert.ok(app.q('.count-reconciliation').textContent.includes(`= ${last.resolved} currently resolved`));
+    assert.equal(app.q('#trends-message').hidden,true);
+  } finally {app.dom.window.close();}
+});
+
+test('a new month in fresh data is selectable from its bar and survives metric changes',async()=>{
+  const payload=nextMonthData(),month=payload.points.at(-1).date.slice(0,7);
+  const app=await boot(false,'',payload),errors=[];
+  app.w.addEventListener('error',event=>{errors.push(event.message);event.preventDefault();});
+  try {
+    const bars=app.w.document.querySelectorAll('#composition g[role="button"]');
+    bars[bars.length-1].dispatchEvent(new app.w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+    assert.deepEqual(errors,[]);
+    assert.equal(app.q('#records-month').value,month);
+    assert.equal(app.q('#record-rows').children.length,2);
+    assert.match(app.q('#records-count').textContent,/^2 changes across 2 distinct problems$/);
+    assert.equal(app.w.document.activeElement,app.q('#changes-title'));
+    app.change('#trend-metric','lean');
+    assert.equal(app.q('#records-month').value,month);
+    assert.equal(app.q('#record-rows').children.length,1);
+    assert.equal(app.q('#record-rows a').textContent,'#9001');
+    assert.deepEqual(errors,[]);
+  } finally {app.dom.window.close();}
+});
+
+test('selecting a release marker transfers focus to the comparison selector',async()=>{
+  const app=await boot();
+  try {
+    for(const key of ['Enter',' ',null]) {
+      const marker=app.q('#pace .release-reference');
+      marker.focus();assert.equal(app.w.document.activeElement,marker);
+      marker.dispatchEvent(key===null?new app.w.MouseEvent('click',{bubbles:true}):
+        new app.w.KeyboardEvent('keydown',{key,bubbles:true}));
+      assert.equal(app.q('#compare-release').value,marker.dataset.release);
+      assert.equal(app.w.document.activeElement,app.q('#compare-release'));
+    }
+  } finally {app.dom.window.close();}
+});
 
 test('trends controls render all measures, period evidence, and release comparisons with real D3',async()=>{
   const app=await boot();
