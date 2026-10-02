@@ -80,6 +80,18 @@
     $('#formal-description').textContent=mode==='coverage' ? 'Share of resolved problems with a Lean solution at each date' : 'The shaded gap shows resolved problems with no Lean solution recorded';
   }
   function renderWindow() {
+    // Older cached HTML may predate the uncertainty explanation.
+    if(!$('#window-uncertainty')) {
+      const details=document.createElement('details'),summary=document.createElement('summary');
+      const explanation=document.createElement('p'),list=document.createElement('ul');
+      details.id='window-uncertainty';details.className='window-uncertainty';
+      summary.textContent='Why timing is uncertain';
+      explanation.textContent='The lower count includes changes whose whole snapshot interval is inside the window. The upper count also includes changes that could fall on either side of a boundary. The same uncertain changes may appear in both ranges; do not add the upper counts.';
+      list.id='window-intervals';details.append(summary,explanation,list);
+      $('#window-verdict').after(details);
+    }
+    $('#after-rate').previousElementSibling.textContent='Release day + 29 days';
+    $('#release-comparison .chart-note').textContent='Windows use UTC dates, not launch times. Ranges cover only changes captured between saved snapshots; missed changes are not estimated. Nearby release windows can overlap.';
     const release=releases.find(r=>r.id===$('#compare-release').value);
     const result=T.releaseWindow(data,release.date,metric());
     const source=document.createElement('a'); source.href=release.source; source.textContent=`${format(release.date)} · ${release.kind} ↗`;
@@ -87,15 +99,28 @@
     if(release.note) { const note=document.createElement('a'); note.href=release.note_source; note.textContent=release.note; $('#release-source').append(' · ',note); }
     for(const side of ['before','after']) {
       const window=result[side];
-      $(`#${side}-rate`).textContent=window.complete?`${window.rate.toFixed(2)}/day`:'Incomplete';
-      $(`#${side}-count`).textContent=`${window.count} ${C.copy[metric()].counted}${window.complete?'':' in available snapshots'}`;
+      const count=window.uncertain?`${window.count}–${window.possible}`:String(window.count);
+      $(`#${side}-rate`).textContent=!window.complete?'Incomplete':window.uncertain?'Uncertain':`${window.rate.toFixed(2)}/day`;
+      $(`#${side}-count`).textContent=`${count} observed ${C.copy[metric()].counted}${window.complete?'':' in available history'}`;
       $(`#${side}-range`).textContent=`${format(window.start)}–${format(T.iso(T.time(window.end)-T.DAY))}`;
     }
+    const intervals=result.uncertainIntervals;
+    $('#window-uncertainty').hidden=!intervals.length;
+    $('#window-intervals').replaceChildren(...intervals.map(interval=>{
+      const row=document.createElement('li'),link=document.createElement('a');
+      const count=interval.changes[metric()].gained.length;
+      const boundaries=[[result.before.start,'start of the before window'],[release.date,'release date'],[result.after.end,'end of the after window']]
+        .filter(([date])=>interval.start<date&&interval.end>=date).map(([,label])=>label);
+      row.append(`${format(interval.start)}–${format(interval.end)}: ${count} observed ${count===1?'change':'changes'} in an interval spanning the ${boundaries.join(', ')}. `);
+      link.href=`https://github.com/teorth/erdosproblems/compare/${interval.before}...${interval.after}`;
+      link.textContent='View revisions ↗';row.append(link);return row;
+    }));
     const a=result.before,b=result.after;
     $('#window-verdict').textContent= !a.complete||!b.complete ? 'Not enough history for a full 30 days on both sides' :
-      a.count===b.count ? `The same number of changes before and after release (${a.count})` :
-      a.count===0 ? `No changes in the 30 days before release; ${b.count} in the 30 days after` :
-      `${(b.count/a.count).toFixed(2)}× as many changes after release (${b.count} vs ${a.count})`;
+      intervals.length ? 'The snapshots cannot place every observed change inside or outside these windows. No exact rate or multiplier is shown for uncertain timing.' :
+      a.count===b.count ? `The same number of observed changes before and after the release date (${a.count})` :
+      a.count===0 ? `No observed changes in the 30 days before the release date; ${b.count} in the 30 days from it` :
+      `${(b.count/a.count).toFixed(2)}× as many observed changes in the 30 days from the release date (${b.count} vs ${a.count})`;
   }
   function renderRecords() {
     const period=$('#records-month').value;

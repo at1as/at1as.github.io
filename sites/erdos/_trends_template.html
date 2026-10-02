@@ -61,12 +61,16 @@
       </section>
       <section class="chart-card" id="release-comparison" aria-labelledby="release-title">
         <h2 id="release-title">Before and after a model release</h2>
-        <p id="release-description" class="chart-explanation">Compare changes to resolved in the 30 days before and after release. The data does not tell us whether the model helped.</p>
+        <p id="release-description" class="chart-explanation">Compare observed changes to resolved across two 30-day windows around the release date. The data does not tell us whether the model helped.</p>
         <label class="release-picker" for="compare-release">Model release <select id="compare-release" disabled>$release_options</select></label>
         <p id="release-source"></p>
-        <div class="window-comparison"><article><span>30 days before</span><strong id="before-rate">—</strong><p id="before-count">Choose a release to compare</p><small id="before-range"></small></article><article><span>30 days after</span><strong id="after-rate">—</strong><p id="after-count">Choose a release to compare</p><small id="after-range"></small></article></div>
+        <div class="window-comparison"><article><span>30 days before</span><strong id="before-rate">—</strong><p id="before-count">Choose a release to compare</p><small id="before-range"></small></article><article><span>Release day + 29 days</span><strong id="after-rate">—</strong><p id="after-count">Choose a release to compare</p><small id="after-range"></small></article></div>
         <p id="window-verdict" class="window-verdict" aria-live="polite"></p>
-        <p class="chart-note">Requires 30 days on each side. Nearby release windows can overlap.</p>
+        <details id="window-uncertainty" class="window-uncertainty" hidden><summary>Why timing is uncertain</summary>
+          <p>The lower count includes changes whose whole snapshot interval is inside the window. The upper count also includes changes that could fall on either side of a boundary. The same uncertain changes may appear in both ranges; do not add the upper counts.</p>
+          <ul id="window-intervals"></ul>
+        </details>
+        <p class="chart-note">Windows use UTC dates, not launch times. Ranges cover only changes captured between saved snapshots; missed changes are not estimated. Nearby release windows can overlap.</p>
       </section>
     </div>
     <footer id="about-data" class="trends-footer">
@@ -79,6 +83,7 @@
         <p class="count-reconciliation">$reconciliation</p>
         <p>Daily averages count changes to existing problems. Each window starts at the last snapshot on or before its target start date. The count is divided by the actual days elapsed, shown below the chart.</p>
         <p>Monthly bars count changes in the month they first appear. The first and last months may be partial. All categories add up to the net change.</p>
+        <p>Release comparisons use the 30 UTC dates before the release date and the 30 dates starting with it. An observed change is definitely inside a window only when its whole snapshot interval fits inside it. Intervals spanning a boundary contribute to a possible upper count, not a definite count. This includes snapshots on the boundary date because dates alone do not locate a change within that day. Exact rates require a complete window with no such uncertainty; a multiplier requires two such windows and a nonzero preceding count. These are bounds on captured changes, not all mathematical activity or all database edits.</p>
         <p>Gaps include days without updates and revisions skipped for invalid status data. Changes between snapshots may be missed or recorded later. Duplicate problem numbers cannot be matched reliably; their effect appears as “unmatched changes.”</p>
       </details>
       <p>Data: <a href="https://github.com/teorth/erdosproblems">Erdős problems database contributors</a>, maintained by Thomas Bloom and Terence Tao. <a href="https://github.com/teorth/erdosproblems/blob/main/LICENSE">Apache 2.0</a>. Charts: <a href="https://d3js.org/">D3</a>. <a href="$visualization_source">Visualization source code</a> · <a href="../insights.json">Change history · JSON</a> · <a href="../history.json">Snapshots · JSON</a>.</p>

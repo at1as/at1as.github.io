@@ -6,7 +6,7 @@
     resolved: {
       title:'Changes to resolved — daily average',
       monthly:'Resolved status changes and database additions, shown separately. Select a bar to see the problems.',
-      release:'Compare changes to resolved in the 30 days before and after release. The data does not tell us whether the model helped.',
+      release:'Compare observed changes to resolved across two 30-day windows around the release date. The data does not tell us whether the model helped.',
       counted:'changes to resolved',
       unit:'status changes',
       scope:'resolved status',
@@ -15,7 +15,7 @@
     lean: {
       title:'Lean solution additions — daily average',
       monthly:'Lean solution changes and database additions, shown separately. Select a bar to see the problems.',
-      release:'Compare Lean solution additions in the 30 days before and after release. The data does not tell us whether the model helped.',
+      release:'Compare observed Lean solution additions across two 30-day windows around the release date. The data does not tell us whether the model helped.',
       counted:'Lean solution additions',
       unit:'additions',
       scope:'Lean solutions',
@@ -24,7 +24,7 @@
     statements: {
       title:'Lean statement additions — daily average',
       monthly:'Lean statement changes and database additions, shown separately. Select a bar to see the problems.',
-      release:'Compare Lean statement additions in the 30 days before and after release. The data does not tell us whether the model helped.',
+      release:'Compare observed Lean statement additions across two 30-day windows around the release date. The data does not tell us whether the model helped.',
       counted:'Lean statement additions',
       unit:'additions',
       scope:'Lean statements',
