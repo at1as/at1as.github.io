@@ -1,0 +1,6 @@
+{%- comment -%}Keep listing previews compact; posts can supply a dedicated summary.{%- endcomment -%}
+{%- assign preview = include.post.summary | default: include.post.excerpt | default: include.post.content -%}
+{%- assign preview = preview | markdownify | replace: '</p>', ' </p>' | strip_html | normalize_whitespace | truncatewords: 50, '…' -%}
+{%- if preview != empty -%}
+<div class="post-excerpt"><p>{{ preview }}</p></div>
+{%- endif -%}
