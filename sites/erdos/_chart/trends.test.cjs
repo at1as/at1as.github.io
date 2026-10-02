@@ -44,18 +44,44 @@ test('rolling rates use actual elapsed time across gaps and do not treat additio
   assert.ok(T.rolling(data,'resolved',7).some(r=>r.days>7));
 });
 
-test('release windows assign launch-day observations once and suppress incomplete rates',()=>{
+test('release windows suppress rates outside available history',()=>{
   const recent=T.releaseWindow(data,data.points.at(-1).date,'resolved');
   assert.equal(recent.before.complete,true); assert.equal(recent.after.complete,false); assert.equal(recent.after.rate,null);
   const old=T.releaseWindow(data,data.points[0].date,'resolved'); assert.equal(old.before.complete,false);
-  const full=T.releaseWindow(data,'2026-07-09','lean');
-  assert.equal(full.before.complete,true); assert.equal(full.after.complete,true);
-  assert.equal(full.after.count,data.intervals.filter(i=>i.end>='2026-07-09'&&i.end<'2026-08-08').reduce((n,i)=>n+i.changes.lean.gained.length,0));
-  assert.equal(full.after.rate,full.after.count/30);
 });
 
-async function boot(fail=false,hash='',payload=data) {
-  const dom=new JSDOM(fs.readFileSync(path.join(site,'trends/index.html'),'utf8'),{url:'https://example.com/sites/erdos/trends/'+hash,runScripts:'outside-only',pretendToBeVisual:true});
+test('release comparisons explain uncertainty and link its evidence without an exact multiplier',async()=>{
+  const app=await boot();
+  try {
+    app.change('#trend-metric','lean');app.change('#compare-release','opus-4-6');
+    assert.equal(app.q('#before-rate').textContent,'Uncertain');
+    assert.equal(app.q('#after-rate').textContent,'Uncertain');
+    assert.match(app.q('#before-count').textContent,/26–59 observed Lean solution additions/);
+    assert.match(app.q('#after-count').textContent,/15–50 observed Lean solution additions/);
+    assert.match(app.q('#window-verdict').textContent,/cannot place.*No exact rate or multiplier/);
+    assert.doesNotMatch(app.q('#window-verdict').textContent,/1\.74|×/);
+    assert.equal(app.q('#window-uncertainty').hidden,false);
+    const rows=[...app.w.document.querySelectorAll('#window-intervals li')];
+    assert.equal(rows.length,3);
+    const gap=rows.find(row=>row.textContent.includes('Jan 30, 2026'));
+    assert.match(gap.textContent,/Feb 14, 2026.*32.*release date/);
+    const interval=data.intervals.find(i=>i.start==='2026-01-30'&&i.end==='2026-02-14');
+    assert.equal(gap.querySelector('a').href,`https://github.com/teorth/erdosproblems/compare/${interval.before}...${interval.after}`);
+    app.change('#compare-release','gpt-5-1');
+    assert.equal(app.q('#before-rate').textContent,'0.07/day');
+    assert.equal(app.q('#after-rate').textContent,'0.53/day');
+    assert.match(app.q('#window-verdict').textContent,/8\.00×.*observed/);
+    assert.equal(app.q('#window-uncertainty').hidden,true);
+    assert.equal(app.q('#window-intervals').children.length,0);
+    app.change('#compare-release','astra');
+    assert.equal(app.q('#after-rate').textContent,'Incomplete');
+    assert.match(app.q('#after-count').textContent,/available history/);
+    assert.doesNotMatch(app.q('#window-verdict').textContent,/×/);
+  } finally {app.dom.window.close();}
+});
+
+async function boot(fail=false,hash='',payload=data,html=fs.readFileSync(path.join(site,'trends/index.html'),'utf8')) {
+  const dom=new JSDOM(html,{url:'https://example.com/sites/erdos/trends/'+hash,runScripts:'outside-only',pretendToBeVisual:true});
   const w=dom.window;
   w.fetch=async()=>{if(fail)throw Error('offline');return{ok:true,json:async()=>structuredClone(payload)};};
   w.matchMedia=()=>({matches:true});w.AbortSignal.timeout=()=>new w.AbortController().signal;
@@ -66,6 +92,24 @@ async function boot(fail=false,hash='',payload=data) {
   const change=(s,value)=>{q(s).value=value;q(s).dispatchEvent(new w.Event('change',{bubbles:true}));};
   return {dom,w,q,change};
 }
+
+test('cached HTML without the uncertainty section still loads and explains release comparisons',async()=>{
+  const html=fs.readFileSync(path.join(site,'trends/index.html'),'utf8')
+    .replace(/<details id="window-uncertainty"[\s\S]*?<\/details>/,'')
+    .replace('Release day + 29 days','30 days after');
+  assert.ok(!html.includes('id="window-uncertainty"'));
+  const app=await boot(false,'',data,html);
+  try {
+    assert.equal(app.q('#trends-message').hidden,true);
+    assert.equal(app.q('#trend-metric').disabled,false);
+    app.change('#trend-metric','lean');app.change('#compare-release','opus-4-6');
+    assert.equal(app.q('#window-uncertainty').hidden,false);
+    assert.equal(app.q('#window-intervals').children.length,3);
+    assert.match(app.q('#window-uncertainty p').textContent,/do not add the upper counts/);
+    assert.match(app.q('#release-comparison .chart-note').textContent,/UTC dates, not launch times/);
+    assert.equal(app.q('#after-rate').previousElementSibling.textContent,'Release day + 29 days');
+  } finally {app.dom.window.close();}
+});
 
 function nextMonthData() {
   const payload=structuredClone(data),last=payload.points.at(-1);

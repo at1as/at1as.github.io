@@ -56,14 +56,25 @@
     });
   }
   function releaseWindow(data, date, metric, days = 30) {
-    const release = time(date);
+    const release = time(date), uncertainIntervals = new Set();
     const evaluate = (start, end) => {
-      const count = data.intervals.filter(i => time(i.end) >= start && time(i.end) < end)
-        .reduce((sum, i) => sum + i.changes[metric].gained.length, 0);
-      const complete = start >= time(data.points[0].date) && end <= time(data.points.at(-1).date);
-      return {start: iso(start), end: iso(end), count, complete, rate: complete ? count / days : null};
+      let count = 0, uncertain = 0;
+      for (const interval of data.intervals) {
+        const a = time(interval.start), b = time(interval.end), gains = interval.changes[metric].gained.length;
+        if (!gains || b < start || a >= end) continue;
+        // Snapshot dates do not locate a transition within its interval. Even
+        // an observation on a boundary date can include changes on either side
+        // of midnight, so only wholly contained intervals get a definite count.
+        if (a >= start && b < end) count += gains;
+        else { uncertain += gains; uncertainIntervals.add(interval); }
+      }
+      // A first snapshot on the starting date may be partway through that day.
+      const complete = start > time(data.points[0].date) && end <= time(data.points.at(-1).date);
+      return {start: iso(start), end: iso(end), count, uncertain, possible: count + uncertain,
+        complete, rate: complete && !uncertain ? count / days : null};
     };
-    return {before: evaluate(release - days * DAY, release), after: evaluate(release, release + days * DAY)};
+    const before = evaluate(release - days * DAY, release), after = evaluate(release, release + days * DAY);
+    return {before, after, uncertainIntervals: [...uncertainIntervals].sort((a,b)=>a.start.localeCompare(b.start))};
   }
   function events(data, metric, period, kinds = ['gained', 'added', 'lost', 'removed']) {
     // Rate windows use the same baseline-exclusive, end-inclusive observations
