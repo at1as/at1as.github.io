@@ -4,8 +4,8 @@
  */
 
 :root {
-  --primary-color: #0b9edc;
-  --primary-dark: #0284c7;
+  --primary-color: #0878a4;
+  --primary-dark: #03658c;
   --secondary-color: #64748b;
   --text-color: #1e293b;
   --title-color: #334155;
@@ -80,7 +80,7 @@ img {
 
 /* Utility: wider-than-post wrapper for special content */
 .wide-bleed {
-  width: 125% !important;
+  width: 125%;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -506,6 +506,7 @@ img {
 
 /* Compact tables scroll; long-form comparisons become editorial entries. */
 @media (max-width: 768px) {
+  .wide-bleed,
   .premium-table {
     width: 100%;
     margin: 2.25rem 0;
@@ -839,6 +840,7 @@ img {
 .talk-links {
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
@@ -931,11 +933,18 @@ img {
 
 .close-modal {
   position: absolute;
-  top: -40px;
-  right: 0;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 35px;
+  line-height: 1;
   font-weight: bold;
+  cursor: pointer;
   transition: 0.3s;
   z-index: 1001;
 }
@@ -945,6 +954,11 @@ img {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
+}
+
+.close-modal:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
 }
 
 .prev-photo,
@@ -1174,7 +1188,7 @@ img {
 
 .contact-intro {
   text-align: center;
-  margin-bottom: 38px;
+  margin-bottom: 24px;
 }
 
 .contact-intro p {
@@ -1229,13 +1243,13 @@ img {
 
 .contact-cta {
   text-align: center;
-  padding: 40px 30px;
+  padding: 24px 20px;
   background: linear-gradient(to bottom, var(--background-alt) 0%, var(--background-color) 100%);
   border-radius: var(--border-radius);
-  margin-top: 40px;
+  margin: 0 0 40px;
 }
 
-.contact-cta h2 {
+.contact-cta h1 {
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--text-color);
@@ -1363,6 +1377,7 @@ img {
 
   .mobile-menu-toggle {
     display: flex;
+    width: 44px;
   }
 
   .hamburger-icon,

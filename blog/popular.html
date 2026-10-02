@@ -47,15 +47,7 @@ permalink: /blog/popular/
               {% endif %}
             </div>
 
-            <div class="post-excerpt">
-              {% if post.content contains '<!--more-->' %}
-                {{ post.content | split:'<!--more-->' | first }}
-              {% elsif post.excerpt %}
-                {{ post.excerpt }}
-              {% else %}
-                {{ post.content | strip_html | truncatewords: 50 }}
-              {% endif %}
-            </div>
+            {% include post-preview.html post=post %}
 
             <a href="{{ post.url }}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
           </article>
