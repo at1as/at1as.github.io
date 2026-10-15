@@ -51,7 +51,10 @@ test('release windows suppress rates outside available history',()=>{
 });
 
 test('release comparisons explain uncertainty and link its evidence without an exact multiplier',async()=>{
-  const app=await boot();
+  // Keep the incomplete-window case fixed as the live dataset grows past it.
+  const cutoff='2026-09-28';
+  const earlier={...data,points:data.points.filter(p=>p.date<=cutoff),intervals:data.intervals.filter(i=>i.end<=cutoff)};
+  const app=await boot(false,'',earlier);
   try {
     app.change('#trend-metric','lean');app.change('#compare-release','opus-4-6');
     assert.equal(app.q('#before-rate').textContent,'Uncertain');
@@ -207,8 +210,10 @@ test('trends controls render all measures, period evidence, and release comparis
   }
   app.change('#compare-release','astra');
   const astraWindow=T.releaseWindow(data,'2026-09-03',app.q('#trend-metric').value);
-  assert.equal(app.q('#after-rate').textContent,astraWindow.after.complete?`${astraWindow.after.rate.toFixed(2)}/day`:'Incomplete');
+  assert.equal(app.q('#after-rate').textContent,!astraWindow.after.complete?'Incomplete':
+    astraWindow.after.rate===null?'Uncertain':`${astraWindow.after.rate.toFixed(2)}/day`);
   if(!astraWindow.after.complete) assert.match(app.q('#window-verdict').textContent,/Not enough/);
+  else if(astraWindow.after.rate===null) assert.match(app.q('#window-verdict').textContent,/No exact rate or multiplier/);
   app.change('#compare-release','gpt-5-6');
   assert.doesNotMatch(app.q('#after-rate').textContent,/Incomplete/);
   assert.ok(app.q('#release-source a').href.startsWith('https://developers.openai.com/'));

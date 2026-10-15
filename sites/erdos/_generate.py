@@ -3,7 +3,7 @@
 
   python3 sites/erdos/_generate.py                 # render saved snapshot
   python3 sites/erdos/_generate.py --refresh       # refresh upstream history and latest counts
-  python3 sites/erdos/_generate.py --readme FILE   # import a saved upstream README
+  python3 sites/erdos/_generate.py --summary FILE  # import saved STATISTICS.md or a legacy README
 """
 
 import argparse
@@ -20,7 +20,6 @@ import yaml
 
 HERE = Path(__file__).resolve().parent
 SOURCE = "https://github.com/teorth/erdosproblems"
-RAW = "https://raw.githubusercontent.com/teorth/erdosproblems/main/README.md"
 TABLE = "https://teorth.github.io/erdosproblems/"
 RESOLVED = [("proved", "Proved", "green", "proof"),
             ("disproved", "Disproved", "orange", "disproof"),
@@ -39,9 +38,15 @@ def number(pattern, text):
     return int(match[1].replace(",", ""))
 
 
-def parse_readme(text):
-    # Read the auto-generated summary, never the much larger problem table.
-    summary = text.split("<!-- TABLE:START -->", 1)[1].split("\n|", 1)[0]
+def parse_summary(text, source=None):
+    # Summary counts moved from README.md to STATISTICS.md on October 6, 2026.
+    # Read only the generated block, never counts in prose or the problem table.
+    marker = 'STATS' if '<!-- STATS:START -->' in text else 'TABLE'
+    match = re.search(rf'<!-- {marker}:START -->(.*?)<!-- {marker}:END -->', text, re.DOTALL)
+    if not match or 'There are ' not in match[1].split('\n|', 1)[0]:
+        raise ValueError('Summary counts missing; use STATISTICS.md or a legacy README with inline counts.')
+    summary = match[1].split('\n|', 1)[0]
+    filename = 'STATISTICS.md' if marker == 'STATS' else 'README.md'
     counts = {}
     for count, query in re.findall(r"\[([\d,]+)\]\(https://teorth\.github\.io/erdosproblems/\?([^)]*)\)", summary):
         fields = parse_qs(query.replace("\\&", "&"))
@@ -61,7 +66,7 @@ def parse_readme(text):
 
     data = {
         "as_of": datetime.now(timezone.utc).date().isoformat(),
-        "source": RAW,
+        "source": source or f"https://raw.githubusercontent.com/teorth/erdosproblems/main/{filename}",
         "total": number(r"There are ([\d,]+) problems in total", summary),
         "statuses": {key: get(status=key) for key, *_ in RESOLVED + OPEN},
         "lean": {key: get(status=key, formal="Lean") for key, *_ in RESOLVED},
@@ -166,7 +171,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     source = parser.add_mutually_exclusive_group()
     source.add_argument('--refresh', action='store_true')
-    source.add_argument('--readme', type=Path)
+    source.add_argument('--summary', '--readme', type=Path,
+                        help='Import saved STATISTICS.md or a legacy README (without existing history)')
     source.add_argument('--history-repo', type=Path, help='Read an existing local bare upstream clone without fetching')
     args = parser.parse_args()
     history_path = HERE / 'history.json'
@@ -175,10 +181,10 @@ def main():
         from _history import collect
         history = collect(args.history_repo)
         data = history['snapshots'][-1]
-    elif args.readme:
+    elif args.summary:
         if history_path.exists():
             raise ValueError('Use --refresh to update the history and latest snapshot together.')
-        data = parse_readme(args.readme.read_text(encoding='utf-8'))
+        data = parse_summary(args.summary.read_text(encoding='utf-8'))
     elif history_path.exists():
         history = json.loads(history_path.read_text(encoding='utf-8'))
         data = history['snapshots'][-1].copy()

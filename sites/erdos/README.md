@@ -45,6 +45,8 @@ python3 sites/erdos/_generate.py --history-repo /path/to/erdosproblems.git
 
 Both refresh commands rebuild the problem-level transition data from the same selected commits. Offline generation reuses `insights.json` only if its commit sequence matches the saved history; a mismatch requires `--refresh` or `--history-repo`. The generator validates all counts and renders both views before replacing output files.
 
+On each refresh, the latest YAML counts must match the generated summary at the fetched branch head. The importer reads `STATISTICS.md` when present and falls back to the inline summary in older `README.md` revisions. A missing, malformed, or mismatched summary stops the refresh before replacing output files. `history.json` records the immutable `summary_source` used for this check. Standalone imports without an existing history accept `--summary FILE` (`--readme FILE` remains an alias) for either summary format.
+
 ## What the trend charts measure
 
 `_insights.py` matches problem numbers across each pair of saved snapshots. For resolved status, Lean solutions, and Lean statements, it separates four types of change: an existing entry gains or loses the property, and a qualifying entry is added or removed. A switch from proved to disproved remains within the resolved group and is not a gain. Lean status can change independently of informal resolution. Duplicate IDs in either snapshot are excluded from identity matching; any residual count change is shown as an unmatched-row adjustment. All five components reconcile to the aggregate change for every interval and every monthly total.
@@ -76,14 +78,16 @@ The prominent header and footer links back to Jason’s site, plus the breadcrum
 
 The source is always [`teorth/erdosproblems`](https://github.com/teorth/erdosproblems). History is reconstructed from `data/problems.yaml` along the `main` branch's first-parent history. Each slider step is the latest valid data revision on a recorded UTC date, with an immutable commit URL and its timestamp. The slider advances through **recorded snapshots**, not uniformly spaced calendar days. It does not invent values for missing dates. Playback interpolates chart geometry between snapshots; displayed counts remain actual recorded integers.
 
-Coverage begins **September 3, 2025**, after the initial import and broad “solved” category were replaced by the more detailed status categories. The preceding two days also contain the invalid status `solprovedved`. The October 1, 2026 refresh includes 264 usable dates through September 28, 2026, the latest upstream data revision. The number of database entries changes over time, so changes reflect additions and corrections as well as mathematical progress.
+On October 6, 2026, upstream [moved its summary counts to `STATISTICS.md`](https://github.com/teorth/erdosproblems/blob/main/STATISTICS.md) and [froze its displayed progress chart](https://github.com/teorth/erdosproblems#progress), following erdosproblems.com's change in how it presents problem statuses. The underlying YAML, per-problem table, and statistics CSV remain active. This independent visualization continues to use the YAML history and verifies its latest counts against the relocated summary; it does not use the frozen chart as a data source.
+
+Coverage begins **September 3, 2025**, after the initial import and broad “solved” category were replaced by the more detailed status categories. The preceding two days also contain the invalid status `solprovedved`. The October 14, 2026 refresh includes 271 usable dates through October 13, 2026, the latest upstream data revision. It adds seven dates and 78 statement formalizations since the previous snapshot: 864 statements are now formalized, while the total (1,221), resolved count (576), and Lean solution count (317) are unchanged. The number of database entries changes over time, so changes reflect additions and corrections as well as mathematical progress.
 
 Counting follows the current upstream `scripts/generate_readme.py` and `primitive_states` logic from `scripts/derive_status.py`:
 
 - Prefer `informal_status.state` and `formal_status.state`; fall back to splitting historical combined states such as `proved (Lean)`.
 - Keep proved, disproved, otherwise solved, and the seven unresolved categories separate. In particular, **independent is not added to otherwise solved**. The upstream `statistics_history.csv` uses a different grouping and lacks some required breakdowns, so it is not used.
 - Count Lean solutions by formal status; statement formalization by `formalized.state == yes`. Lean solutions outside the resolved categories remain visible as an overlapping attribute.
-- Use the same prize, OEIS, comment, multiplicity, and A387000 threshold rules as the current README generator. Count every source row as that generator does; historical duplicate problem IDs are disclosed in `duplicate_problem_numbers`, not silently deduplicated.
+- Use the same prize, OEIS, comment, multiplicity, and A387000 threshold rules as the current upstream summary generator. Count every source row as that generator does; historical duplicate problem IDs are disclosed in `duplicate_problem_numbers`, not silently deduplicated.
 - Reject unknown status labels and malformed YAML. Try an earlier valid data revision from the same date, otherwise omit the date. `omitted_revisions` records every rejection. For example, some January/February 2026 revisions use the invalid state `proven`; it is not silently mapped to `proved`.
 - Require each displayed status partition to sum to its total and each Lean subdivision to fit its parent. If the newest upstream data cannot be validated, stop without replacing the saved history.
 
@@ -98,7 +102,7 @@ npm test --prefix sites/erdos/_chart
 bundle exec ruby -E UTF-8 -S jekyll build
 ```
 
-Tests cover historical counting rules, legacy/primitive status migration, overlaps, invalid states, duplicate rows, conservation and common scale across every saved date, controls, pause/replay/end behavior, reduced motion, selected-date export, failed-load recovery, release placement across date gaps, release selection, marker hit-target separation, SEO metadata, analytics initialization, preview exclusion, and links back to the main site.
+Tests cover both summary formats and rejection of missing or mismatched summaries, historical counting rules, legacy/primitive status migration, overlaps, invalid states, duplicate rows, conservation and common scale across every saved date, controls, pause/replay/end behavior, reduced motion, selected-date export, failed-load recovery, release placement across date gaps, release selection, marker hit-target separation, SEO metadata, analytics initialization, preview exclusion, and links back to the main site.
 
 Trend checks also reconcile every interval/month to the Sankey source, distinguish imports from state changes, exercise duplicate IDs, verify elapsed-time rates and release-window boundaries, and run the actual D3 renderer and interactive controls in JSDOM. Regression checks cover fresh data with cached HTML, month rollover, and keyboard focus after release selection. D3 is pinned to 7.9.0 and its ISC license is copied alongside the local browser bundle.
 
