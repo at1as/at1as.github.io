@@ -1,6 +1,61 @@
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
-from _history import count_rows, primitive_states
+from _generate import parse_summary
+from _history import count_rows, primitive_states, verify_summary
+
+
+class SummaryFormatTest(unittest.TestCase):
+    summary = (Path(__file__).parent / '_fixtures/summary.md').read_text()
+
+    def test_statistics_page_counts_and_source(self):
+        data = parse_summary(self.summary)
+        self.assertEqual(data['total'], 1221)
+        self.assertEqual(data['statuses'], {
+            'proved': 336, 'disproved': 139, 'solved': 101, 'open': 593,
+            'decidable': 8, 'falsifiable': 25, 'verifiable': 7,
+            'not provable': 3, 'not disprovable': 6, 'independent': 3,
+        })
+        self.assertEqual(data['lean'], {'proved': 183, 'disproved': 97, 'solved': 33})
+        self.assertEqual(data['attributes']['statements'], 864)
+        self.assertEqual(data['attributes']['solutions'], 317)
+        self.assertEqual(data['attributes']['oeis_submitted'], 0)
+        self.assertTrue(data['source'].endswith('/STATISTICS.md'))
+
+    def legacy_readme(self):
+        return self.summary.replace('STATS:', 'TABLE:').replace('&', '\\&').replace(
+            '<!-- TABLE:END -->', '\n| # | Status |\n| [999](https://teorth.github.io/erdosproblems/?status=proved) | proved |\n<!-- TABLE:END -->')
+
+    def test_legacy_inline_counts_ignore_problem_table(self):
+        current, legacy = parse_summary(self.summary), parse_summary(self.legacy_readme())
+        for key in ('total', 'statuses', 'lean', 'attributes'):
+            self.assertEqual(current[key], legacy[key])
+        self.assertTrue(legacy['source'].endswith('/README.md'))
+
+    def test_relocated_or_malformed_summary_has_actionable_error(self):
+        for text in ('See [Summary statistics](STATISTICS.md).\n<!-- TABLE:START -->\n| # | Status |\n<!-- TABLE:END -->',
+                     self.summary.replace('<!-- STATS:END -->', '')):
+            with self.assertRaisesRegex(ValueError, 'use STATISTICS.md'):
+                parse_summary(text)
+
+    def test_refresh_uses_statistics_when_present_and_legacy_readme_otherwise(self):
+        for path, content in [('STATISTICS.md', self.summary), ('README.md', self.legacy_readme())]:
+            def read(repo, *args):
+                if args[0] == 'ls-tree':
+                    return 'README.md\n' + ('STATISTICS.md\n' if path == 'STATISTICS.md' else '')
+                self.assertEqual(args, ('show', 'head:' + path))
+                return content
+            with patch('_history.git', side_effect=read):
+                source = verify_summary('repo', 'head', parse_summary(self.summary))
+            self.assertEqual(source, f'https://github.com/teorth/erdosproblems/blob/head/{path}')
+
+    def test_refresh_rejects_stale_summary(self):
+        snapshot = parse_summary(self.summary)
+        snapshot['attributes']['statements'] = 865
+        with patch('_history.git', side_effect=['README.md\nSTATISTICS.md\n', self.summary]):
+            with self.assertRaisesRegex(ValueError, 'attributes do not match STATISTICS.md'):
+                verify_summary('repo', 'head', snapshot)
 
 
 class HistoryCountsTest(unittest.TestCase):

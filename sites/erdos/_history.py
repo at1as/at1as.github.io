@@ -10,7 +10,7 @@ import subprocess
 
 import yaml
 
-from _generate import RESOLVED, OPEN, validate
+from _generate import RESOLVED, OPEN, parse_summary, validate
 
 REPOSITORY = 'https://github.com/teorth/erdosproblems'
 # Before this date, the database was being imported and "solved" was a broad
@@ -46,7 +46,7 @@ def count_rows(rows, commit, timestamp):
         if not number:
             raise ValueError('Missing problem number')
         if number in seen_ids:
-            # The upstream README counts rows, not unique problem IDs. Preserve
+            # The upstream summary counts rows, not unique problem IDs. Preserve
             # that behavior rather than silently changing historical totals.
             duplicates.add(number)
         seen_ids.add(number)
@@ -84,6 +84,17 @@ def count_rows(rows, commit, timestamp):
         result['duplicate_problem_numbers'] = sorted(duplicates)
     validate(result)
     return result
+
+
+def verify_summary(repo, head, snapshot):
+    paths = git(repo, 'ls-tree', '--name-only', head, '--', 'STATISTICS.md', 'README.md').splitlines()
+    path = 'STATISTICS.md' if 'STATISTICS.md' in paths else 'README.md'
+    source = f'{REPOSITORY}/blob/{head}/{path}'
+    summary = parse_summary(git(repo, 'show', f'{head}:{path}'), source=source)
+    for key in ('total', 'statuses', 'lean', 'attributes'):
+        if snapshot[key] != summary[key]:
+            raise ValueError(f'Latest YAML {key} do not match {path}; keeping the existing published history')
+    return source
 
 
 def collect(repo=None):
@@ -124,9 +135,11 @@ def collect(repo=None):
     latest_data_commit = git(repo, 'log', '-1', '--format=%H', head, '--', 'data/problems.yaml').strip()
     if snapshots[-1]['commit'] != latest_data_commit:
         raise ValueError('Latest upstream data is invalid; keeping the existing published history')
+    summary_source = verify_summary(repo, head, snapshots[-1])
     return dict(schema_version=1, repository=REPOSITORY, source_head=head,
+                summary_source=summary_source,
                 retrieved_at=datetime.now(timezone.utc).isoformat(),
                 sampling='Latest valid data revision per recorded UTC date, on the main branch first-parent history.',
-                categories='Current README categories, counted from primitive statuses or their legacy combined representation. Independent remains separate from solved.',
+                categories='Upstream summary categories, counted from primitive statuses or their legacy combined representation. Independent remains separate from solved.',
                 start_note='Starts after the initial import and status-category cleanup, on 2025-09-03.',
                 omitted_revisions=omitted, snapshots=snapshots)
