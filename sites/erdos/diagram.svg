@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1000" role="group" aria-labelledby="flow-title flow-desc">
 <title id="flow-title">Erdős problems: status and Lean formalization</title>
 <desc id="flow-desc">1,221 problems divide into 576 resolved and 645 open or unresolved. Layout by D3 Sankey. Bar heights and ribbon widths are proportional to counts. A text table follows the chart.</desc>
-<metadata id="flow-source">Data: Erdős problems database contributors, maintained by Thomas Bloom and Terence Tao. Source: https://github.com/teorth/erdosproblems/blob/0ac519b69bcb571f710965a67a3ca16029cacdb5/data/problems.yaml. Snapshot: 2026-10-13. Visualization: Jason Willems. Layout: D3 Sankey.</metadata>
+<metadata id="flow-source">Data: Erdős problems database contributors, maintained by Thomas Bloom and Terence Tao. Source: https://github.com/teorth/erdosproblems/blob/7452bbf3e69133afa4b58abd71c82c3c97951916/data/problems.yaml. Snapshot: 2026-10-16. Visualization: Jason Willems. Layout: D3 Sankey.</metadata>
 <style>
       text { font-family: Arial, Helvetica, sans-serif; fill: #17253c; }
       .node-title { font-size: 19px; font-weight: 500; }
