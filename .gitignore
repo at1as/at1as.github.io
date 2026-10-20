@@ -26,3 +26,7 @@ Gemfile.lock
 # Local environment files
 .env
 .env.*
+
+# Python verification tools
+__pycache__/
+*.py[cod]

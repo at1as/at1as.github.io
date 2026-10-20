@@ -8,5 +8,4 @@ Sitemap: https://www.jasonwillems.com/sitemap.xml
 Disallow: /_site/
 Disallow: /vendor/
 Disallow: /.git/
-Disallow: /assets/js/
 Disallow: /feed.xml

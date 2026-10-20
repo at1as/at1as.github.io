@@ -105,6 +105,24 @@ enabled on the shared stream and handles client navigation. Calculator values ar
 not added to analytics or URLs. Do not inject another tag or SPA page-view handler
 here: edit the corresponding source repo and re-export the generated files.
 
+## Sitemap and search metadata
+
+The root `sitemap.xml` includes Jekyll content plus canonical directory-index pages
+from the static apps registered in `_data/static_sitemaps.json`. New prediction pages
+are picked up on each Jekyll build, including future copied exports. Exclude redirects
+and error pages in that configuration. Do not list filtered URLs, evidence JSON,
+research downloads, Next route payloads or asset files. Keep generated app files intact.
+
+Build with `JEKYLL_ENV=production bundle exec jekyll build`, then run `make check-seo`.
+Python 3.9+ is the only extra requirement; the checker uses the standard library. CI runs
+it before publishing. It checks coverage, duplicate URLs, canonical agreement, robots,
+headings, distinct titles/descriptions and crawler-visible social metadata for both apps.
+No build timestamps are added as `lastmod`; only actual content dates should be used.
+
+Edit app metadata in its source repo and re-export. `robots.txt` advertises the sitemap
+and permits scripts/styles needed for rendering. Search Console is the place to check
+Google's crawl/indexing status; deployment and a valid sitemap do not prove indexing.
+
 ## Deployment
 
 The Pages workflow builds and deploys on pushes to `master`. Push a reviewed change branch and merge it into `master` to publish; pushing the branch alone does not deploy the site.

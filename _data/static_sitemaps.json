@@ -1,0 +1,17 @@
+[
+  {
+    "root": "/sites/kurzweil/",
+    "exclude": [
+      "/sites/kurzweil/categories/",
+      "/sites/kurzweil/404/",
+      "/sites/kurzweil/_not-found/"
+    ]
+  },
+  {
+    "root": "/sites/what-if-i-joined/",
+    "exclude": [
+      "/sites/what-if-i-joined/404/",
+      "/sites/what-if-i-joined/_not-found/"
+    ]
+  }
+]

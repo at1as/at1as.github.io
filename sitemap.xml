@@ -24,4 +24,18 @@
   <url>
     <loc>{{ '/sites/erdos/trends/' | absolute_url | xml_escape }}</loc>
   </url>
+  <!-- Static exports are not Jekyll pages. Discover directory-index HTML on each build. -->
+  {% assign exported_pages = site.static_files | where: 'name', 'index.html' | sort: 'path' %}
+  {% for exported_site in site.data.static_sitemaps %}
+    {% assign prefix_length = exported_site.root | size %}
+    {% for file in exported_pages %}
+      {% assign prefix = file.path | slice: 0, prefix_length %}
+      {% if prefix == exported_site.root %}
+        {% assign public_url = file.path | replace: '/index.html', '/' %}
+        {% unless exported_site.exclude contains public_url %}
+          <url><loc>{{ public_url | absolute_url | xml_escape }}</loc></url>
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
 </urlset>
