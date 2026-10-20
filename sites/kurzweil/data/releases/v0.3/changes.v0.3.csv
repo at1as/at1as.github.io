@@ -1,0 +1,85 @@
+﻿id,title,previous_verdict,new_verdict,at_deadline,by_review,reason
+K001,Computer defeats the world chess champion,UNREVIEWED,CORRECT,FULFILLED,FULFILLED,UNREVIEWED -> CORRECT: immaterial date conflict no longer blocks the outcome.
+K002,Lighter and thinner portable computers,CORRECT,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K003,Computers embedded in clothing and jewelry,UNREVIEWED,LATE,PARTLY_FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K004,At least a dozen body-networked computers,UNSCORABLE,WRONG,NOT_FULFILLED,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K005,Personal devices largely without moving parts,UNREVIEWED,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K006,Most portable computers lack keyboards,UNREVIEWED,LATE,PARTLY_FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K007,Home and office servers for most users,UNREVIEWED,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K008,Wireless delivery of digital media and software,CORRECT,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K009,Wireless links replace some peripheral cables,PARTIAL,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K010,"Routine, reliable, high-bandwidth wireless access",PARTIAL,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K011,Dictation creates the majority of text,WRONG_MISSED,WRONG,NOT_FULFILLED,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K012,Ubiquitous language interfaces and animated assistants,PARTIAL,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K013,Paper-like displays and routine electronic reading,PARTIAL,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K014,See-through glasses with direct retinal projection,UNREVIEWED,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K015,Glasses and contact-lens displays in the 2010s,UNREVIEWED,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K016,Tiny devices project auditory environments,UNREVIEWED,LATE,PARTLY_FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K017,Anytime immersive audiovisual virtual reality,UNREVIEWED,LATE,PARTLY_FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K018,Augmented-reality overlays,UNREVIEWED,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K019,People largely removed from the battlefield,WRONG_MISSED,WRONG,NOT_FULFILLED,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K020,Unmanned aircraft dominate warfare,UNSCORABLE,PARTIAL,NOT_FULFILLED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K021,Solar meets worldwide energy demand,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K022,The Singularity and billionfold intelligence expansion,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K023,The specific Kurzweil–Kapor Turing-test wager,PENDING,PENDING,NOT_DUE,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K024,Bloodstream nanobots for scouting and limited repair,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K025,A thousand-dollar brain-capacity computer in 2020,UNSCORABLE,WRONG,NOT_FULFILLED,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K026,Automated intelligent highways,WRONG_MISSED,PARTIAL,NOT_FULFILLED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K027,Life expectancy over 100,WRONG_MISSED,WRONG,NOT_FULFILLED,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K028,Life expectancy reaches 120,PENDING,PENDING,NOT_DUE,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K029,Gesture and spoken language become dominant input,UNREVIEWED,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K030,Routine high-acuity retinal displays,UNREVIEWED,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K031,Convincing full-body tactile virtual reality,UNREVIEWED,WRONG,NOT_FULFILLED,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K032,High-bandwidth neural interfaces augment brain functions,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K033,Supercomputers reach 20 quadrillion calculations per second,LATE,LATE,NOT_FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K034,The 2019 thousand-dollar brain-compute estimate,UNSCORABLE,WRONG,NOT_FULFILLED,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K035,Thousand-brain computation for a thousand dollars,PENDING,PENDING,NOT_DUE,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K036,Effective models of all brain regions,UNREVIEWED,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K037,Developed-world universal basic income,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K038,Worldwide universal basic income,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K039,Nonlinear electronic documents,UNSCORABLE,CORRECT,UNDATED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K040,Information technology pressures authoritarian control,UNSCORABLE,PARTIAL,UNDATED,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K041,Wearable diagnosis and health intervention,PARTIAL,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K042,Longevity escape velocity,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K043,Brain-to-cloud cognitive integration,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K044,Renewable electricity reaches the full-demand threshold,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K045,Human-level AI by the end of the 2020s,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K046,Portable computers in many tiny form factors,UNREVIEWED,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K047,Automated systems eliminate most human driving,WRONG_MISSED,WRONG,NOT_FULFILLED,NOT_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K048,Common many-language speech-to-speech translation,PARTIAL,LATE,PARTLY_FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K049,Ubiquitous bidirectional cochlear network interfaces,PENDING,PENDING,NOT_DUE,PARTLY_FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K050,Invisible computing embedded throughout the environment,UNREVIEWED,CORRECT,FULFILLED,FULFILLED,Complete deadline/current outcome assessment under explicit scope; separate uncertainty from verdict.
+K051,3D integrated circuits become common,NEW,LATE,PARTLY_FULFILLED,FULFILLED,New independently assessed source extraction.
+K052,"$1,000 PCs reach one teraflop",NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K053,Idle Internet PCs form virtual supercomputers,NEW,LATE,PARTLY_FULFILLED,FULFILLED,New independently assessed source extraction.
+K054,Interest in neural methods grows,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K055,Computer cameras recognize their owners,NEW,LATE,PARTLY_FULFILLED,FULFILLED,New independently assessed source extraction.
+K056,Students carry personal sub-pound tablets,NEW,PARTIAL,NOT_FULFILLED,PARTLY_FULFILLED,New independently assessed source extraction.
+K057,Learning materials arrive wirelessly,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K058,Teachers shift mainly to mentoring,NEW,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,New independently assessed source extraction.
+K059,At least half of transactions occur online,NEW,WRONG,NOT_FULFILLED,NOT_FULFILLED,New independently assessed source extraction.
+K060,Work groups become geographically distributed,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K061,Household robots emerge before full acceptance,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K062,Telemedicine includes remote tactile examinations,NEW,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,New independently assessed source extraction.
+K063,Pattern recognition becomes routine in medical imaging,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K064,Patient histories become lifelong digital records,NEW,LATE,PARTLY_FULFILLED,FULFILLED,New independently assessed source extraction.
+K065,Screens become the preferred visual-art medium,NEW,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,New independently assessed source extraction.
+K066,Nonmusicians compose music with software,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K067,Remote touch technology begins to emerge,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K068,Photorealistic virtual rooms replace text chat,NEW,WRONG,NOT_FULFILLED,NOT_FULFILLED,New independently assessed source extraction.
+K069,Wireless phones routinely carry live video,NEW,LATE,PARTLY_FULFILLED,FULFILLED,New independently assessed source extraction.
+K070,Electronic storage fully replaces rotating media,NEW,WRONG,NOT_FULFILLED,NOT_FULFILLED,New independently assessed source extraction.
+K071,Carbon-nanotube circuitry becomes prevalent,NEW,WRONG,NOT_FULFILLED,NOT_FULFILLED,New independently assessed source extraction.
+K072,Neural and genetic methods consume most computation,NEW,PARTIAL,NOT_FULFILLED,PARTLY_FULFILLED,New independently assessed source extraction.
+K073,Brain scanning clarifies specialized neural regions,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K074,Tiny diffraction cameras replace most lenses,NEW,WRONG,NOT_FULFILLED,NOT_FULFILLED,New independently assessed source extraction.
+K075,Calls provide convincing three-dimensional presence,NEW,PARTIAL,NOT_FULFILLED,PARTLY_FULFILLED,New independently assessed source extraction.
+K076,Most meetings need no physical co-location,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K077,Practical speech translation covers common language pairs,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K078,AI tutors deliver most learning,NEW,WRONG,NOT_FULFILLED,NOT_FULFILLED,New independently assessed source extraction.
+K079,Workers spend most time learning,NEW,WRONG,NOT_FULFILLED,NOT_FULFILLED,New independently assessed source extraction.
+K080,Reliable household robots become ubiquitous,NEW,PARTIAL,PARTLY_FULFILLED,PARTLY_FULFILLED,New independently assessed source extraction.
+K081,Transportation accidents become very rare,NEW,WRONG,NOT_FULFILLED,NOT_FULFILLED,New independently assessed source extraction.
+K082,Human-machine creative collaborations gain recognition,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K083,Major aging and cancer mechanisms become understood,NEW,CORRECT,FULFILLED,FULFILLED,New independently assessed source extraction.
+K084,Simulated people mediate nearly all transactions,NEW,PARTIAL,NOT_FULFILLED,PARTLY_FULFILLED,New independently assessed source extraction.

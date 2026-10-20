@@ -1,0 +1,4203 @@
+{
+  "schema_version": "0.2.0",
+  "release_id": "2026-10-14-evidence-v0.2",
+  "as_of": "2026-10-14",
+  "title": "Kurzweil scorecard: source verification and reconciliation supplement",
+  "review_disclosure": "AI-assisted source review and editorial assessments; not human peer review. Original book editions were not independently collated. Author retrospectives are distinguished from contemporary publications and independent outcome evidence.",
+  "scope": "50 curated forecast/version records plus a disposition for every one of the 88 imported leads. Not a lifetime census and not a representative statistical sample. Related unlocated versions are quarantined rather than silently replaced.",
+  "legacy_input_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+  "sources_file": "sources.v0.2.json",
+  "records": [
+    {
+      "id": "K001",
+      "slug": "k001-chess-champion-resolve-the-original-deadline",
+      "title": "Chess champion: resolve the original deadline",
+      "prediction_paraphrase": "A computer defeats the world chess champion.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "AI & software",
+      "tags": [
+        "chess",
+        "benchmark"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K001",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-001",
+        "DEC-001",
+        "EXE-001"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1990,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "UNRESOLVED_ORIGINAL_EDITION"
+      },
+      "target": {
+        "text": "1998 in author retrospective; 2000 in legacy summaries — unresolved",
+        "deadline_year": null,
+        "precision": "CONFLICTING_1998_OR_2000",
+        "year_start": null,
+        "year_end": null,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "ATTRIBUTION_CONFLICT",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Win a standard match against the reigning champion; not merely one game.",
+      "assessment": {
+        "review_state": "ATTRIBUTION_UNRESOLVED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "FULFILLED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "IBM documents the 1997 match victory. The intake alternates 1998 and 2000. The author’s retrospective names 1998, but the relevant original-edition passage was not obtained. Outcome is confirmed; the historical attribution and exact drift remain open.",
+        "first_full_achievement_year": 1997,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "Overview, printed p. 5",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O01",
+          "locator": "1997 six-game match",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "Do not label this a failed prediction, and do not publish a precise −1/−3 year drift until the edition and deadline are settled. Outcome confirmation alone does not verify every metadata field.",
+      "open_questions": [
+        "Obtain the original chess-prediction page and edition; resolve 1998 versus 2000."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-001",
+          "relation": "HOLD_ATTRIBUTION_CONFLICT"
+        },
+        {
+          "legacy_id": "DEC-001",
+          "relation": "HOLD_ATTRIBUTION_CONFLICT"
+        },
+        {
+          "legacy_id": "EXE-001",
+          "relation": "HOLD_ATTRIBUTION_CONFLICT"
+        }
+      ],
+      "subcategory": "Game-playing AI"
+    },
+    {
+      "id": "K002",
+      "slug": "k002-lighter-and-thinner-portable-computers",
+      "title": "Lighter and thinner portable computers",
+      "prediction_paraphrase": "Portable computers become markedly lighter and thinner.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "notebooks",
+        "weight",
+        "thickness"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K002",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-004"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Material reduction in both weight and thickness versus turn-of-century notebooks; not a claim about every model.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "CORRECT",
+        "as_of": "2026-10-14",
+        "at_deadline": "FULFILLED",
+        "at_review": "FULFILLED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Apple’s 2000 PowerBook weighed 5.7–6.1 lb, and its 2001 model was one inch thick. The 2008 MacBook Air weighed 3 lb and was at most 0.76 inch thick. These are contemporaneous manufacturer specifications supporting the qualitative trend before 2009.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": 2008,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 2, printed p. 12",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O02",
+          "locator": "Weight specifications",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O04",
+          "locator": "Thickness specifications",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O03",
+          "locator": "Weight and thickness specifications",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "The comparison is approximately the preceding decade, not a market-weighted 1999-versus-2009 average. “By 2008” is an evidence bound, not the first invention year.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-004",
+          "relation": "CANONICALIZE"
+        }
+      ],
+      "subcategory": "Miniaturization"
+    },
+    {
+      "id": "K003",
+      "slug": "k003-computers-embedded-in-clothing-and-jewelry",
+      "title": "Computers embedded in clothing and jewelry",
+      "prediction_paraphrase": "Clothing and jewelry commonly contain computers.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "embedded computing",
+        "adoption"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K003",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-005",
+        "DEC-011"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Common adoption of computing embedded in the specified objects; a phone carried in a pocket is not automatically clothing integration.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The original scope is stronger than “smartphones exist.” The retrospective relies partly on counting carried devices. Independent adoption evidence for literal clothing/jewelry integration has not been established here.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 3, printed pp. 12–13",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O09",
+          "locator": "Device ownership, contextual only",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "Keep source-confirmed but unscored; do not import the earlier “achieved” rating.",
+      "open_questions": [
+        "Common adoption of computing embedded in the specified objects; a phone carried in a pocket is not automatically clothing integration."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-005",
+          "relation": "MERGE_SAME_SCOPE"
+        },
+        {
+          "legacy_id": "DEC-011",
+          "relation": "MERGE_SAME_SCOPE"
+        }
+      ],
+      "subcategory": "Wearables"
+    },
+    {
+      "id": "K004",
+      "slug": "k004-at-least-a-dozen-body-networked-computers",
+      "title": "At least a dozen body-networked computers",
+      "prediction_paraphrase": "Typical people use at least twelve body-networked computers.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "body-area networks",
+        "device counts"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K004",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-006"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Define a separately countable computer and body network before testing population prevalence.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "UNSCORABLE",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "Counting chips inside a phone is not the same as counting independently networked worn devices. The legacy paraphrase removed both the numerical threshold and body-LAN condition. No stable counting convention is specified.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 5, printed pp. 14–15",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "This is an intrinsic unit/scope ambiguity, not a claim that hardware progress stopped. A published counting convention could make it scorable later.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-006",
+          "relation": "RESTORE_THRESHOLD"
+        }
+      ],
+      "subcategory": "Wearables"
+    },
+    {
+      "id": "K005",
+      "slug": "k005-personal-devices-largely-without-moving-parts",
+      "title": "Personal devices largely without moving parts",
+      "prediction_paraphrase": "Most personal computing devices have no moving parts.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "solid state",
+        "moving parts"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K005",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-007"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Define the population of personal computers, then measure the proportion with no moving parts.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "Phones and notebooks cannot be silently combined or separated to obtain a favorable majority. Apple’s 2008 Air still offered a hard disk as well as an SSD option. A sales/installed-base denominator is needed.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 6, printed p. 15",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O03",
+          "locator": "Hard-drive and SSD configurations",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "",
+      "open_questions": [
+        "Define the population of personal computers, then measure the proportion with no moving parts."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-007",
+          "relation": "CANONICALIZE"
+        }
+      ],
+      "subcategory": "Storage and device design"
+    },
+    {
+      "id": "K006",
+      "slug": "k006-most-portable-computers-lack-keyboards",
+      "title": "Most portable computers lack keyboards",
+      "prediction_paraphrase": "Most portable computers have no keyboards.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "keyboards",
+        "portable computing"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K006",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-008"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Fix whether phones count as portable computers and whether virtual keyboards count, then measure majority adoption.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The input changed keyboard absence into touch/voice use. Those are not equivalent. The required 2009 device-population comparison is still missing.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 7, printed p. 16",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O03",
+          "locator": "Full-size keyboard on MacBook Air",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "",
+      "open_questions": [
+        "Fix whether phones count as portable computers and whether virtual keyboards count, then measure majority adoption."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-008",
+          "relation": "CORRECT_SCOPE"
+        }
+      ],
+      "subcategory": "Input hardware"
+    },
+    {
+      "id": "K007",
+      "slug": "k007-home-and-office-servers-for-most-users",
+      "title": "Home and office servers for most users",
+      "prediction_paraphrase": "Most users maintain home and office servers.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Networks & communications",
+      "tags": [
+        "home servers",
+        "adoption"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K007",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-009"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Most users have the specified local storage servers; access to someone else’s cloud service is not a substitute.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The server/cloud distinction was blurred in the intake. The source is located, but no appropriate adoption denominator has been established. Missing evidence is not a WRONG verdict.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 8, printed p. 17",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "Most users have the specified local storage servers; access to someone else’s cloud service is not a substitute."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-009",
+          "relation": "CORRECT_SCOPE"
+        }
+      ],
+      "subcategory": "Local storage infrastructure"
+    },
+    {
+      "id": "K008",
+      "slug": "k008-wireless-delivery-of-digital-media-and-software",
+      "title": "Wireless delivery of digital media and software",
+      "prediction_paraphrase": "Digital media and software arrive as wireless files.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Media, education & culture",
+      "tags": [
+        "ebooks",
+        "music",
+        "film",
+        "software"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K008",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-010"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Real, deployed wireless file delivery for digital books, music, films and software without separately distributing physical objects.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "CORRECT",
+        "as_of": "2026-10-14",
+        "at_deadline": "FULFILLED",
+        "at_review": "FULFILLED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Kindle offered wireless books and periodicals in 2007. Apple documented large-scale music and film downloads in 2008 and wireless application delivery over cellular/Wi-Fi that July. This verifies a digital-distribution capability, not a majority share of all books or media.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": 2008,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 9, printed p. 18",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O05",
+          "locator": "Wireless book and periodical delivery",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O06",
+          "locator": "Music and film downloads",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O07",
+          "locator": "Wireless software delivery",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "Remove the intake’s unsupported “mostly all media” strengthening. The corrected claim is narrower and has contemporary outcome support.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-010",
+          "relation": "CORRECT_SCOPE"
+        },
+        {
+          "legacy_id": "DEC-005",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Digital distribution"
+    },
+    {
+      "id": "K009",
+      "slug": "k009-wireless-links-replace-some-peripheral-cables",
+      "title": "Wireless links replace some peripheral cables",
+      "prediction_paraphrase": "Short-range wireless links reduce peripheral cabling.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Networks & communications",
+      "tags": [
+        "Bluetooth",
+        "cables"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K009",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-011"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Substantial replacement across the listed component types, not the disappearance of every cable.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PARTIAL",
+        "as_of": "2026-10-14",
+        "at_deadline": "PARTIAL",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Bluetooth keyboards and mice were shipping years before 2009. This supports meaningful substitution, but does not establish the whole range of links, including displays. The intake’s “cables will vanish” wording was too absolute.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 12, printed p. 20",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O08",
+          "locator": "Bluetooth keyboard and mouse release",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O03",
+          "locator": "Wireless networking and retained wired ports",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "The partial assessment is conservative. Broader peripheral adoption evidence could justify regrading the original trend claim.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-011",
+          "relation": "CORRECT_SCOPE"
+        }
+      ],
+      "subcategory": "Peripheral connectivity"
+    },
+    {
+      "id": "K010",
+      "slug": "k010-routine-reliable-high-bandwidth-wireless-access",
+      "title": "Routine, reliable, high-bandwidth wireless access",
+      "prediction_paraphrase": "Computers routinely reach an ever-available high-bandwidth network.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Networks & communications",
+      "tags": [
+        "Wi-Fi",
+        "mobile access",
+        "adoption"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K010",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-012",
+        "DEC-013"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Routine built-in wireless connectivity plus the reliability/availability promised; do not equate ever-use with dominance.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PARTIAL",
+        "as_of": "2026-10-14",
+        "at_deadline": "PARTIAL",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Built-in Wi-Fi was real, and Pew found 56% of US adults had ever used wireless Internet in 2009. Only 19% had used handheld Internet the previous day. This supports substantial use, not universal reliable high-bandwidth access.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 13, printed p. 21",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O03",
+          "locator": "Built-in Wi-Fi",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O09",
+          "locator": "Ever-use versus yesterday-use figures",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "US survey only. “The Web mainly wirelessly” is not the original claim and is not demonstrated by these figures.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-012",
+          "relation": "CORRECT_AND_MERGE_SCOPE"
+        },
+        {
+          "legacy_id": "DEC-013",
+          "relation": "CORRECT_AND_MERGE_SCOPE"
+        },
+        {
+          "legacy_id": "DEC-004",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "DEC-025",
+          "relation": "QUARANTINE_DATE_DISTORTION"
+        }
+      ],
+      "subcategory": "Wireless Internet"
+    },
+    {
+      "id": "K011",
+      "slug": "k011-dictation-creates-the-majority-of-text",
+      "title": "Dictation creates the majority of text",
+      "prediction_paraphrase": "Speech dictation produces most text.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "AI & software",
+      "tags": [
+        "dictation",
+        "text input",
+        "adoption"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K011",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-013"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "More than half of text production uses dictation by the deadline; software availability alone does not qualify. The associated transcription-accuracy claim is retained as an unmeasured qualifier; failing the majority threshold is sufficient for the full conjunction to miss.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "WRONG_MISSED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Kurzweil’s own retrospective expressly concedes the majority threshold was not reached. That is direct evidence of the historical deadline miss, though not an independent global usage survey. Subsequent speech-recognition progress cannot retroactively make 2009 an on-time hit.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 14, printed p. 22",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "P01",
+          "locator": "Prediction 14 discussion: majority not reached",
+          "role": "AUTHOR_ADMISSION_OF_DEADLINE_MISS"
+        }
+      ],
+      "limitations": "Do not publish a numerical 2026 dictation share. This package confirms the deadline miss, not universal present-day nonfulfillment.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-013",
+          "relation": "RESTORE_THRESHOLD"
+        },
+        {
+          "legacy_id": "DEC-010",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Speech recognition"
+    },
+    {
+      "id": "K012",
+      "slug": "k012-ubiquitous-language-interfaces-and-animated-assistants",
+      "title": "Ubiquitous language interfaces and animated assistants",
+      "prediction_paraphrase": "Routine-task language interfaces become ubiquitous, often with avatars.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "AI & software",
+      "tags": [
+        "voice assistants",
+        "avatars",
+        "adoption"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K012",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-014"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Preserve ubiquity, responsive routine tasks and the frequent animated-persona qualifier.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PARTIAL",
+        "as_of": "2026-10-14",
+        "at_deadline": "PARTIAL",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "The author’s retrospective acknowledges non-ubiquity while describing narrower implementations. Apple’s 2011 Siri launch is later evidence of a capable assistant, not proof that the full 2009 adoption claim was met.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 15, printed p. 23",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "P01",
+          "locator": "Prediction 15 discussion",
+          "role": "AUTHOR_ADMISSION_AND_EXAMPLES"
+        },
+        {
+          "source_id": "O10",
+          "locator": "Siri capabilities and launch date",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "The standalone Siri app preceded iPhone 4S. Do not use 2011 as the first-ever assistant date or automatically mark the whole forecast LATE.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-014",
+          "relation": "RESTORE_QUALIFIERS"
+        },
+        {
+          "legacy_id": "AUD-027",
+          "relation": "QUARANTINE_COMPOUND_UNLOCATED"
+        },
+        {
+          "legacy_id": "DEC-007",
+          "relation": "QUARANTINE_CONFLICTING_VERSIONS"
+        },
+        {
+          "legacy_id": "EXE-003",
+          "relation": "QUARANTINE_CONFLICTING_VERSIONS"
+        }
+      ],
+      "subcategory": "Language interfaces"
+    },
+    {
+      "id": "K013",
+      "slug": "k013-paper-like-displays-and-routine-electronic-reading",
+      "title": "Paper-like displays and routine electronic reading",
+      "prediction_paraphrase": "Paper-like small displays support routine electronic reading.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Interfaces & virtual worlds",
+      "tags": [
+        "e-ink",
+        "display quality"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K013",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-015"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Assess the display-quality and routine-reading requirements together, without changing them to complete paper replacement.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PARTIAL",
+        "as_of": "2026-10-14",
+        "at_deadline": "PARTIAL",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "The 2007 Kindle provided a paper-like electronic display and wireless books, newspapers and magazines. That establishes a substantial realization, but this review does not equate its 167-ppi display with every quality of paper or establish the full adoption scope.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 16, printed p. 24",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O05",
+          "locator": "Display and reading-service specifications",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O09",
+          "locator": "E-reader ownership context",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "No claim about a majority of book reading is established by this row.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-015",
+          "relation": "CORRECT_SCOPE"
+        },
+        {
+          "legacy_id": "DEC-012",
+          "relation": "QUARANTINE_SCOPE_DISTORTION"
+        }
+      ],
+      "subcategory": "Electronic reading"
+    },
+    {
+      "id": "K014",
+      "slug": "k014-see-through-glasses-with-direct-retinal-projection",
+      "title": "See-through glasses with direct retinal projection",
+      "prediction_paraphrase": "See-through glasses project imagery directly onto retinas.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Interfaces & virtual worlds",
+      "tags": [
+        "laser projection",
+        "AR"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K014",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "DEC-015"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "A working see-through laser retinal-display system used by the deadline; not merely an ordinary screen near the eye.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The scope is located. Early retinal-display leads must be checked against manufacturer documentation. Neither “Google Glass appeared in 2013” nor generic VR headset availability establishes a first date or a missed 2009 deadline.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 17, printed p. 25",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Original wording concerns use, not necessarily mass-market ubiquity. Outcome remains under review, rather than presumptively WRONG.",
+      "open_questions": [
+        "A working see-through laser retinal-display system used by the deadline; not merely an ordinary screen near the eye."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-015",
+          "relation": "RESTORE_MECHANISM"
+        }
+      ],
+      "subcategory": "Retinal displays"
+    },
+    {
+      "id": "K015",
+      "slug": "k015-glasses-and-contact-lens-displays-in-the-2010s",
+      "title": "Glasses and contact-lens displays in the 2010s",
+      "prediction_paraphrase": "Eyeglass and contact-lens displays deliver retinal imagery.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Interfaces & virtual worlds",
+      "tags": [
+        "contact lenses",
+        "AR"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K015",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-016"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2005,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "beginning of the next decade / 2010s",
+        "deadline_year": null,
+        "precision": "AMBIGUOUS_EARLY_DECADE",
+        "year_start": null,
+        "year_end": null,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Preserve both form factors and the retinal-display mechanism; set a defensible interpretation of the original interval.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The intake mixed 2010 and 2015. The retrospective treats “beginning of the next decade” flexibly. Neither a new exact 2015 deadline nor an automatic 2010 failure should be imported.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Singularity Is Near predictions for 2010, prediction 4, printed p. 131",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Keep the early-decade interval and later interpretation visible. No silently granted grace period.",
+      "open_questions": [
+        "Preserve both form factors and the retinal-display mechanism; set a defensible interpretation of the original interval."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-016",
+          "relation": "HOLD_DATE_AND_SCOPE"
+        }
+      ],
+      "subcategory": "Retinal displays"
+    },
+    {
+      "id": "K016",
+      "slug": "k016-tiny-devices-project-auditory-environments",
+      "title": "Tiny devices project auditory environments",
+      "prediction_paraphrase": "Tiny devices project spatial auditory environments.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Interfaces & virtual worlds",
+      "tags": [
+        "auditory projection"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K016",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-017"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2005,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "beginning of the next decade / 2010s",
+        "deadline_year": null,
+        "precision": "AMBIGUOUS_EARLY_DECADE",
+        "year_start": null,
+        "year_end": null,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Match the device scale and spatial sound mechanism, rather than any technology that makes sound.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The earlier LRAD/bone-conduction examples were not evidence of the complete claimed device. Attribution is located but performance, form factor and deadline still need resolution.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Singularity Is Near predictions for 2010, prediction 5, printed pp. 131–132",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "Match the device scale and spatial sound mechanism, rather than any technology that makes sound."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-017",
+          "relation": "REJECT_BAD_OUTCOME_EVIDENCE"
+        }
+      ],
+      "subcategory": "Spatial audio"
+    },
+    {
+      "id": "K017",
+      "slug": "k017-anytime-immersive-audiovisual-virtual-reality",
+      "title": "Anytime immersive audiovisual virtual reality",
+      "prediction_paraphrase": "High-resolution audiovisual virtual reality is available anytime.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Interfaces & virtual worlds",
+      "tags": [
+        "immersion"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K017",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-018"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2005,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "beginning of the next decade / 2010s",
+        "deadline_year": null,
+        "precision": "AMBIGUOUS_EARLY_DECADE",
+        "year_start": null,
+        "year_end": null,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Define high resolution, immersion and availability; do not import an all-senses realism requirement from a different forecast.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "An Oculus/HTC launch alone cannot settle every qualifier or an ambiguous deadline. Conversely, this audiovisual claim is not identical to the separate total-touch forecast.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Singularity Is Near predictions for 2010, prediction 6, printed p. 132",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "Define high resolution, immersion and availability; do not import an all-senses realism requirement from a different forecast."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-018",
+          "relation": "HOLD_CRITERION"
+        },
+        {
+          "legacy_id": "DEC-028",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "EXE-014",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Audiovisual VR"
+    },
+    {
+      "id": "K018",
+      "slug": "k018-augmented-reality-overlays",
+      "title": "Augmented-reality overlays",
+      "prediction_paraphrase": "Digital displays overlay guidance on the real world.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Interfaces & virtual worlds",
+      "tags": [
+        "visual overlays"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K018",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-019"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2005,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "beginning of the next decade / 2010s",
+        "deadline_year": null,
+        "precision": "AMBIGUOUS_EARLY_DECADE",
+        "year_start": null,
+        "year_end": null,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "A deployed overlay matching the specified display context; distinguish availability from widespread use.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The original scope does not justify treating Pokémon Go in 2016 as the first realization. Earlier AR systems require primary-source checking before assigning a date.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Singularity Is Near predictions for 2010, prediction 7, printed p. 132",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "A deployed overlay matching the specified display context; distinguish availability from widespread use."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-019",
+          "relation": "HOLD_FIRST_DATE"
+        }
+      ],
+      "subcategory": "Augmented reality"
+    },
+    {
+      "id": "K019",
+      "slug": "k019-people-largely-removed-from-the-battlefield",
+      "title": "People largely removed from the battlefield",
+      "prediction_paraphrase": "Humans are generally far from the battle scene.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Security & warfare",
+      "tags": [
+        "human combatants",
+        "adoption"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K019",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-020"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "A general change in actual warfare, not merely the existence of remotely operated weapons.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "WRONG_MISSED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "The December 2009 US Afghanistan address describes ongoing human fighting and plans for a further 30,000 troops. That contemporaneous record is incompatible with using remote-weapon availability as proof that humans were generally removed from battle.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "Warfare, prediction 2, printed p. 103",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O13",
+          "locator": "Active fighting and planned troop deployment",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "This is an interpretation of a broad claim, not a quantified global share-of-combat estimate. No contemporary war extrapolation is required to establish the original miss.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-020",
+          "relation": "CORRECT_SCOPE"
+        },
+        {
+          "legacy_id": "EXE-006",
+          "relation": "QUARANTINE_AND_SPLIT_REQUIRED"
+        }
+      ],
+      "subcategory": "Remote warfare"
+    },
+    {
+      "id": "K020",
+      "slug": "k020-unmanned-aircraft-dominate-warfare",
+      "title": "Unmanned aircraft dominate warfare",
+      "prediction_paraphrase": "Unmanned intelligent aircraft dominate warfare.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Security & warfare",
+      "tags": [
+        "dominance",
+        "adoption"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K020",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-021"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Define dominance by missions, casualties, force structure or another predeclared global metric.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "UNSCORABLE",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "Drones existed, but existence is not dominance. No denominator or consistent measure is specified. The earlier favorable assessment selected examples without establishing the general claim.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "Warfare, prediction 3, printed p. 103",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Do not merge this with the separate prediction that humans leave the battlefield.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-021",
+          "relation": "RESTORE_THRESHOLD"
+        },
+        {
+          "legacy_id": "EXE-006",
+          "relation": "QUARANTINE_AND_SPLIT_REQUIRED"
+        }
+      ],
+      "subcategory": "Military drones"
+    },
+    {
+      "id": "K021",
+      "slug": "k021-solar-meets-worldwide-energy-demand",
+      "title": "Solar meets worldwide energy demand",
+      "prediction_paraphrase": "Solar supplies all global energy.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Energy & environment",
+      "tags": [
+        "energy supply"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K021",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-022"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2008,
+        "year_basis": "SOURCE_PUBLICATION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "REPORTED_EVENT_YEAR"
+      },
+      "target": {
+        "text": "2028",
+        "deadline_year": 2028,
+        "precision": "YEAR",
+        "year_start": 2028,
+        "year_end": 2028,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "REPORTED_ATTRIBUTION_ORIGINAL_TRANSCRIPT_NOT_CHECKED",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": false
+      },
+      "success_criteria": "Actual annual solar energy supply covers total global final/primary energy under an explicitly selected accounting convention; not just electricity capacity.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The deadline is still ahead. Falling solar costs or more installed capacity are progress indicators, not full fulfillment.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P07",
+          "locator": "Archived report of February 2008 remarks",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Event reporting rather than a checked original transcript. Clarify whether “meet needs” describes actual supply or technical potential before final adjudication. Provisional future inventory only.",
+      "open_questions": [
+        "Operationalize the success criterion before final adjudication; future inventory does not imply benchmark readiness."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-022",
+          "relation": "CANONICALIZE_REPORTED_ATTRIBUTION"
+        }
+      ],
+      "subcategory": "Solar deployment"
+    },
+    {
+      "id": "K022",
+      "slug": "k022-the-singularity-and-billionfold-intelligence-expansion",
+      "title": "The Singularity and billionfold intelligence expansion",
+      "prediction_paraphrase": "Nonbiological intelligence vastly exceeds humanity’s combined intelligence.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "AI & software",
+      "tags": [
+        "intelligence measurement"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K022",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-023",
+        "EXE-028"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2005,
+        "year_basis": "DATED_DIALOGUE_IN_LATER_REPOST",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2045",
+        "deadline_year": 2045,
+        "precision": "YEAR",
+        "year_start": 2045,
+        "year_end": 2045,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Specify an intelligence measure; compare the intended aggregate baseline, not one human brain.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The dated proposition is attributable, but there is no agreed operational intelligence unit. The future label does not assert that the prediction is on track.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P04",
+          "locator": "Question 3",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "The intake’s single-brain billionfold paraphrase is not faithful to the Q&A’s aggregate-humanity reference. Benchmark must be agreed before this becomes due.",
+      "open_questions": [
+        "Operationalize the success criterion before final adjudication; future inventory does not imply benchmark readiness."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-023",
+          "relation": "CORRECT_AND_LINK_VERSION"
+        },
+        {
+          "legacy_id": "EXE-028",
+          "relation": "CORRECT_AND_LINK_VERSION"
+        }
+      ],
+      "subcategory": "Singularity"
+    },
+    {
+      "id": "K023",
+      "slug": "k023-the-specific-kurzweil-kapor-turing-test-wager",
+      "title": "The specific Kurzweil–Kapor Turing-test wager",
+      "prediction_paraphrase": "A machine satisfies the agreed Long Bets Turing protocol.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "AI & software",
+      "tags": [
+        "contract",
+        "benchmark"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "F-TURING",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "ADDED_PRIMARY_SOURCE",
+      "publication": {
+        "forecast_year": 2002,
+        "year_basis": "SOURCE_PUBLICATION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2029",
+        "deadline_year": 2029,
+        "precision": "YEAR",
+        "year_start": 2029,
+        "year_end": 2029,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": false
+      },
+      "success_criteria": "Satisfy the actual two-hour interview and judging requirements in the contract.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "The 2025 Jones/Bergen experiment used five-minute conversations. It is important evidence about conversational imitation but does not by itself settle this different contract.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P03",
+          "locator": "Agreement and detailed Turing-test rules",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O21",
+          "locator": "Methods and reported experimental protocol",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "Kapor predicts no qualifying machine; Kurzweil opposes him. Keep this narrower contract separate from generic book-era Turing predictions.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-024",
+          "relation": "LINK_FAMILY_NOT_EXACT_DUPLICATE"
+        },
+        {
+          "legacy_id": "DEC-027",
+          "relation": "LINK_FAMILY_NOT_EXACT_DUPLICATE"
+        },
+        {
+          "legacy_id": "EXE-020",
+          "relation": "LINK_FAMILY_NOT_EXACT_DUPLICATE"
+        },
+        {
+          "legacy_id": "EXE-011",
+          "relation": "QUARANTINE_AND_SPLIT_REQUIRED"
+        }
+      ],
+      "subcategory": "Turing test"
+    },
+    {
+      "id": "K024",
+      "slug": "k024-bloodstream-nanobots-for-scouting-and-limited-repair",
+      "title": "Bloodstream nanobots for scouting and limited repair",
+      "prediction_paraphrase": "Bloodstream nanobots perform scouting and limited repairs.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Biology & medicine",
+      "tags": [
+        "nanorobots",
+        "clinical deployment"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "F-NANOBOTS",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "CONFIRMED_RELATED_VERSION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2029",
+        "deadline_year": 2029,
+        "precision": "YEAR",
+        "year_start": 2029,
+        "year_end": 2029,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Operational in-body robotic scouting/repair, not simply nanoparticle drug delivery or a laboratory concept.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "This checked article places the claim in 2029. The unlocated 2019 versions in the intake remain unresolved separately; this later version must not erase a genuinely earlier forecast should it be found.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Health care in 2029",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Original book wording not collated. No claim that the 2019 attribution has been disproved.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-025",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "EXE-015",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "DEC-024",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Nanomedicine"
+    },
+    {
+      "id": "K025",
+      "slug": "k025-a-thousand-dollar-brain-capacity-computer-in-2020",
+      "title": "A thousand-dollar brain-capacity computer in 2020",
+      "prediction_paraphrase": "$1,000 purchases human-brain computational capacity.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "brain equivalence",
+        "operations per second"
+      ],
+      "claim_type": "PERFORMANCE_COST",
+      "family_id": "F-BRAIN-COMPUTE",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-026",
+        "EXE-018"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2005,
+        "year_basis": "DATED_DIALOGUE_IN_LATER_REPOST",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2020",
+        "deadline_year": 2020,
+        "precision": "YEAR",
+        "year_start": 2020,
+        "year_end": 2020,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Fix operations per second, numerical precision, workload, complete-system budget, currency year and the brain equivalence before scoring.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "UNSCORABLE",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The Q&A provides a numerical modeling estimate, not a scientifically settled conversion between brain function and GPU operations. Promotional low-precision accelerator throughput cannot establish full human-brain emulation.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P04",
+          "locator": "Question 6",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Keep the numerical hardware subclaim available for a separately specified benchmark. This does not imply that hardware progress was small.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-026",
+          "relation": "MERGE_SAME_SCOPE"
+        },
+        {
+          "legacy_id": "EXE-018",
+          "relation": "MERGE_SAME_SCOPE"
+        },
+        {
+          "legacy_id": "EXE-017",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Price/performance"
+    },
+    {
+      "id": "K026",
+      "slug": "k026-automated-intelligent-highways",
+      "title": "Automated intelligent highways",
+      "prediction_paraphrase": "Cars lock into automated highway control systems.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Robotics & transportation",
+      "tags": [
+        "infrastructure control"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "F-AUTOMATED-DRIVING",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "DEC-014"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Operational road/infrastructure-controlled automated highway travel in the predicted ordinary-use setting, retaining the separate local-road qualification.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "WRONG_MISSED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "The retrospective acknowledges the prediction was wrong at the deadline. A closed-course DARPA challenge was not public highway deployment. Later onboard-autonomy robotaxis are not automatically the same infrastructure mechanism.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "Business and Economics, prediction 18, printed p. 82",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "P01",
+          "locator": "Prediction 18 discussion",
+          "role": "AUTHOR_ADMISSION_OF_DEADLINE_MISS"
+        },
+        {
+          "source_id": "O15",
+          "locator": "Closed-course Urban Challenge",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O24",
+          "locator": "Later regional robotaxi deployment, not a mechanism match",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "Do not relabel this “all self-driving cars common in 2009,” and do not infer that no driverless cars exist today.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-028",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "DEC-022",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "DEC-009",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "DEC-014",
+          "relation": "CORRECT_SCOPE"
+        },
+        {
+          "legacy_id": "EXE-004",
+          "relation": "QUARANTINE_AND_SPLIT_REQUIRED"
+        }
+      ],
+      "subcategory": "Intelligent highways"
+    },
+    {
+      "id": "K027",
+      "slug": "k027-life-expectancy-over-100",
+      "title": "Life expectancy over 100",
+      "prediction_paraphrase": "Expected human lifespan exceeds 100 years.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Longevity",
+      "tags": [
+        "period versus cohort"
+      ],
+      "claim_type": "SOCIAL_OR_POPULATION_OUTCOME",
+      "family_id": "F-LIFE-EXPECTANCY",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-013"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2019",
+        "deadline_year": 2019,
+        "precision": "YEAR",
+        "year_start": 2019,
+        "year_end": 2019,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Interpret as population life expectancy under contemporaneous mortality conditions, not the oldest living person or hypothetical future cohort survival.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "WRONG_MISSED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "NOT_FULFILLED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": true,
+        "benchmark_ready": true,
+        "rationale": "Final US life expectancy was 78.8 in 2019 and 79.0 in 2024. Even this high-income-country example does not support the general claim. The judgment is explicitly under the conventional period-life-expectancy reading.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": true,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Health care in 2019",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O16",
+          "locator": "2019 final life expectancy",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O17",
+          "locator": "2024 final life expectancy",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "The claim does not name a geography or a cohort model. A projected eventual cohort lifespan cannot be disproved by period statistics alone. Treat this alternative as a disclosed interpretive objection, not a silent change of criterion.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-013",
+          "relation": "SPLIT_AND_QUARANTINE_UNLOCATED_CLAUSE"
+        }
+      ],
+      "subcategory": "Population life expectancy"
+    },
+    {
+      "id": "K028",
+      "slug": "k028-life-expectancy-reaches-120",
+      "title": "Life expectancy reaches 120",
+      "prediction_paraphrase": "Human life expectancy reaches 120 years.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Longevity",
+      "tags": [
+        "period versus cohort"
+      ],
+      "claim_type": "SOCIAL_OR_POPULATION_OUTCOME",
+      "family_id": "F-LIFE-EXPECTANCY",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-013"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2029",
+        "deadline_year": 2029,
+        "precision": "YEAR",
+        "year_start": 2029,
+        "year_end": 2029,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Same explicit population-life-expectancy convention as K027, not an individual attaining age 120.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "The deadline has not passed. The available statistics provide a baseline, not a reason to call a 2029 forecast wrong in 2026.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Health care in 2029",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O17",
+          "locator": "2024 final US baseline",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-013",
+          "relation": "SPLIT_AND_QUARANTINE_UNLOCATED_CLAUSE"
+        }
+      ],
+      "subcategory": "Population life expectancy"
+    },
+    {
+      "id": "K029",
+      "slug": "k029-gesture-and-spoken-language-become-dominant-input",
+      "title": "Gesture and spoken language become dominant input",
+      "prediction_paraphrase": "Most computer interaction uses gestures and natural speech.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "AI & software",
+      "tags": [
+        "gestures",
+        "speech",
+        "adoption"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K029",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "DEC-019"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2019",
+        "deadline_year": 2019,
+        "precision": "YEAR",
+        "year_start": 2019,
+        "year_end": 2019,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Measure the intended majority across computing tasks, retaining rare-keyboard and natural-interaction qualifications.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "Siri/Alexa existence is insufficient. A representative usage denominator and the meaning of gesture versus touch typing still need to be established.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Computers and communications in 2019: keyboards and interaction",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "Measure the intended majority across computing tasks, retaining rare-keyboard and natural-interaction qualifications."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-019",
+          "relation": "RESTORE_ADOPTION_THRESHOLD"
+        }
+      ],
+      "subcategory": "Human-computer interaction"
+    },
+    {
+      "id": "K030",
+      "slug": "k030-routine-high-acuity-retinal-displays",
+      "title": "Routine high-acuity retinal displays",
+      "prediction_paraphrase": "Retinal glasses or contacts are routinely used.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Interfaces & virtual worlds",
+      "tags": [
+        "visual acuity",
+        "adoption"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K030",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-009"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2019",
+        "deadline_year": 2019,
+        "precision": "YEAR",
+        "year_start": 2019,
+        "year_end": 2019,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Routine use plus retinal projection and the specified acuity; not any near-eye screen.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The source is located; the earlier “Google Glass exists” comparison did not test the required mechanism, acuity or adoption. A defensible device/adoption evidence set is still needed.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Computers and communications in 2019: direct-eye displays",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "Routine use plus retinal projection and the specified acuity; not any near-eye screen."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-009",
+          "relation": "SPLIT_DISTINCT_CAPABILITIES"
+        }
+      ],
+      "subcategory": "Retinal displays"
+    },
+    {
+      "id": "K031",
+      "slug": "k031-convincing-full-body-tactile-virtual-reality",
+      "title": "Convincing full-body tactile virtual reality",
+      "prediction_paraphrase": "Widely available booths reproduce the full tactile experience.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Interfaces & virtual worlds",
+      "tags": [
+        "full-body sensation",
+        "VR"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K031",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "DEC-017"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2019",
+        "deadline_year": 2019,
+        "precision": "YEAR",
+        "year_start": 2019,
+        "year_end": 2019,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Human-level tactile coverage including temperature, pressure, texture and moisture, with the specified availability.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "Audiovisual headsets are not evidence of this all-body tactile outcome. The imported broad “VR indistinguishable” wording hid the actual test. No verified full-achievement date is supplied.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Personal relationships in 2019: total-touch environment",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "A strong-looking miss still needs outcome evidence before being counted. No invented 2016 fulfillment date.",
+      "open_questions": [
+        "Human-level tactile coverage including temperature, pressure, texture and moisture, with the specified availability."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-017",
+          "relation": "RESTORE_MODALITY"
+        },
+        {
+          "legacy_id": "DEC-028",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Haptics"
+    },
+    {
+      "id": "K032",
+      "slug": "k032-high-bandwidth-neural-interfaces-augment-brain-functions",
+      "title": "High-bandwidth neural interfaces augment brain functions",
+      "prediction_paraphrase": "Neural links augment or bypass specialized brain functions.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Neuroscience & human augmentation",
+      "tags": [
+        "bandwidth",
+        "cognitive functions"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "F-BRAIN-INTERFACE",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-010"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2029",
+        "deadline_year": 2029,
+        "precision": "YEAR",
+        "year_start": 2029,
+        "year_end": 2029,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "High-bandwidth functional augmentation/bypass for the specified cognitive systems, not simply cursor control or low-rate communication.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "The original functional requirements are materially stronger than demonstrating a human BCI trial. The deadline remains future.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Computers and communications in 2029: neural pathways",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-029",
+          "relation": "QUARANTINE_COMPOUND_OR_UNLOCATED"
+        },
+        {
+          "legacy_id": "DEC-030",
+          "relation": "QUARANTINE_COMPOUND_OR_UNLOCATED"
+        },
+        {
+          "legacy_id": "EXE-030",
+          "relation": "QUARANTINE_COMPOUND_OR_UNLOCATED"
+        },
+        {
+          "legacy_id": "EXE-010",
+          "relation": "CANONICALIZE"
+        }
+      ],
+      "subcategory": "Neural augmentation"
+    },
+    {
+      "id": "K033",
+      "slug": "k033-supercomputers-reach-20-quadrillion-calculations-per-second",
+      "title": "Supercomputers reach 20 quadrillion calculations per second",
+      "prediction_paraphrase": "Supercomputers reach approximately 2×10^16 calculations per second.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "operations per second",
+        "FLOPS proxy",
+        "timing interval"
+      ],
+      "claim_type": "PERFORMANCE_COST",
+      "family_id": "F-BRAIN-COMPUTE",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-012"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Operational interpretation: compare the stated operation-rate estimate with public TOP500 peak and measured floating-point throughput; do NOT call this human intelligence.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "LATE",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "FULFILLED_UNDER_STATED_HARDWARE_PROXY",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": true,
+        "benchmark_ready": true,
+        "rationale": "November 2009’s leader was below the threshold. Listed peak performance exceeded it by 2012; publicly listed measured LINPACK performance exceeded it in 2013. This supports a qualified hardware timing miss, with a 3–4-year interval depending on the metric.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": 2013,
+        "drift_years": null,
+        "drift_range_years": [
+          3,
+          4
+        ],
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Qualified hardware-proxy assessment; not a verified brain-capacity equivalence. Excluded from default strict aggregate."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Computers and communications in 2009: numerical hardware estimate",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O18",
+          "locator": "Jaguar Rmax and Rpeak",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O19",
+          "locator": "Sequoia/Titan Rmax versus Rpeak",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O20",
+          "locator": "Tianhe-2 measured 33.86 petaflops",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "Interpretation-dependent: calculations/second are not inherently equivalent to benchmark FLOPS, and brain equivalence is not verified. Display a qualified LATE badge; exclude from default strict statistics until a benchmark policy is adopted.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-012",
+          "relation": "SPLIT_AND_HOLD_PRICE_VARIANT"
+        },
+        {
+          "legacy_id": "EXE-017",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Supercomputer performance"
+    },
+    {
+      "id": "K034",
+      "slug": "k034-the-2019-thousand-dollar-brain-compute-estimate",
+      "title": "The 2019 thousand-dollar brain-compute estimate",
+      "prediction_paraphrase": "$1,000 in 1999 dollars buys brain-scale computation.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "brain equivalence",
+        "currency basis"
+      ],
+      "claim_type": "PERFORMANCE_COST",
+      "family_id": "F-BRAIN-COMPUTE",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "CONFIRMED_RELATED_VERSION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2019",
+        "deadline_year": 2019,
+        "precision": "YEAR",
+        "year_start": 2019,
+        "year_end": 2019,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Resolve the brain-operation conversion, precision, complete-system budget and inflation convention.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "UNSCORABLE",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The article specifies $1,000 in 1999 dollars. The intake’s alleged $4,000 book version is not confirmed here and cannot be silently overwritten. The brain-equivalence metric also remains undefined.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Computers and communications in 2019: opening paragraph",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Related source version, not a verified correction to the quoted book price.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-012",
+          "relation": "SPLIT_AND_HOLD_PRICE_VARIANT"
+        }
+      ],
+      "subcategory": "Price/performance"
+    },
+    {
+      "id": "K035",
+      "slug": "k035-thousand-brain-computation-for-a-thousand-dollars",
+      "title": "Thousand-brain computation for a thousand dollars",
+      "prediction_paraphrase": "$1,000 buys approximately 1,000 brains of computation.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "brain equivalence",
+        "operations per second"
+      ],
+      "claim_type": "PERFORMANCE_COST",
+      "family_id": "F-BRAIN-COMPUTE",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-012",
+        "EXE-022"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2029",
+        "deadline_year": 2029,
+        "precision": "YEAR",
+        "year_start": 2029,
+        "year_end": 2029,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "The article’s approximately 2×10^19 calculations/second, circa-1999 dollars, under an agreed operations/system-budget definition.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "A future numerical hardware forecast with an unresolved brain-equivalence interpretation. Do not use model marketing or a single low-precision accelerator specification to declare it already fulfilled.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Computers and communications in 2029: opening paragraph",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "PENDING does not imply that a satisfactory future scoring benchmark is already settled.",
+      "open_questions": [
+        "Operationalize the success criterion before final adjudication; future inventory does not imply benchmark readiness."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-012",
+          "relation": "SPLIT_AND_HOLD_PRICE_VARIANT"
+        },
+        {
+          "legacy_id": "EXE-022",
+          "relation": "CANONICALIZE"
+        }
+      ],
+      "subcategory": "Price/performance"
+    },
+    {
+      "id": "K036",
+      "slug": "k036-effective-models-of-all-brain-regions",
+      "title": "Effective models of all brain regions",
+      "prediction_paraphrase": "Effective models cover the entire human brain.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Neuroscience & human augmentation",
+      "tags": [
+        "reverse engineering",
+        "scope"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K036",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-019"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2005,
+        "year_basis": "DATED_DIALOGUE_IN_LATER_REPOST",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "mid-2020s",
+        "deadline_year": null,
+        "precision": "AMBIGUOUS_MID_DECADE",
+        "year_start": null,
+        "year_end": null,
+        "interpretation": "No single cutoff inferred from mid-2020s."
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Define “effective” and whether the claim is functional reverse engineering, mechanistic simulation, or a model of every region.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The intake converted a broad modeling claim into a stronger brain-emulation milestone. “Mid-2020s” is not automatically December 2025, particularly in an October 2026 audit. Scope and deadline policy must precede a verdict.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P04",
+          "locator": "Question 7",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "Define “effective” and whether the claim is functional reverse engineering, mechanistic simulation, or a model of every region."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-019",
+          "relation": "CORRECT_SCOPE_AND_HOLD_DATE"
+        },
+        {
+          "legacy_id": "EXE-026",
+          "relation": "QUARANTINE_GARBLED_COMPOUND"
+        }
+      ],
+      "subcategory": "Brain modeling"
+    },
+    {
+      "id": "K037",
+      "slug": "k037-developed-world-universal-basic-income",
+      "title": "Developed-world universal basic income",
+      "prediction_paraphrase": "UBI across developed economies.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Economy & society",
+      "tags": [
+        "developed economies"
+      ],
+      "claim_type": "SOCIAL_OR_POPULATION_OUTCOME",
+      "family_id": "F-UBI",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "DEC-031",
+        "EXE-023"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2018,
+        "year_basis": "SOURCE_PUBLICATION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "REPORTED_EVENT_YEAR"
+      },
+      "target": {
+        "text": "early 2030s",
+        "deadline_year": null,
+        "precision": "EARLY_DECADE",
+        "year_start": 2030,
+        "year_end": 2033,
+        "interpretation": "Working editorial interval 2030–2033 for navigation only. Original says early 2030s; no exact deadline is used in statistics."
+      },
+      "source_verification": {
+        "state": "REPORTED_ATTRIBUTION_ORIGINAL_TRANSCRIPT_NOT_CHECKED",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": false
+      },
+      "success_criteria": "National, unconditional recurring payments to the intended population; local pilots do not qualify.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Future; primary transcript still needed.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P06",
+          "locator": "Report of TED remarks",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Contemporaneous secondary attribution. No exact “early” deadline invented.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-031",
+          "relation": "SPLIT_INDEPENDENT_DEADLINES"
+        },
+        {
+          "legacy_id": "EXE-023",
+          "relation": "SPLIT_INDEPENDENT_DEADLINES"
+        }
+      ],
+      "subcategory": "Universal basic income"
+    },
+    {
+      "id": "K038",
+      "slug": "k038-worldwide-universal-basic-income",
+      "title": "Worldwide universal basic income",
+      "prediction_paraphrase": "Worldwide UBI.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Economy & society",
+      "tags": [
+        "global adoption"
+      ],
+      "claim_type": "SOCIAL_OR_POPULATION_OUTCOME",
+      "family_id": "F-UBI",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "DEC-031",
+        "EXE-023"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2018,
+        "year_basis": "SOURCE_PUBLICATION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "REPORTED_EVENT_YEAR"
+      },
+      "target": {
+        "text": "2039",
+        "deadline_year": 2039,
+        "precision": "YEAR",
+        "year_start": 2039,
+        "year_end": 2039,
+        "interpretation": "End of the 2030s interpreted as calendar 2039; source says end of decade."
+      },
+      "source_verification": {
+        "state": "REPORTED_ATTRIBUTION_ORIGINAL_TRANSCRIPT_NOT_CHECKED",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": false
+      },
+      "success_criteria": "Global-scale implementation, not merely adoption in several wealthy countries.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Future; primary transcript still needed.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P06",
+          "locator": "Report of TED remarks",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "2039 represents the stated end-of-decade interpretation.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-031",
+          "relation": "SPLIT_INDEPENDENT_DEADLINES"
+        },
+        {
+          "legacy_id": "EXE-023",
+          "relation": "SPLIT_INDEPENDENT_DEADLINES"
+        }
+      ],
+      "subcategory": "Universal basic income"
+    },
+    {
+      "id": "K039",
+      "slug": "k039-nonlinear-electronic-documents",
+      "title": "Nonlinear electronic documents",
+      "prediction_paraphrase": "Electronic documents become interactive and nonlinear.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Media, education & culture",
+      "tags": [
+        "hypertext"
+      ],
+      "claim_type": "SOCIAL_OR_POPULATION_OUTCOME",
+      "family_id": "K039",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-005"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1990,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "next century",
+        "deadline_year": null,
+        "precision": "NO_TESTABLE_DEADLINE",
+        "year_start": null,
+        "year_end": null,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Specify a deadline and adoption threshold before including the trend in deadline statistics.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "UNSCORABLE",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The located passage supports the general concept, not the intake’s exact 2000s deadline. An obvious eventual development does not validate an invented forecast date.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Age of Intelligent Machines excerpts, printed pp. 124–126; original-book pp. 428–430",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-005",
+          "relation": "REMOVE_INVENTED_DEADLINE"
+        }
+      ],
+      "subcategory": "Electronic documents"
+    },
+    {
+      "id": "K040",
+      "slug": "k040-information-technology-pressures-authoritarian-control",
+      "title": "Information technology pressures authoritarian control",
+      "prediction_paraphrase": "Information technology creates a dilemma for authoritarian control.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Economy & society",
+      "tags": [
+        "authoritarian control",
+        "conditional claim"
+      ],
+      "claim_type": "SOCIAL_OR_POPULATION_OUTCOME",
+      "family_id": "K040",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-003",
+        "DEC-002"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1990,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "conditional / no fixed deadline",
+        "deadline_year": null,
+        "precision": "CONDITIONAL",
+        "year_start": null,
+        "year_end": null,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Retain the conditional economic/control argument; do not replace it with a guaranteed dated Soviet collapse.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "UNSCORABLE",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The located passage discusses competing consequences, including stronger state control. The intake turned this into an unconditional historical-event forecast and awarded an easy 1991 hit. That transformation is not supported.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Age of Intelligent Machines excerpts, printed pp. 127–128; original-book pp. 445–447",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-003",
+          "relation": "CORRECT_SCOPE"
+        },
+        {
+          "legacy_id": "DEC-002",
+          "relation": "CORRECT_SCOPE"
+        }
+      ],
+      "subcategory": "Political institutions"
+    },
+    {
+      "id": "K041",
+      "slug": "k041-wearable-diagnosis-and-health-intervention",
+      "title": "Wearable diagnosis and health intervention",
+      "prediction_paraphrase": "Wearables commonly diagnose conditions and support intervention.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Biology & medicine",
+      "tags": [
+        "wearables",
+        "diagnosis",
+        "intervention"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "K041",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "CONFIRMED_RELATED_VERSION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2019",
+        "deadline_year": 2019,
+        "precision": "YEAR",
+        "year_start": 2019,
+        "year_end": 2019,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "The specified acute/chronic diagnostic scope, adoption and remedial role, not simply counting steps or measuring pulse.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PARTIAL",
+        "as_of": "2026-10-14",
+        "at_deadline": "PARTIAL",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Apple released wrist ECG and irregular-rhythm alerts in 2018. Its documentation lists important conditions those features cannot detect. This establishes a meaningful but limited part of the broad diagnostic/intervention claim.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Health care in 2019: computerized monitors",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O22",
+          "locator": "Feature scope, availability and limitations",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "The located forecast is for 2019. It does not validate the intake’s unsupported 2010 attribution.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-029",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Digital health"
+    },
+    {
+      "id": "K042",
+      "slug": "k042-longevity-escape-velocity",
+      "title": "Longevity escape velocity",
+      "prediction_paraphrase": "Medical progress adds at least a year of remaining life annually.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Longevity",
+      "tags": [
+        "remaining life expectancy"
+      ],
+      "claim_type": "SOCIAL_OR_POPULATION_OUTCOME",
+      "family_id": "F-LONGEVITY-ESCAPE",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "ADDED_PRIMARY_SOURCE",
+      "publication": {
+        "forecast_year": 2024,
+        "year_basis": "SOURCE_PUBLICATION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2029",
+        "deadline_year": 2029,
+        "precision": "YEAR",
+        "year_start": 2029,
+        "year_end": 2029,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": false
+      },
+      "success_criteria": "An explicit, testable remaining-life-expectancy improvement model, population and access assumption; not a person simply living another year.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The dated interview makes this a 2029 prediction. It does not imply a first 150-year-old or average lifespan of 150 in 2050.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P05",
+          "locator": "36:56, Longevity escape velocity",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "The population/counterfactual model remains to be operationalized before final scoring.",
+      "open_questions": [
+        "Operationalize the success criterion before final adjudication; future inventory does not imply benchmark readiness."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-032",
+          "relation": "QUARANTINE_UNSUPPORTED_INFERENCE"
+        },
+        {
+          "legacy_id": "EXE-029",
+          "relation": "QUARANTINE_UNSUPPORTED_INFERENCE"
+        }
+      ],
+      "subcategory": "Longevity escape velocity"
+    },
+    {
+      "id": "K043",
+      "slug": "k043-brain-to-cloud-cognitive-integration",
+      "title": "Brain-to-cloud cognitive integration",
+      "prediction_paraphrase": "High-bandwidth brain links connect cognition to cloud computation.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Neuroscience & human augmentation",
+      "tags": [
+        "cognitive augmentation"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "F-BRAIN-INTERFACE",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "CONFIRMED_RELATED_VERSION",
+      "publication": {
+        "forecast_year": 2024,
+        "year_basis": "SOURCE_PUBLICATION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "early 2030s",
+        "deadline_year": null,
+        "precision": "EARLY_DECADE",
+        "year_start": 2030,
+        "year_end": 2033,
+        "interpretation": "Working editorial interval 2030–2033 for navigation only. Original says early 2030s; no exact deadline is used in statistics."
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": false
+      },
+      "success_criteria": "Cognitive integration at the intended bandwidth and scale, not merely a communication aid, app or external chatbot.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "The interview provides a dated, attributable version. It must not be backdated to the intake’s alleged 2008 appearance or expanded into completed mind uploading.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P05",
+          "locator": "30:57, Humans merging with AI",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "Preserve this as a 2024 version within a forecast family.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-029",
+          "relation": "QUARANTINE_COMPOUND_OR_UNLOCATED"
+        },
+        {
+          "legacy_id": "DEC-030",
+          "relation": "QUARANTINE_COMPOUND_OR_UNLOCATED"
+        },
+        {
+          "legacy_id": "EXE-030",
+          "relation": "QUARANTINE_COMPOUND_OR_UNLOCATED"
+        },
+        {
+          "legacy_id": "EXE-021",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Brain/cloud integration"
+    },
+    {
+      "id": "K044",
+      "slug": "k044-renewable-electricity-reaches-the-full-demand-threshold",
+      "title": "Renewable electricity reaches the full-demand threshold",
+      "prediction_paraphrase": "Renewables cross the full electricity-demand threshold.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Energy & environment",
+      "tags": [
+        "generation",
+        "energy accounting"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "F-RENEWABLE-ENERGY",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "ADDED_PRIMARY_SOURCE",
+      "publication": {
+        "forecast_year": 2024,
+        "year_basis": "SOURCE_PUBLICATION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "within 10 years of March 2024",
+        "deadline_year": null,
+        "precision": "RELATIVE_INTERVAL",
+        "year_start": 2024,
+        "year_end": 2034,
+        "interpretation": "Ten years from March 2024; original accounting scope unresolved."
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": false
+      },
+      "success_criteria": "Resolve the transcript’s movement between renewable electricity, solar and all energy; select actual generation versus technical supply potential.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "A later, related projection is documented. Scope changes prevent treating it as a simple revised deadline for the 2008 all-energy solar forecast.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P05",
+          "locator": "14:17, Dynamics of exponential growth",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "2034 is a provisional interval endpoint, not a substitute for the 2028 prediction.",
+      "open_questions": [
+        "Operationalize the success criterion before final adjudication; future inventory does not imply benchmark readiness."
+      ],
+      "legacy_relations": [],
+      "subcategory": "Renewable electricity"
+    },
+    {
+      "id": "K045",
+      "slug": "k045-human-level-ai-by-the-end-of-the-2020s",
+      "title": "Human-level AI by the end of the 2020s",
+      "prediction_paraphrase": "Hardware and software achieve human-level intelligence.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "AI & software",
+      "tags": [
+        "Turing test",
+        "human-level AI"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "F-TURING",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "AUD-024",
+        "DEC-027",
+        "EXE-020"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 2005,
+        "year_basis": "DATED_DIALOGUE_IN_LATER_REPOST",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2029",
+        "deadline_year": 2029,
+        "precision": "YEAR",
+        "year_start": 2029,
+        "year_end": 2029,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "A disclosed general-intelligence/Turing interpretation; do not assume every version incorporates the detailed 2002 wager contract.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "A dated author Q&A supports the general target. Experimental conversational imitation is relevant progress, not automatic proof of the full general-intelligence claim.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P04",
+          "locator": "Question 20",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O21",
+          "locator": "Five-minute conversational experiment",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "These legacy rows may describe broader or narrower versions. Their family relationship is confirmed; original-book verbatim equivalence is not.",
+      "open_questions": [
+        "Operationalize the success criterion before final adjudication; future inventory does not imply benchmark readiness."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-024",
+          "relation": "LINK_FAMILY_NOT_EXACT_DUPLICATE"
+        },
+        {
+          "legacy_id": "DEC-027",
+          "relation": "LINK_FAMILY_NOT_EXACT_DUPLICATE"
+        },
+        {
+          "legacy_id": "EXE-020",
+          "relation": "LINK_FAMILY_NOT_EXACT_DUPLICATE"
+        },
+        {
+          "legacy_id": "EXE-011",
+          "relation": "QUARANTINE_AND_SPLIT_REQUIRED"
+        }
+      ],
+      "subcategory": "General intelligence"
+    },
+    {
+      "id": "K046",
+      "slug": "k046-portable-computers-in-many-tiny-form-factors",
+      "title": "Portable computers in many tiny form factors",
+      "prediction_paraphrase": "Computers span tiny accessories through thin book-sized devices.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "high-resolution interfaces",
+        "wearables"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K046",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "EXE-008"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Assess the advertised range and interface quality, not merely the existence of one tablet-sized product.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The intake turned a multi-form-factor claim into a tablet success. A source-confirmed scope correction is supplied, without assuming every miniature form had the required usability.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "The Computer Itself, prediction 4, printed pp. 13–14",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "Assess the advertised range and interface quality, not merely the existence of one tablet-sized product."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "EXE-008",
+          "relation": "RESTORE_FORM_FACTOR_SCOPE"
+        }
+      ],
+      "subcategory": "Form factors"
+    },
+    {
+      "id": "K047",
+      "slug": "k047-automated-systems-eliminate-most-human-driving",
+      "title": "Automated systems eliminate most human driving",
+      "prediction_paraphrase": "Smart roads and automation eliminate most human driving.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Robotics & transportation",
+      "tags": [
+        "majority displacement"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "F-AUTOMATED-DRIVING",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "ADDED_PRIMARY_SOURCE",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2019",
+        "deadline_year": 2019,
+        "precision": "YEAR",
+        "year_start": 2019,
+        "year_end": 2019,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "More than half of ordinary driving is no longer performed by humans, not a small regional fleet or a demonstration.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "WRONG_MISSED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "NOT_FULFILLED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "Even NHTSA’s current guidance describes limited automated operating areas and driver-attention requirements for consumer vehicles. Waymo’s 2026 expansion confirms real driverless service, but not displacement of most human driving. These later records strongly contradict treating the 2019 majority claim as achieved.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": true,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Business in 2019: smart roads",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O14",
+          "locator": "Automated driving levels and availability",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O24",
+          "locator": "Regional 2026 deployment",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "The historical finding is an inference from continued limited deployment, not a 2019 global vehicle-mile survey. It does not deny genuine robotaxi operation.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-028",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "DEC-022",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        }
+      ],
+      "subcategory": "Driving automation"
+    },
+    {
+      "id": "K048",
+      "slug": "k048-common-many-language-speech-to-speech-translation",
+      "title": "Common many-language speech-to-speech translation",
+      "prediction_paraphrase": "Many-pair translating telephones are commonly used.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "AI & software",
+      "tags": [
+        "speech-to-speech",
+        "adoption"
+      ],
+      "claim_type": "ADOPTION",
+      "family_id": "F-SPEECH-TRANSLATION",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "CONFIRMED_RELATED_VERSION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "AUTHOR_ARCHIVE_REPRINT",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "SUPPORTED_BY_LISTED_SOURCE"
+      },
+      "target": {
+        "text": "2009",
+        "deadline_year": 2009,
+        "precision": "YEAR",
+        "year_start": 2009,
+        "year_end": 2009,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Usable bidirectional spoken translation across many pairs as a routine capability, not text-only translation.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PARTIAL",
+        "as_of": "2026-10-14",
+        "at_deadline": "PARTIAL",
+        "at_review": "FULL_FULFILLMENT_NOT_ESTABLISHED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "CMU documented an English–Spanish iPhone speech translator in 2009. Google expanded conversation mode to 14 languages in 2011. That is meaningful capability progress, but neither proves common many-pair use by 2009.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": true,
+        "withheld_reason": null
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P01",
+          "locator": "Communication, prediction 1, printed p. 50",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O11",
+          "locator": "2009 speech-to-speech product",
+          "role": "OUTCOME_EVIDENCE"
+        },
+        {
+          "source_id": "O12",
+          "locator": "2011 language expansion and alpha caveat",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "The product evidence prevents an erroneous claim that speech translation first existed in 2017. Original 1990-book/2010 versions remain separately unlocated.",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "AUD-027",
+          "relation": "QUARANTINE_COMPOUND_UNLOCATED"
+        },
+        {
+          "legacy_id": "DEC-008",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "EXE-002",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "EXE-004",
+          "relation": "QUARANTINE_AND_SPLIT_REQUIRED"
+        }
+      ],
+      "subcategory": "Machine translation"
+    },
+    {
+      "id": "K049",
+      "slug": "k049-ubiquitous-bidirectional-cochlear-network-interfaces",
+      "title": "Ubiquitous bidirectional cochlear network interfaces",
+      "prediction_paraphrase": "Cochlear implants become widespread two-way network interfaces.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Neuroscience & human augmentation",
+      "tags": [
+        "cochlear implants",
+        "two-way communication"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "F-COCHLEAR",
+      "parent_statement_id": null,
+      "legacy_ids": [],
+      "origin": "CONFIRMED_RELATED_VERSION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2029",
+        "deadline_year": 2029,
+        "precision": "YEAR",
+        "year_start": 2029,
+        "year_end": 2029,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "Broad adoption of implants providing two-way network communication, not conventional hearing rehabilitation alone.",
+      "assessment": {
+        "review_state": "ASSESSED",
+        "verdict": "PENDING",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": true,
+        "rationale": "This is a located, future interface claim. It is not the intake’s invented 2009 proposition that implants cure deafness.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Computers and communications in 2029: cochlear implants",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "O23",
+          "locator": "Limits of conventional cochlear implants",
+          "role": "OUTCOME_EVIDENCE"
+        }
+      ],
+      "limitations": "",
+      "open_questions": [],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-018",
+          "relation": "QUARANTINE_UNSUPPORTED_MEDICAL_PARAPHRASE"
+        }
+      ],
+      "subcategory": "Auditory interfaces"
+    },
+    {
+      "id": "K050",
+      "slug": "k050-invisible-computing-embedded-throughout-the-environment",
+      "title": "Invisible computing embedded throughout the environment",
+      "prediction_paraphrase": "Computing is largely invisible and embedded throughout surroundings.",
+      "wording_kind": "EDITORIAL_PARAPHRASE",
+      "original_quote": null,
+      "primary_category": "Computing hardware",
+      "tags": [
+        "ambient computing",
+        "adoption"
+      ],
+      "claim_type": "CAPABILITY",
+      "family_id": "K050",
+      "parent_statement_id": null,
+      "legacy_ids": [
+        "DEC-016",
+        "EXE-009"
+      ],
+      "origin": "LEGACY_RECONCILIATION",
+      "publication": {
+        "forecast_year": 1999,
+        "year_basis": "ARTICLE_ATTRIBUTION",
+        "original_book_edition_checked": false,
+        "forecast_year_status": "ATTRIBUTED_ARTICLE_YEAR_NOT_ORIGINAL_BOOK_COLLATION"
+      },
+      "target": {
+        "text": "2019",
+        "deadline_year": 2019,
+        "precision": "YEAR",
+        "year_start": 2019,
+        "year_end": 2019,
+        "interpretation": null
+      },
+      "source_verification": {
+        "state": "TEXT_CONFIRMED_IN_LISTED_SOURCE",
+        "confidence": "MEDIUM",
+        "book_text_not_independently_collated": true
+      },
+      "success_criteria": "A defined installed-base/adoption measure across the specified environment; do not substitute clothing displays for embedded computers.",
+      "assessment": {
+        "review_state": "SOURCE_CONFIRMED",
+        "verdict": "UNREVIEWED",
+        "as_of": "2026-10-14",
+        "at_deadline": "NOT_ASSESSED",
+        "at_review": "NOT_ASSESSED",
+        "confidence": "MEDIUM",
+        "disputed_interpretation": false,
+        "benchmark_ready": false,
+        "rationale": "The original sentence concerns embedded computing, not necessarily displays built into clothing. The intake merged that with the neighboring retinal-display claim. The two are now separated; outcome scoring is not completed.",
+        "first_full_achievement_year": null,
+        "full_achievement_documented_by_year": null,
+        "drift_years": null,
+        "drift_range_years": null,
+        "still_unfulfilled_as_of_review": false,
+        "eligible_for_deadline_metrics": false,
+        "withheld_reason": "Future, unresolved, intrinsically unscorable, or interpretation-dependent; see assessment."
+      },
+      "prediction_sources": [
+        {
+          "source_id": "P02",
+          "locator": "Computers and communications in 2019: embedded computers",
+          "role": "FORECAST_ATTRIBUTION"
+        }
+      ],
+      "evidence": [],
+      "limitations": "",
+      "open_questions": [
+        "A defined installed-base/adoption measure across the specified environment; do not substitute clothing displays for embedded computers."
+      ],
+      "legacy_relations": [
+        {
+          "legacy_id": "DEC-016",
+          "relation": "CORRECT_SCOPE"
+        },
+        {
+          "legacy_id": "DEC-021",
+          "relation": "QUARANTINE_RELATED_VERSION_ONLY"
+        },
+        {
+          "legacy_id": "EXE-009",
+          "relation": "SPLIT_DISTINCT_CAPABILITIES"
+        }
+      ],
+      "subcategory": "Embedded computing"
+    }
+  ]
+}

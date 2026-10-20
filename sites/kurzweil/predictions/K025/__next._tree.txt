@@ -1,0 +1,6 @@
+:HL["/sites/kurzweil/_next/static/chunks/1vt-9hs6w3v5w.css","style"]
+:HC["/",""]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":{"n":"id","t":"d","k":"K025","s":[]},"h":65632,"c":"$Q3"}]]
+1:[["children",{"s":"predictions","h":131168,"c":"$Q2"}]]
+0:{"b":"cc10a73768cd0d2cebb54375","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}

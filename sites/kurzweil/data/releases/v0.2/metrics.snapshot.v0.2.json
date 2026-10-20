@@ -1,0 +1,189 @@
+{
+  "as_of": "2026-10-14",
+  "legacy_candidate_records": 88,
+  "legacy_records_reconciled": 88,
+  "curated_records": 50,
+  "source_catalogue_entries": 32,
+  "assessment_states": {
+    "ATTRIBUTION_UNRESOLVED": 1,
+    "ASSESSED": 34,
+    "SOURCE_CONFIRMED": 15
+  },
+  "verdict_counts_all_curated": {
+    "UNREVIEWED": 16,
+    "CORRECT": 2,
+    "UNSCORABLE": 6,
+    "PARTIAL": 6,
+    "WRONG_MISSED": 5,
+    "PENDING": 14,
+    "LATE": 1
+  },
+  "default_deadline_eligible_n": 13,
+  "default_deadline_verdict_counts": {
+    "CORRECT": 2,
+    "PARTIAL": 6,
+    "WRONG_MISSED": 5
+  },
+  "on_time_fully_realized_n": 2,
+  "strict_on_time_rate_reviewed_subset_only": 0.15384615384615385,
+  "documented_full_realization_n_in_same_cohort": 2,
+  "current_full_realization_unknown_n": 9,
+  "eventual_realization_rate": null,
+  "documented_full_realization_lower_bound": 0.15384615384615385,
+  "interval_drift_records": [
+    "K033"
+  ],
+  "exact_drift_records": [],
+  "must_display_warning": "Selected reviewed subset only. Not an estimate of Kurzweil’s lifetime accuracy. Several outcome-at-review states remain open; do not turn absence of documented fulfillment into definitive permanent failure.",
+  "quarantined_original_rows_n": 40,
+  "automatic_live_site_update_performed": false,
+  "categories": [
+    {
+      "category": "AI & software",
+      "curated_n": 8,
+      "assessed_n": 6,
+      "deadline_eligible_n": 3,
+      "verdicts": {
+        "UNREVIEWED": 2,
+        "WRONG_MISSED": 1,
+        "PARTIAL": 2,
+        "PENDING": 3
+      },
+      "strict_on_time_rate": 0.0,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Biology & medicine",
+      "curated_n": 2,
+      "assessed_n": 2,
+      "deadline_eligible_n": 1,
+      "verdicts": {
+        "PENDING": 1,
+        "PARTIAL": 1
+      },
+      "strict_on_time_rate": 0.0,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Computing hardware",
+      "curated_n": 11,
+      "assessed_n": 6,
+      "deadline_eligible_n": 1,
+      "verdicts": {
+        "CORRECT": 1,
+        "UNREVIEWED": 5,
+        "UNSCORABLE": 3,
+        "LATE": 1,
+        "PENDING": 1
+      },
+      "strict_on_time_rate": 1.0,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Economy & society",
+      "curated_n": 3,
+      "assessed_n": 3,
+      "deadline_eligible_n": 0,
+      "verdicts": {
+        "PENDING": 2,
+        "UNSCORABLE": 1
+      },
+      "strict_on_time_rate": null,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Energy & environment",
+      "curated_n": 2,
+      "assessed_n": 2,
+      "deadline_eligible_n": 0,
+      "verdicts": {
+        "PENDING": 2
+      },
+      "strict_on_time_rate": null,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Interfaces & virtual worlds",
+      "curated_n": 8,
+      "assessed_n": 1,
+      "deadline_eligible_n": 1,
+      "verdicts": {
+        "PARTIAL": 1,
+        "UNREVIEWED": 7
+      },
+      "strict_on_time_rate": 0.0,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Longevity",
+      "curated_n": 3,
+      "assessed_n": 3,
+      "deadline_eligible_n": 1,
+      "verdicts": {
+        "WRONG_MISSED": 1,
+        "PENDING": 2
+      },
+      "strict_on_time_rate": 0.0,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Media, education & culture",
+      "curated_n": 2,
+      "assessed_n": 2,
+      "deadline_eligible_n": 1,
+      "verdicts": {
+        "CORRECT": 1,
+        "UNSCORABLE": 1
+      },
+      "strict_on_time_rate": 1.0,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Networks & communications",
+      "curated_n": 3,
+      "assessed_n": 2,
+      "deadline_eligible_n": 2,
+      "verdicts": {
+        "UNREVIEWED": 1,
+        "PARTIAL": 2
+      },
+      "strict_on_time_rate": 0.0,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Neuroscience & human augmentation",
+      "curated_n": 4,
+      "assessed_n": 3,
+      "deadline_eligible_n": 0,
+      "verdicts": {
+        "PENDING": 3,
+        "UNREVIEWED": 1
+      },
+      "strict_on_time_rate": null,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Robotics & transportation",
+      "curated_n": 2,
+      "assessed_n": 2,
+      "deadline_eligible_n": 2,
+      "verdicts": {
+        "WRONG_MISSED": 2
+      },
+      "strict_on_time_rate": 0.0,
+      "display_rate_as_representative": false
+    },
+    {
+      "category": "Security & warfare",
+      "curated_n": 2,
+      "assessed_n": 2,
+      "deadline_eligible_n": 1,
+      "verdicts": {
+        "WRONG_MISSED": 1,
+        "UNSCORABLE": 1
+      },
+      "strict_on_time_rate": 0.0,
+      "display_rate_as_representative": false
+    }
+  ]
+}

@@ -1,0 +1,4419 @@
+{
+  "as_of": "2026-10-15",
+  "mapping": [
+    {
+      "action": "HOLD_ATTRIBUTION_CONFLICT",
+      "canonical_ids": [
+        "K001"
+      ],
+      "reason": "1997 outcome confirmed; 1998/2000 original deadline conflict remains. Do not infer exact drift.",
+      "source_ids": [
+        "P01",
+        "O01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-001",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Computer will defeat world chess champion by 1998.",
+      "original_target_text": "1998",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K001",
+          "title": "Computer defeats the world chess champion",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K001",
+            "title": "Computer defeats the world chess champion",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "HOLD_ATTRIBUTION_CONFLICT",
+      "canonical_ids": [
+        "K001"
+      ],
+      "reason": "1997 outcome confirmed; 1998/2000 original deadline conflict remains. Do not infer exact drift.",
+      "source_ids": [
+        "P01",
+        "O01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-001",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Computer will beat world chess champion by 2000",
+      "original_target_text": "2000",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K001",
+          "title": "Computer defeats the world chess champion",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K001",
+            "title": "Computer defeats the world chess champion",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "HOLD_ATTRIBUTION_CONFLICT",
+      "canonical_ids": [
+        "K001"
+      ],
+      "reason": "1997 outcome confirmed; 1998/2000 original deadline conflict remains. Do not infer exact drift.",
+      "source_ids": [
+        "P01",
+        "O01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-001",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“we will see a [computer] world champion by the year 2000”【45†L226-L233】",
+      "original_target_text": "2000",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K001",
+          "title": "Computer defeats the world chess champion",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K001",
+            "title": "Computer defeats the world chess champion",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNLOCATED_ATTRIBUTION",
+      "canonical_ids": [],
+      "reason": "Internet-growth intuition is not a located, measurable deadline in the cited original edition. “Connect everyone” and “rapid growth” are not equivalent.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-002",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Global Internet will connect everyone to information.",
+      "original_target_text": "(unspecified)",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [],
+      "conditional_outcome": {
+        "assessed_claim": "A worldwide network gives everyone access to information.",
+        "assumed_deadline_year": null,
+        "at_deadline": "UNDATED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "The network exists at global scale, but ITU estimates 2.2 billion people offline in 2025. Literal everyone is partial; broadly global access is fulfilled. No dated score is possible.",
+        "evidence_source_ids": [
+          "N61"
+        ],
+        "broader_reading": "CORRECT under global reach, without universal individual use.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNLOCATED_ATTRIBUTION",
+      "canonical_ids": [],
+      "reason": "Internet-growth intuition is not a located, measurable deadline in the cited original edition. “Connect everyone” and “rapid growth” are not equivalent.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-003",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Internet will explode in users and content",
+      "original_target_text": "2000s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [],
+      "conditional_outcome": {
+        "assessed_claim": "Internet use and available information grow dramatically during the 2000s.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "CORRECT",
+        "rationale": "CERN’s Web history and ITU’s five-year doubling to 2010 substantiate explosive growth. The date/wording attribution remains separate from the obvious realized outcome.",
+        "evidence_source_ids": [
+          "N36",
+          "N70",
+          "N61"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K040"
+      ],
+      "reason": "Conditional authoritarian-control argument, not an unconditional dated Soviet-collapse forecast.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-003",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Communication tech will democratize society and contribute to the USSR’s collapse.",
+      "original_target_text": "~1990s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K040",
+          "title": "Information technology pressures authoritarian control",
+          "verdict": "PARTIAL",
+          "at_deadline": "UNDATED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K040",
+            "title": "Information technology pressures authoritarian control",
+            "verdict": "PARTIAL",
+            "at_deadline": "UNDATED",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K040"
+      ],
+      "reason": "Conditional authoritarian-control argument, not an unconditional dated Soviet-collapse forecast.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-002",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Authoritarian regimes will collapse as tech spreads",
+      "original_target_text": "1990s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K040",
+          "title": "Information technology pressures authoritarian control",
+          "verdict": "PARTIAL",
+          "at_deadline": "UNDATED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K040",
+            "title": "Information technology pressures authoritarian control",
+            "verdict": "PARTIAL",
+            "at_deadline": "UNDATED",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CANONICALIZE",
+      "canonical_ids": [
+        "K002"
+      ],
+      "reason": "Retain 2009. Remove the display inconsistency that says ~2010.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-004",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Portable computers will be much lighter/thinner by ~2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K002",
+          "title": "Lighter and thinner portable computers",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K002",
+            "title": "Lighter and thinner portable computers",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "MERGE_SAME_SCOPE",
+      "canonical_ids": [
+        "K003"
+      ],
+      "reason": "Treat as the same 2009 embedded-wearables forecast; no automatic credit for a phone in a pocket.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-005",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Computers will be embedded in clothing and personal accessories by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K003",
+          "title": "Computers embedded in clothing and jewelry",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K003",
+            "title": "Computers embedded in clothing and jewelry",
+            "verdict": "LATE",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "MERGE_SAME_SCOPE",
+      "canonical_ids": [
+        "K003"
+      ],
+      "reason": "Treat as the same 2009 embedded-wearables forecast; no automatic credit for a phone in a pocket.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-011",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Wearable computers common by 2009",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K003",
+          "title": "Computers embedded in clothing and jewelry",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K003",
+            "title": "Computers embedded in clothing and jewelry",
+            "verdict": "LATE",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "RESTORE_THRESHOLD",
+      "canonical_ids": [
+        "K004"
+      ],
+      "reason": "Restore at least 12 and body networking; the weak “many devices” paraphrase is not faithful.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-006",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "People will carry many networked devices (body LANs) by 2009.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K004",
+          "title": "At least a dozen body-networked computers",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Users carry several interconnected personal devices by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "Several mobile devices and wireless links existed before 2009, with personal phone/watch/audio ecosystems later clear. The import omits the sourced twelve-device threshold; that stricter sourced claim K004 remains missed.",
+        "evidence_source_ids": [
+          "N02",
+          "O08",
+          "N25",
+          "N06"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CANONICALIZE",
+      "canonical_ids": [
+        "K005"
+      ],
+      "reason": "No-moving-parts majority requires a device denominator.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-007",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Personal devices will be solid-state (no moving parts) by 2009.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K005",
+          "title": "Personal devices largely without moving parts",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K005",
+            "title": "Personal devices largely without moving parts",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K006"
+      ],
+      "reason": "Keyboard absence is not the same as touch/voice use.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-008",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Most mobile computing will be by touch/voice, not keyboards, by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K006",
+          "title": "Most portable computers lack keyboards",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K006",
+            "title": "Most portable computers lack keyboards",
+            "verdict": "LATE",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K007"
+      ],
+      "reason": "Local home/office servers are not automatically cloud services.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-009",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Most people will store data (music, video, docs) on their own servers by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K007",
+          "title": "Home and office servers for most users",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K007",
+            "title": "Home and office servers for most users",
+            "verdict": "PARTIAL",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K008"
+      ],
+      "reason": "Digital-object distribution, not a proven majority of all media.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-010",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Media (music, books, movies) will be distributed mostly digitally by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K008",
+          "title": "Wireless delivery of digital media and software",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Books, music, movies and software are mostly distributed digitally by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Digital distribution was real, but the import adds a majority requirement across several media. Music now clearly qualifies; print-book readership remains predominant. The narrower sourced digital-file availability claim K008 is separately correct.",
+        "evidence_source_ids": [
+          "O06",
+          "O07",
+          "N66",
+          "N69"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K009"
+      ],
+      "reason": "Disappearing cables is a trend, not literal extinction.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-011",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Wired cables will vanish in favor of short-range wireless by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K009",
+          "title": "Wireless links replace some peripheral cables",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Wired peripheral cables vanish by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Short-range wireless genuinely replaced some cables, but complete disappearance is not achieved. K009 assesses the actual directional “disappearing” wording rather than this exaggerated import.",
+        "evidence_source_ids": [
+          "O08",
+          "N25"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_AND_MERGE_SCOPE",
+      "canonical_ids": [
+        "K010"
+      ],
+      "reason": "Routine high-bandwidth wireless access, not a majority-of-Web-traffic claim.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-012",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "High-speed wireless networking will be ubiquitous by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K010",
+          "title": "Routine, reliable, high-bandwidth wireless access",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K010",
+            "title": "Routine, reliable, high-bandwidth wireless access",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_AND_MERGE_SCOPE",
+      "canonical_ids": [
+        "K010"
+      ],
+      "reason": "Routine high-bandwidth wireless access, not a majority-of-Web-traffic claim.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-013",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "People use the Web mainly wirelessly by 2009",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K010",
+          "title": "Routine, reliable, high-bandwidth wireless access",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K010",
+            "title": "Routine, reliable, high-bandwidth wireless access",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "RESTORE_THRESHOLD",
+      "canonical_ids": [
+        "K011"
+      ],
+      "reason": "Majority text production is required; existence of dictation software is insufficient.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-013",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Most text will be created via dictation by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K011",
+          "title": "Dictation creates the majority of text",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K011",
+            "title": "Dictation creates the majority of text",
+            "verdict": "WRONG",
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "RESTORE_QUALIFIERS",
+      "canonical_ids": [
+        "K012"
+      ],
+      "reason": "Restore ubiquity and frequent animated personas. Do not use Siri 2011 as the first-ever assistant.",
+      "source_ids": [
+        "P01",
+        "O10"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-014",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Voice-based assistants will handle routine tasks by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K012",
+          "title": "Ubiquitous language interfaces and animated assistants",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Voice assistants handle routine tasks by 2009/2010.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "Early speech interfaces were limited; Siri’s 2011 release documents later practical assistance. The sourced visual-avatar/ubiquity version K012 is assessed separately.",
+        "evidence_source_ids": [
+          "O10"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": "The import says 2010 in prose but 2009 in its target cell; later full realization is unchanged.",
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K013"
+      ],
+      "reason": "Paper-like displays and routine reading are not total paper replacement.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-015",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Paper will be largely replaced by high-quality digital displays by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K013",
+          "title": "Paper-like displays and routine electronic reading",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Paper reading is largely replaced by electronic displays by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Readable electronic displays existed before the deadline. That does not establish wholesale replacement of paper reading; print remains widely used. The display-quality claim K013 is narrower and correct.",
+        "evidence_source_ids": [
+          "O05",
+          "N66"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "HOLD_DATE_AND_SCOPE",
+      "canonical_ids": [
+        "K015"
+      ],
+      "reason": "Resolve 2010-versus-2015 mismatch and original early-decade wording. Preserve contacts/retinal mechanism.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-016",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Augmented-reality displays (e.g. smart glasses) will exist by 2015.",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K015",
+          "title": "Glasses and contact-lens displays in the 2010s",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "AR smart-glasses displays exist by 2015.",
+        "assumed_deadline_year": 2015,
+        "at_deadline": "FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "CORRECT",
+        "rationale": "Head-worn AR was used well before 2015. This loose availability claim must not inherit the separate contact-lens component or the contradictory 2010 cell.",
+        "evidence_source_ids": [
+          "N04"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": "Text 2015 and target cell 2010 both permit this availability outcome; no contact lens claim is inferred.",
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "REJECT_BAD_OUTCOME_EVIDENCE",
+      "canonical_ids": [
+        "K016"
+      ],
+      "reason": "LRAD/bone conduction do not demonstrate the complete tiny spatial-projector claim.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-017",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Wearable projectors will create 3D spatial audio by 2010.",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K016",
+          "title": "Tiny devices project auditory environments",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K016",
+            "title": "Tiny devices project auditory environments",
+            "verdict": "LATE",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "HOLD_CRITERION",
+      "canonical_ids": [
+        "K017"
+      ],
+      "reason": "An Oculus release date does not establish every resolution/immersion/availability condition.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-018",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Full VR systems (high-res, immersion) will be available by 2010.",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K017",
+          "title": "Anytime immersive audiovisual virtual reality",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K017",
+            "title": "Anytime immersive audiovisual virtual reality",
+            "verdict": "LATE",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "HOLD_FIRST_DATE",
+      "canonical_ids": [
+        "K018"
+      ],
+      "reason": "Do not treat Pokémon Go 2016 as the first AR overlay. Earlier product evidence must be checked.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-019",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Augmented reality overlays (e.g. AR apps) will be common by 2010.",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K018",
+          "title": "Augmented-reality overlays",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "AR overlays are commonly used by 2010.",
+        "assumed_deadline_year": 2010,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "Industrial head-worn overlays existed before 2010; the 2010 common-use claim was only partial. AR-enabled consumer interfaces later make overlays ordinary as a product category. This does not require most people to own AR glasses.",
+        "evidence_source_ids": [
+          "N04",
+          "N05",
+          "N71"
+        ],
+        "broader_reading": "CORRECT by 2010 for available practical overlays; source K018 uses the weaker availability criterion.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K019"
+      ],
+      "reason": "Original concerns humans removed from the battle scene, not merely drone existence.",
+      "source_ids": [
+        "P01",
+        "O13"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-020",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Warfare will be dominated by remote weapons/drones by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K019",
+          "title": "People largely removed from the battlefield",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K019",
+            "title": "People largely removed from the battlefield",
+            "verdict": "WRONG",
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "RESTORE_THRESHOLD",
+      "canonical_ids": [
+        "K020"
+      ],
+      "reason": "Dominance needs a defined measure; drone existence alone is insufficient.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-021",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "War will be carried out by autonomous drones by 2010.",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K020",
+          "title": "Unmanned aircraft dominate warfare",
+          "verdict": "PARTIAL",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K020",
+            "title": "Unmanned aircraft dominate warfare",
+            "verdict": "PARTIAL",
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CANONICALIZE_REPORTED_ATTRIBUTION",
+      "canonical_ids": [
+        "K021"
+      ],
+      "reason": "Retain 2028 as future; preserve all-energy versus electricity and potential versus actual-supply ambiguity.",
+      "source_ids": [
+        "P07"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-022",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Solar energy will meet global demand by ~2028.",
+      "original_target_text": "2028",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K021",
+          "title": "Solar meets worldwide energy demand",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K021",
+            "title": "Solar meets worldwide energy demand",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_AND_LINK_VERSION",
+      "canonical_ids": [
+        "K022"
+      ],
+      "reason": "Use checked 2005 Q&A wording; do not conflate aggregate humanity with one human brain.",
+      "source_ids": [
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-023",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "By ~2045 AI will exceed human intelligence (Singularity).",
+      "original_target_text": "2045",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K022",
+          "title": "The Singularity and billionfold intelligence expansion",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K022",
+            "title": "The Singularity and billionfold intelligence expansion",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_AND_LINK_VERSION",
+      "canonical_ids": [
+        "K022"
+      ],
+      "reason": "Use checked 2005 Q&A wording; do not conflate aggregate humanity with one human brain.",
+      "source_ids": [
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-028",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "“By 2045 the Singularity: computing power ~10^9× human brain, humans merged with machines”【24†L169-L174】【81†L537-L541】",
+      "original_target_text": "2045",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K022",
+          "title": "The Singularity and billionfold intelligence expansion",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K022",
+            "title": "The Singularity and billionfold intelligence expansion",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "LINK_FAMILY_NOT_EXACT_DUPLICATE",
+      "canonical_ids": [
+        "K045",
+        "K023"
+      ],
+      "reason": "Generic 2029 AI/Turing claims are related to but not identical with the 2002 detailed wager. Original-book wording still needs collation.",
+      "source_ids": [
+        "P03",
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-024",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "A computer will pass an unrestricted Turing Test by 2029.",
+      "original_target_text": "2029",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K045",
+          "title": "Human-level AI by the end of the 2020s",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K023",
+          "title": "The specific Kurzweil–Kapor Turing-test wager",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K045",
+            "title": "Human-level AI by the end of the 2020s",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          },
+          {
+            "id": "K023",
+            "title": "The specific Kurzweil–Kapor Turing-test wager",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "LINK_FAMILY_NOT_EXACT_DUPLICATE",
+      "canonical_ids": [
+        "K045",
+        "K023"
+      ],
+      "reason": "Generic 2029 AI/Turing claims are related to but not identical with the 2002 detailed wager. Original-book wording still needs collation.",
+      "source_ids": [
+        "P03",
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-027",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Computer passes Turing Test by 2029",
+      "original_target_text": "2029",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K045",
+          "title": "Human-level AI by the end of the 2020s",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K023",
+          "title": "The specific Kurzweil–Kapor Turing-test wager",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K045",
+            "title": "Human-level AI by the end of the 2020s",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          },
+          {
+            "id": "K023",
+            "title": "The specific Kurzweil–Kapor Turing-test wager",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "LINK_FAMILY_NOT_EXACT_DUPLICATE",
+      "canonical_ids": [
+        "K045",
+        "K023"
+      ],
+      "reason": "Generic 2029 AI/Turing claims are related to but not identical with the 2002 detailed wager. Original-book wording still needs collation.",
+      "source_ids": [
+        "P03",
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-020",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“Computers will pass the Turing test by 2029”【22†L384-L387】【79†L692-L700】",
+      "original_target_text": "2029",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K045",
+          "title": "Human-level AI by the end of the 2020s",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K023",
+          "title": "The specific Kurzweil–Kapor Turing-test wager",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K045",
+            "title": "Human-level AI by the end of the 2020s",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          },
+          {
+            "id": "K023",
+            "title": "The specific Kurzweil–Kapor Turing-test wager",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K024"
+      ],
+      "reason": "The located 1999 article places scouting/repair nanobots in 2029, not 2019. The alleged earlier version remains unlocated, not disproved.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-025",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Nanobots will monitor/repair our bodies (e.g. fight disease) by 2019.",
+      "original_target_text": "2019",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K024",
+          "title": "Bloodstream nanobots for scouting and limited repair",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Medical nanobots commonly scout and repair human bodies by 2019.",
+        "assumed_deadline_year": 2019,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "NOT_FULFILLED",
+        "verdict": "WRONG",
+        "rationale": "Under this imported deadline the clinical robot scenario missed and remains unrealized. The checked 2029 forecast is separately pending; finding that version does not automatically disprove an earlier version.",
+        "evidence_source_ids": [
+          "N29"
+        ],
+        "broader_reading": "PARTIAL for research-scale microrobots; nanoparticles alone do not fulfill autonomous in-body repair.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K024"
+      ],
+      "reason": "The located 1999 article places scouting/repair nanobots in 2029, not 2019. The alleged earlier version remains unlocated, not disproved.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-015",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“Within 20 years (by 2019) millions of nanobots (blood-cell sized) will fight disease inside our bodies”【79†L688-L695】",
+      "original_target_text": "2019",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K024",
+          "title": "Bloodstream nanobots for scouting and limited repair",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Medical nanobots commonly scout and repair human bodies by 2019.",
+        "assumed_deadline_year": 2019,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "NOT_FULFILLED",
+        "verdict": "WRONG",
+        "rationale": "Under this imported deadline the clinical robot scenario missed and remains unrealized. The checked 2029 forecast is separately pending; finding that version does not automatically disprove an earlier version.",
+        "evidence_source_ids": [
+          "N29"
+        ],
+        "broader_reading": "PARTIAL for research-scale microrobots; nanoparticles alone do not fulfill autonomous in-body repair.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "MERGE_SAME_SCOPE",
+      "canonical_ids": [
+        "K025"
+      ],
+      "reason": "2020 author-Q&A version located; brain-equivalence and budget/precision are not resolved.",
+      "source_ids": [
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-026",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "A consumer PC ($1000) will have human-brain-level computing by 2020.",
+      "original_target_text": "2020",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K025",
+          "title": "A thousand-dollar brain-capacity computer in 2020",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K025",
+            "title": "A thousand-dollar brain-capacity computer in 2020",
+            "verdict": "WRONG",
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "MERGE_SAME_SCOPE",
+      "canonical_ids": [
+        "K025"
+      ],
+      "reason": "2020 author-Q&A version located; brain-equivalence and budget/precision are not resolved.",
+      "source_ids": [
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-018",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "“By around 2020 the same capacity will be available for \\$1,000”【22†L381-L389】",
+      "original_target_text": "~2020",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K025",
+          "title": "A thousand-dollar brain-capacity computer in 2020",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K025",
+            "title": "A thousand-dollar brain-capacity computer in 2020",
+            "verdict": "WRONG",
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_COMPOUND_UNLOCATED",
+      "canonical_ids": [
+        "K012",
+        "K048"
+      ],
+      "reason": "An unspecific “various interviews” compound is not a source. These are related, independently located 2009 forecasts, not a validated 2015 version.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-027",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "By the 2010s, language translators and personal assistants will be common.",
+      "original_target_text": "2015",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K012",
+          "title": "Ubiquitous language interfaces and animated assistants",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K048",
+          "title": "Common many-language speech-to-speech translation",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K012",
+            "title": "Ubiquitous language interfaces and animated assistants",
+            "verdict": "PARTIAL",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "PARTLY_FULFILLED"
+          },
+          {
+            "id": "K048",
+            "title": "Common many-language speech-to-speech translation",
+            "verdict": "LATE",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K026",
+        "K047"
+      ],
+      "reason": "The claimed 2015 deadline was not established. Related 2009 highway and 2019 majority-driving versions are kept separately.",
+      "source_ids": [
+        "P01",
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-028",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Autonomous vehicles will be common by 2015.",
+      "original_target_text": "2015",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K026",
+          "title": "Automated intelligent highways",
+          "verdict": "PARTIAL",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K047",
+          "title": "Automated systems eliminate most human driving",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Autonomous cars are common by 2015.",
+        "assumed_deadline_year": 2015,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Prototype and constrained capability existed, but common ordinary-road autonomy was not established by 2015. Public geofenced driverless service later supplies meaningful partial realization. Availability in selected cities is a broader late success.",
+        "evidence_source_ids": [
+          "O15",
+          "N07",
+          "O14"
+        ],
+        "broader_reading": "LATE, documented by 2020, for public commercially available fully driverless rides in a defined service area.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K026",
+        "K047"
+      ],
+      "reason": "The claimed 2015 deadline was not established. Related 2009 highway and 2019 majority-driving versions are kept separately.",
+      "source_ids": [
+        "P01",
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-022",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "AI-driven cars by 2010s",
+      "original_target_text": "2015",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K026",
+          "title": "Automated intelligent highways",
+          "verdict": "PARTIAL",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K047",
+          "title": "Automated systems eliminate most human driving",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Autonomous cars are common by 2015.",
+        "assumed_deadline_year": 2015,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Prototype and constrained capability existed, but common ordinary-road autonomy was not established by 2015. Public geofenced driverless service later supplies meaningful partial realization. Availability in selected cities is a broader late success.",
+        "evidence_source_ids": [
+          "O15",
+          "N07",
+          "O14"
+        ],
+        "broader_reading": "LATE, documented by 2020, for public commercially available fully driverless rides in a defined service area.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K041"
+      ],
+      "reason": "2010 biosensor attribution not located; a broader diagnostic/intervention forecast appears under 2019. Do not silently shift its date.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-029",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Wearable biosensors (e.g. health monitors) will be common by 2010.",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K041",
+          "title": "Wearable diagnosis and health intervention",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Wearable health monitors are common by 2010.",
+        "assumed_deadline_year": 2010,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "Early products existed around 2010; the 2019 US survey’s 21% regular use supports common use later. Common is not majority or universal.",
+        "evidence_source_ids": [
+          "N01",
+          "N02",
+          "N25"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNLOCATED_ATTRIBUTION",
+      "canonical_ids": [],
+      "reason": "No checked film timestamp supports the 2020 100-to-120-year assertion. Do not score an unlocated quotation.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "AUD-030",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Medical advances will let 100-year-olds reach 120 by 2020.",
+      "original_target_text": "2020",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [],
+      "conditional_outcome": {
+        "assessed_claim": "Medical advances commonly extend survival from age 100 to age 120 by 2020.",
+        "assumed_deadline_year": 2020,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "NOT_FULFILLED",
+        "verdict": "WRONG",
+        "rationale": "This is read as ordinary, medically enabled survival, not the existence of an exceptionally old person. Population longevity data do not show this transformation; finding the original sentence could change its population or meaning.",
+        "evidence_source_ids": [
+          "O16",
+          "O17"
+        ],
+        "broader_reading": "Exceptional individuals reaching extreme ages would be a much weaker, different claim.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K010"
+      ],
+      "reason": "1990-book attribution and approximate 2010 deadline not established. A related 1999/2009 forecast is located.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-004",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Wireless access becomes dominant by early 21st century",
+      "original_target_text": "~2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K010",
+          "title": "Routine, reliable, high-bandwidth wireless access",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K010",
+            "title": "Routine, reliable, high-bandwidth wireless access",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K008"
+      ],
+      "reason": "1990-book claim that digital music replaces CDs not located. Digital file delivery is related but weaker and has a different source.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-005",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Digital music distribution replaces CDs by 2000s",
+      "original_target_text": "2000s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K008",
+          "title": "Wireless delivery of digital media and software",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Digital delivery displaces CDs as the mainstream music channel by the end of the 2000s.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "iTunes documents substantial download use before the deadline but not majority displacement. RIAA’s first-half 2026 figures show streaming dominates revenue. Mainstream replacement has occurred; CDs need not disappear.",
+        "evidence_source_ids": [
+          "O06",
+          "N69"
+        ],
+        "broader_reading": "CORRECT by 2009 for normal commercial digital distribution, without dominance.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNLOCATED_ATTRIBUTION",
+      "canonical_ids": [],
+      "reason": "No original passage/date located for this digital-camera attribution. Outcome plausibility is not source verification.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-006",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Digital cameras displace film by 2000",
+      "original_target_text": "2000s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [],
+      "conditional_outcome": {
+        "assessed_claim": "Digital photography displaces film as the mainstream market.",
+        "assumed_deadline_year": 2000,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "PMA/GfK data show only 11m digital versus 71m analog camera sales in 2000. Digital is mainstream today. The import conflicts between “by 2000” and “2000s”; the former is LATE, the latter is reasonably CORRECT. No exact worldwide crossover is claimed.",
+        "evidence_source_ids": [
+          "N64",
+          "N65"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": "Outcome at 2000: partial; at end-2009 on the decade reading: fulfilled. The headline timing is conditional, not unresolved outcome.",
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_CONFLICTING_VERSIONS",
+      "canonical_ids": [
+        "K012"
+      ],
+      "reason": "Assistant deadlines of mid-1990s and 2010 need original passages. The located 2009 language-interface forecast does not validate either.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-007",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Personal assistant AIs in daily use by 2010",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K012",
+          "title": "Ubiquitous language interfaces and animated assistants",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Personal AI assistants are in ordinary use by 2010.",
+        "assumed_deadline_year": 2010,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "Earlier speech software supplies partial progress; Siri’s 2011 release and subsequent integration substantiate later ordinary personal assistance.",
+        "evidence_source_ids": [
+          "O10",
+          "N25"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_CONFLICTING_VERSIONS",
+      "canonical_ids": [
+        "K012"
+      ],
+      "reason": "Assistant deadlines of mid-1990s and 2010 need original passages. The located 2009 language-interface forecast does not validate either.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-003",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“intelligent assistants” (AI aides) by mid-1990s【45†L295-L300】",
+      "original_target_text": "~1995",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K012",
+          "title": "Ubiquitous language interfaces and animated assistants",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Intelligent conversational assistants help ordinary users by approximately 1995.",
+        "assumed_deadline_year": 1995,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "On the conversational personal-assistant reading, the 1995 deadline was missed and Siri’s 2011 release provides a documented later realization. This does not claim no assistant software of any kind existed in 1995.",
+        "evidence_source_ids": [
+          "O10"
+        ],
+        "broader_reading": "Simple software wizards or office assistants would yield a weaker/partial earlier outcome.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K048"
+      ],
+      "reason": "Alleged 1990-book/2010 translating-phone version not located. Separate 1999/2009 version and outcome evidence are available.",
+      "source_ids": [
+        "P01",
+        "O11"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-008",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Real-time language translation phones by 2000s",
+      "original_target_text": "2000s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K048",
+          "title": "Common many-language speech-to-speech translation",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K048",
+            "title": "Common many-language speech-to-speech translation",
+            "verdict": "LATE",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K048"
+      ],
+      "reason": "Alleged 1990-book/2010 translating-phone version not located. Separate 1999/2009 version and outcome evidence are available.",
+      "source_ids": [
+        "P01",
+        "O11"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-002",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“translating telephone” (real-time speech translation) by 2010【45†L295-L300】",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K048",
+          "title": "Common many-language speech-to-speech translation",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K048",
+            "title": "Common many-language speech-to-speech translation",
+            "verdict": "LATE",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K026"
+      ],
+      "reason": "1990 source/2009 autonomy date not established; do not substitute the 1999 intelligent-highway version.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-009",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Autonomous cars by 2000s",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K026",
+          "title": "Automated intelligent highways",
+          "verdict": "PARTIAL",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Autonomous cars are common on ordinary roads by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "DARPA challenge demonstrations are not common road use. Geofenced public robotaxi service later gives meaningful partial realization; it does not satisfy common autonomy on ordinary roads generally.",
+        "evidence_source_ids": [
+          "O15",
+          "N07",
+          "O14"
+        ],
+        "broader_reading": "LATE for publicly available driverless rides in a defined service area, documented in 2020.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K011"
+      ],
+      "reason": "Generic widespread speech recognition is not the located majority-of-text claim. Original passage required.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-010",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Speech recognition widespread by 2000s",
+      "original_target_text": "2000s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K011",
+          "title": "Dictation creates the majority of text",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Speech recognition is a widespread available computing function by the end of the 2000s.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "Commercial speech-recognition software existed, while modern everyday voice interfaces are more broadly established later. This is not the much stronger majority-of-text dictation forecast.",
+        "evidence_source_ids": [
+          "P01",
+          "O10",
+          "N25"
+        ],
+        "broader_reading": "CORRECT by 2009 on an available mass-market software reading rather than population use.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_SCOPE_DISTORTION",
+      "canonical_ids": [
+        "K013"
+      ],
+      "reason": "The located paper-like reading claim does not establish a majority of books. Even a majority of all reading is not a majority of books.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-012",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Majority of books read digitally by 2009",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K013",
+          "title": "Paper-like displays and routine electronic reading",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Most books are read electronically by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "NOT_FULFILLED",
+        "verdict": "WRONG",
+        "rationale": "The majority threshold was not reached in 2009. Pew’s 2025 survey still shows far more print readers than e-book readers. That is a readership proxy, not a complete count of books/pages read; on the ordinary adoption reading the forecast remains a miss.",
+        "evidence_source_ids": [
+          "O05",
+          "N66"
+        ],
+        "broader_reading": "CORRECT for routine digital reading as an available format, without majority replacement.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K026"
+      ],
+      "reason": "Keep intelligent-highway mechanism and ordinary road qualification; reject generic all-cars shorthand.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-014",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Self-driving cars common by 2009",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K026",
+          "title": "Automated intelligent highways",
+          "verdict": "PARTIAL",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Autonomous cars are common on ordinary roads by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "DARPA challenge demonstrations are not common road use. Geofenced public robotaxi service later gives meaningful partial realization; it does not satisfy common autonomy on ordinary roads generally.",
+        "evidence_source_ids": [
+          "O15",
+          "N07",
+          "O14"
+        ],
+        "broader_reading": "LATE for publicly available driverless rides in a defined service area, documented in 2020.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "RESTORE_MECHANISM",
+      "canonical_ids": [
+        "K014"
+      ],
+      "reason": "Restore see-through laser retinal projection; do not invent a first-use date from Google Glass.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-015",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "AR glasses with displays by 2009",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K014",
+          "title": "See-through glasses with direct retinal projection",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K014",
+            "title": "See-through glasses with direct retinal projection",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE",
+      "canonical_ids": [
+        "K050"
+      ],
+      "reason": "Embedded computers are not necessarily visible clothing displays.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-016",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Displays in clothing by 2019",
+      "original_target_text": "2019",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K050",
+          "title": "Invisible computing embedded throughout the environment",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Displays are commonly integrated into ordinary clothing by 2019.",
+        "assumed_deadline_year": 2019,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Experimental and specialized wearable displays are not the same as commonplace clothing screens. Phones and watches show wearable computation, not general display-bearing garments.",
+        "evidence_source_ids": [
+          "N01",
+          "N25",
+          "N04"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "RESTORE_MODALITY",
+      "canonical_ids": [
+        "K031"
+      ],
+      "reason": "The checked 2019 passage is full tactile simulation, not just audiovisual realism.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-017",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "VR indistinguishable from real by 2019",
+      "original_target_text": "2019",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K031",
+          "title": "Convincing full-body tactile virtual reality",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K031",
+            "title": "Convincing full-body tactile virtual reality",
+            "verdict": "WRONG",
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNSUPPORTED_MEDICAL_PARAPHRASE",
+      "canonical_ids": [
+        "K049"
+      ],
+      "reason": "No checked source for “cure deafness by 2009.” Conventional implants do not restore normal hearing. A distinct network-interface forecast is for 2029.",
+      "source_ids": [
+        "P02",
+        "O23"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-018",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Cochlear implants effectively cure deafness",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K049",
+          "title": "Ubiquitous bidirectional cochlear network interfaces",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Cochlear implants effectively cure deafness by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Cochlear implants provide important hearing/speech access to suitable recipients, but do not restore normal hearing for all deaf people. Partial does not deny their major practical benefit.",
+        "evidence_source_ids": [
+          "O23"
+        ],
+        "broader_reading": "CORRECT for effective hearing restoration/support in an eligible patient subset, not a universal cure.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "RESTORE_ADOPTION_THRESHOLD",
+      "canonical_ids": [
+        "K029"
+      ],
+      "reason": "Most interaction/rare keyboards is stronger than assistants merely existing.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-019",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "Natural language interaction with computers by 2019",
+      "original_target_text": "2019",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K029",
+          "title": "Gesture and spoken language become dominant input",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K029",
+            "title": "Gesture and spoken language become dominant input",
+            "verdict": "PARTIAL",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNLOCATED_ATTRIBUTION",
+      "canonical_ids": [],
+      "reason": "Home 3-D-printing attribution and 2019 deadline not established in the supplied source trail.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-020",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "3D printers for home use by 2019",
+      "original_target_text": "2019",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [],
+      "conditional_outcome": {
+        "assessed_claim": "Home users can buy and use a personal 3-D printer.",
+        "assumed_deadline_year": 2019,
+        "at_deadline": "FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "CORRECT",
+        "rationale": "The 2012 MakerBot press release documents a personal, ready-to-use desktop printer. Availability for home use is enough; widespread ownership or molecular manufacturing is not required.",
+        "evidence_source_ids": [
+          "N63"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K050"
+      ],
+      "reason": "2010 SIN wording and interval require separate extraction; the sourced 2019 embedded-computing version cannot replace it.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-021",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "PCs embedded in environment by 2010s",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K050",
+          "title": "Invisible computing embedded throughout the environment",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Computers become unobtrusively embedded in the environment by 2010.",
+        "assumed_deadline_year": 2010,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "Embedded and specialized examples existed before the deadline; the broader everyday object ecosystem is established later. The imported 2010 date must not overwrite the sourced 2019 version.",
+        "evidence_source_ids": [
+          "N03",
+          "N25",
+          "N42"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNLOCATED_ATTRIBUTION",
+      "canonical_ids": [],
+      "reason": "Bioengineered organs by 2015: exact original scope/date not located. Do not turn experimental tissues into a full organ-transplant forecast.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-023",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Bioengineered organs for transplant by 2010s",
+      "original_target_text": "2015",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [],
+      "conditional_outcome": {
+        "assessed_claim": "Bioengineered organs are used for transplantation/replacement.",
+        "assumed_deadline_year": 2015,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "The 2006 study implanted engineered bladder tissues for reconstruction, a real clinical achievement. It does not establish a general supply of complete transplantable solid organs. Partial under the ordinary organ-replacement reading; correct under an at-least-one engineered-tissue implantation reading.",
+        "evidence_source_ids": [
+          "N62"
+        ],
+        "broader_reading": "CORRECT by 2006 for engineered bladder tissue implanted in human reconstruction. Do not call it a complete lab-grown bladder transplantation.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K024"
+      ],
+      "reason": "An alleged 2020 blood-nanobot forecast needs its own source; related 2029 article claim does not settle it.",
+      "source_ids": [
+        "P02",
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-024",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Nanobots in bloodstream by 2020s",
+      "original_target_text": "2020",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K024",
+          "title": "Bloodstream nanobots for scouting and limited repair",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Clinical medical nanobots circulate in patients by 2020.",
+        "assumed_deadline_year": 2020,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "NOT_FULFILLED",
+        "verdict": "WRONG",
+        "rationale": "The clinical review describes translation hurdles rather than a routine autonomous bloodstream-robot capability. This 2020 lead is assessed conditionally and is not merged into the sourced 2029 version.",
+        "evidence_source_ids": [
+          "N29"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_DATE_DISTORTION",
+      "canonical_ids": [
+        "K010"
+      ],
+      "reason": "2015 date not verified. Related early-2010s and 2009 wireless claims must remain distinguishable.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-025",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Constant wireless Internet access by 2015",
+      "original_target_text": "2015",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K010",
+          "title": "Routine, reliable, high-bandwidth wireless access",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Wireless Internet access is routinely available by 2015.",
+        "assumed_deadline_year": 2015,
+        "at_deadline": "FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "CORRECT",
+        "rationale": "Pew already recorded substantial US wireless use in 2009; the later deadline is fulfilled on an ordinary availability reading. Perfect geographic coverage is not required.",
+        "evidence_source_ids": [
+          "O09",
+          "N70"
+        ],
+        "broader_reading": "Literal no-outage, everywhere access remains partial.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNLOCATED_ATTRIBUTION",
+      "canonical_ids": [],
+      "reason": "No original passage verifies “most paper scanned and searchable by 2015.” Do not score general digitization as fulfillment.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-026",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Most paper scanned & searchable by 2015",
+      "original_target_text": "2015",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [],
+      "conditional_outcome": {
+        "assessed_claim": "Most existing paper documents have been scanned and made searchable.",
+        "assumed_deadline_year": 2015,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Large-scale searchable digitization is real. Google describes a 40m-book collection by 2019, but this is not a count of all paper or proof that a majority was digitized. The reasonable current assessment is partial, not a total absence of progress.",
+        "evidence_source_ids": [
+          "N68",
+          "N36"
+        ],
+        "broader_reading": "CORRECT for large-scale searchable digital collections; that removes the majority-of-all-paper requirement.",
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K017",
+        "K031"
+      ],
+      "reason": "Generic 2029 indistinguishable-VR wording is not located. Audiovisual and tactile forecasts are different claims, not interchangeable evidence.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-028",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Virtual reality indistinguishable by 2020s",
+      "original_target_text": "2029",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K017",
+          "title": "Anytime immersive audiovisual virtual reality",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        },
+        {
+          "id": "K031",
+          "title": "Convincing full-body tactile virtual reality",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Virtual reality becomes indistinguishable from physical reality during the 2020s.",
+        "assumed_deadline_year": 2029,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "The deadline remains open. Consumer audiovisual immersion is meaningful progress, but it is not complete sensory indistinguishability.",
+        "evidence_source_ids": [
+          "N05",
+          "N28"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_COMPOUND_OR_UNLOCATED",
+      "canonical_ids": [
+        "K032",
+        "K043"
+      ],
+      "reason": "Mind uploading, nonbiological identity and neural communication are distinct. Located neural-interface versions do not validate universal uploading in the 2030s.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-029",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Tether consciousness (mind-upload) by 2030s",
+      "original_target_text": "2030s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K032",
+          "title": "High-bandwidth neural interfaces augment brain functions",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K043",
+          "title": "Brain-to-cloud cognitive integration",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Brain uploading or broad nonbiological human cognition becomes available during the 2030s.",
+        "assumed_deadline_year": 2039,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "The decade has not arrived. Neural interfaces and brain mapping are partial enabling developments, not completed uploading or mostly nonbiological humanity. Attribution and the exact early/late-2030s reading remain separate.",
+        "evidence_source_ids": [
+          "N15",
+          "N16",
+          "P05"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_COMPOUND_OR_UNLOCATED",
+      "canonical_ids": [
+        "K032",
+        "K043"
+      ],
+      "reason": "Mind uploading, nonbiological identity and neural communication are distinct. Located neural-interface versions do not validate universal uploading in the 2030s.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-030",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Humans mostly non-biological by 2030s",
+      "original_target_text": "2030s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K032",
+          "title": "High-bandwidth neural interfaces augment brain functions",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K043",
+          "title": "Brain-to-cloud cognitive integration",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Brain uploading or broad nonbiological human cognition becomes available during the 2030s.",
+        "assumed_deadline_year": 2039,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "The decade has not arrived. Neural interfaces and brain mapping are partial enabling developments, not completed uploading or mostly nonbiological humanity. Attribution and the exact early/late-2030s reading remain separate.",
+        "evidence_source_ids": [
+          "N15",
+          "N16",
+          "P05"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_COMPOUND_OR_UNLOCATED",
+      "canonical_ids": [
+        "K032",
+        "K043"
+      ],
+      "reason": "Mind uploading, nonbiological identity and neural communication are distinct. Located neural-interface versions do not validate universal uploading in the 2030s.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-030",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“By ~2030s, universal brain-computer interface and brain-uploading begin”【79†L692-L700】【81†L537-L541】",
+      "original_target_text": "2030s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K032",
+          "title": "High-bandwidth neural interfaces augment brain functions",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K043",
+          "title": "Brain-to-cloud cognitive integration",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Brain uploading or broad nonbiological human cognition becomes available during the 2030s.",
+        "assumed_deadline_year": 2039,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "The decade has not arrived. Neural interfaces and brain mapping are partial enabling developments, not completed uploading or mostly nonbiological humanity. Attribution and the exact early/late-2030s reading remain separate.",
+        "evidence_source_ids": [
+          "N15",
+          "N16",
+          "P05"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "SPLIT_INDEPENDENT_DEADLINES",
+      "canonical_ids": [
+        "K037",
+        "K038"
+      ],
+      "reason": "Separate developed-world early-2030s and global end-of-decade predictions. Report original-transcript limitation.",
+      "source_ids": [
+        "P06"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-031",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "Universal basic income early 2030s (rich) / end of 2030s (worldwide)",
+      "original_target_text": "2030s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K037",
+          "title": "Developed-world universal basic income",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K038",
+          "title": "Worldwide universal basic income",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K037",
+            "title": "Developed-world universal basic income",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          },
+          {
+            "id": "K038",
+            "title": "Worldwide universal basic income",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "SPLIT_INDEPENDENT_DEADLINES",
+      "canonical_ids": [
+        "K037",
+        "K038"
+      ],
+      "reason": "Separate developed-world early-2030s and global end-of-decade predictions. Report original-transcript limitation.",
+      "source_ids": [
+        "P06"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-023",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“Universal basic income in developed world by early 2030s, worldwide by late 2030s”【79†L624-L627】",
+      "original_target_text": "early 2030s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K037",
+          "title": "Developed-world universal basic income",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K038",
+          "title": "Worldwide universal basic income",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K037",
+            "title": "Developed-world universal basic income",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          },
+          {
+            "id": "K038",
+            "title": "Worldwide universal basic income",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNSUPPORTED_INFERENCE",
+      "canonical_ids": [
+        "K042"
+      ],
+      "reason": "A first 150-year-old and average lifespan of 150 are different and neither was sourced. Do not derive either from longevity escape velocity.",
+      "source_ids": [
+        "P05"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "DEC-032",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "First 150-year-old by 2050 (implying longevity breakthroughs)",
+      "original_target_text": "2050s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K042",
+          "title": "Longevity escape velocity",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "A first 150-year-old, or average lifespan 150, occurs around 2050.",
+        "assumed_deadline_year": 2050,
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "These two outcomes are different and neither should be silently inferred from longevity escape velocity. Both are future-dated and not demonstrated today; the imported attributed wording remains unresolved.",
+        "evidence_source_ids": [
+          "O17"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": "DEC-032 says first individual; EXE-029 says average lifespan. Keep those thresholds distinct.",
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNSUPPORTED_INFERENCE",
+      "canonical_ids": [
+        "K042"
+      ],
+      "reason": "A first 150-year-old and average lifespan of 150 are different and neither was sourced. Do not derive either from longevity escape velocity.",
+      "source_ids": [
+        "P05"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-029",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“By 2050 average human lifespan 150 years” (implied from interview claims)【19†L123-L130】",
+      "original_target_text": "2050",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K042",
+          "title": "Longevity escape velocity",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "A first 150-year-old, or average lifespan 150, occurs around 2050.",
+        "assumed_deadline_year": 2050,
+        "at_deadline": "NOT_DUE",
+        "at_review": "NOT_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "These two outcomes are different and neither should be silently inferred from longevity escape velocity. Both are future-dated and not demonstrated today; the imported attributed wording remains unresolved.",
+        "evidence_source_ids": [
+          "O17"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": "DEC-032 says first individual; EXE-029 says average lifespan. Keep those thresholds distinct.",
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_AND_SPLIT_REQUIRED",
+      "canonical_ids": [
+        "K048",
+        "K026"
+      ],
+      "reason": "Compound phone/autonomy statement with unlocated original deadlines. These related sourced versions do not validate either clause.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-004",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“translating telephone by 2010;…completely driverless car by well into first half of 21st century”【45†L295-L300】",
+      "original_target_text": "2010; ~2050",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K048",
+          "title": "Common many-language speech-to-speech translation",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        },
+        {
+          "id": "K026",
+          "title": "Automated intelligent highways",
+          "verdict": "PARTIAL",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Telephone translation by 2010, and completely driverless cars in the first half of the century.",
+        "assumed_deadline_year": 2050,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "This is a compound with different deadlines. Speech translation is a late practical success relative to 2010; defined-area fully driverless rides exist ahead of 2050. Do not compress the two into one date.",
+        "evidence_source_ids": [
+          "N71",
+          "N72",
+          "N07"
+        ],
+        "broader_reading": null,
+        "component_assessments": [
+          {
+            "claim": "Practical telephone translation",
+            "deadline": 2010,
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED",
+            "verdict": "LATE"
+          },
+          {
+            "claim": "A completely driverless car in a service area",
+            "deadline": 2050,
+            "at_deadline": "NOT_DUE",
+            "at_review": "FULFILLED",
+            "verdict": "CORRECT",
+            "qualifier": "EARLY; broader availability reading, not all-road replacement"
+          }
+        ],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "REMOVE_INVENTED_DEADLINE",
+      "canonical_ids": [
+        "K039"
+      ],
+      "reason": "The located next-century hypertext passage does not justify the intake’s exact 2000s cutoff.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-005",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "“People will use electronic documents [hypertext],… instead of linear like a book”【45†L309-L313】",
+      "original_target_text": "2000s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K039",
+          "title": "Nonlinear electronic documents",
+          "verdict": "CORRECT",
+          "at_deadline": "UNDATED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K039",
+            "title": "Nonlinear electronic documents",
+            "verdict": "CORRECT",
+            "at_deadline": "UNDATED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_AND_SPLIT_REQUIRED",
+      "canonical_ids": [
+        "K019",
+        "K020"
+      ],
+      "reason": "Laser weapons, particle beams and pilotless aircraft require separate original passages and deadlines; do not use drones to validate the compound.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-006",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“laser and particle beam weapons, and planes without human pilots” in future warfare【45†L319-L323】",
+      "original_target_text": "2000–2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K019",
+          "title": "People largely removed from the battlefield",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        },
+        {
+          "id": "K020",
+          "title": "Unmanned aircraft dominate warfare",
+          "verdict": "PARTIAL",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Future warfare uses pilotless planes and laser/particle-beam weapons.",
+        "assumed_deadline_year": 2010,
+        "at_deadline": "PARTLY_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Pilotless aircraft fulfill one component. Navy documents a deployed shipboard laser demonstration in 2014. Particle-beam deployment is not established. Keep the compound partial rather than counting all components as one success.",
+        "evidence_source_ids": [
+          "O15",
+          "N67"
+        ],
+        "broader_reading": null,
+        "component_assessments": [
+          {
+            "claim": "Pilotless military aircraft",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          },
+          {
+            "claim": "Deployed laser weapon",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "FULFILLED",
+            "documented_by_year": 2014
+          },
+          {
+            "claim": "Operational particle-beam weapon",
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "RESTORE_FORM_FACTOR_SCOPE",
+      "canonical_ids": [
+        "K046"
+      ],
+      "reason": "Do not reduce the multi-form-factor statement to a generic tablet prediction.",
+      "source_ids": [
+        "P01"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-008",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "“2009 computer will be a tablet or smaller device with high quality… display”【63†L382-L389】",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K046",
+          "title": "Portable computers in many tiny form factors",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K046",
+            "title": "Portable computers in many tiny form factors",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "SPLIT_DISTINCT_CAPABILITIES",
+      "canonical_ids": [
+        "K050",
+        "K030"
+      ],
+      "reason": "Separate embedded/invisible computing from the retinal-display mechanism.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-009",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“2019 computers are largely invisible – images projected directly into the retina”【63†L382-L389】",
+      "original_target_text": "2019",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K050",
+          "title": "Invisible computing embedded throughout the environment",
+          "verdict": "CORRECT",
+          "at_deadline": "FULFILLED",
+          "at_review": "FULFILLED"
+        },
+        {
+          "id": "K030",
+          "title": "Routine high-acuity retinal displays",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K050",
+            "title": "Invisible computing embedded throughout the environment",
+            "verdict": "CORRECT",
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED"
+          },
+          {
+            "id": "K030",
+            "title": "Routine high-acuity retinal displays",
+            "verdict": "PARTIAL",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CANONICALIZE",
+      "canonical_ids": [
+        "K032"
+      ],
+      "reason": "Retain functional neural-augmentation scope rather than any BCI demonstration.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-010",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "“2029 computers will communicate through direct neural pathways”【63†L382-L389】",
+      "original_target_text": "2029",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K032",
+          "title": "High-bandwidth neural interfaces augment brain functions",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K032",
+            "title": "High-bandwidth neural interfaces augment brain functions",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_AND_SPLIT_REQUIRED",
+      "canonical_ids": [
+        "K045",
+        "K023"
+      ],
+      "reason": "Three dates and different Turing propositions need original-book passages. General 2029 expectation is related, not validation of all clauses.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-011",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“Interest and speculation about the Turing test in 2009; by 2029 machines ‘routinely’ pass the test”【63†L386-L390】",
+      "original_target_text": "2009, 2019, 2029",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K045",
+          "title": "Human-level AI by the end of the 2020s",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        },
+        {
+          "id": "K023",
+          "title": "The specific Kurzweil–Kapor Turing-test wager",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Turing-test debate by 2009, and routine passing by 2029.",
+        "assumed_deadline_year": 2029,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "The 2002 public wager establishes earlier debate. Its demanding 2029 success condition remains pending; shorter conversational experiments are separate positive evidence.",
+        "evidence_source_ids": [
+          "P03",
+          "O21"
+        ],
+        "broader_reading": null,
+        "component_assessments": [
+          {
+            "claim": "Public Turing-test debate by 2009",
+            "deadline": 2009,
+            "at_deadline": "FULFILLED",
+            "at_review": "FULFILLED",
+            "verdict": "CORRECT"
+          },
+          {
+            "claim": "Routine passing by 2029",
+            "deadline": 2029,
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED",
+            "verdict": "PENDING"
+          }
+        ],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "SPLIT_AND_HOLD_PRICE_VARIANT",
+      "canonical_ids": [
+        "K033",
+        "K034",
+        "K035"
+      ],
+      "reason": "Separate 2009, 2019 and 2029 hardware forecasts. The article has $1,000 in 1999 dollars for 2019; the alleged $4,000 book version remains unverified.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-012",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“In 2009 it will take a supercomputer to match one human brain; in 2019 \\$4,000 does the same; in 2029 \\$1,000 buys 1000 brains”【63†L392-L399】",
+      "original_target_text": "2009–2029",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K033",
+          "title": "Supercomputers reach 20 quadrillion calculations per second",
+          "verdict": "LATE",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "FULFILLED"
+        },
+        {
+          "id": "K034",
+          "title": "The 2019 thousand-dollar brain-compute estimate",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        },
+        {
+          "id": "K035",
+          "title": "Thousand-brain computation for a thousand dollars",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Supercomputer brain budget in 2009, $4,000 in 2019, $1,000 buys 1,000 budgets in 2029.",
+        "assumed_deadline_year": 2029,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "The 2009 budget arrives late on sustained throughput; the 2019 $4,000 budget remains unfulfilled on the numerical criterion; 2029 remains pending. The $4,000 import is not the sourced $1,000 2019 version.",
+        "evidence_source_ids": [
+          "O18",
+          "O20",
+          "N09",
+          "N10",
+          "N11"
+        ],
+        "broader_reading": null,
+        "component_assessments": [
+          {
+            "claim": "20 PFLOPS supercomputer",
+            "deadline": 2009,
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "FULFILLED",
+            "verdict": "LATE"
+          },
+          {
+            "claim": "$4,000 for 20 PFLOPS",
+            "deadline": 2019,
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "NOT_FULFILLED",
+            "verdict": "WRONG"
+          },
+          {
+            "claim": "$1,000 for 1,000 brains",
+            "deadline": 2029,
+            "at_deadline": "NOT_DUE",
+            "at_review": "NOT_FULFILLED",
+            "verdict": "PENDING"
+          }
+        ],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "SPLIT_AND_QUARANTINE_UNLOCATED_CLAUSE",
+      "canonical_ids": [
+        "K027",
+        "K028"
+      ],
+      "reason": "2019 >100 and 2029 120 located. The indefinite-2099 clause is not verified in the checked article.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-013",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“Life expectancy >100 by 2019; 120 by 2029; indefinite by 2099”【63†L392-L399】",
+      "original_target_text": "2019, 2029, 2099",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K027",
+          "title": "Life expectancy over 100",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        },
+        {
+          "id": "K028",
+          "title": "Life expectancy reaches 120",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Lifespan exceeds 100 by 2019, reaches 120 by 2029 and becomes indefinite by 2099.",
+        "assumed_deadline_year": 2099,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "Keep each threshold separate: ordinary lifespan over 100 was missed; 120 by 2029 and indefinite lifespan by 2099 remain pending. Ordinary population longevity is not the age record of one person.",
+        "evidence_source_ids": [
+          "O16",
+          "O17"
+        ],
+        "broader_reading": null,
+        "component_assessments": [
+          {
+            "claim": "Life expectancy over 100",
+            "deadline": 2019,
+            "at_deadline": "NOT_FULFILLED",
+            "at_review": "NOT_FULFILLED",
+            "verdict": "WRONG"
+          },
+          {
+            "claim": "Life expectancy 120",
+            "deadline": 2029,
+            "at_deadline": "NOT_DUE",
+            "at_review": "NOT_FULFILLED",
+            "verdict": "PENDING"
+          },
+          {
+            "claim": "Indefinite lifespan",
+            "deadline": 2099,
+            "at_deadline": "NOT_DUE",
+            "at_review": "NOT_FULFILLED",
+            "verdict": "PENDING"
+          }
+        ],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K017"
+      ],
+      "reason": "The precise 1999 “within ten years” interview quotation was not located. Later audiovisual VR versions cannot validate it.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-014",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“Within 10 years (by 2009) we will have option to spend time in 3D virtual environments that appear just as real…”【79†L688-L695】",
+      "original_target_text": "2009",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K017",
+          "title": "Anytime immersive audiovisual virtual reality",
+          "verdict": "LATE",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "A fully realistic virtual environment is available by 2009.",
+        "assumed_deadline_year": 2009,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PARTIAL",
+        "rationale": "Basic VR is not full sensory indistinguishability. Modern consumer immersive audiovisual VR realizes part of the experience, without establishing the complete fidelity of the imported claim.",
+        "evidence_source_ids": [
+          "N05",
+          "N28"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K033",
+        "K025"
+      ],
+      "reason": "The 2005 Q&A uses a different operations estimate/end-of-decade language. Do not merge it into the 1999 20-petaflop target or call throughput intelligence.",
+      "source_ids": [
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-017",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“By 2010 a supercomputer will have the computational capacity to emulate human intelligence”【22†L381-L389】",
+      "original_target_text": "2010",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K033",
+          "title": "Supercomputers reach 20 quadrillion calculations per second",
+          "verdict": "LATE",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "FULFILLED"
+        },
+        {
+          "id": "K025",
+          "title": "A thousand-dollar brain-capacity computer in 2020",
+          "verdict": "WRONG",
+          "at_deadline": "NOT_FULFILLED",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "A supercomputer matches the numerical compute budget proposed for a human brain by 2010.",
+        "assumed_deadline_year": 2010,
+        "at_deadline": "NOT_FULFILLED",
+        "at_review": "FULFILLED",
+        "verdict": "LATE",
+        "rationale": "On the explicit numerical hardware-budget reading, the 2009/2010 horizon was early and later TOP500 machines exceed it. This is not proof of software intelligence or emulation. Exact first crossing varies with 10 versus 20 PFLOPS and peak versus sustained measurements.",
+        "evidence_source_ids": [
+          "O18",
+          "O19",
+          "O20",
+          "P04"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": "Documented by 2013; depending on numeric threshold and metric the first crossing is earlier. No exact drift assigned.",
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CORRECT_SCOPE_AND_HOLD_DATE",
+      "canonical_ids": [
+        "K036"
+      ],
+      "reason": "Effective brain-region models are not automatically full brain emulation; mid-decade is not an invented exact 2025 deadline.",
+      "source_ids": [
+        "P04"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-019",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "“By mid-2020s an effective model of human intelligence via brain scanning”【22†L384-L387】",
+      "original_target_text": "mid-2020s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K036",
+          "title": "Effective models of all brain regions",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K036",
+            "title": "Effective models of all brain regions",
+            "verdict": "PARTIAL",
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_RELATED_VERSION_ONLY",
+      "canonical_ids": [
+        "K043"
+      ],
+      "reason": "The 2008 attribution was not verified. A documented 2024 interview version must not be backdated.",
+      "source_ids": [
+        "P05"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-021",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“By early 2030s, human and machine intelligence integrated” (hybrid intelligence)【79†L692-L700】",
+      "original_target_text": "2030s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K043",
+          "title": "Brain-to-cloud cognitive integration",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K043",
+            "title": "Brain-to-cloud cognitive integration",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "CANONICALIZE",
+      "canonical_ids": [
+        "K035"
+      ],
+      "reason": "Preserve price basis, operation-rate estimate and future deadline.",
+      "source_ids": [
+        "P02"
+      ],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-022",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": false,
+      "original_prediction": "“It will take \\$1,000 to equal 1000 human brains by 2029”【63†L392-L399】",
+      "original_target_text": "2029",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K035",
+          "title": "Thousand-brain computation for a thousand dollars",
+          "verdict": "PENDING",
+          "at_deadline": "NOT_DUE",
+          "at_review": "NOT_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessment_basis": "USE_LINKED_CANONICAL_CLAIM_WITH_EXPLICIT_CORRECTED_SCOPE",
+        "component_assessments": [
+          {
+            "id": "K035",
+            "title": "Thousand-brain computation for a thousand dollars",
+            "verdict": "PENDING",
+            "at_deadline": "NOT_DUE",
+            "at_review": "NOT_FULFILLED"
+          }
+        ],
+        "rationale": "Outcome judgments are completed on the linked source-matched criteria. Preserve the original wording/date and this reconciliation; do not represent a corrected scope as a verbatim import.",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_UNLOCATED_ATTRIBUTION",
+      "canonical_ids": [],
+      "reason": "No checked 2024 passage supports this exact cure-most-chronic-disease wording/deadline. Earlier biomedical optimism is not a substitute.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-025",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“During the 2020s, AI plus biotechnology will cure most chronic degenerative diseases”【24†L169-L174】",
+      "original_target_text": "2020s",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [],
+      "conditional_outcome": {
+        "assessed_claim": "AI and biotechnology cure most chronic degenerative diseases during the 2020s.",
+        "assumed_deadline_year": 2029,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "The decade is not over. Mechanistic and genomic research represents progress, not evidence that most conditions are cured. This imported attribution needs its original passage; current progress can nevertheless be assessed.",
+        "evidence_source_ids": [
+          "N38",
+          "N39",
+          "N40",
+          "O17"
+        ],
+        "broader_reading": null,
+        "component_assessments": [],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    },
+    {
+      "action": "QUARANTINE_GARBLED_COMPOUND",
+      "canonical_ids": [
+        "K036"
+      ],
+      "reason": "“Life extenda” and an implied date range are not a verifiable prediction. Retain the raw lead but exclude it from scored content.",
+      "source_ids": [],
+      "automatic_redirect": false,
+      "legacy_id": "EXE-026",
+      "raw_import_sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2",
+      "retain_original_record": true,
+      "safe_to_score_original_unchanged": false,
+      "requires_manual_route_decision": true,
+      "original_prediction": "“By the mid-2020s, AI can model the human mind; by 2030s life extenda” (implied continuation)",
+      "original_target_text": "2025–2035",
+      "as_of": "2026-10-15",
+      "canonical_version": "0.3",
+      "canonical_outcomes": [
+        {
+          "id": "K036",
+          "title": "Effective models of all brain regions",
+          "verdict": "PARTIAL",
+          "at_deadline": "PARTLY_FULFILLED",
+          "at_review": "PARTLY_FULFILLED"
+        }
+      ],
+      "conditional_outcome": {
+        "assessed_claim": "Human mind models in the mid-2020s and life extension in the 2030s.",
+        "assumed_deadline_year": 2039,
+        "at_deadline": "NOT_DUE",
+        "at_review": "PARTLY_FULFILLED",
+        "verdict": "PENDING",
+        "rationale": "Human brain models are assessed as partial under the 2025 reference deadline (K036); general life extension is too loosely specified in this truncated import, but enabling progress is real. Do not score a dangling phrase as a separate miss.",
+        "evidence_source_ids": [
+          "N15",
+          "N16",
+          "N40"
+        ],
+        "broader_reading": null,
+        "component_assessments": [
+          {
+            "claim": "Functional human brain models",
+            "deadline": 2025,
+            "at_deadline": "PARTLY_FULFILLED",
+            "at_review": "PARTLY_FULFILLED",
+            "verdict": "PARTIAL"
+          },
+          {
+            "claim": "Unspecified life extension in 2030s",
+            "deadline": 2039,
+            "at_deadline": "NOT_DUE",
+            "at_review": "PARTLY_FULFILLED",
+            "verdict": "PENDING"
+          }
+        ],
+        "date_note": null,
+        "assessment_basis": "CONDITIONAL_ON_IMPORTED_WORDING_NOT_VERIFIED_ATTRIBUTION",
+        "attribution_status": "ORIGINAL_WORDING_OR_DATE_NOT_ESTABLISHED",
+        "outcome_confidence": "MEDIUM",
+        "eligible_for_author_accuracy": false
+      },
+      "outcome_disposition_complete": true,
+      "original_raw_safe_to_score": false
+    }
+  ]
+}

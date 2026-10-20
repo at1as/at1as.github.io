@@ -1,0 +1,4 @@
+:HL["/sites/kurzweil/_next/static/chunks/1vt-9hs6w3v5w.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
+0:{"b":"cc10a73768cd0d2cebb54375","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

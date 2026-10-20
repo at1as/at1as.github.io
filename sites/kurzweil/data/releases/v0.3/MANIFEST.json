@@ -1,0 +1,89 @@
+{
+  "release": "0.3",
+  "as_of": "2026-10-15",
+  "canonical_records": 84,
+  "new_records": 34,
+  "legacy_ids_reconciled": 88,
+  "files": [
+    {
+      "name": "README_AGENT_HANDOFF.md",
+      "bytes": 7899,
+      "sha256": "cb30d0fe2a9310ad95386b99b405d1314c0847d19305b6ddbd638e33d18d3556"
+    },
+    {
+      "name": "changes.v0.3.csv",
+      "bytes": 14307,
+      "sha256": "35ceaa5b60aab210fe497703af1a579576cc1522c396bc2f56b857f7959b121b"
+    },
+    {
+      "name": "kurzweil_outcomes_v0_3.xlsx",
+      "bytes": 129976,
+      "sha256": "46bebafad7ba2e2a8ddf1516bb6e9f5fdc038c777ef7e8e7d705369fcecf2c37"
+    },
+    {
+      "name": "legacy-conditional-outcomes.v0.3.csv",
+      "bytes": 55045,
+      "sha256": "47b75739cdc3f38aa1469223c782ab92f9b7c1643d485d2728ccacfc10992a30"
+    },
+    {
+      "name": "legacy-reconciliation.v0.3.csv",
+      "bytes": 115127,
+      "sha256": "377f7954d403f094c84a6e78298ce1b62c08baf89b458d71f2c2f48dfab6c54b"
+    },
+    {
+      "name": "legacy-reconciliation.v0.3.json",
+      "bytes": 179743,
+      "sha256": "723b83f904fa236a57c298d18d556997bd20f380a616e960a7a6dfd1ceea511b"
+    },
+    {
+      "name": "metrics.v0.3.json",
+      "bytes": 39647,
+      "sha256": "45c7c809a75fb9d80cbe0e21d9676ee0c335706856f9e4d4f12fa7b4be7f5dbd"
+    },
+    {
+      "name": "predictions.canonical.v0.3.json",
+      "bytes": 829338,
+      "sha256": "93ae54d9ea2f1bd1817c481b85e2b707812bcd934c74d0f1715fa098d9b5f51b"
+    },
+    {
+      "name": "predictions.reviewed.v0.3.csv",
+      "bytes": 156013,
+      "sha256": "15a60976d74cbad677a87943d30580b35dbd994a27ebe009b7eeba870ad60fd8"
+    },
+    {
+      "name": "source-coverage.previous.v0.2.json",
+      "bytes": 4248,
+      "sha256": "473e7738096ecece95215c95b20bcc4002cbc9935c1dadec4c3436823678fe5d"
+    },
+    {
+      "name": "source-coverage.v0.3.json",
+      "bytes": 988,
+      "sha256": "b3537b8067889cafdeb5649f1190155def3ec7d1b88985cf2a6429caaa1c0b97"
+    },
+    {
+      "name": "sources.v0.3.csv",
+      "bytes": 47384,
+      "sha256": "5d2e4eb85dafcdea23a399296e7e7dfad7534af5ad240d412586310f7b261feb"
+    },
+    {
+      "name": "sources.v0.3.json",
+      "bytes": 67770,
+      "sha256": "d22d4db273f8df107c9554f1155c9c7fa8749a3b7a4a29825cf21084ee740863"
+    },
+    {
+      "name": "validate_v03.py",
+      "bytes": 2096,
+      "sha256": "3eb257dfb2dbb33545144fba325762eb8482d4aa72d9ce878f6d209fbef343c8"
+    },
+    {
+      "name": "verification-dossiers.v0.3.md",
+      "bytes": 174144,
+      "sha256": "034107a6a79ebaa4b987f89879ba532649c655f722dd66f62c87220e5b10eb91"
+    },
+    {
+      "name": "verification-supplement.v0.3.docx",
+      "bytes": 45881,
+      "sha256": "cd215e038a64e3869a5f3444531644477a0d174f88da8d2e1783790b5b8cc2cf"
+    }
+  ]
+}

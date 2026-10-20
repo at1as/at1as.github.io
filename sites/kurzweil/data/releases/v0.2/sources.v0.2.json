@@ -1,0 +1,325 @@
+{
+  "as_of": "2026-10-14",
+  "sources": [
+    {
+      "id": "P01",
+      "title": "How My Predictions Are Faring — Ray Kurzweil",
+      "url": "https://www.thekurzweillibrary.com/images/How-My-Predictions-Are-Faring.pdf",
+      "kind": "AUTHOR_RETROSPECTIVE_REPRINT",
+      "publication_date": "2010-10",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Official author archive. Cover says October 2010, but the available file contains later updates. Reprinted forecast passages are used for attribution; the author’s favorable self-grades are not independent outcome evidence. Original book editions were not inspected. Page locators below are PRINTED pages, not PDF viewer indices."
+    },
+    {
+      "id": "P02",
+      "title": "Spiritual Machines: The Merging of Man and Machine — Ray Kurzweil",
+      "url": "https://iranscope.ghandchi.com/Anthology/Kurzweil-SM.htm",
+      "kind": "AUTHORED_ARTICLE_THIRD_PARTY_MIRROR",
+      "publication_date": "1999",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Attributed to Kurzweil; closing note identifies adaptation from The Age of Spiritual Machines (1999). An article mirror, not a scan of the book. Text transcription may contain errors. The article’s dollar amounts must not silently replace differently quoted book versions."
+    },
+    {
+      "id": "P03",
+      "title": "Long Bets #1 — Kapor/Kurzweil Turing-test agreement",
+      "url": "https://longbets.org/1/",
+      "kind": "PRIMARY_CONTRACT",
+      "publication_date": "2002",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Kapor takes the NO side; Kurzweil takes the opposing side. Detailed test conditions belong to this contract, not to every generic use of “Turing test.”"
+    },
+    {
+      "id": "P04",
+      "title": "So what is the singularity? — Ray Kurzweil Q&A",
+      "url": "https://www.writingsbyraykurzweil.com/so-what-is-the-singularity",
+      "kind": "AUTHOR_ARCHIVE_REPUBLICATION",
+      "publication_date": "2011-01-01",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Page identifies the dialogue as 2005. Store dialogue year 2005 separately from archive publication date 2011. Not a checked scan of the 2005 book."
+    },
+    {
+      "id": "P05",
+      "title": "AI escape velocity: A conversation with Ray Kurzweil",
+      "url": "https://www.bvp.com/atlas/ai-escape-velocity-a-conversation-with-ray-kurzweil",
+      "kind": "PRIMARY_INTERVIEW_TRANSCRIPT",
+      "publication_date": "2024-03-11",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Bessemer hosts the interview and timestamped transcript. Do not attribute interviewer comments to Kurzweil. The Q&A section is explicitly summarized; cited passages below are in the main transcript."
+    },
+    {
+      "id": "P06",
+      "title": "Ray Kurzweil: Universal basic income will arrive in the 2030s",
+      "url": "https://www.axios.com/2018/04/13/ray-kurzweil-universal-basic-income-will-arrive-in-the-2030s-1523655832",
+      "kind": "CONTEMPORANEOUS_EVENT_REPORT",
+      "publication_date": "2018-04-13",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Secondary, contemporaneous attribution of a TED appearance. Original event transcript was not obtained; lower attribution confidence. Not used as technical outcome evidence."
+    },
+    {
+      "id": "P07",
+      "title": "Solar power to rule in 20 years, futurists say",
+      "url": "https://www.pressandappearances.com/solar-power-to-rule-in-20-years-futurists-say-2",
+      "kind": "AUTHOR_ARCHIVE_PRESS_CLIPPING",
+      "publication_date": "2008-02-19",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Archived event reporting, not an original talk transcript. Review must distinguish solar from all renewables and energy from electricity."
+    },
+    {
+      "id": "O01",
+      "title": "IBM — Deep Blue",
+      "url": "https://www.ibm.com/history/deep-blue",
+      "kind": "PRIMARY_INSTITUTIONAL_HISTORY",
+      "publication_date": null,
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Documents the 1997 match victory; not proof of the original date or wording of Kurzweil’s forecast."
+    },
+    {
+      "id": "O02",
+      "title": "Apple unveils new PowerBook",
+      "url": "https://www.apple.com/newsroom/2000/02/16Apple-Unveils-New-PowerBook-The-Fastest-Portable-Ever/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2000-02-16",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": ""
+    },
+    {
+      "id": "O03",
+      "title": "Apple introduces MacBook Air",
+      "url": "https://www.apple.com/newsroom/2008/01/15Apple-Introduces-MacBook-Air-The-Worlds-Thinnest-Notebook/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2008-01-15",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": ""
+    },
+    {
+      "id": "O04",
+      "title": "Apple unveils one-inch-thick Titanium PowerBook G4",
+      "url": "https://www.apple.com/newsroom/2001/01/09Apple-Unveils-One-Inch-Thick-Titanium-PowerBook-G4/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2001-01-09",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": ""
+    },
+    {
+      "id": "O05",
+      "title": "Introducing Amazon Kindle",
+      "url": "https://press.aboutamazon.com/2007/11/introducing-amazon-kindle",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2007-11-19",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": ""
+    },
+    {
+      "id": "O06",
+      "title": "iTunes Store tops over five billion songs sold",
+      "url": "https://www.apple.com/newsroom/2008/06/19iTunes-Store-Tops-Over-Five-Billion-Songs-Sold/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2008-06-19",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": ""
+    },
+    {
+      "id": "O07",
+      "title": "iPhone App Store downloads top 10 million",
+      "url": "https://www.apple.com/newsroom/2008/07/14iPhone-App-Store-Downloads-Top-10-Million-in-First-Weekend/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2008-07-14",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": ""
+    },
+    {
+      "id": "O08",
+      "title": "Apple introduces wireless keyboard and mouse",
+      "url": "https://www.apple.com/ca/newsroom/2003/09/16Apple-Introduces-Wireless-Keyboard-Mouse/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2003-09-16",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": ""
+    },
+    {
+      "id": "O09",
+      "title": "Wireless Internet Use — Pew Research Center",
+      "url": "https://www.pewresearch.org/internet/2009/07/22/wireless-internet-use/",
+      "kind": "PRIMARY_SURVEY",
+      "publication_date": "2009-07-22",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "US adult survey. Ever-used wireless access is not a majority-of-traffic measure and is not global coverage."
+    },
+    {
+      "id": "O10",
+      "title": "Apple launches iPhone 4S, iOS 5 and iCloud",
+      "url": "https://www.apple.com/newsroom/2011/10/04Apple-Launches-iPhone-4S-iOS-5-iCloud/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2011-10-04",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Announcement; retail availability October 14. This is NOT the first-ever voice assistant, nor the first standalone Siri release."
+    },
+    {
+      "id": "O11",
+      "title": "How do you say? — Carnegie Mellon on Jibbigo",
+      "url": "https://www.cmu.edu/homepage/society/2009/fall/how-do-you-say.shtml",
+      "kind": "PRIMARY_RESEARCHER_PRODUCT_ACCOUNT",
+      "publication_date": "2009",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Fall 2009 university account of English–Spanish speech translation on iPhone. Not evidence of common use across many language pairs."
+    },
+    {
+      "id": "O12",
+      "title": "Start a conversation with Google",
+      "url": "https://translate.googleblog.com/2011/10/start-conversation-with-google.html",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2011-10-13",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Speech conversation mode expanded to 14 languages; still described as alpha. Not equivalent to translation quality or universal adoption."
+    },
+    {
+      "id": "O13",
+      "title": "Excerpts of the President’s address to the nation",
+      "url": "https://obamawhitehouse.archives.gov/the-press-office/excerpts-presidents-address-nation",
+      "kind": "PRIMARY_GOVERNMENT_RECORD",
+      "publication_date": "2009-12-01",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Describes active human fighting and plans for 30,000 additional US troops in Afghanistan in early 2010. Do not date those additional deployments to 2009."
+    },
+    {
+      "id": "O14",
+      "title": "Automated Vehicle Safety — NHTSA",
+      "url": "https://www.nhtsa.gov/vehicle-safety/automated-vehicle-safety",
+      "kind": "PRIMARY_REGULATOR_GUIDANCE",
+      "publication_date": null,
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Live guidance checked for this review. Describes limited operating areas for automated fleets and driver-attention requirements of consumer vehicles; not a historical 2009 market census."
+    },
+    {
+      "id": "O15",
+      "title": "Cornell meets DARPA Urban Challenge",
+      "url": "https://news.cornell.edu/stories/2007/11/cornell-meets-darpa-urban-challenge",
+      "kind": "PRIMARY_RESEARCH_PARTICIPANT_ACCOUNT",
+      "publication_date": "2007-11",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Closed-course research challenge, not everyday automated public-highway infrastructure."
+    },
+    {
+      "id": "O16",
+      "title": "Mortality in the United States, 2019 — CDC Data Brief 395",
+      "url": "https://www.cdc.gov/nchs/products/databriefs/db395.htm",
+      "kind": "PRIMARY_OFFICIAL_STATISTICS",
+      "publication_date": "2020-12",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Final US period life expectancy for 2019: 78.8 years. A national period measure, not a prediction of a newborn cohort’s eventual lifespan."
+    },
+    {
+      "id": "O17",
+      "title": "Mortality in the United States, 2024 — CDC Data Brief 548",
+      "url": "https://www.cdc.gov/nchs/products/databriefs/db548.htm",
+      "kind": "PRIMARY_OFFICIAL_STATISTICS",
+      "publication_date": "2026-01",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Final US period life expectancy for 2024: 79.0 years. Do not call this a 2026 observation."
+    },
+    {
+      "id": "O18",
+      "title": "TOP500 — November 2009 list",
+      "url": "https://www.top500.org/lists/top500/2009/11/",
+      "kind": "PRIMARY_BENCHMARK_DATA",
+      "publication_date": "2009-11",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Jaguar Rmax 1.759 petaflops; Rpeak 2.331 petaflops. Rmax is measured LINPACK performance, not brain emulation."
+    },
+    {
+      "id": "O19",
+      "title": "TOP500 — November 2012 list",
+      "url": "https://www.top500.org/lists/top500/2012/11/",
+      "kind": "PRIMARY_BENCHMARK_DATA",
+      "publication_date": "2012-11",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Sequoia Rpeak 20.13266 petaflops and Rmax 16.32475; Titan Rpeak 27.11255 and Rmax 17.59. Peak and measured values must not be mixed."
+    },
+    {
+      "id": "O20",
+      "title": "TOP500 — June 2013 highlights",
+      "url": "https://www.top500.org/lists/top500/2013/06/highlights/",
+      "kind": "PRIMARY_BENCHMARK_DATA",
+      "publication_date": "2013-06",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Tianhe-2 recorded 33.86 petaflops Rmax. This establishes a public measured milestone, not a cognition milestone."
+    },
+    {
+      "id": "O21",
+      "title": "Large Language Models Pass the Turing Test — Jones and Bergen",
+      "url": "https://arxiv.org/abs/2503.23674",
+      "kind": "PRIMARY_RESEARCH_PAPER",
+      "publication_date": "2025-03-31",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Five-minute experimental protocol. GPT-4.5 with a humanlike persona was judged human in 73% of the reported comparisons. Not the two-hour Long Bets protocol."
+    },
+    {
+      "id": "O22",
+      "title": "ECG app and irregular rhythm notification available on Apple Watch",
+      "url": "https://www.apple.com/newsroom/2018/12/ecg-app-and-irregular-heart-rhythm-notification-available-today-on-apple-watch/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2018-12-06",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "AFib-related features are limited-purpose. The release expressly lists conditions they cannot detect; not general diagnosis or autonomous treatment."
+    },
+    {
+      "id": "O23",
+      "title": "What educators need to know about cochlear implants — FDA",
+      "url": "https://www.fda.gov/medical-devices/cochlear-implants/what-educators-need-know",
+      "kind": "PRIMARY_REGULATOR_GUIDANCE",
+      "publication_date": null,
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Cochlear implants do not restore normal hearing. Used to correct a medical error in our intake, not to manufacture a Kurzweil forecast."
+    },
+    {
+      "id": "O24",
+      "title": "Waymo opens more rides in Denver, San Diego and Tampa",
+      "url": "https://blog.waymo.com/blog/2026/09/ride-in-denver-san-diego-tampa/",
+      "kind": "PRIMARY_OPERATOR_REPORT",
+      "publication_date": "2026-09-01",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Driverless fleet operations exist. Regional launches do not establish elimination of most human driving or a road-controlled intelligent-highway system."
+    },
+    {
+      "id": "O25",
+      "title": "iRobot reports third-quarter financial results",
+      "url": "https://media.irobot.com/2019-10-22-iRobot-Reports-Third-Quarter-Financial-Results",
+      "kind": "PRIMARY_COMPANY_REPORT",
+      "publication_date": "2019-10-22",
+      "checked_as_of": "2026-10-14",
+      "access": "TEXT_CHECKED",
+      "provenance_note": "Cumulative robot sales are not a household adoption rate; use only as capability/deployment evidence."
+    }
+  ]
+}

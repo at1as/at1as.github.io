@@ -1,0 +1,83 @@
+{
+  "release": "0.2.0",
+  "as_of": "2026-10-14",
+  "content_review": "AI-assisted source-backed editorial assessments with explicit unresolved cases",
+  "docx_render_qa": "10 pages rendered and visually inspected; no clipping or split identifiers in delivered version",
+  "files": [
+    {
+      "name": "README_AGENT_HANDOFF.md",
+      "bytes": 7770,
+      "sha256": "136d25e69b97b39d4c255f6224f3c5e5ef083f4ef8b442da4272d68049779e7b"
+    },
+    {
+      "name": "VALIDATION.txt",
+      "bytes": 314,
+      "sha256": "ee25fa17991146d2048c4bc68196dd37a023e75386440b403793bd1fa463d548"
+    },
+    {
+      "name": "kurzweil_prediction_intake_v0_1.csv",
+      "bytes": 35630,
+      "sha256": "dcf2f213917bfaccdcdd45a7b98b5db4243cda090687358879d5ed53838f3bb2"
+    },
+    {
+      "name": "legacy-reconciliation.v0.2.csv",
+      "bytes": 29562,
+      "sha256": "506a543d97429a218b0b2ea51f29de2e363b37dadc9b46dada237d54b56ff4c2"
+    },
+    {
+      "name": "legacy-reconciliation.v0.2.json",
+      "bytes": 62713,
+      "sha256": "bd483d3da76fbcbad4e7f88a76e7c15b2b804ce3ea20abd3d995d8bdceea5d4c"
+    },
+    {
+      "name": "metrics.snapshot.v0.2.json",
+      "bytes": 4830,
+      "sha256": "d553c5b88b7c07adb754e6d2a01ca9b748c7d33ee533fa9d8f31cf6a0b9b81b0"
+    },
+    {
+      "name": "predictions.canonical.v0.2.json",
+      "bytes": 156719,
+      "sha256": "c8b77655c0f8bf47261bd5c1ebc72735db9572f8be468df18905017a16d3c507"
+    },
+    {
+      "name": "predictions.reviewed.v0.2.csv",
+      "bytes": 52391,
+      "sha256": "68f7170e307961de1dabbd3f5955111d166f07e694217b97a32eddaa5c781988"
+    },
+    {
+      "name": "source-coverage.v0.2.csv",
+      "bytes": 2635,
+      "sha256": "11c21bc2400f3a4e03631cc5265204c67533b9aaf9f337a0ca99fa53a0b43bda"
+    },
+    {
+      "name": "source-coverage.v0.2.json",
+      "bytes": 4248,
+      "sha256": "473e7738096ecece95215c95b20bcc4002cbc9935c1dadec4c3436823678fe5d"
+    },
+    {
+      "name": "sources.v0.2.csv",
+      "bytes": 9688,
+      "sha256": "c7e9a9de82dc4f1e22ce1146043fa3f9e3793dc507d3812faf75f3701de98ea8"
+    },
+    {
+      "name": "sources.v0.2.json",
+      "bytes": 15359,
+      "sha256": "a23fd83bc60a3464d03a288fad0a12f98c7f4758558c1a98d16142992ac3dc30"
+    },
+    {
+      "name": "validate_data.py",
+      "bytes": 4240,
+      "sha256": "8b4957e52d20725a5e225743682bea6abfc3c343fe608317008708cfbd3b0805"
+    },
+    {
+      "name": "verification-dossiers.md",
+      "bytes": 85299,
+      "sha256": "2b8a831d9048b17d0b7a3bcbd6add91793dda0908bd36b030ac32d7801fdb398"
+    },
+    {
+      "name": "verification-supplement.docx",
+      "bytes": 51415,
+      "sha256": "c45d1cd724d17247a92281e1cee1f01a7e6a60411255eb4dcdf0f166ce35e898"
+    }
+  ]
+}
