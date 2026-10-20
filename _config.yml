@@ -58,3 +58,12 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - lead-migration-docs
+
+# Preserve the static Next.js files used by sites/what-if-i-joined/.
+include:
+  - _next
+  - _not-found
+  - "__next*.txt"
+  - _buildManifest.js
+  - _clientMiddlewareManifest.js
+  - _ssgManifest.js
