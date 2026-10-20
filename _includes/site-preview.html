@@ -1,0 +1,64 @@
+{% comment %}Decorative project artwork, not live charts or project data.{% endcomment %}
+{% case include.preview %}
+{% when 'scorecard' %}
+<svg viewBox="0 0 600 380" fill="none" focusable="false">
+  <rect width="600" height="380" fill="#f4f0e8"/>
+  <circle cx="522" cy="53" r="147" stroke="#e8e1d4"/>
+  <circle cx="522" cy="53" r="116" stroke="#e8e1d4"/>
+  <text x="42" y="52" fill="#777165" font-family="Arial, sans-serif" font-size="13" letter-spacing="2.4">PREDICTIONS &amp; OUTCOMES</text>
+  <text x="40" y="130" fill="#303b33" font-family="Georgia, serif" font-size="57">Ray Kurzweil’s</text>
+  <text x="40" y="190" fill="#303b33" font-family="Georgia, serif" font-size="57">predictions</text>
+  <path d="M42 221H558" stroke="#dcd6cb"/>
+  <g fill="#51755d">
+    <rect x="42" y="247" width="24" height="24" rx="3"/><rect x="72" y="247" width="24" height="24" rx="3"/><rect x="102" y="247" width="24" height="24" rx="3"/>
+  </g>
+  <g fill="#a0ad8d">
+    <rect x="177" y="247" width="24" height="24" rx="3"/><rect x="207" y="247" width="24" height="24" rx="3"/><rect x="237" y="247" width="24" height="24" rx="3"/>
+  </g>
+  <g fill="#c49c59">
+    <rect x="312" y="247" width="24" height="24" rx="3"/><rect x="342" y="247" width="24" height="24" rx="3"/><rect x="372" y="247" width="24" height="24" rx="3"/>
+  </g>
+  <g fill="#b57466">
+    <rect x="447" y="247" width="24" height="24" rx="3"/><rect x="477" y="247" width="24" height="24" rx="3"/><rect x="507" y="247" width="24" height="24" rx="3"/>
+  </g>
+  <g fill="#706b61" font-family="Arial, sans-serif" font-size="15">
+    <text x="42" y="305">On time</text><text x="177" y="305">Late</text><text x="312" y="305">Partial</text><text x="447" y="305">Missed</text>
+  </g>
+</svg>
+{% when 'joined' %}
+<svg viewBox="0 0 600 380" fill="none" focusable="false">
+  <defs>
+    <linearGradient id="site-joined-fill" x1="300" y1="140" x2="300" y2="335" gradientUnits="userSpaceOnUse"><stop stop-color="#8cb6a1" stop-opacity=".34"/><stop offset="1" stop-color="#8cb6a1" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="#edf3ef"/>
+  <text x="42" y="52" fill="#617b6d" font-family="Arial, sans-serif" font-size="13" letter-spacing="2.4">RECRUITING &amp; EQUITY</text>
+  <text x="40" y="129" fill="#284b3c" font-family="Georgia, serif" font-size="63">What if?</text>
+  <g stroke="#d7e3db" stroke-dasharray="3 6"><path d="M42 180H558M42 235H558M42 290H558"/></g>
+  <path d="M42 308C110 308 110 284 167 287S235 248 285 249S355 200 404 201S487 146 548 137V335H42Z" fill="url(#site-joined-fill)"/>
+  <path d="M42 308C110 308 110 284 167 287S235 248 285 249S355 200 404 201S487 146 548 137" stroke="#42785c" stroke-width="4" stroke-linecap="round"/>
+  <path d="M42 308C200 308 300 296 548 296" stroke="#a4b6aa" stroke-width="2" stroke-dasharray="5 7"/>
+  <circle cx="548" cy="137" r="10" fill="#42785c" fill-opacity=".12"/><circle cx="548" cy="137" r="4" fill="#42785c"/>
+  <g fill="#617b6d" font-family="Arial, sans-serif" font-size="14"><text x="42" y="358">At outreach</text><text x="558" y="358" text-anchor="end">Latest snapshot</text></g>
+</svg>
+{% when 'erdos' %}
+<svg viewBox="0 0 600 380" fill="none" focusable="false">
+  <rect width="600" height="380" fill="#eeeff7"/>
+  <text x="42" y="52" fill="#72728c" font-family="Arial, sans-serif" font-size="13" letter-spacing="2.4">ERDŐS PROBLEMS</text>
+  <text x="40" y="122" fill="#414361" font-family="Georgia, serif" font-size="53">Problems → proofs</text>
+  <g fill-opacity=".24">
+    <path d="M62 164C173 164 167 167 277 167V225C167 225 173 227 62 227Z" fill="#6d78aa"/>
+    <path d="M62 227C173 227 167 277 277 277V322C167 322 173 288 62 288Z" fill="#a09cbe"/>
+    <path d="M291 167C405 167 407 165 524 165V197C407 197 405 198 291 198Z" fill="#6d78aa"/>
+    <path d="M291 198C405 198 407 228 524 228V254C407 254 405 225 291 225Z" fill="#8c9cba"/>
+    <path d="M291 277C405 277 407 289 524 289V322C407 322 405 310 291 310Z" fill="#a09cbe"/>
+    <path d="M291 310C405 310 407 334 524 334V346C407 346 405 322 291 322Z" fill="#c0b4cc"/>
+  </g>
+  <rect x="50" y="164" width="12" height="124" rx="3" fill="#626c94"/>
+  <rect x="277" y="167" width="14" height="58" rx="3" fill="#6d78aa"/>
+  <rect x="277" y="277" width="14" height="45" rx="3" fill="#a09cbe"/>
+  <rect x="524" y="165" width="12" height="32" rx="3" fill="#6d78aa"/>
+  <rect x="524" y="228" width="12" height="26" rx="3" fill="#8c9cba"/>
+  <rect x="524" y="289" width="12" height="33" rx="3" fill="#a09cbe"/>
+  <rect x="524" y="334" width="12" height="12" rx="3" fill="#c0b4cc"/>
+</svg>
+{% endcase %}

@@ -3,64 +3,129 @@ layout: default
 title: Sites
 description: Tools, visualizations, and small experiments by Jason Willems.
 permalink: /sites/
+stylesheets:
+  - /assets/css/sites.css
 sites:
   - title: The Kurzweil Scorecard
     url: /sites/kurzweil/
-    description: Explore a selected collection of Ray Kurzweil's predictions, their outcomes, and the evidence behind each judgment.
+    description: Compare Ray Kurzweil’s predictions with their outcomes and supporting evidence.
+    category: Research & technology
+    preview: scorecard
+    action: Explore the scorecard
+    featured: true
   - title: What If I Joined?
     url: /sites/what-if-i-joined/
-    description: Compare how company growth would have changed a hypothetical pay package since recruiting outreach.
+    description: See how company growth would have changed a hypothetical pay package since recruiting outreach.
+    category: Interactive calculator
+    preview: joined
+    action: Compare companies
+    featured: true
   - title: Erdős problems in the AI era
     url: /sites/erdos/
-    description: Explore recorded resolutions and formalized proofs over time, alongside AI model releases
+    description: Track recorded resolutions and formalized proofs over time, alongside AI model releases.
+    category: Data visualization
+    preview: erdos
+    action: Explore the data
+    featured: true
+  - title: AWS to Azure Migration Guide
+    url: /aws-azure-migration-guide/
+    description: Migrating applications, databases, and infrastructure from AWS to Azure.
+    category: Cloud infrastructure
+    icon: guide
+    featured: false
   - title: AMT Calculator
     url: /sites/amtcalculator/
     description: Estimate alternative minimum tax from income and stock option exercises.
+    category: Finance
+    icon: calculator
+    featured: false
   - title: Hiragana Quiz
     url: /sites/hiragana/
     description: Practice reading Japanese hiragana.
+    category: Language
+    icon: hiragana
+    featured: false
   - title: Elixir Flashcards
     url: /sites/flashcards/q1.html
     description: Elixir questions and answers. Navigate with the arrow keys.
+    category: Programming
+    icon: code
+    featured: false
   - title: Movie & TV Database
     url: /sites/mediadatabase/output/
     description: Browse movies and TV series by title, year, and rating.
+    category: Film & television
+    icon: film
+    featured: false
 ---
 
-<style>
-  .site-directory { max-width: 860px; }
-  .site-directory-home { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: .9375rem; }
-  .site-directory-header { margin: 12px 0 28px; }
-  .site-directory h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.15; letter-spacing: -.035em; }
-  .site-directory-header p { color: var(--text-light); }
-  .site-directory-list { display: grid; gap: 12px; list-style: none; margin: 0; padding: 0; }
-  .site-directory-link { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 24px; border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-color); background: var(--background-color); transition: border-color .15s, background-color .15s; }
-  .site-directory-link:hover { color: var(--text-color); border-color: var(--primary-color); background: var(--background-alt); }
-  .site-directory-link:focus-visible, .site-directory-home:focus-visible { outline: 3px solid var(--primary-color); outline-offset: 4px; }
-  .site-directory-link h2 { margin: 0 0 5px; font-size: 1.125rem; line-height: 1.35; font-weight: 600; }
-  .site-directory-link p { margin: 0; color: var(--text-light); font-size: 1rem; line-height: 1.5; }
-  .site-directory-arrow { flex: 0 0 auto; color: var(--primary-color); font-size: 1.25rem; }
-  @media (max-width: 600px) { .site-directory-link { padding: 18px; gap: 14px; } }
-  @media (prefers-reduced-motion: reduce) { .site-directory-link { transition: none; } }
-</style>
-
-<section class="container site-directory" aria-labelledby="sites-title">
+<div class="container site-directory">
   <a class="site-directory-home" href="{{ '/' | relative_url }}"><span aria-hidden="true">←</span> Back home</a>
+
   <header class="site-directory-header">
-    <h1 id="sites-title">Sites</h1>
-    <p>Tools, visualizations, and small experiments.</p>
+    <p class="site-directory-eyebrow">Sites & experiments</p>
+    <h1>A few things I’ve built<span class="site-directory-period">.</span></h1>
+    <p class="site-directory-intro">Tools, visualizations, and small experiments.</p>
   </header>
-  <ul class="site-directory-list">
-    {% for project in page.sites %}
-    <li>
-      <a class="site-directory-link" href="{{ project.url | relative_url }}">
-        <div>
-          <h2>{{ project.title | escape }}</h2>
-          <p>{{ project.description | escape }}</p>
-        </div>
-        <span class="site-directory-arrow" aria-hidden="true">→</span>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-</section>
+
+  <section aria-labelledby="featured-title">
+    {% assign featured_sites = page.sites | where: 'featured', true %}
+    <div class="site-directory-section-heading">
+      <h2 id="featured-title">Featured projects</h2>
+      <span>{{ featured_sites.size }} projects</span>
+    </div>
+    <ul class="site-directory-grid">
+      {% for project in featured_sites %}
+      <li>
+        <a class="site-project site-project--{{ project.preview }}" href="{{ project.url | relative_url }}">
+          <div class="site-project-preview" aria-hidden="true">
+            {% include site-preview.html preview=project.preview %}
+          </div>
+          <div class="site-project-body">
+            <p class="site-project-category">{{ project.category | escape }}</p>
+            <h3>{{ project.title | escape }}</h3>
+            <p class="site-project-description">{{ project.description | escape }}</p>
+            <span class="site-project-action">{{ project.action | escape }} <span class="site-project-arrow" aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="site-directory-more" aria-labelledby="more-title">
+    <div class="site-directory-section-heading">
+      <h2 id="more-title">More to explore</h2>
+      <span>Tools, guides & side projects</span>
+    </div>
+    <ul class="site-directory-tools">
+      {% assign smaller_sites = page.sites | where: 'featured', false %}
+      {% for project in smaller_sites %}
+      <li>
+        <a class="site-tool" href="{{ project.url | relative_url }}">
+          <span class="site-tool-icon" aria-hidden="true">
+            {% case project.icon %}
+            {% when 'guide' %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1m0-15c3-2 6-2 10-1v15c-4-1-7-1-10 1V5Z"/></svg>
+            {% when 'calculator' %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8.5 6h7M8.5 10.5h1m5 0h1m-7 4h1m5 0h1m-7 4h1m5 0h1"/></svg>
+            {% when 'hiragana' %}
+            <span lang="ja">あ</span>
+            {% when 'code' %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m7 7-5 5 5 5m10-10 5 5-5 5m-4-13-2 16"/></svg>
+            {% when 'film' %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 8h4M3 16h4M17 8h4M17 16h4"/></svg>
+            {% endcase %}
+          </span>
+          <div class="site-tool-body">
+            <p class="site-tool-category">{{ project.category | escape }}</p>
+            <h3>{{ project.title | escape }}</h3>
+            <p class="site-tool-description">{{ project.description | escape }}</p>
+          </div>
+          <span class="site-tool-arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>

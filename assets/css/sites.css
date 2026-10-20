@@ -1,0 +1,329 @@
+/* The project gallery is deliberately scoped to the Sites directory. */
+.site-directory {
+  --directory-ink: #293b40;
+  --directory-muted: #687478;
+  --directory-line: #e3e8e7;
+  padding-top: 4px;
+  padding-bottom: 20px;
+}
+
+.site-directory-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  color: var(--directory-muted);
+  font-size: .8125rem;
+}
+
+.site-directory-header {
+  padding: 40px 0 64px;
+}
+
+.site-directory-eyebrow {
+  margin-bottom: 14px;
+  color: var(--primary-color);
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.site-directory-header h1 {
+  margin: 0 0 20px;
+  color: var(--directory-ink);
+  font-size: clamp(2.4rem, 5.2vw, 3.75rem);
+  font-weight: 500;
+  letter-spacing: -.055em;
+  line-height: 1.14;
+  text-wrap: balance;
+}
+
+.site-directory-period {
+  color: var(--primary-color);
+}
+
+.site-directory-intro {
+  color: var(--directory-muted);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.site-directory-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.site-directory-section-heading h2 {
+  color: var(--directory-ink);
+  font-size: .9375rem;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+
+.site-directory-section-heading > span {
+  color: var(--directory-muted);
+  font-size: .75rem;
+}
+
+.site-directory-grid,
+.site-directory-tools {
+  display: grid;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-directory-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.site-project {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--directory-line);
+  border-radius: 12px;
+  color: var(--directory-ink);
+  background: var(--background-color);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.site-project:hover {
+  border-color: #b8c8c7;
+  color: var(--directory-ink);
+  box-shadow: 0 10px 28px -16px #293b403d;
+  transform: translateY(-4px);
+}
+
+.site-project-preview {
+  overflow: hidden;
+  border-bottom: 1px solid var(--directory-line);
+  aspect-ratio: 30 / 19;
+}
+
+.site-project-preview svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform .35s ease;
+}
+
+.site-project:hover .site-project-preview svg {
+  transform: scale(1.025);
+}
+
+.site-project-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 25px 24px 22px;
+}
+
+.site-project-category,
+.site-tool-category {
+  color: var(--directory-muted);
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.site-project h3 {
+  margin: 10px 0 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.site-project-description {
+  margin-bottom: 28px;
+  color: var(--directory-muted);
+  font-size: .875rem;
+  line-height: 1.75;
+}
+
+.site-project-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid var(--directory-line);
+  color: var(--directory-ink);
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.site-project-arrow,
+.site-tool-arrow {
+  font-size: 1.125rem;
+  font-weight: 400;
+  transition: transform .2s ease, color .2s ease;
+}
+
+.site-project:hover .site-project-arrow,
+.site-tool:hover .site-tool-arrow {
+  color: var(--primary-color);
+  transform: translate(2px, -2px);
+}
+
+.site-directory-more {
+  margin-top: 64px;
+}
+
+.site-directory-more .site-directory-section-heading {
+  margin-bottom: 8px;
+}
+
+.site-directory-tools {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+}
+
+.site-directory-tools > li {
+  border-bottom: 1px solid var(--directory-line);
+}
+
+.site-tool {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 100%;
+  padding: 26px 0;
+  color: var(--directory-ink);
+}
+
+.site-tool-icon {
+  display: flex;
+  flex: 0 0 46px;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--directory-line);
+  border-radius: 10px;
+  color: #5c7074;
+  background: #f7f9f8;
+  font-size: 1.5rem;
+  transition: background-color .2s ease;
+}
+
+.site-tool-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.site-tool-body {
+  flex: 1;
+}
+
+.site-tool h3 {
+  margin: 4px 0 5px;
+  color: var(--directory-ink);
+  font-size: .9375rem;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  transition: color .2s ease;
+}
+
+.site-tool-description {
+  color: var(--directory-muted);
+  font-size: .8125rem;
+  line-height: 1.65;
+}
+
+.site-tool-arrow {
+  color: #859192;
+}
+
+.site-tool:hover h3 {
+  color: var(--primary-color);
+}
+
+.site-tool:hover .site-tool-icon {
+  background: #edf3f2;
+}
+
+.site-directory a:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+@media (max-width: 960px) and (min-width: 701px) {
+  .site-directory-grid {
+    gap: 16px;
+  }
+
+  .site-project-body {
+    padding: 20px 18px;
+  }
+
+  .site-project h3 {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-directory-header {
+    padding: 28px 0 44px;
+  }
+
+  .site-directory-intro {
+    font-size: .9375rem;
+  }
+
+  .site-directory-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .site-project h3 {
+    margin-bottom: 10px;
+    font-size: 1.375rem;
+  }
+
+  .site-project-description {
+    margin-bottom: 20px;
+  }
+
+  .site-directory-more {
+    margin-top: 44px;
+  }
+
+  .site-directory-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .site-tool {
+    padding: 22px 0;
+  }
+
+  .site-directory-more .site-directory-section-heading > span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-directory *,
+  .site-directory *::before,
+  .site-directory *::after {
+    transition: none;
+  }
+
+  .site-directory .site-project:hover,
+  .site-directory .site-project:hover svg,
+  .site-directory .site-project:hover .site-project-arrow,
+  .site-directory .site-tool:hover .site-tool-arrow {
+    transform: none;
+  }
+}

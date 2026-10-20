@@ -6,6 +6,9 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="stylesheet" href="/assets/css/syntax.css">
+  {% for stylesheet in page.stylesheets %}
+  <link rel="stylesheet" href="{{ stylesheet | relative_url }}">
+  {% endfor %}
 
   <!-- Preconnect for external resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
