@@ -7,15 +7,6 @@
   padding-bottom: 20px;
 }
 
-.site-directory-home {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  min-height: 44px;
-  color: var(--directory-muted);
-  font-size: .8125rem;
-}
-
 .site-directory-header {
   padding: 40px 0 64px;
 }
