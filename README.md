@@ -96,6 +96,15 @@ To update it, commit changes in the source repository, run its `npm run export:s
 
 Review the export and `sites/index.html` link on a dedicated branch, record the source commit SHA in the hosting commit message, and build this Jekyll site before pushing. Include only the intended site files, leaving unrelated local work out of the commit.
 
+## Analytics in exported sites
+
+Kurzweil Scorecard and What If I Joined include the `G-Q5N6H3PVG2` tag in their
+source-app layouts. Their exports load it only at their production URLs on
+`www.jasonwillems.com`; local previews remain untracked. Enhanced Measurement remains
+enabled on the shared stream and handles client navigation. Calculator values are
+not added to analytics or URLs. Do not inject another tag or SPA page-view handler
+here: edit the corresponding source repo and re-export the generated files.
+
 ## Deployment
 
 The Pages workflow builds and deploys on pushes to `master`. Push a reviewed change branch and merge it into `master` to publish; pushing the branch alone does not deploy the site.
