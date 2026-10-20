@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1000" role="group" aria-labelledby="flow-title flow-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1000" role="group" aria-labelledby="flow-title flow-desc" data-percentages="false">
 <title id="flow-title">Erdős problems: status and Lean formalization</title>
 <desc id="flow-desc">1,221 problems divide into 576 resolved and 645 open or unresolved. Layout by D3 Sankey. Bar heights and ribbon widths are proportional to counts. A text table follows the chart.</desc>
 <metadata id="flow-source">Data: Erdős problems database contributors, maintained by Thomas Bloom and Terence Tao. Source: https://github.com/teorth/erdosproblems/blob/f4b678341eaf36425d3ab35491a4e5b16bc4a0d9/data/problems.yaml. Snapshot: 2026-10-17. Visualization: Jason Willems. Layout: D3 Sankey.</metadata>
@@ -8,6 +8,9 @@
       .node-count { font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; }
       .branch .node-title { font-size: 20px; font-weight: 600; }
       .branch .node-count { font-size: 27px; }
+      .node-percentage { display: none; font-size: 16px; font-weight: 500; fill: #526c63; }
+      .branch .node-percentage { font-size: 18px; }
+      svg[data-percentages="true"] .node-percentage { display: inline; }
       .node-label { paint-order: stroke; stroke: #fdfdfe; stroke-width: 6px; stroke-linejoin: round; }
       .flow { fill: none; stroke-opacity: .38; }
       .flow:hover { stroke-opacity: .65; }
@@ -131,78 +134,78 @@
 </a>
 <a href="https://teorth.github.io/erdosproblems/" tabindex="-1" aria-hidden="true" data-label="all" class="branch">
 <text class="node-label node-title" x="32" y="181.3111010603049">All problems</text>
-<text class="node-label node-count" x="32" y="212.3111010603049">1,221</text>
+<text class="node-label node-count" x="32" y="212.3111010603049"><tspan class="node-number">1,221</tspan> <tspan class="node-percentage" dx="4">100.0%</tspan></text>
 </a>
 <g data-label="resolved" class="branch">
 <text class="node-label node-title" x="326.6666666666667" y="139.2143606696369">Resolved</text>
-<text class="node-label node-count" x="326.6666666666667" y="170.2143606696369">576</text>
+<text class="node-label node-count" x="326.6666666666667" y="170.2143606696369"><tspan class="node-number">576</tspan> <tspan class="node-percentage" dx="4">47.2%</tspan></text>
 </g>
 <g data-label="unresolved" class="branch">
 <text class="node-label node-title" x="326.6666666666667" y="396.2701295136403">Open / unresolved</text>
-<text class="node-label node-count" x="326.6666666666667" y="427.2701295136403">645</text>
+<text class="node-label node-count" x="326.6666666666667" y="427.2701295136403"><tspan class="node-number">645</tspan> <tspan class="node-percentage" dx="4">52.8%</tspan></text>
 </g>
 <a href="https://teorth.github.io/erdosproblems/?status=proved" tabindex="-1" aria-hidden="true" data-label="proved" class="branch">
 <text class="node-label node-title" x="621.3333333333334" y="80.87233166609175">Proved</text>
-<text class="node-label node-count" x="621.3333333333334" y="111.87233166609175">336</text>
+<text class="node-label node-count" x="621.3333333333334" y="111.87233166609175"><tspan class="node-number">336</tspan> <tspan class="node-percentage" dx="4">27.5%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=proved&amp;formal=Lean" tabindex="-1" aria-hidden="true" data-label="proved-lean" class="terminal">
 <text class="node-label node-title" x="948" y="101.37837837837839">Lean-formalized proof</text>
-<text class="node-label node-count" x="948" y="129.3783783783784">183</text>
+<text class="node-label node-count" x="948" y="129.3783783783784"><tspan class="node-number">183</tspan> <tspan class="node-percentage" dx="4">15.0%</tspan></text>
 </a>
 <g data-label="proved-other" class="terminal">
 <text class="node-label node-title" x="948" y="193.81081081081084">Not Lean-formalized</text>
-<text class="node-label node-count" x="948" y="221.81081081081084">153</text>
+<text class="node-label node-count" x="948" y="221.81081081081084"><tspan class="node-number">153</tspan> <tspan class="node-percentage" dx="4">12.5%</tspan></text>
 </g>
 <a href="https://teorth.github.io/erdosproblems/?status=disproved" tabindex="-1" aria-hidden="true" data-label="disproved" class="branch">
 <text class="node-label node-title" x="621.3333333333334" y="232.01351135215305">Disproved</text>
-<text class="node-label node-count" x="621.3333333333334" y="263.01351135215305">139</text>
+<text class="node-label node-count" x="621.3333333333334" y="263.01351135215305"><tspan class="node-number">139</tspan> <tspan class="node-percentage" dx="4">11.4%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=disproved&amp;formal=Lean" tabindex="-1" aria-hidden="true" data-label="disproved-lean" class="terminal">
 <text class="node-label node-title" x="948" y="273.8468468468468">Lean-formalized disproof</text>
-<text class="node-label node-count" x="948" y="301.8468468468468">97</text>
+<text class="node-label node-count" x="948" y="301.8468468468468"><tspan class="node-number">97</tspan> <tspan class="node-percentage" dx="4">7.9%</tspan></text>
 </a>
 <g data-label="disproved-other" class="terminal">
 <text class="node-label node-title" x="948" y="337.88288288288277">Not Lean-formalized</text>
-<text class="node-label node-count" x="948" y="365.88288288288277">42</text>
+<text class="node-label node-count" x="948" y="365.88288288288277"><tspan class="node-number">42</tspan> <tspan class="node-percentage" dx="4">3.4%</tspan></text>
 </g>
 <a href="https://teorth.github.io/erdosproblems/?status=solved" tabindex="-1" aria-hidden="true" data-label="solved" class="branch">
 <text class="node-label node-title" x="621.3333333333334" y="333.35822093286316">Otherwise solved</text>
-<text class="node-label node-count" x="621.3333333333334" y="364.35822093286316">101</text>
+<text class="node-label node-count" x="621.3333333333334" y="364.35822093286316"><tspan class="node-number">101</tspan> <tspan class="node-percentage" dx="4">8.3%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=solved&amp;formal=Lean" tabindex="-1" aria-hidden="true" data-label="solved-lean" class="terminal">
 <text class="node-label node-title" x="948" y="392.69369369369355">Lean-formalized solution</text>
-<text class="node-label node-count" x="948" y="420.69369369369355">33</text>
+<text class="node-label node-count" x="948" y="420.69369369369355"><tspan class="node-number">33</tspan> <tspan class="node-percentage" dx="4">2.7%</tspan></text>
 </a>
 <g data-label="solved-other" class="terminal">
 <text class="node-label node-title" x="948" y="451.25225225225216">Not Lean-formalized</text>
-<text class="node-label node-count" x="948" y="479.25225225225216">68</text>
+<text class="node-label node-count" x="948" y="479.25225225225216"><tspan class="node-number">68</tspan> <tspan class="node-percentage" dx="4">5.6%</tspan></text>
 </g>
 <a href="https://teorth.github.io/erdosproblems/?status=open" tabindex="-1" aria-hidden="true" data-label="open" class="terminal">
 <text class="node-label node-title" x="948" y="590.5315315315313">Completely open</text>
-<text class="node-label node-count" x="948" y="618.5315315315313">593</text>
+<text class="node-label node-count" x="948" y="618.5315315315313"><tspan class="node-number">593</tspan> <tspan class="node-percentage" dx="4">48.6%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=decidable" tabindex="-1" aria-hidden="true" data-label="decidable" class="terminal">
 <text class="node-label node-title" x="948" y="721.1621621621616">Decidable</text>
-<text class="node-label node-count" x="948" y="749.1621621621616">8</text>
+<text class="node-label node-count" x="948" y="749.1621621621616"><tspan class="node-number">8</tspan> <tspan class="node-percentage" dx="4">0.7%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=falsifiable" tabindex="-1" aria-hidden="true" data-label="falsifiable" class="terminal">
 <text class="node-label node-title" x="948" y="769.9189189189184">Falsifiable</text>
-<text class="node-label node-count" x="948" y="797.9189189189184">25</text>
+<text class="node-label node-count" x="948" y="797.9189189189184"><tspan class="node-number">25</tspan> <tspan class="node-percentage" dx="4">2.0%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=verifiable" tabindex="-1" aria-hidden="true" data-label="verifiable" class="terminal">
 <text class="node-label node-title" x="948" y="818.5315315315311">Verifiable</text>
-<text class="node-label node-count" x="948" y="846.5315315315311">7</text>
+<text class="node-label node-count" x="948" y="846.5315315315311"><tspan class="node-number">7</tspan> <tspan class="node-percentage" dx="4">0.6%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=not+provable" tabindex="-1" aria-hidden="true" data-label="not provable" class="terminal">
 <text class="node-label node-title" x="948" y="863.9729729729725">Not provable in ZFC</text>
-<text class="node-label node-count" x="948" y="891.9729729729725">3</text>
+<text class="node-label node-count" x="948" y="891.9729729729725"><tspan class="node-number">3</tspan> <tspan class="node-percentage" dx="4">0.2%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=not+disprovable" tabindex="-1" aria-hidden="true" data-label="not disprovable" class="terminal">
 <text class="node-label node-title" x="948" y="909.2702702702697">Not disprovable in ZFC</text>
-<text class="node-label node-count" x="948" y="937.2702702702697">6</text>
+<text class="node-label node-count" x="948" y="937.2702702702697"><tspan class="node-number">6</tspan> <tspan class="node-percentage" dx="4">0.5%</tspan></text>
 </a>
 <a href="https://teorth.github.io/erdosproblems/?status=independent" tabindex="-1" aria-hidden="true" data-label="independent" class="terminal">
 <text class="node-label node-title" x="948" y="954.5675675675672">Independent of ZFC</text>
-<text class="node-label node-count" x="948" y="982.5675675675672">3</text>
+<text class="node-label node-count" x="948" y="982.5675675675672"><tspan class="node-number">3</tspan> <tspan class="node-percentage" dx="4">0.2%</tspan></text>
 </a>
 </svg>

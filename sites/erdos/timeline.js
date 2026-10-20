@@ -9,6 +9,7 @@
   const message = $('#timeline-message');
   const svg = $('.chart-scroll svg');
   const download = $('#download-svg');
+  const percentages = $('#include-percentages');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const formatter = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
   const formatDate = date => formatter.format(new Date(date + 'T12:00:00Z'));
@@ -223,7 +224,8 @@
     });
     snapshot.geometry.nodes.forEach((node, i) => {
       const label = labelElements[i].querySelector('.node-title').textContent;
-      labelElements[i].querySelector('.node-count').textContent = count(node.value);
+      labelElements[i].querySelector('.node-number').textContent = count(node.value);
+      labelElements[i].querySelector('.node-percentage').textContent = `${(100 * node.value / snapshot.total).toFixed(1)}%`;
       nodeElements[i].querySelector('title').textContent = `${label}: ${count(node.value)} (${(100 * node.value / snapshot.total).toFixed(1)}% of all problems)`;
     });
     snapshot.geometry.links.forEach((link, i) => {
@@ -231,6 +233,7 @@
       title.textContent = title.textContent.replace(/: [\d,]+$/, ': ' + count(link.value));
     });
     const resolved = snapshot.statuses.proved + snapshot.statuses.disproved + snapshot.statuses.solved;
+    document.querySelectorAll('[data-overview="resolved"]').forEach(el => { el.textContent = count(resolved); });
     $('#flow-desc').textContent = `${date}: ${count(snapshot.total)} problems, ${count(resolved)} resolved and ${count(snapshot.total - resolved)} open or unresolved. Bar heights and ribbon widths use the same scale across all dates.`;
     $('#flow-title').textContent = `Erdős problems: ${date}`;
     $('#flow-source').textContent = `Data: Erdős problems database contributors, maintained by Thomas Bloom and Terence Tao. Source: ${$('#source-revision').href}. Snapshot: ${snapshot.as_of}. Visualization: Jason Willems. Layout: D3 Sankey.`;
@@ -258,17 +261,20 @@
   slider.addEventListener('input', () => { stop(); select(Number(slider.value)); });
   picker.addEventListener('change', () => { stop(); select(Number(picker.value)); });
   speed.addEventListener('change', () => { if (timer !== null) { clearTimeout(timer); schedule(); } });
+  const showPercentages = () => svg.setAttribute('data-percentages', String(percentages.checked));
+  percentages.addEventListener('change', showPercentages);
+  percentages.disabled = false;
+  showPercentages();
   document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
   window.addEventListener('pagehide', () => { stop(); if (downloadURL) URL.revokeObjectURL(downloadURL); });
   if ('ResizeObserver' in window) new ResizeObserver(arrangeReleaseMarkers).observe(releaseRail);
   else window.addEventListener('resize', arrangeReleaseMarkers);
   download.addEventListener('click', () => {
-    if (!history) return; // The original static SVG remains the no-JS fallback.
-    geometryFrame(history.snapshots[index].geometry, false);
+    if (history) geometryFrame(history.snapshots[index].geometry, false);
     if (downloadURL) URL.revokeObjectURL(downloadURL);
     downloadURL = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }));
     download.href = downloadURL;
-    download.download = `erdos-problems-${history.snapshots[index].as_of}.svg`;
+    download.download = `erdos-problems-${history ? history.snapshots[index].as_of : $('#snapshot-date').dateTime}.svg`;
   });
 
   async function load() {

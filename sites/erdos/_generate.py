@@ -232,6 +232,8 @@ def main():
     page = version_assets(Template((HERE / '_template.html').read_text(encoding='utf-8')).substitute(
         **chrome(site_home, 'snapshot'),
         total=f'{data["total"]:,}', date=date, iso_date=data['as_of'],
+        resolved=f'{sum(data["statuses"][key] for key in ("proved", "disproved", "solved")):,}',
+        solutions=f'{data["attributes"]["solutions"]:,}',
         diagram=svg, cards=cards(data), rows=table(data),
         releases=script_json(releases), structured_data=script_json(structured_data),
         analytics_config=script_json(analytics_config), site_home=escape(site_home, quote=True),

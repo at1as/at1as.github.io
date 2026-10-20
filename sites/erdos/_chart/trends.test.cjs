@@ -190,12 +190,13 @@ test('trends controls render all measures, period evidence, and release comparis
     app.change('#trend-metric',metric);
     for(const window of ['7','30','90']) {
       app.change('#pace-window',window);
-      assert.match(app.q('#pace-title').textContent,/daily average/);
+      assert.match(app.q('#pace-title').textContent,/How often/);
       assert.ok(app.q('#pace-description').textContent.includes(`previous ${window} days`));
       assert.ok(app.q('#pace-example').textContent.includes(`over ${window} days`));
       const latest=T.rolling(data,metric,Number(window)).at(-1);
       const readout=app.q('#pace').closest('.chart-card').querySelector('.chart-readout').textContent;
-      assert.ok(readout.includes(`${latest.events} ${app.w.ErdosTrendCharts.copy[metric].counted} in the previous ${latest.days} days`));
+      const counted=app.w.ErdosTrendCharts.copy[metric][latest.events===1?'countedSingular':'counted'];
+      assert.ok(readout.includes(`${latest.events} ${counted} in the previous ${latest.days} days`));
       assert.ok(readout.endsWith(`${latest.value.toFixed(2)} per day on average`));
       const records=T.events(data,metric,latest,['gained']);
       assert.equal(app.q('#records-month').value,'recent');
