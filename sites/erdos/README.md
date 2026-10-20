@@ -12,7 +12,9 @@ Both views share the page container, header, tabs, source link, and responsive s
 
 The snapshot begins with total problems, resolved problems, and Lean solutions, all synchronized with the selected date. Short definitions, supplementary attributes, and source notes use native expandable sections. The AI-attribution caveat stays visible. The header and footer have dark links back to Jason’s site. On smaller screens, the diagram and tables scroll inside their own keyboard-focusable regions; the surrounding page fits the viewport.
 
-**Include percentages**, off by default, adds each Sankey count’s share of all problems in the selected snapshot. Percentages follow date changes and playback, and the SVG download preserves the selected display. The toggle also works on the saved chart if history cannot load.
+**Include percentages**, on by default, adds each Sankey count’s share of all problems in the selected snapshot. Percentages follow date changes and playback, and the SVG download preserves the selected display. The toggle also works on the saved chart if history cannot load.
+
+A compact bar keeps Play/Pause, the current snapshot date, and speed visible whenever the original controls scroll above the viewport and the chart is in view. It is available before playback starts and after pausing, and hides outside the chart. Playback defaults to 4×. The diagram keeps its full size.
 
 [D3 Sankey](https://github.com/d3/d3-sankey) computes all layouts at generation time using one shared count-to-pixel scale. Browser JavaScript animates those precomputed layouts. All chart assets and historical data are served locally; the visualization needs no CDN, live GitHub requests, API credentials, or application server. The production page also loads Google Analytics. Without JavaScript, the latest diagram, cards, table, and SVG download remain available.
 

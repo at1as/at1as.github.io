@@ -10,6 +10,12 @@
   const svg = $('.chart-scroll svg');
   const download = $('#download-svg');
   const percentages = $('#include-percentages');
+  const dock = $('#playback-dock');
+  const dockPlay = $('#play-chart');
+  const dockSpeed = $('#chart-speed');
+  const dockDate = $('#chart-date');
+  const toolbar = $('.timeline-toolbar');
+  const chart = $('.chart-scroll');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const formatter = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
   const formatDate = date => formatter.format(new Date(date + 'T12:00:00Z'));
@@ -32,6 +38,23 @@
   let timer = null;
   let animation = null;
   let downloadURL = null;
+
+  function updatePlaybackDock() {
+    if (!dock) return;
+    const bounds = chart.getBoundingClientRect();
+    const chartVisible = bounds.top < window.innerHeight && bounds.bottom > 80;
+    const controlsAbove = toolbar.getBoundingClientRect().bottom <= 0;
+    dock.hidden = !(history && chartVisible && controlsAbove);
+  }
+
+  function updatePlaybackButtons() {
+    const playing = timer !== null;
+    for (const button of [play, dockPlay].filter(Boolean)) {
+      button.innerHTML = playing ? 'Ⅱ <span>Pause</span>' : '▶ <span>Play</span>';
+      button.setAttribute('aria-label', playing ? 'Pause history' : index === (history?.snapshots.length ?? 0) - 1 ? 'Replay history from the beginning' : 'Play history');
+    }
+    updatePlaybackDock();
+  }
 
   function validate(payload) {
     if (payload.schema_version !== 1 || !Array.isArray(payload.snapshots) || payload.snapshots.length < 2) {
@@ -63,8 +86,7 @@
   function stop() {
     clearTimeout(timer);
     timer = null;
-    play.innerHTML = '▶ <span>Play</span>';
-    play.setAttribute('aria-label', index === (history?.snapshots.length ?? 0) - 1 ? 'Replay history from the beginning' : 'Play history');
+    updatePlaybackButtons();
   }
 
   function arrangeReleaseMarkers() {
@@ -203,6 +225,7 @@
     $('#timeline-position').textContent = `Snapshot ${index + 1} of ${history.snapshots.length}`;
     $('#snapshot-date').textContent = date;
     $('#snapshot-date').dateTime = snapshot.as_of;
+    if (dockDate) { dockDate.textContent = date; dockDate.dateTime = snapshot.as_of; }
     $('#footer-date').textContent = date;
     $('#table-date').textContent = date;
     $('#source-revision').href = `https://github.com/teorth/erdosproblems/blob/${snapshot.commit}/data/problems.yaml`;
@@ -250,17 +273,26 @@
     }, Number(speed.value));
   }
 
-  play.addEventListener('click', () => {
+  function togglePlayback() {
     if (!history) return;
     if (timer !== null) { stop(); return; }
     if (index === history.snapshots.length - 1) select(0, false);
-    play.innerHTML = 'Ⅱ <span>Pause</span>';
-    play.setAttribute('aria-label', 'Pause history');
     schedule();
-  });
+    updatePlaybackButtons();
+  }
+  play.addEventListener('click', togglePlayback);
+  dockPlay?.addEventListener('click', togglePlayback);
   slider.addEventListener('input', () => { stop(); select(Number(slider.value)); });
   picker.addEventListener('change', () => { stop(); select(Number(picker.value)); });
-  speed.addEventListener('change', () => { if (timer !== null) { clearTimeout(timer); schedule(); } });
+  function changeSpeed(control) {
+    speed.value = control.value;
+    if (dockSpeed) dockSpeed.value = control.value;
+    if (timer !== null) { clearTimeout(timer); schedule(); }
+  }
+  speed.addEventListener('change', () => changeSpeed(speed));
+  dockSpeed?.addEventListener('change', () => changeSpeed(dockSpeed));
+  window.addEventListener('scroll', updatePlaybackDock, { passive: true });
+  window.addEventListener('resize', updatePlaybackDock);
   const showPercentages = () => svg.setAttribute('data-percentages', String(percentages.checked));
   percentages.addEventListener('change', showPercentages);
   percentages.disabled = false;

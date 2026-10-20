@@ -46,7 +46,7 @@
           <div class="timeline-intro"><h2 id="timeline-title">Explore earlier snapshots</h2><p>Choose a date or press Play to see how the database changed. Dots mark AI model releases.</p></div>
           <div class="timeline-toolbar">
             <button id="play-timeline" class="play-button" type="button" disabled aria-label="Play history">▶ <span>Play</span></button>
-            <div class="speed-control"><label class="visually-hidden" for="playback-speed">Playback speed</label><select id="playback-speed" disabled><option value="800">1×</option><option value="400">2×</option><option value="200">4×</option><option value="100">8×</option><option value="50">16×</option><option value="25">32×</option></select></div>
+            <div class="speed-control"><label class="visually-hidden" for="playback-speed">Playback speed</label><select id="playback-speed" disabled><option value="800">1×</option><option value="400">2×</option><option value="200" selected>4×</option><option value="100">8×</option><option value="50">16×</option><option value="25">32×</option></select></div>
             <div class="timeline-range">
               <div class="timeline-track">
                 <input id="time-slider" type="range" min="0" max="0" value="0" step="1" aria-label="Snapshot date" aria-describedby="timeline-position" disabled>
@@ -65,12 +65,17 @@
           <button id="retry-history" type="button" hidden>Retry loading history</button>
           <noscript><p>The latest snapshot is shown. Enable JavaScript to use the date slider and playback.</p></noscript>
         </section>
+    <div id="playback-dock" class="playback-dock" role="group" aria-label="Chart playback" hidden>
+      <button id="play-chart" class="play-button" type="button" aria-label="Pause history">Ⅱ <span>Pause</span></button>
+      <div class="playback-date"><span>Snapshot</span><time id="chart-date" datetime="$iso_date">$date</time></div>
+      <div class="dock-speed"><label class="visually-hidden" for="chart-speed">Chart playback speed</label><select id="chart-speed"><option value="800">1×</option><option value="400">2×</option><option value="200" selected>4×</option><option value="100">8×</option><option value="50">16×</option><option value="25">32×</option></select></div>
+    </div>
     <div class="snapshot-layout">
     <section class="flow-panel" aria-labelledby="breakdown-title">
       <h2 id="breakdown-title">How the problems break down</h2>
       <p class="section-intro">Read from left to right: all problems, their status, then whether a solution is recorded in Lean.</p>
       <figure>
-        <div class="chart-options"><label for="include-percentages"><input id="include-percentages" type="checkbox" aria-describedby="percentage-note" disabled> Include percentages</label><span id="percentage-note">Share of all problems</span></div>
+        <div class="chart-options"><label for="include-percentages"><input id="include-percentages" type="checkbox" aria-describedby="percentage-note" checked disabled> Include percentages</label><span id="percentage-note">Share of all problems</span></div>
         <p class="scroll-hint">Scroll sideways to explore the diagram, or <a href="#text-summary">read the data table</a></p>
         <div class="chart-scroll" tabindex="0" role="region" aria-label="Sankey diagram; scroll horizontally on small screens">
           $diagram
