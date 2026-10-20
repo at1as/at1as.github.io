@@ -1,0 +1,102 @@
+{
+  "as_of": "2026-10-14",
+  "coverage": [
+    {
+      "id": "C01",
+      "source_or_corpus": "The Age of Intelligent Machines (1990)",
+      "status": "SELECTED_AUTHOR_REPRINTS_ONLY",
+      "source_ids": [
+        "P01"
+      ],
+      "scope_checked": "Selected excerpts in author retrospective, including hypertext, authoritarian-control discussion and retrospective chess attribution.",
+      "remaining_work": "Obtain original edition. Resolve chess deadline; extract all dated forecasts. No claim of full book coverage."
+    },
+    {
+      "id": "C02",
+      "source_or_corpus": "The Age of Spiritual Machines (1999), 147 forecasts for 2009",
+      "status": "PARTIAL_EXTRACTION",
+      "source_ids": [
+        "P01"
+      ],
+      "scope_checked": "Selected computing, communications, business and warfare passages.",
+      "remaining_work": "Extract all 147 parent statements in the author’s census, then collate against the original edition and record independent subclaims. The 147 is not a lifetime total."
+    },
+    {
+      "id": "C03",
+      "source_or_corpus": "Spiritual Machines: The Merging of Man and Machine (1999-attributed article)",
+      "status": "ARTICLE_TEXT_REVIEWED_SELECTIVE_EXTRACTION",
+      "source_ids": [
+        "P02"
+      ],
+      "scope_checked": "2009/2019/2029 sections used for sourced versions and deadline corrections.",
+      "remaining_work": "Check original publication/scan, finish remaining claims, and keep article-versus-book variants distinct."
+    },
+    {
+      "id": "C04",
+      "source_or_corpus": "The Singularity Is Near (2005)",
+      "status": "RELATED_QA_AND_RETROSPECTIVE_ONLY",
+      "source_ids": [
+        "P01",
+        "P04"
+      ],
+      "scope_checked": "Early-2010s interface passages in retrospective; dated 2005 author Q&A.",
+      "remaining_work": "Full original book extraction remains open, including quantitative graph claims and biomedical passages."
+    },
+    {
+      "id": "C05",
+      "source_or_corpus": "2002 Long Bets contract",
+      "status": "PRIMARY_PROTOCOL_CHECKED",
+      "source_ids": [
+        "P03"
+      ],
+      "scope_checked": "Attributable 2029 wager and its test protocol.",
+      "remaining_work": "Track adjudication; do not substitute a different experimental protocol."
+    },
+    {
+      "id": "C06",
+      "source_or_corpus": "2008 solar remarks",
+      "status": "CONTEMPORANEOUS_REPORT_ONLY",
+      "source_ids": [
+        "P07"
+      ],
+      "scope_checked": "Archived press account and 20-year formulation.",
+      "remaining_work": "Locate original recording/transcript; resolve energy/electricity and actual supply/potential."
+    },
+    {
+      "id": "C07",
+      "source_or_corpus": "2018 TED / UBI remarks",
+      "status": "CONTEMPORANEOUS_REPORT_ONLY",
+      "source_ids": [
+        "P06"
+      ],
+      "scope_checked": "Two reported future targets.",
+      "remaining_work": "Obtain primary transcript and define UBI population/scope."
+    },
+    {
+      "id": "C08",
+      "source_or_corpus": "Bessemer interview (March 2024)",
+      "status": "PRIMARY_TRANSCRIPT_SELECTIVELY_EXTRACTED",
+      "source_ids": [
+        "P05"
+      ],
+      "scope_checked": "Longevity escape velocity, brain/cloud integration, renewable-electricity projection; broader Turing discussion read.",
+      "remaining_work": "Extract remaining independently testable statements; separate interviewer statements and summarized Q&A."
+    },
+    {
+      "id": "C09",
+      "source_or_corpus": "The Singularity Is Nearer (2024), full book",
+      "status": "NOT_INSPECTED_AS_FULL_PRIMARY_TEXT",
+      "source_ids": [],
+      "scope_checked": "No claim of original-book verification.",
+      "remaining_work": "Verify alleged disease-cure and lifespan claims using precise pages; do not substitute book reviews or inferred dates."
+    },
+    {
+      "id": "C10",
+      "source_or_corpus": "Fantastic Voyage; TRANSCEND; Transcendent Man; other interviews",
+      "status": "BACKLOG",
+      "source_ids": [],
+      "scope_checked": "No full primary-source census completed in this supplement.",
+      "remaining_work": "Obtain editions/timestamps and extract actual dates, conditions and outcomes. Leave unlocated intake claims quarantined."
+    }
+  ]
+}

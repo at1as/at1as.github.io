@@ -1,0 +1,2 @@
+# Preserve the verified export byte for byte and collapse generated GitHub diffs.
+sites/kurzweil/** -text linguist-generated=true

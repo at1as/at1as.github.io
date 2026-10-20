@@ -88,14 +88,23 @@ Your post content in Markdown format.
 
 Add new talks directly to the `talks.html` file or create a collection in the `_talks` directory.
 
+## Kurzweil Scorecard
+
+`sites/kurzweil/` is a generated static copy of the [Kurzweil Scorecard](https://github.com/at1as/kurzweil-scorecard). That repository is the source of truth for the application, research and export tooling; this directory is not a submodule.
+
+To update it, commit changes in the source repository, run its `npm run export:site` and `npm run test:export`, then use `npm run export:copy -- --write` from that source checkout. Follow its [export guide](https://github.com/at1as/kurzweil-scorecard/blob/main/docs/STATIC_EXPORT.md) for the full verification and copy process. Do not edit the generated files here. The export manifest protects against replacing a locally edited copy.
+
+Review the export and `sites/index.html` link on a dedicated branch, record the source commit SHA in the hosting commit message, and build this Jekyll site before pushing. Include only the intended site files, leaving unrelated local work out of the commit.
+
+## Analytics in exported sites
+
+Kurzweil Scorecard and What If I Joined include the `G-Q5N6H3PVG2` tag in their
+source-app layouts. Their exports load it only at their production URLs on
+`www.jasonwillems.com`; local previews remain untracked. Enhanced Measurement remains
+enabled on the shared stream and handles client navigation. Calculator values are
+not added to analytics or URLs. Do not inject another tag or SPA page-view handler
+here: edit the corresponding source repo and re-export the generated files.
+
 ## Deployment
 
-The site is automatically deployed when changes are pushed to the main branch of the GitHub repository.
-
-```bash
-git add .
-git commit -m "Your commit message"
-git push origin main
-```
-
-GitHub Pages will build and deploy the site automatically.
+The Pages workflow builds and deploys on pushes to `master`. Push a reviewed change branch and merge it into `master` to publish; pushing the branch alone does not deploy the site.

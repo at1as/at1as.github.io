@@ -1,0 +1,2 @@
+PASS — 50 canonical records; 88 original IDs reconciled; 32 source records; 13 default deadline-eligible assessments.
+Checks: unique IDs/slugs, immutable import hash, complete mapping, evidence references, eligibility, future exclusions, interval handling, unknown-current-outcome handling, and category totals.

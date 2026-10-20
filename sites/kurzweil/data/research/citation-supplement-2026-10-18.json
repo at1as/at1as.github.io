@@ -1,0 +1,259 @@
+{
+  "id": "citation-supplement-2026-10-18",
+  "version": "0.3.1-citations",
+  "base_release": "0.3",
+  "checked_at": "2026-10-18",
+  "outcome_cutoff": "2026-10-15",
+  "scope": "Primary citation locators, source-specific support limits and additional corroborating references; no changes to verdicts, eligibility or timing judgments.",
+  "sources": [
+    {
+      "id": "SUP001",
+      "title": "Apple introduces iPod shuffle (2005)",
+      "url": "https://www.apple.com/newsroom/2005/01/11Apple-Introduces-iPod-shuffle/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2005-01-11",
+      "checked_as_of": "2026-10-18",
+      "provenance_note": "Documents a USB flash-storage music player and immediate shipping. Flash storage supports an absence of mechanical storage, not the absence of all physical switches.",
+      "access_method": "PRIMARY_PAGE_TEXT_CHECKED",
+      "access_note": "Primary page examined for this dated citation supplement. Outcome cutoff remains 2026-10-15."
+    },
+    {
+      "id": "SUP002",
+      "title": "Apple reinvents the phone with iPhone",
+      "url": "https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2007-01-09",
+      "checked_as_of": "2026-10-18",
+      "provenance_note": "Documents the soft keyboard, Multi-Touch interface, EDGE/Wi-Fi and pocketable device. January was an announcement with US availability planned for June 2007; it is not a January retail launch.",
+      "access_method": "PRIMARY_PAGE_TEXT_CHECKED",
+      "access_note": "Primary page examined for this dated citation supplement. Outcome cutoff remains 2026-10-15."
+    },
+    {
+      "id": "SUP003",
+      "title": "Microsoft unveils Windows Home Server at CES 2007",
+      "url": "https://news.microsoft.com/source/2007/01/08/bill-gates-unveils-windows-home-server-at-the-2007-international-consumer-electronics-show/",
+      "kind": "PRIMARY_PRODUCT_ANNOUNCEMENT",
+      "publication_date": "2007-01-08",
+      "checked_as_of": "2026-10-18",
+      "provenance_note": "A forward-looking announcement of a home-local server architecture. Establishes design and announced functions, not sales, adoption or contemporaneous retail availability.",
+      "access_method": "PRIMARY_PAGE_TEXT_CHECKED",
+      "access_note": "Primary page examined for this dated citation supplement. Outcome cutoff remains 2026-10-15."
+    },
+    {
+      "id": "SUP004",
+      "title": "Windows Home Server — Microsoft Lifecycle",
+      "url": "https://learn.microsoft.com/en-us/lifecycle/products/windows-home-server",
+      "kind": "PRIMARY_LIFECYCLE_RECORD",
+      "publication_date": null,
+      "checked_as_of": "2026-10-18",
+      "provenance_note": "Official product lifecycle starts 2007-10-11. This is a product-support date, not a household-adoption measure; the webpage publication date is not given.",
+      "access_method": "PRIMARY_PAGE_TEXT_CHECKED",
+      "access_note": "Primary page examined for this dated citation supplement. Outcome cutoff remains 2026-10-15."
+    },
+    {
+      "id": "SUP005",
+      "title": "Apple updates MacBook family (October 2008)",
+      "url": "https://www.apple.com/newsroom/2008/10/14New-MacBook-Family-Redefines-Notebook-Design/",
+      "kind": "PRIMARY_PRODUCT_RELEASE",
+      "publication_date": "2008-10-14",
+      "checked_as_of": "2026-10-18",
+      "provenance_note": "The MacBook Air update explicitly states three pounds and a 0.16–0.76-inch enclosure. This is evidence by October 2008, not a claimed first-ever lightweight notebook.",
+      "access_method": "PRIMARY_PAGE_TEXT_CHECKED",
+      "access_note": "Primary page examined for this dated citation supplement. Outcome cutoff remains 2026-10-15."
+    }
+  ],
+  "citations": [
+    {
+      "record_id": "K002",
+      "source_id": "O02",
+      "locator": "Product-feature bullets: notebook weight with battery, and with DVD drive.",
+      "finding": "The manufacturer lists 5.7 lb with a weight-saving module and 6.1 lb with the DVD drive.",
+      "limitations": "Configuration-specific comparison, not a market-wide average.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K002",
+      "source_id": "O03",
+      "locator": "Opening product description; storage-options paragraph.",
+      "finding": "The launch announcement specifies 0.16–0.76-inch thickness and describes hard-disk and optional SSD configurations.",
+      "limitations": "This page does not give a three-pound weight; the added October 2008 source supplies that specification.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K002",
+      "source_id": "O04",
+      "locator": "Opening product description and thickness/weight feature bullets.",
+      "finding": "Apple specifies a one-inch enclosure and 5.3 lb including battery and DVD drive.",
+      "limitations": "A named model is a comparator, not proof of every notebook’s specifications.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K005",
+      "source_id": "O07",
+      "locator": "Opening announcement and descriptions of wireless application downloads and Multi-Touch features.",
+      "finding": "The release establishes downloadable applications on iPhone/iPod touch and their touch interface.",
+      "limitations": "It does not establish storage technology or the absence of moving components; see the added flash-player source.",
+      "stance": "CONTEXT"
+    },
+    {
+      "record_id": "K006",
+      "source_id": "O07",
+      "locator": "Multi-Touch feature paragraph and cellular/Wi-Fi application-delivery paragraphs.",
+      "finding": "This documents touch-based software use on the supported devices.",
+      "limitations": "It does not quantify the share of keyboard-free portable computers; the added original iPhone announcement directly describes a soft keyboard.",
+      "stance": "CONTEXT"
+    },
+    {
+      "record_id": "K007",
+      "source_id": "O06",
+      "locator": "Opening sales paragraph and descriptions of digital movie distribution.",
+      "finding": "The release documents billions of digital song downloads and a substantial movie-download business.",
+      "limitations": "This is digital-collection context only, not evidence of home-server ownership or the adoption denominator.",
+      "stance": "CONTEXT"
+    },
+    {
+      "record_id": "K008",
+      "source_id": "O05",
+      "locator": "Wireless-delivery section and Books, Blogs, Magazines and Newspapers section.",
+      "finding": "The 2007 Kindle release describes EVDO delivery of books and periodicals without a computer or Wi-Fi hotspot.",
+      "limitations": "This establishes available functions; it does not establish the share of all media delivered wirelessly.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K008",
+      "source_id": "O06",
+      "locator": "Opening sales paragraph and catalogue descriptions.",
+      "finding": "Apple reports five billion song downloads and more than 50,000 daily movie rentals/purchases by June 2008.",
+      "limitations": "These are digital-distribution counts, not wireless-only transactions or all-media market share.",
+      "stance": "CONTEXT"
+    },
+    {
+      "record_id": "K008",
+      "source_id": "O07",
+      "locator": "Wireless-download paragraph and cellular/Wi-Fi distribution paragraph.",
+      "finding": "The July 2008 release explicitly describes direct app downloads over cellular networks and Wi-Fi.",
+      "limitations": "The same release also describes USB syncing; wireless availability does not mean cables had disappeared.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K009",
+      "source_id": "O08",
+      "locator": "Opening Bluetooth product description and cable-replacement feature paragraphs.",
+      "finding": "Apple introduced Bluetooth keyboards and mice in September 2003, directly supporting peripheral cable substitution.",
+      "limitations": "The release does not show that monitor cables or power leads were eliminated.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K010",
+      "source_id": "O07",
+      "locator": "Paragraph describing cellular-network and Wi-Fi access to the App Store.",
+      "finding": "The release confirms operational wireless software delivery on shipping mobile platforms.",
+      "limitations": "It does not measure continuous coverage, throughput or population-wide usage.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K013",
+      "source_id": "O05",
+      "locator": "Reads Like Paper section; Books, Blogs, Magazines and Newspapers section.",
+      "finding": "Amazon describes a reflective electronic-paper screen and wireless access to books and periodicals in 2007.",
+      "limitations": "The display description is a manufacturer claim, not an independent equivalence test against paper.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K046",
+      "source_id": "O03",
+      "locator": "Opening notebook description and hardware/features paragraphs.",
+      "finding": "The announcement documents an unusually thin notebook and built-in wireless features.",
+      "limitations": "It is one full-sized notebook, not evidence for the full range of tiny computing form factors.",
+      "stance": "CONTEXT"
+    },
+    {
+      "record_id": "K046",
+      "source_id": "O05",
+      "locator": "Opening product description and Holds Hundreds of Books in 10.3 Ounces section.",
+      "finding": "The 2007 Kindle is a small electronic-reading form factor with wireless access and local storage.",
+      "limitations": "Its listed functions and size do not make it a general-purpose keyboard-free computer.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K046",
+      "source_id": "O07",
+      "locator": "Opening iPhone/iPod touch description and native-application availability paragraph.",
+      "finding": "The release documents a programmable mobile-device application ecosystem before 2009.",
+      "limitations": "This citation establishes available applications, not physical dimensions or every proposed form factor.",
+      "stance": "CONTEXT"
+    },
+    {
+      "record_id": "K010",
+      "source_id": "O09",
+      "locator": "Wireless Internet Use overview: opening wireless-use finding and mobile-use comparison bullets.",
+      "finding": "Pew reports 56% of Americans had ever used wireless Internet and 19% used mobile Internet the previous day in its April 2009 survey.",
+      "limitations": "These are US adult survey measures, not global population coverage, wireless traffic share or a continuous-service guarantee.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K005",
+      "source_id": "SUP001",
+      "locator": "USB flash-drive paragraph and Pricing & Availability section.",
+      "finding": "Apple documents a shipping flash-storage player in January 2005. Interpreting flash storage as avoiding mechanical disk storage supports the portable-device criterion.",
+      "limitations": "This is an editorial inference about storage; physical switches remain, and the source does not establish a majority across all personal devices.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K006",
+      "source_id": "SUP002",
+      "locator": "iPhone is a Revolutionary Mobile Phone section: SMS and touch-keyboard paragraph.",
+      "finding": "The original iPhone announcement explicitly describes an onscreen keyboard, directly supporting the availability of physical-keyboard-free portables.",
+      "limitations": "The announcement is not a device-population share study and does not establish majority adoption in 2009.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K010",
+      "source_id": "SUP002",
+      "locator": "Data-networking paragraph and Breakthrough Internet Communications Device section.",
+      "finding": "Apple describes EDGE and Wi-Fi web/email access on the announced 2007 iPhone.",
+      "limitations": "This documents product capability, not reliable universal coverage or usage prevalence.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K007",
+      "source_id": "SUP003",
+      "locator": "Simplifying Digital Life and Connecting Digital Devices and Experiences sections.",
+      "finding": "Microsoft describes automatic PC backups, centralized home media and remote Internet access from a home-local server.",
+      "limitations": "This adds direct architecture evidence. The January announcement projected release later in 2007 and supplies no evidence that most households adopted it.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K007",
+      "source_id": "SUP004",
+      "locator": "Support Dates table: Windows Home Server start date.",
+      "finding": "The official lifecycle entry gives 2007-10-11 as the product start date, corroborating a pre-2009 product timeline.",
+      "limitations": "A support start date is not a retail shipment count or evidence of widespread home-server ownership.",
+      "stance": "CONTEXT"
+    },
+    {
+      "record_id": "K002",
+      "source_id": "SUP005",
+      "locator": "Paragraph announcing updates to MacBook Air and the 17-inch MacBook Pro.",
+      "finding": "The October 2008 release explicitly specifies a three-pound MacBook Air and a maximum enclosure height of 0.76 inches.",
+      "limitations": "This confirms the weight missing from the January release; it does not establish an exact first-achievement date.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K046",
+      "source_id": "SUP001",
+      "locator": "Opening wearable-device description and USB flash-drive paragraph.",
+      "finding": "The shipping player demonstrates a small wearable digital device with flash storage and computer connectivity.",
+      "limitations": "A music player is not a substitute for every general-purpose-computer form factor in the forecast.",
+      "stance": "SUPPORTS"
+    },
+    {
+      "record_id": "K046",
+      "source_id": "SUP002",
+      "locator": "Opening product description and Pricing & Availability section.",
+      "finding": "The 2007 announcement describes a small handheld combining phone, media player and Internet functions.",
+      "limitations": "The source documents a planned product and functions, not universality or the success of every miniature form factor.",
+      "stance": "SUPPORTS"
+    }
+  ]
+}

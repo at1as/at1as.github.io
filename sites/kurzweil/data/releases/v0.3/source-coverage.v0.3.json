@@ -1,0 +1,30 @@
+{
+  "as_of": "2026-10-15",
+  "scope": "Incremental extraction, not a completed book or 147-item corpus audit",
+  "new_predictions": 34,
+  "covered_sources": [
+    {
+      "source_id": "P01",
+      "state": "SELECTED_PASSAGES_EXTRACTED_AND_OUTCOMES_REVIEWED",
+      "note": "Retrospective is a locator and attribution source; its self-scores are not independent outcome evidence."
+    },
+    {
+      "source_id": "P02",
+      "state": "SELECTED_2009_AND_2019_PASSAGES_EXTRACTED",
+      "note": "Author-adapted article checked via mirror; book edition not independently collated."
+    },
+    {
+      "source_id": "P03",
+      "state": "WAGER_PROTOCOL_CHECKED"
+    },
+    {
+      "source_id": "P04",
+      "state": "SELECTED_FORECASTS_CHECKED"
+    },
+    {
+      "source_id": "P05",
+      "state": "SELECTED_TRANSCRIPT_FORECASTS_CHECKED"
+    }
+  ],
+  "remaining": "Full original-book collation, complete 147-item 2009 corpus, unextracted future/scenario claims, and remaining interviews."
+}

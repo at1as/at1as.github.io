@@ -1,0 +1,7 @@
+{
+  "asOf": "2026-10-13",
+  "version": "0.1",
+  "expectedIntakeRows": 88,
+  "intakeFile": "kurzweil_prediction_intake_v0_1.csv",
+  "workbookFile": "kurzweil_scorecard_v0_1.xlsx"
+}

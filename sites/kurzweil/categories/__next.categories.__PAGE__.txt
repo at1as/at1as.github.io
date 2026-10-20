@@ -1,0 +1,48 @@
+1:"$Sreact.fragment"
+2:"/sites/kurzweil/_next/static/chunks/0umf92h1sb77c.js"
+3:"/sites/kurzweil/_next/static/chunks/0r5o994kiflup.js"
+4:"/sites/kurzweil/_next/static/chunks/27ju_wssp0oy_.js"
+5:I[72959,["$2","$3","$4"],"PageViews"]
+6:"EvidenceProvider"
+7:I[47345,["$2","$3","$4"],"$6"]
+8:I[73477,["$2","$3","$4"],"Navigation"]
+9:I[39756,["$2","$3","$4"],"default"]
+a:I[37457,["$2","$3","$4"],"default"]
+b:I[22016,["$2","$3","$4"],""]
+c:I[5014,["$2","$3","$4"],"default"]
+13:"/sites/kurzweil/_next/static/chunks/39bpcldrwra5m.js"
+14:"CategoryRedirect"
+15:I[55482,["$2","$3","$4","$13"],"$14"]
+16:I[97367,["$2","$3","$4"],"OutletBoundary"]
+17:"$Sreact.suspense"
+1a:"ViewportBoundary"
+1b:I[97367,["$2","$3","$4"],"$1a"]
+1c:"MetadataBoundary"
+1d:I[97367,["$2","$3","$4"],"$1c"]
+:HL["/sites/kurzweil/_next/static/chunks/3dikjtwpno5dr.css","style"]
+e:X
+11:X
+11:C
+12:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","div",null,{"className":"container page-container","children":["$","div",null,{"className":"page-intro","children":[["$","h1",null,{"children":"The comparison is now part of the story."}],["$","$L15",null,{}]]}]}],[["$","script","script-0",{"src":"/sites/kurzweil/_next/static/chunks/39bpcldrwra5m.js","async":true}]],["$","$L16",null,{"children":["$","$17",null,{"name":"Next.MetadataOutlet","children":"$@18"}]}]]}],"p":"$@19","v":null,"s":"$e"}}]]
+f:[["children",{"s":"categories","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L9",null,{"parallelRouterKey":"children","template":["$","$La",null,{}]}]]}],"p":"$@10","v":"$11","s":"$e"},"c":"$Q12"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/sites/kurzweil/_next/static/chunks/3dikjtwpno5dr.css","precedence":"next"}],["$","script","script-0",{"src":"/sites/kurzweil/_next/static/chunks/0umf92h1sb77c.js","async":true}],["$","script","script-1",{"src":"/sites/kurzweil/_next/static/chunks/0r5o994kiflup.js","async":true}],["$","script","script-2",{"src":"/sites/kurzweil/_next/static/chunks/27ju_wssp0oy_.js","async":true}]],["$","html",null,{"lang":"en","children":["$","body",null,{"children":[["$","$L5",null,{}],["$","$L7",null,{"children":[["$","a",null,{"href":"#main","className":"skip-link","children":"Skip to content"}],["$","$L8",null,{}],["$","main",null,{"id":"main","children":["$","$L9",null,{"parallelRouterKey":"children","template":["$","$La",null,{}],"notFound":[["$","div",null,{"className":"container page-container","children":["$","div",null,{"className":"page-intro","children":[["$","div",null,{"className":"eyebrow","children":"404 · RECORD NOT FOUND"}],["$","h1",null,{"children":"This page isn’t in the ledger."}],["$","p",null,{"children":"Return to the scorecard to find a prediction by its stable record ID."}],["$","$Lb",null,{"className":"button button-primary","href":"/predictions/","children":"Explore the predictions →"}]]}]}],[]]}]}],["$","footer",null,{"className":"site-footer","children":[["$","div",null,{"children":[["$","$Lb",null,{"href":"/","className":"footer-brand","children":["The Kurzweil Scorecard",["$","span",null,{"children":"Predictions, judgments, and the evidence."}]]}],["$","p",null,{"children":["An independent project. Not affiliated with Ray Kurzweil.",["$","br",null,{}],"Research snapshot: ","October 15, 2026"," · Dataset v","0.3"]}]]}],["$","div",null,{"className":"footer-links","children":[["$","$Lb",null,{"href":"/methodology/","children":"Methodology"}],["$","$Lb",null,{"href":"/sources/","children":"Source coverage"}],["$","a",null,{"href":"/sites/kurzweil/data/predictions.json","download":true,"children":"Canonical JSON ↗"}]]}],["$","div",null,{"className":"footer-author","children":[["$","div",null,{"children":[["$","p",null,{"children":["Built by ",["$","a",null,{"href":"https://www.jasonwillems.com/","children":"Jason Willems"}],"."]}],["$","span",null,{"children":"I write about software, AI and building products."}]]}],["$","a",null,{"className":"author-cta","href":"https://www.jasonwillems.com/blog/","children":["Read my blog ",["$","$Lc",null,{"icon":{"name":"arrow-right","size":24,"node":[["path",{"d":"M5 12h14","key":"1ays0h"}],["path",{"d":"m12 5 7 7-7 7","key":"xquz4c"}]]},"size":15,"aria-hidden":"true"}]]}]]}],["$","div",null,{"className":"footer-bottom","children":"AI-assisted research · Selected forecasts · All assessments and source history available"}]]}]]}]]}]}]]}],"p":"$@d","v":null,"s":"$e"},"c":"$Qf"},"h":{"r":["$","$1","h",{"children":[null,["$","$L1b",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L1d",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$17",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"How the fields compare · Kurzweil Scorecard"}],["$","meta","1",{"name":"description","content":"Compare Ray Kurzweil’s predictions by field and target year, with outcomes and the evidence behind each judgment."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","link","3",{"rel":"canonical","href":"https://www.jasonwillems.com/sites/kurzweil/"}],["$","meta","4",{"property":"og:title","content":"How the fields compare"}],["$","meta","5",{"property":"og:description","content":"Compare Ray Kurzweil’s predictions by field and target year, with outcomes and the evidence behind each judgment."}],["$","meta","6",{"property":"og:url","content":"https://www.jasonwillems.com/sites/kurzweil/"}],["$","meta","7",{"property":"og:site_name","content":"The Kurzweil Scorecard"}],["$","meta","8",{"property":"og:locale","content":"en_US"}],["$","meta","9",{"property":"og:image","content":"https://www.jasonwillems.com/sites/kurzweil/share-card.png?v=c41fe98e81e8923b2b3b6d5d"}],["$","meta","10",{"property":"og:image:type","content":"image/png"}],["$","meta","11",{"property":"og:image:width","content":"1200"}],["$","meta","12",{"property":"og:image:height","content":"630"}],["$","meta","13",{"property":"og:image:alt","content":"Where was Ray Kurzweil right? Forecast outcomes compared across computing hardware, medicine and robotics."}],"$L1e","$L1f","$L20","$L21","$L22","$L23","$L24","$L25","$L26","$L27"]}]}],null]}],null]}],"p":"$@28","v":null,"s":"$e"}},"a":"$@29","u":"$@2a","b":"c41fe98e81e8923b2b3b6d5d"}
+2b:I[27201,["$2","$3","$4"],"IconMark"]
+18:null
+1e:["$","meta","14",{"property":"og:type","content":"website"}]
+1f:["$","meta","15",{"name":"twitter:card","content":"summary_large_image"}]
+20:["$","meta","16",{"name":"twitter:site","content":"@jasonwillems"}]
+21:["$","meta","17",{"name":"twitter:creator","content":"@jasonwillems"}]
+22:["$","meta","18",{"name":"twitter:title","content":"How the fields compare"}]
+23:["$","meta","19",{"name":"twitter:description","content":"Compare Ray Kurzweil’s predictions by field and target year, with outcomes and the evidence behind each judgment."}]
+24:["$","meta","20",{"name":"twitter:image","content":"https://www.jasonwillems.com/sites/kurzweil/share-card.png?v=c41fe98e81e8923b2b3b6d5d"}]
+25:["$","meta","21",{"name":"twitter:image:alt","content":"Where was Ray Kurzweil right? Forecast outcomes compared across computing hardware, medicine and robotics."}]
+26:["$","link","22",{"rel":"icon","href":"/sites/kurzweil/icon.svg?icon.1a3ma-xtik1qe.svg","sizes":"any","type":"image/svg+xml"}]
+27:["$","$L2b","23",{}]
+e:300
+2a:true
+e:C
+29:0
+10:"$undefined"
+d:"$undefined"
+28:"$undefined"
+19:"$undefined"
