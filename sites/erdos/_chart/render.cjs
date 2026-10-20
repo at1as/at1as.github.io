@@ -63,7 +63,7 @@ function render(data) {
   const resolved = graph.nodes.find(node => node.id === 'resolved').value;
   const path = sankeyLinkHorizontal();
   const parts = [
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1000" role="group" aria-labelledby="flow-title flow-desc">',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1000" role="group" aria-labelledby="flow-title flow-desc" data-percentages="false">',
     '<title id="flow-title">Erdős problems: status and Lean formalization</title>',
     `<desc id="flow-desc">${format(data.total)} problems divide into ${format(resolved)} resolved and ${format(data.total - resolved)} open or unresolved. Layout by D3 Sankey. Bar heights and ribbon widths are proportional to counts. A text table follows the chart.</desc>`,
     `<metadata id="flow-source">Data: Erdős problems database contributors, maintained by Thomas Bloom and Terence Tao. Source: ${escape(data.source)}. Snapshot: ${escape(data.as_of)}. Visualization: Jason Willems. Layout: D3 Sankey.</metadata>`,
@@ -73,6 +73,9 @@ function render(data) {
       .node-count { font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; }
       .branch .node-title { font-size: 20px; font-weight: 600; }
       .branch .node-count { font-size: 27px; }
+      .node-percentage { display: none; font-size: 16px; font-weight: 500; fill: #526c63; }
+      .branch .node-percentage { font-size: 18px; }
+      svg[data-percentages="true"] .node-percentage { display: inline; }
       .node-label { paint-order: stroke; stroke: #fdfdfe; stroke-width: 6px; stroke-linejoin: round; }
       .flow { fill: none; stroke-opacity: .38; }
       .flow:hover { stroke-opacity: .65; }
@@ -106,7 +109,7 @@ function render(data) {
     // The bar provides the keyboard target; this duplicate label link is pointer-only.
     parts.push(`<${tag}${node.href ? ` href="${escape(node.href)}" tabindex="-1" aria-hidden="true"` : ''} data-label="${node.id}" class="${terminal ? 'terminal' : 'branch'}">`);
     parts.push(`<text class="node-label node-title" x="${x}" y="${y}">${escape(node.label)}</text>`);
-    parts.push(`<text class="node-label node-count" x="${x}" y="${y + (terminal ? 28 : 31)}">${format(node.value)}</text>`);
+    parts.push(`<text class="node-label node-count" x="${x}" y="${y + (terminal ? 28 : 31)}"><tspan class="node-number">${format(node.value)}</tspan> <tspan class="node-percentage" dx="4">${(node.value / data.total * 100).toFixed(1)}%</tspan></text>`);
     parts.push(`</${tag}>`);
   }
   parts.push('</svg>');

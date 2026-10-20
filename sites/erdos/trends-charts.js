@@ -4,28 +4,31 @@
   const colors = {resolved:'#3977bd', lean:'#298761', gained:'#3977bd', added:'#9fbfe3', lost:'#dd7b80', removed:'#a74559', unmatched:'#9b94ae'};
   const copy = {
     resolved: {
-      title:'Changes to resolved — daily average',
+      title:'How often problems are marked resolved',
       monthly:'Resolved status changes and database additions, shown separately. Select a bar to see the problems.',
       release:'Compare observed changes to resolved across two 30-day windows around the release date. The data does not tell us whether the model helped.',
-      counted:'changes to resolved',
+      counted:'changes to resolved status',
+      countedSingular:'change to resolved status',
       unit:'status changes',
       scope:'resolved status',
       changes:{gained:'Marked resolved',added:'Added as resolved',lost:'No longer resolved'}
     },
     lean: {
-      title:'Lean solution additions — daily average',
+      title:'How often Lean solutions are added',
       monthly:'Lean solution changes and database additions, shown separately. Select a bar to see the problems.',
       release:'Compare observed Lean solution additions across two 30-day windows around the release date. The data does not tell us whether the model helped.',
       counted:'Lean solution additions',
+      countedSingular:'Lean solution addition',
       unit:'additions',
       scope:'Lean solutions',
       changes:{gained:'Newly in Lean',added:'Added with a Lean solution',lost:'Lean solution no longer listed'}
     },
     statements: {
-      title:'Lean statement additions — daily average',
+      title:'How often Lean statements are added',
       monthly:'Lean statement changes and database additions, shown separately. Select a bar to see the problems.',
       release:'Compare observed Lean statement additions across two 30-day windows around the release date. The data does not tell us whether the model helped.',
       counted:'Lean statement additions',
+      countedSingular:'Lean statement addition',
       unit:'additions',
       scope:'Lean statements',
       changes:{gained:'Newly in Lean',added:'Added with a Lean statement',lost:'Lean statement no longer listed'}
@@ -127,7 +130,7 @@
     const line = d3.line().x(p=>x(date(p.date))).y(p=>y(p.value)).curve(d3.curveStepAfter);
     svg.append('path').datum(series).attr('d',d3.area().x(p=>x(date(p.date))).y0(y(0)).y1(p=>y(p.value)).curve(d3.curveStepAfter)).attr('fill',colors[metric]||'#8f6ab3').attr('opacity',.09);
     svg.append('path').datum(series).attr('d',line).attr('fill','none').attr('stroke',colors[metric]||'#8f6ab3').attr('stroke-width',2.5);
-    inspect(f,series,p=>`${label(p.date)} · ${p.events} ${copy[metric].counted} in the previous ${p.days} days · ${p.value.toFixed(2)} per day on average`,inspection);
+    inspect(f,series,p=>`${label(p.date)} · ${p.events} ${copy[metric][p.events === 1 ? 'countedSingular' : 'counted']} in the previous ${p.days} days · ${p.value.toFixed(2)} per day on average`,inspection);
     const guides=svg.append('g').attr('class','release-guides').attr('pointer-events','none');
     layer.raise();
     markers.forEach(({r,g,text,width,at,left,lane})=> {

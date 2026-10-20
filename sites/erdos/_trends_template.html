@@ -21,9 +21,9 @@
     <div class="view-meta"><p>History: <time datetime="$first_date">$first_date_label</time> — <time datetime="$last_date">$last_date_label</time></p><a class="changes-link" href="#problem-changes">See recent changes <span aria-hidden="true">↓</span></a></div>
     <div class="trend-stats">
       <article><span>Resolved problems</span><strong>$resolved</strong><p>$resolved_delta since the first snapshot</p></article>
-      <article><span>Changes to resolved</span><strong>$gains</strong><p>$distinct_gains distinct problems since start</p></article>
-      <article><span>Resolved problems in Lean</span><strong>$coverage</strong><p>Up from $old_coverage of resolved problems</p></article>
-      <article><span>Resolved without Lean</span><strong>$backlog</strong><p>$backlog_change than in the first snapshot</p></article>
+      <article><span>Existing problems marked resolved</span><strong>$gains</strong><p>$distinct_gains distinct problems since start</p></article>
+      <article><span>Share of resolved problems in Lean</span><strong>$coverage</strong><p>Up from $old_coverage of resolved problems</p></article>
+      <article><span>Resolved, no Lean solution listed</span><strong>$backlog</strong><p>$backlog_change than in the first snapshot</p></article>
     </div>
     <p class="trend-finding">The resolved share rose from <strong>$first_share to $last_share</strong>. The database grew by $total_delta problems; unresolved problems went from $first_open to $last_open.</p>
     <div class="trend-controls"><label for="trend-metric">Show</label><select id="trend-metric" disabled><option value="resolved">Resolved problems</option><option value="lean">Solutions in Lean</option><option value="statements">Statements in Lean</option></select><span id="metric-definition">“Resolved” includes proved, disproved, and otherwise solved</span></div>
@@ -33,24 +33,17 @@
       <section class="chart-card wide" aria-labelledby="pace-title">
         <div class="card-heading"><h2 id="pace-title">$pace_title</h2><label class="compact-control">Look back <select id="pace-window" disabled><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option></select></label></div>
         <p id="pace-description" class="chart-explanation">$pace_description</p>
-        <p id="pace-example" class="chart-explanation">$pace_example</p>
+        <details class="rate-explanation"><summary>How to read the daily average</summary><p id="pace-example" class="chart-explanation">$pace_example</p></details>
         <div class="trend-plot">$pace</div><div class="readout-row"><p class="chart-readout" aria-live="polite">$pace_readout</p><button id="show-pace-changes" class="evidence-button" type="button" disabled>View these changes <span aria-hidden="true">↓</span></button></div>
         <p id="pace-note" class="chart-note">$pace_note</p>
         <p id="pace-interaction" class="chart-note">Choose a point, or use arrow keys then Enter, to see its changes. Lines mark model releases; select one to compare before and after.</p>
-      </section>
-      <section id="problem-changes" class="chart-card wide" aria-labelledby="changes-title">
-        <div class="card-heading"><h2 id="changes-title" tabindex="-1">What changed</h2><div class="records-controls"><label for="records-month">Period</label><select id="records-month" disabled><option id="records-recent" value="recent" selected>Latest 30-day window</option><option id="records-selected" value="selected" hidden>Selected chart point</option>$month_options</select></div></div>
-        <p id="records-count" class="records-count" role="status">$records_count</p>
-        <p id="records-scope" class="chart-note">$records_scope</p>
-        <div class="records-scroll" tabindex="0" role="region" aria-label="Recorded problem changes"><table><thead><tr><th scope="col">Problem</th><th scope="col">Recorded on</th><th scope="col">Change</th><th scope="col">Between snapshots</th><th scope="col">Source</th></tr></thead><tbody id="record-rows">$record_rows</tbody></table></div>
-        <p class="chart-note">Problem links show today’s page. “View revisions” shows the historical changes. Repeated changes count separately.</p>
       </section>
       <section class="chart-card wide" aria-labelledby="composition-title">
         <div class="card-heading"><h2 id="composition-title">Monthly changes</h2><a href="../insights.json" download>Download data ↗</a></div>
         <p id="composition-description" class="chart-explanation">Resolved status changes and database additions, shown separately. Select a bar to see the problems.</p>
         <div class="chart-legend"><span><i style="--key:#3977bd"></i><span data-change-label="gained">Marked resolved</span></span><span><i style="--key:#9fbfe3"></i><span data-change-label="added">Added as resolved</span></span><span><i style="--key:#dd7b80"></i><span data-change-label="lost">No longer resolved</span></span><span><i style="--key:#a74559"></i>Removed from database</span><span><i style="--key:#9b94ae"></i>Unmatched changes</span><span><i class="dot" style="--key:#17253c"></i>Net change</span></div>
         <div class="trend-plot">$composition</div><p class="chart-readout" aria-live="polite">$composition_readout</p>
-        <details id="monthly-table"><summary>View monthly totals</summary><div class="table-scroll"><table><thead><tr><th scope="col">Month</th><th scope="col" data-change-label="gained">Marked resolved</th><th scope="col" data-change-label="added">Added as resolved</th><th scope="col" data-change-label="lost">No longer resolved</th><th scope="col">Removed</th><th scope="col">Unmatched</th><th scope="col">Net change</th></tr></thead><tbody id="monthly-rows">$monthly_rows</tbody></table></div></details>
+        <details id="monthly-table"><summary>View monthly totals</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Monthly totals; scroll horizontally on small screens"><table><thead><tr><th scope="col">Month</th><th scope="col" data-change-label="gained">Marked resolved</th><th scope="col" data-change-label="added">Added as resolved</th><th scope="col" data-change-label="lost">No longer resolved</th><th scope="col">Removed</th><th scope="col">Unmatched</th><th scope="col">Net change</th></tr></thead><tbody id="monthly-rows">$monthly_rows</tbody></table></div></details>
       </section>
       <section class="chart-card" aria-labelledby="formal-title">
         <div class="card-heading"><h2 id="formal-title">Resolved problems in Lean</h2><label class="compact-control"><span class="visually-hidden">Formalization view</span><select id="formal-mode" disabled><option value="counts">Number of problems</option><option value="coverage">Percentage in Lean</option></select></label></div>
@@ -71,6 +64,13 @@
           <ul id="window-intervals"></ul>
         </details>
         <p class="chart-note">Windows use UTC dates, not launch times. Ranges cover only changes captured between saved snapshots; missed changes are not estimated. Nearby release windows can overlap.</p>
+      </section>
+      <section id="problem-changes" class="chart-card wide" aria-labelledby="changes-title">
+        <div class="card-heading"><h2 id="changes-title" tabindex="-1">What changed</h2><div class="records-controls"><label for="records-month">Period</label><select id="records-month" disabled><option id="records-recent" value="recent" selected>Latest 30-day window</option><option id="records-selected" value="selected" hidden>Selected chart point</option>$month_options</select></div></div>
+        <p id="records-count" class="records-count" role="status">$records_count</p>
+        <p id="records-scope" class="chart-note">$records_scope</p>
+        <div class="records-scroll" tabindex="0" role="region" aria-label="Recorded problem changes"><table><thead><tr><th scope="col">Problem</th><th scope="col">Recorded on</th><th scope="col">Change</th><th scope="col">Between snapshots</th><th scope="col">Source</th></tr></thead><tbody id="record-rows">$record_rows</tbody></table></div>
+        <p class="chart-note">Problem links show today’s page. “View revisions” shows the historical changes. Repeated changes count separately.</p>
       </section>
     </div>
     <footer id="about-data" class="trends-footer">

@@ -101,7 +101,7 @@
       const window=result[side];
       const count=window.uncertain?`${window.count}–${window.possible}`:String(window.count);
       $(`#${side}-rate`).textContent=!window.complete?'Incomplete':window.uncertain?'Uncertain':`${window.rate.toFixed(2)}/day`;
-      $(`#${side}-count`).textContent=`${count} observed ${C.copy[metric()].counted}${window.complete?'':' in available history'}`;
+      $(`#${side}-count`).textContent=`${count} observed ${C.copy[metric()][count === '1' ? 'countedSingular' : 'counted']}${window.complete?'':' in available history'}`;
       $(`#${side}-range`).textContent=`${format(window.start)}–${format(T.iso(T.time(window.end)-T.DAY))}`;
     }
     const intervals=result.uncertainIntervals;

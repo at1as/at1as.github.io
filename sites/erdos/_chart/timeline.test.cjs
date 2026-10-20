@@ -66,6 +66,8 @@ test('slider and date selection synchronize all displayed data and source revisi
     assert.equal(app.q('#snapshot-date').dateTime, s.as_of);
     assert.equal(app.q('#source-revision').href, s.source);
     assert.equal(app.q('[data-total]').textContent, s.total.toLocaleString('en-US'));
+    const resolved = s.statuses.proved + s.statuses.disproved + s.statuses.solved;
+    assert.equal(app.q('[data-overview="resolved"]').textContent, resolved.toLocaleString('en-US'), 'Overview follows the selected snapshot');
     for (const el of app.w.document.querySelectorAll('[data-attribute]')) {
       assert.equal(el.textContent, s.attributes[el.dataset.attribute].toLocaleString('en-US'));
     }
@@ -84,7 +86,7 @@ test('slider and date selection synchronize all displayed data and source revisi
         assert.equal(cells[2].textContent, '—');
       }
     }
-    assert.equal(app.q('[data-label="proved"] .node-count').textContent, String(s.statuses.proved));
+    assert.equal(app.q('[data-label="proved"] .node-number').textContent, String(s.statuses.proved));
     assert.equal(+app.q('[data-flow="0"]').getAttribute('stroke-width'), s.geometry.links[0].width);
   }
   app.q('#snapshot-picker').value = '0'; app.event('#snapshot-picker', 'change');
@@ -120,6 +122,47 @@ test('release markers map to snapshot spacing, pause playback, and link official
     assert.equal(app.q(`${selector} time`).dateTime, release.date);
     if (release.date !== after.as_of) assert.match(app.q('#release-current').textContent, /next recorded snapshot/);
     if (release.note) assert.equal(app.q('.release-note').href, release.note_source);
+  }
+  app.dom.window.close();
+});
+
+test('optional Sankey percentages follow dates and playback, and persist in SVG downloads', async () => {
+  const app = await boot();
+  const svg = app.q('.chart-scroll svg');
+  assert.equal(app.q('#include-percentages').checked, false);
+  assert.equal(svg.getAttribute('data-percentages'), 'false');
+  app.q('#include-percentages').checked = true;
+  app.event('#include-percentages', 'change');
+  assert.equal(svg.getAttribute('data-percentages'), 'true');
+  assert.equal(app.q('[data-label="all"] .node-percentage').textContent, '100.0%');
+  const latest = history.snapshots.at(-1);
+  assert.equal(app.q('[data-label="proved-lean"] .node-percentage').textContent, `${(100 * latest.lean.proved / latest.total).toFixed(1)}%`, 'Leaf percentages use all problems, not just proved problems');
+
+  for (const index of [0, 75]) {
+    app.q('#snapshot-picker').value = String(index); app.event('#snapshot-picker', 'change');
+    const snapshot = history.snapshots[index];
+    for (const node of snapshot.geometry.nodes) {
+      const label = app.q(`[data-label="${node.id}"]`);
+      assert.equal(label.querySelector('.node-number').textContent, node.value.toLocaleString('en-US'));
+      assert.equal(label.querySelector('.node-percentage').textContent, `${(100 * node.value / snapshot.total).toFixed(1)}%`);
+    }
+    assert.equal(svg.getAttribute('data-percentages'), 'true');
+  }
+  app.event('#play-timeline', 'click'); app.tick(); app.event('#play-timeline', 'click');
+  const snapshot = history.snapshots[76];
+  const resolved = snapshot.statuses.proved + snapshot.statuses.disproved + snapshot.statuses.solved;
+  assert.equal(app.q('[data-label="resolved"] .node-percentage').textContent, `${(100 * resolved / snapshot.total).toFixed(1)}%`);
+  app.q('#download-svg').addEventListener('click', e => e.preventDefault());
+  for (const enabled of [true, false]) {
+    app.q('#include-percentages').checked = enabled; app.event('#include-percentages', 'change');
+    app.event('#download-svg', 'click');
+    const exported = await new Promise(resolve => {
+      const reader = new app.w.FileReader(); reader.onload = () => resolve(reader.result); reader.readAsText(app.blobs.at(-1));
+    });
+    const parsed = new app.w.DOMParser().parseFromString(exported, 'image/svg+xml');
+    assert.equal(parsed.documentElement.getAttribute('data-percentages'), String(enabled));
+    assert.equal(parsed.querySelector('[data-label="resolved"] .node-percentage').textContent, app.q('[data-label="resolved"] .node-percentage').textContent);
+    assert.equal(app.q('#download-svg').download, `erdos-problems-${snapshot.as_of}.svg`);
   }
   app.dom.window.close();
 });
@@ -211,6 +254,14 @@ test('failed history load preserves static chart and offers a working retry', as
   assert.ok(app.q('#play-timeline').disabled);
   assert.equal(app.q('#retry-history').hidden, false);
   assert.equal(app.q('[data-total]').textContent, history.snapshots.at(-1).total.toLocaleString('en-US'));
+  assert.equal(app.q('#include-percentages').disabled, false);
+  app.q('#include-percentages').checked = true; app.event('#include-percentages', 'change');
+  assert.equal(app.q('.chart-scroll svg').getAttribute('data-percentages'), 'true');
+  const latest = history.snapshots.at(-1);
+  assert.equal(app.q('[data-label="proved-lean"] .node-percentage').textContent, `${(100 * latest.lean.proved / latest.total).toFixed(1)}%`);
+  app.q('#download-svg').addEventListener('click', e => e.preventDefault());
+  app.event('#download-svg', 'click');
+  assert.equal(app.blobs.length, 1, 'The static chart can be exported with percentages when history is unavailable');
   app.w.fetch = async () => ({ ok: true, json: async () => structuredClone(history) });
   app.event('#retry-history', 'click'); await settle();
   assert.equal(app.q('#play-timeline').disabled, false);

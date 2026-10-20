@@ -1,11 +1,15 @@
     <header class="explorer-header">
       <h1 id="page-title">Erdős problems in the AI era</h1>
-      <p class="subtitle">Explore recorded resolutions and formalized proofs over time, alongside AI model releases</p>
-      <p class="interpretation">Dates show database updates, not necessarily when the mathematics was done. Release markers provide context, not attribution.</p>
+      <p class="subtitle">See which Erdős problems have been resolved and which solutions have been checked in Lean.</p>
+      <p class="interpretation">Dates track database updates. AI release dates do not tell us which model, if any, helped solve a problem.</p>
+      <details class="reading-guide"><summary>What do “resolved” and “Lean” mean?</summary>
+        <p><strong>Resolved</strong> includes problems that have been proved, disproved, or otherwise solved. The remaining statuses are grouped as open or unresolved.</p>
+        <p><strong>Lean</strong> is software for checking mathematical proofs. Writing a problem’s statement in Lean is different from checking a solution. A Lean solution may be listed before the database’s resolved status is updated.</p>
+      </details>
       <div class="explorer-toolbar">
         <nav class="explorer-tabs" aria-label="Erdős explorer views">
           <a href="$snapshot_href"$snapshot_current><span class="view-name">Snapshot</span><span class="view-description">Status breakdown</span></a>
-          <a href="$trends_href"$trends_current><span class="view-name">Trends &amp; rates</span><span class="view-description">Progress over time</span></a>
+          <a href="$trends_href"$trends_current><span class="view-name">Changes over time</span><span class="view-description">Trends &amp; rates</span></a>
         </nav>
         <a class="repository-link" href="https://github.com/teorth/erdosproblems">Source data on GitHub <span aria-hidden="true">↗</span></a>
       </div>
