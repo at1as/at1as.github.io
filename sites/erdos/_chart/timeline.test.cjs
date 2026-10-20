@@ -215,10 +215,10 @@ test('playback crosses releases and out-of-range events are omitted', async () =
 
 test('play replays from the start, supports speed/pause, and stops at the end', async () => {
   const app = await boot();
-  assert.equal(app.q('#playback-speed').value, '200');
-  assert.equal(app.q('#chart-speed').value, '200');
+  assert.equal(app.q('#playback-speed').value, '100');
+  assert.equal(app.q('#chart-speed').value, '100');
   app.event('#play-timeline', 'click');
-  assert.equal(app.timers.values().next().value.delay, 200, 'Playback starts at 4×');
+  assert.equal(app.timers.values().next().value.delay, 100, 'Playback starts at 8×');
   assert.equal(app.q('#time-slider').value, '0');
   assert.equal(app.q('#play-timeline').textContent.trim(), 'Ⅱ Pause');
   app.tick(); assert.equal(app.q('#time-slider').value, '1');

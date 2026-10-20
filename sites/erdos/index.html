@@ -28,9 +28,9 @@
 <body>
   <a class="skip-link" href="#text-summary">Skip to data table</a>
     <nav class="site-nav" aria-label="Site navigation">
-    <div class="site-breadcrumb"><a href="https://www.jasonwillems.com/" data-site-link="breadcrumb">Jason Willems</a><span class="current-site"><span aria-hidden="true">/</span> <a href="./?v=262f7268359b">Erdős explorer</a></span></div>
+    <div class="site-breadcrumb"><a href="https://www.jasonwillems.com/" data-site-link="breadcrumb">Jason Willems</a><span class="current-site"><span aria-hidden="true">/</span> <a href="./?v=d2b37c248413">Erdős explorer</a></span></div>
     <div class="site-nav-links">
-      <a class="methodology-link" href="./trends/?v=262f7268359b#methodology">Methodology <span aria-hidden="true">↗</span></a>
+      <a class="methodology-link" href="./trends/?v=d2b37c248413#methodology">Methodology <span aria-hidden="true">↗</span></a>
       <a class="blog-link" href="https://www.jasonwillems.com/blog/" data-site-link="header-blog">Blog</a>
       <a class="site-home-link" href="https://www.jasonwillems.com/" data-site-link="header">More from Jason <span aria-hidden="true">↗</span></a>
     </div>
@@ -47,8 +47,8 @@
       </details>
       <div class="explorer-toolbar">
         <nav class="explorer-tabs" aria-label="Erdős explorer views">
-          <a href="./?v=262f7268359b" aria-current="page"><span class="view-name">Snapshot</span><span class="view-description">Status breakdown</span></a>
-          <a href="./trends/?v=262f7268359b"><span class="view-name">Changes over time</span><span class="view-description">Trends &amp; rates</span></a>
+          <a href="./?v=d2b37c248413" aria-current="page"><span class="view-name">Snapshot</span><span class="view-description">Status breakdown</span></a>
+          <a href="./trends/?v=d2b37c248413"><span class="view-name">Changes over time</span><span class="view-description">Trends &amp; rates</span></a>
         </nav>
         <a class="repository-link" href="https://github.com/teorth/erdosproblems">Source data on GitHub <span aria-hidden="true">↗</span></a>
       </div>
@@ -59,7 +59,7 @@
             <p>Snapshot: <time id="snapshot-date" datetime="2026-10-17">October 17, 2026</time></p>
             <a id="source-revision" href="https://github.com/teorth/erdosproblems/blob/f4b678341eaf36425d3ab35491a4e5b16bc4a0d9/data/problems.yaml">Source revision <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="view-actions"><a class="changes-link" href="./trends/?v=262f7268359b#problem-changes">See recent changes <span aria-hidden="true">→</span></a><a id="download-svg" href="diagram.svg" download="erdos-problems-sankey.svg">Download SVG <span aria-hidden="true">↗</span></a></div>
+          <div class="view-actions"><a class="changes-link" href="./trends/?v=d2b37c248413#problem-changes">See recent changes <span aria-hidden="true">→</span></a><a id="download-svg" href="diagram.svg" download="erdos-problems-sankey.svg">Download SVG <span aria-hidden="true">↗</span></a></div>
         </div>
         <section class="snapshot-overview" aria-label="Snapshot summary">
           <article><span>Total problems</span><strong data-total>1,221</strong><p>Recorded at this date.</p></article>
@@ -70,7 +70,7 @@
           <div class="timeline-intro"><h2 id="timeline-title">Explore earlier snapshots</h2><p>Choose a date or press Play to see how the database changed. Dots mark AI model releases.</p></div>
           <div class="timeline-toolbar">
             <button id="play-timeline" class="play-button" type="button" disabled aria-label="Play history">▶ <span>Play</span></button>
-            <div class="speed-control"><label class="visually-hidden" for="playback-speed">Playback speed</label><select id="playback-speed" disabled><option value="800">1×</option><option value="400">2×</option><option value="200" selected>4×</option><option value="100">8×</option><option value="50">16×</option><option value="25">32×</option></select></div>
+            <div class="speed-control"><label class="visually-hidden" for="playback-speed">Playback speed</label><select id="playback-speed" disabled><option value="800">1×</option><option value="400">2×</option><option value="200">4×</option><option value="100" selected>8×</option><option value="50">16×</option><option value="25">32×</option></select></div>
             <div class="timeline-range">
               <div class="timeline-track">
                 <input id="time-slider" type="range" min="0" max="0" value="0" step="1" aria-label="Snapshot date" aria-describedby="timeline-position" disabled>
@@ -92,7 +92,7 @@
     <div id="playback-dock" class="playback-dock" role="group" aria-label="Chart playback" hidden>
       <button id="play-chart" class="play-button" type="button" aria-label="Pause history">Ⅱ <span>Pause</span></button>
       <div class="playback-date"><span>Snapshot</span><time id="chart-date" datetime="2026-10-17">October 17, 2026</time></div>
-      <div class="dock-speed"><label class="visually-hidden" for="chart-speed">Chart playback speed</label><select id="chart-speed"><option value="800">1×</option><option value="400">2×</option><option value="200" selected>4×</option><option value="100">8×</option><option value="50">16×</option><option value="25">32×</option></select></div>
+      <div class="dock-speed"><label class="visually-hidden" for="chart-speed">Chart playback speed</label><select id="chart-speed"><option value="800">1×</option><option value="400">2×</option><option value="200">4×</option><option value="100" selected>8×</option><option value="50">16×</option><option value="25">32×</option></select></div>
     </div>
     <div class="snapshot-layout">
     <section class="flow-panel" aria-labelledby="breakdown-title">
@@ -355,7 +355,7 @@
       <p>Data: <a href="https://github.com/teorth/erdosproblems">Erdős problems database contributors</a>. Maintained by Thomas Bloom and Terence Tao. <a href="https://github.com/teorth/erdosproblems/blob/main/LICENSE">Apache 2.0</a>.</p>
       <p>An independent visualization by <a href="https://www.jasonwillems.com/">Jason Willems</a>. <a href="https://www.erdosproblems.com/">Erdős Problems</a> · <a href="https://teorth.github.io/erdosproblems/">Explore the database</a> · <a href="https://github.com/teorth/erdosproblems/blob/main/STATISTICS.md">Upstream summary statistics</a> · <a href="snapshot.json">Snapshot data</a></p>
       <details class="data-notes"><summary>Sources, dates, and counting notes</summary>
-      <p>Viewing <span id="footer-date">October 17, 2026</span>. Category links show today’s database; “Source revision” shows the selected date. <a href="./trends/?v=262f7268359b#methodology">Methodology</a> · <a href="history.json">Historical data · JSON</a> · <a href="https://github.com/at1as/at1as.github.io/tree/master/sites/erdos">Visualization source code</a> · Chart: <a href="https://github.com/d3/d3-sankey">D3 Sankey</a>.</p>
+      <p>Viewing <span id="footer-date">October 17, 2026</span>. Category links show today’s database; “Source revision” shows the selected date. <a href="./trends/?v=d2b37c248413#methodology">Methodology</a> · <a href="history.json">Historical data · JSON</a> · <a href="https://github.com/at1as/at1as.github.io/tree/master/sites/erdos">Visualization source code</a> · Chart: <a href="https://github.com/d3/d3-sankey">D3 Sankey</a>.</p>
       <p>Dates reflect database updates, including additions and corrections. Gaps mean no updates or no valid snapshot.</p>
       <p>Model markers show selected public Claude releases and OpenAI API releases, not a complete release history. Select one for its source and the first snapshot on or after release. Dates do not show whether a model helped solve a problem.</p>
       <p>“Open / unresolved” includes all seven unresolved statuses, including ZFC independence. Ambiguous statements and literature reviews are counted separately.</p>
