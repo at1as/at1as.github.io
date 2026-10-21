@@ -31,6 +31,8 @@ def chrome(site_home, view):
                   snapshot_current=' aria-current="page"' if view == 'snapshot' else '',
                   trends_current=' aria-current="page"' if view == 'trends' else '')
     return dict(trends_href=values['trends_href'], methodology_href=values['methodology_href'],
+                social_image=site_home + 'sites/erdos/share-card.png?v=' + sha256((HERE / 'share-card.png').read_bytes()).hexdigest()[:12],
+                social_alt='Erdős problems in the AI era: recorded resolutions, proofs checked in Lean, and changes over time.',
                 visualization_source='https://github.com/at1as/at1as.github.io/tree/master/sites/erdos',
                 **{key: Template((HERE / filename).read_text()).substitute(values)
             for key, filename in [('site_navigation', '_navigation.html'),

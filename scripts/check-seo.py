@@ -62,6 +62,7 @@ def check(site_dir):
     config = json.loads((root / "_data/static_sitemaps.json").read_text())
     site_dir = site_dir.resolve()
     errors = []
+    checked_images = set()
 
     def require(condition, message):
         if not condition:
@@ -114,14 +115,26 @@ def check(site_dir):
                     f"Indexable sitemap page has noindex: {route}")
             require(crawl_allowed(robots, url), f"robots.txt blocks {route}")
             require(head.value("og:url") == url, f"Open Graph URL differs from canonical: {route}")
-            for key in ["og:title", "og:description", "og:image", "twitter:title", "twitter:description", "twitter:image"]:
+            for key in ["og:title", "og:description", "og:image", "og:image:alt", "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"]:
                 require(bool(head.value(key)), f"Missing {key}: {route}")
             require(head.value("twitter:card") == "summary_large_image", f"Missing large social card: {route}")
             for key in ["og:image", "twitter:image"]:
                 image = urlsplit(head.value(key))
+                image_file = site_dir / image.path.lstrip("/")
                 require(f"{image.scheme}://{image.netloc}" == origin and
-                        (site_dir / image.path.lstrip("/")).is_file(),
+                        image_file.is_file(),
                         f"Missing production social image: {route}")
+                require(robots.can_fetch("Twitterbot", head.value(key)),
+                        f"Social image blocked for Twitterbot: {route}")
+                if image_file.is_file() and image_file not in checked_images:
+                    checked_images.add(image_file)
+                    content = image_file.read_bytes()
+                    png = content.startswith(b"\x89PNG\r\n\x1a\n") and content[12:16] == b"IHDR"
+                    require(png, f"Social image must be a real PNG: {image.path}")
+                    require(len(content) < 5_000_000, f"Social image exceeds 5 MB: {image.path}")
+                    if png:
+                        dimensions = (int.from_bytes(content[16:20], "big"), int.from_bytes(content[20:24], "big"))
+                        require(dimensions == (1200, 630), f"Social image must be 1200×630: {image.path}")
             titles.append(head.title.strip())
             descriptions.append(head.value("description"))
         actual = {url for url in listed if url and url.startswith(origin + prefix)}

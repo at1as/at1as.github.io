@@ -20,7 +20,7 @@ def render(data, releases, site_home, analytics_id):
                             capture_output=True, text=True, check=True)
     charts = json.loads(result.stdout)
     title = 'Erdős problems in the AI era — Trends & Rates | Jason Willems'
-    description = 'Explore recorded resolutions and formalized proofs over time, alongside AI model releases'
+    description = 'Track rates of recorded Erdős problem resolutions, monthly changes, and the Lean formalization backlog alongside AI model releases.'
     canonical = site_home + 'sites/erdos/trends/'
     structured = {'@context':'https://schema.org','@type':'WebPage','url':canonical,'name':title,'description':description,
                   'author':{'@type':'Person','name':'Jason Willems','url':site_home},

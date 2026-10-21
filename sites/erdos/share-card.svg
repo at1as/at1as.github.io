@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f8faf6"/>
+  <rect width="1200" height="10" fill="#203151"/>
+  <text x="64" y="80" font-family="Arial, sans-serif" font-size="19" letter-spacing="2.5" fill="#5b6877">MATHEMATICS · DATA &amp; HISTORY</text>
+  <text x="64" y="214" font-family="Georgia, serif" font-size="72" letter-spacing="-2" fill="#203151">Erdős problems</text>
+  <text x="64" y="302" font-family="Georgia, serif" font-size="72" letter-spacing="-2" fill="#203151">in the AI era</text>
+  <text x="67" y="374" font-family="Arial, sans-serif" font-size="24" fill="#5b6877">Recorded resolutions.</text>
+  <text x="67" y="412" font-family="Arial, sans-serif" font-size="24" fill="#5b6877">Proofs checked in Lean.</text>
+  <!-- A schematic of the explorer's status-to-proof flow, without numeric claims. -->
+  <g fill="none" stroke-linecap="butt">
+    <path d="M696 273C778 273 778 191 860 191" stroke="#adc7df" stroke-width="72"/>
+    <path d="M696 345C778 345 778 398 860 398" stroke="#d9c7d3" stroke-width="72"/>
+    <path d="M878 173C968 173 968 148 1058 148" stroke="#abc3a2" stroke-width="36"/>
+    <path d="M878 209C968 209 968 252 1058 252" stroke="#dce5d5" stroke-width="36"/>
+    <path d="M878 398C968 398 968 409 1058 409" stroke="#e7dce3" stroke-width="72"/>
+  </g>
+  <rect x="678" y="237" width="18" height="144" rx="2" fill="#8593a6"/>
+  <rect x="860" y="155" width="18" height="72" rx="2" fill="#6b99c0"/>
+  <rect x="860" y="362" width="18" height="72" rx="2" fill="#ac8ca5"/>
+  <rect x="1058" y="130" width="18" height="36" rx="2" fill="#7c9d71"/>
+  <rect x="1058" y="234" width="18" height="36" rx="2" fill="#b1c2a5"/>
+  <rect x="1058" y="373" width="18" height="72" rx="2" fill="#c8b2c1"/>
+  <path d="M64 542H1136" stroke="#d6ded8"/>
+  <text x="64" y="584" font-family="Arial, sans-serif" font-size="20" fill="#5b6877">Snapshots · Trends · Sources</text>
+  <text x="1136" y="584" text-anchor="end" font-family="Arial, sans-serif" font-size="19" fill="#203151">jasonwillems.com</text>
+</svg>
