@@ -1,5 +1,18 @@
 {% comment %}Decorative project artwork, not live charts or project data.{% endcomment %}
 {% case include.preview %}
+{% when 'mathematics' %}
+<svg viewBox="0 0 600 380" fill="none" focusable="false">
+  <rect width="600" height="380" fill="#f0f3e9"/>
+  <text x="42" y="52" fill="#697a68" font-family="Arial, sans-serif" font-size="13" letter-spacing="2.4">THE FRONTIERS OF MATHEMATICS</text>
+  <text x="40" y="125" fill="#293f32" font-family="Georgia, serif" font-size="53">Bounds over time</text>
+  <g stroke="#d8e1d1" stroke-dasharray="3 6"><path d="M42 180H558M42 240H558M42 300H558"/></g>
+  <path d="M42 165H100V225H215V252H370V270H490" stroke="#3f7250" stroke-width="4"/>
+  <path d="M490 270H535V282H558" stroke="#a7723e" stroke-width="4" stroke-dasharray="5 5"/>
+  <path d="M42 330H558" stroke="#92a789" stroke-dasharray="5 6"/>
+  <g fill="#3f7250"><circle cx="42" cy="165" r="5"/><circle cx="100" cy="225" r="5"/><circle cx="215" cy="252" r="5"/><circle cx="370" cy="270" r="5"/></g>
+  <circle cx="535" cy="282" r="5" fill="#a7723e"/>
+  <text x="558" y="355" text-anchor="end" fill="#697a68" font-family="Arial, sans-serif" font-size="13">Published results and recent claims</text>
+</svg>
 {% when 'scorecard' %}
 <svg viewBox="0 0 600 380" fill="none" focusable="false">
   <rect width="600" height="380" fill="#f4f0e8"/>
