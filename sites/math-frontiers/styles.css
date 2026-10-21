@@ -46,3 +46,15 @@
 .sources .source-subtitle{font-size:13px;font-weight:500;margin:10px 0}
 .sources .source-comparison-note{font-size:11px;color:var(--muted);margin-bottom:12px}
 @media(max-width:700px){.riemann-navigation{padding:18px 14px}.view-tabs button{padding:10px;flex:1;font-size:11px}.riemann-navigation>p{font-size:11px}.riemann-metrics{margin-top:8px;gap:7px}.riemann-metrics strong{font-size:10px}.riemann-metrics small{font-size:8px}.region-value{font-size:30px}.region-controls{gap:6px}.region-controls button{font-size:19px;padding:10px 6px}.region-controls small{font-size:9px}.region-controls~.metric-row{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:15px}.region-controls~.metric-row .metric-aside{display:flex;align-items:center;gap:10px;max-width:none;text-align:left}.region-controls~.metric-row .metric-aside p{margin-top:0}.measure-comparison{grid-template-columns:1fr;gap:20px;padding:20px 18px}.region-legend{font-size:10px}}
+
+/* Keep the visual emphasis in sync with the tooltip, including keyboard focus. */
+.chart .point-halo{fill:none;stroke:var(--ink);stroke-width:2;opacity:0;pointer-events:none}
+.chart g.tooltip-active{opacity:1}
+.chart g.tooltip-active .point-halo{opacity:.35}
+.chart g.tooltip-active .point{r:7;stroke-width:3.5}
+.chart g.tooltip-active .point.ai{stroke-width:4.5}
+.problem-button g.tooltip-active .mini-point{r:4;stroke:currentColor;stroke-width:1.5}
+.order-cell.tooltip-active{outline:2px solid var(--ink);position:relative;z-index:1}
+.region-diagram g.tooltip-active .region-boundary{stroke-width:3;stroke-dasharray:none}
+.region-diagram g.tooltip-active .region-boundary-dot{r:6}
+.region-diagram g.tooltip-active .critical-line{stroke-width:5}

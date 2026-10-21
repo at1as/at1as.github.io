@@ -17,6 +17,7 @@
   let index = -1, mode = 'full', timer = null;
   let riemannView = 'proportion', regionId = 'seven-eighths';
   let tooltipTarget = null;
+  let tooltipHighlights = [];
   const rows = () => M.milestones(problem, $('include-reports').checked);
   const metric = (p, m) => p.kind === 'range' ? `${m.lower}–${m.value}` : p.kind === 'floor' ? `> 10<sup>${m.value.toLocaleString('en-US')}</sup>` : escape(m.display || M.format(p, m.value));
   const shortMetric = (p, m) => p.kind === 'grid' ? `${m.value} gaps` : p.kind === 'range' ? `${m.lower}–${m.value}` : p.kind === 'floor' ? `> 10^${m.value}` : M.format(p, m.value);
@@ -26,7 +27,7 @@
     const min = Math.min(...ys), max = Math.max(...ys);
     const xs = list.map(m => M.year(m.date));
     const points = ys.map((v,i) => [3 + (xs[i]-xs[0]) / (xs.at(-1)-xs[0] || 1)*124, 26-(v-min)/(max-min || 1)*22]);
-    return `<svg viewBox="0 0 130 30" aria-hidden="true"><path d="${M.stepPath(points)}" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".65"/><g data-tooltip="${escape(M.milestoneText(p,list.at(-1)))}"><circle cx="${points.at(-1)[0]}" cy="${points.at(-1)[1]}" r="8" fill="transparent"/><circle cx="${points.at(-1)[0]}" cy="${points.at(-1)[1]}" r="2" fill="currentColor"/></g></svg>`;
+    return `<svg viewBox="0 0 130 30" aria-hidden="true"><path d="${M.stepPath(points)}" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".65"/><g data-tooltip="${escape(M.milestoneText(p,list.at(-1)))}"><circle cx="${points.at(-1)[0]}" cy="${points.at(-1)[1]}" r="8" fill="transparent"/><circle class="mini-point" cx="${points.at(-1)[0]}" cy="${points.at(-1)[1]}" r="2" fill="currentColor"/></g></svg>`;
   }
 
   function renderNav() {
@@ -161,7 +162,7 @@
       if(M.year(m.date)<xStart || m.value>max || m.value<min) return;
       const cx=x(m.date),cy=y(m.value),future=i>index;
       const tip=escape(M.milestoneText(problem,m));
-      svg+=`<g opacity="${future?.28:1}" data-index="${i}" data-tooltip="${tip}" tabindex="0" role="button" aria-label="${tip}" aria-pressed="${i===index}"><circle class="hit-area" cx="${cx}" cy="${cy}" r="12"/><circle class="point${i===index?' selected':''}${M.reported(m)?' report':''}${$('show-ai').checked&&m.ai?' ai':''}" cx="${cx}" cy="${cy}" r="${i===index?6:4}"/></g>`;
+      svg+=`<g opacity="${future?.28:1}" data-index="${i}" data-tooltip="${tip}" tabindex="0" role="button" aria-label="${tip}" aria-pressed="${i===index}"><circle class="hit-area" cx="${cx}" cy="${cy}" r="12"/><circle class="point-halo" cx="${cx}" cy="${cy}" r="10"/><circle class="point${i===index?' selected':''}${M.reported(m)?' report':''}${$('show-ai').checked&&m.ai?' ai':''}" cx="${cx}" cy="${cy}" r="${i===index?6:4}"/></g>`;
     });
     svg+='</g></svg>';
     $('chart').innerHTML=svg;
@@ -175,7 +176,7 @@
     const unresolved=new Set(current.unknown);
     const reported=new Set(current.reported || []);
     let grid='<p class="grid-intro">Each square is one order: 4, 8, 12, …, 2,000. Read left to right.</p><div class="order-grid" aria-hidden="true">';
-    for(let order=4;order<=2000;order+=4)grid+=`<span class="order-cell${unresolved.has(order)?' unknown':reported.has(order)?' resolved':''}" data-tooltip="${escape(M.orderText(current,order))}"></span>`;
+    for(let order=4;order<=2000;order+=4)grid+=`<span class="order-cell${unresolved.has(order)?' unknown':reported.has(order)?' resolved':''}" data-cell-order="${order}" data-tooltip="${escape(M.orderText(current,order))}"></span>`;
     grid+='</div><p class="grid-intro">Inspect the orders that were open in the first snapshot:</p><div class="grid-cases">'+original.map(n=>`<button type="button" data-order="${n}" data-tooltip="${escape(M.orderText(current,n))}" aria-pressed="false">${n}</button>`).join('')+'</div><p class="grid-detail" id="grid-detail" aria-live="polite">Hover over a cell for its order and status, or select an order above.</p>';
     $('chart').innerHTML=grid;
     $('chart-unit').textContent='Admissible orders through 2,000 · 500 cases';
@@ -224,13 +225,23 @@
 
   function hideTooltip() {
     if(tooltipTarget) tooltipTarget.removeAttribute('aria-describedby');
+    tooltipHighlights.forEach(element=>element.classList.remove('tooltip-active'));
+    tooltipHighlights=[];
     tooltipTarget=null;
     $('chart-tooltip').hidden=true;
   }
   function showTooltip(target,event) {
     if(!target)return;
-    if(tooltipTarget && tooltipTarget!==target)tooltipTarget.removeAttribute('aria-describedby');
-    tooltipTarget=target;
+    if(tooltipTarget!==target) {
+      hideTooltip();
+      tooltipTarget=target;
+      tooltipHighlights=[target];
+      const point=target.dataset.index!==undefined ? $('chart').querySelector(`g[data-index="${target.dataset.index}"]`) : null;
+      const cell=target.dataset.order ? $('chart').querySelector(`[data-cell-order="${target.dataset.order}"]`) : null;
+      if(point && point!==target)tooltipHighlights.push(point);
+      if(cell)tooltipHighlights.push(cell);
+      tooltipHighlights.forEach(element=>element.classList.add('tooltip-active'));
+    }
     const tooltip=$('chart-tooltip');
     tooltip.textContent=target.dataset.tooltip;
     tooltip.hidden=false;
