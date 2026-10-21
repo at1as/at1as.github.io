@@ -5,9 +5,10 @@
   const M = window.Frontiers;
   const $ = id => document.getElementById(id);
   const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
-  const statusText = { published: 'Published result', preprint: 'Preprint', report: 'Author report', construction: 'Published construction' };
+  const statusText = { published: 'Published result', preprint: 'Preprint', report: 'Author report', construction: 'Published construction', conjecture: 'Conjecture · unproved' };
   let problem = data.problems.find(p => p.id === location.hash.slice(1)) || data.problems[0];
   let index = -1, mode = 'full', timer = null;
+  let riemannView = 'proportion', regionId = 'seven-eighths';
   let tooltipTarget = null;
   const rows = () => M.milestones(problem, $('include-reports').checked);
   const metric = (p, m) => p.kind === 'range' ? `${m.lower}–${m.value}` : p.kind === 'floor' ? `> 10<sup>${m.value.toLocaleString('en-US')}</sup>` : escape(m.display || M.format(p, m.value));
@@ -24,8 +25,89 @@
   function renderNav() {
     $('problem-nav').innerHTML = data.problems.map((p,i) => {
       const list = M.milestones(p, $('include-reports').checked);
-      return `<button type="button" class="problem-button" data-problem="${p.id}" aria-pressed="${p.id === problem.id}" aria-controls="explorer"><span class="number">0${i+1}${M.reported(list.at(-1))?' <span class="nav-evidence">Reported</span>':''}</span><span class="name">${escape(p.name)}</span><span class="mini-value">${escape(shortMetric(p,list.at(-1)))}</span>${mini(p,list)}</button>`;
+      const bound = M.regions(p, $('include-reports').checked).filter(r=>r.status!=='conjecture').sort((a,b)=>M.regionBounds(a).upper-M.regionBounds(b).upper)[0];
+      const values = p.id === 'riemann' ? `<span class="riemann-metrics"><span data-tooltip="${escape(M.milestoneText(p,list.at(-1)))}"><strong>${escape(shortMetric(p,list.at(-1)))}</strong><small>on the line</small></span><span${bound?` data-tooltip="${escape(M.regionRange(bound)+' · preprint')}">`:'>'}<strong>${bound?escape(bound.label):'RH'}</strong><small>${bound?'strip bound':'unproved'}</small></span></span>` : `<span class="mini-value">${escape(shortMetric(p,list.at(-1)))}</span>${mini(p,list)}`;
+      return `<button type="button" class="problem-button${p.id==='riemann'?' riemann-card':''}" data-problem="${p.id}" aria-pressed="${p.id === problem.id}" aria-controls="explorer"><span class="number">0${i+1}${M.reported(list.at(-1))?' <span class="nav-evidence">Reported</span>':''}</span><span class="name">${escape(p.name)}</span>${values}</button>`;
     }).join('');
+  }
+
+  function renderRiemannNavigation() {
+    const isRiemann = problem.id === 'riemann';
+    $('riemann-navigation').hidden = !isRiemann;
+    $('progress-view').hidden = isRiemann && riemannView === 'regions';
+    $('region-view').hidden = !isRiemann || riemannView !== 'regions';
+    if (isRiemann) {
+      $('progress-view').setAttribute('role','tabpanel');
+      $('progress-view').setAttribute('aria-labelledby','proportion-tab');
+    } else {
+      $('progress-view').removeAttribute('role');
+      $('progress-view').removeAttribute('aria-labelledby');
+    }
+    $('riemann-views').querySelectorAll('[data-riemann-view]').forEach(button=>{
+      const selected = button.dataset.riemannView === riemannView;
+      button.setAttribute('aria-selected',String(selected));
+      button.tabIndex = selected ? 0 : -1;
+    });
+  }
+
+  function renderRegion() {
+    hideTooltip();
+    const available = M.regions(problem, $('include-reports').checked);
+    const region = available.find(r=>r.id===regionId) || available.at(-1);
+    regionId = region.id;
+    const b = M.regionBounds(region), conjecture = region.status === 'conjecture';
+    const range = M.regionRange(region);
+    $('region-controls').querySelectorAll('[data-region]').forEach(button=>{
+      button.disabled = !available.some(r=>r.id===button.dataset.region);
+      button.setAttribute('aria-pressed',String(button.dataset.region===regionId));
+    });
+    $('region-filter-note').hidden = $('include-reports').checked;
+    $('region-metric-label').textContent = conjecture ? 'Conjectured location of every nontrivial zero' : 'Reported location bound for every nontrivial zero';
+    $('region-value').textContent = range;
+    $('region-status').textContent = statusText[region.status];
+    $('region-status').className = 'status '+(conjecture?'conjecture':'report');
+    $('region-date').textContent = region.dateLabel;
+    $('region-evidence').textContent = `${region.dateLabel} / ${statusText[region.status]}`;
+    $('region-title').textContent = region.title;
+    $('region-detail').textContent = region.detail;
+    $('region-who').textContent = region.who;
+    $('region-source').href = region.url;
+    $('region-source').textContent = conjecture ? 'Read about the conjecture ↗' : 'Read the preprint ↗';
+    $('region-ai-note').hidden = !$('show-ai').checked;
+    $('region-ai-note').textContent = region.ai ? 'AI contribution · '+region.ai : 'The Riemann hypothesis was formulated in 1859; this comparison does not represent an AI result.';
+    $('permitted-legend').hidden = conjecture;
+    const latest = rows().at(-1);
+    $('region-proportion-comparison').textContent = `${latest.display} of zeros lie exactly at β = ½, asymptotically (${statusText[latest.status].toLowerCase()}). This bound does not locate the remaining zeros.`;
+    $('region-proportion-source').href = latest.url;
+    $('region-location-comparison').textContent = conjecture ? 'Full RH would put every zero at β = ½. Even a 100% asymptotic proportion could leave a sparse set of exceptions; RH allows none.' : `The ${region.label} statement confines every nontrivial zero to ${range}. ${region.label} is a horizontal coordinate, not a percentage of zeros or a percentage solved.`;
+
+    const width = Math.max(240, $('region-diagram').clientWidth), height = 320;
+    const left = 38, right = 18, top = 42, bottom = 240, plotW = width-left-right;
+    const x = value => left+value*plotW;
+    const description = `${statusText[region.status]}. ${range}. ${conjecture?'Under full RH, every nontrivial zero would lie on the critical line.':'The outer bands are excluded by the reported statement; zeros may lie anywhere in the remaining strip, including on its boundaries.'} The restriction extends to every height. No individual zeros are plotted.`;
+    const excludedTip = conjecture ? 'Excluded if RH is true · conjecture' : `Excluded by the ${region.label} statement · preprint`;
+    const permittedTip = `${range}\nPermitted locations; not a distribution of zeros`;
+    const boundary = (value,label,side) => {
+      const exactDecimal = Number(value.toFixed(6));
+      const tip = `${side} boundary · β = ${label}\n${value===exactDecimal?'=':'≈'} ${exactDecimal}\n${statusText[region.status]}`;
+      return `<g data-tooltip="${escape(tip)}" tabindex="0" role="img" aria-label="${escape(tip)}"><line x1="${x(value)}" x2="${x(value)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line class="region-boundary" x1="${x(value)}" x2="${x(value)}" y1="${top}" y2="${bottom}"/><circle cx="${x(value)}" cy="${bottom}" r="4" class="region-boundary-dot"/><text class="boundary-label" x="${x(value)}" y="${bottom+44}" text-anchor="middle">${label}</text></g>`;
+    };
+    $('region-diagram').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="group" aria-labelledby="region-svg-title region-svg-desc">
+      <title id="region-svg-title">${escape(region.label)}: permitted locations of zeta zeros</title><desc id="region-svg-desc">${escape(description)}</desc>
+      <defs><pattern id="excluded-hatch" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M-1,1L1,-1M0,7L7,0M6,8L8,6" stroke="#9eB7a1" stroke-width=".6"/></pattern></defs>
+      <rect x="${left}" y="${top}" width="${plotW}" height="${bottom-top}" fill="#e8efe6"/>
+      <rect x="${left}" y="${top}" width="${plotW}" height="${bottom-top}" fill="url(#excluded-hatch)" data-tooltip="${escape(excludedTip)}"/>
+      ${conjecture?'':`<rect class="permitted-strip" x="${x(b.lower)}" y="${top}" width="${x(b.upper)-x(b.lower)}" height="${bottom-top}" fill="#fcf3e6" data-tooltip="${escape(permittedTip)}"/>`}
+      <path d="M${left},${top}H${width-right}M${left},${bottom}H${width-right}" stroke="#aab9ad" stroke-dasharray="3 4"/>
+      <text x="${x(.5)}" y="20" text-anchor="middle" class="critical-label">Critical line β = ½</text>
+      <path d="M${x(.5)-4},${top+5}L${x(.5)},${top}L${x(.5)+4},${top+5}M${x(.5)-4},${bottom-5}L${x(.5)},${bottom}L${x(.5)+4},${bottom-5}" class="critical-line"/>
+      <g tabindex="0" role="img" aria-label="Critical line: real part β = ½" data-tooltip="Critical line · β = ½ = 0.5${conjecture?'\nEvery nontrivial zero would lie here under RH':''}"><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" class="critical-line${conjecture?' rh-line':''}"/></g>
+      ${conjecture?'':boundary(b.lower,b.lowerLabel,'Left')+boundary(b.upper,b.upperLabel,'Right')}
+      <text x="${left}" y="${bottom+23}" text-anchor="middle">0</text><text x="${x(.5)}" y="${bottom+23}" text-anchor="middle">½</text><text x="${width-right}" y="${bottom+23}" text-anchor="middle">1</text>
+      <text x="${x(.5)}" y="${height-8}" text-anchor="middle">Real part β →</text>
+      <text transform="translate(15 ${(top+bottom)/2}) rotate(-90)" text-anchor="middle">Height γ · all heights</text>
+      ${conjecture?`<text class="region-caption" x="${x(.5)+12}" y="${(top+bottom)/2}">All zeros</text><text class="region-caption" x="${x(.5)+12}" y="${(top+bottom)/2+18}">on this line</text>`:''}
+    </svg>`;
   }
 
   function renderChart(list) {
@@ -99,6 +181,7 @@
     index=Math.max(0,Math.min(index<0?list.length-1:index,list.length-1));
     const m=list[index];
     $('explorer').hidden=false;
+    renderRiemannNavigation();
     $('problem-category').textContent=problem.category;
     $('problem-title').textContent=problem.name;
     $('metric-label').textContent=problem.metric;
@@ -127,7 +210,8 @@
     $('scale-toggle').hidden=!['primes','matrix'].includes(problem.id);
     $('scale-toggle').textContent=problem.id==='primes' ? (mode==='linear'?'Use log scale':'Use linear scale') : (mode==='detail'?'Show full range':'Zoom to recent progress');
     $('scale-toggle').setAttribute('aria-pressed',String(mode!=='full'));
-    renderChart(list);
+    if (!$('progress-view').hidden) renderChart(list);
+    if (!$('region-view').hidden) renderRegion();
     $('milestone-list').innerHTML=list.map((entry,i)=>`<button type="button" data-index="${i}" data-tooltip="${escape(M.milestoneText(problem,entry))}" class="milestone-button${M.reported(entry)?' report':''}${$('show-ai').checked&&entry.ai?' ai':''}" aria-pressed="${i===index}"><time datetime="${entry.date}">${escape(entry.label)}</time><strong>${metric(problem,entry)}</strong><small>${$('show-ai').checked&&entry.ai?'✦ AI-assisted · ':''}${escape(entry.short || statusText[entry.status])}</small></button>`).join('');
   }
 
@@ -163,6 +247,18 @@
   function stop(){if(timer)clearInterval(timer);timer=null;$('play').innerHTML='▶ <span>Play history</span>';$('play').setAttribute('aria-label','Play the milestones');}
   function select(i){stop();index=i;render();}
   function switchProblem(id,updateURL=true){const next=data.problems.find(p=>p.id===id);if(!next)return;stop();problem=next;index=-1;mode='full';renderNav();render();if(updateURL)history.replaceState(null,'','#'+id);}
+  function switchRiemannView(view) {
+    stop(); hideTooltip(); riemannView=view; render();
+  }
+  $('riemann-views').addEventListener('click',e=>{const button=e.target.closest('[data-riemann-view]');if(button)switchRiemannView(button.dataset.riemannView);});
+  $('riemann-views').addEventListener('keydown',e=>{
+    if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+    e.preventDefault();
+    const view=e.key==='Home'?'proportion':e.key==='End'?'regions':riemannView==='proportion'?'regions':'proportion';
+    switchRiemannView(view);
+    $(view==='proportion'?'proportion-tab':'regions-tab').focus();
+  });
+  $('region-controls').addEventListener('click',e=>{const button=e.target.closest('[data-region]');if(button&&!button.disabled){regionId=button.dataset.region;renderRegion();}});
   $('problem-nav').addEventListener('click',e=>{const b=e.target.closest('[data-problem]');if(b){switchProblem(b.dataset.problem);$('problem-nav').querySelector(`[data-problem="${problem.id}"]`).focus({preventScroll:true});}});
   $('milestone-list').addEventListener('click',e=>{const b=e.target.closest('[data-index]');if(b){select(Number(b.dataset.index));$('milestone-list').querySelector(`[data-index="${index}"]`).focus({preventScroll:true});}});
   $('chart').addEventListener('click',e=>{const point=e.target.closest('[data-index]');if(point)select(Number(point.dataset.index));const order=e.target.closest('[data-order]');if(order){const n=Number(order.dataset.order),m=rows()[index];$('chart').querySelectorAll('[data-order]').forEach(b=>b.setAttribute('aria-pressed',String(b===order)));$('grid-detail').textContent=`Order ${n}: ${m.unknown.includes(n)?'no construction known in this snapshot':(m.reported||[]).includes(n)?'construction reported in August 2026; the source records an independent check for order 668':'a construction is known in this snapshot'}.`;}});
@@ -175,6 +271,6 @@
   $('play').addEventListener('click',()=>{if(timer){stop();return;}if(index===rows().length-1)index=0;render();$('play').innerHTML='Ⅱ <span>Pause</span>';$('play').setAttribute('aria-label','Pause the milestones');timer=setInterval(()=>{index++;render();if(index===rows().length-1)stop();},1700);});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
   window.addEventListener('hashchange',()=>switchProblem(location.hash.slice(1),false));
-  window.addEventListener('resize',()=>renderChart(rows()));
+  window.addEventListener('resize',()=>{if(!$('region-view').hidden)renderRegion();else renderChart(rows());});
   renderNav();render();
 })();

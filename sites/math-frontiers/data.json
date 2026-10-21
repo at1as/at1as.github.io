@@ -105,12 +105,12 @@
     },
     {
       "id": "riemann",
-      "name": "Riemann zeros",
+      "name": "Riemann hypothesis",
       "kind": "proportion",
-      "category": "02 / Raising a proven proportion",
+      "category": "02 / Critical-line proportions & zero-free regions",
       "metric": "Selected lower bound on the critical-line proportion",
       "question": "Do all nontrivial zeta zeros lie on one line?",
-      "explanation": "The Riemann hypothesis places every nontrivial zero on the line with real part ½. One approach proves that an increasing proportion must lie there.",
+      "explanation": "The Riemann hypothesis places every nontrivial zero on the line with real part ½. The proportion chart tracks how many zeros must lie there; the zero-free view bounds where any zero can lie.",
       "unit": "Asymptotic proportion on the critical line",
       "start": 1970,
       "end": 2028,
@@ -201,6 +201,49 @@
           "display": "≥ 67.25%",
           "short": "Alpöge · Furman",
           "ai": "The authors credit Claude with discovering and writing the argument. They checked it themselves; journal peer review is not established here."
+        }
+      ],
+      "zeroFreeRegions": [
+        {
+          "id": "eleven-twelfths",
+          "label": "11/12",
+          "numerator": 11,
+          "denominator": 12,
+          "date": "2026-10-05",
+          "dateLabel": "October 5, 2026",
+          "status": "preprint",
+          "who": "OpenAI",
+          "title": "A reported zero-free half-plane beyond 11/12",
+          "detail": "The preprint states that ζ(s) has no zeros with real part greater than 11/12. Symmetry then confines all nontrivial zeros to 1/12 ≤ β ≤ 11/12. This paper isolates a simpler argument for a weaker bound than 7/8.",
+          "url": "https://github.com/openai/math/blob/main/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/paper2.pdf",
+          "ai": "OpenAI is the listed author of the preprint."
+        },
+        {
+          "id": "seven-eighths",
+          "label": "7/8",
+          "numerator": 7,
+          "denominator": 8,
+          "date": "2026-09-30",
+          "dateLabel": "September 30, 2026",
+          "status": "preprint",
+          "who": "OpenAI",
+          "title": "A reported zero-free half-plane beyond 7/8",
+          "detail": "The preprint states that ζ(s) has no zeros with real part greater than 7/8. Symmetry then confines all nontrivial zeros to 1/8 ≤ β ≤ 7/8. This narrower strip still permits zeros away from the critical line.",
+          "url": "https://github.com/openai/math/blob/main/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf",
+          "ai": "OpenAI is the listed author of the preprint."
+        },
+        {
+          "id": "rh",
+          "label": "Full RH",
+          "numerator": 1,
+          "denominator": 2,
+          "date": "1859",
+          "dateLabel": "Conjectured in 1859",
+          "status": "conjecture",
+          "who": "Bernhard Riemann · overview by the Clay Mathematics Institute",
+          "title": "The conjectured limit: every zero on the line",
+          "detail": "Full RH requires every nontrivial zero to have real part exactly ½, without exceptions. The permitted strip would collapse to the critical line. This is a conjectured reference, not an established bound.",
+          "url": "https://www.claymath.org/millennium/riemann-hypothesis/"
         }
       ]
     },

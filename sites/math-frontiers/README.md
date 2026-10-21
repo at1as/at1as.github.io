@@ -24,6 +24,8 @@ Chart markers, overview dots, milestone cards, and Hadamard cells show their val
 
 The header’s `Updated YYYY-MM-DD` label comes from `data.json`’s `updated` field. Set it when content changes; rebuilding alone must not advance it. `reviewed` separately records the source-review cutoff. The header’s **More from Jason** link uses the production homepage, matching the other subsites.
 
+The six overview cards group mathematical problems. The Riemann hypothesis card contains two views: the critical-line proportion timeline and a zero-free-region diagram. Arrow keys, Home, and End switch its tabs. The region controls compare 11/12, 7/8, and full RH by strength, not chronology. Limits are stored as integer fractions in `zeroFreeRegions`; their symmetric left boundaries are derived from those fractions. The diagram depicts permitted locations at every height, without inventing individual zeros. Every boundary has a hover/focus label. Full RH is always labeled as an unproved conjecture. Excluding preprints disables the two reported region bounds and leaves RH only as a conjectured reference. Region sources also appear in the static source tables and JSON download.
+
 ## Editorial conventions
 
 This is a selected, source-checked history, not an exhaustive live record tracker. The review date is October 20, 2026. Mathematical validity is not independently certified by this project. Preserve source URLs and evidence labels when updating values.
