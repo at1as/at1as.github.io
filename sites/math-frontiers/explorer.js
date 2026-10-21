@@ -4,6 +4,13 @@
   const data = JSON.parse(document.getElementById('frontiers-data').textContent);
   const M = window.Frontiers;
   const $ = id => document.getElementById(id);
+  const aiPreferenceKey = 'math-frontiers:highlight-ai';
+  try {
+    $('show-ai').checked = localStorage.getItem(aiPreferenceKey) !== 'false';
+  } catch {
+    // Storage may be unavailable; keep the default and allow in-page changes.
+    $('show-ai').checked = true;
+  }
   const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
   const statusText = { published: 'Published result', preprint: 'Preprint', report: 'Author report', construction: 'Published construction', conjecture: 'Conjecture · unproved' };
   let problem = data.problems.find(p => p.id === location.hash.slice(1)) || data.problems[0];
@@ -266,7 +273,11 @@
   $('previous').addEventListener('click',()=>select(Math.max(0,index-1)));
   $('next').addEventListener('click',()=>select(Math.min(rows().length-1,index+1)));
   $('include-reports').addEventListener('change',()=>{stop();index=-1;renderNav();render();});
-  $('show-ai').addEventListener('change',render);
+  $('show-ai').addEventListener('change',()=>{
+    try { localStorage.setItem(aiPreferenceKey,String($('show-ai').checked)); }
+    catch { /* The toggle still works when browser storage is unavailable. */ }
+    render();
+  });
   $('scale-toggle').addEventListener('click',()=>{mode=mode==='full'?(problem.id==='primes'?'linear':'detail'):'full';render();});
   $('play').addEventListener('click',()=>{if(timer){stop();return;}if(index===rows().length-1)index=0;render();$('play').innerHTML='Ⅱ <span>Pause</span>';$('play').setAttribute('aria-label','Pause the milestones');timer=setInterval(()=>{index++;render();if(index===rows().length-1)stop();},1700);});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
