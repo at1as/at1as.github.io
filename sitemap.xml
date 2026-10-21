@@ -17,13 +17,6 @@
       {% if modified %}<lastmod>{{ modified | date_to_xmlschema }}</lastmod>{% endif %}
     </url>
   {% endfor %}
-  <!-- This generated subsite has no Jekyll front matter, so it is not in site.html_pages. -->
-  <url>
-    <loc>{{ '/sites/erdos/' | absolute_url | xml_escape }}</loc>
-  </url>
-  <url>
-    <loc>{{ '/sites/erdos/trends/' | absolute_url | xml_escape }}</loc>
-  </url>
   <!-- Static exports are not Jekyll pages. Discover directory-index HTML on each build. -->
   {% assign exported_pages = site.static_files | where: 'name', 'index.html' | sort: 'path' %}
   {% for exported_site in site.data.static_sitemaps %}

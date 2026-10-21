@@ -74,7 +74,9 @@ Because the slider steps through recorded snapshots, marker positions interpolat
 
 ## Discovery and analytics
 
-Both generated pages include descriptive titles, descriptions, canonical URLs, Open Graph and Twitter summary metadata, and WebPage JSON-LD with author and upstream source attribution. The charts and data tables are present in the initial HTML. The root `sitemap.xml` explicitly includes `/sites/erdos/` and `/sites/erdos/trends/`, because these static pages are not part of Jekyll’s `site.html_pages`; `robots.txt` already allows them and advertises that sitemap.
+Both generated pages include descriptive titles, descriptions, canonical URLs, Open Graph and Twitter large-image card metadata, and WebPage JSON-LD with author and upstream source attribution. The charts and data tables are present in the initial HTML. `_data/static_sitemaps.json` registers both routes for the root sitemap and its SEO checks; `robots.txt` allows them and advertises that sitemap.
+
+The shared 1200 × 630 `share-card.png` uses evergreen copy and a schematic flow without numeric claims. Edit `share-card.svg`, render it with `rsvg-convert --output sites/erdos/share-card.png sites/erdos/share-card.svg`, then run the generator. The image URL includes a content hash to refresh cached artwork. The production SEO check verifies crawler-visible metadata, image dimensions, file format, size, alt text, and crawler access for all four featured sites.
 
 The generator reads the production URL and GA4 measurement ID from the root `_config.yml`. Rerun it after changing those settings. `analytics.js` loads the [Google tag](https://developers.google.com/tag-platform/gtagjs) on the HTTPS production hostname (with or without `www`) only, so localhost and preview hosts do not affect reporting. It sends the [default pageview](https://developers.google.com/analytics/devguides/collection/ga4/views) once, retains campaign parameters, and uses a stable page title. Moving the slider or playing the timeline does not send additional pageviews.
 
