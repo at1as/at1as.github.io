@@ -39,7 +39,19 @@
       (milestone.reported || []).includes(order) ? 'Construction reported' : 'Construction known';
     return `Order ${order} · ${order} × ${order} matrix\n${status} · ${milestone.label}`;
   }
-  const api = { reported, milestones, year, stepPath, bounds, format, milestoneText, orderText };
+  function regions(problem, includeReports) {
+    return (problem.zeroFreeRegions || []).filter(r => includeReports || !reported(r));
+  }
+  function regionBounds(region) {
+    const { numerator: n, denominator: d } = region;
+    const fraction = value => value * 2 === d ? '½' : `${value}/${d}`;
+    return { lower: (d-n)/d, upper: n/d, lowerLabel: fraction(d-n), upperLabel: fraction(n) };
+  }
+  function regionRange(region) {
+    const b = regionBounds(region);
+    return b.lower === b.upper ? `β = ${b.upperLabel}` : `${b.lowerLabel} ≤ β ≤ ${b.upperLabel}`;
+  }
+  const api = { reported, milestones, year, stepPath, bounds, format, milestoneText, orderText, regions, regionBounds, regionRange };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Frontiers = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
