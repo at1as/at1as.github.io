@@ -1,5 +1,9 @@
 [
   {
+    "root": "/sites/math-frontiers/",
+    "exclude": []
+  },
+  {
     "root": "/sites/kurzweil/",
     "exclude": [
       "/sites/kurzweil/categories/",

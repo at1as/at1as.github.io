@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f3f5ed"/>
+  <text x="65" y="72" font-family="Arial, sans-serif" font-size="16" letter-spacing="3" fill="#5f7564">SELECTED MATHEMATICAL PROBLEMS</text>
+  <text x="60" y="190" font-family="Georgia, serif" font-size="82" letter-spacing="-3" fill="#233d34">The frontiers</text>
+  <text x="60" y="280" font-family="Georgia, serif" font-size="82" letter-spacing="-3" fill="#28624d" font-style="italic">of mathematics.</text>
+  <g stroke="#d8dfd0" stroke-dasharray="3 6"><path d="M65 355H1135M65 425H1135M65 495H1135"/></g>
+  <path d="M65 330H190V405H410V451H710V470H1010" fill="none" stroke="#28624d" stroke-width="4"/>
+  <path d="M1010 470V488H1135" fill="none" stroke="#a26c32" stroke-width="4" stroke-dasharray="6 5"/>
+  <g fill="#28624d"><circle cx="65" cy="330" r="6"/><circle cx="190" cy="405" r="6"/><circle cx="410" cy="451" r="6"/><circle cx="710" cy="470" r="6"/></g>
+  <circle cx="1010" cy="488" r="6" fill="#a26c32"/>
+  <text x="65" y="577" font-family="Arial, sans-serif" font-size="19" fill="#68716b">Six problems, with dated results and sources.</text>
+  <text x="1135" y="577" text-anchor="end" font-family="Arial, sans-serif" font-size="17" fill="#233d34">jasonwillems.com</text>
+</svg>
