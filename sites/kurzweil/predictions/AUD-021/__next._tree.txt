@@ -1,6 +1,6 @@
-:HL["/sites/kurzweil/_next/static/chunks/3dikjtwpno5dr.css","style"]
+:HL["/sites/kurzweil/_next/static/chunks/0s704uezol-c5.css","style"]
 :HC["/",""]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"id","t":"d","k":"AUD-021","s":[]},"h":65632,"c":"$Q3"}]]
 1:[["children",{"s":"predictions","h":131168,"c":"$Q2"}]]
-0:{"b":"c505e7b0e85ec0c72a9e904c","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"38a71e3ee5807f2c051ed8f2","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
