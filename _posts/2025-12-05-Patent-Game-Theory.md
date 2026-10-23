@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Why software companies accumulate defensive patent stockpiles, how deterrence sustains the arms race, and what it means for smaller competitors."
 title: "The Game Theory Behind Big Tech's Patent Stockpiles"
 date: 2025-12-05 12:00:00 -0400
 categories: [technology, business]

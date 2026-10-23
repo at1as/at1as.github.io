@@ -1,5 +1,6 @@
 ---
 layout: default
+description: "How LEAD migrated PostgreSQL from Amazon RDS to Azure, including replication, cutover planning, and lessons on minimizing downtime."
 title: "Azure Database Migration"
 permalink: /aws-azure-migration-guide/guides/chapter5-azure-db-migration/
 ---

@@ -1,7 +1,8 @@
 # Site settings
 title: "Jason Willems"
+tagline: "Technical Founder & Engineering Leader"
 name: "Jason"
-description: "Jason Willems – Building products, exploring the world, sharing what I learn"
+description: "Jason Willems is a technical founder and engineering leader in San Francisco, writing about AI, software engineering, startups, and building products."
 author:
   name: Jason Willems
   url: "https://www.jasonwillems.com"
@@ -30,6 +31,8 @@ defaults:
       image:
         path: /photos/jason-july2015.jpg
         alt: Jason Willems
+        width: 364
+        height: 364
 
 # Pagination for blog
 paginate: 8

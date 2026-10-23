@@ -76,6 +76,7 @@ Create new blog posts in the `_posts` directory with the format `YYYY-MM-DD-titl
 ---
 layout: post
 title: "Your Post Title"
+description: "A concise, specific summary for search results and social previews."
 date: YYYY-MM-DD HH:MM:SS -0400
 categories: [category1, category2]
 tags: [tag1, tag2]
@@ -115,9 +116,20 @@ research downloads, Next route payloads or asset files. Keep generated app files
 
 Build with `JEKYLL_ENV=production bundle exec jekyll build`, then run `make check-seo`.
 Python 3.9+ is the only extra requirement; the checker uses the standard library. CI runs
-it before publishing. It checks coverage, duplicate URLs, canonical agreement, robots,
-headings, distinct titles/descriptions and crawler-visible social metadata for both apps.
+it before publishing. It checks every sitemap target, then validates the main Jekyll
+pages and all registered static apps. Checks include coverage, canonical agreement,
+robots, document structure, headings, distinct titles/descriptions, social metadata,
+main-site internal links, and article/breadcrumb JSON-LD. Paginated blog archives share
+their description while keeping distinct titles and self-referencing canonicals.
 No build timestamps are added as `lastmod`; only actual content dates should be used.
+
+Give each page and post an explicit `description` in its front matter. The checker
+uses 180 characters as an editorial budget; Google chooses its own snippet length
+and may use text from the page instead. See Google's [SEO starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide).
+Use `hidden: true` for unlisted posts: the shared header adds `noindex, follow`, and
+the sitemap and post navigation omit them. Use `noindex: true` and `sitemap: false`
+for accessible placeholders or error pages. Remove both when a chapter is ready
+to appear in search. These flags leave the content accessible at its URL.
 
 Edit app metadata in its source repo and re-export. `robots.txt` advertises the sitemap
 and permits scripts/styles needed for rendering. Search Console is the place to check

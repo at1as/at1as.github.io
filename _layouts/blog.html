@@ -1,15 +1,6 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} | Jason Willems</title>
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
-  {% include header.html %}
+---
+layout: default
+---
 
 <article class="blog-post">
   <div class="container">
@@ -21,7 +12,7 @@
           {% if page.categories.size > 0 %}
             <span class="post-categories">
               {% for category in page.categories %}
-                <a href="/blog/categories/{{ category | slugify }}" class="post-category">{{ category }}</a>
+                <span class="post-category">{{ category }}</span>
               {% endfor %}
             </span>
           {% endif %}
@@ -29,7 +20,7 @@
           {% if page.tags.size > 0 %}
             <span class="post-tags-meta">
               {% for tag in page.tags %}
-                <a href="/blog/tags/{{ tag | slugify }}" class="post-tag-meta">#{{ tag }}</a>
+                <span class="post-tag-meta">#{{ tag }}</span>
               {% endfor %}
             </span>
           {% endif %}
@@ -351,7 +342,3 @@
     }
   }
 </style>
-
-  {% include simple-footer.html %}
-</body>
-</html>

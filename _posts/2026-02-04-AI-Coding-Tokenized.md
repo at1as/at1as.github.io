@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "AI coding tools lower skill barriers while adding recurring compute costs. What token pricing means for software access and who gets to build."
 title: "Vibe Coding Didn't Democratize Software, It Tokenized It"
 date: 2026-02-04 12:00:00 -0400
 categories: [technology]

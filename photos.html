@@ -1,5 +1,7 @@
 ---
 layout: default
+title: "Travel Photography"
+description: "Travel photography by Jason Willems from Japan, the Netherlands, and Canada, including Tokyo, Kyoto, Montreal, and Ontario."
 ---
 
 <div id="middle" class="center">
@@ -7,7 +9,7 @@ layout: default
     <h1 id="photoTitle">Tokyo, Japan. 2014</h1>
 
     <div id="subheading" style="margin-left:auto; margin-right:auto; text-align:center">
-      <img id="photoLarge" src="/photos/IMG_2888.jpg" width="978" onclick="maximize(this)">
+      <img id="photoLarge" src="/photos/IMG_2888.jpg" alt="Shibuya Crossing in Tokyo, Japan" width="978" onclick="maximize(this)">
       <div id="photoLarge-caption">Shibuya Crossing</div>
     </div>
   </div>
@@ -64,6 +66,7 @@ layout: default
       img_full = document.createElement("img");
       img_full.id = "img_full";
       img_full.setAttribute("src", picture.src);
+      img_full.alt = picture.alt;
       img_full.style.zIndex="10";
       img_full.style.maxHeight = "100%";
       //img_full.style.maxWidth = "100%";
@@ -146,8 +149,10 @@ layout: default
 
     // Image change via thumbnail selector
     function changePicture(thumbnail) {
+      document.getElementById("photoLarge").alt = thumbnail.dataset.caption;
       if (theatre_mode()) {
         (img_full = document.getElementById("img_full")).src = thumbnail.dataset.piclarge;
+        img_full.alt = thumbnail.dataset.caption;
         
         document.getElementById("img_full").onload = function() {
           document.getElementById("img_container").width = img_full.naturalHeight+"px";

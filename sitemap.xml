@@ -2,20 +2,24 @@
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% assign posts = site.posts | where_exp: 'post', 'post.sitemap != false and post.hidden != true' %}
+  {% assign posts = site.posts | where_exp: 'post', 'post.sitemap != false and post.noindex != true' %}
   {% for post in posts %}
+    {% unless post.hidden %}
     <url>
       <loc>{{ post.url | absolute_url | xml_escape }}</loc>
       <lastmod>{{ post.last_modified_at | default: post.lastmod | default: post.date | date_to_xmlschema }}</lastmod>
     </url>
+    {% endunless %}
   {% endfor %}
-  {% assign pages = site.html_pages | where_exp: 'page', 'page.sitemap != false' %}
+  {% assign pages = site.html_pages | where_exp: 'page', 'page.sitemap != false and page.noindex != true' %}
   {% for page in pages %}
+    {% unless page.hidden %}
     <url>
       <loc>{{ page.url | replace: '/index.html', '/' | absolute_url | xml_escape }}</loc>
       {% assign modified = page.last_modified_at | default: page.sitemap.lastmod %}
       {% if modified %}<lastmod>{{ modified | date_to_xmlschema }}</lastmod>{% endif %}
     </url>
+    {% endunless %}
   {% endfor %}
   <!-- Static exports are not Jekyll pages. Discover directory-index HTML on each build. -->
   {% assign exported_pages = site.static_files | where: 'name', 'index.html' | sort: 'path' %}

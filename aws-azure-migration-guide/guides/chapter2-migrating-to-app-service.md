@@ -1,5 +1,6 @@
 ---
 layout: default
+description: "A guide to moving containerized services from Amazon ECS to Azure App Service, with deployment configuration and lessons from LEAD's migration."
 title: "From Amazon ECS to Azure App Service — A Real-World Container Migration"
 permalink: /aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/
 ---

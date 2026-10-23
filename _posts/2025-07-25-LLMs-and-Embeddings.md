@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "How embeddings and LLMs work together to search, cluster, and analyze unstructured data, with practical examples for production applications."
 title: "From Chaos to Clarity: How Embeddings and LLMs Unlock the Value of Unstructured Data"
 date: 2025-07-26 11:00:00 -0400
 categories: [ai, llm]

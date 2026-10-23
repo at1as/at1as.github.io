@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "A practical introduction to OpenAI function calling: define tools, handle structured arguments, execute actions, and return useful answers."
 title: "Teaching GPT to Use Tools: Function Calling with OpenAI"
 date: 2025-07-28 11:00:00 -0400
 categories: [ai, llm]

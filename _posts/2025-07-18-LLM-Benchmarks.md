@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Why high AI benchmark scores can hide weak reasoning, and what ARC AGI reveals about memorization, generalization, and evaluating intelligence."
 title: "Most AI Benchmarks Don't Measure Intelligence"
 date: 2025-07-18 12:00:00 -0400
 categories: [ai, llm]

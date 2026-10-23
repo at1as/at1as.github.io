@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "How to reduce security risks in AI-generated code, including exposed secrets, SQL injection, authentication flaws, and gaps in code review."
 title: "Mitigating Vibe Coding Security Pitfalls"
 date: 2025-09-28 12:00:00 -0400
 categories: [ai, llm]

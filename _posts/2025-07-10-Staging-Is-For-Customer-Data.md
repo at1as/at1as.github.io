@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "A Petlibro smart feeder login failure exposed staging endpoints and debug traces, raising questions about reliability and customer data handling."
 title: "IOT Fails: Staging Is For Customer Data, Apparently"
 date: 2025-07-10 12:00:00 -0400
 categories: [staging, security]

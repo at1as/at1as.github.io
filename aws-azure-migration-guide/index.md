@@ -1,5 +1,6 @@
 ---
 layout: default
+description: "A practical AWS to Azure migration guide covering containers, WordPress, PostgreSQL, static sites, CDN, and DNS, based on LEAD's infrastructure move."
 title: "AWS to Azure Migration Guide"
 permalink: /aws-azure-migration-guide/
 ---

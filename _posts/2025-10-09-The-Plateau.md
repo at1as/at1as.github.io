@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "An argument that slowing technological progress could pose a greater long-term risk than an AI takeoff, as physical limits constrain growth."
 title: "Beyond the Plateau: The Real Existential Crisis Is a Slowdown, Not a Takeoff"
 date: 2025-10-09 12:00:00 -0400
 categories: [ai]

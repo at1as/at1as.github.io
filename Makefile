@@ -3,7 +3,7 @@
 help:
 	@echo "Available commands:"
 	@echo "  serve     - Start the Jekyll development server with live reload"
-	@echo "  check-seo - Check the built sitemap and exported-page metadata"
+	@echo "  check-seo - Check the built sitemap, main site, and exported-page metadata"
 
 serve:
 	bundle exec ruby -E UTF-8 -S jekyll serve --livereload

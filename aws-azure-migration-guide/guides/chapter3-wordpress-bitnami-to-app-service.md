@@ -1,5 +1,6 @@
 ---
 layout: default
+description: "How to migrate a WordPress site from Bitnami on AWS to Azure App Service, including database transfer, configuration, and deployment."
 title: "WordPress on Bitnami to Azure App Service Migration"
 permalink: /aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/
 ---

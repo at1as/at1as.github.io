@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Diagnosing intermittent Microsoft OAuth TLS failures in Java and updating a Docker image's JVM truststore when a required root certificate is missing."
 title: "Java Root Certificate Pinning For Microsoft OAuth"
 date: 2025-07-02 12:00:00 -0400
 categories: [java, microsoft]

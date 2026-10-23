@@ -1,5 +1,7 @@
 ---
 layout: default
+title: "Science Illustrations"
+description: "Science illustrations by Jason Willems explaining special relativity, subatomic particles, the double slit experiment, black holes, and radiation."
 ---
 
 <div id="middle" class="center">
@@ -7,7 +9,7 @@ layout: default
 
     <h1 id="illustrationTitle">Special Relativity</h1>
     <div id="subheading">
-      <img src="/illustrations/Special Relativity.jpg" id="illustrationLarge" width="978">
+      <img src="/illustrations/Special Relativity.jpg" alt="Special relativity illustration" id="illustrationLarge" width="978">
     </div>
 
     </div>
@@ -47,6 +49,7 @@ layout: default
     
     document.getElementById("illustrationTitle").innerHTML = illustration.dataset.heading;
     document.getElementById("illustrationLarge").src = illustration.title;
+    document.getElementById("illustrationLarge").alt = illustration.dataset.heading + " illustration";
     start_spinner();
 
     document.getElementById("illustrationLarge").onload = function() {

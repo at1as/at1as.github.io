@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "How AI answers and automated scraping are disrupting the exchange between publishers and search engines, threatening an open, searchable web."
 title: "AI Is Quietly Reversing 20 Years of Progress Toward an Open Internet"
 date: 2026-03-04 12:00:00 -0400
 categories: [technology]

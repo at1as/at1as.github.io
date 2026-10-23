@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "A closer look at a 1969 Hever chronograph with a Valjoux 7733 movement, and why vintage watches from lesser-known Swiss brands deserve attention."
 title: "Criminally Overlooked: Vintage Watches from Lesser-Known Brands"
 date: 2025-05-14
 categories: [horology]
