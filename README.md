@@ -116,12 +116,18 @@ research downloads, Next route payloads or asset files. Keep generated app files
 
 Build with `JEKYLL_ENV=production bundle exec jekyll build`, then run `make check-seo`.
 Python 3.9+ is the only extra requirement; the checker uses the standard library. CI runs
-it before publishing. It checks every sitemap target, then validates the main Jekyll
+it on pull requests and before publishing. `make check-seo` also runs metadata parser
+regression tests. The checker inspects every sitemap target, then validates the main Jekyll
 pages and all registered static apps. Checks include coverage, canonical agreement,
 robots, document structure, headings, distinct titles/descriptions, social metadata,
 main-site internal links, and article/breadcrumb JSON-LD. Paginated blog archives share
 their description while keeping distinct titles and self-referencing canonicals.
 No build timestamps are added as `lastmod`; only actual content dates should be used.
+
+`jekyll-seo-tag` 2.9.1 supplies both Twitter and Open Graph descriptions on one
+meta element. The checker reads both its `name` and `property` attributes while
+still rejecting duplicate tags. Let the plugin generate these descriptions;
+adding another Twitter description in the shared header creates a duplicate.
 
 Give each page and post an explicit `description` in its front matter. The checker
 uses 180 characters as an editorial budget; Google chooses its own snippet length
@@ -138,3 +144,4 @@ Google's crawl/indexing status; deployment and a valid sitemap do not prove inde
 ## Deployment
 
 The Pages workflow builds and deploys on pushes to `master`. Push a reviewed change branch and merge it into `master` to publish; pushing the branch alone does not deploy the site.
+Pull requests run the same production build and SEO checks without deploying.
