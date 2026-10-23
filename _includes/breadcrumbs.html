@@ -1,4 +1,4 @@
-{% if page.url contains '/blog/' and page.url != '/blog/' and page.url != '/blog/index.html' and page.url != '/blog/popular/' %}
+{% if page.layout == 'post' or page.layout == 'blog' %}
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <div class="container">
     <ol class="breadcrumb-list">
@@ -6,25 +6,9 @@
         <a href="/" class="breadcrumb-link">Home</a>
       </li>
 
-      {% if page.url contains '/blog/' %}
       <li class="breadcrumb-item">
-        <a href="/blog" class="breadcrumb-link">Blog</a>
+        <a href="/blog/" class="breadcrumb-link">Blog</a>
       </li>
-      {% elsif page.url contains '/categories/' %}
-      <li class="breadcrumb-item">
-        <a href="/blog" class="breadcrumb-link">Blog</a>
-      </li>
-      <li class="breadcrumb-item">
-        <a href="/categories" class="breadcrumb-link">Categories</a>
-      </li>
-      {% elsif page.url contains '/tags/' %}
-      <li class="breadcrumb-item">
-        <a href="/blog" class="breadcrumb-link">Blog</a>
-      </li>
-      <li class="breadcrumb-item">
-        <a href="/tags" class="breadcrumb-link">Tags</a>
-      </li>
-      {% endif %}
 
       {% if page.title %}
       <li class="breadcrumb-item active" aria-current="page">

@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Introducing AI Dojo, a place to practice prompting through coding challenges and learn to use AI development tools more effectively."
 title: "Leetcode for prompting: Introducing AI Dojo 🥋"
 date: 2025-09-28 11:00:00 -0400
 categories: [ai, llm]

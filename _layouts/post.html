@@ -12,7 +12,7 @@ layout: default
           {% if page.categories.size > 0 %}
             <span class="post-categories">
               {% for category in page.categories %}
-                <a href="/blog/categories/{{ category | slugify }}" class="post-category">{{ category }}</a>
+                <span class="post-category">{{ category }}</span>
               {% endfor %}
             </span>
           {% endif %}
@@ -32,7 +32,7 @@ layout: default
       {% if page.tags.size > 0 %}
         <div class="post-tags">
           {% for tag in page.tags %}
-            <a href="/blog/tags/{{ tag | slugify }}" class="post-tag">#{{ tag }}</a>
+            <span class="post-tag">#{{ tag }}</span>
           {% endfor %}
         </div>
       {% endif %}
@@ -54,19 +54,27 @@ layout: default
       </div>
 
       <div class="post-navigation">
-        {% if page.previous.url %}
-          <a class="prev-post" href="{{ page.previous.url }}">
+        {% assign earlier_posts = site.posts | where_exp: 'post', 'post.date < page.date' | sort: 'date' | reverse %}
+        {% for post in earlier_posts %}
+          {% unless post.hidden %}
+          <a class="prev-post" href="{{ post.url }}">
             <span class="nav-label"><i class="fas fa-arrow-left"></i> Previous</span>
-            <span class="post-title">{{ page.previous.title }}</span>
+            <span class="post-title">{{ post.title }}</span>
           </a>
-        {% endif %}
+          {% break %}
+          {% endunless %}
+        {% endfor %}
 
-        {% if page.next.url %}
-          <a class="next-post" href="{{ page.next.url }}">
+        {% assign later_posts = site.posts | where_exp: 'post', 'post.date > page.date' | sort: 'date' %}
+        {% for post in later_posts %}
+          {% unless post.hidden %}
+          <a class="next-post" href="{{ post.url }}">
             <span class="nav-label">Next <i class="fas fa-arrow-right"></i></span>
-            <span class="post-title">{{ page.next.title }}</span>
+            <span class="post-title">{{ post.title }}</span>
           </a>
-        {% endif %}
+          {% break %}
+          {% endunless %}
+        {% endfor %}
       </div>
     </div> <!-- Close post-wrapper -->
   </div> <!-- Close container -->

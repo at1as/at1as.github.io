@@ -1,7 +1,10 @@
 ---
 layout: default
+description: "A preview of a planned guide to migrating machine learning workloads from AWS to Azure, including SageMaker and related services."
 title: "Machine Learning Migration"
 permalink: /aws-azure-migration-guide/guides/chapter7-machine-learning-migration/
+sitemap: false
+noindex: true
 ---
 
 # Machine Learning Migration
@@ -26,7 +29,7 @@ This is <b>Part VII</b> of our ongoing series on migrating LEAD's enterprise pla
 </div>
 </div>
 
-# Coming Soon
+## Coming Soon
 
 This chapter on migrating machine learning workloads from AWS to Azure is currently under development.
 

@@ -1,5 +1,6 @@
 ---
 layout: default
+description: "How LEAD planned its AWS to Azure infrastructure migration, including cloud credits, service mapping, cost tradeoffs, and operational decisions."
 title: "From AWS to Azure — Migrating LEAD's Infrastructure Without Missing a Beat"
 permalink: /aws-azure-migration-guide/guides/chapter1-migrating-to-azure/
 ---

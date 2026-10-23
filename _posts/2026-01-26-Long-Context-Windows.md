@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Explore the costs, latency, reliability limits, and architecture tradeoffs of long context windows when building production LLM applications."
 title: "Long Context Windows: Capabilities, Costs, and Tradeoffs"
 date: 2026-01-26 12:00:00 -0400
 categories: [technology]

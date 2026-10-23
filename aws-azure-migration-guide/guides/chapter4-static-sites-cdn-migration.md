@@ -1,5 +1,6 @@
 ---
 layout: default
+description: "Move static sites from Amazon S3 and CloudFront to Azure, with practical guidance on hosting, CDN configuration, deployment, and caching."
 title: "Static Sites & CDN Migration"
 permalink: /aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/
 ---
@@ -356,7 +357,7 @@ deploy: setup
 
 
 
-# Implementation Details
+## Implementation Details
 
 
 ### Azure Storage Static Website
@@ -453,7 +454,7 @@ Static hosting reduced cost and improved performance significantly, while signif
 
 
 
-# Lessons Learned
+## Lessons Learned
 
 ### Plan DNS First
 

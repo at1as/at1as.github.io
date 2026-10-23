@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Compare prompting, context injection, RAG, and fine-tuning for AI customer support, with practical guidance on choosing the right architecture."
 title: "Building an AI Customer Support Agent: A Practical Guide to Prompting, RAG, and Fine-Tuning"
 date: 2025-07-26 11:00:00 -0400
 categories: [ai, llm]

@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Why leaving AI unregulated still assigns responsibility through existing law, and how product safety decisions become questions of liability."
 title: "Not Regulating AI Is Still a Regulatory Choice"
 date: 2026-09-07 12:00:00 -0400
 categories: [technology]

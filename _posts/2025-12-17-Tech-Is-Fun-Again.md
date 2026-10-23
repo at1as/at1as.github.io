@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "A personal look at the return of excitement in technology, from the gadgets of the 1990s to AI tools and a break from the tech monoculture."
 title: "Tech is Fun Again: The Tech Monoculture is Finally Breaking"
 date: 2025-12-17 12:00:00 -0400
 categories: [technology]

@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "How generative AI exposes the gap between copyright law and everyday enforcement, from fan art and private creation to commercial competition."
 title: "AI Didn't Break Copyright Law, It Just Exposed How Broken It Already Was"
 date: 2026-02-02 12:00:00 -0400
 categories: [technology]

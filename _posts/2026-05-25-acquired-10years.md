@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Revisit a decade of technology predictions from the Acquired podcast and examine what the industry got right about timing, strategy, and change."
 title: "Acquired: Revisiting A Decade of Tech Predictions"
 date: 2026-05-25 00:00:00 -0400
 categories: [technology, history]

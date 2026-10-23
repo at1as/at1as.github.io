@@ -1,12 +1,12 @@
 ---
-layout: blog
+layout: post
 title: "Your Post Title Here"
+description: "A concise summary of this post for search results and social previews."
 date: YYYY-MM-DD HH:MM:SS -0400
 categories: [category1, category2]
 tags: [tag1, tag2, tag3]
 published: true  # Set to false to hide this post
-# hidden: true   # Alternative way to hide a post
-# draft: true    # Mark as draft (won't be published)
+# hidden: true   # Keep the URL accessible but omit it from listings and search
 ---
 
 Write your post content here using Markdown formatting. The first paragraph will automatically get special styling with a drop cap.

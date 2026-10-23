@@ -1,5 +1,6 @@
 ---
 layout: default
+description: "Move DNS management from Amazon Route 53 to Azure DNS Zones, with guidance on record migration, domain configuration, and cutover."
 title: "Azure DNS Zones Setup"
 permalink: /aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/
 ---

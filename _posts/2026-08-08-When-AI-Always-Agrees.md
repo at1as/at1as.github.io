@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Why an LLM's willingness to disagree can make its agreement more informative, and how constant reassurance undermines trust in AI advice."
 title: "I Trust LLMs More When They Tell Me I’m Wrong"
 date: 2026-08-08 12:00:00 -0400
 categories: [technology]

@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Why attitudes toward AI may reflect people's sense of agency and financial security, and how housing, healthcare, and education shape public trust."
 title: "AI's Reputation Problem Runs Deeper Than AI"
 date: 2026-10-13 12:00:00 -0400
 categories: [technology]

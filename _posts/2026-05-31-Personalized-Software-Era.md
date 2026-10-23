@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "How AI makes it easier to adapt open-source software to individual needs, and what cheap personalization could mean for product defensibility."
 title: "The Five-Minute Fork: The Era of Personalized Software"
 date: 2026-05-30 00:00:00 -0400
 categories: [technology]

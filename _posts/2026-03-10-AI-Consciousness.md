@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Whether AI could be conscious depends on what consciousness means. Explore competing theories of mind and what each implies for language models."
 title: "AI Consciousness Is Not an AI Question: What the Debate Reveals About Our Theories of Mind"
 date: 2026-03-10 00:00:00 -0400
 categories: [technology]

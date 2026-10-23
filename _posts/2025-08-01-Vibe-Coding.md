@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Practical tips for building software with LLMs, from providing useful context and reviewing plans to testing changes and avoiding common mistakes."
 title: "Vibe Coding with LLMs: Tips for Building Faster"
 date: 2025-08-01 11:00:00 -0400
 categories: [ai, llm]

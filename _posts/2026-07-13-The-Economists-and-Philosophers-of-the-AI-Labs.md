@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "An AI-assisted comparison of the economists and philosophers whose ideas resemble major AI labs' views on innovation, risk, and institutional power."
 title: "The Economists and Philosophers of the AI Labs, According to AI"
 date: 2026-07-13 11:00:00 -0400
 categories: [technology]

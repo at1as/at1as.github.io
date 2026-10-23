@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "What AI model names reveal about product strategy, and why a memorable naming hierarchy needs room for the next, more capable release."
 title: "Future-Proof Naming: A Magnum Opus Leaves Nowhere to Go"
 date: 2026-07-09 12:00:00 -0400
 categories: [technology, business]

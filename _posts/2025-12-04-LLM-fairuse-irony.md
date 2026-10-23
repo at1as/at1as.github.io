@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "If fair use can justify AI training on copyrighted work, what happens when other developers use those models' outputs to train competing systems?"
 title: "The Fair Use Paradox: If It Applies to Training… Doesn't It Apply to Distillation?"
 date: 2025-12-04 12:00:00 -0400
 categories: [ai]

@@ -1,5 +1,6 @@
 ---
 layout: post
+description: "Introducing Founderwear, a collection of startup-inspired apparel and accessories celebrating the optimism, humor, and culture of building companies."
 title: "Introducing: Founderwear"
 date: 2025-05-30 12:00:00 -0400
 categories: [startup]
