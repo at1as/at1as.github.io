@@ -9,6 +9,7 @@ serve:
 	bundle exec ruby -E UTF-8 -S jekyll serve --livereload
 
 check-seo:
+	python3 scripts/test_check_seo.py
 	python3 scripts/check-seo.py --site-dir _site
 
 .PHONY: help serve check-seo

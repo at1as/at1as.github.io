@@ -44,8 +44,10 @@ class PageMetadata(HTMLParser):
         if self.in_head and tag == "link" and "canonical" in attrs.get("rel", "").split():
             self.canonicals.append(attrs.get("href", ""))
         if self.in_head and tag == "meta":
-            key = attrs.get("name", attrs.get("property", "")).lower()
-            self.meta.setdefault(key, []).append(attrs.get("content", ""))
+            # A single element may identify both Twitter and Open Graph metadata.
+            keys = {attrs.get(attr, "").lower() for attr in ("name", "property")} - {""}
+            for key in keys:
+                self.meta.setdefault(key, []).append(attrs.get("content", ""))
         if tag == "script" and attrs.get("type") == "application/ld+json":
             self.in_jsonld = True
             self.jsonld.append("")
@@ -177,7 +179,7 @@ def check(site_dir):
         require(0 < len(head.value("description")) <= 180, f"Use a concise page description: {route}")
         for key in ["og:title", "og:description", "og:image", "og:image:alt",
                     "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"]:
-            require(bool(head.value(key)), f"Missing {key}: {route}")
+            require(bool(head.value(key)), f"Missing/duplicate {key}: {route}")
         for key in ["og:image", "twitter:image"]:
             image = urlsplit(head.value(key))
             require(f"{image.scheme}://{image.netloc}" == origin
@@ -238,7 +240,7 @@ def check(site_dir):
             require(crawl_allowed(robots, url), f"robots.txt blocks {route}")
             require(head.value("og:url") == url, f"Open Graph URL differs from canonical: {route}")
             for key in ["og:title", "og:description", "og:image", "og:image:alt", "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"]:
-                require(bool(head.value(key)), f"Missing {key}: {route}")
+                require(bool(head.value(key)), f"Missing/duplicate {key}: {route}")
             require(head.value("twitter:card") == "summary_large_image", f"Missing large social card: {route}")
             for key in ["og:image", "twitter:image"]:
                 image = urlsplit(head.value(key))

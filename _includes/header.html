@@ -27,8 +27,6 @@
 
   <!-- SEO -->
   {% seo %}
-  {% assign social_description = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace %}
-  <meta name="twitter:description" content="{{ social_description | escape }}">
   {% if page.hidden or page.noindex %}
   <meta name="robots" content="noindex, follow">
   {% endif %}
