@@ -3,6 +3,25 @@
  * Modern, responsive design
  */
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin-wght-normal.woff2') format('woff2');
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.icon-youtube { color: #ff0000; }
+
 :root {
   --primary-color: #0878a4;
   --primary-dark: #03658c;

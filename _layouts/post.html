@@ -18,7 +18,7 @@ layout: default
           {% endif %}
           {% if page.hackernews_id %}
             <a href="https://news.ycombinator.com/item?id={{ page.hackernews_id }}" class="hackernews-link" target="_blank" rel="noopener" data-hn-id="{{ page.hackernews_id }}">
-              <i class="fab fa-y-combinator"></i>
+              {% include icon.html name="y-combinator" %}
               <span class="hn-score">...</span>
             </a>
           {% endif %}
@@ -38,7 +38,7 @@ layout: default
       {% endif %}
 
       <div class="post-subscribe">
-        <h3>Enjoyed this post?</h3>
+        <h2>Enjoyed this post?</h2>
         <p>Get new essays delivered to your inbox. No spam, unsubscribe anytime.</p>
         <form
           action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
@@ -47,7 +47,7 @@ layout: default
         >
           <input type="hidden" name="metadata__source" value="{{ page.url }}" />
           <div class="form-row">
-            <input type="email" name="email" placeholder="your@email.com" required />
+            <input type="email" name="email" aria-label="Email address" autocomplete="email" placeholder="your@email.com" required />
             <button type="submit">Subscribe</button>
           </div>
         </form>
@@ -58,7 +58,7 @@ layout: default
         {% for post in earlier_posts %}
           {% unless post.hidden %}
           <a class="prev-post" href="{{ post.url }}">
-            <span class="nav-label"><i class="fas fa-arrow-left"></i> Previous</span>
+            <span class="nav-label">{% include icon.html name="arrow-left" %} Previous</span>
             <span class="post-title">{{ post.title }}</span>
           </a>
           {% break %}
@@ -69,7 +69,7 @@ layout: default
         {% for post in later_posts %}
           {% unless post.hidden %}
           <a class="next-post" href="{{ post.url }}">
-            <span class="nav-label">Next <i class="fas fa-arrow-right"></i></span>
+            <span class="nav-label">Next {% include icon.html name="arrow-right" %}</span>
             <span class="post-title">{{ post.title }}</span>
           </a>
           {% break %}
@@ -295,7 +295,7 @@ layout: default
 
   .post-tag {
     background-color: #f1f5f9;
-    color: #64748b;
+    color: #475569;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -357,7 +357,7 @@ layout: default
     border: 1px solid #e2e8f0;
   }
 
-  .post-subscribe h3 {
+  .post-subscribe h2 {
     font-size: 1.5rem;
     margin-bottom: 12px;
     color: #1f2937;

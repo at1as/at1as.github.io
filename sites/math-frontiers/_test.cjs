@@ -58,6 +58,10 @@ for(const region of riemann.zeroFreeRegions) {
   assert.equal(M.regionBounds(region).lower+M.regionBounds(region).upper,1);
 }
 const html=fs.readFileSync(`${__dirname}/index.html`,'utf8');
+assert.doesNotMatch(html, /__\w+__/, 'Generated pages must not contain unfilled template slots');
+assert.doesNotMatch(html, /id="explorer"[^>]*\shidden/, 'The initial explorer must occupy space before JavaScript loads');
+assert.match(html, /<title id="chart-title">Twin prime gaps: selected milestones<\/title>/, 'The initial chart is available without JavaScript');
+assert.equal((html.match(/class="problem-button/g)||[]).length, data.problems.length, 'Every question is present at first paint');
 const embedded=JSON.parse(html.match(/<script id="frontiers-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 assert.deepEqual(embedded,data,'Regenerate index.html after data edits');
 assert.ok(html.includes(`<time datetime="${data.updated}">${data.updated}</time>`),'Visible date uses the curated update date, not the build clock');

@@ -182,13 +182,13 @@ test('nearby markers alternate around the slider with stems anchored to its axis
     assert.notEqual(app.q('[data-release="fable-5-1"]').dataset.side, app.q('[data-release="astra"]').dataset.side);
     for (let i = 0; i < buttons.length; i++) {
       const button = buttons[i];
-      const dotY = parseFloat(button.style.top) + 12;
+      const dotY = parseFloat(button.style.top) + 24;
       const stem = parseFloat(button.style.getPropertyValue('--stem-length'));
       assert.equal(dotY + (button.dataset.side === 'above' ? stem : -stem), 0, 'Each stem touches the slider axis');
       for (let j = i + 1; j < buttons.length; j++) {
         if (buttons[i].style.top === buttons[j].style.top) {
           const gap = (parseFloat(buttons[j].style.left) - parseFloat(buttons[i].style.left)) * width / 100;
-          assert.ok(gap >= 28 - 1e-8, '24px hit targets have at least 4px of separation');
+          assert.ok(gap >= 52 - 1e-8, '48px hit targets have at least 4px of separation');
         }
       }
     }

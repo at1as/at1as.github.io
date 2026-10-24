@@ -6,8 +6,8 @@ Standalone static explorer at `/sites/math-frontiers/`, hosted by this repositor
 
 - `data.json`: curated milestones, sources, evidence status, dates, explanatory text, and optional AI attribution.
 - `_template.html`: page structure and metadata.
-- `styles.css`, `explorer.js`, `model.js`: responsive presentation, interactions, and shared chart calculations.
-- `index.html`: generated HTML with all source tables available without JavaScript.
+- `styles.css`, `explorer.js`, `model.js`, `view.js`: responsive presentation, interactions, and shared chart calculations.
+- `index.html`: generated HTML with the initial explorer and all source tables available without JavaScript. `_render.cjs` uses the shared `view.js` functions at build time so the first paint reserves the same space as the interactive chart. Node.js is needed for generation; no npm packages are required.
 
 From the repository root:
 

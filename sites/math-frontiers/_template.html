@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="styles.css">
   <script id="frontiers-data" type="application/json">__DATA__</script>
   <script src="model.js" defer></script>
+  <script src="view.js" defer></script>
   <script src="explorer.js" defer></script>
 </head>
 <body>
@@ -41,10 +42,10 @@
     </header>
     <section class="collection" aria-labelledby="collection-title">
       <div class="section-line"><h2 id="collection-title">Choose a question</h2><span>01 — 06 / Selected histories</span></div>
-      <div class="problem-nav" id="problem-nav" aria-label="Mathematical questions"></div>
+      <div class="problem-nav" id="problem-nav" aria-label="Mathematical questions">__NAV__</div>
     </section>
-    <section id="explorer" class="explorer" aria-labelledby="problem-title" hidden>
-      <div class="explorer-heading"><div><p class="eyebrow" id="problem-category"></p><h2 id="problem-title"></h2></div><div class="explorer-options"><label><input type="checkbox" id="include-reports" checked> Include preprints &amp; reports</label><label><input type="checkbox" id="show-ai" checked> Highlight AI contributions</label></div></div>
+    <section id="explorer" class="explorer" aria-labelledby="problem-title">
+      <div class="explorer-heading"><div><p class="eyebrow" id="problem-category">__CATEGORY__</p><h2 id="problem-title">__TITLE__</h2></div><div class="explorer-options"><label><input type="checkbox" id="include-reports" checked> Include preprints &amp; reports</label><label><input type="checkbox" id="show-ai" checked> Highlight AI contributions</label></div></div>
       <div class="riemann-navigation" id="riemann-navigation" hidden>
         <div class="view-tabs" id="riemann-views" role="tablist" aria-label="Riemann measures of progress">
           <button type="button" role="tab" id="proportion-tab" data-riemann-view="proportion" aria-controls="progress-view" aria-selected="true">Zeros on the critical line</button>
@@ -55,18 +56,18 @@
       <div id="progress-view">
       <div class="explorer-body">
         <div class="plot-column">
-          <div class="metric-row"><div><p class="metric-label" id="metric-label"></p><div class="metric-value" id="metric-value"></div></div><div class="metric-aside"><span class="status" id="metric-status"></span><p id="metric-date"></p></div></div>
-          <div class="chart-toolbar"><span id="chart-unit"></span><button id="scale-toggle" type="button" hidden></button></div>
-          <div id="chart" class="chart" role="group" aria-label="Progress chart"></div>
-          <div class="chart-legend" id="chart-legend"></div>
-          <p class="chart-note" id="chart-note"></p>
-          <div class="timeline-controls"><button class="play" id="play" type="button" aria-label="Play the milestones">▶ <span>Play history</span></button><button class="step" id="previous" type="button" aria-label="Previous milestone">←</button><div class="scrubber"><label for="milestone-slider">Milestone <span id="milestone-position"></span></label><input id="milestone-slider" type="range" min="0" value="0" step="1"></div><button class="step" id="next" type="button" aria-label="Next milestone">→</button></div>
+          <div class="metric-row"><div><p class="metric-label" id="metric-label">__METRIC_LABEL__</p><div class="metric-value" id="metric-value">__METRIC_VALUE__</div></div><div class="metric-aside"><span class="__STATUS_CLASS__" id="metric-status">__STATUS__</span><p id="metric-date">__DATE__</p></div></div>
+          <div class="chart-toolbar"><span id="chart-unit">__UNIT__</span><button id="scale-toggle" type="button" aria-pressed="false">Use linear scale</button></div>
+          <div id="chart" class="chart" role="group" aria-label="Progress chart">__CHART__</div>
+          <div class="chart-legend" id="chart-legend">__LEGEND__</div>
+          <p class="chart-note" id="chart-note">__NOTE__</p>
+          <div class="timeline-controls"><button class="play" id="play" type="button" aria-label="Play the milestones">▶ <span>Play history</span></button><button class="step" id="previous" type="button" aria-label="Previous milestone">←</button><div class="scrubber"><label for="milestone-slider">Milestone <span id="milestone-position">__POSITION__</span></label><input id="milestone-slider" type="range" min="0" max="__LAST_INDEX__" value="__LAST_INDEX__" step="1" aria-valuetext="__SLIDER_LABEL__"></div><button class="step" id="next" type="button" disabled aria-label="Next milestone">→</button></div>
         </div>
-        <aside class="story-column"><p class="eyebrow">The question</p><h3 id="question"></h3><p id="explanation"></p><div class="milestone-story" aria-live="polite" aria-atomic="true"><p class="eyebrow" id="event-date"></p><h3 id="event-title"></h3><p id="event-detail"></p><p class="attribution" id="event-who"></p><a id="event-source" target="_blank" rel="noopener">Read the source ↗</a></div><div id="ai-note" class="ai-note" hidden></div></aside>
+        <aside class="story-column"><p class="eyebrow">The question</p><h3 id="question">__QUESTION__</h3><p id="explanation">__EXPLANATION__</p><div class="milestone-story" aria-live="polite" aria-atomic="true"><p class="eyebrow" id="event-date">__EVENT_DATE__</p><h3 id="event-title">__EVENT_TITLE__</h3><p id="event-detail">__EVENT_DETAIL__</p><p class="attribution" id="event-who">__EVENT_WHO__</p><a id="event-source" href="__EVENT_URL__" target="_blank" rel="noopener">Read the source ↗</a></div><div id="ai-note" class="ai-note">__AI_NOTE__</div></aside>
       </div>
-      <div class="interpretation"><span aria-hidden="true">↳</span><p id="interpretation"></p></div>
-      <div class="history-section"><div class="section-line"><h3>The milestones</h3><span>Select a result</span></div><div class="milestone-list" id="milestone-list"></div></div>
-      <p id="extra-note" class="extra-note" hidden></p>
+      <div class="interpretation"><span aria-hidden="true">↳</span><p id="interpretation">__INTERPRETATION__</p></div>
+      <div class="history-section"><div class="section-line"><h3>The milestones</h3><span>Select a result</span></div><div class="milestone-list" id="milestone-list">__MILESTONES__</div></div>
+      <p id="extra-note" class="extra-note" __EXTRA_HIDDEN__>__EXTRA_NOTE__</p>
       </div>
       <section id="region-view" role="tabpanel" aria-labelledby="regions-tab" hidden>
         <div class="explorer-body">
@@ -95,7 +96,7 @@
         <p class="extra-note">7/8 is stronger than 11/12 because it is closer to ½. These controls compare strength, not publication order: the 7/8 preprint is dated September 30, 2026; the simpler 11/12 argument appeared on October 5. Neither is full RH.</p>
       </section>
     </section>
-    <noscript><p class="no-js">Enable JavaScript to explore the charts. Every milestone and source is also available in the tables below.</p></noscript>
+    <noscript><style>.problem-nav,.explorer-options,.timeline-controls,.chart-toolbar button,.milestone-list{display:none}</style><p class="no-js">This chart shows the latest prime-gap milestone. Enable JavaScript to explore the other problems and timelines. Every milestone and source is also available in the tables below.</p></noscript>
     <section class="reading-guide" id="methodology" aria-labelledby="methodology-title">
       <div><p class="eyebrow">Methodology</p><h2 id="methodology-title">How to read<br>the charts</h2></div>
       <div class="guide-notes"><div><span>01</span><h3>What the numbers measure</h3><p>Each chart tracks a specific bound or set of cases. These quantities cannot be combined into a “percentage solved” or used to predict when a proof will arrive.</p></div><div><span>02</span><h3>Dates and step changes</h3><p>Lines step when a recorded bound changes. These are selected milestones, not complete record histories. Dates follow the cited announcement or paper; publication dates are noted separately.</p></div><div><span>03</span><h3>Publication status</h3><p>In the timelines, green marks published results or established constructions; amber marks preprints and reports. The region diagram uses shading for permitted and excluded locations, with evidence status shown separately. Full RH is an unproved reference. Status reflects the review date, even when a point is dated to an earlier preprint. The sources document the claims; this site does not independently verify the proofs.</p></div></div>

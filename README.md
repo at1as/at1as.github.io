@@ -108,6 +108,11 @@ here: edit the corresponding source repo and re-export the generated files.
 
 ## Sitemap and search metadata
 
+The main site serves Inter from `assets/fonts/` and uses the small SVG icon sprite
+in `assets/images/icons/ui.svg` through `_includes/icon.html`. Keep the adjacent
+Inter and Font Awesome licenses when updating those assets. The homepage uses
+optimized WebP copies; the original images remain available for existing links.
+
 The root `sitemap.xml` includes Jekyll content plus canonical directory-index pages
 from the static apps registered in `_data/static_sitemaps.json`. New prediction pages
 are picked up on each Jekyll build, including future copied exports. Exclude redirects

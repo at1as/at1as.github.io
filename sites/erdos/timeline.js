@@ -93,19 +93,19 @@
     // Every stem meets the slider axis. Nearby targets alternate below/above.
     const width = releaseRail.getBoundingClientRect().width || 120;
     const laneEnds = [];
-    let above = 22, below = 22;
+    let above = 54, below = 54;
     releaseEvents.forEach(release => {
       const position = release.position * width;
-      let lane = laneEnds.findIndex(end => position - end >= 28);
+      let lane = laneEnds.findIndex(end => position - end >= 52);
       if (lane < 0) lane = laneEnds.length;
       laneEnds[lane] = position;
       const side = lane % 2 ? 'above' : 'below';
-      const distance = 20 + Math.floor(lane / 2) * 28;
+      const distance = 52 + Math.floor(lane / 2) * 52;
       release.button.dataset.side = side;
-      release.button.style.top = `${(side === 'above' ? -distance : distance) - 12}px`;
+      release.button.style.top = `${(side === 'above' ? -distance : distance) - 24}px`;
       release.button.style.setProperty('--stem-length', `${distance}px`);
-      if (side === 'above') above = Math.max(above, distance + 2);
-      else below = Math.max(below, distance + 2);
+      if (side === 'above') above = Math.max(above, distance + 26);
+      else below = Math.max(below, distance + 26);
       release.button.dataset.align = position < 110 ? 'left' : width - position < 110 ? 'right' : 'center';
     });
     $('.timeline-toolbar').style.setProperty('--release-above', `${above}px`);
