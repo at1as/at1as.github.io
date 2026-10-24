@@ -36,7 +36,7 @@ layout: default
         <!-- Previous link temporarily disabled - to be revisited later -->
         {% if page.previous and page.previous.hidden != true %}
           <a class="prev-post" href="{{ page.previous.url }}">
-            <span class="nav-label"><i class="fas fa-arrow-left"></i> Previous</span>
+            <span class="nav-label">{% include icon.html name="arrow-left" %} Previous</span>
             <span class="post-title">{{ page.previous.title }}</span>
           </a>
         {% else %}
@@ -44,7 +44,7 @@ layout: default
           {% if prev_posts.size > 0 %}
             {% assign prev_post = prev_posts | first %}
             <a class="prev-post" href="{{ prev_post.url }}">
-              <span class="nav-label"><i class="fas fa-arrow-left"></i> Previous</span>
+              <span class="nav-label">{% include icon.html name="arrow-left" %} Previous</span>
               <span class="post-title">{{ prev_post.title }}</span>
             </a>
           {% endif %}
@@ -53,7 +53,7 @@ layout: default
 
         {% if page.next and page.next.hidden != true %}
           <a class="next-post" href="{{ page.next.url }}">
-            <span class="nav-label">Next <i class="fas fa-arrow-right"></i></span>
+            <span class="nav-label">Next {% include icon.html name="arrow-right" %}</span>
             <span class="post-title">{{ page.next.title }}</span>
           </a>
         {% else %}
@@ -61,7 +61,7 @@ layout: default
           {% if next_posts.size > 0 %}
             {% assign next_post = next_posts | first %}
             <a class="next-post" href="{{ next_post.url }}">
-              <span class="nav-label">Next <i class="fas fa-arrow-right"></i></span>
+              <span class="nav-label">Next {% include icon.html name="arrow-right" %}</span>
               <span class="post-title">{{ next_post.title }}</span>
             </a>
           {% endif %}

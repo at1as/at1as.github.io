@@ -1,6 +1,7 @@
-:HL["/sites/kurzweil/_next/static/chunks/0s704uezol-c5.css","style"]
-:HC["/",""]
+:HL["/sites/kurzweil/_next/static/chunks/3069d95d6j3nl.css","style"]
+:HL["/sites/kurzweil/_next/static/media/inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/sites/kurzweil/_next/static/media/newsreader_latin_wght_normal-s.p.0rbocftmutivq.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"id","t":"d","k":"K040","s":[]},"h":65632,"c":"$Q3"}]]
 1:[["children",{"s":"predictions","h":131168,"c":"$Q2"}]]
-0:{"b":"38a71e3ee5807f2c051ed8f2","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"18498c6b9e55fd3a35e16a75","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}

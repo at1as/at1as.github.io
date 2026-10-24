@@ -9,12 +9,9 @@ title: Places I've Traveled
 
     <!-- Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    <h1 class="section-title">Places I've Traveled</h1>
-    <p class="travel-intro">
-      Living and traveling abroad has shaped what I value and made me optimistic about the future
-    </p>
+    <h1 class="travel-title">Travel</h1>
 
     <!-- Map Container -->
     <div class="travel-map-container" id="travel-map"></div>
@@ -416,13 +413,13 @@ title: Places I've Traveled
 </script>
 
 <style>
-  .travel-intro {
-    text-align: center;
-    font-size: 1.05rem;
-    color: var(--text-light);
-    max-width: 760px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
+  .travel-title {
+    max-width: 950px;
+    margin: 0 auto 18px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--title-color);
   }
 
   .travel-stats {

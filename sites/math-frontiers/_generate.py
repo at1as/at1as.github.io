@@ -2,6 +2,7 @@
 """Render the static, searchable source tables and embed curated data. No network."""
 from html import escape
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -44,5 +45,8 @@ html = (ROOT / '_template.html').read_text()
 html = html.replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('<', '\\u003c'))
 html = html.replace('__TABLES__', '\n'.join(tables))
 html = html.replace('__UPDATED__', escape(data['updated']))
+initial = json.loads(subprocess.check_output(['node', str(ROOT / '_render.cjs')], text=True))
+for key, value in initial.items():
+    html = html.replace(f'__{key}__', value)
 (ROOT / 'index.html').write_text(html)
 print(f'Rendered {len(data["problems"])} frontiers / {sum(len(p["milestones"]) for p in data["problems"])} sourced milestones.')
