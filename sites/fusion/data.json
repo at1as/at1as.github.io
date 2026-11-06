@@ -499,7 +499,8 @@
           "sourceIds": [
             "MAG_CFS_SPARC",
             "MAG_CFS_MAGNET"
-          ]
+          ],
+          "displayText": "SPARC gain demonstration pending. Tokamak heritage and magnet achievement support a testable path, but the planned high-field burning plasma remains to be demonstrated."
         },
         {
           "id": "cfs_risk_02",
@@ -521,7 +522,8 @@
           "text": "Shared D-T engineering burden. An ARC plant must combine tritium breeding, neutron shielding, heat exhaust and maintainable components. A successful SPARC result would not by itself validate those plant systems.",
           "sourceIds": [
             "MAG_CFS_ARC"
-          ]
+          ],
+          "displayText": "Shared D-T engineering burden. An ARC plant must combine tritium breeding, neutron shielding, heat exhaust and maintainable components. A successful SPARC result would not by itself validate those plant systems."
         }
       ],
       "fundingSummary": "$4.0B capital raised, July 2026",
@@ -1001,7 +1003,8 @@
           ],
           "aggregationNote": "do not sum without explicit nonoverlap review",
           "amountOperator": "=",
-          "usdConversionBasis": "same_currency"
+          "usdConversionBasis": "same_currency",
+          "displayScope": "Cumulative financing reported with the June announcement. No later total has been inferred by adding separate announcements."
         },
         {
           "id": "helion_chips_loi",
@@ -1096,7 +1099,8 @@
           "sourceIds": [
             "MAG_HELION_POLARIS",
             "PHY_037"
-          ]
+          ],
+          "displayText": "Energy-boundary proof remains essential. A recoverable capacitor-bank signal must be distinguished from recycled input electricity; sustained whole-plant net output is a separate milestone."
         },
         {
           "id": "helion_risk_02",
@@ -1119,7 +1123,8 @@
           "sourceIds": [
             "PHY_037",
             "MAG_HELION_POLARIS_RESULTS"
-          ]
+          ],
+          "displayText": "Advanced-fuel transition. Current D-T results do not demonstrate commercial D-He3 conditions, helium-3 supply or a closed fuel cycle. Reduced neutron production is not zero-neutron operation."
         },
         {
           "id": "helion_risk_03",
@@ -1142,7 +1147,8 @@
           "sourceIds": [
             "MAG_HELION_ORION",
             "MAG_HELION_POLARIS"
-          ]
+          ],
+          "displayText": "Aggressive company schedule. The 2028 construction programme depends on physics, repetition, components and electricity balance progressing together. Construction alone does not validate these."
         }
       ],
       "fundingSummary": "Series G finalized at $500M in September 2026; $1.5B cumulative reported June",
@@ -1445,7 +1451,8 @@
           "sourceIds": [
             "MAG_TAE_HE3",
             "MAG_TAE_MERGER"
-          ]
+          ],
+          "displayText": "An August 2026 release targets 50 MWe Da Vinci operations in 2031. Later filing language leaves the sequence of milestones uncertain; 2031 is a company target, not a confirmed grid date."
         }
       ],
       "targets": [
@@ -1489,7 +1496,8 @@
           "sourceIds": [
             "MAG_TAE_HE3",
             "MAG_TAE_MERGER"
-          ]
+          ],
+          "displayText": "An August 2026 release targets 50 MWe Da Vinci operations in 2031. Later filing language leaves the sequence of milestones uncertain; 2031 is a company target, not a confirmed grid date."
         }
       ],
       "funding": [
@@ -1690,7 +1698,8 @@
           "sourceIds": [
             "MAG_TAE_NATURE",
             "MAG_TAE_FUEL"
-          ]
+          ],
+          "displayText": "Advanced-fuel energy balance unproven. FRC formation is a distinct achievement from p-B11 fusion gain; beam power and radiation losses must be balanced at much more demanding operating conditions."
         },
         {
           "id": "tae_risk_02",
@@ -1713,7 +1722,8 @@
           "sourceIds": [
             "MAG_TAE_ROADMAP",
             "MAG_TAE_HE3"
-          ]
+          ],
+          "displayText": "Roadmap and fuel options evolving. Skipping Copernicus concentrates validation in later development. Prospective lunar helium-3 supply is an option, not available operating fuel."
         },
         {
           "id": "tae_risk_03",
@@ -1736,7 +1746,8 @@
           "sourceIds": [
             "MAG_TAE_DEBT",
             "MAG_TAE_MERGER"
-          ]
+          ],
+          "displayText": "Proposed merger and debt differ from equity. The merger is not verified closed. The convertible note and additional available facility are separate from historical equity financing."
         }
       ],
       "fundingSummary": ">$1.3B equity reported June 2025; $200M convertible-note proceeds confirmed March 2026",
@@ -1750,7 +1761,8 @@
         "MAG_TAE_DEBT",
         "MAG_TAE_MERGER"
       ],
-      "rawMarkdown": "## TAE Technologies\n\nNeutral-beam FRC developer whose preferred commercial fuel is hydrogen-boron; its shortened roadmap proceeds directly toward Da Vinci.\n\n**Approach:** Beam sustained field reversed configuration\n\n**Experimental fuel/status:** Experimental light-ion plasmas; no commercial p-B11 burning plasma established in the reviewed evidence. Exact current mixture not independently verified here.\n\n**Intended fuel:** Preferred p-B11; D-He3 is an additional prospective option, not a verified replacement baseline.\n\n**Mechanism:** Energetic neutral beams create and sustain a field-reversed plasma. The preferred p-B11 power concept would collect radiation and particle energy as heat for electricity.\n\n- **Experimental result.** Neutral-beam injection formed field-reversed configurations from seed plasmas in approximately 10 ms.\n\n- **Organization or strategy event.** Company removed Copernicus from its roadmap; this is a programme change, not achieved gain.\n\n- **Announced target.** August release targets Da Vinci 50 MWe operations in 2031. Later filing sequencing could not be fully reconciled; do not label this a confirmed grid date.\n\n**Financing snapshot:** >$1.3B equity reported June 2025; $200M convertible-note proceeds confirmed March 2026\n\n- Advanced-fuel energy balance unproven. FRC formation is a distinct achievement from p-B11 fusion gain; beam power and radiation losses must be balanced at much more demanding operating conditions.\n\n- Roadmap and fuel options evolving. Skipping Copernicus concentrates validation in later development. Prospective lunar helium-3 supply is an option, not available operating fuel.\n\n- Proposed merger and debt differ from equity. The filed merger is not verified closed; the supplied convertible note and additional available facility must remain separate from historic equity totals.\n\n"
+      "rawMarkdown": "## TAE Technologies\n\nNeutral-beam FRC developer whose preferred commercial fuel is hydrogen-boron; its shortened roadmap proceeds directly toward Da Vinci.\n\n**Approach:** Beam sustained field reversed configuration\n\n**Experimental fuel/status:** Experimental light-ion plasmas; no commercial p-B11 burning plasma established in the reviewed evidence. Exact current mixture not independently verified here.\n\n**Intended fuel:** Preferred p-B11; D-He3 is an additional prospective option, not a verified replacement baseline.\n\n**Mechanism:** Energetic neutral beams create and sustain a field-reversed plasma. The preferred p-B11 power concept would collect radiation and particle energy as heat for electricity.\n\n- **Experimental result.** Neutral-beam injection formed field-reversed configurations from seed plasmas in approximately 10 ms.\n\n- **Organization or strategy event.** Company removed Copernicus from its roadmap; this is a programme change, not achieved gain.\n\n- **Announced target.** August release targets Da Vinci 50 MWe operations in 2031. Later filing sequencing could not be fully reconciled; do not label this a confirmed grid date.\n\n**Financing snapshot:** >$1.3B equity reported June 2025; $200M convertible-note proceeds confirmed March 2026\n\n- Advanced-fuel energy balance unproven. FRC formation is a distinct achievement from p-B11 fusion gain; beam power and radiation losses must be balanced at much more demanding operating conditions.\n\n- Roadmap and fuel options evolving. Skipping Copernicus concentrates validation in later development. Prospective lunar helium-3 supply is an option, not available operating fuel.\n\n- Proposed merger and debt differ from equity. The filed merger is not verified closed; the supplied convertible note and additional available facility must remain separate from historic equity totals.\n\n",
+      "displayExperimentalFuel": "Experimental light-ion plasmas. The exact current mixture is not publicly established; no commercial proton–boron burning plasma is demonstrated."
     },
     {
       "id": "tokamak-energy",
@@ -2172,7 +2184,8 @@
           ],
           "aggregationNote": "do not sum without explicit nonoverlap review",
           "amountOperator": "=",
-          "usdConversionBasis": "same_currency"
+          "usdConversionBasis": "same_currency",
+          "displayScope": "Combined financing: $275 million private capital plus $60 million government support. The component observations are included in this total."
         }
       ],
       "assessment": [
@@ -2197,7 +2210,8 @@
           "sourceIds": [
             "MAG_TE_US",
             "MAG_TE_ST40"
-          ]
+          ],
+          "displayText": "Compact central-column constraints. A low-aspect-ratio D-T reactor must fit shielding, magnets and breeding structures into restricted space while handling heat and neutron exposure."
         },
         {
           "id": "tokamak_energy_risk_02",
@@ -2220,7 +2234,8 @@
           "sourceIds": [
             "MAG_TE_DEMO4",
             "MAG_TE_US"
-          ]
+          ],
+          "displayText": "Component success is not burning-plasma success. Demo4 verifies magnet behavior; a complete HTS fusion plant still requires integrated plasma, fuel-cycle and power systems."
         }
       ],
       "fundingSummary": "$335M reported total: $275M private + $60M government",
@@ -2231,7 +2246,8 @@
         "MAG_TE_ST40",
         "MAG_TE_US"
       ],
-      "rawMarkdown": "## Tokamak Energy\n\nSpherical-tokamak developer with a separate commercial HTS magnet business, TE Magnetics.\n\n**Approach:** Spherical tokamak\n\n**Experimental fuel/status:** ST40 experimental hydrogen-isotope plasma; exact current campaign mixture not established in the reviewed sources.\n\n**Intended fuel:** D-T\n\n**Mechanism:** A compact, low-aspect-ratio tokamak confines plasma using external fields and plasma current; HTS technology is being developed for later systems.\n\n- **Experimental result.** ST40 exceeded 100 million °C ion temperature; not a gain or electricity milestone.\n\n- **Experimental result.** Demo4 magnet campaign reached 13.7 T; approximately 10,000 hours covered varying energized conditions.\n\n- **Announced target.** U.S. D-T pilot design targets 800 MW fusion power and 85 MW net electricity in the 2030s.\n\n**Financing snapshot:** $335M reported total: $275M private + $60M government\n\n- Compact central-column constraints. A low-aspect-ratio D-T reactor must fit shielding, magnets and breeding structures into restricted space while handling heat and neutron exposure.\n\n- Component success is not burning-plasma success. Demo4 verifies magnet behavior; a complete HTS fusion plant still requires integrated plasma, fuel-cycle and power systems.\n\n"
+      "rawMarkdown": "## Tokamak Energy\n\nSpherical-tokamak developer with a separate commercial HTS magnet business, TE Magnetics.\n\n**Approach:** Spherical tokamak\n\n**Experimental fuel/status:** ST40 experimental hydrogen-isotope plasma; exact current campaign mixture not established in the reviewed sources.\n\n**Intended fuel:** D-T\n\n**Mechanism:** A compact, low-aspect-ratio tokamak confines plasma using external fields and plasma current; HTS technology is being developed for later systems.\n\n- **Experimental result.** ST40 exceeded 100 million °C ion temperature; not a gain or electricity milestone.\n\n- **Experimental result.** Demo4 magnet campaign reached 13.7 T; approximately 10,000 hours covered varying energized conditions.\n\n- **Announced target.** U.S. D-T pilot design targets 800 MW fusion power and 85 MW net electricity in the 2030s.\n\n**Financing snapshot:** $335M reported total: $275M private + $60M government\n\n- Compact central-column constraints. A low-aspect-ratio D-T reactor must fit shielding, magnets and breeding structures into restricted space while handling heat and neutron exposure.\n\n- Component success is not burning-plasma success. Demo4 verifies magnet behavior; a complete HTS fusion plant still requires integrated plasma, fuel-cycle and power systems.\n\n",
+      "displayExperimentalFuel": "ST40 uses experimental hydrogen-isotope plasma. The exact mixture in the current campaign is not publicly established."
     },
     {
       "id": "type-one-energy",
@@ -2713,7 +2729,8 @@
           "text": "Three-dimensional reactor integration. Coil construction, neutron shielding, blanket access and maintenance must work together in the complete stellarator geometry.",
           "sourceIds": [
             "MAG_TYPEONE_TECH"
-          ]
+          ],
+          "displayText": "Three-dimensional reactor integration. Coil construction, neutron shielding, blanket access and maintenance must work together in the complete stellarator geometry."
         },
         {
           "id": "type_one_risk_02",
@@ -2735,7 +2752,8 @@
           "text": "Heritage is not the company’s demonstration. Results from HSX and W7-X inform the design; they do not count as achieved Infinity One or Infinity Two milestones.",
           "sourceIds": [
             "MAG_TYPEONE_TECH"
-          ]
+          ],
+          "displayText": "Heritage is not the company’s demonstration. Results from HSX and W7-X inform the design; they do not count as achieved Infinity One or Infinity Two milestones."
         },
         {
           "id": "type_one_risk_03",
@@ -2756,7 +2774,8 @@
           "text": "D-T supply and breeding required. Electricity deployment also requires a workable tritium cycle and durable neutron-exposed systems.",
           "sourceIds": [
             "MAG_TYPEONE_TECH"
-          ]
+          ],
+          "displayText": "D-T supply and breeding required. Electricity deployment also requires a workable tritium cycle and durable neutron-exposed systems."
         }
       ],
       "fundingSummary": "$200M Series B announced October 2026",
@@ -3333,7 +3352,8 @@
           ],
           "aggregationNote": "do not sum without explicit nonoverlap review",
           "amountOperator": "<=",
-          "usdConversionBasis": "not_converted"
+          "usdConversionBasis": "not_converted",
+          "displayScope": "Separate public commitment from Bavaria. This is not received equity and is excluded from the secured-financing total."
         }
       ],
       "assessment": [
@@ -3359,7 +3379,8 @@
           "sourceIds": [
             "MAG_PROXIMA_PAPER",
             "MAG_PROXIMA_ALPHA"
-          ]
+          ],
+          "displayText": "Burning-plasma extrapolation pending. W7-X supports the confinement approach; a compact high-field D-T plant requires additional physics and engineering validation."
         },
         {
           "id": "proxima_risk_02",
@@ -3381,7 +3402,8 @@
           "text": "Integrated high-field stellarator burden. Complex HTS coils, heat exhaust, tritium breeding and maintainability must be demonstrated together.",
           "sourceIds": [
             "MAG_PROXIMA_PAPER"
-          ]
+          ],
+          "displayText": "Integrated high-field stellarator burden. Complex HTS coils, heat exhaust, tritium breeding and maintainability must be demonstrated together."
         },
         {
           "id": "proxima_risk_03",
@@ -3402,7 +3424,8 @@
           "text": "Mixed and committed funding. The reported cumulative total includes grants, and Bavaria’s commitment differs from received financing.",
           "sourceIds": [
             "MAG_PROXIMA_FUND"
-          ]
+          ],
+          "displayText": "Mixed and committed funding. The reported cumulative total includes grants, and Bavaria’s commitment differs from received financing."
         }
       ],
       "fundingSummary": ">€650M reported funding, including €95M grants; €411M latest round",
@@ -3946,7 +3969,8 @@
           ],
           "aggregationNote": "do not sum without explicit nonoverlap review",
           "amountOperator": "=",
-          "usdConversionBasis": "same_currency"
+          "usdConversionBasis": "same_currency",
+          "displayScope": "ARPA-E SCALEUP award reported by the company, separate from private equity financing."
         }
       ],
       "assessment": [
@@ -3971,7 +3995,8 @@
           "sourceIds": [
             "MAG_THEA_CANIS",
             "MAG_THEA_HELIOS"
-          ]
+          ],
+          "displayText": "Complexity shifts into many controlled coils. Simple coil shapes can ease manufacturing, while the integrated machine must validate many currents, connections and field-control interactions."
         },
         {
           "id": "thea_risk_02",
@@ -3995,7 +4020,8 @@
           "sourceIds": [
             "MAG_THEA_CANIS",
             "MAG_THEA_HELIOS"
-          ]
+          ],
+          "displayText": "Component and design stages. Canis is a subsystem demonstration; Helios capacity factor, net power and coil lifetime are calculations, not operating records."
         },
         {
           "id": "thea_risk_03",
@@ -4016,7 +4042,8 @@
           "text": "Later D-T conversion. Eos D-D operation would not alone demonstrate Helios tritium breeding and reactor materials performance.",
           "sourceIds": [
             "MAG_THEA_EOS"
-          ]
+          ],
+          "displayText": "Later D-T conversion. Eos D-D operation would not alone demonstrate Helios tritium breeding and reactor materials performance."
         }
       ],
       "fundingSummary": "$100M Series B plus undisclosed extension; $20M ARPA-E award separately",
@@ -4229,7 +4256,8 @@
           "evidenceType": "company_target",
           "sourceIds": [
             "MAG_RENAISSANCE_TECH"
-          ]
+          ],
+          "displayText": "Integrate patterned magnets and liquid-metal walls into a stellarator power system. No verified current date for first electricity is included in this snapshot."
         }
       ],
       "targets": [
@@ -4265,7 +4293,8 @@
           "evidenceType": "company_target",
           "sourceIds": [
             "MAG_RENAISSANCE_TECH"
-          ]
+          ],
+          "displayText": "Integrate patterned magnets and liquid-metal walls into a stellarator power system. No verified current date for first electricity is included in this snapshot."
         }
       ],
       "funding": [
@@ -4356,7 +4385,8 @@
           "text": "Novel integrated fabrication. Reactor-scale patterned HTS manufacturing and liquid-metal flow in strong magnetic fields need integrated validation.",
           "sourceIds": [
             "MAG_RENAISSANCE_TECH"
-          ]
+          ],
+          "displayText": "Novel integrated fabrication. Reactor-scale patterned HTS manufacturing and liquid-metal flow in strong magnetic fields need integrated validation."
         },
         {
           "id": "renaissance_risk_02",
@@ -4377,7 +4407,8 @@
           "text": "Component stage. The reviewed evidence does not establish operating reactor-level confinement or energy balance.",
           "sourceIds": [
             "MAG_RENAISSANCE_NEWS"
-          ]
+          ],
+          "displayText": "Component stage. The reviewed evidence does not establish operating reactor-level confinement or energy balance."
         }
       ],
       "fundingSummary": "€32M Series A first close, March 2025; €10M BPIFrance grant separately",
@@ -4764,7 +4795,8 @@
           "text": "End-loss control remains central. Mirror geometry is mechanically attractive but must retain enough particles and energy at useful fusion conditions.",
           "sourceIds": [
             "MAG_REALTA_TECH"
-          ]
+          ],
+          "displayText": "End-loss control remains central. Mirror geometry is mechanically attractive but must retain enough particles and energy at useful fusion conditions."
         },
         {
           "id": "realta_risk_02",
@@ -4785,7 +4817,8 @@
           "text": "Recovery is not generation proof. The demonstrated converter largely recycled input heating. D-T net power requires fusion gain, neutron-heat conversion and complete plant accounting.",
           "sourceIds": [
             "MAG_REALTA_DEC"
-          ]
+          ],
+          "displayText": "Recovery is not generation proof. The demonstrated converter largely recycled input heating. D-T net power requires fusion gain, neutron-heat conversion and complete plant accounting."
         }
       ],
       "fundingSummary": "$36M Series A; $9.5M debt facility separately",
@@ -4798,7 +4831,8 @@
         "MAG_REALTA_DEC",
         "MAG_REALTA_TIMELINE"
       ],
-      "rawMarkdown": "## Realta Fusion\n\nHigh-field magnetic-mirror developer pursuing modular industrial heat and power.\n\n**Approach:** Magnetic mirror\n\n**Experimental fuel/status:** D-D in the reviewed WHAM direct-conversion experiment\n\n**Intended fuel:** D-T for first-generation commercial plants\n\n**Mechanism:** Stronger end fields reflect particles in a linear plasma. Direct electrostatic recovery may reduce losses, while D-T neutron energy still feeds a thermal power system.\n\n- **Experimental result.** WHAM first plasma with high-field mirror end magnets.\n\n- **Experimental result.** Electrostatic converter recovered mostly supplied plasma-heating energy; not net fusion electricity.\n\n- **Announced target.** Commercial pilot plant.\n\n**Financing snapshot:** $36M Series A; $9.5M debt facility separately\n\n- End-loss control remains central. Mirror geometry is mechanically attractive but must retain enough particles and energy at useful fusion conditions.\n\n- Recovery is not generation proof. The demonstrated converter largely recycled input heating. D-T net power requires fusion gain, neutron-heat conversion and complete plant accounting.\n\n"
+      "rawMarkdown": "## Realta Fusion\n\nHigh-field magnetic-mirror developer pursuing modular industrial heat and power.\n\n**Approach:** Magnetic mirror\n\n**Experimental fuel/status:** D-D in the reviewed WHAM direct-conversion experiment\n\n**Intended fuel:** D-T for first-generation commercial plants\n\n**Mechanism:** Stronger end fields reflect particles in a linear plasma. Direct electrostatic recovery may reduce losses, while D-T neutron energy still feeds a thermal power system.\n\n- **Experimental result.** WHAM first plasma with high-field mirror end magnets.\n\n- **Experimental result.** Electrostatic converter recovered mostly supplied plasma-heating energy; not net fusion electricity.\n\n- **Announced target.** Commercial pilot plant.\n\n**Financing snapshot:** $36M Series A; $9.5M debt facility separately\n\n- End-loss control remains central. Mirror geometry is mechanically attractive but must retain enough particles and energy at useful fusion conditions.\n\n- Recovery is not generation proof. The demonstrated converter largely recycled input heating. D-T net power requires fusion gain, neutron-heat conversion and complete plant accounting.\n\n",
+      "displayExperimentalFuel": "D–D in the WHAM direct-conversion experiment."
     },
     {
       "id": "energy-singularity",
@@ -5279,7 +5313,8 @@
             "MAG_ES_DEVICES",
             "MAG_ES_PULSE",
             "MAG_ES_MAGNET"
-          ]
+          ],
+          "displayText": "Different quantities need separate axes. Long pulses, small-magnet peak field and equivalent Q should not be treated as equivalent to burning-plasma or whole-plant performance."
         },
         {
           "id": "energy_singularity_risk_02",
@@ -5302,7 +5337,8 @@
           "sourceIds": [
             "MAG_ES_DEVICES",
             "MAG_FIA_2026"
-          ]
+          ],
+          "displayText": "Some financial and fuel details unresolved. The current campaign fuel and composition of survey funding are not established here; these are evidence gaps rather than proof of technical failure."
         }
       ],
       "fundingSummary": "$112.5M company-declared in 2026 survey; historical native-currency total nearly RMB800M in 2023",
@@ -5315,7 +5351,8 @@
         "MAG_ES_PREA",
         "MAG_FIA_2026"
       ],
-      "rawMarkdown": "## Energy Singularity\n\nShanghai HTS tokamak developer operating HH70 and planning a higher-field successor.\n\n**Approach:** Tokamak\n\n**Experimental fuel/status:** Experimental HH70 plasma; campaign fuel details not verified in the reviewed primary releases.\n\n**Intended fuel:** D-T for commercial concept\n\n**Mechanism:** HTS magnets surround a tokamak plasma; the programme moves from long-duration experimental operation toward high-field gain studies.\n\n- **Experimental result.** HH70 first plasma.\n\n- **Experimental result.** HH70 1,337-second discharge; duration does not establish fusion gain.\n\n- **Experimental result.** Small test magnet reached 26.7 T; winding inner diameter 30 mm.\n\n- **Announced target.** HH170 equivalent Q above two; this is not a claim of measured D-T Q.\n\n**Financing snapshot:** $112.5M company-declared in 2026 survey; historical native-currency total nearly RMB800M in 2023\n\n- Different quantities need separate axes. Long pulses, small-magnet peak field and equivalent Q should not be treated as equivalent to burning-plasma or whole-plant performance.\n\n- Some financial and fuel details unresolved. The current campaign fuel and composition of survey funding are not established here; these are evidence gaps rather than proof of technical failure.\n\n"
+      "rawMarkdown": "## Energy Singularity\n\nShanghai HTS tokamak developer operating HH70 and planning a higher-field successor.\n\n**Approach:** Tokamak\n\n**Experimental fuel/status:** Experimental HH70 plasma; campaign fuel details not verified in the reviewed primary releases.\n\n**Intended fuel:** D-T for commercial concept\n\n**Mechanism:** HTS magnets surround a tokamak plasma; the programme moves from long-duration experimental operation toward high-field gain studies.\n\n- **Experimental result.** HH70 first plasma.\n\n- **Experimental result.** HH70 1,337-second discharge; duration does not establish fusion gain.\n\n- **Experimental result.** Small test magnet reached 26.7 T; winding inner diameter 30 mm.\n\n- **Announced target.** HH170 equivalent Q above two; this is not a claim of measured D-T Q.\n\n**Financing snapshot:** $112.5M company-declared in 2026 survey; historical native-currency total nearly RMB800M in 2023\n\n- Different quantities need separate axes. Long pulses, small-magnet peak field and equivalent Q should not be treated as equivalent to burning-plasma or whole-plant performance.\n\n- Some financial and fuel details unresolved. The current campaign fuel and composition of survey funding are not established here; these are evidence gaps rather than proof of technical failure.\n\n",
+      "displayExperimentalFuel": "Experimental HH70 plasma. Primary releases do not establish the campaign’s fuel mixture."
     },
     {
       "id": "kyoto-fusioneering",
@@ -5520,7 +5557,8 @@
           "evidenceType": "engineering_programme",
           "sourceIds": [
             "MAG_KYOTO_FUND"
-          ]
+          ],
+          "displayText": "The UNITY engineering programme develops integrated heat-transfer and fuel-cycle testing. These externally heated tests do not produce net fusion electricity."
         },
         {
           "id": "kyoto_fusioneering_target_01",
@@ -5717,7 +5755,8 @@
           "text": "Representative conditions required. Thermal-loop testing must eventually connect to reactor neutron environments and reliable tritium recovery.",
           "sourceIds": [
             "MAG_KYOTO_FUND"
-          ]
+          ],
+          "displayText": "Representative conditions required. Thermal-loop testing must eventually connect to reactor neutron environments and reliable tritium recovery."
         },
         {
           "id": "kyoto_fusioneering_risk_02",
@@ -5738,7 +5777,8 @@
           "text": "Customer and industry timing. Supplier revenues depend partly on customers’ plant schedules; core plasma-gain risk belongs to those reactor projects.",
           "sourceIds": [
             "MAG_KYOTO_FUND"
-          ]
+          ],
+          "displayText": "Customer and industry timing. Supplier revenues depend partly on customers’ plant schedules; core plasma-gain risk belongs to those reactor projects."
         }
       ],
       "fundingSummary": "¥32.98B cumulative equity; latest ¥16.72B equity plus ¥9B facilities",
@@ -6193,7 +6233,8 @@
           "text": "Early experimental stage. The cited temperature and pulsed-power hardware do not establish fusion gain, confinement at reactor conditions or net output.",
           "sourceIds": [
             "MAG_NTTAO_POWER"
-          ]
+          ],
+          "displayText": "Early experimental stage. The cited temperature and pulsed-power hardware do not establish fusion gain, confinement at reactor conditions or net output."
         },
         {
           "id": "nt_tao_risk_02",
@@ -6214,7 +6255,8 @@
           "text": "Power density and shielding challenge. A small D-T plant must integrate heating, neutron shielding, heat capture and tritium systems within its intended compact package.",
           "sourceIds": [
             "MAG_NTTAO_TECH"
-          ]
+          ],
+          "displayText": "Power density and shielding challenge. A small D-T plant must integrate heating, neutron shielding, heat capture and tritium systems within its intended compact package."
         }
       ],
       "fundingSummary": "$34M company-declared in Q2 2026 survey",
@@ -6720,7 +6762,8 @@
           "sourceIds": [
             "MAG_HELICAL_TECH",
             "MAG_HELICAL_MANUFACTURE"
-          ]
+          ],
+          "displayText": "Complex coil and blanket integration. Cable and manufacturing advances do not yet establish integrated plasma, liquid-metal blanket and power-cycle performance."
         },
         {
           "id": "helical_fusion_risk_02",
@@ -6743,7 +6786,8 @@
           "sourceIds": [
             "MAG_HELICAL_FUND_JP",
             "MAG_HELICAL_FUND_EN"
-          ]
+          ],
+          "displayText": "Mixed total with source discrepancy. Cumulative financing includes grants and loans, and Japanese/English totals differ. The newer Japanese total is preferred with an explicit annotation."
         }
       ],
       "fundingSummary": "¥13.05B cumulative mixed funding; ¥3.23B latest Series B second close",
@@ -7375,7 +7419,8 @@
             "ALT_INERTIA_MODEL",
             "ALT_INERTIA_PAPER",
             "ALT_INERTIA_FUELING"
-          ]
+          ],
+          "displayText": "Physics scaling. High gain is simulated for larger, manufacturable targets; NIF validates a predecessor regime but does not validate this full design."
         },
         {
           "id": "inertia_risk_02",
@@ -7400,7 +7445,8 @@
             "ALT_INERTIA_FUND",
             "ALT_INERTIA_HOME",
             "ALT_INERTIA_PHASE1"
-          ]
+          ],
+          "displayText": "Repetition and manufacturing. Efficient 10 MJ shots at 10 Hz, economical cryogenic targets, injection and chamber recovery must work together continuously."
         },
         {
           "id": "inertia_risk_03",
@@ -7424,7 +7470,8 @@
           "sourceIds": [
             "ALT_INERTIA_FUND",
             "ALT_INERTIA_MODEL"
-          ]
+          ],
+          "displayText": "Fuel and materials. A DT power plant still needs tritium breeding, heat extraction, radiation-tolerant optics and maintainable first-wall systems."
         }
       ],
       "fundingSummary": "$450 million milestone-based Series A announced February 2026",
@@ -7912,7 +7959,8 @@
           "sourceIds": [
             "ALT_PACIFIC_MODULE",
             "ALT_PACIFIC_SITE"
-          ]
+          ],
+          "displayText": "Physics scaling. Driver progress must translate to repeatable high-yield target implosions; peak driver power is not fusion output."
         },
         {
           "id": "pacific_fusion_risk_02",
@@ -7935,7 +7983,8 @@
           "sourceIds": [
             "ALT_PACIFIC_FOUND",
             "ALT_PACIFIC_SITE"
-          ]
+          ],
+          "displayText": "Integrated plant. Stored-energy facility gain excludes conversion losses and other plant electricity. Repetition, debris, target replacement and balance of plant remain."
         },
         {
           "id": "pacific_fusion_risk_03",
@@ -7958,7 +8007,8 @@
           "sourceIds": [
             "ALT_PACIFIC_FOUND",
             "ALT_PACIFIC_CAPITAL"
-          ]
+          ],
+          "displayText": "Financing. Headline commitments are not identical to cash received; the company reports a newer cumulative amount without a tranche reconciliation."
         }
       ],
       "fundingSummary": ">$1 billion private capital reported July 2026; original Series A was milestone-released",
@@ -8559,7 +8609,8 @@
           "sourceIds": [
             "ALT_XCIMER_ROADMAP",
             "ALT_XCIMER_DOE"
-          ]
+          ],
+          "displayText": "Driver scaling. Excimer/SBS proof of concept must scale to multi-megajoule energy, efficiency and sustained repetition."
         },
         {
           "id": "xcimer_risk_02",
@@ -8581,7 +8632,8 @@
           "text": "Liquid wall and fuel. Renewing molten salt may protect the wall, but whole-plant breeding, corrosion, flow recovery and remote maintenance still require validation.",
           "sourceIds": [
             "ALT_XCIMER_DOE"
-          ]
+          ],
+          "displayText": "Liquid wall and fuel. Renewing molten salt may protect the wall, but whole-plant breeding, corrosion, flow recovery and remote maintenance still require validation."
         },
         {
           "id": "xcimer_risk_03",
@@ -8602,7 +8654,8 @@
           "text": "Evidence boundary. DOE design-milestone acceptance is not a plant operating licence or proof of commercial energy production.",
           "sourceIds": [
             "ALT_XCIMER_DOE"
-          ]
+          ],
+          "displayText": "Evidence boundary. DOE design-milestone acceptance is not a plant operating licence or proof of commercial energy production."
         }
       ],
       "fundingSummary": "Nearly $200 million in seed and Series A investment on live FAQ; July 2026 survey snapshot was $178 million",
@@ -9191,7 +9244,8 @@
           "sourceIds": [
             "ALT_FOCUSED_TECH",
             "ALT_FOCUSED_EXP"
-          ]
+          ],
+          "displayText": "Target physics. Direct drive/fast ignition must establish its own reliable gain regime; NIF indirect-drive ignition does not directly validate it."
         },
         {
           "id": "focused_energy_risk_02",
@@ -9214,7 +9268,8 @@
           "sourceIds": [
             "ALT_FOCUSED_TECH",
             "ALT_FOCUSED_EXP"
-          ]
+          ],
+          "displayText": "Manufacturing and repetition. High-rate lasers, target manufacture, precision injection and chamber recovery must be integrated."
         },
         {
           "id": "focused_energy_risk_03",
@@ -9237,7 +9292,8 @@
           "sourceIds": [
             "ALT_FOCUSED_FUND",
             "ALT_FOCUSED_TECH"
-          ]
+          ],
+          "displayText": "Fuel and plant. DT breeding, materials durability and heat conversion remain whole-plant requirements despite siting/industrial partnerships."
         }
       ],
       "fundingSummary": "$500 million total declared in 2026 survey; $240 million Series A announced May 2026",
@@ -9728,7 +9784,8 @@
           "sourceIds": [
             "ALT_GENERAL_TEMP",
             "ALT_GENERAL_PATH"
-          ]
+          ],
+          "displayText": "Physics scaling. Higher electron temperature does not establish adequate ion temperature, confinement and density simultaneously. LM26 still targets additional large steps."
         },
         {
           "id": "general_fusion_risk_02",
@@ -9753,7 +9810,8 @@
             "ALT_GENERAL_TEMP",
             "ALT_GENERAL_PATH",
             "ALT_GENERAL_PAPER"
-          ]
+          ],
+          "displayText": "Prototype to plant. Solid-liner experiment to repetitive liquid-metal machinery is a substantial engineering transition."
         },
         {
           "id": "general_fusion_risk_03",
@@ -9776,7 +9834,8 @@
           "sourceIds": [
             "ALT_GENERAL_LIST",
             "ALT_GENERAL_PATH"
-          ]
+          ],
+          "displayText": "Capital and execution. Public-market access changes financing options; approximately $150 million cash is not full power-plant financing."
         }
       ],
       "fundingSummary": "≈$500 million survey total; ≈$150 million cash at July 2026 listing shown separately",
@@ -10216,7 +10275,8 @@
           "text": "Plasma stability. Sheared-flow stabilization must hold at higher current and useful fusion gain; pressure alone cannot rank overall reactor performance.",
           "sourceIds": [
             "ALT_ZAP_PRESSURE"
-          ]
+          ],
+          "displayText": "Plasma stability. Sheared-flow stabilization must hold at higher current and useful fusion gain; pressure alone cannot rank overall reactor performance."
         },
         {
           "id": "zap_energy_risk_02",
@@ -10240,7 +10300,8 @@
           "sourceIds": [
             "ALT_ZAP_FUND",
             "ALT_ZAP_PRESSURE"
-          ]
+          ],
+          "displayText": "Repetition and electrodes. Repetitive power, electrode erosion and liquid-metal handling need validation at fusion heat and neutron loads."
         },
         {
           "id": "zap_energy_risk_03",
@@ -10261,7 +10322,8 @@
           "text": "Business scope. Any future fission electricity must not be counted as demonstrated fusion electricity.",
           "sourceIds": [
             "ALT_ZAP_STRATEGY"
-          ]
+          ],
+          "displayText": "Business scope. A fission–fusion hybrid would draw energy from both processes. Any future electrical output would need separate accounting for the fusion contribution."
         }
       ],
       "fundingSummary": "$338 million declared 2026 survey total; $130 million Series D verified October 2024",
@@ -10668,7 +10730,8 @@
           "sourceIds": [
             "ALT_FIRSTLIGHT_TEST",
             "ALT_FIRSTLIGHT_TECH"
-          ]
+          ],
+          "displayText": "Integrated physics. Compression and rapid ignition must work together; a successful first stage does not validate high gain."
         },
         {
           "id": "first_light_risk_02",
@@ -10689,7 +10752,8 @@
           "text": "Partner dependence. Target-system developer depends on partners for drivers, facilities and industrial integration.",
           "sourceIds": [
             "ALT_FIRSTLIGHT_TECH"
-          ]
+          ],
+          "displayText": "Partner dependence. Target-system developer depends on partners for drivers, facilities and industrial integration."
         },
         {
           "id": "first_light_risk_03",
@@ -10710,7 +10774,8 @@
           "text": "Commercial systems. High modeled gain does not resolve target production, tritium breeding, chamber endurance or cost.",
           "sourceIds": [
             "ALT_FIRSTLIGHT_TECH"
-          ]
+          ],
+          "displayText": "Commercial systems. High modeled gain does not resolve target production, tritium breeding, chamber endurance or cost."
         }
       ],
       "fundingSummary": "$156.38 million survey total; £25 million first-close round April 2026",
@@ -11130,7 +11195,8 @@
           "evidenceType": "company_target",
           "sourceIds": [
             "ALT_MARVEL_TECH"
-          ]
+          ],
+          "displayText": "Engineering gain above one is a company target for 2035. The public roadmap does not supply a complete accounting boundary for this metric."
         },
         {
           "id": "marvel_fusion_target_05",
@@ -11306,7 +11372,8 @@
           "evidenceType": "company_target",
           "sourceIds": [
             "ALT_MARVEL_TECH"
-          ]
+          ],
+          "displayText": "Engineering gain above one is a company target for 2035. The public roadmap does not supply a complete accounting boundary for this metric."
         },
         {
           "id": "marvel_fusion_target_05",
@@ -11466,7 +11533,8 @@
           "text": "Physics. Company-specific hollow-shell fast ignition must demonstrate gain; NIF indirect-drive success is not direct validation.",
           "sourceIds": [
             "ALT_MARVEL_TECH"
-          ]
+          ],
+          "displayText": "Physics. Company-specific hollow-shell fast ignition must demonstrate gain; NIF indirect-drive success is not direct validation."
         },
         {
           "id": "marvel_fusion_risk_02",
@@ -11487,7 +11555,8 @@
           "text": "Laser scaling. High-efficiency, high-repetition short-pulse lasers must scale from demonstrations to plant energy and reliability.",
           "sourceIds": [
             "ALT_MARVEL_TECH"
-          ]
+          ],
+          "displayText": "Laser scaling. High-efficiency, high-repetition short-pulse lasers must scale from demonstrations to plant energy and reliability."
         },
         {
           "id": "marvel_fusion_risk_03",
@@ -11508,7 +11577,8 @@
           "text": "Fuel. Current near-term design uses DT and retains breeding/neutron challenges; older proton-boron descriptions should not be copied forward.",
           "sourceIds": [
             "ALT_MARVEL_TECH"
-          ]
+          ],
+          "displayText": "Fuel. The current near-term design uses D–T and retains tritium-breeding and neutron-management challenges. Earlier descriptions centered on proton–boron no longer represent this roadmap."
         }
       ],
       "fundingSummary": "€170 million private investment plus €215 million public cooperation projects (March 2025 disclosure)",
@@ -12048,7 +12118,8 @@
           "sourceIds": [
             "ALT_AVALANCHE_FUND",
             "ALT_AVALANCHE_TECH"
-          ]
+          ],
+          "displayText": "Physics. Voltage, confinement and compact size are enabling results; energy-positive distributions and fusion output remain unproven in reviewed evidence."
         },
         {
           "id": "avalanche_energy_risk_02",
@@ -12071,7 +12142,8 @@
           "sourceIds": [
             "ALT_AVALANCHE_FUND",
             "ALT_AVALANCHE_TECH"
-          ]
+          ],
+          "displayText": "Fuel and scale. A practical DT microreactor still needs shielding, fuel supply, heat removal and conversion, which affect complete-system size."
         },
         {
           "id": "avalanche_energy_risk_03",
@@ -12092,7 +12164,8 @@
           "text": "Licensing. A planned licensed test service is distinct from an operating electricity plant.",
           "sourceIds": [
             "ALT_AVALANCHE_FUND"
-          ]
+          ],
+          "displayText": "Licensing. A planned licensed test service is distinct from an operating electricity plant."
         }
       ],
       "fundingSummary": "$104.2 million 2026 survey total; $29 million round and $10 million state grant separately identified",
@@ -12573,7 +12646,8 @@
           "sourceIds": [
             "ALT_EXFUSION_A",
             "ALT_EXFUSION_TEST"
-          ]
+          ],
+          "displayText": "Integration. Target tracking and repetitive irradiation must be coupled to adequate driver energy and gain on real fuel."
         },
         {
           "id": "ex_fusion_risk_02",
@@ -12596,7 +12670,8 @@
           "sourceIds": [
             "ALT_EXFUSION_A",
             "ALT_EXFUSION_EXT"
-          ]
+          ],
+          "displayText": "Laser and plant. High-power laser efficiency, thermal management and integrated DT fuel cycle remain outstanding."
         },
         {
           "id": "ex_fusion_risk_03",
@@ -12619,7 +12694,8 @@
           "sourceIds": [
             "ALT_EXFUSION_A",
             "ALT_EXFUSION_EXT"
-          ]
+          ],
+          "displayText": "Funding comparability. The JPY 6 billion financing figure includes debt as well as equity. It is reported here in its original currency."
         }
       ],
       "fundingSummary": "JPY 6 billion cumulative financing, including loans (October 2025)",
@@ -12908,7 +12984,8 @@
           "text": "Physics. Demonstrated reaction yield is far from a demonstrated self-sustaining high-gain regime; cited paper notes lack of evidence for yield-amplifying cascades in most prior experiments.",
           "sourceIds": [
             "ALT_HB11_PAPER"
-          ]
+          ],
+          "displayText": "Physics. Demonstrated reaction yield is far from a demonstrated self-sustaining high-gain regime; cited paper notes lack of evidence for yield-amplifying cascades in most prior experiments."
         },
         {
           "id": "hb11_risk_02",
@@ -12931,7 +13008,8 @@
           "sourceIds": [
             "ALT_HB11_TECH",
             "ALT_HB11_PROJECT"
-          ]
+          ],
+          "displayText": "Driver and conversion. High-efficiency repetitive lasers and integrated useful-energy recovery remain necessary even if the primary fuel cycle avoids tritium breeding."
         },
         {
           "id": "hb11_risk_03",
@@ -12952,7 +13030,8 @@
           "text": "Evidence and funding. Current cumulative company funding was not established in reviewed primary sources. Project value is not a substitute.",
           "sourceIds": [
             "ALT_HB11_PROJECT"
-          ]
+          ],
+          "displayText": "Evidence and funding. Current cumulative company funding was not established in reviewed primary sources. Project value is not a substitute."
         }
       ],
       "fundingSummary": "Company total not verified; AUD 22 million consortium project disclosed separately",
@@ -13324,7 +13403,8 @@
           "sourceIds": [
             "ALT_FUSE_TEST",
             "ALT_FUSE_CONCEPT"
-          ]
+          ],
+          "displayText": "Physics. Dense-plasma-focus neutron-source performance does not demonstrate the proposed MagLIF plant gain."
         },
         {
           "id": "fuse_risk_02",
@@ -13347,7 +13427,8 @@
           "sourceIds": [
             "ALT_FUSE_CONCEPT",
             "ALT_FUSE_HOME"
-          ]
+          ],
+          "displayText": "Repetition and plant. Practical repetition, debris clearing, target replacement and electric conversion need system validation."
         },
         {
           "id": "fuse_risk_03",
@@ -13370,7 +13451,8 @@
           "sourceIds": [
             "ALT_FUSE_TEST",
             "ALT_FUSE_HOME"
-          ]
+          ],
+          "displayText": "Business metrics. Radiation-testing contracts, contract-vehicle ceilings and revenue measure a testing business; they establish neither fusion electricity nor equity raised."
         }
       ],
       "fundingSummary": "$65 million total declared in 2026 industry survey",
@@ -13937,7 +14019,8 @@
           ],
           "aggregationNote": "do not sum without explicit nonoverlap review",
           "amountOperator": "=",
-          "usdConversionBasis": "not_converted"
+          "usdConversionBasis": "not_converted",
+          "displayScope": "Completed A++ financing round. A later cumulative total could include this round; the two would not be additive."
         }
       ],
       "assessment": [
@@ -13960,7 +14043,8 @@
           "text": "Substantial extrapolation from experimental operation to repetitive reactor performance.. Substantial extrapolation from experimental operation to repetitive reactor performance.",
           "sourceIds": [
             "PAR_STARTORUS_A_PLUS"
-          ]
+          ],
+          "displayText": "Substantial extrapolation from experimental operation to repetitive reactor performance."
         },
         {
           "id": "startorus_risk_02",
@@ -13983,7 +14067,8 @@
           "sourceIds": [
             "PAR_STARTORUS_MAGNET",
             "PAR_STARTORUS_A_PLUS"
-          ]
+          ],
+          "displayText": "A magnet test and an equivalent-Q target leave fuel cycle, heat exhaust, maintenance and integrated electricity unproven."
         }
       ],
       "fundingSummary": "RMB880m A++ round announced August 2026; earlier cumulative financing exceeded RMB2bn in May 2026. Do not display their sum as a company-reported latest total.",
@@ -13994,7 +14079,9 @@
         "PAR_STARTORUS_MAGNET",
         "MAG_FIA_2026"
       ],
-      "rawMarkdown": "## Startorus Fusion\n\nChinese developer of spherical tokamaks using repetitive magnetic reconnection heating and HTS magnets.\n\n**Approach:** Spherical tokamak\n\n**Experimental fuel/status:** Experimental fuel is not specified consistently in the reviewed company releases; do not infer a D-T burn.\n\n**Intended fuel:** D-T (company-reported FIA 2026 profile); equivalent-Q targets are not measured D-T gain.\n\n**Mechanism:** A compact toroidal plasma is heated in repeated magnetic reconnection pulses. High-current-density magnets support the small central-column geometry.\n\n- **Reported status.** Reports SUNIST-2 operation and construction of NTST; the source distinguishes these from the future CTRFR-1 design.\n\n- **Experimental result.** Full-scale HTS toroidal-field magnet energized at 20 K and 4.5 kA.\n\n- **Announced target.** NTST operation at rated parameters.\n\n- **Announced target.** Equivalent plasma Q greater than one; modeled-fuel equivalence, not a measured D-T result.\n\n- **Announced target.** Electricity-exporting demonstration facility.\n\n**Financing snapshot:** RMB880m A++ round announced August 2026; earlier cumulative financing exceeded RMB2bn in May 2026. Do not display their sum as a company-reported latest total.\n\n- Substantial extrapolation from experimental operation to repetitive reactor performance.. Substantial extrapolation from experimental operation to repetitive reactor performance.\n\n- A magnet test and an equivalent-Q target leave fuel cycle, heat exhaust, maintenance and integrated electricity unproven.. A magnet test and an equivalent-Q target leave fuel cycle, heat exhaust, maintenance and integrated electricity unproven.\n\n"
+      "rawMarkdown": "## Startorus Fusion\n\nChinese developer of spherical tokamaks using repetitive magnetic reconnection heating and HTS magnets.\n\n**Approach:** Spherical tokamak\n\n**Experimental fuel/status:** Experimental fuel is not specified consistently in the reviewed company releases; do not infer a D-T burn.\n\n**Intended fuel:** D-T (company-reported FIA 2026 profile); equivalent-Q targets are not measured D-T gain.\n\n**Mechanism:** A compact toroidal plasma is heated in repeated magnetic reconnection pulses. High-current-density magnets support the small central-column geometry.\n\n- **Reported status.** Reports SUNIST-2 operation and construction of NTST; the source distinguishes these from the future CTRFR-1 design.\n\n- **Experimental result.** Full-scale HTS toroidal-field magnet energized at 20 K and 4.5 kA.\n\n- **Announced target.** NTST operation at rated parameters.\n\n- **Announced target.** Equivalent plasma Q greater than one; modeled-fuel equivalence, not a measured D-T result.\n\n- **Announced target.** Electricity-exporting demonstration facility.\n\n**Financing snapshot:** RMB880m A++ round announced August 2026; earlier cumulative financing exceeded RMB2bn in May 2026. Do not display their sum as a company-reported latest total.\n\n- Substantial extrapolation from experimental operation to repetitive reactor performance.. Substantial extrapolation from experimental operation to repetitive reactor performance.\n\n- A magnet test and an equivalent-Q target leave fuel cycle, heat exhaust, maintenance and integrated electricity unproven.. A magnet test and an equivalent-Q target leave fuel cycle, heat exhaust, maintenance and integrated electricity unproven.\n\n",
+      "displayExperimentalFuel": "Company releases do not consistently specify the experimental fuel. They do not establish a D–T burn.",
+      "displayFundingSummary": "An RMB 880 million A++ round was announced in August 2026. An earlier cumulative figure exceeded RMB 2 billion in May. The company has not confirmed a new cumulative total combining those figures."
     },
     {
       "id": "openstar-technologies",
@@ -14204,7 +14291,8 @@
           "sourceIds": [
             "PAR_OPENSTAR_PPPL",
             "PAR_OPENSTAR_TECH"
-          ]
+          ],
+          "displayText": "Tama Nui is a published D–T plant design, not demonstrated output. The website’s five-year ambition is undated and cannot establish a calendar year for first electricity."
         }
       ],
       "targets": [],
@@ -14263,7 +14351,8 @@
           "text": "Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation.. Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation.",
           "sourceIds": [
             "PAR_OPENSTAR_PPPL"
-          ]
+          ],
+          "displayText": "Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation."
         },
         {
           "id": "openstar_risk_02",
@@ -14286,7 +14375,8 @@
           "sourceIds": [
             "PAR_OPENSTAR_PPPL",
             "PAR_OPENSTAR_TECH"
-          ]
+          ],
+          "displayText": "A superconducting magnet within the chamber creates distinctive shielding, cooling, access and lifetime requirements."
         }
       ],
       "fundingSummary": "Government loan of up to NZD35m announced February 2026. Comparable current cumulative private funding not established in this record.",
@@ -14297,7 +14387,8 @@
         "PAR_OPENSTAR_TECH",
         "PAR_OPENSTAR_TEAM"
       ],
-      "rawMarkdown": "## OpenStar Technologies\n\nDevelops a levitated superconducting ring that confines plasma around its dipole field.\n\n**Approach:** Levitated dipole\n\n**Experimental fuel/status:** Prototype plasma; exact experimental fuel not carried from reviewed partner release.\n\n**Intended fuel:** D-T in the published Tama Nui plant design.\n\n**Mechanism:** Unlike an external-coil torus, the central magnet sits inside the plasma chamber. The ring must remain cold and shielded while plasma surrounds it; prospective D-T plants still require a blanket and fuel cycle.\n\n- **Engineering progress.** Junior prototype fully commissioned according to PPPL partnership announcement.\n\n- **Model or design.** Tama Nui grid-scale plant exists as a published D-T design, not demonstrated output. No precisely dated electricity target is adopted from an undated five-year website claim.\n\n**Financing snapshot:** Government loan of up to NZD35m announced February 2026. Comparable current cumulative private funding not established in this record.\n\n- Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation.. Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation.\n\n- A superconducting magnet within the chamber creates distinctive shielding, cooling, access and lifetime requirements.. A superconducting magnet within the chamber creates distinctive shielding, cooling, access and lifetime requirements.\n\n"
+      "rawMarkdown": "## OpenStar Technologies\n\nDevelops a levitated superconducting ring that confines plasma around its dipole field.\n\n**Approach:** Levitated dipole\n\n**Experimental fuel/status:** Prototype plasma; exact experimental fuel not carried from reviewed partner release.\n\n**Intended fuel:** D-T in the published Tama Nui plant design.\n\n**Mechanism:** Unlike an external-coil torus, the central magnet sits inside the plasma chamber. The ring must remain cold and shielded while plasma surrounds it; prospective D-T plants still require a blanket and fuel cycle.\n\n- **Engineering progress.** Junior prototype fully commissioned according to PPPL partnership announcement.\n\n- **Model or design.** Tama Nui grid-scale plant exists as a published D-T design, not demonstrated output. No precisely dated electricity target is adopted from an undated five-year website claim.\n\n**Financing snapshot:** Government loan of up to NZD35m announced February 2026. Comparable current cumulative private funding not established in this record.\n\n- Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation.. Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation.\n\n- A superconducting magnet within the chamber creates distinctive shielding, cooling, access and lifetime requirements.. A superconducting magnet within the chamber creates distinctive shielding, cooling, access and lifetime requirements.\n\n",
+      "displayExperimentalFuel": "Prototype plasma. The cited partner release does not specify the experimental fuel."
     },
     {
       "id": "national-ignition-facility",
@@ -15075,7 +15166,8 @@
           "evidenceType": "institution_reported_experiment",
           "sourceIds": [
             "PHY_017"
-          ]
+          ],
+          "displayText": "H-mode sustained for 102 seconds during the 2023–2024 campaign. This is a separate result from the 48 seconds at 100 million °C ion temperature."
         }
       ],
       "targets": [],
@@ -15761,7 +15853,8 @@
       "sourceIds": [
         "PHY_026"
       ],
-      "rawMarkdown": "## JT-60SA\n\nJapan-Europe research tokamak supporting ITER and future power-plant plasma scenarios. Current campaign state not independently refreshed here.\n\n**Approach:** Tokamak\n\n**Experimental fuel/status:** \n\n**Intended fuel:** \n\n**Mechanism:** \n\n- **Experimental result.** First plasma 2023-10-23\n\n**Financing snapshot:** Public infrastructure funding is not comparable with startup equity funding.\n\n"
+      "rawMarkdown": "## JT-60SA\n\nJapan-Europe research tokamak supporting ITER and future power-plant plasma scenarios. Current campaign state not independently refreshed here.\n\n**Approach:** Tokamak\n\n**Experimental fuel/status:** \n\n**Intended fuel:** \n\n**Mechanism:** \n\n- **Experimental result.** First plasma 2023-10-23\n\n**Financing snapshot:** Public infrastructure funding is not comparable with startup equity funding.\n\n",
+      "displaySummary": "Japan–Europe research tokamak supporting ITER and future power-plant plasma scenarios. This snapshot does not establish the status of its latest operating campaign."
     },
     {
       "id": "ifmif-dones",
@@ -16304,7 +16397,8 @@
       "sourceIds": [
         "PHY_035"
       ],
-      "rawMarkdown": "## WHAM\n\nUW–Madison experiment with Realta; keep the university facility distinct from the company.\n\n**Approach:** Magnetic mirror\n\n**Experimental fuel/status:** \n\n**Intended fuel:** \n\n**Mechanism:** \n\n- **Experimental result.** First plasma July 15, 2024\n\n- **Experimental result.** 17 T HTS mirror magnets\n\n**Financing snapshot:** Public infrastructure funding is not comparable with startup equity funding.\n\n"
+      "rawMarkdown": "## WHAM\n\nUW–Madison experiment with Realta; keep the university facility distinct from the company.\n\n**Approach:** Magnetic mirror\n\n**Experimental fuel/status:** \n\n**Intended fuel:** \n\n**Mechanism:** \n\n- **Experimental result.** First plasma July 15, 2024\n\n- **Experimental result.** 17 T HTS mirror magnets\n\n**Financing snapshot:** Public infrastructure funding is not comparable with startup equity funding.\n\n",
+      "displaySummary": "University of Wisconsin–Madison magnetic-mirror experiment developed with Realta. WHAM is a university facility, distinct from Realta’s proposed commercial plants."
     },
     {
       "id": "step",
@@ -25011,7 +25105,8 @@
       "text": "Announced baseline target; do not label this as commercial operation.",
       "sourceIds": [
         "PHY_021"
-      ]
+      ],
+      "displayText": "Announced baseline target for D–T research. ITER is an experimental facility and will not sell electricity."
     },
     {
       "id": "phy_target_iter2039",

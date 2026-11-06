@@ -1,0 +1,158 @@
+[
+  {
+    "id": "tae",
+    "field": "experimentalFuel",
+    "sourceText": "Experimental light-ion plasmas; no commercial p-B11 burning plasma established in the reviewed evidence. Exact current mixture not independently verified here.",
+    "displayText": "Experimental light-ion plasmas. The exact current mixture is not publicly established; no commercial proton–boron burning plasma is demonstrated."
+  },
+  {
+    "id": "tae_target_01",
+    "field": "text",
+    "sourceText": "August release targets Da Vinci 50 MWe operations in 2031. Later filing sequencing could not be fully reconciled; do not label this a confirmed grid date.",
+    "displayText": "An August 2026 release targets 50 MWe Da Vinci operations in 2031. Later filing language leaves the sequence of milestones uncertain; 2031 is a company target, not a confirmed grid date."
+  },
+  {
+    "id": "tae_risk_03",
+    "field": "text",
+    "sourceText": "Proposed merger and debt differ from equity. The filed merger is not verified closed; the supplied convertible note and additional available facility must remain separate from historic equity totals.",
+    "displayText": "Proposed merger and debt differ from equity. The merger is not verified closed. The convertible note and additional available facility are separate from historical equity financing."
+  },
+  {
+    "id": "tokamak_energy",
+    "field": "experimentalFuel",
+    "sourceText": "ST40 experimental hydrogen-isotope plasma; exact current campaign mixture not established in the reviewed sources.",
+    "displayText": "ST40 uses experimental hydrogen-isotope plasma. The exact mixture in the current campaign is not publicly established."
+  },
+  {
+    "id": "renaissance_target_01",
+    "field": "text",
+    "sourceText": "Integrate patterned magnets and liquid-metal walls into a stellarator power system; no verified current first-electricity date adopted here.",
+    "displayText": "Integrate patterned magnets and liquid-metal walls into a stellarator power system. No verified current date for first electricity is included in this snapshot."
+  },
+  {
+    "id": "realta",
+    "field": "experimentalFuel",
+    "sourceText": "D-D in the reviewed WHAM direct-conversion experiment",
+    "displayText": "D–D in the WHAM direct-conversion experiment."
+  },
+  {
+    "id": "energy_singularity",
+    "field": "experimentalFuel",
+    "sourceText": "Experimental HH70 plasma; campaign fuel details not verified in the reviewed primary releases.",
+    "displayText": "Experimental HH70 plasma. Primary releases do not establish the campaign’s fuel mixture."
+  },
+  {
+    "id": "kyoto_fusioneering_evidence_01",
+    "field": "text",
+    "sourceText": "UNITY engineering programme develops integrated heat-transfer and fuel-cycle testing; do not label externally heated tests as net fusion electricity.",
+    "displayText": "The UNITY engineering programme develops integrated heat-transfer and fuel-cycle testing. These externally heated tests do not produce net fusion electricity."
+  },
+  {
+    "id": "zap_energy_risk_03",
+    "field": "text",
+    "sourceText": "Business scope. Any future fission electricity must not be counted as demonstrated fusion electricity.",
+    "displayText": "Business scope. A fission–fusion hybrid would draw energy from both processes. Any future electrical output would need separate accounting for the fusion contribution."
+  },
+  {
+    "id": "marvel_fusion_target_04",
+    "field": "text",
+    "sourceText": "Engineering gain; preserve the company definition when available.",
+    "displayText": "Engineering gain above one is a company target for 2035. The public roadmap does not supply a complete accounting boundary for this metric."
+  },
+  {
+    "id": "marvel_fusion_risk_03",
+    "field": "text",
+    "sourceText": "Fuel. Current near-term design uses DT and retains breeding/neutron challenges; older proton-boron descriptions should not be copied forward.",
+    "displayText": "Fuel. The current near-term design uses D–T and retains tritium-breeding and neutron-management challenges. Earlier descriptions centered on proton–boron no longer represent this roadmap."
+  },
+  {
+    "id": "ex_fusion_risk_03",
+    "field": "text",
+    "sourceText": "Funding comparability. JPY 6 billion includes debt; do not label it equity or convert with an undocumented exchange rate.",
+    "displayText": "Funding comparability. The JPY 6 billion financing figure includes debt as well as equity. It is reported here in its original currency."
+  },
+  {
+    "id": "fuse_risk_03",
+    "field": "text",
+    "sourceText": "Business metrics. Radiation-testing contracts, contract-vehicle ceilings and revenue must not be charted as fusion electricity or equity funding.",
+    "displayText": "Business metrics. Radiation-testing contracts, contract-vehicle ceilings and revenue measure a testing business; they establish neither fusion electricity nor equity raised."
+  },
+  {
+    "id": "startorus",
+    "field": "experimentalFuel",
+    "sourceText": "Experimental fuel is not specified consistently in the reviewed company releases; do not infer a D-T burn.",
+    "displayText": "Company releases do not consistently specify the experimental fuel. They do not establish a D–T burn."
+  },
+  {
+    "id": "startorus",
+    "field": "fundingSummary",
+    "sourceText": "RMB880m A++ round announced August 2026; earlier cumulative financing exceeded RMB2bn in May 2026. Do not display their sum as a company-reported latest total.",
+    "displayText": "An RMB 880 million A++ round was announced in August 2026. An earlier cumulative figure exceeded RMB 2 billion in May. The company has not confirmed a new cumulative total combining those figures."
+  },
+  {
+    "id": "openstar",
+    "field": "experimentalFuel",
+    "sourceText": "Prototype plasma; exact experimental fuel not carried from reviewed partner release.",
+    "displayText": "Prototype plasma. The cited partner release does not specify the experimental fuel."
+  },
+  {
+    "id": "openstar_target_01",
+    "field": "text",
+    "sourceText": "Tama Nui grid-scale plant exists as a published D-T design, not demonstrated output. No precisely dated electricity target is adopted from an undated five-year website claim.",
+    "displayText": "Tama Nui is a published D–T plant design, not demonstrated output. The website’s five-year ambition is undated and cannot establish a calendar year for first electricity."
+  },
+  {
+    "id": "kstar_evidence_02",
+    "field": "text",
+    "sourceText": "H-mode 102 s in the same 2023–2024 campaign; do not merge metrics",
+    "displayText": "H-mode sustained for 102 seconds during the 2023–2024 campaign. This is a separate result from the 48 seconds at 100 million °C ion temperature."
+  },
+  {
+    "id": "jt60sa",
+    "field": "summary",
+    "sourceText": "Japan-Europe research tokamak supporting ITER and future power-plant plasma scenarios. Current campaign state not independently refreshed here.",
+    "displayText": "Japan–Europe research tokamak supporting ITER and future power-plant plasma scenarios. This snapshot does not establish the status of its latest operating campaign."
+  },
+  {
+    "id": "wham",
+    "field": "summary",
+    "sourceText": "UW–Madison experiment with Realta; keep the university facility distinct from the company.",
+    "displayText": "University of Wisconsin–Madison magnetic-mirror experiment developed with Realta. WHAM is a university facility, distinct from Realta’s proposed commercial plants."
+  },
+  {
+    "id": "helion_total_june",
+    "field": "scope",
+    "sourceText": "Cumulative amount reported with June announcement; do not silently update by arithmetic.",
+    "displayText": "Cumulative financing reported with the June announcement. No later total has been inferred by adding separate announcements."
+  },
+  {
+    "id": "te_2024_all_total",
+    "field": "scope",
+    "sourceText": "Combined $275 million private plus $60 million government; do not add component rows again.",
+    "displayText": "Combined financing: $275 million private capital plus $60 million government support. The component observations are included in this total."
+  },
+  {
+    "id": "proxima_bavaria_commitment",
+    "field": "scope",
+    "sourceText": "Separate Bavaria public commitment; do not treat as received equity or add to secured total.",
+    "displayText": "Separate public commitment from Bavaria. This is not received equity and is excluded from the secured-financing total."
+  },
+  {
+    "id": "thea_scaleup",
+    "field": "scope",
+    "sourceText": "ARPA-E SCALEUP award reported by company; do not add to private-equity series.",
+    "displayText": "ARPA-E SCALEUP award reported by the company, separate from private equity financing."
+  },
+  {
+    "id": "PAR_FUND_STARTORUS_A_PLUS_PLUS",
+    "field": "scope",
+    "sourceText": "A++ completed financing; do not add to a later total that may already include it.",
+    "displayText": "Completed A++ financing round. A later cumulative total could include this round; the two would not be additive."
+  },
+  {
+    "id": "phy_target_iter2036",
+    "field": "text",
+    "sourceText": "Announced baseline target; do not label this as commercial operation.",
+    "displayText": "Announced baseline target for D–T research. ITER is an experimental facility and will not sell electricity."
+  }
+]

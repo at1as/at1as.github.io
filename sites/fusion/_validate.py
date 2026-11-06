@@ -15,6 +15,9 @@ canonical = json.loads(original)
 data = json.loads((ROOT / 'data.json').read_text())
 assert data['meta']['canonicalSha256'] == hashlib.sha256(original).hexdigest()
 assert data['meta']['snapshot'] == canonical['meta']['as_of']
+report = (ROOT / '_handoff/01_RESEARCH_REPORT.md').read_bytes()
+assert (ROOT / 'research-report.md').read_bytes() == report
+assert (ROOT / '_research.md').read_bytes() == report
 assert 'missingCompanionDataset' not in data['meta']
 sources = {s['id']: s for s in data['sources']}
 entities = {e['canonicalId']: e for e in data['entities']}
@@ -83,6 +86,16 @@ for s in canonical['sources']:
 assert data['powerBalance'] == canonical['power_balance']
 assert data['storyContent'] == canonical['story_content']
 assert data['approaches'] == canonical['approaches']
+
+copy_records = {**entities, **claims, **funding, **{r['id']: r for e in data['entities'] for r in e['assessment']}, **{r['id']: r for r in data['history']}}
+for edit in json.loads((ROOT / '_copy.json').read_text()):
+    record = copy_records[edit['id']]
+    field = edit['field']
+    assert record[field] == edit['sourceText'], edit['id']
+    assert record['display' + field[0].upper() + field[1:]] == edit['displayText'], edit['id']
+for entity in data['entities']:
+    for risk in entity['assessment']:
+        assert '..' not in risk['displayText'], risk['id']
 
 # Shared sites and hybrid organization roles must survive adapter grouping.
 assert entities['realta']['locations'][-1]['id'] == entities['wham']['locations'][0]['id']
