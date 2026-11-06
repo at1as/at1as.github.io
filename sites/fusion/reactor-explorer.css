@@ -853,21 +853,6 @@ dialog:has(.company-reactor) {
   cursor: pointer;
 }
 
-#comparison-machine {
-  margin-top: 30px;
-  padding-top: 24px;
-  border-top: 1px solid #bdcbbd;
-}
-#comparison-machine > label {
-  max-width: 310px;
-}
-#comparison-copy {
-  font-size: 12px;
-  color: #587069;
-  margin-top: 16px;
-  max-width: 800px;
-}
-
 /* Keep the model controls readable at touch and desktop sizes. */
 .reactor-parts button {
   font-size: 11px;
@@ -1057,7 +1042,7 @@ dialog:has(.company-reactor) {
 .machine-workspace .reactor-explorer .reactor-toolbar > div:first-child {
   display: none;
 }
-.machine-workspace .reactor-explorer .reactor-body {
+.reactor-explorer .reactor-body {
   align-items: start;
 }
 .machine-workspace .reactor-explorer .reactor-stage {
@@ -1065,7 +1050,8 @@ dialog:has(.company-reactor) {
   min-height: 0;
   flex: none;
 }
-.machine-workspace .reactor-explorer .reactor-inspector {
+.machine-workspace .reactor-explorer .reactor-inspector,
+.company-reactor .reactor-inspector {
   height: var(--inspector-height, calc(var(--model-height) + 192px));
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -1073,7 +1059,7 @@ dialog:has(.company-reactor) {
   scrollbar-width: thin;
   padding: 16px;
 }
-.machine-workspace .reactor-explorer .reactor-inspector:focus-visible {
+.reactor-explorer .reactor-inspector:focus-visible {
   outline: 2px solid #ffae7a;
   outline-offset: -3px;
 }
@@ -1084,25 +1070,25 @@ dialog:has(.company-reactor) {
 .machine-workspace .reactor-explorer .reactor-part-detail h4 {
   margin: 8px 0 12px;
 }
-.machine-workspace .reactor-explorer .reactor-legend {
+.reactor-explorer .reactor-legend {
   padding: 0 18px 8px;
   min-height: 26px;
 }
-.machine-workspace .reactor-interaction-hint {
+.reactor-explorer .reactor-interaction-hint {
   padding: 6px 0;
 }
-.machine-workspace .reactor-display-options summary {
+.reactor-explorer .reactor-display-options summary {
   margin: 8px 18px;
 }
-.machine-workspace .reactor-layer-controls {
+.reactor-explorer .reactor-layer-controls {
   padding: 0 18px 6px;
   gap: 10px;
 }
-.machine-workspace .reactor-explode {
+.reactor-explorer .reactor-explode {
   padding: 6px 18px 12px;
   min-height: 44px;
 }
-.machine-workspace .reactor-explode input {
+.reactor-explorer .reactor-explode input {
   height: 24px;
   min-height: 24px;
   margin: 0;
@@ -1156,7 +1142,7 @@ dialog:has(.company-reactor) {
   .machine-choice button:last-child {
     grid-column: 3;
   }
-  .machine-workspace .reactor-explode input {
+  .reactor-explorer .reactor-explode input {
     min-height: 32px;
   }
   .machine-workspace .reactor-loading {
@@ -1184,13 +1170,14 @@ dialog:has(.company-reactor) {
   .machine-workspace .reactor-explorer .reactor-stage {
     height: 330px;
   }
-  .machine-workspace .reactor-explorer .reactor-inspector {
+  .machine-workspace .reactor-explorer .reactor-inspector,
+  .company-reactor .reactor-inspector {
     height: auto;
     max-height: none;
     overflow: visible;
     padding: 20px;
   }
-  .machine-workspace .reactor-explorer .reactor-legend {
+  .reactor-explorer .reactor-legend {
     padding: 0 16px 8px;
     min-height: 52px;
   }
@@ -1201,8 +1188,7 @@ dialog:has(.company-reactor) {
 }
 
 .machine-notes,
-.operating-cycle,
-#comparison-machine {
+.operating-cycle {
   margin: 0;
   padding: 0;
   border-top: 1px solid #bfcdc0;
@@ -1211,8 +1197,7 @@ dialog:has(.company-reactor) {
   margin-top: 22px;
 }
 .machine-notes > summary,
-.operating-cycle > summary,
-.machine-comparison > summary {
+.operating-cycle > summary {
   cursor: pointer;
   min-height: 62px;
   padding: 20px 0;
@@ -1250,10 +1235,21 @@ dialog:has(.company-reactor) {
 .operating-cycle > .quiet {
   margin: 18px 0 24px;
 }
-.machine-comparison #comparison-copy {
-  margin-bottom: 24px;
-}
-
 .reactor-legend .electric::before {
   background: #c7a2ed;
+}
+
+.reactor-layer-controls label:has(input:disabled) {
+  opacity: 0.45;
+  cursor: default;
+}
+.company-reactor {
+  --model-height: clamp(260px, calc(100svh - 430px), 470px);
+}
+@media (min-width: 761px) {
+  .company-reactor .reactor-stage {
+    height: var(--model-height);
+    min-height: 0;
+    flex: none;
+  }
 }

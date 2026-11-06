@@ -559,12 +559,6 @@ p + p {
   font-size: 13px;
   margin-top: 15px;
 }
-#comparison-machine {
-  margin-top: 24px;
-}
-#comparison-machine > label {
-  max-width: 350px;
-}
 .boundaries {
   background: #f0eee6;
   border: 1px solid #c7cec1;
@@ -1207,7 +1201,10 @@ summary {
   text-align: right;
 }
 .risk-toggle[aria-expanded="true"] {
-  color: #2e6451;
+  color: #234b3c;
+  background: #dce8dc;
+  box-shadow: inset 4px 0 #416958;
+  padding-inline: 14px;
   border-top-color: #628371;
 }
 .risk-toggle[aria-expanded="true"]::after {
@@ -2599,4 +2596,144 @@ h2 {
 .boundary-caption p {
   margin-top: 14px;
   line-height: 1.8;
+}
+
+/* A compact overview leads into the four ways to explore the same records. */
+.approach-overview {
+  margin-bottom: 30px;
+  padding: 24px;
+  background: #eef1e7;
+  border: 1px solid #c6d0c1;
+  border-radius: 6px;
+}
+.approach-overview-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.approach-overview h3 {
+  font-size: 30px;
+}
+.approach-overview-heading p,
+.approach-overview-note {
+  font-size: 12px;
+  color: #52655a;
+}
+.approach-overview-note {
+  margin-top: 18px;
+  line-height: 1.7;
+}
+.approach-chart {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px 24px;
+}
+.approach-chart button {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(36px, 1fr) 20px;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.35;
+}
+.approach-chart button:hover,
+.approach-chart button[aria-pressed="true"] {
+  background: #dce8dc;
+  border-color: #8da492;
+}
+.approach-bar-track {
+  height: 8px;
+  background: #d6dfd1;
+  border-radius: 2px;
+}
+.approach-bar-track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #547b66;
+}
+.approach-chart strong {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.atlas-views {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.atlas-views button {
+  min-height: 78px;
+  padding: 15px 18px;
+  border: 1px solid #aabbad;
+  background: #f8f8f0;
+  text-align: left;
+}
+.atlas-views strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+}
+.atlas-views span {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #54665c;
+  line-height: 1.5;
+}
+.atlas-views button:hover {
+  background: #e3ebde;
+  border-color: #67856f;
+}
+.atlas-views button.active {
+  background: #294b3c;
+  border-color: #294b3c;
+  color: #fffdf5;
+}
+.atlas-views button.active span {
+  color: #d5e2d6;
+}
+.atlas-controls {
+  scroll-margin-top: 90px;
+}
+@media (max-width: 1000px) {
+  .approach-chart {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 680px) {
+  .approach-overview {
+    padding: 20px 14px;
+  }
+  .approach-overview-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .approach-chart {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+  .approach-chart button {
+    font-size: 13px;
+  }
+  .atlas-views {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .atlas-views button {
+    padding: 12px;
+  }
+  .atlas-views strong {
+    font-size: 14px;
+  }
+  .atlas-controls {
+    scroll-margin-top: 145px;
+  }
 }
