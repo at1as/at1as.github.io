@@ -93,16 +93,9 @@
           <figcaption>
             <span class="legend-line orange"></span> Tokamak concept: magnetic
             fields confine a ring-shaped plasma
-            <span>Schematic geometry · not to scale</span>
           </figcaption>
         </figure>
       </section>
-      <div class="chapter-strip wrap">
-        <a href="#learn"><b>01</b> From fuel to electricity</a
-        ><a href="#machines"><b>02</b> How the machines work</a
-        ><a href="#gain"><b>03</b> What gain measures</a
-        ><a href="#landscape"><b>04</b> Projects around the world</a>
-      </div>
       <section id="learn" class="section wrap">
         <div class="section-heading">
           <p class="eyebrow">01 / FROM NUCLEI TO A POWER PLANT</p>
@@ -172,36 +165,37 @@
             </div>
             <div class="reactor-slot" id="reactor-explorer"></div>
           </div>
-          <div class="machine-options">
+          <div class="machine-options" id="fast-ignition-control" hidden>
             <label
-              ><input id="compare-machines" type="checkbox" /> Compare
-              configurations</label
-            >
-            <label id="fast-ignition-control" hidden
               ><input id="fast-ignition" type="checkbox" /> Separate
               fast-ignition stage</label
             >
           </div>
-          <div class="machine-overview-row">
-            <div>
-              <p class="eyebrow">
-                <span id="machine-family"></span> ·
-                <span id="machine-index"></span>
-              </p>
-              <h3 id="machine-name"></h3>
-              <p id="machine-description"></p>
+          <details class="machine-notes">
+            <summary>About this configuration</summary>
+            <div class="machine-notes-body">
+              <div class="machine-overview-row">
+                <div>
+                  <p class="eyebrow">
+                    <span id="machine-family"></span> ·
+                    <span id="machine-index"></span>
+                  </p>
+                  <h3 id="machine-name"></h3>
+                  <p id="machine-description"></p>
+                </div>
+              </div>
+              <div class="machine-context-row">
+                <div class="constraint">
+                  <span>ENGINEERING CHALLENGE</span>
+                  <p id="machine-constraint"></p>
+                </div>
+                <div>
+                  <div id="machine-entities"></div>
+                  <div id="machine-sources"></div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="machine-context-row">
-            <div class="constraint">
-              <span>ENGINEERING CHALLENGE</span>
-              <p id="machine-constraint"></p>
-            </div>
-            <div>
-              <div id="machine-entities"></div>
-              <div id="machine-sources"></div>
-            </div>
-          </div>
+          </details>
           <details class="operating-cycle">
             <summary>Read the operating sequence</summary>
             <div class="cycle-layout">
@@ -228,20 +222,23 @@
                 <p id="machine-stage-text"></p>
               </div>
             </div>
+            <p class="quiet">
+              Models show operating principles rather than construction details.
+              Operating sequences are slowed for explanation and do not
+              represent actual cycle times.
+            </p>
           </details>
-          <div id="comparison-machine" hidden>
-            <label
-              >Compare with
-              <select id="second-approach"></select
-            ></label>
-            <div class="reactor-slot" id="comparison-diagram"></div>
+          <details id="comparison-machine" class="machine-comparison">
+            <summary>Compare another configuration</summary>
+            <div class="machine-workspace">
+              <div class="machine-picker">
+                <label for="second-approach">Compare with</label>
+                <select id="second-approach"></select>
+              </div>
+              <div class="reactor-slot" id="comparison-diagram"></div>
+            </div>
             <div id="comparison-copy"></div>
-          </div>
-          <p class="quiet">
-            Models show operating principles rather than construction details.
-            Operating sequences are slowed for explanation and do not represent
-            actual cycle times.
-          </p>
+          </details>
         </div>
       </section>
       <section id="gain" class="section wrap">
@@ -304,7 +301,6 @@
         <div class="calculator">
           <div class="calculator-heading">
             <div>
-              <p class="eyebrow">EXPLORE THE ASSUMPTIONS</p>
               <h3>Power balance</h3>
             </div>
             <div class="segmented" id="mode-tabs">
@@ -317,7 +313,6 @@
           <div class="calculator-grid">
             <div class="calc-controls" id="calc-controls"></div>
             <div class="calc-result">
-              <p class="eyebrow">WHOLE-PLANT ELECTRICAL BALANCE</p>
               <div id="net-number" aria-live="polite"></div>
               <div id="power-flow"></div>
               <div class="signed-axis" id="signed-axis"></div>
@@ -372,7 +367,7 @@
             <div id="record-chart"></div>
             <div id="record-table"></div>
           </div>
-          <aside>
+          <aside id="nif-record-note">
             <h4>Ignition ≠ electrical break-even</h4>
             <p>
               NIF reached physical hot-spot ignition in August 2021. Target gain
@@ -410,39 +405,53 @@
               ><button data-view="funding">Financing</button>
             </div>
           </div>
-          <div class="filters">
-            <label class="search-label"
-              >Search the atlas<input
-                id="atlas-search"
-                type="search"
-                placeholder="Company, machine, or place…" /></label
-            ><label
-              >Approach<select id="filter-family">
-                <option value="">All approaches</option>
-              </select></label
-            ><label
-              >Fuel<select id="filter-fuel">
-                <option value="">All fuels</option>
-                <option>D-T</option>
-                <option>D-He3</option>
-                <option>p-B11</option>
-              </select></label
-            ><label
-              >Role<select id="filter-role">
-                <option value="">All organizations</option>
-                <option value="developer">Developers</option>
-                <option value="public">Public research</option>
-                <option value="supplier">Suppliers</option>
-              </select></label
-            ><label
-              >Country<select id="filter-country">
-                <option value="">All countries</option>
-              </select></label
-            ><label
-              >Evidence<select id="filter-evidence">
-                <option value="">All categories</option>
-              </select></label
-            >
+          <div class="atlas-controls">
+            <div class="atlas-primary-filters">
+              <label
+                >Search the atlas<input
+                  id="atlas-search"
+                  type="search"
+                  placeholder="Company, machine, or place…"
+              /></label>
+              <label
+                >Approach<select id="filter-family">
+                  <option value="">All approaches</option>
+                </select></label
+              >
+            </div>
+            <details id="atlas-more-filters">
+              <summary>
+                More filters <span id="advanced-filter-count"></span>
+              </summary>
+              <div class="filters">
+                <label
+                  >Fuel<select id="filter-fuel">
+                    <option value="">All fuels</option>
+                    <option>D-T</option>
+                    <option>D-He3</option>
+                    <option>p-B11</option>
+                  </select></label
+                >
+                <label
+                  >Role<select id="filter-role">
+                    <option value="">All organizations</option>
+                    <option value="developer">Developers</option>
+                    <option value="public">Public research</option>
+                    <option value="supplier">Suppliers</option>
+                  </select></label
+                >
+                <label
+                  >Country<select id="filter-country">
+                    <option value="">All countries</option>
+                  </select></label
+                >
+                <label
+                  >Evidence<select id="filter-evidence">
+                    <option value="">All categories</option>
+                  </select></label
+                >
+              </div>
+            </details>
           </div>
           <div class="results-line">
             <p id="result-count" role="status"></p>

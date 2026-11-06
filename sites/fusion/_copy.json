@@ -154,5 +154,197 @@
     "field": "text",
     "sourceText": "Announced baseline target; do not label this as commercial operation.",
     "displayText": "Announced baseline target for D–T research. ITER is an experimental facility and will not sell electricity."
+  },
+  {
+    "id": "risk-dimension:fuel_physics",
+    "field": "interpretation",
+    "sourceText": "A result with hydrogen or D-D is informative but does not demonstrate D-T or p-B11 plant performance.",
+    "displayText": "Experiments with hydrogen or deuterium help establish how a plasma behaves. A plant using D–T or proton–boron still needs evidence for that fuel’s reaction rates and energy losses."
+  },
+  {
+    "id": "risk-dimension:fuel_physics",
+    "field": "evidenceNeeded",
+    "sourceText": "Measured reaction yield, ion/electron temperatures, radiation losses and fuel composition with uncertainty.",
+    "displayText": "Fuel composition, fusion yield, ion and electron temperatures, and radiation losses, with measurement uncertainties."
+  },
+  {
+    "id": "risk-dimension:confinement_gain",
+    "field": "interpretation",
+    "sourceText": "High temperature or a long pulse alone does not answer the gain question.",
+    "displayText": "The fuel must be hot and dense enough, and retain its energy long enough, for fusion to compete with losses. Temperature and pulse duration alone do not establish gain."
+  },
+  {
+    "id": "risk-dimension:confinement_gain",
+    "field": "evidenceNeeded",
+    "sourceText": "Simultaneous density, temperature, confinement and actual gain at a declared boundary.",
+    "displayText": "Density, temperature, and energy confinement measured together, alongside fusion gain with a clearly defined measurement boundary."
+  },
+  {
+    "id": "risk-dimension:heating_driver",
+    "field": "interpretation",
+    "sourceText": "An efficient small driver or isolated subsystem may not scale to the required duty cycle.",
+    "displayText": "Heating and compression systems require electricity. Their efficiency must hold at the power, pulse energy, and operating rate a plant needs."
+  },
+  {
+    "id": "risk-dimension:heating_driver",
+    "field": "evidenceNeeded",
+    "sourceText": "End-to-end electrical efficiency at required energy, power, repetition and component lifetime.",
+    "displayText": "Electricity consumed versus energy delivered to the fuel, measured at the intended operating conditions and over the component’s working life."
+  },
+  {
+    "id": "risk-dimension:conversion",
+    "field": "interpretation",
+    "sourceText": "Energy recovered from a charged system may largely be previously supplied energy.",
+    "displayText": "A thermal plant loses energy when converting heat to electricity. Direct-conversion designs also have losses; recovered electricity can include energy supplied earlier to drive the pulse."
+  },
+  {
+    "id": "risk-dimension:conversion",
+    "field": "evidenceNeeded",
+    "sourceText": "Measured thermal/direct conversion efficiency and full recirculating electrical ledger.",
+    "displayText": "Measured conversion efficiency and a complete electrical balance, including heating, cooling, pumps, fuel processing, and changes in stored energy."
+  },
+  {
+    "id": "risk-dimension:repetition",
+    "field": "interpretation",
+    "sourceText": "One successful shot, high repetition at low power and full-rate high-output operation are separate results.",
+    "displayText": "A pulsed design must repeat its full cycle, including fuel delivery, chamber recovery, and driver recharge where needed. A continuously operating design must sustain fusion while its supporting systems keep running."
+  },
+  {
+    "id": "risk-dimension:repetition",
+    "field": "evidenceNeeded",
+    "sourceText": "Long-run pulse/duty-cycle data at relevant output including failures, scheduled downtime and consumables.",
+    "displayText": "Long runs at the required output and pulse rate or operating duration, including failed shots, recovery time, downtime, and consumables."
+  },
+  {
+    "id": "risk-dimension:heat_exhaust",
+    "field": "interpretation",
+    "sourceText": "Successful confinement can make exhaust more demanding.",
+    "displayText": "Heat and particles must leave without eroding surfaces or contaminating the plasma. Cooling and exhaust systems have to work while the reactor maintains its fusion conditions."
+  },
+  {
+    "id": "risk-dimension:heat_exhaust",
+    "field": "evidenceNeeded",
+    "sourceText": "Integrated heat-flux control, impurity management, coolant conditions and component tests.",
+    "displayText": "Heat-load and cooling measurements, impurity levels, and component tests under the intended operating conditions."
+  },
+  {
+    "id": "risk-dimension:fuel_cycle",
+    "field": "interpretation",
+    "sourceText": "Advanced fuel substitutes one set of constraints for another; it does not make fuel automatically free or available.",
+    "displayText": "A D–T plant needs an initial tritium supply, then must breed replacement tritium from lithium and recover it fast enough to keep running. Other fuels bring different supply and processing requirements."
+  },
+  {
+    "id": "risk-dimension:fuel_cycle",
+    "field": "evidenceNeeded",
+    "sourceText": "Integrated mass balance, extraction/recycle rates, inventories, retention and leakage; D-T additionally net breeding.",
+    "displayText": "An integrated fuel balance: supply and breeding rates, extraction and recycling times, stored inventory, material retention, and losses, including radioactive decay where relevant."
+  },
+  {
+    "id": "risk-dimension:materials",
+    "field": "interpretation",
+    "sourceText": "Short discharges establish little about multiyear component life.",
+    "displayText": "Neutrons can change material properties, while heat and repeated loading add stress. Component lifetimes depend on the fuel, particle energies, accumulated exposure, and operating temperature."
+  },
+  {
+    "id": "risk-dimension:materials",
+    "field": "evidenceNeeded",
+    "sourceText": "Irradiation and component tests at relevant spectrum, fluence, temperature and stress, plus replacement plans.",
+    "displayText": "Irradiation and component tests at relevant particle energies, exposure, temperature, and stress, with a justified lifetime estimate."
+  },
+  {
+    "id": "risk-dimension:maintenance",
+    "field": "interpretation",
+    "sourceText": "A cheaper core can still be an expensive plant if downtime is frequent.",
+    "displayText": "Worn components must be accessible for replacement. Where radiation prevents hands-on work, remote handling and the time needed to restore operation become part of the plant design."
+  },
+  {
+    "id": "risk-dimension:maintenance",
+    "field": "evidenceNeeded",
+    "sourceText": "Demonstrated remote access, validated replacement duration, component life and waste handling.",
+    "displayText": "Demonstrated access and replacement procedures, realistic outage durations, and plans for handling removed components and waste."
+  },
+  {
+    "id": "risk-dimension:integration",
+    "field": "interpretation",
+    "sourceText": "A set of independently successful components does not demonstrate an integrated plant.",
+    "displayText": "The reactor, power conversion, cooling, and fuel systems must work together. Component tests establish parts of that case; the complete plant still needs an operating demonstration."
+  },
+  {
+    "id": "risk-dimension:integration",
+    "field": "evidenceNeeded",
+    "sourceText": "Metered complete-cycle energy balance with all auxiliaries and storage state restored, then repeat operation.",
+    "displayText": "Metered net electricity over complete operating cycles, with every auxiliary load included and energy stores returned to their starting state."
+  },
+  {
+    "id": "risk-dimension:financing_economics",
+    "field": "interpretation",
+    "sourceText": "Capital raised is capacity to attempt the next milestone, not proof it can be reached.",
+    "displayText": "Electricity cost depends on construction, financing, operating life, and how much time the plant actually generates. A funding announcement alone does not establish those costs."
+  },
+  {
+    "id": "risk-dimension:financing_economics",
+    "field": "evidenceNeeded",
+    "sourceText": "Cost scope, financing terms, capex, availability, lifetime, consumables, maintenance and electricity-market assumptions.",
+    "displayText": "A costed plant design with explicit assumptions for construction, financing, maintenance, component replacement, fuel or targets, and operating availability."
+  },
+  {
+    "id": "risk-dimension:licensing_siting",
+    "field": "interpretation",
+    "sourceText": "A lighter regulatory category reduces one burden but does not remove permitting or engineering obligations.",
+    "displayText": "A proposed plant needs a site and approvals suited to its design and location. Cooling infrastructure and a grid connection must be secured as part of delivery."
+  },
+  {
+    "id": "risk-dimension:licensing_siting",
+    "field": "evidenceNeeded",
+    "sourceText": "Applicable license, environmental/site approvals, cooling and grid agreements, not merely a national policy statement.",
+    "displayText": "The applicable licences, environmental and site approvals, and cooling and grid agreements, with their status and remaining conditions stated."
+  },
+  {
+    "id": "risk-dimension:evidence_quality",
+    "field": "interpretation",
+    "sourceText": "Unknown public evidence must be shown as unknown; company-authored peer review is not the same as replication.",
+    "displayText": "A useful result identifies what was measured, how it was measured, and its uncertainty. Peer review and independent replication provide different kinds of scrutiny."
+  },
+  {
+    "id": "risk-dimension:evidence_quality",
+    "field": "evidenceNeeded",
+    "sourceText": "Method, measurement boundary, uncertainty, raw/result detail, peer review and independent verification where available.",
+    "displayText": "Methods, measurement boundaries, uncertainties, and enough experimental detail to assess the claim, with independent checks identified where available."
+  },
+  {
+    "id": "risk-theme:plasma_and_fuel_physics",
+    "field": "question",
+    "sourceText": "Can the intended fuel and configuration reach useful performance?",
+    "displayText": "Can the intended fuel produce enough fusion under the required conditions?"
+  },
+  {
+    "id": "risk-theme:electrical_balance",
+    "field": "question",
+    "sourceText": "Does the complete plant return more electricity than it consumes?",
+    "displayText": "How much electricity is left after running the entire plant?"
+  },
+  {
+    "id": "risk-theme:sustained_operation",
+    "field": "question",
+    "sourceText": "Can the process sustain or repeat at power-plant duty?",
+    "displayText": "Can the machine keep operating at the required output?"
+  },
+  {
+    "id": "risk-theme:fuel_cycle",
+    "field": "question",
+    "sourceText": "Can the plant obtain, process and replenish fuel at its own operating rate?",
+    "displayText": "Can the fuel supply keep up with operation?"
+  },
+  {
+    "id": "risk-theme:materials_and_maintenance",
+    "field": "question",
+    "sourceText": "Can components survive, be replaced and permit useful availability?",
+    "displayText": "How long will components last, and how long will replacement take?"
+  },
+  {
+    "id": "risk-theme:delivery_and_economics",
+    "field": "question",
+    "sourceText": "Can the complete facility be financed, built, permitted and operated economically?",
+    "displayText": "What will it take to build and operate the complete plant?"
   }
 ]

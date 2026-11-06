@@ -145,6 +145,7 @@ results = [{**r, 'canonicalId': r['id'], 'entityId': entity_ids[r['entity_id']],
             'qualifier': 'approximate' if 'approximately' in str(r.get('reported_display', '')) else 'reported',
             'category': 'Experimental result', 'sourceIds': r['source_ids']} for r in C['records']]
 risks = [{**r, 'name': r['label'], 'evidenceNeeded': r['evidence_required'], 'sourceIds': r['source_ids']} for r in C['risk_dimensions']]
+risk_themes = [dict(t) for t in C['risk_themes']]
 glossary = [{**g, 'distinction': g['do_not_confuse_with'], 'sourceIds': g['source_ids']} for g in C['glossary']]
 
 # Reader-facing edits keep the exact source wording alongside the display copy.
@@ -153,6 +154,8 @@ copy_overrides = json.loads((ROOT / '_copy.json').read_text())
 copy_records = {e['canonicalId']: e for e in entities}
 copy_records.update({r['id']: r for e in entities for r in e['claims'] + e['assessment'] + e['funding']})
 copy_records.update({r['id']: r for r in history})
+copy_records.update({'risk-dimension:' + r['id']: r for r in risks})
+copy_records.update({'risk-theme:' + t['id']: t for t in risk_themes})
 for edit in copy_overrides:
     record = copy_records[edit['id']]
     field = edit['field']
@@ -177,7 +180,7 @@ data = {'meta': {**C['meta'], 'subtitle': C['meta']['public_title'], 'snapshot':
         'entities': entities, 'sites': [adapt_site(s) for s in C['sites']], 'sources': sources,
         'history': history, 'results': results, 'risks': risks, 'glossary': glossary, 'fuels': fuels, 'gainBoundaries': gain_boundaries,
         'approaches': C['approaches'], 'powerBalance': C['power_balance'], 'storyContent': C['story_content'],
-        'riskThemes': C['risk_themes'], 'approachRiskProfiles': C['approach_risk_profiles'],
+        'riskThemes': risk_themes, 'approachRiskProfiles': C['approach_risk_profiles'],
         'evidenceCategories': C['evidence_categories'], 'evidenceStates': C['evidence_states'],
         'qualityNotes': C['quality_notes'], 'sectorContext': C['sector_context'], 'metrics': C['metrics'],
         'amountOperatorLabels': C['amount_operator_labels'], 'sourceAliases': C['source_aliases'],

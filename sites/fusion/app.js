@@ -253,8 +253,8 @@ function reaction() {
   const reactionFocus = document.activeElement?.dataset.reaction;
   $("#reaction-steps").innerHTML = reactionSteps
     .map(
-      ([t, d], i) =>
-        `<button class="reaction-step ${i === s ? "active" : ""}" data-reaction="${i}" aria-pressed="${i === s}"><span class="number">0${i + 1}</span><span><strong class="step-title">${t}</strong><span class="step-description">${d}</span></span></button>`,
+      ([t], i) =>
+        `<button class="reaction-step ${i === s ? "active" : ""}" data-reaction="${i}" aria-pressed="${i === s}"><span class="number">0${i + 1}</span><strong class="step-title">${t}</strong></button>`,
     )
     .join("");
   if (reactionFocus !== undefined)
@@ -363,8 +363,7 @@ function machine() {
   compareMachine();
 }
 function compareMachine() {
-  const open = $("#compare-machines").checked;
-  $("#comparison-machine").hidden = !open;
+  const open = $("#comparison-machine").open;
   if (!open) {
     releaseReactor($("#comparison-diagram"));
     return;
@@ -396,7 +395,7 @@ $("#fast-ignition").onchange = (e) => {
 };
 $("#approach-select").onchange = (e) => selectMachine(e.target.value);
 $("#second-approach").onchange = compareMachine;
-$("#compare-machines").onchange = compareMachine;
+$("#comparison-machine").addEventListener("toggle", compareMachine);
 $("#machine-back").onclick = () => {
   stopMachine();
   machineStage--;
@@ -608,6 +607,7 @@ function recordConditions(r) {
 function records() {
   if (!data) return;
   const mode = $("#record-select").value;
+  $("#nif-record-note").hidden = mode !== "nif";
   const rows = data.results.filter((r) =>
     mode === "nif"
       ? r.metric === "target gain"
@@ -688,6 +688,16 @@ function entityCard(e) {
 }
 function atlas() {
   if (!data) return;
+  const advancedCount = $$("#atlas-more-filters select").filter(
+    (s) => s.value,
+  ).length;
+  $("#advanced-filter-count").textContent = advancedCount
+    ? `· ${advancedCount} active`
+    : "";
+  $("#clear-filters").hidden =
+    !advancedCount &&
+    !$("#filter-family").value &&
+    !$("#atlas-search").value.trim();
   const entities = selectedEntities();
   $$("[data-view]").forEach((b) => {
     b.classList.toggle("active", b.dataset.view === view);
@@ -883,7 +893,7 @@ function compareDetail(fundingView = false) {
                     const notes = e.assessment.filter((a) =>
                       (a.theme_ids || []).includes(t.id),
                     );
-                    return `<h4>${esc(t.label)}</h4><p>${esc(t.question)}</p>${notes.length ? notes.map((a) => `<p><strong>Assessment:</strong> ${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}`).join("") : "<p>No separate assessment for this question is included in the snapshot. The reported evidence appears below.</p>"}`;
+                    return `<h4>${esc(t.label)}</h4><p>${esc(t.displayQuestion || t.question)}</p>${notes.length ? notes.map((a) => `<p><strong>Assessment:</strong> ${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}`).join("") : "<p>No separate assessment for this question is included in the snapshot. The reported evidence appears below.</p>"}`;
                   })
                   .join("") +
                 `<h4>Included evidence</h4>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}`
@@ -927,19 +937,44 @@ function sourceList() {
       : "");
 }
 function riskQuestions() {
-  $("#risk-questions").innerHTML = data.riskThemes
-    .map(
-      (t, i) =>
-        `<details class="risk-item"><summary><span><span class="number">0${i + 1}</span>${esc(t.label)}</span></summary><p><strong>${esc(t.question)}</strong></p>${data.risks
-          .filter((r) => t.dimension_ids.includes(r.id))
-          .map(
-            (r) =>
-              `<h4>${esc(r.name)}</h4><p>${esc(r.interpretation)}</p><p>Evidence to look for: ${esc(r.evidenceNeeded)}</p><div class="citation">${citations(r.sourceIds)}</div>`,
-          )
-          .join("")}</details>`,
-    )
+  const dimensions = new Map(data.risks.map((r) => [r.id, r]));
+  const topics = data.riskThemes.map((t, i) => {
+    const checks = t.dimension_ids
+      .map((id) => dimensions.get(id))
+      .filter(Boolean);
+    const sourceIds = [...new Set(checks.flatMap((r) => r.sourceIds))];
+    const toggleId = `risk-toggle-${t.id}`;
+    const panelId = `risk-panel-${t.id}`;
+    return `<h3 class="risk-heading" style="--risk-column:${(i % 2) + 1}"><button class="risk-toggle" id="${toggleId}" data-risk-toggle="${t.id}" aria-expanded="false" aria-controls="${panelId}"><span class="number">${String(i + 1).padStart(2, "0")}</span><span>${esc(t.label)}</span></button></h3>
+      <section class="risk-panel" id="${panelId}" aria-labelledby="${toggleId}" hidden>
+        <p class="risk-question">${esc(t.displayQuestion || t.question)}</p>
+        ${checks.map((r) => `<div class="risk-check"><h4>${esc(r.name)}</h4><p>${esc(r.displayInterpretation || r.interpretation)}</p><p class="risk-evidence"><strong>Evidence</strong> ${esc(r.displayEvidenceNeeded || r.evidenceNeeded)}</p></div>`).join("")}
+        <details class="risk-references"><summary>Sources · ${sourceIds.length}</summary><div class="citation">${citations(sourceIds)}</div></details>
+      </section>`;
+  });
+  $("#risk-questions").innerHTML = topics
+    .reduce((rows, topic, i) => {
+      if (i % 2 === 0) rows.push([]);
+      rows.at(-1).push(topic);
+      return rows;
+    }, [])
+    .map((row) => `<div class="risk-group">${row.join("")}</div>`)
     .join("");
 }
+function toggleRisk(button) {
+  const opening = button.getAttribute("aria-expanded") !== "true";
+  const top = button.getBoundingClientRect().top;
+  $$(".risk-toggle").forEach((b) => {
+    const active = b === button && opening;
+    b.setAttribute("aria-expanded", String(active));
+    document.getElementById(b.getAttribute("aria-controls")).hidden = !active;
+  });
+  // Keep the activated heading in place when a panel above it closes.
+  const shift = button.getBoundingClientRect().top - top;
+  if (Math.abs(shift) > 1) window.scrollBy({ top: shift, behavior: "instant" });
+  markChapter();
+}
+
 function historyDetail() {
   modal(
     "SELECTED HISTORY",
@@ -961,6 +996,7 @@ function fuelDetail() {
 document.addEventListener("click", (e) => {
   const b = e.target.closest("button,[data-cluster]");
   if (!b) return;
+  if (b.dataset.riskToggle) toggleRisk(b);
   if (b.dataset.reaction !== undefined) {
     stopReaction();
     reactionStage = +b.dataset.reaction;
@@ -1076,6 +1112,20 @@ $("#source-search").oninput = () => {
   sourceList();
 };
 async function init() {
+  const initialHash = location.hash;
+  const anchorListeners = new AbortController();
+  let readerHasNavigated = false;
+  for (const event of [
+    "pointerdown",
+    "wheel",
+    "touchstart",
+    "keydown",
+    "hashchange",
+  ])
+    addEventListener(event, () => (readerHasNavigated = true), {
+      passive: true,
+      signal: anchorListeners.signal,
+    });
   reaction();
   boundaries();
   const options = approaches
@@ -1128,6 +1178,9 @@ async function init() {
     ["family", "fuel", "role", "country", "evidence"].forEach(
       (k) => ($("#filter-" + k).value = params.get(k) || ""),
     );
+    $("#atlas-more-filters").open = $$("#atlas-more-filters select").some(
+      (s) => s.value,
+    );
     $$("[data-cites]").forEach(
       (el) => (el.innerHTML = citations(el.dataset.cites.split(" "))),
     );
@@ -1168,10 +1221,21 @@ async function init() {
           ? eid
           : data.entities.find((e) => e.canonicalId === eid)?.id,
       );
+    // The atlas changes page height after the browser's first fragment jump.
+    // Restore the requested chapter once its content and fonts are laid out,
+    // unless the reader has already interacted or opened a profile.
+    await document.fonts.ready;
+    if (!eid && !readerHasNavigated && initialHash === location.hash) {
+      const target = document.getElementById(initialHash.slice(1));
+      if (target?.matches("main > section[id]"))
+        target.scrollIntoView({ behavior: "instant", block: "start" });
+    }
   } catch (e) {
     console.error(e);
     $("#atlas-content").innerHTML =
       '<p>The dataset could not load. Reload this page, or <a href="./fusion_atlas.json">download the canonical dataset</a>.</p>';
+  } finally {
+    anchorListeners.abort();
   }
 }
 init();
