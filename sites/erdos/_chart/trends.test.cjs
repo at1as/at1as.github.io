@@ -274,8 +274,14 @@ test('failed loading preserves charts, recent evidence, and readable methodology
   assert.ok(app.q('#pace path')); assert.ok(app.q('#monthly-rows tr'));
   assert.equal(app.q('#methodology').open,true);
   const latest=T.rolling(data,'resolved',30).at(-1);
-  assert.equal(app.q('#record-rows').children.length,latest.events);
-  assert.ok(app.q('#record-rows a').href.startsWith('https://www.erdosproblems.com/'));
+  assert.equal(app.q('#record-rows').children.length,latest.events||1);
+  if(latest.events) {
+    assert.ok(app.q('#record-rows a').href.startsWith('https://www.erdosproblems.com/'));
+  } else {
+    assert.equal(app.q('#record-rows').textContent,'No changes in this period');
+    assert.equal(app.q('#record-rows a'),null);
+    assert.equal(app.q('#record-rows td').colSpan,5);
+  }
   assert.doesNotMatch(app.q('#record-rows').textContent,/Loading/);
   app.w.fetch=async()=>({ok:true,json:async()=>structuredClone(data)});
   app.q('#retry-trends').click();
