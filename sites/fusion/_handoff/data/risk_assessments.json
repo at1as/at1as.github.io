@@ -1,0 +1,1265 @@
+[
+  {
+    "id": "cfs_risk_01",
+    "entity_id": "cfs",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "plasma_physics",
+    "headline": "SPARC gain demonstration pending",
+    "interpretation": "Tokamak heritage and magnet achievement support a testable path, but the planned high-field burning plasma remains to be demonstrated.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_CFS_SPARC",
+      "MAG_CFS_MAGNET"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "cfs_risk_02",
+    "entity_id": "cfs",
+    "theme_ids": [
+      "fuel_cycle",
+      "materials_and_maintenance"
+    ],
+    "original_dimension": "fuel_cycle_and_materials",
+    "headline": "Shared D-T engineering burden",
+    "interpretation": "An ARC plant must combine tritium breeding, neutron shielding, heat exhaust and maintainable components. A successful SPARC result would not by itself validate those plant systems.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_CFS_ARC"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "helion_risk_01",
+    "entity_id": "helion",
+    "theme_ids": [
+      "electrical_balance"
+    ],
+    "original_dimension": "power_conversion",
+    "headline": "Energy-boundary proof remains essential",
+    "interpretation": "A recoverable capacitor-bank signal must be distinguished from recycled input electricity; sustained whole-plant net output is a separate milestone.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_HELION_POLARIS",
+      "PHY_037"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "helion_risk_02",
+    "entity_id": "helion",
+    "theme_ids": [
+      "fuel_cycle"
+    ],
+    "original_dimension": "fuel_cycle",
+    "headline": "Advanced-fuel transition",
+    "interpretation": "Current D-T results do not demonstrate commercial D-He3 conditions, helium-3 supply or a closed fuel cycle. Reduced neutron production is not zero-neutron operation.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "PHY_037",
+      "MAG_HELION_POLARIS_RESULTS"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "helion_risk_03",
+    "entity_id": "helion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "project_delivery",
+    "headline": "Aggressive company schedule",
+    "interpretation": "The 2028 construction programme depends on physics, repetition, components and electricity balance progressing together. Construction alone does not validate these.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_HELION_ORION",
+      "MAG_HELION_POLARIS"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "tae_risk_01",
+    "entity_id": "tae",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "plasma_physics",
+    "headline": "Advanced-fuel energy balance unproven",
+    "interpretation": "FRC formation is a distinct achievement from p-B11 fusion gain; beam power and radiation losses must be balanced at much more demanding operating conditions.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_TAE_NATURE",
+      "MAG_TAE_FUEL"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "tae_risk_02",
+    "entity_id": "tae",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "project_delivery",
+    "headline": "Roadmap and fuel options evolving",
+    "interpretation": "Skipping Copernicus concentrates validation in later development. Prospective lunar helium-3 supply is an option, not available operating fuel.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_TAE_ROADMAP",
+      "MAG_TAE_HE3"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "tae_risk_03",
+    "entity_id": "tae",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "financing_disclosure",
+    "headline": "Proposed merger and debt differ from equity",
+    "interpretation": "The filed merger is not verified closed; the supplied convertible note and additional available facility must remain separate from historic equity totals.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_TAE_DEBT",
+      "MAG_TAE_MERGER"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "tokamak_energy_risk_01",
+    "entity_id": "tokamak_energy",
+    "theme_ids": [
+      "materials_and_maintenance"
+    ],
+    "original_dimension": "materials_and_geometry",
+    "headline": "Compact central-column constraints",
+    "interpretation": "A low-aspect-ratio D-T reactor must fit shielding, magnets and breeding structures into restricted space while handling heat and neutron exposure.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_TE_US",
+      "MAG_TE_ST40"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "tokamak_energy_risk_02",
+    "entity_id": "tokamak_energy",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "integration",
+    "headline": "Component success is not burning-plasma success",
+    "interpretation": "Demo4 verifies magnet behavior; a complete HTS fusion plant still requires integrated plasma, fuel-cycle and power systems.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_TE_DEMO4",
+      "MAG_TE_US"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "type_one_risk_01",
+    "entity_id": "type_one",
+    "theme_ids": [
+      "sustained_operation",
+      "delivery_and_economics"
+    ],
+    "original_dimension": "manufacturing_and_integration",
+    "headline": "Three-dimensional reactor integration",
+    "interpretation": "Coil construction, neutron shielding, blanket access and maintenance must work together in the complete stellarator geometry.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_TYPEONE_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "type_one_risk_02",
+    "entity_id": "type_one",
+    "theme_ids": [
+      "plasma_and_fuel_physics",
+      "delivery_and_economics"
+    ],
+    "original_dimension": "evidence_transfer",
+    "headline": "Heritage is not the company’s demonstration",
+    "interpretation": "Results from HSX and W7-X inform the design; they do not count as achieved Infinity One or Infinity Two milestones.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_TYPEONE_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "type_one_risk_03",
+    "entity_id": "type_one",
+    "theme_ids": [
+      "fuel_cycle"
+    ],
+    "original_dimension": "fuel_cycle",
+    "headline": "D-T supply and breeding required",
+    "interpretation": "Electricity deployment also requires a workable tritium cycle and durable neutron-exposed systems.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_TYPEONE_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "proxima_risk_01",
+    "entity_id": "proxima",
+    "theme_ids": [
+      "plasma_and_fuel_physics",
+      "delivery_and_economics"
+    ],
+    "original_dimension": "evidence_transfer",
+    "headline": "Burning-plasma extrapolation pending",
+    "interpretation": "W7-X supports the confinement approach; a compact high-field D-T plant requires additional physics and engineering validation.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_PROXIMA_PAPER",
+      "MAG_PROXIMA_ALPHA"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "proxima_risk_02",
+    "entity_id": "proxima",
+    "theme_ids": [
+      "sustained_operation",
+      "fuel_cycle"
+    ],
+    "original_dimension": "manufacturing_and_fuel_cycle",
+    "headline": "Integrated high-field stellarator burden",
+    "interpretation": "Complex HTS coils, heat exhaust, tritium breeding and maintainability must be demonstrated together.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_PROXIMA_PAPER"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "proxima_risk_03",
+    "entity_id": "proxima",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "financing_disclosure",
+    "headline": "Mixed and committed funding",
+    "interpretation": "The reported cumulative total includes grants, and Bavaria’s commitment differs from received financing.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_PROXIMA_FUND"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "thea_risk_01",
+    "entity_id": "thea",
+    "theme_ids": [
+      "sustained_operation"
+    ],
+    "original_dimension": "manufacturing_and_control",
+    "headline": "Complexity shifts into many controlled coils",
+    "interpretation": "Simple coil shapes can ease manufacturing, while the integrated machine must validate many currents, connections and field-control interactions.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_THEA_CANIS",
+      "MAG_THEA_HELIOS"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "thea_risk_02",
+    "entity_id": "thea",
+    "theme_ids": [
+      "plasma_and_fuel_physics",
+      "delivery_and_economics"
+    ],
+    "original_dimension": "evidence_transfer",
+    "headline": "Component and design stages",
+    "interpretation": "Canis is a subsystem demonstration; Helios capacity factor, net power and coil lifetime are calculations, not operating records.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_THEA_CANIS",
+      "MAG_THEA_HELIOS"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "thea_risk_03",
+    "entity_id": "thea",
+    "theme_ids": [
+      "fuel_cycle"
+    ],
+    "original_dimension": "fuel_cycle",
+    "headline": "Later D-T conversion",
+    "interpretation": "Eos D-D operation would not alone demonstrate Helios tritium breeding and reactor materials performance.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_THEA_EOS"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "renaissance_risk_01",
+    "entity_id": "renaissance",
+    "theme_ids": [
+      "sustained_operation"
+    ],
+    "original_dimension": "manufacturing",
+    "headline": "Novel integrated fabrication",
+    "interpretation": "Reactor-scale patterned HTS manufacturing and liquid-metal flow in strong magnetic fields need integrated validation.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_RENAISSANCE_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "renaissance_risk_02",
+    "entity_id": "renaissance",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "evidence",
+    "headline": "Component stage",
+    "interpretation": "The reviewed evidence does not establish operating reactor-level confinement or energy balance.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_RENAISSANCE_NEWS"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "realta_risk_01",
+    "entity_id": "realta",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "plasma_physics",
+    "headline": "End-loss control remains central",
+    "interpretation": "Mirror geometry is mechanically attractive but must retain enough particles and energy at useful fusion conditions.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_REALTA_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "realta_risk_02",
+    "entity_id": "realta",
+    "theme_ids": [
+      "electrical_balance"
+    ],
+    "original_dimension": "power_conversion",
+    "headline": "Recovery is not generation proof",
+    "interpretation": "The demonstrated converter largely recycled input heating. D-T net power requires fusion gain, neutron-heat conversion and complete plant accounting.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_REALTA_DEC"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "energy_singularity_risk_01",
+    "entity_id": "energy_singularity",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "metric_comparability",
+    "headline": "Different quantities need separate axes",
+    "interpretation": "Long pulses, small-magnet peak field and equivalent Q should not be treated as equivalent to burning-plasma or whole-plant performance.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_ES_DEVICES",
+      "MAG_ES_PULSE",
+      "MAG_ES_MAGNET"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "energy_singularity_risk_02",
+    "entity_id": "energy_singularity",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "disclosure",
+    "headline": "Some financial and fuel details unresolved",
+    "interpretation": "The current campaign fuel and composition of survey funding are not established here; these are evidence gaps rather than proof of technical failure.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_ES_DEVICES",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "kyoto_fusioneering_risk_01",
+    "entity_id": "kyoto_fusioneering",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "integration",
+    "headline": "Representative conditions required",
+    "interpretation": "Thermal-loop testing must eventually connect to reactor neutron environments and reliable tritium recovery.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_KYOTO_FUND"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "kyoto_fusioneering_risk_02",
+    "entity_id": "kyoto_fusioneering",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "commercial_dependency",
+    "headline": "Customer and industry timing",
+    "interpretation": "Supplier revenues depend partly on customers’ plant schedules; core plasma-gain risk belongs to those reactor projects.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_KYOTO_FUND"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "nt_tao_risk_01",
+    "entity_id": "nt_tao",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "plasma_physics",
+    "headline": "Early experimental stage",
+    "interpretation": "The cited temperature and pulsed-power hardware do not establish fusion gain, confinement at reactor conditions or net output.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_NTTAO_POWER"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "nt_tao_risk_02",
+    "entity_id": "nt_tao",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "compact_integration",
+    "headline": "Power density and shielding challenge",
+    "interpretation": "A small D-T plant must integrate heating, neutron shielding, heat capture and tritium systems within its intended compact package.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_NTTAO_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "helical_fusion_risk_01",
+    "entity_id": "helical_fusion",
+    "theme_ids": [
+      "sustained_operation",
+      "delivery_and_economics"
+    ],
+    "original_dimension": "manufacturing_and_integration",
+    "headline": "Complex coil and blanket integration",
+    "interpretation": "Cable and manufacturing advances do not yet establish integrated plasma, liquid-metal blanket and power-cycle performance.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_HELICAL_TECH",
+      "MAG_HELICAL_MANUFACTURE"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "helical_fusion_risk_02",
+    "entity_id": "helical_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "financing_disclosure",
+    "headline": "Mixed total with source discrepancy",
+    "interpretation": "Cumulative financing includes grants and loans, and Japanese/English totals differ. The newer Japanese total is preferred with an explicit annotation.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "MAG_HELICAL_FUND_JP",
+      "MAG_HELICAL_FUND_EN"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "inertia_risk_01",
+    "entity_id": "inertia",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "physics_scaling",
+    "headline": "Physics scaling",
+    "interpretation": "High gain is simulated for larger, manufacturable targets; NIF validates a predecessor regime but does not validate this full design.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_INERTIA_MODEL",
+      "ALT_INERTIA_PAPER",
+      "ALT_INERTIA_FUELING"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "inertia_risk_02",
+    "entity_id": "inertia",
+    "theme_ids": [
+      "sustained_operation"
+    ],
+    "original_dimension": "repetition_and_manufacturing",
+    "headline": "Repetition and manufacturing",
+    "interpretation": "Efficient 10 MJ shots at 10 Hz, economical cryogenic targets, injection and chamber recovery must work together continuously.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_INERTIA_FUND",
+      "ALT_INERTIA_HOME",
+      "ALT_INERTIA_PHASE1"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "inertia_risk_03",
+    "entity_id": "inertia",
+    "theme_ids": [
+      "fuel_cycle",
+      "materials_and_maintenance"
+    ],
+    "original_dimension": "fuel_and_materials",
+    "headline": "Fuel and materials",
+    "interpretation": "A DT power plant still needs tritium breeding, heat extraction, radiation-tolerant optics and maintainable first-wall systems.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_INERTIA_FUND",
+      "ALT_INERTIA_MODEL"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "pacific_fusion_risk_01",
+    "entity_id": "pacific_fusion",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "physics_scaling",
+    "headline": "Physics scaling",
+    "interpretation": "Driver progress must translate to repeatable high-yield target implosions; peak driver power is not fusion output.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_PACIFIC_MODULE",
+      "ALT_PACIFIC_SITE"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "pacific_fusion_risk_02",
+    "entity_id": "pacific_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "integrated_plant",
+    "headline": "Integrated plant",
+    "interpretation": "Stored-energy facility gain excludes conversion losses and other plant electricity. Repetition, debris, target replacement and balance of plant remain.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_PACIFIC_FOUND",
+      "ALT_PACIFIC_SITE"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "pacific_fusion_risk_03",
+    "entity_id": "pacific_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "financing",
+    "headline": "Financing",
+    "interpretation": "Headline commitments are not identical to cash received; the company reports a newer cumulative amount without a tranche reconciliation.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_PACIFIC_FOUND",
+      "ALT_PACIFIC_CAPITAL"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "xcimer_risk_01",
+    "entity_id": "xcimer",
+    "theme_ids": [
+      "electrical_balance"
+    ],
+    "original_dimension": "driver_scaling",
+    "headline": "Driver scaling",
+    "interpretation": "Excimer/SBS proof of concept must scale to multi-megajoule energy, efficiency and sustained repetition.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_XCIMER_ROADMAP",
+      "ALT_XCIMER_DOE"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "xcimer_risk_02",
+    "entity_id": "xcimer",
+    "theme_ids": [
+      "fuel_cycle",
+      "materials_and_maintenance"
+    ],
+    "original_dimension": "liquid_wall_and_fuel",
+    "headline": "Liquid wall and fuel",
+    "interpretation": "Renewing molten salt may protect the wall, but whole-plant breeding, corrosion, flow recovery and remote maintenance still require validation.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_XCIMER_DOE"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "xcimer_risk_03",
+    "entity_id": "xcimer",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "evidence_boundary",
+    "headline": "Evidence boundary",
+    "interpretation": "DOE design-milestone acceptance is not a plant operating licence or proof of commercial energy production.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_XCIMER_DOE"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "focused_energy_risk_01",
+    "entity_id": "focused_energy",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "target_physics",
+    "headline": "Target physics",
+    "interpretation": "Direct drive/fast ignition must establish its own reliable gain regime; NIF indirect-drive ignition does not directly validate it.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FOCUSED_TECH",
+      "ALT_FOCUSED_EXP"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "focused_energy_risk_02",
+    "entity_id": "focused_energy",
+    "theme_ids": [
+      "sustained_operation"
+    ],
+    "original_dimension": "manufacturing_and_repetition",
+    "headline": "Manufacturing and repetition",
+    "interpretation": "High-rate lasers, target manufacture, precision injection and chamber recovery must be integrated.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FOCUSED_TECH",
+      "ALT_FOCUSED_EXP"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "focused_energy_risk_03",
+    "entity_id": "focused_energy",
+    "theme_ids": [
+      "fuel_cycle"
+    ],
+    "original_dimension": "fuel_and_plant",
+    "headline": "Fuel and plant",
+    "interpretation": "DT breeding, materials durability and heat conversion remain whole-plant requirements despite siting/industrial partnerships.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FOCUSED_FUND",
+      "ALT_FOCUSED_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "general_fusion_risk_01",
+    "entity_id": "general_fusion",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "physics_scaling",
+    "headline": "Physics scaling",
+    "interpretation": "Higher electron temperature does not establish adequate ion temperature, confinement and density simultaneously. LM26 still targets additional large steps.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_GENERAL_TEMP",
+      "ALT_GENERAL_PATH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "general_fusion_risk_02",
+    "entity_id": "general_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "prototype_to_plant",
+    "headline": "Prototype to plant",
+    "interpretation": "Solid-liner experiment to repetitive liquid-metal machinery is a substantial engineering transition.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_GENERAL_TEMP",
+      "ALT_GENERAL_PATH",
+      "ALT_GENERAL_PAPER"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "general_fusion_risk_03",
+    "entity_id": "general_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "capital_and_execution",
+    "headline": "Capital and execution",
+    "interpretation": "Public-market access changes financing options; approximately $150 million cash is not full power-plant financing.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_GENERAL_LIST",
+      "ALT_GENERAL_PATH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "zap_energy_risk_01",
+    "entity_id": "zap_energy",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "plasma_stability",
+    "headline": "Plasma stability",
+    "interpretation": "Sheared-flow stabilization must hold at higher current and useful fusion gain; pressure alone cannot rank overall reactor performance.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_ZAP_PRESSURE"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "zap_energy_risk_02",
+    "entity_id": "zap_energy",
+    "theme_ids": [
+      "sustained_operation",
+      "materials_and_maintenance"
+    ],
+    "original_dimension": "repetition_and_electrodes",
+    "headline": "Repetition and electrodes",
+    "interpretation": "Repetitive power, electrode erosion and liquid-metal handling need validation at fusion heat and neutron loads.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_ZAP_FUND",
+      "ALT_ZAP_PRESSURE"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "zap_energy_risk_03",
+    "entity_id": "zap_energy",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "business_scope",
+    "headline": "Business scope",
+    "interpretation": "Any future fission electricity must not be counted as demonstrated fusion electricity.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_ZAP_STRATEGY"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "first_light_risk_01",
+    "entity_id": "first_light",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "integrated_physics",
+    "headline": "Integrated physics",
+    "interpretation": "Compression and rapid ignition must work together; a successful first stage does not validate high gain.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FIRSTLIGHT_TEST",
+      "ALT_FIRSTLIGHT_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "first_light_risk_02",
+    "entity_id": "first_light",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "partner_dependence",
+    "headline": "Partner dependence",
+    "interpretation": "Target-system developer depends on partners for drivers, facilities and industrial integration.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FIRSTLIGHT_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "first_light_risk_03",
+    "entity_id": "first_light",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "commercial_systems",
+    "headline": "Commercial systems",
+    "interpretation": "High modeled gain does not resolve target production, tritium breeding, chamber endurance or cost.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FIRSTLIGHT_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "marvel_fusion_risk_01",
+    "entity_id": "marvel_fusion",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "physics",
+    "headline": "Physics",
+    "interpretation": "Company-specific hollow-shell fast ignition must demonstrate gain; NIF indirect-drive success is not direct validation.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_MARVEL_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "marvel_fusion_risk_02",
+    "entity_id": "marvel_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "laser_scaling",
+    "headline": "Laser scaling",
+    "interpretation": "High-efficiency, high-repetition short-pulse lasers must scale from demonstrations to plant energy and reliability.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_MARVEL_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "marvel_fusion_risk_03",
+    "entity_id": "marvel_fusion",
+    "theme_ids": [
+      "fuel_cycle"
+    ],
+    "original_dimension": "fuel",
+    "headline": "Fuel",
+    "interpretation": "Current near-term design uses DT and retains breeding/neutron challenges; older proton-boron descriptions should not be copied forward.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_MARVEL_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "avalanche_energy_risk_01",
+    "entity_id": "avalanche_energy",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "physics",
+    "headline": "Physics",
+    "interpretation": "Voltage, confinement and compact size are enabling results; energy-positive distributions and fusion output remain unproven in reviewed evidence.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_AVALANCHE_FUND",
+      "ALT_AVALANCHE_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "avalanche_energy_risk_02",
+    "entity_id": "avalanche_energy",
+    "theme_ids": [
+      "fuel_cycle"
+    ],
+    "original_dimension": "fuel_and_scale",
+    "headline": "Fuel and scale",
+    "interpretation": "A practical DT microreactor still needs shielding, fuel supply, heat removal and conversion, which affect complete-system size.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_AVALANCHE_FUND",
+      "ALT_AVALANCHE_TECH"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "avalanche_energy_risk_03",
+    "entity_id": "avalanche_energy",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "licensing",
+    "headline": "Licensing",
+    "interpretation": "A planned licensed test service is distinct from an operating electricity plant.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_AVALANCHE_FUND"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "ex_fusion_risk_01",
+    "entity_id": "ex_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "integration",
+    "headline": "Integration",
+    "interpretation": "Target tracking and repetitive irradiation must be coupled to adequate driver energy and gain on real fuel.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_EXFUSION_A",
+      "ALT_EXFUSION_TEST"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "ex_fusion_risk_02",
+    "entity_id": "ex_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "laser_and_plant",
+    "headline": "Laser and plant",
+    "interpretation": "High-power laser efficiency, thermal management and integrated DT fuel cycle remain outstanding.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_EXFUSION_A",
+      "ALT_EXFUSION_EXT"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "ex_fusion_risk_03",
+    "entity_id": "ex_fusion",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "funding_comparability",
+    "headline": "Funding comparability",
+    "interpretation": "JPY 6 billion includes debt; do not label it equity or convert with an undocumented exchange rate.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_EXFUSION_A",
+      "ALT_EXFUSION_EXT"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "hb11_risk_01",
+    "entity_id": "hb11",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "physics",
+    "headline": "Physics",
+    "interpretation": "Demonstrated reaction yield is far from a demonstrated self-sustaining high-gain regime; cited paper notes lack of evidence for yield-amplifying cascades in most prior experiments.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_HB11_PAPER"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "hb11_risk_02",
+    "entity_id": "hb11",
+    "theme_ids": [
+      "electrical_balance"
+    ],
+    "original_dimension": "driver_and_conversion",
+    "headline": "Driver and conversion",
+    "interpretation": "High-efficiency repetitive lasers and integrated useful-energy recovery remain necessary even if the primary fuel cycle avoids tritium breeding.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_HB11_TECH",
+      "ALT_HB11_PROJECT"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "hb11_risk_03",
+    "entity_id": "hb11",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "evidence_and_funding",
+    "headline": "Evidence and funding",
+    "interpretation": "Current cumulative company funding was not established in reviewed primary sources. Project value is not a substitute.",
+    "source_evidence_status": "information_gap",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_HB11_PROJECT"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "fuse_risk_01",
+    "entity_id": "fuse",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "physics",
+    "headline": "Physics",
+    "interpretation": "Dense-plasma-focus neutron-source performance does not demonstrate the proposed MagLIF plant gain.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FUSE_TEST",
+      "ALT_FUSE_CONCEPT"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "fuse_risk_02",
+    "entity_id": "fuse",
+    "theme_ids": [
+      "sustained_operation"
+    ],
+    "original_dimension": "repetition_and_plant",
+    "headline": "Repetition and plant",
+    "interpretation": "Practical repetition, debris clearing, target replacement and electric conversion need system validation.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FUSE_CONCEPT",
+      "ALT_FUSE_HOME"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "fuse_risk_03",
+    "entity_id": "fuse",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "business_metrics",
+    "headline": "Business metrics",
+    "interpretation": "Radiation-testing contracts, contract-vehicle ceilings and revenue must not be charted as fusion electricity or equity funding.",
+    "source_evidence_status": "major_unresolved",
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "ALT_FUSE_TEST",
+      "ALT_FUSE_HOME"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "startorus_risk_01",
+    "entity_id": "startorus",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "plasma_performance",
+    "headline": "Substantial extrapolation from experimental operation to repetitive reactor performance.",
+    "interpretation": "Substantial extrapolation from experimental operation to repetitive reactor performance.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "PAR_STARTORUS_A_PLUS"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "startorus_risk_02",
+    "entity_id": "startorus",
+    "theme_ids": [
+      "delivery_and_economics"
+    ],
+    "original_dimension": "plant_integration",
+    "headline": "A magnet test and an equivalent-Q target leave fuel cycle, heat exhaust, maintenance and integrated electricity unproven.",
+    "interpretation": "A magnet test and an equivalent-Q target leave fuel cycle, heat exhaust, maintenance and integrated electricity unproven.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "PAR_STARTORUS_MAGNET",
+      "PAR_STARTORUS_A_PLUS"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "openstar_risk_01",
+    "entity_id": "openstar",
+    "theme_ids": [
+      "plasma_and_fuel_physics"
+    ],
+    "original_dimension": "plasma_performance",
+    "headline": "Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation.",
+    "interpretation": "Reactor-relevant confinement, temperature and gain must be shown beyond prototype operation.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "PAR_OPENSTAR_PPPL"
+    ],
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "openstar_risk_02",
+    "entity_id": "openstar",
+    "theme_ids": [
+      "materials_and_maintenance"
+    ],
+    "original_dimension": "materials_and_maintenance",
+    "headline": "A superconducting magnet within the chamber creates distinctive shielding, cooling, access and lifetime requirements.",
+    "interpretation": "A superconducting magnet within the chamber creates distinctive shielding, cooling, access and lifetime requirements.",
+    "source_evidence_status": null,
+    "is_interpretive": true,
+    "is_probability": false,
+    "source_ids": [
+      "PAR_OPENSTAR_PPPL",
+      "PAR_OPENSTAR_TECH"
+    ],
+    "as_of": "2026-10-22"
+  }
+]

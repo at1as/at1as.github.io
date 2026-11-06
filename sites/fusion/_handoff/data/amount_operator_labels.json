@@ -1,0 +1,22 @@
+{
+  "=": {
+    "prefix": "",
+    "label": "Reported amount"
+  },
+  ">": {
+    "prefix": "More than",
+    "label": "Lower-bound statement"
+  },
+  "<=": {
+    "prefix": "Up to",
+    "label": "Announced ceiling"
+  },
+  "nearly": {
+    "prefix": "Nearly",
+    "label": "Approximate amount below the anchor"
+  },
+  "approximately": {
+    "prefix": "About",
+    "label": "Approximate amount"
+  }
+}

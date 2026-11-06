@@ -1,0 +1,2766 @@
+[
+  {
+    "id": "cfs_evidence_01",
+    "entity_id": "cfs",
+    "category": "experimental_result",
+    "claim": "Large-bore HTS magnet reached 20 T; this is a component milestone.",
+    "evidence_type": "company_reported_component",
+    "timing": {
+      "display": "2021",
+      "role": "event_date",
+      "precision": "year",
+      "date": "2021",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_CFS_MAGNET"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "cfs_target_01",
+    "entity_id": "cfs",
+    "category": "target",
+    "claim": "SPARC plasma Q > 1.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2027",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2027",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_CFS_SPARC"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "plasma_Q",
+      "value": 1,
+      "operator": ">"
+    }
+  },
+  {
+    "id": "cfs_target_02",
+    "entity_id": "cfs",
+    "category": "target",
+    "claim": "ARC approximately 400 MW delivered to grid.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "early 2030s",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_CFS_ARC"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "grid_electric_output_MW",
+      "value": 400,
+      "output_boundary": "grid-delivered; source does not separately itemize gross and net"
+    }
+  },
+  {
+    "id": "helion_evidence_01",
+    "entity_id": "helion",
+    "category": "experimental_result",
+    "claim": "Company reported D-T fusion in Polaris and 150 million °C plasma temperature.",
+    "evidence_type": "company_reported_plasma",
+    "timing": {
+      "display": "2026-01",
+      "role": "event_date",
+      "precision": "month",
+      "date": "2026-01",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_HELION_POLARIS_RESULTS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {},
+    "reported_at": "2026-02-13"
+  },
+  {
+    "id": "helion_target_01",
+    "entity_id": "helion",
+    "category": "target",
+    "claim": "Polaris aims to put a portion of fusion-origin energy into capacitor-bank electricity; the earlier net-electricity formulation has been discontinued.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_HELION_POLARIS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "fusion_origin_electricity_to_capacitor_bank",
+      "output_boundary": "subsystem; not net plant"
+    }
+  },
+  {
+    "id": "helion_target_02",
+    "entity_id": "helion",
+    "category": "target",
+    "claim": "Orion initial operations, associated with a 50 MW Microsoft commitment.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2028",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2028",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_HELION_ORION"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "electricity_supply_commitment_MW",
+      "value": 50,
+      "output_boundary": "customer commitment, not demonstrated output"
+    }
+  },
+  {
+    "id": "tae_evidence_01",
+    "entity_id": "tae",
+    "category": "experimental_result",
+    "claim": "Neutral-beam injection formed field-reversed configurations from seed plasmas in approximately 10 ms.",
+    "evidence_type": "peer_reviewed_experiment",
+    "timing": {
+      "display": "2025-04-12",
+      "role": "publication_date",
+      "precision": "day",
+      "date": "2025-04-12",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TAE_NATURE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "tae_evidence_02",
+    "entity_id": "tae",
+    "category": "organization_event",
+    "claim": "Company removed Copernicus from its roadmap; this is a programme change, not achieved gain.",
+    "evidence_type": "company_programme_change",
+    "timing": {
+      "display": "2025-11-17",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2025-11-17",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TAE_ROADMAP"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "tae_target_01",
+    "entity_id": "tae",
+    "category": "target",
+    "claim": "August release targets Da Vinci 50 MWe operations in 2031. Later filing sequencing could not be fully reconciled; do not label this a confirmed grid date.",
+    "evidence_type": "dated_company_target_with_uncertainty",
+    "timing": {
+      "display": "2031",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2031",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TAE_HE3",
+      "MAG_TAE_MERGER"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "electric_output_MW",
+      "value": 50,
+      "output_boundary": "MWe; gross/net unspecified in release",
+      "announced_at": "2026-08-05",
+      "current_target_confidence": "uncertain"
+    }
+  },
+  {
+    "id": "tokamak_energy_evidence_01",
+    "entity_id": "tokamak_energy",
+    "category": "experimental_result",
+    "claim": "ST40 exceeded 100 million °C ion temperature; not a gain or electricity milestone.",
+    "evidence_type": "company_report_of_peer_reviewed_result",
+    "timing": {
+      "display": "2022",
+      "role": "event_date",
+      "precision": "year",
+      "date": "2022",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TE_ST40"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "tokamak_energy_evidence_02",
+    "entity_id": "tokamak_energy",
+    "category": "experimental_result",
+    "claim": "Demo4 magnet campaign reached 13.7 T; approximately 10,000 hours covered varying energized conditions.",
+    "evidence_type": "company_reported_component",
+    "timing": {
+      "display": "2026-09-09",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-09-09",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TE_DEMO4"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "tokamak_energy_target_01",
+    "entity_id": "tokamak_energy",
+    "category": "target",
+    "claim": "U.S. D-T pilot design targets 800 MW fusion power and 85 MW net electricity in the 2030s.",
+    "evidence_type": "company_design_target",
+    "timing": {
+      "display": "2030s",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TE_US"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "net_electric_output_MW",
+      "value": 85,
+      "output_boundary": "net electric, design"
+    }
+  },
+  {
+    "id": "type_one_evidence_01",
+    "entity_id": "type_one",
+    "category": "model_or_design",
+    "claim": "Infinity Two physics and engineering designs have been published; no operating company-scale burning plasma is established.",
+    "evidence_type": "design_stage",
+    "timing": {
+      "display": "Not specified",
+      "role": "undated_live_page",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TYPEONE_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "type_one_target_01",
+    "entity_id": "type_one",
+    "category": "target",
+    "claim": "Commission Infinity One engineering verification platform.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2029",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2029",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TYPEONE_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "type_one_target_02",
+    "entity_id": "type_one",
+    "category": "target",
+    "claim": "Infinity Two design: 800 MW fusion power and 400 MWe grid output.",
+    "evidence_type": "company_design_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_TYPEONE_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "grid_electric_output_MW",
+      "value": 400,
+      "output_boundary": "grid output, design"
+    }
+  },
+  {
+    "id": "type_one_target_03",
+    "entity_id": "type_one",
+    "category": "target",
+    "claim": "Company survey target for first grid power.",
+    "evidence_type": "company_survey_target",
+    "timing": {
+      "display": "2034",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2034",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_FIA_2026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "proxima_evidence_01",
+    "entity_id": "proxima",
+    "category": "model_or_design",
+    "claim": "Published an integrated Stellaris plant concept; this is design evidence, not achieved plasma gain.",
+    "evidence_type": "company_report_of_peer_reviewed_design",
+    "timing": {
+      "display": "2025-02-26",
+      "role": "publication_date",
+      "precision": "day",
+      "date": "2025-02-26",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_PROXIMA_PAPER"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "proxima_target_01",
+    "entity_id": "proxima",
+    "category": "target",
+    "claim": "Demonstrate an HTS stellarator model coil.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2027",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2027",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_PROXIMA_PAPER"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "proxima_target_02",
+    "entity_id": "proxima",
+    "category": "target",
+    "claim": "Alpha plasma Q > 1.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "early 2030s",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_PROXIMA_ALPHA"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "plasma_Q",
+      "value": 1,
+      "operator": ">"
+    }
+  },
+  {
+    "id": "proxima_target_03",
+    "entity_id": "proxima",
+    "category": "target",
+    "claim": "Stellaris electricity delivery.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2030s",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_PROXIMA_STELLARIS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "output_boundary": "grid electricity; numerical output not asserted here"
+    }
+  },
+  {
+    "id": "thea_evidence_01",
+    "entity_id": "thea",
+    "category": "experimental_result",
+    "claim": "Canis nine-coil array controlled stellarator-relevant fields to within 1% of prediction at 20 K.",
+    "evidence_type": "preprint_component_experiment",
+    "timing": {
+      "display": "2025-03-19",
+      "role": "publication_date",
+      "precision": "day",
+      "date": "2025-03-19",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_THEA_CANIS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "thea_target_01",
+    "entity_id": "thea",
+    "category": "target",
+    "claim": "Build Eos as an integrated D-D stellarator; published performance values are targets.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_THEA_EOS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "thea_target_02",
+    "entity_id": "thea",
+    "category": "target",
+    "claim": "Helios preconceptual design: 1.1 GW thermal and 390 MW net electric power.",
+    "evidence_type": "preprint_design_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_THEA_HELIOS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "net_electric_output_MW",
+      "value": 390,
+      "output_boundary": "net electric, modeled"
+    }
+  },
+  {
+    "id": "thea_target_03",
+    "entity_id": "thea",
+    "category": "target",
+    "claim": "Begin Helios construction by the end of the decade.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "by the end of the 2020s",
+      "role": "target_window",
+      "precision": "decade_boundary",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_THEA_FUND"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "is_construction_start_not_first_power": true
+    }
+  },
+  {
+    "id": "renaissance_evidence_01",
+    "entity_id": "renaissance",
+    "category": "engineering_progress",
+    "claim": "Company reports ongoing HTS manufacturing and component-development work; no integrated fusion gain established.",
+    "evidence_type": "component_development",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_RENAISSANCE_NEWS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "renaissance_target_01",
+    "entity_id": "renaissance",
+    "category": "target",
+    "claim": "Integrate patterned magnets and liquid-metal walls into a stellarator power system; no verified current first-electricity date adopted here.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_RENAISSANCE_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "realta_evidence_01",
+    "entity_id": "realta",
+    "category": "experimental_result",
+    "claim": "WHAM first plasma with high-field mirror end magnets.",
+    "evidence_type": "institution_reported_plasma",
+    "timing": {
+      "display": "2024-07",
+      "role": "event_date",
+      "precision": "month",
+      "date": "2024-07",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_REALTA_WHAM"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "realta_evidence_02",
+    "entity_id": "realta",
+    "category": "experimental_result",
+    "claim": "Electrostatic converter recovered mostly supplied plasma-heating energy; not net fusion electricity.",
+    "evidence_type": "company_reported_energy_recovery",
+    "timing": {
+      "display": "2026-06-19",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2026-06-19",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_REALTA_DEC"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "input_energy_recovery",
+      "output_boundary": "converter subsystem"
+    }
+  },
+  {
+    "id": "realta_target_01",
+    "entity_id": "realta",
+    "category": "target",
+    "claim": "Commercial pilot plant.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "mid-2030s",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_REALTA_TIMELINE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "energy_singularity_evidence_01",
+    "entity_id": "energy_singularity",
+    "category": "experimental_result",
+    "claim": "HH70 first plasma.",
+    "evidence_type": "company_reported_plasma",
+    "timing": {
+      "display": "2024-06",
+      "role": "event_date",
+      "precision": "month",
+      "date": "2024-06",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_ES_DEVICES"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "energy_singularity_evidence_02",
+    "entity_id": "energy_singularity",
+    "category": "experimental_result",
+    "claim": "HH70 1,337-second discharge; duration does not establish fusion gain.",
+    "evidence_type": "company_reported_plasma",
+    "timing": {
+      "display": "2026-02-02",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-02-02",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_ES_PULSE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "energy_singularity_evidence_03",
+    "entity_id": "energy_singularity",
+    "category": "experimental_result",
+    "claim": "Small test magnet reached 26.7 T; winding inner diameter 30 mm.",
+    "evidence_type": "company_reported_component",
+    "timing": {
+      "display": "2026-06-17",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-06-17",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_ES_MAGNET"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "energy_singularity_target_01",
+    "entity_id": "energy_singularity",
+    "category": "target",
+    "claim": "HH170 equivalent Q above two; this is not a claim of measured D-T Q.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_ES_DEVICES"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "equivalent_plasma_Q",
+      "value": 2,
+      "operator": ">"
+    }
+  },
+  {
+    "id": "kyoto_fusioneering_evidence_01",
+    "entity_id": "kyoto_fusioneering",
+    "category": "engineering_progress",
+    "claim": "UNITY engineering programme develops integrated heat-transfer and fuel-cycle testing; do not label externally heated tests as net fusion electricity.",
+    "evidence_type": "engineering_programme",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_KYOTO_FUND"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "kyoto_fusioneering_target_01",
+    "entity_id": "kyoto_fusioneering",
+    "category": "target",
+    "claim": "Supply validated plant engineering systems to multiple fusion developers.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_KYOTO_FUND"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "nt_tao_evidence_01",
+    "entity_id": "nt_tao",
+    "category": "experimental_result",
+    "claim": "Company reported 1.5 million °C plasma and deployed a 50 MW pulsed INPUT-power subsystem.",
+    "evidence_type": "company_reported_plasma_and_component",
+    "timing": {
+      "display": "2026-09-15",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-09-15",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_NTTAO_POWER"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "pulsed_input_power_MW",
+      "value": 50,
+      "output_boundary": "input electrical power, not fusion output"
+    }
+  },
+  {
+    "id": "nt_tao_target_01",
+    "entity_id": "nt_tao",
+    "category": "target",
+    "claim": "Pilot plant.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "early 2030s",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_NTTAO_FAQ"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "nt_tao_target_02",
+    "entity_id": "nt_tao",
+    "category": "target",
+    "claim": "Tao Energy Box design objective of 20 MWe.",
+    "evidence_type": "company_design_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "not_specified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_NTTAO_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "electric_output_MW",
+      "value": 20,
+      "output_boundary": "MWe; net/gross unspecified"
+    }
+  },
+  {
+    "id": "helical_fusion_evidence_01",
+    "entity_id": "helical_fusion",
+    "category": "experimental_result",
+    "claim": "Company reported HTS cable testing and completed a dedicated coil manufacturing machine.",
+    "evidence_type": "company_reported_component",
+    "timing": {
+      "display": "2026-02-05",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-02-05",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_HELICAL_MANUFACTURE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "helical_fusion_target_01",
+    "entity_id": "helical_fusion",
+    "category": "target",
+    "claim": "HARUKA integrated demonstration; precedes KANATA.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2030s",
+      "role": "target_window",
+      "precision": "decade",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_HELICAL_FUND_JP",
+      "MAG_HELICAL_MANUFACTURE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "helical_fusion_target_02",
+    "entity_id": "helical_fusion",
+    "category": "target",
+    "claim": "KANATA net electricity after HARUKA.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2030s",
+      "role": "target_window",
+      "precision": "decade",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_HELICAL_FUND_JP",
+      "MAG_HELICAL_MANUFACTURE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "output_boundary": "net plant electricity target"
+    }
+  },
+  {
+    "id": "inertia_evidence_01",
+    "entity_id": "inertia",
+    "category": "experimental_result",
+    "claim": "Company and LLNL report producing DT fuel layers in two to three hours and measuring their roughness; acceptable fusion performance is supported by simulations, not a demonstrated integrated power-plant target shot.",
+    "evidence_type": "company_reported_component_test",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "undated_live_page",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_INERTIA_FUELING"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "inertia_evidence_02",
+    "entity_id": "inertia",
+    "category": "model_or_design",
+    "claim": "Target performance modeled with ignition-benchmarked codes; predicted gain approximately 26–43 from 10 MJ laser energy, not experimental yield.",
+    "evidence_type": "modeled_result",
+    "timing": {
+      "display": "2026-09-17",
+      "role": "publication_date",
+      "precision": "day",
+      "date": "2026-09-17",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_INERTIA_PAPER",
+      "ALT_INERTIA_MODEL"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "predicted_gain_min": 26,
+      "predicted_gain_max": 43,
+      "is_experimental_measurement": false
+    }
+  },
+  {
+    "id": "inertia_evidence_03",
+    "entity_id": "inertia",
+    "category": "predecessor_evidence",
+    "claim": "NIF ignition is predecessor evidence, not an experiment performed by the company.",
+    "evidence_type": "predecessor_result",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "not_applicable",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_INERTIA_FUND"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "attributable_to_company": false
+    }
+  },
+  {
+    "id": "inertia_target_01",
+    "entity_id": "inertia",
+    "category": "target",
+    "claim": "Thunderwall unit beamline target: 10 kJ at 10 Hz with 10% wall-plug efficiency.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_INERTIA_FUND"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "inertia_target_02",
+    "entity_id": "inertia",
+    "category": "target",
+    "claim": "Full-system design goal 10 MJ at 10 Hz and target production below $1 each; nominal plant 1.5 GW.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_INERTIA_HOME"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "inertia_target_03",
+    "entity_id": "inertia",
+    "category": "target",
+    "claim": "Pilot and engineering-gain timing declared in 2026 survey: 2037–2040.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2037/2040",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": 2037,
+      "end_year": 2040,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_FIA_2026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "pacific_fusion_evidence_01",
+    "entity_id": "pacific_fusion",
+    "category": "experimental_result",
+    "claim": "Scaled pulser prototype achieved approximately 440 GW peak electrical power with 80 ns pulse duration;>1000 qualification shots.",
+    "evidence_type": "company_reported_component_test",
+    "timing": {
+      "display": "2026-06-02",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-06-02",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_PACIFIC_MODULE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "pacific_fusion_evidence_02",
+    "entity_id": "pacific_fusion",
+    "category": "engineering_progress",
+    "claim": "Albuquerque demonstration-campus construction broke ground.",
+    "evidence_type": "construction_milestone",
+    "timing": {
+      "display": "2026-08-24",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-08-24",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_PACIFIC_SITE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "pacific_fusion_target_01",
+    "entity_id": "pacific_fusion",
+    "category": "target",
+    "claim": "Demonstration System targets fusion output greater than total initially stored machine energy by 2030. This is not a net-electric definition.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2030",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2030",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_PACIFIC_SITE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "gain_boundary": "fusion_energy/initial_stored_electrical_energy"
+    }
+  },
+  {
+    "id": "xcimer_evidence_01",
+    "entity_id": "xcimer",
+    "category": "experimental_result",
+    "claim": "Phoenix prototype laser began operation and DOE accepted an Athena preconceptual-design/roadmap milestone. These are component and design milestones.",
+    "evidence_type": "company_reported_component_and_review",
+    "timing": {
+      "display": "2026-06-10",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-06-10",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_XCIMER_DOE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "xcimer_target_01",
+    "entity_id": "xcimer",
+    "category": "target",
+    "claim": "Anvil beamline demonstration target 200 kJ.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2028",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2028",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_XCIMER_ROADMAP"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "xcimer_target_02",
+    "entity_id": "xcimer",
+    "category": "target",
+    "claim": "Vulcan aims for wall-plug breakeven by 2031, explicitly defined by the company as producing more electricity than all the electricity consumed to operate the system.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2031",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2031",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_XCIMER_ROADMAP",
+      "ALT_XCIMER_FAQ"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "gain_boundary": "net_electricity_whole_system_company_defined"
+    }
+  },
+  {
+    "id": "xcimer_target_03",
+    "entity_id": "xcimer",
+    "category": "target",
+    "claim": "Athena aims to deliver 400 MW of electricity to the grid in 2035.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2035",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2035",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_XCIMER_ROADMAP",
+      "ALT_XCIMER_FAQ"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "net_grid_MW": 400
+    }
+  },
+  {
+    "id": "focused_energy_evidence_01",
+    "entity_id": "focused_energy",
+    "category": "experimental_result",
+    "claim": "Reported completion of DOE milestones: a target-design report and a proton-focusing experimental campaign; no target-gain demonstration.",
+    "evidence_type": "company_reported_component_and_review",
+    "timing": {
+      "display": "2024-11-14",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2024-11-14",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_FOCUSED_EXP"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "focused_energy_target_01",
+    "entity_id": "focused_energy",
+    "category": "target",
+    "claim": "First laser at Biblis.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2028",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2028",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_FOCUSED_ROADMAP"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "focused_energy_target_02",
+    "entity_id": "focused_energy",
+    "category": "target",
+    "claim": "Pilot plant.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2035",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2035",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_FOCUSED_ROADMAP"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "focused_energy_target_03",
+    "entity_id": "focused_energy",
+    "category": "target",
+    "claim": "First grid megawatt-hour.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2037",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2037",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_FOCUSED_ROADMAP"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "general_fusion_evidence_01",
+    "entity_id": "general_fusion",
+    "category": "experimental_result",
+    "claim": "LM26 electron temperature around 1.1 keV by Thomson scattering and 1.2 keV by AXUV; ion temperature inferred near 0.46 keV. Heating result, not Lawson/gain.",
+    "evidence_type": "joint_institution_company_measurement",
+    "timing": {
+      "display": "2026-10-08",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-10-08",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_GENERAL_TEMP"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "general_fusion_evidence_02",
+    "entity_id": "general_fusion",
+    "category": "organization_event",
+    "claim": "Nasdaq GFUZ trading began after completed business combination.",
+    "evidence_type": "corporate_event",
+    "timing": {
+      "display": "2026-07-13",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-07-13",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_GENERAL_LIST"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "general_fusion_target_01",
+    "entity_id": "general_fusion",
+    "category": "target",
+    "claim": "Next LM26 milestones 10 keV then Lawson-equivalent conditions; the surrogate-fuel experiment does not itself demonstrate DT power gain.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2028",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2028",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_GENERAL_TEMP",
+      "ALT_GENERAL_PATH",
+      "MAG_FIA_2026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "general_fusion_target_02",
+    "entity_id": "general_fusion",
+    "category": "target",
+    "claim": "First-of-a-kind plant initial operation approximately 2035.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2035",
+      "role": "target_window",
+      "precision": "approximate_year",
+      "date": "2035",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_GENERAL_PATH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "zap_energy_evidence_01",
+    "entity_id": "zap_energy",
+    "category": "experimental_result",
+    "claim": "FuZE-3 measured peak electron pressure 830 MPa; total 1.6 GPa is inferred using near-equal ion/electron temperature, over ~1 microsecond.",
+    "evidence_type": "company_reported_preliminary_experiment",
+    "timing": {
+      "display": "2025-11-17",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2025-11-17",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_ZAP_PRESSURE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "zap_energy_evidence_02",
+    "entity_id": "zap_energy",
+    "category": "experimental_result",
+    "claim": "Century repeated hydrogen plasma pulses into a liquid-metal-lined chamber; it is not a fusion-energy-output experiment.",
+    "evidence_type": "company_reported_engineering_test",
+    "timing": {
+      "display": "2024-10-09",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2024-10-09",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_ZAP_FUND"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "zap_energy_evidence_03",
+    "entity_id": "zap_energy",
+    "category": "organization_event",
+    "claim": "Company announced fission/hybrid development alongside ongoing fusion.",
+    "evidence_type": "corporate_strategy",
+    "timing": {
+      "display": "2026-04-29",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-04-29",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_ZAP_STRATEGY"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "zap_energy_target_01",
+    "entity_id": "zap_energy",
+    "category": "target",
+    "claim": "Fusion pilot timing: late 2030s; net 50 MWe/module is design intent.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2037/2039",
+      "role": "target_window",
+      "precision": "decade_part",
+      "date": null,
+      "start_year": 2037,
+      "end_year": 2039,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_FIA_2026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "first_light_evidence_01",
+    "entity_id": "first_light",
+    "category": "experimental_result",
+    "claim": "M3 experiments tested the compression principle; release explicitly says they were not designed to demonstrate ignition or fusion gain.",
+    "evidence_type": "company_reported_component_test",
+    "timing": {
+      "display": "2026-09-22",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-09-22",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_FIRSTLIGHT_TEST"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "first_light_target_01",
+    "entity_id": "first_light",
+    "category": "model_or_design",
+    "claim": "FLARE modeled target gain around 1000; this is a design calculation with no corresponding demonstrated gain.",
+    "evidence_type": "company_model",
+    "timing": {
+      "display": "Not specified",
+      "role": "undated_live_page",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_FIRSTLIGHT_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "is_experimental_measurement": false
+    }
+  },
+  {
+    "id": "first_light_target_02",
+    "entity_id": "first_light",
+    "category": "target",
+    "claim": "Pilot timing in 2026 survey: late 2030s.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2037/2039",
+      "role": "target_window",
+      "precision": "decade_part",
+      "date": null,
+      "start_year": 2037,
+      "end_year": 2039,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_FIA_2026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "marvel_fusion_evidence_01",
+    "entity_id": "marvel_fusion",
+    "category": "experimental_result",
+    "claim": "CALA/ELI-NP proof-of-concept is described by the company as component validation; not target gain.",
+    "evidence_type": "company_reported_component_test",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_MARVEL_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "marvel_fusion_evidence_02",
+    "entity_id": "marvel_fusion",
+    "category": "organization_event",
+    "claim": "Colorado/Siemens Energy LOI signed; supports cooperation, not completed deployment.",
+    "evidence_type": "agreement",
+    "timing": {
+      "display": "2026-08-12",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-08-12",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_MARVEL_SITE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "marvel_fusion_target_01",
+    "entity_id": "marvel_fusion",
+    "category": "target",
+    "claim": "ATLAS infrastructure ready.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "end 2026",
+      "role": "target_window",
+      "precision": "year_part",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_MARVEL_TECH",
+      "ALT_MARVEL_SITE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "marvel_fusion_target_02",
+    "entity_id": "marvel_fusion",
+    "category": "target",
+    "claim": "ATLAS first laser.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "early 2027",
+      "role": "target_window",
+      "precision": "year_part",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_MARVEL_TECH",
+      "ALT_MARVEL_SITE"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "marvel_fusion_target_03",
+    "entity_id": "marvel_fusion",
+    "category": "target",
+    "claim": "Target ignition.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2032",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2032",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_MARVEL_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "marvel_fusion_target_04",
+    "entity_id": "marvel_fusion",
+    "category": "target",
+    "claim": "Engineering gain; preserve the company definition when available.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2035",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2035",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_MARVEL_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "marvel_fusion_target_05",
+    "entity_id": "marvel_fusion",
+    "category": "target",
+    "claim": "Grid electricity.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2036",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2036",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_MARVEL_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "avalanche_energy_evidence_01",
+    "entity_id": "avalanche_energy",
+    "category": "experimental_result",
+    "claim": "Reported compact-device 300 kV high-voltage operation and published component/confinement papers; not demonstrated net energy.",
+    "evidence_type": "company_reported_component_test",
+    "timing": {
+      "display": "2026-02-03",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-02-03",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_AVALANCHE_FUND"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "avalanche_energy_target_01",
+    "entity_id": "avalanche_energy",
+    "category": "target",
+    "claim": "FusionWERX broad-scope tritium-capable licensed operation; a proposed host for a D-T Q > 1 test programme, not a promise of gain in that year.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2027",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2027",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_AVALANCHE_FUND"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "avalanche_energy_target_02",
+    "entity_id": "avalanche_energy",
+    "category": "target",
+    "claim": "Survey forecast for scientific/engineering gain; definitions not harmonized.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2029",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2029",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_FIA_2026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "avalanche_energy_target_03",
+    "entity_id": "avalanche_energy",
+    "category": "target",
+    "claim": "Survey forecast for pilot operation.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2030",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2030",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_FIA_2026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "ex_fusion_evidence_01",
+    "entity_id": "ex_fusion",
+    "category": "experimental_result",
+    "claim": "Reported 10 Hz continuous irradiation of surrogate targets at Hamamatsu; not 10 Hz fusion ignition.",
+    "evidence_type": "company_reported_component_test",
+    "timing": {
+      "display": "2025-07-01",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2025-07-01",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_EXFUSION_TEST"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "ex_fusion_target_01",
+    "entity_id": "ex_fusion",
+    "category": "target",
+    "claim": "One hour of continuous neutron generation is a fiscal 2027 development target.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "FY2027",
+      "role": "target_window",
+      "precision": "fiscal_year",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_EXFUSION_A",
+      "ALT_EXFUSION_EXT"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "ex_fusion_target_02",
+    "entity_id": "ex_fusion",
+    "category": "target",
+    "claim": "Electricity demonstration in the 2030s is a company goal, not an operating system.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2030/2039",
+      "role": "target_window",
+      "precision": "decade",
+      "date": null,
+      "start_year": 2030,
+      "end_year": 2039,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "MAG_FIA_2026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "hb11_evidence_01",
+    "entity_id": "hb11",
+    "category": "experimental_result",
+    "claim": "Peer-reviewed collaborating LFEX work found enhanced alpha-particle yield using confined target geometries; not ignition or net energy.",
+    "evidence_type": "peer_reviewed_experiment",
+    "timing": {
+      "display": "2025-07-18",
+      "role": "publication_date",
+      "precision": "day",
+      "date": "2025-07-18",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_HB11_PAPER"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "hb11_target_01",
+    "entity_id": "hb11",
+    "category": "target",
+    "claim": "Commercial proton-boron electricity is the goal; no robust dated plant commitment identified in reviewed primary pages.",
+    "evidence_type": "company_aspiration",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_HB11_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "fuse_evidence_01",
+    "entity_id": "fuse",
+    "category": "experimental_result",
+    "claim": "FAETON test campaign with Fifth Gait reported repeated fusion-neutron production for radiation testing.",
+    "evidence_type": "company_partner_experimental_report",
+    "timing": {
+      "display": "2025-04-08",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2025-04-08",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_FUSE_TEST"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "fuse_target_01",
+    "entity_id": "fuse",
+    "category": "target",
+    "claim": "Apeiron I is a future MagLIF energy demonstrator concept; no verified net-electric result or firm date in reviewed page.",
+    "evidence_type": "company_aspiration",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "ALT_FUSE_CONCEPT"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "startorus_evidence_01",
+    "entity_id": "startorus",
+    "category": "reported_status",
+    "claim": "Reports SUNIST-2 operation and construction of NTST; the source distinguishes these from the future CTRFR-1 design.",
+    "evidence_type": "company_report",
+    "timing": {
+      "display": "2026-05-07",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-05-07",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_STARTORUS_A_PLUS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "startorus_evidence_02",
+    "entity_id": "startorus",
+    "category": "experimental_result",
+    "claim": "Full-scale HTS toroidal-field magnet energized at 20 K and 4.5 kA.",
+    "evidence_type": "company_subsystem_result",
+    "timing": {
+      "display": "2026-06-11",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-06-11",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_STARTORUS_MAGNET"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "startorus_target_01",
+    "entity_id": "startorus",
+    "category": "target",
+    "claim": "NTST operation at rated parameters.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2027",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2027",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_STARTORUS_A_PLUS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "startorus_target_02",
+    "entity_id": "startorus",
+    "category": "target",
+    "claim": "Equivalent plasma Q greater than one; modeled-fuel equivalence, not a measured D-T result.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "2029/2030",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": 2029,
+      "end_year": 2030,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_STARTORUS_A_PLUS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "equivalent_plasma_Q",
+      "value": 1,
+      "operator": ">"
+    }
+  },
+  {
+    "id": "startorus_target_03",
+    "entity_id": "startorus",
+    "category": "target",
+    "claim": "Electricity-exporting demonstration facility.",
+    "evidence_type": "company_target",
+    "timing": {
+      "display": "early 2030s",
+      "role": "target_window",
+      "precision": "decade_part",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_STARTORUS_A_PLUS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "openstar_evidence_01",
+    "entity_id": "openstar",
+    "category": "engineering_progress",
+    "claim": "Junior prototype fully commissioned according to PPPL partnership announcement.",
+    "evidence_type": "partner_report",
+    "timing": {
+      "display": "2026-09-29",
+      "role": "reported_by",
+      "precision": "day",
+      "date": "2026-09-29",
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_OPENSTAR_PPPL"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "openstar_target_01",
+    "entity_id": "openstar",
+    "category": "model_or_design",
+    "claim": "Tama Nui grid-scale plant exists as a published D-T design, not demonstrated output. No precisely dated electricity target is adopted from an undated five-year website claim.",
+    "evidence_type": "published_design",
+    "timing": {
+      "display": "Not specified",
+      "role": "undated_live_page",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_OPENSTAR_PPPL",
+      "PAR_OPENSTAR_TECH"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "nif_evidence_01",
+    "entity_id": "nif",
+    "category": "experimental_result",
+    "claim": "Target gain 4.13 on 2025-04-07",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2025-04-07",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-04-07",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_009",
+      "PHY_010",
+      "PHY_011"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "nif_2025_record"
+      ]
+    }
+  },
+  {
+    "id": "nif_evidence_02",
+    "entity_id": "nif",
+    "category": "experimental_result",
+    "claim": "Latest listed ignition 2026-06-20: 7.9 MJ, gain about 3.8",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2026-06-20",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2026-06-20",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_009",
+      "PHY_010",
+      "PHY_011"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "nif_2026_latest"
+      ]
+    }
+  },
+  {
+    "id": "jet_evidence_01",
+    "entity_id": "jet",
+    "category": "experimental_result",
+    "claim": "1997 peak plasma Q about 0.67",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "1997",
+      "role": "event_date",
+      "precision": "year",
+      "date": "1997",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_013",
+      "PHY_014",
+      "PHY_020"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "jet_1997"
+      ]
+    }
+  },
+  {
+    "id": "jet_evidence_02",
+    "entity_id": "jet",
+    "category": "experimental_result",
+    "claim": "2023 final campaign approximately 69 MJ fusion energy",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2023-10-03",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2023-10-03",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_013",
+      "PHY_014",
+      "PHY_020"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "jet_2023"
+      ]
+    }
+  },
+  {
+    "id": "w7x_evidence_01",
+    "entity_id": "w7x",
+    "category": "experimental_result",
+    "claim": "High triple product sustained 43 s in May 2025",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2025-05-22",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-05-22",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_015"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "w7x_2025"
+      ]
+    }
+  },
+  {
+    "id": "east_evidence_01",
+    "entity_id": "east",
+    "category": "experimental_result",
+    "claim": "High-confinement plasma 1,066 s on 2025-01-20",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2025-01-20",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-01-20",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_016"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "east_2025"
+      ]
+    }
+  },
+  {
+    "id": "kstar_evidence_01",
+    "entity_id": "kstar",
+    "category": "experimental_result",
+    "claim": "Ion temperature 100 million degrees Celsius for 48 s",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2024-02",
+      "role": "campaign_end_month",
+      "precision": "month",
+      "date": "2024-02",
+      "start_year": null,
+      "end_year": null,
+      "note": "Campaign ran December 2023–February 2024; source reported March 20, 2024. Do not invent a shot date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_017"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "kstar_temperature"
+      ]
+    }
+  },
+  {
+    "id": "kstar_evidence_02",
+    "entity_id": "kstar",
+    "category": "experimental_result",
+    "claim": "H-mode 102 s in the same 2023–2024 campaign; do not merge metrics",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2024-02",
+      "role": "campaign_end_month",
+      "precision": "month",
+      "date": "2024-02",
+      "start_year": null,
+      "end_year": null,
+      "note": "Campaign ran December 2023–February 2024; source reported March 20, 2024. Do not invent a shot date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_017"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "kstar_hmode"
+      ]
+    }
+  },
+  {
+    "id": "west_evidence_01",
+    "entity_id": "west",
+    "category": "experimental_result",
+    "claim": "Hydrogen plasma 1,337 s on 2025-02-12",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2025-02-12",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-02-12",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_018"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "west_2025"
+      ]
+    }
+  },
+  {
+    "id": "west_evidence_02",
+    "entity_id": "west",
+    "category": "experimental_result",
+    "claim": "2.6 GJ external heating injected and extracted",
+    "evidence_type": "institution_reported_experiment",
+    "timing": {
+      "display": "2025-02-12",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-02-12",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_018"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "related_record_ids": [
+        "west_2025"
+      ]
+    }
+  },
+  {
+    "id": "iter_target_01",
+    "entity_id": "iter",
+    "category": "target",
+    "claim": "Research operations start; not the D-T phase.",
+    "evidence_type": "program_target",
+    "timing": {
+      "display": "2034",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2034",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_021"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "iter_target_02",
+    "entity_id": "iter",
+    "category": "target",
+    "claim": "Full magnetic energy.",
+    "evidence_type": "program_target",
+    "timing": {
+      "display": "2036",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2036",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_021"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "iter_target_03",
+    "entity_id": "iter",
+    "category": "target",
+    "claim": "Start of D-T phase; not necessarily immediate Q = 10.",
+    "evidence_type": "program_target",
+    "timing": {
+      "display": "2039",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2039",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_021"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "iter_target_04",
+    "entity_id": "iter",
+    "category": "target",
+    "claim": "Design target: 500 MW fusion from 50 MW external plasma heating, plasma Q = 10; no electrical generator.",
+    "evidence_type": "program_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_019",
+      "PHY_020"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {
+      "metric": "plasma_Q",
+      "value": 10
+    }
+  },
+  {
+    "id": "jt60sa_evidence_01",
+    "entity_id": "jt60sa",
+    "category": "experimental_result",
+    "claim": "First plasma 2023-10-23",
+    "evidence_type": "institution_reported_first_plasma",
+    "timing": {
+      "display": "2023-10-23",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2023-10-23",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_026"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "ifmif_dones_target_01",
+    "entity_id": "ifmif_dones",
+    "category": "target",
+    "claim": "Qualify materials under fusion-relevant neutron exposure",
+    "evidence_type": "program_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_024",
+      "PHY_025"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "sandia_z_evidence_01",
+    "entity_id": "sandia_z",
+    "category": "experimental_result",
+    "claim": "Thermonuclear plasma experiments with magnetization, preheat and liner compression",
+    "evidence_type": "institution_reported_subsystem_or_research_result",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_033"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "wham_evidence_01",
+    "entity_id": "wham",
+    "category": "experimental_result",
+    "claim": "First plasma July 15, 2024",
+    "evidence_type": "institution_reported_first_plasma",
+    "timing": {
+      "display": "2024-07-15",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2024-07-15",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_035"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "wham_evidence_02",
+    "entity_id": "wham",
+    "category": "experimental_result",
+    "claim": "17 T HTS mirror magnets",
+    "evidence_type": "institution_reported_subsystem_or_research_result",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PHY_035"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "step_evidence_01",
+    "entity_id": "step",
+    "category": "reported_status",
+    "claim": "Programme planning, site preparation and partner selection; no operating fusion power plant.",
+    "evidence_type": "institutional_summary",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_STEP_STRATEGY",
+      "PAR_UK_STRATEGY",
+      "PAR_STEP_PARTNERS"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "step_target_01",
+    "entity_id": "step",
+    "category": "target",
+    "claim": "Prototype operation from 2040.",
+    "evidence_type": "program_target",
+    "timing": {
+      "display": "2040",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2040",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_STEP_STRATEGY"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "best_evidence_01",
+    "entity_id": "best",
+    "category": "reported_status",
+    "claim": "Construction and joint research plan; reviewed evidence does not show a burning-plasma result.",
+    "evidence_type": "institutional_summary",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_BEST_PLAN",
+      "PAR_F4E_REPORT"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "best_target_01",
+    "entity_id": "best",
+    "category": "target",
+    "claim": "First plasma: late 2027 or early 2028 in the July 2026 F4E overview; the November 2025 partner announcement had specified 2027.",
+    "evidence_type": "program_target",
+    "timing": {
+      "display": "late 2027–early 2028",
+      "role": "target_window",
+      "precision": "range",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "Preserve the source wording; do not convert it into a precise promised deadline."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_BEST_PLAN",
+      "PAR_F4E_REPORT"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "best_target_02",
+    "entity_id": "best",
+    "category": "target",
+    "claim": "Fusion gain Q greater than 5 is a research aim, not net grid-electric output.",
+    "evidence_type": "program_target",
+    "timing": {
+      "display": "Not specified",
+      "role": "target_window",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_BEST_PLAN"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  },
+  {
+    "id": "craft_evidence_01",
+    "entity_id": "craft",
+    "category": "reported_status",
+    "claim": "Facility infrastructure exists; it is not an electricity-producing fusion reactor.",
+    "evidence_type": "institutional_summary",
+    "timing": {
+      "display": "Not specified",
+      "role": "reported_at",
+      "precision": "unspecified",
+      "date": null,
+      "start_year": null,
+      "end_year": null,
+      "note": "This date labels the report or publication; it is not an independently established experiment date."
+    },
+    "as_of": "2026-10-22",
+    "source_ids": [
+      "PAR_F4E_REPORT"
+    ],
+    "independent_verification": "not_inferred_from_source_review",
+    "details": {}
+  }
+]

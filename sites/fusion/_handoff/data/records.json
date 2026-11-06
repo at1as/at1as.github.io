@@ -1,0 +1,240 @@
+[
+  {
+    "id": "east_2025",
+    "entity_id": "east",
+    "date": "2025-01-20",
+    "metric": "h_mode_duration",
+    "value": 1066,
+    "unit": "s",
+    "boundary": "plasma_operating_regime",
+    "measurement_type": "single_discharge",
+    "source_ids": [
+      "PHY_016"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "jet_1997",
+    "entity_id": "jet",
+    "date": "1997",
+    "metric": "plasma_gain_peak",
+    "value": 0.67,
+    "unit": "ratio",
+    "fusion_power_mw": 16,
+    "heating_power_mw": 24,
+    "boundary": "external_heating_to_plasma",
+    "measurement_type": "peak_not_pulse_average",
+    "source_ids": [
+      "PHY_020"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "jet_2023",
+    "entity_id": "jet",
+    "date": "2023-10-03",
+    "metric": "fusion_energy",
+    "value": 69,
+    "unit": "MJ",
+    "duration_s": 5.2,
+    "boundary": "fusion_energy_released",
+    "measurement_type": "single_discharge_integrated",
+    "source_ids": [
+      "PHY_013",
+      "PHY_014"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "kstar_temperature",
+    "entity_id": "kstar",
+    "date": "2024-02",
+    "date_note": "Campaign ran December 2023–February 2024; source reported March 20, 2024. Do not invent a shot date.",
+    "metric": "ion_temperature_duration",
+    "value": 48,
+    "unit": "s",
+    "ion_temperature_c": 100000000,
+    "boundary": "specified_ion_temperature",
+    "measurement_type": "campaign_result",
+    "source_ids": [
+      "PHY_017"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "campaign_end_month"
+  },
+  {
+    "id": "kstar_hmode",
+    "entity_id": "kstar",
+    "date": "2024-02",
+    "metric": "h_mode_duration",
+    "value": 102,
+    "unit": "s",
+    "boundary": "plasma_operating_regime",
+    "measurement_type": "campaign_result",
+    "source_ids": [
+      "PHY_017"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "campaign_end_month",
+    "date_note": "Campaign ran December 2023–February 2024; source reported March 20, 2024. Do not invent a shot date."
+  },
+  {
+    "id": "nif_2022_record",
+    "entity_id": "nif",
+    "date": "2022-12-05",
+    "metric": "target_gain",
+    "value": 1.5365853658536586,
+    "unit": "ratio",
+    "reported_display": "1.54",
+    "fusion_energy_mj": 3.15,
+    "driver_energy_mj": 2.05,
+    "boundary": "laser_energy_to_target",
+    "measurement_type": "single_shot",
+    "source_ids": [
+      "PHY_010"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "nif_2023_record",
+    "entity_id": "nif",
+    "date": "2023-07-30",
+    "metric": "target_gain",
+    "value": 1.8926829268292684,
+    "unit": "ratio",
+    "reported_display": "1.89",
+    "fusion_energy_mj": 3.88,
+    "driver_energy_mj": 2.05,
+    "boundary": "laser_energy_to_target",
+    "measurement_type": "single_shot",
+    "source_ids": [
+      "PHY_009"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "nif_2024_record",
+    "entity_id": "nif",
+    "date": "2024-02-12",
+    "metric": "target_gain",
+    "value": 2.3636363636363633,
+    "unit": "ratio",
+    "reported_display": "2.36",
+    "fusion_energy_mj": 5.2,
+    "driver_energy_mj": 2.2,
+    "boundary": "laser_energy_to_target",
+    "measurement_type": "single_shot",
+    "source_ids": [
+      "PHY_009"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "nif_2025_feb_record",
+    "entity_id": "nif",
+    "date": "2025-02-23",
+    "metric": "target_gain",
+    "value": 2.439024390243903,
+    "unit": "ratio",
+    "reported_display": "2.44",
+    "fusion_energy_mj": 5.0,
+    "driver_energy_mj": 2.05,
+    "boundary": "laser_energy_to_target",
+    "measurement_type": "single_shot",
+    "source_ids": [
+      "PHY_009"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "nif_2025_record",
+    "entity_id": "nif",
+    "date": "2025-04-07",
+    "metric": "target_gain",
+    "value": 4.13,
+    "unit": "ratio",
+    "reported_display": "4.13",
+    "fusion_energy_mj": 8.6,
+    "fusion_energy_uncertainty_mj": 0.45,
+    "driver_energy_mj": 2.08,
+    "boundary": "laser_energy_to_target",
+    "measurement_type": "single_shot",
+    "source_ids": [
+      "PHY_009",
+      "PHY_012"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "nif_2026_latest",
+    "entity_id": "nif",
+    "date": "2026-06-20",
+    "metric": "target_gain",
+    "value": 3.8,
+    "unit": "ratio",
+    "reported_display": "approximately 3.8",
+    "fusion_energy_mj": 7.9,
+    "fusion_energy_uncertainty_mj": 0.4,
+    "driver_energy_mj": null,
+    "boundary": "laser_energy_to_target",
+    "measurement_type": "single_shot",
+    "source_ids": [
+      "PHY_009"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "w7x_2025",
+    "entity_id": "w7x",
+    "date": "2025-05-22",
+    "metric": "high_triple_product_duration",
+    "value": 43,
+    "unit": "s",
+    "triple_product": null,
+    "boundary": "high_performance_interval",
+    "measurement_type": "single_discharge",
+    "source_ids": [
+      "PHY_015"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  },
+  {
+    "id": "west_2025",
+    "entity_id": "west",
+    "date": "2025-02-12",
+    "metric": "plasma_duration",
+    "value": 1337,
+    "unit": "s",
+    "fuel": "hydrogen",
+    "boundary": "plasma_discharge_duration",
+    "measurement_type": "single_discharge",
+    "source_ids": [
+      "PHY_018"
+    ],
+    "evidence_type": "published_experimental_result",
+    "as_of": "2026-10-22",
+    "date_role": "event_date"
+  }
+]

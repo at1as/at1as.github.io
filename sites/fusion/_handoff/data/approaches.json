@@ -1,0 +1,353 @@
+[
+  {
+    "id": "tokamak",
+    "name": "Tokamak",
+    "family": "magnetic",
+    "mechanism": "A toroidal plasma is confined by fields from external coils and a large current in the plasma.",
+    "diagram_steps": [
+      "Draw a torus with an empty central hole and surrounding toroidal coils.",
+      "Add a plasma-current arrow around the torus.",
+      "Show helical field lines from combined toroidal and poloidal components.",
+      "Cut away the outer wall to show blanket, coolant and heat exhaust."
+    ],
+    "proposed_advantage": "Largest body of relevant high-performance magnetic-plasma experiments.",
+    "key_open_challenge": "Disruptions, current drive, heat exhaust, fuel cycle and neutron-resistant components.",
+    "diagram_guardrail": "The central solenoid induces plasma current; it does not directly create all confining poloidal field by itself. Stronger field is not a free improvement; magnet stress, shielding and space matter.",
+    "examples": [
+      "ITER",
+      "JET",
+      "CFS"
+    ],
+    "source_ids": [
+      "PHY_004",
+      "PHY_020",
+      "PHY_023"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "spherical_tokamak",
+    "name": "Spherical tokamak",
+    "family": "magnetic",
+    "mechanism": "A tokamak with a comparatively small central hole and rounded, elongated plasma cross-section.",
+    "diagram_steps": [
+      "Start from the tokamak diagram.",
+      "Shrink the central hole while keeping a center column.",
+      "Show a vertical cross-section with a compact center stack.",
+      "Highlight the limited room for shielding and blanket at the center."
+    ],
+    "proposed_advantage": "Potentially compact high-pressure plasma operation.",
+    "key_open_challenge": "Center-column protection, maintainability and power-exhaust integration.",
+    "diagram_guardrail": "Not a solid sphere of plasma; a center column remains. Compact size alone does not establish low plant cost.",
+    "examples": [
+      "Tokamak Energy",
+      "STEP",
+      "NSTX-U"
+    ],
+    "source_ids": [
+      "PHY_004",
+      "PHY_042"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "stellarator",
+    "name": "Stellarator",
+    "family": "magnetic",
+    "mechanism": "External magnets create a three-dimensional twisted confining field without requiring a large transformer-driven plasma current.",
+    "diagram_steps": [
+      "Draw a toroidal plasma with a gently changing three-dimensional cross-section.",
+      "Reveal nonplanar or alternative optimized external magnets.",
+      "Trace a field line around the torus.",
+      "Keep coolant and blanket outside the plasma."
+    ],
+    "proposed_advantage": "Natural route to continuous operation and reduced large-current disruption burden.",
+    "key_open_challenge": "Precision manufacture, field errors, particle confinement, blanket access and remote maintenance.",
+    "diagram_guardrail": "Do not draw plasma as following a single literal twisted pipe or imply zero plasma current, zero instability, or solved steady-state power generation.",
+    "examples": [
+      "Wendelstein 7-X",
+      "Proxima",
+      "Type One",
+      "Thea",
+      "Renaissance"
+    ],
+    "source_ids": [
+      "PHY_005",
+      "PHY_015"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "magnetic_mirror",
+    "name": "Magnetic mirror",
+    "family": "magnetic",
+    "mechanism": "A linear magnetic field strengthens near both ends, reflecting many charged particles while some escape through the ends.",
+    "diagram_steps": [
+      "Draw a linear plasma chamber.",
+      "Place stronger magnetic throats at both ends.",
+      "Animate some particle paths reflecting and some escaping.",
+      "Show heating beams and end exhaust collection."
+    ],
+    "proposed_advantage": "Relatively direct geometry and potentially simpler component access.",
+    "key_open_challenge": "Axial particle losses and sustaining efficient high-performance confinement.",
+    "diagram_guardrail": "Magnetic mirrors are not solid plugs and do not reflect every particle. Do not confuse 17 T magnet field with confinement or electrical gain.",
+    "examples": [
+      "WHAM",
+      "Realta"
+    ],
+    "source_ids": [
+      "PHY_035",
+      "PHY_003"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "beam_frc",
+    "name": "Beam sustained field reversed configuration",
+    "family": "magnetic",
+    "mechanism": "A compact plasma configuration has closed field regions formed by plasma currents; neutral beams can create, heat and sustain it.",
+    "diagram_steps": [
+      "Draw an elongated central chamber without a material center post.",
+      "Show plasma-current loops and reversed field direction in the core.",
+      "Add neutral beams entering the plasma.",
+      "Distinguish current experiment fuel from eventual advanced fuel."
+    ],
+    "proposed_advantage": "High plasma pressure relative to magnetic pressure and a linear external layout.",
+    "key_open_challenge": "Confinement and beam efficiency at reactor conditions, plus advanced-fuel radiation and temperature requirements.",
+    "diagram_guardrail": "Use updated Norm beam-formation architecture rather than depicting all TAE machines as Helion-style colliding plasmoids. A field-reversed plasma is not a permanent-magnet ring.",
+    "examples": [
+      "TAE"
+    ],
+    "source_ids": [
+      "PHY_036",
+      "PHY_002"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "pulsed_frc",
+    "name": "Pulsed compressed field reversed configuration",
+    "family": "magneto_inertial",
+    "mechanism": "Compact FRC plasmas are formed, accelerated and compressed in a pulsed magnetic system; an expanding plasma can return energy electromagnetically.",
+    "diagram_steps": [
+      "Form two plasmoids at opposite ends.",
+      "Move them into the central region.",
+      "Compress the merged plasma with a stronger field.",
+      "Show expansion inducing current in coils and a separate input-energy loop."
+    ],
+    "proposed_advantage": "Possible direct electrical conversion and recovery of some pulse energy.",
+    "key_open_challenge": "Fusion energy output, recovery efficiency, advanced-fuel supply and repeated integrated net electrical output.",
+    "diagram_guardrail": "Returned pulse energy includes previously supplied energy; do not label all returned current as new fusion electricity. D-He3 is the intended fuel, not proof every experiment used it.",
+    "examples": [
+      "Helion"
+    ],
+    "source_ids": [
+      "PHY_037",
+      "PHY_007"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "z_pinch",
+    "name": "Sheared flow stabilized Z-pinch",
+    "family": "magnetic_pulsed",
+    "mechanism": "Current through a plasma column creates a magnetic field that pinches it inward; flow varying across the column is used to suppress instability.",
+    "diagram_steps": [
+      "Draw a narrow axial plasma column.",
+      "Send current along the column.",
+      "Show circular magnetic-field arrows and inward force.",
+      "Animate axial layers with different velocities."
+    ],
+    "proposed_advantage": "Avoids large external confinement magnets and a high-energy laser driver.",
+    "key_open_challenge": "Stability and gain at high current, electrode life, liquid-metal engineering and rapid repetition.",
+    "diagram_guardrail": "No external magnet does not mean no magnetic field. Do not treat a repetitive engineering platform power rating as fusion output.",
+    "examples": [
+      "Zap Energy"
+    ],
+    "source_ids": [
+      "PHY_038"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "magnetized_target",
+    "name": "Mechanically compressed magnetized target",
+    "family": "magneto_inertial",
+    "mechanism": "A preformed magnetized plasma is compressed rapidly by a surrounding mechanical or liquid-metal system.",
+    "diagram_steps": [
+      "Create a magnetized plasma target.",
+      "Show surrounding liner or liquid wall.",
+      "Compress inward and raise density and temperature.",
+      "Show intended heat capture and reset between pulses."
+    ],
+    "proposed_advantage": "Liquid walls could combine shielding, heat collection and fuel breeding.",
+    "key_open_challenge": "Compression symmetry, plasma-wall mixing, integrated gain and durable repeatable operation.",
+    "diagram_guardrail": "Distinguish solid-lithium experimental liners from proposed renewable liquid-metal plant walls; commercial liquid-wall benefits are design aims.",
+    "examples": [
+      "General Fusion"
+    ],
+    "source_ids": [
+      "PHY_039"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "laser_indirect",
+    "name": "Laser inertial fusion with indirect drive",
+    "family": "inertial",
+    "mechanism": "Laser beams heat a hohlraum; the resulting X-rays ablate a fuel capsule and drive an inward implosion.",
+    "diagram_steps": [
+      "Show laser beams entering openings in a hohlraum.",
+      "Turn inner wall energy into X-rays.",
+      "Show capsule surface blowing outward.",
+      "Show the recoil compressing fuel inward, then brief fusion burn."
+    ],
+    "proposed_advantage": "Physical ignition and target gain above one have been experimentally demonstrated at NIF.",
+    "key_open_challenge": "Efficient high-repetition lasers, much larger useful gain, mass-produced targets and chamber recovery.",
+    "diagram_guardrail": "Lasers do not directly squeeze the capsule; outward ablation drives implosion. NIF evidence applies to the physics family, not automatically to a startup plant.",
+    "examples": [
+      "NIF",
+      "Inertia"
+    ],
+    "source_ids": [
+      "PHY_009",
+      "PHY_010"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "laser_direct",
+    "name": "Laser inertial fusion with direct drive",
+    "family": "inertial",
+    "mechanism": "Laser beams illuminate the capsule directly; ablation accelerates the remaining fuel inward.",
+    "diagram_steps": [
+      "Draw a spherical capsule with lasers aimed at its exterior.",
+      "Show an outward ablation layer and inward compression.",
+      "Show the short hot spot and burn.",
+      "Add an optional separate fast-ignition beam only for designs that use one."
+    ],
+    "proposed_advantage": "Potentially better coupling of laser energy to the capsule.",
+    "key_open_challenge": "Illumination uniformity, laser-plasma interactions, high gain and repetitive plant hardware.",
+    "diagram_guardrail": "Direct drive is not direct electricity conversion. Fast ignition and shock ignition are subtypes, not properties of every direct-drive design.",
+    "examples": [
+      "OMEGA",
+      "Focused Energy",
+      "Marvel Fusion"
+    ],
+    "source_ids": [
+      "PHY_034"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "pulsed_power_inertial",
+    "name": "Pulsed power liner inertial fusion",
+    "family": "magneto_inertial",
+    "mechanism": "A very large electrical pulse creates a magnetic force that implodes a liner or target; some versions add fuel magnetization and laser preheat.",
+    "diagram_steps": [
+      "Charge a pulsed-power bank.",
+      "Drive current into a liner.",
+      "Show inward electromagnetic force compressing the fuel.",
+      "Show separate axial pre-magnetization and laser preheat only for MagLIF."
+    ],
+    "proposed_advantage": "Efficient electrical pulse delivery may reduce the laser-driver burden.",
+    "key_open_challenge": "High-gain target design, consumable transmission components, chamber clearing and repetition.",
+    "diagram_guardrail": "Sandia MagLIF and Pacific Fusion have different implementations; do not copy all MagLIF hardware into every pulsed-power diagram.",
+    "examples": [
+      "Sandia Z/MagLIF",
+      "Pacific Fusion"
+    ],
+    "source_ids": [
+      "PHY_033"
+    ],
+    "interpretation_label": "Mechanism facts plus explicitly interpretive engineering tradeoffs"
+  },
+  {
+    "id": "levitated_dipole",
+    "name": "Levitated dipole",
+    "family": "magnetic",
+    "mechanism": "Plasma surrounds the dipole field of a levitated superconducting ring inside the chamber.",
+    "diagram_steps": [
+      "Draw an internal superconducting ring inside a vacuum vessel.",
+      "Show dipole field lines around the ring.",
+      "Place the plasma around those field lines.",
+      "Show the ring cooling and shielding problem separately from plasma heating."
+    ],
+    "proposed_advantage": "A distinct confinement geometry with simple-looking axisymmetric topology.",
+    "key_open_challenge": "Reactor-relevant confinement and protection, cooling and maintenance of an internal magnet.",
+    "diagram_guardrail": "The ring is inside the chamber; do not draw an external-coil tokamak or treat prototype operation as D-T gain.",
+    "examples": [
+      "OpenStar"
+    ],
+    "source_ids": [
+      "PAR_OPENSTAR_PPPL",
+      "PAR_OPENSTAR_TECH"
+    ]
+  },
+  {
+    "id": "electrostatic",
+    "name": "Magneto-electrostatic confinement",
+    "family": "electrostatic_magnetic",
+    "mechanism": "An electric field confines energetic ions while a magnetic field helps confine electrons.",
+    "diagram_steps": [
+      "Draw a central electrode and the surrounding vessel.",
+      "Show ion orbits separately from electron confinement.",
+      "Add electric and magnetic field legends.",
+      "Show power supplied to the high-voltage system."
+    ],
+    "proposed_advantage": "Compact architecture and potential applications at small scales.",
+    "key_open_challenge": "Losses, space charge, energy distribution, high voltage and a complete reactor energy balance.",
+    "diagram_guardrail": "High voltage is an input or operating condition, not fusion output.",
+    "examples": [
+      "Avalanche Energy"
+    ],
+    "source_ids": [
+      "ALT_AVALANCHE_TECH",
+      "ALT_AVALANCHE_FUND"
+    ]
+  },
+  {
+    "id": "hybrid_direct_drive",
+    "name": "Hybrid direct-drive laser fusion",
+    "family": "inertial",
+    "mechanism": "An initial laser pulse produces X-rays in a hohlraum; subsequent laser pulses directly drive the capsule.",
+    "diagram_steps": [
+      "Show two-sided laser access to a target assembly.",
+      "Use the initial pulse to heat the hohlraum and X-ray-ablate the capsule.",
+      "Show later pulses driving the capsule directly.",
+      "Show compression and proposed burn, followed by target replacement and chamber recovery."
+    ],
+    "proposed_advantage": "Combining indirect and direct stages seeks efficient coupling and controlled compression.",
+    "key_open_challenge": "Target design validation, efficient high-energy drivers, repetition, target cost and chamber lifetime must work together.",
+    "diagram_guardrail": "This target design is not a fast-ignition sequence and not ordinary NIF indirect drive; modeled target performance is not a measured company gain.",
+    "examples": [
+      "Xcimer"
+    ],
+    "source_ids": [
+      "PAR_XCIMER_HDD",
+      "ALT_XCIMER_ROADMAP"
+    ]
+  },
+  {
+    "id": "hybrid_fast_ignition",
+    "name": "Two-stage hybrid fast ignition",
+    "family": "inertial",
+    "mechanism": "A designed fuel package separates compression from a later rapid ignition step.",
+    "diagram_steps": [
+      "Draw a fuel-system module.",
+      "Show the compression driver.",
+      "Add a distinct ignition trigger.",
+      "Show proposed heat capture and reset, with partner systems labeled."
+    ],
+    "proposed_advantage": "Separating compression and ignition can change the requirements placed on each stage.",
+    "key_open_challenge": "Integrated compression, ignition coupling, high gain, driver interfaces and repetition.",
+    "diagram_guardrail": "First Light FLARE is not its older projectile-only roadmap; modeled gain is not a measured shot.",
+    "examples": [
+      "First Light Fusion"
+    ],
+    "source_ids": [
+      "ALT_FIRSTLIGHT_TECH",
+      "ALT_FIRSTLIGHT_TEST"
+    ]
+  }
+]

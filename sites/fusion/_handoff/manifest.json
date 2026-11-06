@@ -1,0 +1,194 @@
+{
+  "project": "Fusion Atlas",
+  "schema_version": "1.0.0",
+  "research_snapshot": "2026-10-22",
+  "timezone": "America/Los_Angeles",
+  "content_counts": {
+    "approaches": 15,
+    "entities": 42,
+    "sites": 83,
+    "claims": 119,
+    "funding_events": 71,
+    "timeline": 27,
+    "records": 13,
+    "risk_dimensions": 13,
+    "risk_assessments": 71,
+    "glossary": 24,
+    "sector_context": 2,
+    "metrics": 7,
+    "evidence_categories": 7,
+    "risk_themes": 6,
+    "evidence_states": 6,
+    "quality_notes": 9,
+    "sources": 167
+  },
+  "additional_counts": {
+    "risk_profile_theme_cells": 90,
+    "public_story_chapters": 7,
+    "glossary_tooltips": 27
+  },
+  "verification": {
+    "validator": "PASS, strict warnings, 0 errors and 0 warnings",
+    "pdf_pages": 83,
+    "pdf_text_bounds": "No out-of-bounds text spans",
+    "pdf_visual_review": "Full initial rendering and targeted final layout checks completed",
+    "scope": "Data and layout integrity; not independent verification of the underlying scientific or company claims."
+  },
+  "files": [
+    {
+      "path": "00_READ_ME.md",
+      "bytes": 8119,
+      "sha256": "f98583d6cfbc0df37b06ee352806862186991a7c677cdf728cdc74ebc7844628"
+    },
+    {
+      "path": "01_RESEARCH_REPORT.md",
+      "bytes": 283450,
+      "sha256": "8c2e9d1b3501ba8102c99452a68ee617373d62c332ecc1ac8dc346c55511a408"
+    },
+    {
+      "path": "02_BUILD_SPEC.md",
+      "bytes": 27631,
+      "sha256": "c7d5e632aa7244989ba27e22b7d34947909ef9847b4591101677b6a9cb809529"
+    },
+    {
+      "path": "03_CODEX_PROMPT.md",
+      "bytes": 12547,
+      "sha256": "dcb4f881981213627e0c14f4d928cdf61885c44422c6a15dfabae18ee830824c"
+    },
+    {
+      "path": "04_DATA_DICTIONARY.md",
+      "bytes": 29371,
+      "sha256": "5b64b25ca02a9d7e8406cf33ae7a658398edc881ddf66d049ee15470f653a4a4"
+    },
+    {
+      "path": "Fusion_Atlas_Research_and_Codex_Handoff.pdf",
+      "bytes": 572007,
+      "sha256": "20ee08690d0873cd1faa3718871b36e306b37958399e885fbc1f1189b3b299f5"
+    },
+    {
+      "path": "data/amount_operator_labels.json",
+      "bytes": 392,
+      "sha256": "32a00b1b31a7f4974bc86c310d713855a1300af15cfbca92e1751f655bf8160a"
+    },
+    {
+      "path": "data/approach_risk_profiles.json",
+      "bytes": 39852,
+      "sha256": "d14906638030fe87de6a8d99d199a7e1faf60a77abbf499080fe90e70394c3ba"
+    },
+    {
+      "path": "data/approaches.json",
+      "bytes": 16513,
+      "sha256": "161e47c47296bec0fba2a9d31d008f7bb9a9e08aae1f85ecb5386289ba613d2e"
+    },
+    {
+      "path": "data/claims.json",
+      "bytes": 81121,
+      "sha256": "923c5dcaf07469644b356b4ab20db71028fa03a0728f4f1837192ed0ab2ff7de"
+    },
+    {
+      "path": "data/entities.json",
+      "bytes": 73868,
+      "sha256": "59d66417faf65761cee39f435c99a82b72d1fdd849978e4eec260dfc463a1561"
+    },
+    {
+      "path": "data/evidence_categories.json",
+      "bytes": 1180,
+      "sha256": "348fe502b013891cc359b813227e60e28155ea2d68821b4399213c01cc12e5dd"
+    },
+    {
+      "path": "data/evidence_states.json",
+      "bytes": 153,
+      "sha256": "98a7559f72e21c92f7c1f027d9f26f2f071e963062805bfb8c4ac2388867083d"
+    },
+    {
+      "path": "data/funding_events.json",
+      "bytes": 49637,
+      "sha256": "e24e1cb4501e26948996ff21c28c599fde701e969281a38ef8ddafa47ee14b4d"
+    },
+    {
+      "path": "data/fusion_atlas.json",
+      "bytes": 608055,
+      "sha256": "0336bbffd134620d3e18798ed3df641647fb4c46e449c02dc14a4fff2b02eff6"
+    },
+    {
+      "path": "data/glossary.json",
+      "bytes": 8011,
+      "sha256": "5bad5ddeecc26f0ebee676fd9f33c5b0227d2fb2c4e53b252b48ccdfcc3f063d"
+    },
+    {
+      "path": "data/metrics.json",
+      "bytes": 2757,
+      "sha256": "adefa24b77a941f46ced2b24030f50b759d0ae9fec2250b55850340e572e2aa2"
+    },
+    {
+      "path": "data/power_balance.json",
+      "bytes": 5853,
+      "sha256": "779169b56fad8775bf61a71c3623642e3219f3607cfa124ebb528a3e8cb79521"
+    },
+    {
+      "path": "data/quality_notes.json",
+      "bytes": 1855,
+      "sha256": "0035613ce25bed91433ddcbeeb23e518e2730453a8f1e5e75af33e179d3947b8"
+    },
+    {
+      "path": "data/records.json",
+      "bytes": 6305,
+      "sha256": "0a09928426d72f0e028c566124f052dccb00c4518edcaf2c04fa7ee415ebf4a7"
+    },
+    {
+      "path": "data/risk_assessments.json",
+      "bytes": 40485,
+      "sha256": "eb57eaeda3c9f94dd8af9411f3039c7d189d6d1a90338c21a7ab2ab82943cc42"
+    },
+    {
+      "path": "data/risk_dimensions.json",
+      "bytes": 6489,
+      "sha256": "14ae0921211af32d45f4909724c1a9a47929220c5b5ec3ae6fe43040be9dedd5"
+    },
+    {
+      "path": "data/risk_themes.json",
+      "bytes": 1481,
+      "sha256": "f7e4d6e9827f24b4a5c6fe93307df10f806efd9b6deaf30536af3ad5159f2f16"
+    },
+    {
+      "path": "data/sector_context.json",
+      "bytes": 1352,
+      "sha256": "173dbd8b2d42876c87fc3cca8b462b60657f0b953b8e15a3267383da47696364"
+    },
+    {
+      "path": "data/sites.json",
+      "bytes": 58830,
+      "sha256": "9ed15c2b32a49196ffb086afe8ec687e788bbd0b7bb80c0922952e9a2c27f764"
+    },
+    {
+      "path": "data/source_aliases.json",
+      "bytes": 6194,
+      "sha256": "12fe9c33c12504cf88b7ab7cafe7b2e0c65a1ff4812c6b23d373b95810e24346"
+    },
+    {
+      "path": "data/sources.json",
+      "bytes": 123824,
+      "sha256": "87b55a1cb1e4112f6dd30747e734771b5c34336402e8637beb735be1abc20097"
+    },
+    {
+      "path": "data/story_content.json",
+      "bytes": 33289,
+      "sha256": "6c2d53b4578a3cd4a0e595cc86b41ef977065aa996bf290c9d148a9a0db7dbd5"
+    },
+    {
+      "path": "data/timeline.json",
+      "bytes": 14448,
+      "sha256": "67a4ffbbba6e939ab2db6b4e7ca00bcd52e6476d4835a5c252a3bde2d77627c2"
+    },
+    {
+      "path": "schema/types.ts",
+      "bytes": 5364,
+      "sha256": "b857393cc54cba435d65e8e34139e7b5088a754e8af282e3b8f6ffe66d006efb"
+    },
+    {
+      "path": "scripts/validate_data.py",
+      "bytes": 41446,
+      "sha256": "8ae2c2baf4a7f3e90c89897781ce62e8fb28d270b3e27e8fb19e25a3f0faa1ba"
+    }
+  ]
+}

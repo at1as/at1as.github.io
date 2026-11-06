@@ -21,5 +21,9 @@
       "/sites/what-if-i-joined/404/",
       "/sites/what-if-i-joined/_not-found/"
     ]
+  },
+  {
+    "root": "/sites/fusion/",
+    "exclude": []
   }
 ]

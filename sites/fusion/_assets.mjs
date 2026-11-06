@@ -1,0 +1,10 @@
+import {writeFileSync,readFileSync} from 'node:fs';
+import {renderMachine} from './diagrams.js';
+const machine=renderMachine('tokamak',3).replace(/<svg[^>]+>/, '<g class="machine-svg" transform="translate(610 140) scale(.71)">').replace('</svg>','</g>');
+const card=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#f7f5ef"/><rect x="600" y="65" width="555" height="500" rx="6" fill="#101c29"/><g font-family="Arial,sans-serif"><text x="55" y="82" fill="#384e45" font-size="15" letter-spacing="3">FUSION ATLAS</text><text x="55" y="421" fill="#354945" font-size="22">We can make fusion happen.</text><text x="55" y="454" fill="#354945" font-size="22">Making a power plant is the harder part.</text><text x="55" y="554" fill="#65766b" font-size="13">JASONWILLEMS.COM / SITES / FUSION</text><text x="630" y="98" fill="#a5b7c3" font-size="11" letter-spacing="2">THE MACHINES. THE ENERGY. THE EVIDENCE.</text></g><g font-family="Georgia,serif" font-size="78"><text x="50" y="221" fill="#182630">The paths to</text><text x="50" y="310" fill="#b94e2b">fusion power.</text></g>${machine}<text x="630" y="530" fill="#a5b7c3" font-family="Arial,sans-serif" font-size="12">Interactive field guide · Research snapshot 22 Oct 2026</text></svg>`;
+writeFileSync(new URL('./share-card.svg',import.meta.url),card);
+const includePath=new URL('../../_includes/site-preview.html',import.meta.url);
+let include=readFileSync(includePath,'utf8');const marker="{% when 'fusion' %}";
+if(include.includes(marker))include=include.replace(/\{% when 'fusion' %\}[\s\S]*?(?=\{% when )/,'');
+{const preview=card.replace('width="1200" height="630" viewBox="0 0 1200 630"','viewBox="0 0 1200 760" focusable="false"').replace('height="630" fill="#f7f5ef"','height="760" fill="#f7f5ef"');include=include.replace("{% case include.preview %}","{% case include.preview %}\n"+marker+'\n'+preview);writeFileSync(includePath,include)}
+console.log('Generated share card and directory artwork.');

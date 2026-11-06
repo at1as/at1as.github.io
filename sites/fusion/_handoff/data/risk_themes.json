@@ -1,0 +1,57 @@
+[
+  {
+    "id": "plasma_and_fuel_physics",
+    "label": "Plasma and fuel physics",
+    "question": "Can the intended fuel and configuration reach useful performance?",
+    "dimension_ids": [
+      "fuel_physics",
+      "confinement_gain"
+    ]
+  },
+  {
+    "id": "electrical_balance",
+    "label": "Electrical balance",
+    "question": "Does the complete plant return more electricity than it consumes?",
+    "dimension_ids": [
+      "heating_driver",
+      "conversion"
+    ]
+  },
+  {
+    "id": "sustained_operation",
+    "label": "Sustained or repeated operation",
+    "question": "Can the process sustain or repeat at power-plant duty?",
+    "dimension_ids": [
+      "repetition",
+      "heat_exhaust"
+    ]
+  },
+  {
+    "id": "fuel_cycle",
+    "label": "Fuel cycle",
+    "question": "Can the plant obtain, process and replenish fuel at its own operating rate?",
+    "dimension_ids": [
+      "fuel_cycle"
+    ]
+  },
+  {
+    "id": "materials_and_maintenance",
+    "label": "Materials and maintenance",
+    "question": "Can components survive, be replaced and permit useful availability?",
+    "dimension_ids": [
+      "materials",
+      "maintenance"
+    ]
+  },
+  {
+    "id": "delivery_and_economics",
+    "label": "Delivery and economics",
+    "question": "Can the complete facility be financed, built, permitted and operated economically?",
+    "dimension_ids": [
+      "integration",
+      "financing_economics",
+      "licensing_siting",
+      "evidence_quality"
+    ]
+  }
+]

@@ -1,0 +1,2799 @@
+[
+  {
+    "id": "PHY_001",
+    "url": "https://www.energy.gov/science/doe-explainsfusion-reactions",
+    "title": "DOE Explains Fusion Reactions",
+    "publisher": "US Department of Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "government_explainer",
+    "access_quality": "opened_text",
+    "claims": [
+      "Fusion of suitable light nuclei releases energy through a mass difference.",
+      "D-T is a central terrestrial fuel choice."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_002",
+    "url": "https://www.energy.gov/science/doe-explainsdeuterium-tritium-fusion-fuel",
+    "title": "DOE Explains Deuterium Tritium Fusion Fuel",
+    "publisher": "US Department of Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "government_explainer",
+    "access_quality": "opened_text",
+    "claims": [
+      "Deuterium has one proton and one neutron; tritium has one proton and two neutrons.",
+      "Tritium is scarce and radioactive; lithium breeding and isotope supply chains are development challenges.",
+      "Advanced fuel reactions require higher ion temperatures than D-T."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_003",
+    "url": "https://www.energy.gov/science/doe-explainsplasma-confinement",
+    "title": "DOE Explains Plasma Confinement",
+    "publisher": "US Department of Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "government_explainer",
+    "access_quality": "opened_text",
+    "claims": [
+      "Magnetic fields and fuel inertia are distinct laboratory confinement strategies.",
+      "Use for stable mechanism facts only; page contains obsolete first-burning-plasma wording."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_004",
+    "url": "https://www.energy.gov/science/doe-explainstokamaks",
+    "title": "DOE Explains Tokamaks",
+    "publisher": "US Department of Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "government_explainer",
+    "access_quality": "opened_text",
+    "claims": [
+      "Tokamaks combine magnetic fields around a torus with a plasma current.",
+      "T-1 began operating in 1958.",
+      "Use event-specific sources for records rather than stale records on this page."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_005",
+    "url": "https://www.energy.gov/science/doe-explainsstellarators",
+    "title": "DOE Explains Stellarators",
+    "publisher": "US Department of Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "government_explainer",
+    "access_quality": "opened_text",
+    "claims": [
+      "Stellarators create the confining three-dimensional field with external magnets.",
+      "Coil manufacturing complexity trades against reduced need for sustained plasma current."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_006",
+    "url": "https://arxiv.org/abs/2105.10954",
+    "title": "Progress toward fusion energy breakeven and gain as measured against the Lawson criterion",
+    "publisher": "Wurzel and Hsu; Physics of Plasmas",
+    "published_date": "2022-06",
+    "accessed_at": "2026-10-22",
+    "source_type": "peer_reviewed_review",
+    "access_quality": "abstract_and_publisher_search",
+    "claims": [
+      "Different gain boundaries must be kept distinct.",
+      "Lawson and triple-product comparisons are physics metrics, not complete measures of commercial viability."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_007",
+    "url": "https://arxiv.org/html/2505.03834v6",
+    "title": "Continuing progress toward fusion energy breakeven and gain as measured against the Lawson criteria",
+    "publisher": "Wurzel and Hsu; Physics of Plasmas",
+    "published_date": "2025-11",
+    "accessed_at": "2026-10-22",
+    "source_type": "peer_reviewed_review",
+    "access_quality": "opened_text",
+    "claims": [
+      "Updated scientific gain and triple-product data distinguish direct and indirect laser drive.",
+      "Ignition is not a universal requirement across all approaches; ICF requires it for high gain.",
+      "ICF stagnation-time normalization differs from MCF energy confinement.",
+      "Version v6 dated 6 November 2025; rendered document also shows an inconsistent later manuscript date."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_008",
+    "url": "https://github.com/swurzel/lawson-criterion-paper",
+    "title": "Lawson criterion paper figures and data",
+    "publisher": "Samuel E Wurzel",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "author_data_repository",
+    "access_quality": "opened_text",
+    "claims": [
+      "Author-provided analysis code and datasets; repository shows MIT license.",
+      "Optional future quantitative physics chart should retain definitions and attribution."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_009",
+    "url": "https://lmf.llnl.gov/science/achieving-fusion-ignition",
+    "title": "Achieving Fusion Ignition",
+    "publisher": "Lawrence Livermore National Laboratory",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_results",
+    "access_quality": "opened_text",
+    "claims": [
+      "First target gain greater than one on 5 December 2022.",
+      "Record listed: 8.6 ± 0.45 MJ yield, 2.08 MJ laser input, gain 4.13 on 7 April 2025.",
+      "Latest listed ignition: 7.9 ± 0.4 MJ, gain about 3.8 on 20 June 2026.",
+      "The listed October 2025 yield/input/gain do not divide exactly; retain discrepancy."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_010",
+    "url": "https://www.energy.gov/articles/doe-national-laboratory-makes-history-achieving-fusion-ignition",
+    "title": "DOE National Laboratory Makes History by Achieving Fusion Ignition",
+    "publisher": "US Department of Energy",
+    "published_date": "2022-12",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_result_announcement",
+    "access_quality": "opened_text",
+    "claims": [
+      "NIF December 5 2022 shot: 3.15 MJ fusion from 2.05 MJ laser energy delivered to target.",
+      "Not facility electrical breakeven.",
+      "Page date displays December 12 while announcement is widely dated December 13; event date is unambiguous."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_011",
+    "url": "https://www.llnl.gov/article/48866/three-peer-reviewed-papers-highlight-scientific-results-national-ignition-facility-record",
+    "title": "Three peer reviewed papers highlight scientific results of NIF record yield shot",
+    "publisher": "Lawrence Livermore National Laboratory",
+    "published_date": "2022-08-08",
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_paper_summary",
+    "access_quality": "opened_text",
+    "claims": [
+      "August 8 2021 experiment achieved physical ignition with yield over 1.3 MJ, before target energy breakeven.",
+      "Physical ignition and target gain greater than one are different milestones."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_012",
+    "url": "https://lmf.llnl.gov/news/target-breakthrough-enabled-fusion-record-nif",
+    "title": "Target Breakthrough Enabled Fusion Record at NIF",
+    "publisher": "Lawrence Livermore National Laboratory",
+    "published_date": "2026-04-15",
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_result_explanation",
+    "access_quality": "primary_search_excerpt",
+    "claims": [
+      "April 2025 NIF record came from improved target design.",
+      "A 2026 article can describe a 2025 experiment; preserve both dates."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_013",
+    "url": "https://www.gov.uk/government/news/jets-final-tritium-experiments-yield-new-fusion-energy-record",
+    "title": "JET final tritium experiments yield new fusion energy record",
+    "publisher": "UK Atomic Energy Authority",
+    "published_date": "2024-02-08",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_result_announcement",
+    "access_quality": "opened_text",
+    "claims": [
+      "2023 campaign produced approximately 69 MJ over approximately five seconds.",
+      "JET completed its scientific operations in December 2023."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_014",
+    "url": "https://www.ipp.mpg.de/5405892/jet_rekord_2024",
+    "title": "Energy record JET",
+    "publisher": "Max Planck Institute for Plasma Physics",
+    "published_date": "2024-02-08",
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_result_announcement",
+    "access_quality": "primary_search_excerpt",
+    "claims": [
+      "JET record experiment occurred on 3 October 2023, with a discharge duration of 5.2 seconds."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_015",
+    "url": "https://www.ipp.mpg.de/5532945/w7x",
+    "title": "Wendelstein 7-X sets new performance records in fusion research",
+    "publisher": "Max Planck Institute for Plasma Physics",
+    "published_date": "2025-06-03",
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_result_announcement",
+    "access_quality": "opened_text",
+    "claims": [
+      "May 22 2025 W7-X sustained high triple product for 43 seconds.",
+      "Record is for long plasma durations, not highest triple product of every device at every duration.",
+      "Hydrogen pellets and microwave heating sustained the discharge."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_016",
+    "url": "https://english.cas.cn/head/202501/t20250121_899060.shtml",
+    "title": "Chinese Artificial Sun Sets Milestone Record towards Fusion Power Generation",
+    "publisher": "Chinese Academy of Sciences",
+    "published_date": "2025-01-21",
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_result_announcement",
+    "access_quality": "opened_text",
+    "claims": [
+      "EAST high-confinement plasma lasted 1066 seconds on January 20 2025.",
+      "This is a plasma-operation result, not a report of net fusion electricity."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_017",
+    "url": "https://www.nst.re.kr/www/selectBbsNttView.do?bbsNo=12&key=52&nttNo=42720",
+    "title": "Green light for long duration fusion plasma operation technology",
+    "publisher": "National Research Council of Science and Technology and Korea Institute of Fusion Energy",
+    "published_date": "2024-03-20",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_institute_result_announcement",
+    "access_quality": "opened_text",
+    "claims": [
+      "KSTAR achieved ion temperature of 100 million Celsius for 48 seconds in December 2023 to February 2024 campaign.",
+      "Separate H-mode duration was 102 seconds."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_018",
+    "url": "https://irfm.cea.fr/en/2025/02/west-sets-a-new-plasma-duration-record/",
+    "title": "WEST sets a new plasma duration record",
+    "publisher": "CEA Institute for Magnetic Fusion Research",
+    "published_date": "2025-02-19",
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_result_announcement",
+    "access_quality": "opened_text",
+    "claims": [
+      "WEST hydrogen discharge lasted 1337 seconds on February 12 2025.",
+      "2.6 GJ was injected and extracted heating energy, not fusion energy yield.",
+      "Record campaign used about 2 MW lower-hybrid heating; improved-confinement operation was a subsequent aim."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_019",
+    "url": "https://www.iter.org/fusion-energy/what-will-iter-do",
+    "title": "What will ITER do",
+    "publisher": "ITER Organization",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "project_official",
+    "access_quality": "opened_text",
+    "claims": [
+      "Design objective is 500 MW fusion power from 50 MW external heating, plasma Q at least 10.",
+      "ITER will not generate electricity."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_020",
+    "url": "https://www.iter.org/few-lines",
+    "title": "In a Few Lines",
+    "publisher": "ITER Organization",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "project_official",
+    "access_quality": "opened_text",
+    "claims": [
+      "ITER is a multinational experiment in southern France.",
+      "Revised baseline distinguishes research start, full magnetic operation, and D-T phase.",
+      "Public project costs include in-kind contributions and are unlike company fundraising."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_021",
+    "url": "https://www.ipp.mpg.de/5434926/ITER_baseline_2024",
+    "title": "The implications of the new ITER schedule",
+    "publisher": "Max Planck Institute for Plasma Physics",
+    "published_date": "2024-07-03",
+    "accessed_at": "2026-10-22",
+    "source_type": "project_institutional_update",
+    "access_quality": "opened_text",
+    "claims": [
+      "Research start 2034; full magnetic energy 2036; D-T operations 2039 under updated plan.",
+      "These are targets, not achieved events."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_022",
+    "url": "https://www.iter.org/machine/supporting-systems/tritium-breeding",
+    "title": "Tritium Breeding",
+    "publisher": "ITER Organization",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "project_official",
+    "access_quality": "opened_text",
+    "claims": [
+      "ITER plans test blanket modules rather than a complete self-sufficient breeding plant.",
+      "A power plant must breed and recover tritium and convert heat into useful output."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_023",
+    "url": "https://www.iter.org/fusion-energy/making-it-work",
+    "title": "Making fusion work",
+    "publisher": "ITER Organization",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "project_explainer",
+    "access_quality": "opened_text",
+    "claims": [
+      "Heat exhaust, fuel cycle, materials and integration remain engineering challenges."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_024",
+    "url": "https://fusionforenergy.europa.eu/news/eu-invest-ifmif-dones-fusion-facility/",
+    "title": "European Union to invest 202 million EUR to IFMIF-DONES",
+    "publisher": "Fusion for Energy",
+    "published_date": "2025-07-14",
+    "accessed_at": "2026-10-22",
+    "source_type": "public_funding_announcement",
+    "access_quality": "opened_text",
+    "claims": [
+      "EU investment of EUR202 million, around one quarter of project cost, approved July 2025.",
+      "Facility in Granada will irradiate fusion materials using an accelerator neutron source."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_025",
+    "url": "https://ifmif-dones.es/",
+    "title": "IFMIF-DONES official project",
+    "publisher": "IFMIF-DONES",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "project_official",
+    "access_quality": "opened_text",
+    "claims": [
+      "DONES is a neutron source for fusion materials research.",
+      "Official October 2026 updates show continuing construction and supply agreements."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_026",
+    "url": "https://www.iter.org/whatsnew/398",
+    "title": "ITER Newsline 398",
+    "publisher": "ITER Organization",
+    "published_date": "2023-10-30",
+    "accessed_at": "2026-10-22",
+    "source_type": "institutional_news",
+    "access_quality": "opened_text",
+    "claims": [
+      "JT-60SA achieved first plasma October 23 2023 at Naka, Japan."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_027",
+    "url": "https://www.pppl.gov/about/history",
+    "title": "History",
+    "publisher": "Princeton Plasma Physics Laboratory",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_history",
+    "access_quality": "opened_text",
+    "claims": [
+      "Stellarator project began in 1951; magnetic research declassified in 1958.",
+      "TFTR conducted D-T experiments in the 1990s."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_028",
+    "url": "https://www.pppl.gov/posts/2026/symmetric-tokamak-1970-1974",
+    "title": "Symmetric Tokamak 1970 to 1974",
+    "publisher": "Princeton Plasma Physics Laboratory",
+    "published_date": "2026-05-29",
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_history",
+    "access_quality": "opened_text",
+    "claims": [
+      "British confirmation of Soviet tokamak results led to 1969 conversion of Princeton Model C.",
+      "First US tokamak experiments began May 1 1970."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_029",
+    "url": "https://www.iter.org/fusion-energy/60-years-progress",
+    "title": "60 years of progress",
+    "publisher": "ITER Organization",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "institutional_history",
+    "access_quality": "opened_text",
+    "claims": [
+      "1968 Soviet tokamak results shifted the field; ASDEX discovered H-mode in 1982.",
+      "JET D-T experiments occurred in 1991 and Q about 0.67 in 1997.",
+      "Use stable history only; some record statements on this page are obsolete."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_030",
+    "url": "https://www.nature.com/articles/133413a0",
+    "title": "Transmutation Effects observed with Heavy Hydrogen",
+    "publisher": "Oliphant Harteck Rutherford; Nature",
+    "published_date": "1934",
+    "accessed_at": "2026-10-22",
+    "source_type": "original_research_historical",
+    "access_quality": "bibliographic_metadata_only_full_text_blocked",
+    "claims": [
+      "1934 laboratory heavy-hydrogen fusion paper."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_031",
+    "url": "https://journals.aps.org/pr/abstract/10.1103/PhysRev.55.434",
+    "title": "Energy Production in Stars",
+    "publisher": "Hans Bethe; Physical Review",
+    "published_date": "1939-03-01",
+    "accessed_at": "2026-10-22",
+    "source_type": "original_research_historical",
+    "access_quality": "bibliographic_metadata_only",
+    "claims": [
+      "1939 stellar nuclear energy paper."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_032",
+    "url": "https://doi.org/10.1088/0370-1301/70/1/303",
+    "title": "Some Criteria for a Power Producing Thermonuclear Reactor",
+    "publisher": "J D Lawson; Proceedings of the Physical Society B",
+    "published_date": "1957",
+    "accessed_at": "2026-10-22",
+    "source_type": "original_research_historical",
+    "access_quality": "bibliographic_metadata_only_full_text_blocked",
+    "claims": [
+      "Published power-producing reactor criteria in 1957."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_033",
+    "url": "https://www.sandia.gov/research/publications/details/an-overview-of-magneto-inertial-fusion-on-the-z-machine-at-sandia-national-2022-04-01/",
+    "title": "An overview of magneto inertial fusion on the Z Machine at Sandia National Laboratories",
+    "publisher": "Sandia National Laboratories",
+    "published_date": "2022-04-01",
+    "accessed_at": "2026-10-22",
+    "source_type": "research_publication_abstract",
+    "access_quality": "opened_text",
+    "claims": [
+      "MagLIF combines axial fuel magnetization, laser preheat and electrically driven liner compression.",
+      "Its roles include research and stockpile stewardship, not operating commercial electricity generation."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_034",
+    "url": "https://www.lle.rochester.edu/inertial-confinement-fusion/",
+    "title": "Inertial Confinement Fusion",
+    "publisher": "University of Rochester Laboratory for Laser Energetics",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "laboratory_explainer",
+    "access_quality": "opened_text",
+    "claims": [
+      "Direct drive illuminates a target directly instead of heating a hohlraum.",
+      "Target compression, diagnostics and laser-plasma interactions are research subjects."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_035",
+    "url": "https://wham.physics.wisc.edu/",
+    "title": "Wisconsin HTS Axisymmetric Mirror",
+    "publisher": "University of Wisconsin Madison",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "project_official",
+    "access_quality": "opened_text",
+    "claims": [
+      "WHAM at Stoughton is a public-private mirror experiment with 17 T HTS end magnets.",
+      "First plasma July15 2024; initial ARPA-E grant of 10 million dollars awarded in 2020."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_036",
+    "url": "https://www.nature.com/articles/s41467-025-58849-5",
+    "title": "Generation of field reversed configurations via neutral beam injection",
+    "publisher": "TAE research authors; Nature Communications",
+    "published_date": "2025-04-12",
+    "accessed_at": "2026-10-22",
+    "source_type": "peer_reviewed_experiment",
+    "access_quality": "publisher_abstract_search_full_text_blocked",
+    "claims": [
+      "Norm forms FRC plasmas with neutral beams rather than needing the earlier two-ended theta-pinch formation method."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_037",
+    "url": "https://www.helionenergy.com/technology",
+    "title": "Helion technology",
+    "publisher": "Helion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_technology_description",
+    "access_quality": "opened_text",
+    "claims": [
+      "Intended scheme merges and compresses FRC plasmas and directly recovers energy inductively.",
+      "Technology animations describe the intended plant process; not independent proof of whole-plant net gain.",
+      "Helion proposes pulsed FRC merging and magnetic compression with inductive electricity recovery. Its commercial fuel objective is D-He3, with helium-3 production incorporated into the fuel strategy."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": [
+      "MAG_HELION_TECH"
+    ]
+  },
+  {
+    "id": "PHY_038",
+    "url": "https://www.zapenergy.com/technologies/fusion",
+    "title": "Fusion Technology",
+    "publisher": "Zap Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_technology_description",
+    "access_quality": "opened_text",
+    "claims": [
+      "Sheared axial flow stabilizes a current-compressed plasma column.",
+      "Liquid-metal cooling and rapid repetition are planned plant features."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "PHY_039",
+    "url": "https://generalfusion.com/our-fusion-technology/what-sets-mtf-apart/",
+    "title": "What Sets Magnetized Target Fusion Apart",
+    "publisher": "General Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_technology_description",
+    "access_quality": "opened_text",
+    "claims": [
+      "Intended MTF plant compresses magnetized plasma using a liquid-metal system.",
+      "Liquid-metal protection, tritium breeding and heat recovery remain proposed integrated plant advantages."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "PHY_040",
+    "url": "https://www.federalregister.gov/documents/2026/02/26/2026-03865/regulatory-framework-for-fusion-machines",
+    "title": "Regulatory Framework for Fusion Machines",
+    "publisher": "US Nuclear Regulatory Commission and Federal Register",
+    "published_date": "2026-02-26",
+    "accessed_at": "2026-10-22",
+    "source_type": "proposed_regulation",
+    "access_quality": "opened_text",
+    "claims": [
+      "Proposal augments byproduct-material framework for fusion machines.",
+      "A proposal and planned completion date do not establish that a final rule is in force."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_041",
+    "url": "https://www.nrc.gov/materials/fusion/rulemaking-status",
+    "title": "Fusion Machine Rulemaking Status",
+    "publisher": "US Nuclear Regulatory Commission",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "regulator_status",
+    "access_quality": "primary_search_excerpt_full_text_forbidden",
+    "claims": [
+      "Current official indexed status still references February 26, 2026 proposed rule.",
+      "Do not infer finalization from a planned October deadline."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_042",
+    "url": "https://www.energy.gov/documents/fusion-science-and-technology-roadmap",
+    "title": "Fusion Science and Technology Roadmap",
+    "publisher": "US Department of Energy",
+    "published_date": "2026-06",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_technical_roadmap",
+    "access_quality": "opened_text",
+    "claims": [
+      "Materials, plasma-facing components, confinement, fuel cycle, blankets and integrated plant engineering are core challenge areas.",
+      "Roadmap is strategy rather than a commitment to specific appropriations."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PHY_043",
+    "url": "https://www.iter.org/faqs?thematic=75",
+    "title": "Fusion Safety and Environment FAQs",
+    "publisher": "ITER Organization",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "project_safety_explainer",
+    "access_quality": "primary_search_excerpt",
+    "claims": [
+      "Fusion devices can produce activated materials and contain radioactive tritium.",
+      "Safety depends on inventories, materials and engineering, even without a fission chain reaction."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "MAG_CFS_FUND_2026",
+    "url": "https://www.cfs.energy/news-and-media/commonwealth-fusion-systems-raises-another-1-billion-bringing-total-capital-raised-to-4-billion/",
+    "title": "Commonwealth Fusion Systems raises another $1 billion, bringing total capital raised to $4 billion",
+    "publisher": "Commonwealth Fusion Systems",
+    "published_date": "2026-07-30",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "An additional $1 billion brings reported capital raised to $4 billion; this is financing, not ARC power-sale revenue."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_CFS_SPARC",
+    "url": "https://cfs.energy/technology/sparc/",
+    "title": "SPARC",
+    "publisher": "Commonwealth Fusion Systems",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "SPARC is being assembled in Devens, Massachusetts; its stated 2027 objective is plasma Q greater than one. It is an experiment preceding ARC."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_CFS_ARC",
+    "url": "https://cfs.energy/technology/arc/",
+    "title": "ARC",
+    "publisher": "Commonwealth Fusion Systems",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The first ARC is planned in Chesterfield County, Virginia, with about 400 MW delivered to the grid in the early 2030s. D-T fusion heat feeds a thermal cycle; the blanket also produces tritium."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_CFS_MAGNET",
+    "url": "https://cfs.energy/technology/hts-magnets/",
+    "title": "High-temperature superconducting magnets",
+    "publisher": "Commonwealth Fusion Systems",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "CFS and MIT demonstrated a large-bore 20-tesla magnet in 2021. This was a magnet achievement, not a fusion-gain demonstration."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELION_FUND",
+    "url": "https://www.helionenergy.com/newsroom/helion-raises-465-million-series-g-funding-round-to-meet-surging-global-demand-for-power",
+    "title": "Helion raises $465 million Series G funding round to meet surging global demand for power",
+    "publisher": "Helion",
+    "published_date": "2026-06-04",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "verification_note": "Live article updated September 2026; do not add original and final round amounts.",
+    "claims": [
+      "The original Series G announcement reported $465 million and $1.5 billion cumulative funding. A September 2026 update gives a $500 million final close for that same round."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELION_POLARIS",
+    "url": "https://www.helionenergy.com/polaris",
+    "title": "Polaris",
+    "publisher": "Helion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "verification_note": "Critical energy-boundary correction: the stated objective is not whole-plant net electricity, and this page alone does not establish that its revised objective has been achieved.",
+    "claims": [
+      "Polaris lists D-D, D-T and D-He3 fuels. Its current goal concerns conversion of some fusion-origin energy into capacitor-bank electricity. The page explicitly discontinues the older net-electricity formulation."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELION_ORION",
+    "url": "https://www.helionenergy.com/orion",
+    "title": "Orion",
+    "publisher": "Helion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Orion is under construction in Malaga, Washington; the company targets initial operations in 2028 and a 50 MW Microsoft supply commitment."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELION_POLARIS_RESULTS",
+    "url": "https://www.helionenergy.com/newsroom/helion-achieves-new-fusion-energy-milestones",
+    "title": "Helion achieves new fusion energy milestones",
+    "publisher": "Helion",
+    "published_date": "2026-02-13",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Helion reported January 2026 D-T fusion in Polaris and plasma temperatures of 150 million degrees Celsius. These claims do not establish a positive plant electricity balance."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELION_CHIPS",
+    "url": "https://www.helionenergy.com/newsroom/helion-signs-letter-of-intent-for-175-million-chips-award-to-advance-semiconductor-fusion-energy",
+    "title": "Helion signs letter of intent for $175 million CHIPS award to advance semiconductor fusion energy",
+    "publisher": "Helion",
+    "published_date": "2026-10-22",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The Commerce Department LOI covers up to $175 million subject to a definitive award, with a non-voting equity interest for government. An additional $50 million private investment is planned, not reported closed."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TAE_FUND",
+    "url": "https://tae.com/tae-technologies-raises-150-million-in-latest-funding-round/",
+    "title": "TAE Technologies raises $150 million in latest funding round",
+    "publisher": "TAE Technologies",
+    "published_date": "2025-06-02",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "TAE announced more than $150 million in equity financing and more than $1.3 billion in cumulative equity capital."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TAE_ROADMAP",
+    "url": "https://tae.com/tae-shortens-device-roadmap-prepares-for-commercial-era/",
+    "title": "TAE shortens device roadmap, prepares for commercial era",
+    "publisher": "TAE Technologies",
+    "published_date": "2025-11-17",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "TAE announced it would omit Copernicus and proceed toward Da Vinci after simplifying FRC formation using neutral beams. Skipping a device is a roadmap decision, not a demonstrated power milestone."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TAE_NATURE",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40221407/",
+    "title": "Generation of field-reversed configurations via neutral beam injection",
+    "publisher": "Nature Communications / PubMed",
+    "published_date": "2025-04-12",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "peer_reviewed_experiment",
+    "verification_note": "PubMed abstract read; full Nature and PMC versions were blocked during retrieval. DOI 10.1038/s41467-025-58849-5.",
+    "claims": [
+      "Roche and colleagues reported neutral-beam-driven field reversal from a seed plasma in roughly ten milliseconds. The paper concerns FRC formation, not plant-level energy gain."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "MAG_TAE_FUEL",
+    "url": "https://tae.com/faq-fusion/",
+    "title": "Fusion FAQ",
+    "publisher": "TAE Technologies",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The preferred commercial fuel is hydrogen-boron-11. TAE describes capturing emitted energy as heat for a conventional thermal electricity cycle."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TAE_HE3",
+    "url": "https://tae.com/tae-technologies-and-black-moon-energy-corporation-enter-into-strategic-helium-3-supply-and-commercialization-agreement-for-fusion-power/",
+    "title": "TAE Technologies and Black Moon Energy Corporation enter into strategic helium-3 supply and commercialization agreement for fusion power",
+    "publisher": "TAE Technologies",
+    "published_date": "2026-08-05",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "verification_note": "Treat the 2031 operations statement as a dated company target; a later SEC filing search extract used different sequencing and full filing could not be reviewed.",
+    "claims": [
+      "The helium-3 agreement is an additional potential fuel option. This release states a 50 MWe Da Vinci plant with operations expected in 2031 and an as-yet unselected site."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TAE_DEBT",
+    "url": "https://tae.com/tae-technologies-advances-site-evaluation-process-with-multi-state-visits-ahead-of-first-fusion-power-plant/",
+    "title": "TAE Technologies advances site evaluation process with multi-state visits ahead of first fusion power plant",
+    "publisher": "TAE Technologies",
+    "published_date": "2026-03-26",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "TAE confirms $200 million provided under a convertible promissory note; another $100 million is available after Form S-4 filing. Availability does not prove drawdown."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TAE_MERGER",
+    "url": "https://tae.com/trump-media-technology-group-and-tae-technologies-file-form-s-4-registration-statement-for-proposed-merger/",
+    "title": "Trump Media & Technology Group and TAE Technologies file Form S-4 registration statement for proposed merger",
+    "publisher": "TAE Technologies",
+    "published_date": "2026-09-30",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "A Form S-4 was filed for the proposed merger. Filing is not closing, and the all-stock transaction should not be counted as cash raised."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TE_FUND",
+    "url": "https://tokamakenergy.com/2024/11/20/tokamak-energy-raises-125m-to-commercialise-transformative-fusion-and-magnet-technologies/",
+    "title": "Tokamak Energy raises $125m to commercialise transformative fusion and magnet technologies",
+    "publisher": "Tokamak Energy",
+    "published_date": "2024-11-20",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The $125 million round brought reported financing to $335 million, comprising $275 million private investment and $60 million UK/US government funding."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TE_DEMO4",
+    "url": "https://tokamakenergy.com/2026/09/09/tokamak-energy-completes-world-leading-fusion-magnet-campaign-validating-technology-for-commercial-hts-systems/",
+    "title": "Tokamak Energy completes fusion magnet campaign validating technology for commercial HTS systems",
+    "publisher": "Tokamak Energy",
+    "published_date": "2026-09-09",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Demo4 completed a fourteen-month campaign with peak field 13.7 T and about 10,000 hours in varying energized states. Its £70 million STEP magnet contract is not an equity round."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TE_ST40",
+    "url": "https://tokamakenergy.com/2023/02/28/institute-of-physics-marks-tokamak-energys-record-100-million-degrees-fusion-plasma/",
+    "title": "Institute of Physics marks Tokamak Energy’s record 100 million degrees fusion plasma",
+    "publisher": "Tokamak Energy",
+    "published_date": "2023-02-28",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "ST40 achieved ion temperatures above 100 million degrees Celsius in 2022; the result was subsequently peer reviewed. Temperature alone is not fusion gain."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TE_US",
+    "url": "https://tokamakenergy.com/usa/",
+    "title": "Tokamak Energy U.S.",
+    "publisher": "Tokamak Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The planned D-T HTS pilot design specifies 800 MW fusion and 85 MW net electricity, targeting the 2030s through DOE’s milestone programme."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TYPEONE_FUND",
+    "url": "https://typeoneenergy.com/insights-announcements/type-one-energy-completes-200m-series-b-financing/",
+    "title": "Type One Energy completes $200m Series B financing",
+    "publisher": "Type One Energy",
+    "published_date": "2026-10-06",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Type One announced a $200 million Series B to advance Infinity One and Infinity Two; the latter is described as a 400 MWe project at TVA’s Bull Run site."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_TYPEONE_TECH",
+    "url": "https://typeoneenergy.com/our-technology/",
+    "title": "Our technology",
+    "publisher": "Type One Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Infinity One is an engineering verification platform targeted for 2029 commissioning. Infinity Two is a D-T stellarator design with 800 MW fusion power and 400 MWe intended grid output."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_PROXIMA_FUND",
+    "url": "https://www.proximafusion.com/press-news/proxima-fusion-raises-eu411-million-to-build-europes-commercial-fusion-champion",
+    "title": "Proxima Fusion raises €411 million to build Europe’s commercial fusion champion",
+    "publisher": "Proxima Fusion",
+    "published_date": "2026-07-07",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The €411 million round was given as $468 million. Reported funding exceeded €650 million ($740 million), including €95 million public grants. Bavaria’s separate €400 million commitment must not be silently added to secured funds."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_PROXIMA_ALPHA",
+    "url": "https://www.proximafusion.com/program/alpha",
+    "title": "Alpha",
+    "publisher": "Proxima Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Alpha is planned for Garching near Munich, targeting plasma Q above one in the early 2030s. It is not the grid-power plant."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_PROXIMA_STELLARIS",
+    "url": "https://www.proximafusion.com/program/stellaris",
+    "title": "Stellaris",
+    "publisher": "Proxima Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Stellaris is the later grid-power project planned at Gundremmingen, Germany, in the 2030s."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_PROXIMA_PAPER",
+    "url": "https://www.proximafusion.com/press-news/proxima-fusion-and-partners-publish-stellaris-fusion-power-plant-concept-to-bring-limitless-safe-clean-energy-to-the-grid",
+    "title": "Proxima Fusion and partners publish Stellaris fusion power plant concept",
+    "publisher": "Proxima Fusion",
+    "published_date": "2025-02-26",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The company describes a peer-reviewed quasi-isodynamic HTS stellarator power-plant concept. It is a design study, not a reactor demonstration; a model-coil demonstration is targeted for 2027."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_THEA_FUND",
+    "url": "https://thea.energy/press-release/thea-energy-raises-100-million-series-b-funding-to-build-scalable-fusion-power-plants/",
+    "title": "Thea Energy raises $100 million Series B funding to build scalable fusion power plants",
+    "publisher": "Thea Energy",
+    "published_date": "2026-05-27",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Thea announced $100 million Series B financing. Eos site selection was expected later in 2026; Helios construction was targeted to start by the decade’s end."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_THEA_EXTENSION",
+    "url": "https://thea.energy/press-release/thea-energy-extends-series-b-funding-to-deploy-efficient-and-economical-fusion-power/",
+    "title": "Thea Energy extends Series B funding to deploy efficient and economical fusion power",
+    "publisher": "Thea Energy",
+    "published_date": "2026-08-18",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "An additional Series B extension was announced without an amount. The release also reports a $20 million ARPA-E SCALEUP award, a distinct funding category."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_THEA_EOS",
+    "url": "https://thea.energy/eos/",
+    "title": "Eos",
+    "publisher": "Thea Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Eos is planned as a D-D planar-coil stellarator; the later Helios electricity plant would use D-T. Published Eos performance numbers are design objectives."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_THEA_HELIOS",
+    "url": "https://arxiv.org/abs/2512.08027",
+    "title": "Overview of the Helios Design: A Practical Planar Coil Stellarator Fusion Power Plant",
+    "publisher": "Thea authors / arXiv",
+    "published_date": "2025-12-08",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "preprint_design",
+    "verification_note": "Version 3 dated 2026-01-05; no independent operating-performance claim.",
+    "claims": [
+      "The preconceptual design specifies 12 encircling coils and 324 shaping coils, 1.1 GW thermal and 390 MW net electricity. Capacity factor and component lifetime are modeled assumptions."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "MAG_THEA_CANIS",
+    "url": "https://arxiv.org/abs/2503.18960",
+    "title": "Prototyping and Test of the Canis HTS Planar Coil Array for Stellarator Field Shaping",
+    "publisher": "Thea authors / arXiv",
+    "published_date": "2025-03-19",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "preprint_experiment",
+    "claims": [
+      "The nine-coil Canis array operated at 20 K, controlling stellarator-relevant field shapes within 1% of prediction. This demonstrates a magnet subsystem, not a fusion plasma."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "MAG_RENAISSANCE_NEWS",
+    "url": "https://renfusion.eu/press-releases",
+    "title": "Press releases",
+    "publisher": "Renaissance Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The company lists a €32 million ($33.2 million) Series A first close on 6 March 2025 and a €10 million BPIFrance grant on 1 December 2023."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_RENAISSANCE_TECH",
+    "url": "https://renfusion.eu/technology",
+    "title": "Technology",
+    "publisher": "Renaissance Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Renaissance proposes patterned HTS currents on simpler surfaces to make stellarator fields, with thick liquid-lithium walls for heat extraction, shielding and tritium production."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_REALTA_TECH",
+    "url": "https://realtafusion.com/technology/",
+    "title": "Technology",
+    "publisher": "Realta Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Realta develops magnetic mirrors: stronger magnetic fields at the two ends of a linear machine help retain plasma. The company is based in Madison."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_REALTA_FUND",
+    "url": "https://www.prnewswire.com/news-releases/realta-fusion-raises-36-million-series-a-to-advance-compact-scalable-modular-fusion-energy-302452726.html",
+    "title": "Realta Fusion raises $36 million Series A to advance compact, scalable, modular fusion energy",
+    "publisher": "Realta Fusion / PR Newswire",
+    "published_date": "2025-05-13",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_press_release",
+    "claims": [
+      "Realta announced a $36 million Series A led by Future Ventures."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_REALTA_DEBT",
+    "url": "https://www.prnewswire.com/news-releases/realta-fusion-secures-9-5-million-growth-capital-facility-from-silicon-valley-bank-a-division-of-first-citizens-bank-302689285.html",
+    "title": "Realta Fusion secures $9.5 million growth capital facility from Silicon Valley Bank",
+    "publisher": "Silicon Valley Bank / PR Newswire",
+    "published_date": "2026-02-17",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "counterparty_primary",
+    "claims": [
+      "SVB announced a $9.5 million growth-capital debt facility. The announcement does not establish how much has been drawn."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "MAG_REALTA_WHAM",
+    "url": "https://news.wisc.edu/first-plasma-marks-major-milestone-in-uw-madison-fusion-energy-research/",
+    "title": "First plasma marks major milestone in UW-Madison fusion energy research",
+    "publisher": "University of Wisconsin–Madison",
+    "published_date": "2024-07-18",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "institution_primary",
+    "claims": [
+      "WHAM first plasma occurred in July 2024 in Stoughton, Wisconsin. Its 17 T figure refers to magnetic-mirror end fields."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "MAG_REALTA_DEC",
+    "url": "https://realtafusion.com/insight/a-fusion-first-realta-demos-direct-energy-conversion/",
+    "title": "A fusion first: Realta demos direct energy conversion",
+    "publisher": "Realta Fusion",
+    "published_date": "2026-06-30",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The 19 June electrostatic recovery experiment recovered mostly externally supplied plasma-heating energy, not net fusion electricity. First-generation commercial D-T reactors still require neutron-heat capture."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_REALTA_TIMELINE",
+    "url": "https://realtafusion.com/timeline/",
+    "title": "Timeline",
+    "publisher": "Realta Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The company targets a pilot in the mid-2030s, with intermediate mirror experiments before commercial deployment."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_ES_DEVICES",
+    "url": "https://energysingularity.cn/en/devices.html",
+    "title": "Devices",
+    "publisher": "Energy Singularity",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "HH70 is an all-HTS tokamak; HH170 is a planned higher-field successor with an equivalent-Q-above-two objective. Equivalent gain is not measured D-T plasma gain."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_ES_PULSE",
+    "url": "https://energysingularity.cn/en/news/news-001.html",
+    "title": "HH70 achieves a 1,337-second plasma discharge",
+    "publisher": "Energy Singularity",
+    "published_date": "2026-02-02",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The company reported a 1,337-second HH70 plasma discharge. Pulse length does not establish burning-plasma performance."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_ES_MAGNET",
+    "url": "https://energysingularity.cn/en/news/index.php/2026/06/17/energy-singularity-develops-26-7-tesla-cryogen-free-insulated-hts-magnet-breaking-two-world-records/",
+    "title": "Energy Singularity develops 26.7-tesla cryogen-free insulated HTS magnet",
+    "publisher": "Energy Singularity",
+    "published_date": "2026-06-17",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The 26.7 T test used a compact magnet with 30 mm winding inner diameter and 140 mm outer diameter. It is not equivalent in scale to a full reactor coil."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_ES_SEED",
+    "url": "https://energysingularity.cn/news/news-059.html",
+    "title": "Energy Singularity completes nearly RMB 400 million seed financing",
+    "publisher": "Energy Singularity",
+    "published_date": "2022-02-26",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The Shanghai company announced seed financing of nearly RMB 400 million."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_ES_PREA",
+    "url": "https://energysingularity.cn/en/news/news-047.html",
+    "title": "Energy Singularity raises nearly RMB400 million in Series Pre-A funding",
+    "publisher": "Energy Singularity",
+    "published_date": "2023-04-30",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Nearly RMB 400 million Pre-A financing brought the reported historical total to nearly RMB 800 million."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_KYOTO_FUND",
+    "url": "https://kyotofusioneering.com/en/news/2026/08/24/4350",
+    "title": "Kyoto Fusioneering announces Series D first close and new credit facilities",
+    "publisher": "Kyoto Fusioneering",
+    "published_date": "2026-08-24",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Series D equity was ¥16.72 billion, with ¥9 billion separate credit facilities. Cumulative equity was ¥32.98 billion. Source USD approximations were $105m, $57m and $207m respectively."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_KYOTO_HQ",
+    "url": "https://kyotofusioneering.com/en/news/2025/01/08/2807",
+    "title": "Kyoto Fusioneering relocates headquarters to Tokyo",
+    "publisher": "Kyoto Fusioneering",
+    "published_date": "2025-01-08",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "Headquarters moved to Tokyo’s Ota district in January 2025. Kyoto’s UNITY-1 and Canadian UNITY-2 are engineering/fuel-cycle facilities, distinct from a commercial fusion reactor."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_NTTAO_FUND",
+    "url": "https://www.prnewswire.com/news-releases/nt-tao-raises-22m-series-a-to-ensure-a-secure-clean-energy-future-with-a-compact-and-scalable-nuclear-fusion-solution-301735890.html",
+    "title": "nT-Tao raises $22M Series A to ensure a secure clean energy future",
+    "publisher": "nT-Tao / PR Newswire",
+    "published_date": "2023-02-01",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_press_release",
+    "claims": [
+      "The $22 million Series A brought cumulative funding at that date to $28 million."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_NTTAO_POWER",
+    "url": "https://www.globenewswire.com/news-release/2026/09/15/3362276/0/en/nt-tao-deploys-50-mw-pulsed-power-subsystem-to-drive-fusion-prototype-toward-next-temperature-milestone.html",
+    "title": "nT-Tao deploys 50 MW pulsed-power subsystem to drive fusion prototype toward next temperature milestone",
+    "publisher": "nT-Tao / GlobeNewswire",
+    "published_date": "2026-09-15",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_press_release",
+    "claims": [
+      "The 50 MW subsystem supplies pulsed input power, not fusion output. The release reports an earlier 1.5-million-degree plasma result."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_NTTAO_TECH",
+    "url": "https://www.nt-tao.com/nt-tao-technology",
+    "title": "nT-Tao Technology",
+    "publisher": "nT-Tao",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The company describes a compact pulsed stellarator and a future 20 MWe modular energy system with thermal electricity conversion."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_NTTAO_FAQ",
+    "url": "https://www.nt-tao.com/faq",
+    "title": "Frequently asked questions",
+    "publisher": "nT-Tao",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The company’s current FAQ places a pilot plant in the early 2030s."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELICAL_FUND_EN",
+    "url": "https://global.helicalfusion.com/post/fuji-electric-joins-helical-fusion-as-strategic-investor-and-official-partner-as-series-b-second-clo",
+    "title": "Fuji Electric joins Helical Fusion as Series B second close raises JPY 3.23 billion",
+    "publisher": "Helical Fusion",
+    "published_date": "2026-10-08",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "verification_note": "The Japanese release, updated 9 October, instead gives ¥13.05 billion cumulative funding. Use the newer Japanese total and disclose the discrepancy.",
+    "claims": [
+      "Second close financing was ¥3.23 billion, about $20.6 million. The English page gives cumulative financing of ¥13.15 billion including grants and loans."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELICAL_FUND_JP",
+    "url": "https://www.helicalfusion.com/post/helical-fusion%E3%80%81%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BAb%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%89-2nd%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%BA32-3%E5%84%84%E5%86%86%E3%81%AE%E8%B3%87%E9%87%91%E8%AA%BF%E9%81%94%E3%81%A7%E7%99%BA%E9%9B%BB%E3%81%AB%E5%90%91%E3%81%91%E3%81%9F%E9%96%8B%E7%99%BA%E3%83%BB%E5%AE%9F%E8%A8%BC%E3%82%92%E5%8A%A0%E9%80%9F%E3%80%81%E7%B4%AF%E8%A8%88%E8%AA%BF%E9%81%94%E9%A1%8D%E3%81%AF130-5%E5%84%84%E5%86%86",
+    "title": "Helical Fusion Series B second close: ¥3.23 billion; cumulative funding ¥13.05 billion",
+    "publisher": "Helical Fusion",
+    "published_date": "2026-10-08",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The Japanese release updated 9 October reports ¥5.93 billion Series B funding so far and ¥13.05 billion cumulative financing including grants and loans, excluding conditional METI support. It locates HARUKA construction at NIFS, Toki."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELICAL_TECH",
+    "url": "https://global.helicalfusion.com/technology",
+    "title": "Technology",
+    "publisher": "Helical Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "A pair of continuous helical superconducting coils produces the stellarator confinement field. D-T is the proposed fuel."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELICAL_MANUFACTURE",
+    "url": "https://global.helicalfusion.com/post/helical-fusion-completes-a-new-coil-manufacturing-machine-for-its-integrated-demonstration-device-in",
+    "title": "Helical Fusion completes a new coil manufacturing machine with Sugino Machine",
+    "publisher": "Helical Fusion",
+    "published_date": "2026-02-05",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "A dedicated HTS coil manufacturing machine was completed; the company reports a 2025 cable test and targets integrated demonstration and subsequent net electricity in the 2030s."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_HELICAL_HQ",
+    "url": "https://global.helicalfusion.com/company",
+    "title": "Company",
+    "publisher": "Helical Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "company_primary",
+    "claims": [
+      "The corporate address is in Chiyoda, Tokyo."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "MAG_FIA_2026",
+    "url": "https://www.fusionindustryassociation.org/wp-content/uploads/2026/07/FIA-Industry-report-2026_d9.pdf",
+    "title": "The Global Fusion Industry Report 2026",
+    "publisher": "Fusion Industry Association",
+    "published_date": "2026-07-13",
+    "accessed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "source_type": "industry_survey_primary",
+    "verification_note": "Self-reported Q2 2026 survey. Corporate totals may mix financing categories. Local PDF read; later company releases supersede stale survey figures. Keep derived copy across final report terse.",
+    "claims": [
+      "Company survey profiles identify D-T plans for nT-Tao, Energy Singularity and Helical Fusion; nT-Tao declares $34 million funding and Energy Singularity $112.5 million. Type One lists Knoxville and a 2034 grid target.",
+      "Company-declared survey funding totals and selected roadmap dates; basis may mix public/private or commitments; not independent financial audit."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "independence_note": null,
+    "aliases": [
+      "ALT_FIA2026"
+    ]
+  },
+  {
+    "id": "ALT_INERTIA_FUND",
+    "url": "https://www.globenewswire.com/news-release/2026/02/11/3236274/0/en/inertia-raises-450-million-to-commercialize-the-only-proven-fusion-science.html",
+    "title": "Inertia raises $450 million to commercialize the only proven fusion science",
+    "publisher": "Inertia Enterprises via GlobeNewswire",
+    "published_date": "2026-02-11",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "$450 million milestone-based Series A; Livermore; Thunderwall unit-beamline design goals."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_INERTIA_GAIN",
+    "url": "https://inertia.com/faq/how-much-fusion-energy-or-gain-do-you-need/",
+    "title": "How much fusion energy or gain do you need",
+    "publisher": "Inertia Enterprises",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Company model maps target gains 18, 30, 45 to 50, 500, 1500 MW grid output; not measurements or universal conversion."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_INERTIA_MODEL",
+    "url": "https://inertia.com/press/models-confirm-fuel-target-design",
+    "title": "Inertia target design for grid-scale energy validated by ignition-benchmarked fusion codes",
+    "publisher": "Inertia Enterprises",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Virtual-shot simulations; >25 to 43 target gain; company estimates 250 MW to 1.3 GW grid electricity."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_INERTIA_PAPER",
+    "url": "https://arxiv.org/abs/2609.19752",
+    "title": "Indirect-Drive Fusion Target Design for Commercial Fusion Energy",
+    "publisher": "Weber et al and Inertia Collaboration / arXiv",
+    "published_date": "2026-09-17",
+    "accessed_at": "2026-10-22",
+    "source_type": "research_preprint",
+    "claims": [
+      "10 MJ driver; modeled target gains 26–43 and yields 265–427 MJ. Original abstract retrieved; full arXiv page fetch blocked."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "ALT_INERTIA_HOME",
+    "url": "https://inertia.com/",
+    "title": "Inertia commercial fusion overview",
+    "publisher": "Inertia Enterprises",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Design targets: 10 Hz, 10 MJ, sub-dollar targets, 1.5 GW; these are future system specifications."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_INERTIA_PHASE1",
+    "url": "https://inertia.com/press/commercial-roadmap-phase-1",
+    "title": "Defining Success: Inertia Phase 1 Commercial Roadmap",
+    "publisher": "Inertia Enterprises",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Phase I component roadmap; virtual-shot gain milestone; simplified power-balance assumptions of 10 MJ, 10 Hz, 12% laser efficiency, 45% thermal conversion and 5 MJ other loads per shot; gas-armored replaceable solid wall."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_INERTIA_FUELING",
+    "url": "https://inertia.com/press/inertia-fast-fueling",
+    "title": "Fueling breakthrough for fusion energy brings production time from days to minutes",
+    "publisher": "Inertia Enterprises",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Company/LLNL fast DT-layer manufacture reported at two to three hours; measured roughness and simulated performance compatibility; not an integrated high-gain experiment or industrial production rate."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_PACIFIC_FOUND",
+    "url": "https://www.pacificfusion.com/resources/founders-letter",
+    "title": "Introducing Pacific Fusion",
+    "publisher": "Pacific Fusion",
+    "published_date": "2024-10-25",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      ">$900 million Series A commitments released on milestones; pulsed magnetic compression of DT targets; Fremont."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_PACIFIC_MODULE",
+    "url": "https://www.pacificfusion.com/resources/validating-the-next-building-block-toward-affordable-fusion-power",
+    "title": "Validating the next building block toward affordable fusion power",
+    "publisher": "Pacific Fusion",
+    "published_date": "2026-06-02",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Scaled pulser prototype 440 GW peak, 1.1 MV, 80 ns; >1000 qualification shots; component milestone, not fusion gain."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_PACIFIC_CAPITAL",
+    "url": "https://www.pacificfusion.com/resources/lawrence-livermore-pacific-fusion-collaboration-breaks-new-record-to-advance-america-s-high-gain-fusion-capability",
+    "title": "Lawrence Livermore Pacific Fusion collaboration breaks new record",
+    "publisher": "Pacific Fusion",
+    "published_date": "2026-07-16",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Reports >$1 billion private capital; stored-energy facility-gain target 2030."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_PACIFIC_SITE",
+    "url": "https://www.pacificfusion.com/resources/pacific-fusion-breaks-ground-on-first-of-a-kind-fusion-facility-in-new-mexico",
+    "title": "Pacific Fusion breaks ground on first-of-a-kind fusion facility in New Mexico",
+    "publisher": "Pacific Fusion",
+    "published_date": "2026-08-25",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Mesa del Sol Albuquerque campus groundbreaking Aug 24; planned facility gain 2030; $1 billion-scale campus is project spending, not another funding round."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_PACIFIC_LOC",
+    "url": "https://www.pacificfusion.com/locations",
+    "title": "Locations",
+    "publisher": "Pacific Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Bay Area HQ/R&D; Albuquerque research/manufacturing campus; Los Lunas manufacturing."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_XCIMER_FUND",
+    "url": "https://www.businesswire.com/news/home/20240604168571/en/Xcimer-Raises-$100-Million-to-Put-Inertial-Fusion-Energy-on-Path-to-Commercialization",
+    "title": "Xcimer Raises $100 Million to Put Inertial Fusion Energy on Path to Commercialization",
+    "publisher": "Xcimer via Business Wire",
+    "published_date": "2024-06-04",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "$100 million Series A; Denver headquarters; $9 million DOE award separately reported."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_XCIMER_ROADMAP",
+    "url": "https://xcimer.energy/energy/",
+    "title": "Energy and roadmap",
+    "publisher": "Xcimer Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Phoenix 2026; Anvil 200kJ2028; Vulcan 4 MJ upgradeable 12 MJ target 2031; Athena 400 MW mid 2030s."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_XCIMER_FAQ",
+    "url": "https://xcimer.energy/faq/",
+    "title": "Xcimer frequently asked questions",
+    "publisher": "Xcimer Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Nearly $200 million in seed and Series A funding; Denver headquarters and Tucson manufacturing; Vulcan aims for whole-system wall-plug breakeven in 2031; Athena aims to deliver 400 MW to the grid in 2035."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_XCIMER_DOE",
+    "url": "https://xcimer.energy/news/u-s-department-of-energy-approves-xcimers-fusion-power-plant-preconceptual-design-and-technology-roadmap-milestone/",
+    "title": "DOE approves Xcimer preconceptual design and technology roadmap milestone",
+    "publisher": "Xcimer Energy",
+    "published_date": "2026-06-10",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Phoenix operating; KrF excimer/SBS architecture; Athena preconceptual design milestone accepted; up-to 1 Hz liquid-wall concept."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FOCUSED_FUND",
+    "url": "https://www.focused-energy.co/news-release/focused-energy-sets-a-new-benchmark-240-million-for-the-largest-series-a-financing-in-the-global-fusion-industry",
+    "title": "Focused Energy $240 Million Series A",
+    "publisher": "Focused Energy",
+    "published_date": "2026-05-27",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "$240 million Series A; RWE and Biblis planned development site."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FOCUSED_TECH",
+    "url": "https://www.focused-energy.co/technology/lighthouse",
+    "title": "LightHouse Laser Fusion System",
+    "publisher": "Focused Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Direct-drive DT architecture; current offices Darmstadt, Berlin, San Francisco, Austin."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FOCUSED_EXP",
+    "url": "https://www.focused-energy.co/news-release/focused-energy-completes-its-first-milestones-through-does-milestone-based-fusion-development-program",
+    "title": "Focused Energy completes first DOE milestones",
+    "publisher": "Focused Energy",
+    "published_date": "2024-11-14",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Target-design report and proton-focusing experiment; not an ignition demonstration."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FOCUSED_ROADMAP",
+    "url": "https://www.focused-energy.co/",
+    "title": "Focused Energy roadmap",
+    "publisher": "Focused Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Current roadmap first laser 2028; pilot 2035; first grid MWh 2037."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_GENERAL_TEMP",
+    "url": "https://generalfusion.com/post/general-fusion-achieves-world-first-1-kev-electron-temperature-milestone-on-its-path-to-commercial-fusion-power/",
+    "title": "General Fusion achieves 1 keV electron temperature milestone",
+    "publisher": "General Fusion",
+    "published_date": "2026-10-08",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "LM26 electron temperature 1.1 keV Thomson /1.2 keV AXUV; inferred ion 0.46 keV; next 10 keV; papers submitted."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_GENERAL_LIST",
+    "url": "https://generalfusion.com/post/general-fusion-becomes-first-publicly-listed-fusion-company/",
+    "title": "General Fusion becomes publicly listed",
+    "publisher": "General Fusion",
+    "published_date": "2026-07-13",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Nasdaq GFUZ listing; approximatelyUS $150 million cash inclusive of net transaction proceeds, not $1 billion funding."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_GENERAL_PATH",
+    "url": "https://generalfusion.com/path-to-commercialization/",
+    "title": "Path to commercialization",
+    "publisher": "General Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "LM26 Lawson-equivalent objective uses non-DT surrogate conditions; first-of-kind target 2035."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_GENERAL_PAPER",
+    "url": "https://arxiv.org/abs/2606.23974",
+    "title": "The science of compressional heating on the LM26 magnetized target fusion experiment",
+    "publisher": "S. J. Howard et al / arXiv",
+    "published_date": "2026-06-22",
+    "accessed_at": "2026-10-22",
+    "source_type": "research_preprint",
+    "claims": [
+      "Deuterium spherical-tokamak plasma compressed by solid lithium liner; first eleven shots; modeled and measured compression-heating behavior."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "ALT_GENERAL_LOC",
+    "url": "https://generalfusion.com/about/contact-us/",
+    "title": "Contact General Fusion",
+    "publisher": "General Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "6020 Russ Baker Way, Richmond BC; Vancouver metro."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_ZAP_FUND",
+    "url": "https://legacy.zapenergy.com/news/zap-attracts-130m-as-demo-system-begins-operations",
+    "title": "Zap attracts $130M as demo system begins operations",
+    "publisher": "Zap Energy",
+    "published_date": "2024-10-09",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "$130 million Series D; >$330 million then total; Century uses hydrogen, not fusion fuel; liquid-metal engineering tests."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_ZAP_PRESSURE",
+    "url": "https://www.zapenergy.com/updates/2025/11/zap-energy-exceeds-gigapascal-fusion-plasma-pressures-on-new-fusion-device-fuze-3",
+    "title": "Zap exceeds gigapascal plasma pressures on FuZE-3",
+    "publisher": "Zap Energy",
+    "published_date": "2025-11-17",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Measured electron pressure 830 MPa; 1.6 GPa total inferred assuming similar ion/electron temperature;~1us; preliminary."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_ZAP_STRATEGY",
+    "url": "https://www.zapenergy.com/updates/2026/04/zap-energy-advances-integrated-nuclear-strategy-and-appoints-zabrina-johal-as-ceo",
+    "title": "Zap advances integrated nuclear strategy",
+    "publisher": "Zap Energy",
+    "published_date": "2026-04-29",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Adds fission and hybrid business alongside fusion; FuZE-A commissioning; no fusion-grid milestone claimed."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_ZAP_LOC",
+    "url": "https://www.zapenergy.com/privacy-policy",
+    "title": "Zap contact address",
+    "publisher": "Zap Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Everett Washington corporate contact location."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FIRSTLIGHT_FUND",
+    "url": "https://firstlightfusion.com/media/first-light-fusion-announces-25m-successful-first-close-of-new-funding-round-with-investments-from-starmaker-one-ukaea/",
+    "title": "First Light announces £25 million first close",
+    "publisher": "First Light Fusion",
+    "published_date": "2026-04-21",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "£25 million first close; FLARE partnering strategy; UKAEA investment."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FIRSTLIGHT_TEST",
+    "url": "https://firstlightfusion.com/media/first-light-fusion-achieves-major-step-forward-for-flare-proving-key-low-cost-fusion-principle/",
+    "title": "First Light demonstrates FLARE compression principle",
+    "publisher": "First Light Fusion",
+    "published_date": "2026-09-22",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "M3 compression-stage experiments; explicitly not ignition or gain."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FIRSTLIGHT_TECH",
+    "url": "https://firstlightfusion.com/technology/",
+    "title": "First Light FLARE technology",
+    "publisher": "First Light Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "DT fuel; low-power assembly then rapid heating; ~1000 modeled target gain; partner-supplied plant systems."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_MARVEL_FUND",
+    "url": "https://www.marvelfusion.com/newsroom/marvel-fusion-extends-series-b-to-eur-113m-with-commitments-from-eqt-ventures-siemens-energy-and-european-innovation-council-eic-fund",
+    "title": "Marvel extends Series B to EUR113m",
+    "publisher": "Marvel Fusion",
+    "published_date": "2025-03-27",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "€50 million extension; €113 million complete B; €170 million total private investment plus €215 million public cooperation projects."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_MARVEL_TECH",
+    "url": "https://www.marvelfusion.com/technology",
+    "title": "Marvel technology and roadmap",
+    "publisher": "Marvel Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Hollow-shell fast ignition; near-term noncryogenic DT; ATLAS first laser 2027; future ignition 2032/net power 2036."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_MARVEL_SITE",
+    "url": "https://www.marvelfusion.com/newsroom/marvel-fusion-the-state-of-colorado-and-siemens-energy-sign-letter-of-intent",
+    "title": "Marvel Colorado Siemens Energy letter of intent",
+    "publisher": "Marvel Fusion",
+    "published_date": "2026-08-12",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Fort Collins ATLAS platform at CSU; 2027 opening intended; LOI not power purchase or plant completion."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_AVALANCHE_FUND",
+    "url": "https://www.avalanchefusion.com/news-release/avalanche-energy-raises-29-million-following-plasma-physics-breakthroughs",
+    "title": "Avalanche raises $29 million following plasma physics breakthroughs",
+    "publisher": "Avalanche Energy",
+    "published_date": "2026-02-03",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "$29 million round; FusionWERX Richland expected licensed operation 2027; DT Q >1 test program; 300 kV component achievement."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_AVALANCHE_TECH",
+    "url": "https://www.avalanchefusion.com/orbitron",
+    "title": "Orbitron",
+    "publisher": "Avalanche Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Crossed magnetic/electrostatic confinement; central negative electrode ion orbits; magnets trap electrons; compact electricity is design goal."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_AVALANCHE_GRANT",
+    "url": "https://www.avalanchefusion.com/news-release/avalanche-energy-awarded-10-million-grant-from-washington-state-to-develop-fusionwerx-neutron-factory",
+    "title": "Avalanche awarded $10 million state grant",
+    "publisher": "Avalanche Energy",
+    "published_date": "2025-07-23",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "$10 million Washington grant with matching funds required; separate from equity."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_EXFUSION_A",
+    "url": "https://ex-fusion.com/news/ex-fusion%E3%80%81%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA-a-%E3%81%A7%E7%B7%8F%E9%A1%8D%E7%B4%84-26-%E5%84%84%E5%86%86%E3%81%AE%E8%B3%87%E9%87%91%E8%AA%BF%E9%81%94%E3%82%92%E5%AE%9F%E6%96%BD",
+    "title": "EX-Fusion raises approximately JPY 2.6 billion Series A",
+    "publisher": "EX-Fusion",
+    "published_date": "2025-06-05",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "JPY 2.3 billion equity+JPY 0.3 billion loans; cumulativeJPY 5.6 billion then; FY2027 neutron-operation target."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_EXFUSION_EXT",
+    "url": "https://ex-fusion.com/news/ex-fusion%E3%80%81%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BAa%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%89%EF%BC%88%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%86%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%EF%BC%89%E3%81%A7%EF%BC%94",
+    "title": "EX-Fusion Series A extension JPY 0.4 billion",
+    "publisher": "EX-Fusion",
+    "published_date": "2025-10-14",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "JPY 0.4 billion extension; Series A cumulativeJPY 3 billion; all funding cumulativeJPY 6 billion including earlier loans."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_EXFUSION_TEST",
+    "url": "https://ex-fusion.com/news/%E4%B8%96%E7%95%8C%E5%88%9D%E3%80%811%E7%A7%92%E9%96%93%E3%81%AB10%E5%9B%9E%E3%80%81%E6%A8%A1%E6%93%AC%E7%87%83%E6%96%99%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%AC%E3%83%BC%E3%82%B6%E3%83%BC",
+    "title": "EX-Fusion demonstrates continuous 10 Hz laser irradiation of surrogate fuel",
+    "publisher": "EX-Fusion",
+    "published_date": "2025-07-01",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Hamamatsu test of target injection/irradiation on surrogate targets; not 10 fusion ignitions per second."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_EXFUSION_LOC",
+    "url": "https://ex-fusion.com/company",
+    "title": "Company",
+    "publisher": "EX-Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "HQ Suita Osaka; Hamamatsu development site."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_HB11_TECH",
+    "url": "https://hb11.energy/our-technology/",
+    "title": "HB11 laser-boron technology",
+    "publisher": "HB11 Energy",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Proton-boron two-pulse fast ignition; intended nanosecond compression and picosecond proton ignition; about one pellet per second; conventional steam cycle."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_HB11_PAPER",
+    "url": "https://hb11.energy/wp-content/uploads/2025/08/hydrogen-boron-fusion-in-confined-geometries_20250718.pdf",
+    "title": "Hydrogen boron fusion in confined geometries",
+    "publisher": "Tosca et al / High Power Laser Science and Engineering",
+    "published_date": "2025-07-18",
+    "accessed_at": "2026-10-22",
+    "source_type": "peer_reviewed_paper",
+    "claims": [
+      "LFEX alpha-yield enhancement from target geometry; explicitly notes beam fusion lacks evidence for yield-amplifying cascades."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "ALT_HB11_PROJECT",
+    "url": "https://hb11.energy/2022/05/03/hb11-energy-awarded-22m-laser-project-to-build-sovereign-nuclear-fusion-energy-capabilities/",
+    "title": "HB11 $22 million laser project",
+    "publisher": "HB11 Energy",
+    "published_date": "2022-05-03",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Australian project totalAUD 22 million includesAUD 6 million grant andAUD 16 million partner contributions; not company equity. Sydney base."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FUSE_TEST",
+    "url": "https://www.f.energy/library/fifth-gait-technologies-completes-successful-shot-campaign",
+    "title": "Fifth Gait shot campaign on Fuse FAETON",
+    "publisher": "Fuse Energy Technologies",
+    "published_date": "2025-04-08",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "San Leandro; dense plasma focus neutron-source testing; neutron output not electric gain."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FUSE_CONCEPT",
+    "url": "https://www.f.energy/apeiron-i-fusion-energy-plant",
+    "title": "Apeiron I concept",
+    "publisher": "Fuse Energy Technologies",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Future MagLIF energy demonstrator concept; numerical specs and engineeringQ goal are planned."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "ALT_FUSE_HOME",
+    "url": "https://www.f.energy/",
+    "title": "Fuse overview",
+    "publisher": "Fuse Energy Technologies",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_primary",
+    "claims": [
+      "Radiation-testing business and pulsed-power development alongside energy mission."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "PAR_FIA_RELEASE",
+    "url": "https://www.fusionindustryassociation.org/fusion-industry-attracts-record-annual-funding-of-4-48bn-raising-total-to-14-24bn/",
+    "title": "Fusion Industry Attracts Record Annual Funding of 4.48bn Raising Total to 14.24bn",
+    "publisher": "Fusion Industry Association",
+    "published_date": "2026-07-13",
+    "accessed_at": "2026-10-22",
+    "source_type": "industry_survey",
+    "claims": [
+      "56 voluntarily responding companies; $14.24bn declared cumulative funding and $4.48bn over the reporting year.",
+      "Survey conducted in Q2 2026; industry expectations are respondents' forecasts, not independent probabilities."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_F4E_REPORT",
+    "url": "https://fusionforenergy.europa.eu/wp-content/uploads/2026/07/F4E_Observatory-Global_Fusion_Energy_Trends_1st_Edition-1.pdf",
+    "title": "Global Fusion Energy Trends",
+    "publisher": "Fusion for Energy",
+    "published_date": "2026-07-15",
+    "accessed_at": "2026-10-22",
+    "source_type": "institutional_analysis",
+    "claims": [
+      "Five-actor identified public and private funding covers 2022-2025; mobilised or formally committed, not directly comparable cash.",
+      "Public-to-private flows are subsets of public funding; ITER in-kind treatment matters.",
+      "CRAFT is enabling engineering infrastructure at Hefei; BEST is a planned burning-plasma experiment."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_F4E_RELEASE",
+    "url": "https://fusionforenergy.europa.eu/news/f4e-publishes-the-first-global-fusion-energy-trends-report/",
+    "title": "F4E publishes the first Global Fusion Energy Trends report",
+    "publisher": "Fusion for Energy",
+    "published_date": "2026-07-15",
+    "accessed_at": "2026-10-22",
+    "source_type": "institutional_analysis",
+    "claims": [
+      "2022-2025 funding comparison: US EUR7.38bn, China EUR6.94bn, EU EUR3.34bn, UK EUR1.49bn, Japan EUR1.21bn; different scope from FIA."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_DOE_ROADMAP",
+    "url": "https://www.energy.gov/articles/energy-department-releases-finalized-fusion-science-and-technology-roadmap-accelerate",
+    "title": "Energy Department Releases Finalized Fusion Science and Technology Roadmap to Accelerate Commercial Fusion Power",
+    "publisher": "US Department of Energy",
+    "published_date": "2026-06-09",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_program",
+    "claims": [
+      "National strategy supports pilot plants and commercial fusion in the mid-2030s; this is a policy ambition.",
+      "Implementation depends on partnerships and Congressional appropriations; roadmap commits no specific funding levels."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_STEP_STRATEGY",
+    "url": "https://www.gov.uk/government/publications/uk-fusion-energy-ltd-ukfe-strategy/uk-fusion-energy-ltd-strategy-accessible-version",
+    "title": "UK Fusion Energy Ltd Strategy",
+    "publisher": "UK Fusion Energy",
+    "published_date": "2026-04-20",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_program",
+    "claims": [
+      "STEP at West Burton targets operation from 2040; aims for net grid power, tritium breeding, and a route to commercial availability.",
+      "GBP1.3bn supports the next stage of STEP, a subset of GBP2.5bn UK fusion support."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_UK_STRATEGY",
+    "url": "https://www.gov.uk/government/publications/uk-fusion-strategy-2026/a-new-energy-revolution-the-uks-plan-for-delivering-fusion-energy-accessible-webpage",
+    "title": "A new energy revolution The UK plan for delivering fusion energy",
+    "publisher": "UK Department for Energy Security and Net Zero",
+    "published_date": "2026-03-16",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_program",
+    "claims": [
+      "UK fusion strategy commits over GBP2.5bn over five years; this is a programme allocation, not startup equity."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_STEP_PARTNERS",
+    "url": "https://www.gov.uk/government/news/new-uk-fusion-energy-strategy-maps-path-to-commercial-fusion",
+    "title": "New UK Fusion Energy strategy maps path to commercial fusion",
+    "publisher": "UK Fusion Energy",
+    "published_date": "2026-04-14",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_program",
+    "claims": [
+      "STEP is a spherical tokamak prototype at West Burton; contracts and site preparation are progress toward an intended plant, not evidence of plant operation."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_BEST_PLAN",
+    "url": "https://euro-fusion.org/eurofusion-news/eurofusion-asipp-best-research-plan/",
+    "title": "EUROfusion and ASIPP have released the BEST Research Plan",
+    "publisher": "EUROfusion",
+    "published_date": "2025-11-27",
+    "accessed_at": "2026-10-22",
+    "source_type": "project_partner_report",
+    "retrieval_note": "Complete partner release text available in search retrieval; direct web and PDF fetch intermittently unavailable. F4E July 2026 review corroborates role and location.",
+    "claims": [
+      "Compact high-field tokamak in Hefei targets burning-plasma studies at Q greater than 5; first plasma targeted for 2027 in this release.",
+      "Research plan released November 24 2025; publication November 27. First plasma is not net grid electricity."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_STARTORUS_A_PLUS",
+    "url": "https://www.startorus.com/company-news/453.html",
+    "title": "Startorus Fusion Secures 500 Million Series A Financing Cumulative Funding Exceeds 2 Billion",
+    "publisher": "Startorus Fusion",
+    "published_date": "2026-05-07",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_report",
+    "claims": [
+      "Body identifies RMB500m as A+ and cumulative financing over RMB2bn; headline omits plus sign.",
+      "SUNIST-2 operational; NTST under construction and CTRFR-1 in R&D. Equivalent Q greater than 1 is a 2029-2030 target, not measured D-T gain."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "PAR_STARTORUS_A_PLUS_PLUS",
+    "url": "https://www.startorus.com/company-news/484.html",
+    "title": "Startorus Fusion Completes A New Round of Financing of 880 Million Yuan",
+    "publisher": "Startorus Fusion",
+    "published_date": "2026-08-08",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_report",
+    "claims": [
+      "RMB880m A++ financing completed; funds support Jiading experimental base, NTST, and CTRFR-1.",
+      "Shanghai and Xian addresses listed; multiple operational locations should not be reduced to one unqualified plant marker."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "PAR_STARTORUS_MAGNET",
+    "url": "https://startorus.com/progress-news/473.html",
+    "title": "Startorus Fusion Completes 20K Cryogenic Energization Test of Full Scale HTS Toroidal Field Magnet",
+    "publisher": "Startorus Fusion",
+    "published_date": "2026-06-11",
+    "accessed_at": "2026-10-22",
+    "source_type": "company_report",
+    "claims": [
+      "Company reports full-scale magnet energized at 20K and 4.5kA; subsystem result, not reactor gain."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "PAR_IAEA_FFDB",
+    "url": "https://nucleus.iaea.org/sites/fusion-portal/SitePages/FFDB.aspx?web=1",
+    "title": "Fusion Facility Database",
+    "publisher": "International Atomic Energy Agency",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "institutional_database",
+    "claims": [
+      "Database distinguishes public and private, experimental and plant designs, operating, construction and planned facilities; useful future completeness check."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_EXISTING_SITES",
+    "url": "https://www.jasonwillems.com/sites/",
+    "title": "Jason Willems Sites",
+    "publisher": "Jason Willems",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "user_reference",
+    "claims": [
+      "Existing interactive collection includes Kurzweil Scorecard, What If I Joined, Frontiers of Mathematics and Erdos Problems.",
+      "Reference pages reviewed locally for design conventions: explicit snapshots, evidence labels, methodology, source tables and downloadable data."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_OPENSTAR_PPPL",
+    "url": "https://www.pppl.gov/news/2026/openstar-technologies-and-pppl-are-building-partnership-advance-fusion-energy",
+    "title": "OpenStar Technologies and PPPL are building partnership to advance fusion energy",
+    "publisher": "Princeton Plasma Physics Laboratory",
+    "published_date": "2026-09-29",
+    "accessed_at": "2026-10-22",
+    "source_type": "project_partner_report",
+    "claims": [
+      "Junior prototype fully commissioned; Tama Nui is a published plant design, not an operating plant.",
+      "Levitated superconducting ring inside vacuum chamber generates confining dipole field."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_OPENSTAR_LOAN",
+    "url": "https://www.beehive.govt.nz/release/government-backs-fusion-energy-research",
+    "title": "Government backs fusion energy research",
+    "publisher": "New Zealand Government",
+    "published_date": "2026-02-04",
+    "accessed_at": "2026-10-22",
+    "source_type": "government_funding_announcement",
+    "claims": [
+      "Up to NZD35m Regional Infrastructure Fund loan for a facility for the next fusion machine; not a private equity round."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_OPENSTAR_TECH",
+    "url": "https://www.openstar.tech/technical-resources",
+    "title": "OpenStar Technical Resources",
+    "publisher": "OpenStar Technologies",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_technical_library",
+    "claims": [
+      "Lists peer-reviewed 2025 Junior initial-results paper and 2026 D-T levitated-dipole plant design paper; their existence alone does not validate plant performance."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "PAR_OPENSTAR_TEAM",
+    "url": "https://www.openstar.tech/team",
+    "title": "OpenStar Who we are",
+    "publisher": "OpenStar Technologies",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_report",
+    "claims": [
+      "Founded in Wellington, New Zealand in 2021."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  },
+  {
+    "id": "PHY_044",
+    "title": "The Sandia-NM Tritium Story: Capabilities and R&D",
+    "publisher": "Sandia National Laboratories / US Department of Energy",
+    "url": "https://www.energy.gov/sites/prod/files/2019/06/f63/The-Sandia-New-Mexico-Tritium-Story-Capabilities-and-R-and-D.pdf",
+    "published_date": "2018-10-23",
+    "accessed_at": "2026-10-22",
+    "source_type": "national_laboratory_presentation",
+    "page": "Slide 2 (PDF page 2)",
+    "claims": [
+      "D-T products carry approximately 3.5 MeV in the alpha particle and 14.1 MeV in the neutron."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_XCIMER_HDD",
+    "url": "https://pubs.aip.org/aip/pop/article/31/11/112708/3322685/Hybrid-direct-drive-with-a-two-sided-ultraviolet",
+    "title": "Hybrid direct drive with a two-sided ultraviolet laser",
+    "publisher": "Thomas and collaborators, including Xcimer; Physics of Plasmas",
+    "published_date": "2024-11-27",
+    "accessed_at": "2026-10-22",
+    "source_type": "peer_reviewed_design_and_simulation",
+    "doi": "10.1063/5.0221201",
+    "access_quality": "opened_full_text",
+    "claims": [
+      "Hybrid direct drive uses an initial laser pulse to heat a hohlraum and drive the capsule with X-rays, followed by direct laser-drive pulses.",
+      "The paper presents a two-opposed-beam target design and radiation-hydrodynamic calculations; modeled gain is not an integrated experimental gain result."
+    ],
+    "related_primary_urls": [
+      "https://xcimer.energy/news/advancing-fusion-target-design-with-hybrid-direct-drive/",
+      "https://xcimer.energy/wp-content/uploads/2026/04/XEC-20260224-Commercialization-of-LFE-Whtppr-SHARED-24-FEB-26.pdf"
+    ],
+    "current_context_note": "The company names the architecture in its November 2024 announcement. Its February 2026 whitepaper still identifies hybrid direct drive; the full whitepaper exceeded web extraction limits, so the mechanism details here rely on the opened peer-reviewed paper.",
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": null,
+    "aliases": []
+  },
+  {
+    "id": "PAR_EXFUSION_TECH",
+    "url": "https://ex-fusion.com/technology/knowledge",
+    "title": "Research and Knowledge",
+    "publisher": "EX-Fusion",
+    "published_date": null,
+    "accessed_at": "2026-10-22",
+    "source_type": "company_technical_explainer",
+    "access_quality": "opened_Japanese_text; English translation is editorial",
+    "claims": [
+      "Company refers to the LIFT fast-ignition reactor concept: lasers compress a D-T target from multiple directions, then a separate laser ignites it.",
+      "The cited reference design is a concept, not an operating EX-Fusion power plant. The page separately describes surrogate-target tracking tests."
+    ],
+    "last_reviewed_at": "2026-10-22",
+    "access_timezone": "America/Los_Angeles",
+    "independence_note": "A primary source establishes attribution; company publication is not independent validation.",
+    "aliases": []
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "experimental_result",
+    "label": "Experimental result",
+    "note": "A source reports measured behavior; consult scope, conditions, diagnostics and provenance."
+  },
+  {
+    "id": "model_or_design",
+    "label": "Model or design",
+    "note": "A calculation, simulation or design publication; not an experimental result."
+  },
+  {
+    "id": "predecessor_evidence",
+    "label": "Related experimental heritage",
+    "note": "Result belongs to a different facility or organization, with transfer limits."
+  },
+  {
+    "id": "engineering_progress",
+    "label": "Engineering progress",
+    "note": "Construction, integration or component-development progress with a stated scope."
+  },
+  {
+    "id": "reported_status",
+    "label": "Reported status",
+    "note": "Institutional or company summary that must retain its wording and limits."
+  },
+  {
+    "id": "organization_event",
+    "label": "Organization or strategy event",
+    "note": "A financing, agreement or roadmap event, not physical performance."
+  },
+  {
+    "id": "target",
+    "label": "Announced target",
+    "note": "A future objective; a passed date never automatically changes its status."
+  }
+]
