@@ -1233,6 +1233,163 @@ summary {
   line-height: 1.6;
   color: #294339;
 }
+.engineering-figure {
+  margin: 24px 0 28px;
+  padding: 22px;
+  border: 1px solid #d5dfd3;
+  border-radius: 5px;
+  background: #f3f6ed;
+}
+.engineering-figure figcaption {
+  margin: 0 0 18px;
+  color: #294339;
+  font-size: 14px;
+  font-weight: 600;
+}
+.engineering-node {
+  padding: 15px;
+  background: #fffdf8;
+  border: 1px solid #becdbf;
+  border-radius: 4px;
+}
+.engineering-node strong,
+.engineering-node span {
+  display: block;
+}
+.engineering-node strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #294339;
+}
+.engineering-node span {
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #52665c;
+}
+.engineering-figure > p {
+  margin: 18px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #52665c;
+}
+.electrical-equation {
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr 30px 1fr;
+  align-items: stretch;
+  gap: 10px;
+}
+.equation-operator {
+  align-self: center;
+  text-align: center;
+  font-size: 28px;
+  color: #52665c;
+}
+.net-export {
+  background: #dfeadc;
+  border-color: #7b9e83;
+}
+.fuel-cycle-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.fuel-cycle-flow li {
+  position: relative;
+}
+.fuel-cycle-flow li:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 28px;
+  text-align: center;
+  transform: translateY(-50%);
+  color: #557d62;
+}
+.fuel-return {
+  position: relative;
+  height: 28px;
+  margin: 8px 12.5% 12px;
+  border: 1px solid #7b9e83;
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  text-align: center;
+}
+.fuel-return::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 7px;
+  height: 7px;
+  border: solid #557d62;
+  border-width: 1px 0 0 1px;
+  transform: rotate(45deg);
+}
+.fuel-return span {
+  position: relative;
+  top: 16px;
+  padding: 0 10px;
+  background: #f3f6ed;
+  color: #486d55;
+  font-size: 12px;
+}
+@media (max-width: 760px) {
+  .engineering-figure {
+    padding: 16px;
+  }
+  .electrical-equation {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .equation-operator {
+    line-height: 1;
+  }
+  .tritium-loop {
+    position: relative;
+    padding-right: 22px;
+  }
+  .fuel-cycle-flow {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .fuel-cycle-flow li:not(:last-child)::after {
+    content: "↓";
+    top: 100%;
+    left: 50%;
+    height: 26px;
+    line-height: 26px;
+    transform: translateX(-50%);
+  }
+  .fuel-return {
+    position: absolute;
+    inset: 40px 0 40px auto;
+    height: auto;
+    width: 15px;
+    margin: 0;
+    border: 1px solid #7b9e83;
+    border-left: 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .fuel-return::before {
+    top: -4px;
+    left: 0;
+    transform: rotate(-45deg);
+  }
+  .fuel-return span {
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    padding: 8px 0;
+    writing-mode: vertical-rl;
+    transform: translateY(-50%);
+  }
+}
 .risk-check {
   margin-top: 24px;
 }
@@ -2103,13 +2260,6 @@ body:has(dialog[open]) {
   color: #63716c;
   border-color: #adb9ae;
   background: #eef1eb;
-}
-#fast-ignition-control {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  margin-top: 12px;
 }
 .entity-card .detail-meta {
   font-size: 10px;
