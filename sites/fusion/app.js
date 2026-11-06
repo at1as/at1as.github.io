@@ -191,11 +191,11 @@ const reactionSteps = [
   ],
   [
     "Create the conditions",
-    "Temperature, density, and heat retention must work together so nuclei react before energy escapes.",
+    "High temperature makes fusion more likely when nuclei collide. Density sets how often they collide; energy confinement determines how long the fuel stays hot.",
   ],
   [
-    "Release binding energy",
-    "A helium-4 nucleus carries 3.5 MeV; a neutron carries 14.1 MeV. Together: 17.6 MeV.",
+    "Release energy",
+    "The helium nucleus and neutron together have less mass than the starting nuclei. The mass difference becomes energy (E = Δmc²), carried by the two particles.",
   ],
   [
     "Capture the energy",
@@ -235,9 +235,10 @@ function nucleus(x, y, count, name) {
 }
 function reaction() {
   const s = reactionStage;
+  $("#reaction-scale-note").hidden = s > 2;
   let content = "";
   if (s < 2) {
-    content = `${s === 1 ? '<rect x="100" y="48" width="430" height="185" rx="90" fill="#eee1d0" stroke="#b78d6d" stroke-dasharray="6 6"/>' : ""}${nucleus(225, 130, 2, "Deuterium")}${nucleus(405, 130, 3, "Tritium")}<text x="315" y="138" text-anchor="middle" fill="#63776a" font-size="30">+</text><text x="315" y="265" text-anchor="middle" fill="#47634f" font-size="20">${s === 0 ? "Orange: proton · blue: neutron" : "Hot, dense fuel that retains its energy"}</text>`;
+    content = `${s === 1 ? '<rect x="100" y="48" width="430" height="185" rx="90" fill="#eee1d0" stroke="#b78d6d" stroke-dasharray="6 6"/>' : ""}${nucleus(225, 130, 2, "Deuterium")}${nucleus(405, 130, 3, "Tritium")}<text x="315" y="138" text-anchor="middle" fill="#63776a" font-size="30">+</text><text x="315" y="265" text-anchor="middle" fill="#47634f" font-size="20">${s === 0 ? "Orange: proton · blue: neutron" : "Heat and confine the fuel"}</text>`;
   } else if (s === 2) {
     content = `${nucleus(90, 140, 2, "Deuterium")}${nucleus(235, 140, 3, "Tritium")}<text x="160" y="148" fill="#63776a" font-size="25">+</text><path d="M285 140H347m-10-8 10 8-10 8" fill="none" stroke="#718772" stroke-width="3"/>${nucleus(410, 140, 4, "Helium-4")}${circle(555, 140, 14, "#6a8e9c")}<text x="555" y="202" text-anchor="middle" fill="#203c40" font-size="28">Neutron</text><text x="410" y="80" text-anchor="middle" fill="#a84e2e" font-size="30">3.5 MeV</text><text x="555" y="80" text-anchor="middle" fill="#a84e2e" font-size="30">14.1 MeV</text><text x="315" y="270" text-anchor="middle" fill="#47634f" font-size="20">17.6 MeV released per reaction</text>`;
   } else if (s === 3) {
@@ -248,7 +249,7 @@ function reaction() {
   $("#reaction-scene").innerHTML =
     `<svg viewBox="0 0 630 300" role="img" aria-label="${esc(reactionSteps[s][1])}">${content}</svg>`;
   $("#reaction-caption").innerHTML =
-    `<h3>${reactionSteps[s][0]}</h3><p>${reactionSteps[s][1]} ${s === 2 ? "MeV means million electronvolts, a unit of particle energy. About 80% goes to the neutron; this is not electrical efficiency." : ""}</p>`;
+    `<h3>${reactionSteps[s][0]}</h3><p>${reactionSteps[s][1]} ${s === 2 ? "MeV means million electronvolts, a unit of energy." : ""}</p>`;
   $("#reaction-progress").textContent = `0${s + 1} / 06`;
   const reactionFocus = document.activeElement?.dataset.reaction;
   $("#reaction-steps").innerHTML = reactionSteps
@@ -1035,7 +1036,7 @@ document.addEventListener("click", (e) => {
     const a = approaches.find((a) => a.id === approach);
     modal(
       "MECHANISM DETAIL",
-      `<h2>${esc(a.name)}</h2><div class="expanded-cycle">${renderMachine(a.id, machineStage, { fastIgnition })}</div><h3>${esc(a.stages[machineStage].title)}</h3><p>${esc(a.stages[machineStage].text)}</p><p class="quiet">Conceptual diagram · not to scale</p>${citations(getReactorContent(a.id, { fastIgnition }).sourceIds)}`,
+      `<h2>${esc(a.name)}</h2><div class="expanded-cycle">${renderMachine(a.id, machineStage, { fastIgnition })}</div><h3>${esc(a.stages[machineStage].title)}</h3><p>${esc(a.stages[machineStage].text)}</p>${citations(getReactorContent(a.id, { fastIgnition }).sourceIds)}`,
     );
   }
   if (b.dataset.open === "glossary" && data) glossaryDetail();

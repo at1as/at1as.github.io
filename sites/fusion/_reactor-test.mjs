@@ -22,7 +22,11 @@ function validate(id, options = {}) {
     ids,
     `${id}: geometry/content mismatch`,
   );
-  assert.ok(ids.has(content.defaultPart), `${id}: invalid initial selection`);
+  assert.equal(
+    content.defaultPart,
+    content.parts[0].id,
+    `${id}: new configurations must start with component 01`,
+  );
   if (options.experimental)
     assert.ok(
       !ids.has("blanket"),

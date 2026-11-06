@@ -214,7 +214,7 @@ p + p {
   gap: 10px;
   flex-wrap: wrap;
   font-size: 10px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
   color: #687279;
 }
 .snapshot strong {
@@ -258,66 +258,19 @@ p + p {
   line-height: 1.8;
   max-width: 100%;
 }
-.hero-figure figcaption > span:last-child {
-  display: block;
-  color: #839aa9;
-  font-size: 10px;
-  margin-top: 7px;
-}
-.legend-line {
-  display: inline-block;
-  width: 18px;
-  border-top: 2px solid;
-  margin-right: 7px;
-  vertical-align: middle;
-}
-.orange {
-  color: #ff925c;
-}
-.chapter-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid #cfd4cd;
-  border-bottom: 1px solid #cfd4cd;
-  padding-top: 18px;
-  padding-bottom: 18px;
-  gap: 12px;
-}
-.chapter-strip a {
-  font-size: 10px;
-  text-decoration: none;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-.chapter-strip b {
-  color: #a74c30;
-  font-size: 10px;
-}
 .section {
   padding-top: 100px;
   padding-bottom: 100px;
 }
 .section-heading {
-  max-width: 720px;
+  max-width: none;
   margin-bottom: 42px;
 }
 .section-heading > p:not(.eyebrow) {
   font-size: 16px;
   color: #52665c;
   margin-top: 22px;
-  max-width: 590px;
-}
-.section-heading.horizontal {
-  display: flex;
   max-width: none;
-  justify-content: space-between;
-  align-items: end;
-  gap: 50px;
-}
-.section-heading.horizontal > p {
-  max-width: 370px;
-  font-size: 14px;
 }
 .reaction-layout {
   display: grid;
@@ -1691,16 +1644,6 @@ body:has(dialog[open]) {
     grid-column: 2;
     justify-self: start;
   }
-  .section-heading.horizontal {
-    gap: 30px;
-  }
-  .chapter-strip {
-    gap: 15px;
-  }
-  .chapter-strip a {
-    font-size: 10px;
-    gap: 7px;
-  }
   .site-list {
     grid-template-columns: 1fr 1fr;
   }
@@ -1774,12 +1717,6 @@ body:has(dialog[open]) {
   .figure-top {
     font-size: 7px;
   }
-  .chapter-strip {
-    grid-template-columns: 1fr 1fr;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    gap: 12px;
-  }
   .section {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -1790,13 +1727,6 @@ body:has(dialog[open]) {
   .section-heading > p:not(.eyebrow) {
     font-size: 14px;
     margin-top: 18px;
-  }
-  .section-heading.horizontal {
-    display: block;
-  }
-  .section-heading.horizontal > p {
-    max-width: none;
-    font-size: 13px;
   }
   .eyebrow {
     font-size: 10px;
@@ -2474,16 +2404,16 @@ canvas:focus-visible {
   color: #b8ced9;
 }
 
-/* Editorial headings wrap with their container, without forced line breaks. */
+/* Headings use the available width and wrap only when the viewport requires it. */
 h1 {
-  max-width: 620px;
-  text-wrap: balance;
+  max-width: none;
+  text-wrap: wrap;
 }
 h2 {
-  text-wrap: balance;
+  text-wrap: wrap;
 }
 .hero-deck {
-  max-width: 420px;
+  max-width: none;
 }
 .reaction-caption h3 {
   font-family: inherit;

@@ -576,7 +576,7 @@ const MODELS = {
         "target",
         "Multi-shell fuel package",
         "Shape compression around the D–T fuel",
-        "The engineered fuel package controls how the drive compresses the fuel. The schematic shows a concept, not proprietary shell dimensions or materials.",
+        "The fuel package controls how the drive compresses the fuel.",
         "Fuel-system performance must be validated with the complete drive sequence.",
         ["drivers", "ignition", "plasma"],
       ),
@@ -651,7 +651,7 @@ const MODELS = {
     title: "Inside a magneto-electrostatic concept",
     subtitle: "Electric fields guide ions; magnets help confine electrons",
     overview:
-      "The Orbitron concept uses an electric potential to accelerate and confine ions, with magnetic assistance for electrons. The field and tracks here are conceptual.",
+      "The Orbitron concept uses an electric potential to accelerate and confine ions, with magnetic assistance for electrons.",
     parts: [
       vessel(["electrodes", "coils"]),
       part(
@@ -690,7 +690,7 @@ const MODELS = {
         "collector",
         "Energy-output boundary",
         "Separate useful output from electrical input",
-        "An eventual power system needs a way to collect useful released energy. This boundary is conceptual; the present drawing does not assert a demonstrated conversion device.",
+        "A power system needs to collect the released energy and account for its electrical demand.",
         "High voltage and neutron yield do not establish net electrical power.",
         ["plasma", "vessel"],
       ),
@@ -800,7 +800,7 @@ const PATCHES = {
   },
   thea: {
     sources: ["MAG_THEA_EOS", "MAG_THEA_HELIOS", "MAG_THEA_CANIS"],
-    note: "Thea’s concept uses individually controlled planar coils to synthesize a three-dimensional field. The schematic illustrates this arrangement without reproducing a device layout.",
+    note: "Thea’s concept uses individually controlled planar coils to synthesize a three-dimensional field.",
     parts: {
       coils: {
         name: "Planar coil array",
@@ -916,7 +916,7 @@ const PATCHES = {
   },
   marvel_fusion: {
     sources: ["ALT_MARVEL_TECH"],
-    note: "Marvel’s concept uses nanostructured targets and fast ignition. Its near-term plant fuel is D–T; the schematic does not imply a demonstrated target gain.",
+    note: "Marvel’s concept uses nanostructured targets and fast ignition. Its near-term plant fuel is D–T.",
     parts: {
       target: {
         name: "Nanostructured target",
@@ -1068,11 +1068,11 @@ export function getReactorContent(id, options = {}) {
       options.conceptNote ||
       patch.note ||
       (EXPERIMENTS.has(entityId)
-        ? "Educational mechanism view of an experimental machine. Geometry is schematic and does not show a power plant."
-        : "Educational concept, not a reconstruction of a specific device. Any plant blanket or repeating target system shown is a future plant requirement; motion is illustrative and not a physical simulation."),
+        ? "Experimental machine; power-plant systems are omitted."
+        : ""),
     sourceIds,
     parts,
-    defaultPart: valid.has("plasma") ? "plasma" : parts[0].id,
+    defaultPart: parts[0].id,
   };
 }
 
@@ -1112,8 +1112,8 @@ export function getEntityReactorOptions(entity) {
     conceptNote:
       patch?.note ||
       (experimental
-        ? "Educational mechanism view of an experimental machine. Geometry is schematic and does not show a power plant."
-        : "Company approach concept based on the reviewed sources. Geometry is schematic; future plant systems shown are design aims rather than demonstrated hardware."),
+        ? "Experimental machine; power-plant systems are omitted."
+        : "Future plant systems shown here remain design aims."),
     overview: entity.mechanism || MODELS[id].overview,
     sourceIds: [...(entity.sourceIds || entity.source_ids || [])],
     experimental,

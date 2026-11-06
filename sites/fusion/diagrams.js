@@ -262,7 +262,7 @@ export const approaches = [
     stages: [
       {
         title: "Position the target",
-        text: "A tiny capsule sits inside a hohlraum. The target is greatly enlarged in this schematic.",
+        text: "A fuel capsule sits inside a hohlraum.",
       },
       {
         title: "Heat the hohlraum",
@@ -290,7 +290,7 @@ export const approaches = [
     stages: [
       {
         title: "Inject the capsule",
-        text: "A precisely manufactured target enters the chamber. This schematic magnifies the target relative to the chamber.",
+        text: "A precisely manufactured target enters the chamber.",
       },
       {
         title: "Illuminate symmetrically",
@@ -346,7 +346,7 @@ export const approaches = [
     stages: [
       {
         title: "Prepare the fuel module",
-        text: "The fuel system contains a multi-shell target. This conceptual cutaway does not claim proprietary engineering detail.",
+        text: "The fuel system contains a multi-shell target.",
       },
       {
         title: "Compress electrically",
@@ -398,7 +398,7 @@ export const approaches = [
     family: "Alternative",
     tagline: "Accelerate ions through electric fields.",
     description:
-      "Electric fields accelerate and confine ions toward an intended collision region. Avalanche’s crossed-field Orbitron concept also uses magnetic electron confinement; this is a conceptual drawing.",
+      "Electric fields accelerate and confine ions toward an intended collision region. Avalanche’s crossed-field Orbitron concept also uses magnetic electron confinement.",
     stages: [
       {
         title: "Apply the fields",
@@ -575,6 +575,8 @@ function torus(kind, s) {
   const rearCoils = [],
     frontCoils = [];
   for (let i = 0; i < 10; i++) {
+    // Leave one foreground coil out of the cutaway to expose the field winding.
+    if (!stellarator && s > 0 && i === 2) continue;
     const t = ((i + 0.25) * Math.PI) / 5;
     const d =
       pointsPath(
@@ -589,8 +591,7 @@ function torus(kind, s) {
         ),
       ) + "Z";
     (Math.sin(t) < 0 ? rearCoils : frontCoils).push(
-      path(d, "machine-coil", 'stroke-width="4"') +
-        path(d, "machine-coil-edge"),
+      path(d, "machine-torus-coil") + path(d, "machine-torus-coil-edge"),
     );
   }
   out += rearCoils.join("");
@@ -629,19 +630,33 @@ function torus(kind, s) {
     );
   }
   if (s > 0) {
-    out += path(
-      pointsPath(samples((t) => project(t, t * 3 + 0.4, 1.03), 240)),
-      "machine-field",
-    );
-    out += path(
-      pointsPath(samples((t) => project(t, t * 3 + Math.PI, 1.03), 240)),
-      "machine-field",
-    );
+    // Hide the far side of each winding behind the plasma surface. Drawing
+    // every segment on top made the field look like crossed wires in the hole.
+    for (const phase of [0.4, Math.PI]) {
+      let d = "",
+        connected = false;
+      for (let i = 0; i <= 360; i++) {
+        const t = (i * Math.PI * 2) / 360,
+          p = t * 3 + phase,
+          visible =
+            stellarator ||
+            0.88 * Math.sin(t) * Math.cos(p) + 0.45 * Math.sin(p) > 0.06;
+        if (!visible) {
+          connected = false;
+          continue;
+        }
+        const [x, y] = project(t, p, 1.04);
+        d += `${connected ? "L" : "M"}${n(x)} ${n(y)}`;
+        connected = true;
+      }
+      out += path(d, "machine-torus-field");
+    }
     if (!stellarator) out += arrow(244, 258, 276, 275, C.plasma, 3);
   }
   out += frontCoils.join("");
+  const coilAnchor = project((5.25 * Math.PI) / 5, 0.8, 1.45);
   out += leader(
-    "M186 171L141 138H72",
+    `M${n(coilAnchor[0])} ${n(coilAnchor[1])}L141 138H72`,
     72,
     127,
     stellarator ? "Shaped coils" : "External coils",
@@ -653,13 +668,23 @@ function torus(kind, s) {
     "Plasma",
     "machine-label-plasma",
   );
+  const fieldAnchor = s > 0 ? project(0.4, 1.6, 1.04) : [cx + R - 17, 196];
   out += leader(
-    `M${cx + R - 17} 196L581 153H688`,
-    580,
-    141,
-    s > 0 ? "Twisting field" : "Vacuum chamber",
+    `M${n(fieldAnchor[0])} ${n(fieldAnchor[1])}L585 145H712`,
+    712,
+    128,
+    s > 0 ? "Twisting magnetic field" : "Vacuum chamber",
     s > 0 ? "machine-label-field" : "machine-label",
+    'text-anchor="end"',
   );
+  if (s > 0)
+    out += circle(
+      n(fieldAnchor[0]),
+      n(fieldAnchor[1]),
+      3,
+      "",
+      `fill="${C.field}"`,
+    );
   if (!stellarator)
     out += leader(
       `M${cx} 112V80H250`,
@@ -681,19 +706,24 @@ function torus(kind, s) {
       text(63, 291, "Heating", "machine-label-plasma");
   }
   if (s >= 3) {
-    out += path("M305 324L328 349H421L444 324", "machine-exhaust");
+    out += path(
+      "M305 333L329 355H420L444 333L437 330L417 348H332L312 330Z",
+      "machine-divertor",
+    );
+    out += arrow(343, 319, 343, 347, C.energy, 1.8);
+    out += arrow(404, 319, 404, 347, C.energy, 1.8);
     out +=
-      arrow(374, 347, 374, 382, C.energy, 3) +
-      text(392, 385, "Exhaust / heat", "machine-label-energy");
+      arrow(374, 355, 374, 391, C.energy, 2) +
+      text(392, 394, "Divertor / exhaust", "machine-label-energy");
   } else
     out += text(
       372,
       410,
       stellarator
-        ? "3D field geometry · generic coil arrangement"
+        ? "Shaped coils create the magnetic field"
         : spherical
           ? "Tight central hole · elongated plasma"
-          : "Cutaway · external coils + plasma current",
+          : "External coils + plasma current",
       "machine-small",
       'text-anchor="middle"',
     );
@@ -940,15 +970,7 @@ function pulsedFrc(s) {
     s === 3 ? "machine-label-energy" : "machine-label",
     'text-anchor="middle"',
   );
-  if (s < 3)
-    out += text(
-      380,
-      381,
-      "Pulsed sequence · slowed schematic",
-      "machine-small",
-      'text-anchor="middle"',
-    );
-  else
+  if (s === 3)
     out += text(
       380,
       385,
@@ -1184,13 +1206,6 @@ function laser(kind, s, fastIgnition = false) {
           : "Direct illumination",
       "machine-label",
     );
-  out += text(
-    380,
-    400,
-    "Target greatly enlarged · slowed schematic",
-    "machine-small",
-    'text-anchor="middle"',
-  );
   return out;
 }
 
@@ -1203,7 +1218,7 @@ function hybridIgnition(s) {
     text(
       390,
       94,
-      "Conceptual fuel-system module",
+      "Fuel-system module",
       "machine-label",
       'text-anchor="middle"',
     );
@@ -1315,13 +1330,6 @@ function pulsedPower(s) {
     "machine-label-energy",
   );
   out += leader("M406 209L506 153H683", 535, 140, "Target / liner");
-  out += text(
-    380,
-    413,
-    "Generic pulsed-power architecture · slowed schematic",
-    "machine-small",
-    'text-anchor="middle"',
-  );
   return out;
 }
 
@@ -1372,13 +1380,6 @@ function electrostatic(s) {
     106,
     "Ion tracks",
     "machine-label-plasma",
-  );
-  out += text(
-    380,
-    410,
-    "Conceptual crossed-field system · no simulated trajectories",
-    "machine-small",
-    'text-anchor="middle"',
   );
   return out;
 }
@@ -1435,7 +1436,7 @@ export function renderMachine(id, stage = 0, opts = {}) {
   }
   return `<svg xmlns="http://www.w3.org/2000/svg" class="machine-svg" viewBox="0 0 760 470" role="img" aria-label="${esc(approach.name + ": " + approach.stages[s].title)}">
     <title>${esc(approach.name + " — " + approach.stages[s].title)}</title>
-    <desc>${esc(approach.stages[s].text)} Schematic, not to scale. Blue lines are magnetic fields, orange indicates plasma or particle energy, and mint indicates electrical or driver energy. Lines are conceptual, not simulated particle trajectories.</desc>
+    <desc>${esc(approach.stages[s].text)} Blue lines are magnetic fields, orange indicates plasma or particle energy, and mint indicates electrical or driver energy.</desc>
     <style>
       .machine-svg{display:block;width:100%;height:auto;background:${C.ink};font-family:Arial,Helvetica,sans-serif}
       .machine-svg path,.machine-svg ellipse,.machine-svg rect{vector-effect:non-scaling-stroke}
@@ -1447,11 +1448,16 @@ export function renderMachine(id, stage = 0, opts = {}) {
       .machine-shadow{fill:#07131e;stroke:none}
       .machine-coil{fill:none;stroke:#75a1b7;stroke-width:3;stroke-linejoin:round}
       .machine-coil-edge{fill:none;stroke:#b3d2dc;stroke-width:.7;opacity:.65}
+      .machine-torus-coil{fill:none;stroke:#839aa7;stroke-width:3;stroke-linejoin:round}
+      .machine-torus-coil-edge{fill:none;stroke:#d0dce1;stroke-width:.65;opacity:.65}
+      .machine-torus-field{fill:none;stroke:${C.field};stroke-width:1.8;stroke-linecap:round}
+      .machine-divertor{fill:#294a46;stroke:${C.energy};stroke-width:1.3;stroke-linejoin:round}
       .machine-solenoid{fill:#1d3e50;stroke:#6c9bb0;stroke-width:1.5}
       .machine-plasma-surface{fill:none;stroke:${C.plasma};stroke-width:2;opacity:.34}
       .machine-plasma-fill{fill:${C.plasma};fill-opacity:.13;stroke:${C.plasma};stroke-width:1.75}
       .machine-field{fill:none;stroke:${C.field};stroke-width:1.25;opacity:.9}
       .machine-field-dash{fill:none;stroke:${C.field};stroke-width:1.25;stroke-dasharray:5 5;opacity:.7}
+      .machine-legend-plasma{fill:none;stroke:${C.plasma};stroke-width:3}
       .machine-particle{fill:${C.plasma};stroke:none}
       .machine-particle-track{fill:none;stroke:${C.plasma};stroke-width:1.6;stroke-dasharray:8 6;opacity:.8}
       .machine-fusion-core{fill:${C.white};stroke:${C.plasma};stroke-width:3}
@@ -1479,8 +1485,7 @@ export function renderMachine(id, stage = 0, opts = {}) {
     ${drawing}
     <path d="M28 437H732" class="machine-casing"/>
     ${line(30, 454, 51, 454, "machine-field")}${text(59, 458, "Field", "machine-small")}
-    ${line(123, 454, 144, 454, "machine-particle-track")}${text(151, 458, "Plasma / particles", "machine-small")}
+    ${line(123, 454, 144, 454, "machine-legend-plasma")}${text(151, 458, ["tokamak", "spherical", "stellarator"].includes(approach.id) ? "Plasma" : "Plasma / particles", "machine-small")}
     ${line(296, 454, 317, 454, "machine-energy")}${text(325, 458, "Driver / energy", "machine-small")}
-    ${text(730, 458, "SCHEMATIC · NOT TO SCALE", "machine-small", 'text-anchor="end"')}
   </svg>`;
 }

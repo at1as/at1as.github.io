@@ -156,15 +156,6 @@
 .reactor-pin:focus-visible .reactor-pin-name {
   display: block;
 }
-.reactor-view-note {
-  position: absolute;
-  left: 20px;
-  bottom: 17px;
-  color: #8da9b7;
-  font-size: 7px;
-  letter-spacing: 0.1em;
-  pointer-events: none;
-}
 .reactor-navigation {
   position: absolute;
   right: 17px;
@@ -397,8 +388,7 @@
   height: 100%;
   width: 100%;
 }
-.reactor-fallback .reactor-navigation,
-.reactor-fallback .reactor-view-note {
+.reactor-fallback .reactor-navigation {
   display: none;
 }
 .reactor-fallback .reactor-annotations {
@@ -744,11 +734,6 @@ dialog:has(.company-reactor) {
   }
   .reactor-loading p {
     font-size: 12px;
-  }
-  .reactor-view-note {
-    font-size: 6px;
-    left: 13px;
-    bottom: 19px;
   }
   .reactor-navigation {
     right: 12px;
