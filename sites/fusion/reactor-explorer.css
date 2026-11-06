@@ -398,35 +398,53 @@
   color: #e1c49e;
 }
 .reactor-loading {
-  position: relative;
   background: #101c29;
   border-radius: 6px;
-  overflow: hidden;
   min-height: 350px;
+  height: 100%;
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  align-items: center;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  padding: 24px;
   color: #c5d7e1;
-}
-.reactor-loading > div {
-  padding: 30px;
-}
-.reactor-loading h3 {
-  color: #f0e8d6;
-  font-size: 33px;
-  margin-bottom: 20px;
 }
 .reactor-loading p {
   font-size: 13px;
 }
-.reactor-loading svg {
+.reactor-loading button {
+  color: #e4d4b8;
+  border-color: #8ca39c;
+  font-size: 12px;
+}
+.reactor-loading-error {
+  grid-template-columns: 1.6fr 1fr;
+  align-items: center;
+}
+.reactor-loading-error svg {
   width: 100%;
   height: auto;
 }
-.reactor-loading button {
-  margin-top: 20px;
-  color: #e4d4b8;
-  border-color: #8ca39c;
+.reactor-loading-error button {
+  margin-top: 18px;
+}
+.reactor-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #47616c;
+  border-top-color: #a0e4cd;
+  border-radius: 50%;
+  animation: reactor-loading-spin 0.9s linear infinite;
+}
+@keyframes reactor-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reactor-spinner {
+    animation: none;
+  }
 }
 .machine-overview-row {
   display: flex;
@@ -723,15 +741,8 @@ dialog:has(.company-reactor) {
     font-size: 11px;
     padding: 6px 9px;
   }
-  .reactor-loading {
+  .reactor-loading-error {
     grid-template-columns: 1fr;
-    min-height: 0;
-  }
-  .reactor-loading > div {
-    padding: 24px;
-  }
-  .reactor-loading h3 {
-    font-size: 30px;
   }
   .reactor-loading p {
     font-size: 12px;
@@ -972,8 +983,12 @@ dialog:has(.company-reactor) {
 
 /* Keep the configuration and the complete model within a laptop viewport.
    Reading detail may scroll independently; mobile returns to a single flow. */
+.machines-section .section-heading {
+  margin-bottom: 28px;
+}
 .machine-workspace {
   position: relative;
+  overflow-anchor: none;
   background: #101c29;
   border: 1px solid #354854;
   border-radius: 7px;
@@ -984,8 +999,8 @@ dialog:has(.company-reactor) {
   display: flex;
   align-items: center;
   gap: 14px;
-  min-height: 72px;
-  padding: 12px 380px 12px 18px;
+  min-height: 64px;
+  padding: 8px 350px 8px 18px;
   border-bottom: 1px solid #314450;
 }
 .machine-picker label {
@@ -997,12 +1012,35 @@ dialog:has(.company-reactor) {
   background: #1c3342;
   border-color: #587180;
   color: #f2f4ef;
-  width: 310px;
+  width: 100%;
   min-width: 0;
   font-size: 14px;
 }
+.machine-choice {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 310px) 40px;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+  max-width: 402px;
+}
+.machine-choice button {
+  min-height: 40px;
+  padding: 6px;
+  border-color: #47616c;
+  color: #c5d7e1;
+  font-size: 18px;
+}
+.machine-choice button:hover {
+  background: #294352;
+  color: #fff;
+}
 .machine-workspace .reactor-loading {
-  min-height: calc(var(--model-height) + 177px);
+  min-height: calc(var(--model-height) + 192px);
+}
+.machine-workspace .is-model-replacing .reactor-loading {
+  min-height: 0;
 }
 .machine-workspace .reactor-explorer {
   margin: 0;
@@ -1011,7 +1049,7 @@ dialog:has(.company-reactor) {
 }
 .machine-workspace .reactor-explorer .reactor-toolbar {
   position: absolute;
-  top: 17px;
+  top: 13px;
   right: 18px;
   padding: 0;
   border: 0;
@@ -1028,7 +1066,7 @@ dialog:has(.company-reactor) {
   flex: none;
 }
 .machine-workspace .reactor-explorer .reactor-inspector {
-  height: var(--inspector-height, calc(var(--model-height) + 234px));
+  height: var(--inspector-height, calc(var(--model-height) + 192px));
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-color: #597787 #132532;
@@ -1047,7 +1085,27 @@ dialog:has(.company-reactor) {
   margin: 8px 0 12px;
 }
 .machine-workspace .reactor-explorer .reactor-legend {
-  padding: 0 18px 12px;
+  padding: 0 18px 8px;
+  min-height: 26px;
+}
+.machine-workspace .reactor-interaction-hint {
+  padding: 6px 0;
+}
+.machine-workspace .reactor-display-options summary {
+  margin: 8px 18px;
+}
+.machine-workspace .reactor-layer-controls {
+  padding: 0 18px 6px;
+  gap: 10px;
+}
+.machine-workspace .reactor-explode {
+  padding: 6px 18px 12px;
+  min-height: 44px;
+}
+.machine-workspace .reactor-explode input {
+  height: 24px;
+  min-height: 24px;
+  margin: 0;
 }
 .machine-options {
   display: flex;
@@ -1070,7 +1128,7 @@ dialog:has(.company-reactor) {
 }
 @media (max-width: 1000px) {
   .machine-picker {
-    padding-right: 330px;
+    padding-right: 310px;
     gap: 10px;
   }
   .machine-picker label {
@@ -1079,16 +1137,44 @@ dialog:has(.company-reactor) {
 }
 @media (max-width: 760px) {
   .machine-picker {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 40px 40px;
     min-height: 70px;
-    padding: 12px 16px;
+    padding: 10px 12px;
+    gap: 6px;
+  }
+  .machine-choice {
+    display: contents;
+  }
+  .machine-choice button {
+    min-height: 44px;
+    grid-row: 1;
+  }
+  .machine-choice button:first-child {
+    grid-column: 2;
+  }
+  .machine-choice button:last-child {
+    grid-column: 3;
+  }
+  .machine-workspace .reactor-explode input {
+    min-height: 32px;
+  }
+  .machine-workspace .reactor-loading {
+    min-height: 850px;
   }
   .machine-picker label {
     display: block;
+    grid-column: 1;
+    grid-row: 1;
   }
   .machine-picker select {
-    flex: 1;
-    width: auto;
+    grid-column: 1 / -1;
+    grid-row: 2;
     font-size: 16px;
+  }
+  .reactor-views button {
+    padding-inline: 8px;
+    white-space: nowrap;
   }
   .machine-workspace .reactor-explorer .reactor-toolbar {
     position: static;
@@ -1105,7 +1191,8 @@ dialog:has(.company-reactor) {
     padding: 20px;
   }
   .machine-workspace .reactor-explorer .reactor-legend {
-    padding: 0 16px 14px;
+    padding: 0 16px 8px;
+    min-height: 52px;
   }
   .machine-options {
     gap: 10px;

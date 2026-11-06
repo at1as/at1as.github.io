@@ -100,7 +100,6 @@
             energy. This example follows deuterium and tritium, two forms of
             hydrogen, from the reaction to electricity exported by a power plant
           </p>
-          <button data-open="glossary">Fusion glossary ↗</button>
         </div>
         <div class="reaction-layout">
           <div
@@ -129,15 +128,25 @@
           </div>
           <div class="reaction-steps" id="reaction-steps"></div>
         </div>
-        <div class="margin-note">
-          <span>FUSION FUELS</span>
+        <section class="fusion-fuels" aria-labelledby="fusion-fuels-title">
+          <div class="fusion-fuels-heading">
+            <h3 id="fusion-fuels-title">Fusion fuels</h3>
+            <div class="learning-actions">
+              <button data-open="fuels">Compare the fuels ↗</button>
+              <button data-open="glossary">Fusion glossary ↗</button>
+            </div>
+          </div>
           <p>
             Deuterium–tritium (D–T) needs less demanding plasma conditions than
-            other candidate fuels. Its energetic neutrons damage materials, and
-            a power plant must produce fresh tritium from lithium.
+            other candidate fuels, making it a leading choice for proposed
+            fusion power plants. Its energetic neutrons damage materials, and a
+            plant must produce fresh tritium from lithium.
           </p>
-          <button data-open="fuels">Compare the fuels ↗</button>
-        </div>
+          <p class="fuel-alternatives">
+            Compare D–T, deuterium–deuterium, deuterium–helium-3, and
+            proton–boron-11: what each fuel offers and what it takes to use it
+          </p>
+        </section>
         <div class="history-teaser">
           <div class="history-teaser-heading">
             <p class="eyebrow">RESEARCH MILESTONES</p>
@@ -161,7 +170,25 @@
           <div class="machine-workspace">
             <div class="machine-picker">
               <label for="approach-select">Configuration</label>
-              <select id="approach-select"></select>
+              <div class="machine-choice">
+                <button
+                  data-config-step="-1"
+                  data-select="approach-select"
+                  aria-label="Previous configuration"
+                  title="Previous configuration"
+                >
+                  ←
+                </button>
+                <select id="approach-select"></select>
+                <button
+                  data-config-step="1"
+                  data-select="approach-select"
+                  aria-label="Next configuration"
+                  title="Next configuration"
+                >
+                  →
+                </button>
+              </div>
             </div>
             <div class="reactor-slot" id="reactor-explorer"></div>
           </div>
@@ -228,7 +255,25 @@
             <div class="machine-workspace">
               <div class="machine-picker">
                 <label for="second-approach">Compare with</label>
-                <select id="second-approach"></select>
+                <div class="machine-choice">
+                  <button
+                    data-config-step="-1"
+                    data-select="second-approach"
+                    aria-label="Previous comparison configuration"
+                    title="Previous configuration"
+                  >
+                    ←
+                  </button>
+                  <select id="second-approach"></select>
+                  <button
+                    data-config-step="1"
+                    data-select="second-approach"
+                    aria-label="Next comparison configuration"
+                    title="Next configuration"
+                  >
+                    →
+                  </button>
+                </div>
               </div>
               <div class="reactor-slot" id="comparison-diagram"></div>
             </div>
@@ -248,13 +293,25 @@
           </p>
         </div>
         <div class="boundaries">
-          <div class="boundary-tabs" id="boundary-tabs"></div>
-          <div id="boundary-visual"></div>
           <div
-            class="boundary-caption"
-            id="boundary-caption"
-            aria-live="polite"
+            class="boundary-tabs"
+            id="boundary-tabs"
+            role="tablist"
+            aria-label="Energy measurements"
           ></div>
+          <div
+            id="boundary-panel"
+            role="tabpanel"
+            tabindex="0"
+            aria-labelledby="boundary-tab-0"
+          >
+            <div id="boundary-visual"></div>
+            <div
+              class="boundary-caption"
+              id="boundary-caption"
+              aria-live="polite"
+            ></div>
+          </div>
         </div>
         <div class="anchor-grid">
           <article>
