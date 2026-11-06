@@ -1,0 +1,83 @@
+[
+  {
+    "id": "target_gain",
+    "label": "Target gain",
+    "unit": "ratio",
+    "definition": "Fusion energy divided by driver energy delivered at the specified target boundary.",
+    "compatible_record_group": "same_target_boundary",
+    "guardrail": "Not electrical gain; preserve driver type and denominator.",
+    "source_ids": [
+      "PHY_006",
+      "PHY_009"
+    ]
+  },
+  {
+    "id": "plasma_gain_peak",
+    "label": "Peak plasma gain",
+    "unit": "ratio",
+    "definition": "Peak fusion power divided by the declared external plasma-heating power.",
+    "compatible_record_group": "peak_plasma_gain",
+    "guardrail": "Peak values are not necessarily sustained; heating electricity lies outside this denominator.",
+    "source_ids": [
+      "PHY_019",
+      "PHY_020"
+    ]
+  },
+  {
+    "id": "fusion_energy",
+    "label": "Fusion energy per discharge",
+    "unit": "MJ",
+    "definition": "Fusion energy integrated over the stated discharge interval.",
+    "compatible_record_group": "fusion_energy_per_discharge",
+    "guardrail": "An energy quantity is not power or electricity.",
+    "source_ids": [
+      "PHY_013",
+      "PHY_014"
+    ]
+  },
+  {
+    "id": "h_mode_duration",
+    "label": "H-mode duration",
+    "unit": "s",
+    "definition": "Duration in the source-specified high-confinement regime.",
+    "compatible_record_group": "h_mode_duration",
+    "guardrail": "Show facility, fuel and conditions; it is not energy-confinement time or a universal gain rank.",
+    "source_ids": [
+      "PHY_016",
+      "PHY_017"
+    ]
+  },
+  {
+    "id": "plasma_duration",
+    "label": "Plasma discharge duration",
+    "unit": "s",
+    "definition": "Duration of the reported maintained plasma discharge.",
+    "compatible_record_group": "plasma_duration",
+    "guardrail": "Externally supplied heating is not fusion yield.",
+    "source_ids": [
+      "PHY_018"
+    ]
+  },
+  {
+    "id": "ion_temperature_duration",
+    "label": "Duration above stated ion temperature",
+    "unit": "s",
+    "definition": "Time for which the stated ion-temperature threshold was maintained.",
+    "compatible_record_group": "ion_temperature_duration",
+    "guardrail": "Do not replace ion temperature with electron temperature or combine separate campaign maxima.",
+    "source_ids": [
+      "PHY_017"
+    ]
+  },
+  {
+    "id": "high_triple_product_duration",
+    "label": "High-performance interval",
+    "unit": "s",
+    "definition": "Duration of the specific high-triple-product operating interval reported by the facility.",
+    "compatible_record_group": "source_specific_high_performance_interval",
+    "guardrail": "Not a universal maximum triple product, total pulse duration or energy-confinement time.",
+    "source_ids": [
+      "PHY_015"
+    ]
+  }
+]

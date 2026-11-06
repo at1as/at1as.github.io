@@ -1,0 +1,544 @@
+[
+  {
+    "id": "phy_history_1934",
+    "title": "Laboratory fusion of heavy hydrogen",
+    "description": "Oliphant, Harteck and Rutherford publish experiments involving heavy hydrogen. This establishes laboratory fusion reactions, not a power plant.",
+    "status": "demonstrated",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_030"
+    ],
+    "timing": {
+      "display": "1934",
+      "role": "publication_date",
+      "precision": "year",
+      "date": "1934",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1939",
+    "title": "Stellar energy explained",
+    "description": "Bethe publishes a quantitative account of nuclear energy generation in stars.",
+    "status": "demonstrated",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_031"
+    ],
+    "timing": {
+      "display": "1939-03-01",
+      "role": "publication_date",
+      "precision": "day",
+      "date": "1939-03-01",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1951",
+    "title": "The stellarator program begins",
+    "description": "Spitzer and Princeton begin Project Matterhorn, exploring magnetic confinement.",
+    "status": "demonstrated",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_027"
+    ],
+    "timing": {
+      "display": "1951",
+      "role": "event_date",
+      "precision": "year",
+      "date": "1951",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1957",
+    "title": "Useful fusion gets quantitative conditions",
+    "description": "Lawson publishes criteria relating plasma conditions and useful energy production.",
+    "status": "demonstrated",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_032"
+    ],
+    "timing": {
+      "display": "1957",
+      "role": "publication_date",
+      "precision": "year",
+      "date": "1957",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1958",
+    "title": "Research opens internationally",
+    "description": "Previously secret magnetic fusion research is declassified.",
+    "status": "demonstrated",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_027"
+    ],
+    "timing": {
+      "display": "1958",
+      "role": "event_date",
+      "precision": "year",
+      "date": "1958",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1968",
+    "title": "Tokamaks change the field",
+    "description": "Soviet tokamak results show much better plasma performance, prompting worldwide attention.",
+    "status": "demonstrated",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_029"
+    ],
+    "timing": {
+      "display": "1968",
+      "role": "event_date",
+      "precision": "year",
+      "date": "1968",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1969",
+    "title": "Independent measurement changes minds",
+    "description": "British confirmation of Soviet results prompts Princeton to convert Model C to a tokamak.",
+    "status": "demonstrated",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_028"
+    ],
+    "timing": {
+      "display": "1969",
+      "role": "event_date",
+      "precision": "year",
+      "date": "1969",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1982",
+    "title": "High confinement mode discovered",
+    "description": "ASDEX identifies H-mode, a major improvement in magnetic confinement.",
+    "status": "demonstrated",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_029"
+    ],
+    "timing": {
+      "display": "1982",
+      "role": "event_date",
+      "precision": "year",
+      "date": "1982",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1991",
+    "title": "JET begins D-T fusion experiments",
+    "description": "JET uses deuterium and tritium to release fusion power under laboratory control.",
+    "status": "demonstrated",
+    "entity_id": "jet",
+    "source_ids": [
+      "PHY_029"
+    ],
+    "timing": {
+      "display": "1991",
+      "role": "event_date",
+      "precision": "year",
+      "date": "1991",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_1997",
+    "title": "JET reaches plasma gain near two thirds",
+    "description": "JET reaches about 16 MW fusion power from 24 MW external heating, Q about 0.67. This is not an electrical efficiency.",
+    "status": "demonstrated",
+    "entity_id": "jet",
+    "source_ids": [
+      "PHY_020"
+    ],
+    "timing": {
+      "display": "1997",
+      "role": "event_date",
+      "precision": "year",
+      "date": "1997",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_2006",
+    "title": "ITER agreement signed",
+    "description": "The multinational ITER agreement establishes a shared experimental program; its mission is not grid electricity.",
+    "status": "institutional",
+    "entity_id": "iter",
+    "source_ids": [
+      "PHY_020"
+    ],
+    "timing": {
+      "display": "2006",
+      "role": "event_date",
+      "precision": "year",
+      "date": "2006",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_2021",
+    "title": "NIF achieves physical ignition",
+    "description": "Alpha heating supports a propagating burn in an experiment yielding over 1.3 MJ; target gain remains below one.",
+    "status": "demonstrated",
+    "entity_id": "nif",
+    "source_ids": [
+      "PHY_011"
+    ],
+    "timing": {
+      "display": "2021-08-08",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2021-08-08",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_2022",
+    "title": "NIF passes target energy breakeven",
+    "description": "Fusion yield of 3.15 MJ exceeds laser energy delivered to target: 2.05 MJ. Whole-facility electrical breakeven is a different boundary.",
+    "status": "demonstrated",
+    "entity_id": "nif",
+    "source_ids": [
+      "PHY_010"
+    ],
+    "timing": {
+      "display": "2022-12-05",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2022-12-05",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_jet2023",
+    "title": "JET records about 69 MJ in one discharge",
+    "description": "Final D-T campaign record measures integrated fusion energy over roughly five seconds.",
+    "status": "demonstrated",
+    "entity_id": "jet",
+    "source_ids": [
+      "PHY_013",
+      "PHY_014"
+    ],
+    "timing": {
+      "display": "2023-10-03",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2023-10-03",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_jt60sa",
+    "title": "JT-60SA achieves first plasma",
+    "description": "The Europe-Japan tokamak at Naka begins plasma operation; first plasma is an integration milestone.",
+    "status": "demonstrated",
+    "entity_id": "jt60sa",
+    "source_ids": [
+      "PHY_026"
+    ],
+    "timing": {
+      "display": "2023-10-23",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2023-10-23",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_kstar",
+    "title": "KSTAR reports longer hot-ion operation",
+    "description": "Campaign ran December 2023 to February 2024; 48 s at 100 million degrees Celsius ion temperature and 102 s in H-mode are separate records.",
+    "status": "announcement_of_demonstration",
+    "entity_id": "kstar",
+    "source_ids": [
+      "PHY_017"
+    ],
+    "timing": {
+      "display": "2024-03-20",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2024-03-20",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_wham",
+    "title": "WHAM reaches first plasma",
+    "description": "High-field mirror experiment at Stoughton enters scientific operation.",
+    "status": "demonstrated",
+    "entity_id": "wham",
+    "source_ids": [
+      "PHY_035"
+    ],
+    "timing": {
+      "display": "2024-07-15",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2024-07-15",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_east",
+    "title": "EAST sustains high confinement for 1,066 seconds",
+    "description": "Long-duration controlled plasma operation, not reported electricity output.",
+    "status": "demonstrated",
+    "entity_id": "east",
+    "source_ids": [
+      "PHY_016"
+    ],
+    "timing": {
+      "display": "2025-01-20",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-01-20",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_west",
+    "title": "WEST sustains hydrogen plasma for 1,337 seconds",
+    "description": "The 2.6 GJ handled by the machine is input and exhaust heat, not fusion yield.",
+    "status": "demonstrated",
+    "entity_id": "west",
+    "source_ids": [
+      "PHY_018"
+    ],
+    "timing": {
+      "display": "2025-02-12",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-02-12",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_nif2025",
+    "title": "NIF reaches target gain 4.13",
+    "description": "Record listed: 8.6 MJ fusion yield from 2.08 MJ laser input; target boundary only.",
+    "status": "demonstrated",
+    "entity_id": "nif",
+    "source_ids": [
+      "PHY_009",
+      "PHY_012"
+    ],
+    "timing": {
+      "display": "2025-04-07",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-04-07",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_w7x",
+    "title": "W7-X sustains high performance for 43 seconds",
+    "description": "Record combines triple product with long pulse duration; it is not the largest triple product at every pulse length.",
+    "status": "demonstrated",
+    "entity_id": "w7x",
+    "source_ids": [
+      "PHY_015"
+    ],
+    "timing": {
+      "display": "2025-05-22",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2025-05-22",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_dones",
+    "title": "EU approves EUR 202 million for materials test facility",
+    "description": "IFMIF-DONES will provide accelerator-driven neutron irradiation for fusion materials research.",
+    "status": "public_funding_announcement",
+    "entity_id": "ifmif_dones",
+    "source_ids": [
+      "PHY_024"
+    ],
+    "timing": {
+      "display": "2025-07-14",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2025-07-14",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_rule",
+    "title": "NRC publishes a fusion rule proposal",
+    "description": "Proposal addresses radioactive materials and environmental review for fusion machines. This entry does not mark final rule adoption.",
+    "status": "proposed_regulation",
+    "entity_id": null,
+    "source_ids": [
+      "PHY_040"
+    ],
+    "timing": {
+      "display": "2026-02-26",
+      "role": "reported_at",
+      "precision": "day",
+      "date": "2026-02-26",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_history_nif2026",
+    "title": "NIF lists its eleventh ignition experiment",
+    "description": "Reported yield of 7.9 ± 0.4 MJ and target gain approximately 3.8; lower than the record 2025 yield.",
+    "status": "demonstrated",
+    "entity_id": "nif",
+    "source_ids": [
+      "PHY_009"
+    ],
+    "timing": {
+      "display": "2026-06-20",
+      "role": "event_date",
+      "precision": "day",
+      "date": "2026-06-20",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_target_iter2034",
+    "title": "ITER research operations target",
+    "description": "Announced baseline target; early research phases do not yet use D-T.",
+    "status": "target",
+    "entity_id": "iter",
+    "source_ids": [
+      "PHY_021"
+    ],
+    "timing": {
+      "display": "2034",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2034",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_target_iter2036",
+    "title": "ITER full magnetic energy target",
+    "description": "Announced baseline target; do not label this as commercial operation.",
+    "status": "target",
+    "entity_id": "iter",
+    "source_ids": [
+      "PHY_021"
+    ],
+    "timing": {
+      "display": "2036",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2036",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  },
+  {
+    "id": "phy_target_iter2039",
+    "title": "ITER D-T operations target",
+    "description": "Start of D-T phase under current baseline; not a promise of grid electricity or immediate Q = 10.",
+    "status": "target",
+    "entity_id": "iter",
+    "source_ids": [
+      "PHY_021"
+    ],
+    "timing": {
+      "display": "2039",
+      "role": "target_window",
+      "precision": "year",
+      "date": "2039",
+      "start_year": null,
+      "end_year": null,
+      "note": null
+    },
+    "as_of": "2026-10-22"
+  }
+]

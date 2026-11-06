@@ -1,0 +1,161 @@
+{
+  "purpose": "Pedagogical energy accounting; no company predictions or calibrated reactor simulation.",
+  "thermal_formulas": {
+    "P_fusion_MW": "Q_plasma * P_heating_delivered_MW",
+    "P_gross_MWe": "eta_electric * capture_fraction * P_fusion_MW",
+    "P_driver_MWe": "P_heating_delivered_MW / eta_driver",
+    "P_net_MWe": "P_gross_MWe - P_driver_MWe - P_aux_MWe",
+    "Q_electric_site_definition": "P_gross_MWe / (P_driver_MWe + P_aux_MWe)",
+    "Q_plasma_for_zero_net": "(1/eta_driver + P_aux_MWe/P_heating_delivered_MW) / (eta_electric*capture_fraction)"
+  },
+  "thermal_default_teaching_case": {
+    "P_heating_delivered_MW": 50,
+    "Q_plasma": 10,
+    "eta_driver": 0.5,
+    "capture_fraction": 1,
+    "eta_electric": 0.4,
+    "P_aux_MWe": 50,
+    "outputs": {
+      "P_fusion_MW": 500,
+      "P_gross_MWe": 200,
+      "P_driver_MWe": 100,
+      "P_net_MWe": 50
+    }
+  },
+  "thermal_sensitivity_case": {
+    "change": "eta_driver from 0.5 to 0.25",
+    "P_net_MWe": -50,
+    "message": "Same plasma Q = 10; different electrical balance."
+  },
+  "icf_formulas": {
+    "P_fusion_MW": "E_driver_delivered_MJ * target_gain * repetition_Hz",
+    "P_driver_MWe": "E_driver_delivered_MJ * repetition_Hz / eta_driver",
+    "P_gross_MWe": "P_fusion_MW * capture_fraction * eta_electric",
+    "P_net_MWe": "P_gross_MWe - P_driver_MWe - P_aux_MWe",
+    "targets_per_operating_day": "repetition_Hz * 86400",
+    "target_cost_USD_per_MWh": "3600 * repetition_Hz * target_cost_USD / P_net_MWe; defined only when net is positive"
+  },
+  "icf_teaching_case": {
+    "E_driver_delivered_MJ": 10,
+    "target_gain": 30,
+    "repetition_Hz": 10,
+    "eta_driver": 0.2,
+    "capture_fraction": 1,
+    "eta_electric": 0.4,
+    "P_aux_MWe": 100,
+    "outputs": {
+      "P_fusion_MW": 3000,
+      "P_driver_MWe": 500,
+      "P_gross_MWe": 1200,
+      "P_net_MWe": 600,
+      "targets_per_operating_day": 864000,
+      "target_cost_USD_per_MWh_if_target_cost_1USD": 60
+    }
+  },
+  "direct_recovery_accounting": {
+    "formula": "E_net_per_complete_cycle = E_electric_returned - E_electric_supplied - E_auxiliary",
+    "example": {
+      "draw_MJ": 100,
+      "return_MJ": 102,
+      "auxiliary_MJ": 3,
+      "net_MJ": -1
+    },
+    "required_condition": "Same initial/final stored-energy state; full power-electronics and plant boundary."
+  },
+  "limitations": [
+    "No recovery credit for externally supplied heating energy.",
+    "No blanket energy multiplication or detailed nuclear heating model.",
+    "No transient balance, storage dynamics, maintenance, capital costs or rate-dependent efficiencies.",
+    "Inputs are independent for teaching but physically coupled in real designs.",
+    "NIF laboratory wall-plug efficiency must never be replaced by a hypothetical commercial-driver assumption.",
+    "Negative net output must remain negative in plots.",
+    "Reject zero or negative driver efficiency; zero conversion or capture is valid and produces zero gross output. At zero heating, finite Q cannot represent an ignited plasma with finite fusion output."
+  ],
+  "source_ids": [
+    "PHY_006",
+    "PHY_007",
+    "PHY_019",
+    "PHY_037"
+  ],
+  "auxiliary_boundary": "All non-driver plant loads. The driver demand calculated separately must not be included again.",
+  "inertia_attributed_model": {
+    "evidence_type": "simplified_company_model",
+    "source_ids": [
+      "ALT_INERTIA_PHASE1"
+    ],
+    "laser_energy_MJ": 10,
+    "repetition_Hz": 10,
+    "laser_efficiency": 0.12,
+    "thermal_efficiency": 0.45,
+    "other_energy_per_shot_MJ": 5,
+    "formula": "P_net_MW = repetition_Hz * (thermal_efficiency * target_gain * laser_energy_MJ - laser_energy_MJ / laser_efficiency - other_energy_per_shot_MJ)",
+    "examples": [
+      {
+        "target_gain": 25,
+        "laser_efficiency": 0.12,
+        "calculated_net_MW": 241.6667,
+        "company_rounded_net_MW": 250
+      },
+      {
+        "target_gain": 40,
+        "laser_efficiency": 0.12,
+        "calculated_net_MW": 916.6667,
+        "company_rounded_net_MW": 900,
+        "company_operator": "greater_than"
+      },
+      {
+        "target_gain": 40,
+        "laser_efficiency": 0.15,
+        "calculated_net_MW": 1083.3333,
+        "company_rounded_net_MW": 1085
+      }
+    ],
+    "notes": [
+      "Arithmetic using the rounded source assumptions differs slightly from company rounded examples.",
+      "Illustrative steady-running balance, not measured plant performance or a complete plant engineering model.",
+      "Do not force this model to reproduce the separate gain 18/30/45 FAQ scenarios; source assumptions and versions differ."
+    ]
+  },
+  "inertia_faq_version": [
+    {
+      "target_gain": 18,
+      "net_grid_MW": 50,
+      "source_ids": [
+        "ALT_INERTIA_GAIN"
+      ],
+      "evidence_type": "company_model",
+      "warning": "Requires company-specific plant assumptions; not experimentally demonstrated."
+    },
+    {
+      "target_gain": 30,
+      "net_grid_MW": 500,
+      "source_ids": [
+        "ALT_INERTIA_GAIN"
+      ],
+      "evidence_type": "company_model"
+    },
+    {
+      "target_gain": 45,
+      "net_grid_MW": 1500,
+      "source_ids": [
+        "ALT_INERTIA_GAIN"
+      ],
+      "evidence_type": "company_model"
+    }
+  ],
+  "inertia_model_version_note": "The live FAQ18/30/45 scenarios and newer >25–43 simulations with 250–1300 MWe estimates use different model snapshots. Do not fit them into one universal line. Preserve source and version labels.",
+  "icf_sensitivity_case": {
+    "change": "eta_driver from 0.2 to 0.1 with other teaching inputs unchanged",
+    "P_net_MWe": 100
+  },
+  "reaction_energy_split": {
+    "fuel": "D-T",
+    "alpha_MeV": 3.5,
+    "neutron_MeV": 14.1,
+    "total_MeV": 17.6,
+    "source_ids": [
+      "PHY_044"
+    ],
+    "note": "Initial reaction products, not electricity conversion fractions."
+  }
+}

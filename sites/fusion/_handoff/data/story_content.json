@@ -1,0 +1,852 @@
+{
+  "meta": {
+    "project_name": "Fusion Atlas",
+    "public_title": "The paths to fusion power",
+    "snapshot_date": "2026-10-22",
+    "snapshot_timezone": "America/Los_Angeles",
+    "language": "en",
+    "content_status": "Ready-to-use public copy",
+    "source_id_policy": "Resolve source_ids through the combined source registry; retain aliases when duplicate URLs are merged.",
+    "date_policy": "Show the original precision and wording of source dates. Approximate timeline positions do not create exact deadlines.",
+    "copy_policy": "Paragraphs and tooltips are public-facing. Editorial labels define how this site presents evidence; they are not scientific scores."
+  },
+  "hero": {
+    "eyebrow": "Fusion Atlas",
+    "title": "The paths to fusion power",
+    "deck": "Explore how fusion machines work, what experiments have shown, and what it takes to turn a reaction into useful electricity.",
+    "primary_action": "Explore the approaches",
+    "secondary_action": "Follow the energy",
+    "snapshot_label": "Research snapshot: 22 October 2026",
+    "scope_note": "A selected guide to fusion research and development. Results, designs and announced plans have separate labels."
+  },
+  "chapters": [
+    {
+      "id": "learn",
+      "order": 1,
+      "nav_label": "Start here",
+      "title": "A reaction is the beginning",
+      "deck": "The fuel can release energy. A power plant has to capture it, convert it and keep enough to supply its users.",
+      "paragraphs": [
+        {
+          "text": "Fusion releases energy when light nuclei combine into products with less total rest mass. Many proposed plants use deuterium and tritium, two forms of hydrogen. Their reaction produces a helium nucleus and a neutron, carrying about 17.6 million electronvolts of energy between them.",
+          "source_ids": [
+            "PHY_001",
+            "PHY_002"
+          ]
+        },
+        {
+          "text": "The fuel becomes plasma: matter containing free electrons and charged nuclei. A useful experiment needs the right combination of temperature, density and heat retention. A very high temperature is only one part of that combination.",
+          "source_ids": [
+            "PHY_003",
+            "PHY_007"
+          ]
+        },
+        {
+          "text": "In a D-T plant, about four fifths of the reaction energy leaves in neutrons. A surrounding blanket can capture that energy as heat. Electricity production comes later, and the plant must supply its own equipment before it has power left to export.",
+          "source_ids": [
+            "PHY_022",
+            "PHY_023",
+            "PHY_006"
+          ]
+        }
+      ],
+      "interaction_prompt": "Step through the energy path, from fuel to the plant connection.",
+      "next_label": "How the research got here"
+    },
+    {
+      "id": "history",
+      "order": 2,
+      "nav_label": "History",
+      "title": "Different milestones answered different questions",
+      "deck": "The history becomes clearer when each result is paired with the question it answered.",
+      "paragraphs": [
+        {
+          "text": "Laboratory experiments with heavy hydrogen established fusion reactions in the 1930s. By the 1950s, researchers were developing magnetic confinement and working out the conditions needed for useful energy production. The challenge had grown from observing reactions to sustaining the conditions that make them productive.",
+          "source_ids": [
+            "PHY_030",
+            "PHY_027",
+            "PHY_032"
+          ]
+        },
+        {
+          "text": "Tokamak results in the late 1960s changed the direction of magnetic-fusion research. Later experiments improved confinement and explored D-T fuel. JET’s 1997 result reached about 16 megawatts of fusion power from 24 megawatts of external plasma heating. Those numbers describe a plasma experiment’s energy balance.",
+          "source_ids": [
+            "PHY_028",
+            "PHY_029",
+            "PHY_020"
+          ]
+        },
+        {
+          "text": "In December 2022, the National Ignition Facility produced more fusion energy than the laser energy delivered to its target. That crossed an important experimental boundary. The electricity consumed by the laser facility sits outside that boundary, so the result did not establish net electrical generation.",
+          "source_ids": [
+            "PHY_010",
+            "PHY_009"
+          ]
+        }
+      ],
+      "interaction_prompt": "Select a milestone to see its result, its boundary and its source.",
+      "next_label": "Explore the machine designs"
+    },
+    {
+      "id": "approaches",
+      "order": 3,
+      "nav_label": "Approaches",
+      "title": "There is more than one way to hold fusion fuel",
+      "deck": "The shapes differ because the machines solve confinement, heating and energy capture in different ways.",
+      "paragraphs": [
+        {
+          "text": "Magnetic-confinement machines use fields to guide charged particles. Tokamaks combine external coils with a substantial plasma current. Stellarators build more of the required field shape into their external coils. Mirrors and levitated dipoles use different geometries, with their own confinement and engineering questions.",
+          "source_ids": [
+            "PHY_004",
+            "PHY_005",
+            "PHY_035",
+            "PAR_OPENSTAR_PPPL"
+          ]
+        },
+        {
+          "text": "In inertial fusion, a small target is compressed rapidly so that fusion can occur before the fuel expands. Lasers may illuminate the capsule directly or first create X-rays in a surrounding cavity. Other concepts use electrical pulses or mechanically compress a magnetized plasma.",
+          "source_ids": [
+            "PHY_034",
+            "PHY_033",
+            "PHY_039"
+          ]
+        },
+        {
+          "text": "A shared label can hide different machines. Helion and TAE both use field-reversed configurations, but Helion pursues a pulsed compression and recovery cycle while TAE uses energetic neutral beams. Their intended commercial fuels also differ from each other and from some present experiments.",
+          "source_ids": [
+            "PHY_037",
+            "MAG_HELION_POLARIS",
+            "MAG_TAE_NATURE",
+            "MAG_TAE_FUEL"
+          ]
+        }
+      ],
+      "interaction_prompt": "Choose an approach, then follow its confinement and energy-conversion sequence.",
+      "next_label": "Learn to read the results"
+    },
+    {
+      "id": "results",
+      "order": 4,
+      "nav_label": "Results",
+      "title": "Every gain number needs a boundary",
+      "deck": "Ask what comes out, what goes in, and which equipment the calculation includes.",
+      "paragraphs": [
+        {
+          "text": "Plasma gain compares fusion power with external heating delivered to the plasma. Target gain compares fusion energy with energy delivered to a target. Neither ratio automatically includes the electricity used by all the equipment that supplied that energy.",
+          "source_ids": [
+            "PHY_006",
+            "PHY_019",
+            "PHY_009"
+          ]
+        },
+        {
+          "text": "Energy recovery needs an equally careful label. A system can reclaim some energy it previously supplied to its plasma. Realta’s June 2026 direct-conversion experiment predominantly recovered input heating energy. Helion’s current Polaris objective concerns fusion-origin electricity reaching a capacitor bank; its earlier net-electricity wording has been withdrawn.",
+          "source_ids": [
+            "MAG_REALTA_DEC",
+            "MAG_HELION_POLARIS"
+          ]
+        },
+        {
+          "text": "Net electricity is the remainder after the plant’s electrical consumption is accounted for over a complete interval. For pulsed machines, changes in stored energy also matter. The calculator lets you change these accounting assumptions and see how a positive fusion-gain number can still accompany net electrical consumption.",
+          "source_ids": [
+            "PHY_006",
+            "PHY_007"
+          ]
+        }
+      ],
+      "interaction_prompt": "Move the boundary, then change the illustrative assumptions.",
+      "next_label": "Meet the projects"
+    },
+    {
+      "id": "landscape",
+      "order": 5,
+      "nav_label": "Landscape",
+      "title": "Put each project in its proper place",
+      "deck": "Compare the machine, the evidence and the organization before comparing the headline numbers.",
+      "paragraphs": [
+        {
+          "text": "A company can have several locations with different jobs. CFS is building SPARC in Massachusetts and planning its first ARC power plant in Virginia. Helion’s Everett experiments and its Orion construction site in Malaga are also separate places. The map labels each site’s role and status.",
+          "source_ids": [
+            "MAG_CFS_SPARC",
+            "MAG_CFS_ARC",
+            "MAG_HELION_POLARIS_RESULTS",
+            "MAG_HELION_ORION"
+          ]
+        },
+        {
+          "text": "Research laboratories, reactor developers and suppliers contribute different things. Kyoto Fusioneering develops heating, fuel-cycle and plant systems for other fusion programmes. Its engineering facilities belong in the landscape, with a different role from an experiment seeking plasma gain or a proposed electricity plant.",
+          "source_ids": [
+            "MAG_KYOTO_FUND"
+          ]
+        },
+        {
+          "text": "Money also needs a role and a date. A new round may already be included in a cumulative total. Grants, credit facilities and conditional commitments have different meanings. The financing view retains those distinctions, and an undisclosed amount remains unknown.",
+          "source_ids": [],
+          "content_type": "editorial_methodology"
+        }
+      ],
+      "interaction_prompt": "Filter by approach, fuel or country. Open a card to inspect the claims behind it.",
+      "next_label": "What a plant still has to prove"
+    },
+    {
+      "id": "remaining_questions",
+      "order": 6,
+      "nav_label": "What remains",
+      "title": "Several systems have to work together",
+      "deck": "A successful experiment can reduce one uncertainty while leaving important plant questions open.",
+      "paragraphs": [
+        {
+          "text": "A D-T plant must obtain its initial tritium and then produce, recover and recycle enough fuel to continue operating. It must also extract intense heat and manage neutron exposure in its materials. These requirements connect the plasma to the blanket, exhaust, cooling and maintenance systems.",
+          "source_ids": [
+            "PHY_002",
+            "PHY_022",
+            "PHY_023",
+            "PHY_042"
+          ]
+        },
+        {
+          "text": "Pulsed plants add questions about repetition, resets and component lifetime. Laser-driven plants also need a dependable supply of targets and a chamber that can accept the next shot. A single successful pulse and sustained power production test different capabilities.",
+          "source_ids": [
+            "PHY_034",
+            "PHY_033",
+            "PHY_042"
+          ]
+        },
+        {
+          "text": "Our assessments describe these questions separately. You can inspect whether a claim rests on an experiment, a subsystem test, a model or an announced plan. We do not turn those categories into a percentage chance of success, and a gap in public evidence is recorded as a gap.",
+          "source_ids": [],
+          "content_type": "editorial_methodology"
+        }
+      ],
+      "interaction_prompt": "Choose a theme to see what evidence would reduce the uncertainty.",
+      "next_label": "Check the sources"
+    },
+    {
+      "id": "sources",
+      "order": 7,
+      "nav_label": "Sources",
+      "title": "The claims are open to inspection",
+      "deck": "Follow a statement back to its source, with the date and qualification still attached.",
+      "paragraphs": [
+        {
+          "text": "This is a curated research snapshot dated 22 October 2026. Each project-specific claim links to the source used for it. Company reports, laboratory announcements, research papers and programme targets retain their different evidence labels.",
+          "source_ids": [],
+          "content_type": "editorial_methodology"
+        },
+        {
+          "text": "A publication date may tell you when a result was reported rather than when the experiment happened. An announced window such as “early 2030s” keeps that wording. Where sources disagree or a financing amount is undisclosed, the qualification stays visible.",
+          "source_ids": [],
+          "content_type": "editorial_methodology"
+        },
+        {
+          "text": "Use the source drawer for context and the downloadable tables for the underlying records. The selection is intended to explain the main approaches and the evidence behind them. It is not a complete company census or an investment ranking.",
+          "source_ids": [],
+          "content_type": "editorial_methodology"
+        }
+      ],
+      "interaction_prompt": "Search the sources or download the snapshot.",
+      "next_label": "Return to the approaches"
+    }
+  ],
+  "glossary_tooltips": [
+    {
+      "id": "plasma",
+      "term": "Plasma",
+      "tooltip": "Matter containing free electrons and charged ions. Creating plasma does not by itself establish fusion gain.",
+      "source_ids": [
+        "PHY_003"
+      ]
+    },
+    {
+      "id": "deuterium",
+      "term": "Deuterium",
+      "tooltip": "A form of hydrogen whose nucleus contains one proton and one neutron.",
+      "source_ids": [
+        "PHY_002"
+      ]
+    },
+    {
+      "id": "tritium",
+      "term": "Tritium",
+      "tooltip": "A radioactive form of hydrogen with one proton and two neutrons. It requires controlled production and handling.",
+      "source_ids": [
+        "PHY_002",
+        "PHY_022"
+      ]
+    },
+    {
+      "id": "alpha",
+      "term": "Alpha particle",
+      "tooltip": "A helium-4 nucleus. In D-T fusion, its energy can help heat the plasma.",
+      "source_ids": [
+        "PHY_001"
+      ]
+    },
+    {
+      "id": "q_plasma",
+      "term": "Plasma gain",
+      "tooltip": "Fusion power divided by external plasma-heating power, using the stated boundary.",
+      "source_ids": [
+        "PHY_019"
+      ]
+    },
+    {
+      "id": "target_gain",
+      "term": "Target gain",
+      "tooltip": "Fusion energy from a shot divided by the driver energy delivered to its target.",
+      "source_ids": [
+        "PHY_009"
+      ]
+    },
+    {
+      "id": "q_fuel",
+      "term": "Fuel gain",
+      "tooltip": "Fusion output divided by energy actually coupled into the fuel. Its boundary differs from target gain.",
+      "source_ids": [
+        "PHY_006"
+      ]
+    },
+    {
+      "id": "driver_efficiency",
+      "term": "Driver efficiency",
+      "tooltip": "The fraction of driver electrical input that reaches the target or plasma as delivered energy.",
+      "source_ids": [
+        "PHY_007"
+      ]
+    },
+    {
+      "id": "electric_gain",
+      "term": "Electrical gain",
+      "tooltip": "Here: gross electricity divided by complete plant electrical consumption over the same interval.",
+      "source_ids": [
+        "PHY_006"
+      ],
+      "qualification": "Site-specific accounting definition; display the actual numerator and denominator."
+    },
+    {
+      "id": "net_electricity",
+      "term": "Net electricity",
+      "tooltip": "Generated electricity after subtracting all included plant consumption over a complete interval.",
+      "source_ids": [
+        "PHY_006"
+      ]
+    },
+    {
+      "id": "grid_export",
+      "term": "Grid export",
+      "tooltip": "Electricity supplied at the grid connection, accounting for imports and changes in stored energy.",
+      "source_ids": [
+        "PHY_006"
+      ]
+    },
+    {
+      "id": "ignition",
+      "term": "Ignition",
+      "tooltip": "Fusion-product heating sustains or propagates the burn under a specified physical criterion.",
+      "source_ids": [
+        "PHY_011"
+      ]
+    },
+    {
+      "id": "burning_plasma",
+      "term": "Burning plasma",
+      "tooltip": "A plasma strongly heated by its own fusion products. This does not establish an electricity-producing plant.",
+      "source_ids": [
+        "PHY_011",
+        "PHY_020"
+      ]
+    },
+    {
+      "id": "triple_product",
+      "term": "Triple product",
+      "tooltip": "Density × temperature × energy-confinement time, with the fuel and measurement conventions specified.",
+      "source_ids": [
+        "PHY_007"
+      ]
+    },
+    {
+      "id": "confinement_time",
+      "term": "Energy-confinement time",
+      "tooltip": "A measure of how quickly a plasma loses its stored thermal energy.",
+      "source_ids": [
+        "PHY_006"
+      ]
+    },
+    {
+      "id": "pulse_duration",
+      "term": "Pulse duration",
+      "tooltip": "How long a discharge or specified operating phase lasts. It differs from energy-confinement time.",
+      "source_ids": [
+        "PHY_017",
+        "PHY_018"
+      ]
+    },
+    {
+      "id": "repetition_rate",
+      "term": "Repetition rate",
+      "tooltip": "Shots or pulses per second, at the stated energy and operating conditions.",
+      "source_ids": [
+        "PHY_033",
+        "PHY_034"
+      ]
+    },
+    {
+      "id": "blanket",
+      "term": "Blanket",
+      "tooltip": "A surrounding system that can capture neutron energy, shield components and produce tritium.",
+      "source_ids": [
+        "PHY_022"
+      ]
+    },
+    {
+      "id": "tbr",
+      "term": "Tritium breeding ratio",
+      "tooltip": "Tritium produced divided by tritium consumed, under a stated accounting boundary.",
+      "source_ids": [
+        "PHY_022"
+      ]
+    },
+    {
+      "id": "divertor",
+      "term": "Divertor",
+      "tooltip": "A plasma-exhaust region that handles escaping heat and particles.",
+      "source_ids": [
+        "PHY_023"
+      ]
+    },
+    {
+      "id": "hts",
+      "term": "High-temperature superconductor",
+      "tooltip": "A superconducting material used in strong magnets. Fusion HTS magnets still need cryogenic cooling.",
+      "source_ids": [
+        "MAG_CFS_MAGNET",
+        "PHY_042"
+      ]
+    },
+    {
+      "id": "frc",
+      "term": "Field-reversed configuration",
+      "tooltip": "A compact plasma configuration with a reversed core magnetic field; it does not specify one fuel or power cycle.",
+      "source_ids": [
+        "MAG_TAE_NATURE",
+        "PHY_037"
+      ]
+    },
+    {
+      "id": "aneutronic",
+      "term": "Aneutronic",
+      "tooltip": "Describes reactions with mainly charged products. Operating plants can still produce neutrons and radiation.",
+      "source_ids": [
+        "PHY_002",
+        "PHY_007"
+      ]
+    },
+    {
+      "id": "thermal_vs_electric",
+      "term": "Fusion power and electric power",
+      "tooltip": "Energy released by fusion, gross electricity and net electricity describe different stages and boundaries.",
+      "source_ids": [
+        "PHY_019"
+      ]
+    },
+    {
+      "id": "energy_recovery",
+      "term": "Energy recovery",
+      "tooltip": "Reclaiming energy already supplied to a system. Recovery alone does not show new net energy production.",
+      "source_ids": [
+        "MAG_REALTA_DEC"
+      ]
+    },
+    {
+      "id": "equivalent_q",
+      "term": "Equivalent Q",
+      "tooltip": "An inferred gain under stated fuel or modeling assumptions. Read those assumptions before comparing it with measured Q.",
+      "source_ids": [
+        "MAG_ES_DEVICES"
+      ]
+    },
+    {
+      "id": "net_electric_design",
+      "term": "Net electric design output",
+      "tooltip": "A plant model’s projected electricity after its modeled internal demand. It is a target until demonstrated.",
+      "source_ids": [
+        "MAG_THEA_HELIOS",
+        "MAG_TE_US"
+      ]
+    }
+  ],
+  "labels": {
+    "evidence": [
+      {
+        "id": "measured_result",
+        "label": "Measured result",
+        "description": "An experimental observation at the stated boundary. Check who reported it and what was measured."
+      },
+      {
+        "id": "subsystem_test",
+        "label": "Subsystem test",
+        "description": "A component or part of a machine has been tested. Whole-plant performance is a separate question."
+      },
+      {
+        "id": "simulation",
+        "label": "Simulation",
+        "description": "A numerical result produced under stated assumptions."
+      },
+      {
+        "id": "published_design",
+        "label": "Published design",
+        "description": "A documented machine or plant concept with projected performance."
+      },
+      {
+        "id": "company_target",
+        "label": "Company target",
+        "description": "An outcome the developer plans to achieve, with its original timing and scope."
+      },
+      {
+        "id": "programme_target",
+        "label": "Programme target",
+        "description": "An announced objective of a public or collaborative programme."
+      },
+      {
+        "id": "reported_status",
+        "label": "Reported status",
+        "description": "A source describes the project’s condition by this reporting date."
+      },
+      {
+        "id": "editorial_assessment",
+        "label": "Assessment",
+        "description": "An interpretation of the cited evidence and remaining questions; not a success probability."
+      },
+      {
+        "id": "not_established",
+        "label": "Not established in this record",
+        "description": "The reviewed sources do not establish this result. That does not prove the result is impossible."
+      },
+      {
+        "id": "source_conflict",
+        "label": "Sources differ",
+        "description": "The sources give different values or scopes. Open the note to see how the record handles them."
+      },
+      {
+        "id": "not_applicable",
+        "label": "Not applicable",
+        "description": "This particular requirement does not apply to the selected role or design."
+      }
+    ],
+    "source_provenance": [
+      {
+        "id": "company_report",
+        "label": "Company report",
+        "description": "Reported by the developer; independent confirmation is not implied."
+      },
+      {
+        "id": "partner_report",
+        "label": "Partner report",
+        "description": "Reported by a participating institution or project partner."
+      },
+      {
+        "id": "institutional_report",
+        "label": "Laboratory or institution",
+        "description": "Reported by the institution responsible for the experiment or programme."
+      },
+      {
+        "id": "peer_reviewed",
+        "label": "Peer-reviewed",
+        "description": "The paper underwent peer review. This label does not by itself establish independent replication."
+      },
+      {
+        "id": "preprint",
+        "label": "Preprint",
+        "description": "A research manuscript shared before, or without verified completion of, journal peer review."
+      },
+      {
+        "id": "survey_response",
+        "label": "Company survey response",
+        "description": "A dated self-reported response within an industry survey."
+      },
+      {
+        "id": "government_announcement",
+        "label": "Government announcement",
+        "description": "The official announcement defines the programme, award or commitment and its conditions."
+      }
+    ],
+    "funding_event_types": [
+      {
+        "id": "round",
+        "label": "Financing round",
+        "description": "The amount announced for this financing event. Check for extensions or later closing updates."
+      },
+      {
+        "id": "cumulative_total",
+        "label": "Cumulative financing",
+        "description": "A total reported as of a particular date. It already includes earlier financing within its stated scope."
+      },
+      {
+        "id": "grant",
+        "label": "Grant or grant award",
+        "description": "Public or other grant support. The award amount does not necessarily equal cash already disbursed."
+      },
+      {
+        "id": "conditional_commitment",
+        "label": "Conditional commitment",
+        "description": "Financing promised or planned subject to conditions. Keep it separate from completed financing."
+      },
+      {
+        "id": "public_budget",
+        "label": "Public programme budget",
+        "description": "An allocation for a defined programme and period; it may cover several projects or recipients."
+      },
+      {
+        "id": "debt_facility",
+        "label": "Loan or credit facility",
+        "description": "Borrowing support. Read the status to distinguish funds provided from an available, undrawn amount."
+      },
+      {
+        "id": "government_equity_award",
+        "label": "Government equity-linked award",
+        "description": "Public support linked to an ownership interest. The record states whether the award is definitive or conditional."
+      },
+      {
+        "id": "proposed_merger",
+        "label": "Proposed merger",
+        "description": "A proposed corporate transaction. Its valuation is not cash raised by the company."
+      },
+      {
+        "id": "cash_balance_snapshot",
+        "label": "Reported cash balance",
+        "description": "Cash reported at a specified date, potentially including earlier financing and transaction proceeds; not a new financing round."
+      }
+    ],
+    "funding_status": [
+      {
+        "id": "reported_closed",
+        "label": "Reported closed"
+      },
+      {
+        "id": "provided",
+        "label": "Funds reported provided"
+      },
+      {
+        "id": "conditional",
+        "label": "Conditions remain"
+      },
+      {
+        "id": "planned",
+        "label": "Planned investment"
+      },
+      {
+        "id": "draw_unknown",
+        "label": "Drawdown not established"
+      },
+      {
+        "id": "superseded",
+        "label": "Updated by later closing"
+      },
+      {
+        "id": "mixed_scope",
+        "label": "Includes multiple financing types"
+      },
+      {
+        "id": "undisclosed",
+        "label": "Amount undisclosed"
+      },
+      {
+        "id": "composition_unknown",
+        "label": "Composition not established"
+      }
+    ],
+    "amount_qualifiers": [
+      {
+        "id": "exact_reported",
+        "prefix": "",
+        "label": "Reported amount"
+      },
+      {
+        "id": "approximately",
+        "prefix": "About",
+        "label": "Approximate"
+      },
+      {
+        "id": "greater_than",
+        "prefix": "More than",
+        "label": "Lower-bound statement"
+      },
+      {
+        "id": "up_to",
+        "prefix": "Up to",
+        "label": "Maximum announced amount"
+      },
+      {
+        "id": "approximately_below",
+        "prefix": "Nearly",
+        "label": "Source says nearly"
+      },
+      {
+        "id": "unknown",
+        "prefix": "",
+        "label": "Not disclosed"
+      }
+    ],
+    "dates": [
+      {
+        "id": "event_date",
+        "label": "Event date",
+        "description": "When the experiment or other event took place, at the precision supported by the source."
+      },
+      {
+        "id": "publication_date",
+        "label": "Published",
+        "description": "When the source appeared; this may be later than the event it describes."
+      },
+      {
+        "id": "reported_by",
+        "label": "Reported by",
+        "description": "The source establishes that the status had been reached by this date; the exact event date is unknown."
+      },
+      {
+        "id": "announcement_date",
+        "label": "Announced",
+        "description": "When the plan, financing or commitment was announced."
+      },
+      {
+        "id": "target_window",
+        "label": "Announced target window",
+        "description": "A future objective in the source’s own date wording; not an achieved milestone."
+      },
+      {
+        "id": "snapshot_date",
+        "label": "Research snapshot",
+        "description": "The cutoff used for this curated dataset."
+      },
+      {
+        "id": "last_reviewed_at",
+        "label": "Source checked",
+        "description": "When the source was reviewed, not independent verification of its underlying result."
+      },
+      {
+        "id": "unknown",
+        "label": "Date not established",
+        "description": "No supported date is available in this record."
+      },
+      {
+        "id": "reported_at",
+        "label": "Reported",
+        "description": "Date of the report; not necessarily the experiment date."
+      },
+      {
+        "id": "campaign_end_month",
+        "label": "Campaign through",
+        "description": "Month the multi-month experimental campaign ended; exact shot date not established."
+      },
+      {
+        "id": "undated_live_page",
+        "label": "Undated page",
+        "description": "Live source reviewed at the snapshot; no publication date established."
+      }
+    ],
+    "date_precision": [
+      {
+        "id": "day",
+        "label": "Day specified"
+      },
+      {
+        "id": "month",
+        "label": "Month specified"
+      },
+      {
+        "id": "year",
+        "label": "Year specified"
+      },
+      {
+        "id": "range",
+        "label": "Approximate window"
+      },
+      {
+        "id": "not_specified",
+        "label": "Timing unspecified"
+      }
+    ],
+    "site_roles": [
+      {
+        "id": "headquarters",
+        "label": "Headquarters"
+      },
+      {
+        "id": "company_office",
+        "label": "Company office"
+      },
+      {
+        "id": "experimental_facility",
+        "label": "Experimental facility"
+      },
+      {
+        "id": "component_facility",
+        "label": "Component development"
+      },
+      {
+        "id": "planned_power_plant",
+        "label": "Announced power-plant site"
+      },
+      {
+        "id": "fuel_cycle_facility",
+        "label": "Fuel-cycle facility"
+      },
+      {
+        "id": "materials_facility",
+        "label": "Materials test facility"
+      },
+      {
+        "id": "engineering_facility",
+        "label": "Engineering test facility"
+      },
+      {
+        "id": "unknown",
+        "label": "Site role not established"
+      }
+    ]
+  },
+  "interface_copy": {
+    "schematic_note": "Schematic — not to scale",
+    "pulsed_animation_note": "Slowed schematic; animation timing does not represent the physical pulse.",
+    "map_location_note": "Approximate location",
+    "map_count_entities": "{count} organizations",
+    "map_count_sites": "{count} sites",
+    "company_fuel_current": "Current experimental fuel",
+    "company_fuel_intended": "Intended commercial fuel",
+    "company_evidence_heading": "What the evidence shows",
+    "company_targets_heading": "Announced plans",
+    "company_assessment_heading": "Remaining questions",
+    "company_funding_heading": "Financing and conditions",
+    "source_link": "Read the source",
+    "source_drawer_title": "Behind this claim",
+    "show_assumptions": "Show the assumptions",
+    "show_data": "View the data table",
+    "download_data": "Download the research snapshot",
+    "compare_action": "Compare selected projects",
+    "empty_filter_result": "No records match these filters. Clear a filter to broaden the view.",
+    "unknown_value": "Not established in this record",
+    "undisclosed_amount": "Amount undisclosed",
+    "no_current_total": "No current comparable total established",
+    "no_site_selected": "Site not established in this record",
+    "calculator_heading": "Follow the power balance",
+    "calculator_assumptions_label": "Illustrative assumptions",
+    "calculator_scope_note": "These inputs are coupled in real machines. This model illustrates accounting, not plasma performance.",
+    "calculator_net_positive": "Net output in this simplified model",
+    "calculator_net_zero": "Electrical break-even in this simplified model",
+    "calculator_net_negative": "Net consumption",
+    "calculator_invalid_ratio": "Ratio undefined for these inputs",
+    "calculator_reset": "Reset assumptions",
+    "calculator_share": "Copy scenario link",
+    "funding_chart_note": "Compare the same currency and financing basis. Cumulative totals already include earlier funding within their stated scope.",
+    "funding_usd_note": "Dollar equivalent supplied by the source; approximate conversion where stated.",
+    "funding_superseded_note": "This announcement was updated by a later closing of the same round.",
+    "timeline_snapshot_divider": "Research snapshot",
+    "timeline_targets_lane": "Announced plans",
+    "timeline_fuzzy_date_note": "Position is approximate; the source’s original date wording is shown.",
+    "assessment_note": "Editorial assessment based on the cited evidence. No numerical probability of success is assigned.",
+    "evidence_gap_note": "The reviewed record does not establish this result. Missing public evidence is not proof of failure.",
+    "supplier_note": "Enabling-systems supplier; compare its component and engineering work within that role.",
+    "public_project_note": "Public research or demonstration programme; its mission and budget differ from a private company’s.",
+    "reduced_motion_note": "Animation is paused. Use the stage controls to explore each step."
+  }
+}

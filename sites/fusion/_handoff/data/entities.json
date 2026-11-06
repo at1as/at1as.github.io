@@ -1,0 +1,2063 @@
+[
+  {
+    "id": "cfs",
+    "name": "Commonwealth Fusion Systems",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "tokamak",
+    "approach_variant": "high_field_tokamak",
+    "family": "magnetic",
+    "summary": "Compact high-field tokamak developer building SPARC before the first ARC electricity plant.",
+    "mechanism": [
+      "HTS magnets confine a toroidal plasma with plasma current. ARC would capture D-T neutron energy as heat and use a turbine cycle."
+    ],
+    "operating_fuel": "SPARC is under construction; no current burning-fuel operation established.",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "cfs_office",
+      "cfs_sparc",
+      "cfs_arc"
+    ],
+    "evidence_claim_ids": [
+      "cfs_evidence_01"
+    ],
+    "target_claim_ids": [
+      "cfs_target_01",
+      "cfs_target_02"
+    ],
+    "risk_note_ids": [
+      "cfs_risk_01",
+      "cfs_risk_02"
+    ],
+    "funding_summary": {
+      "display": "$4.0B capital raised, July 2026",
+      "latest_cumulative_event_id": "cfs_2026_total",
+      "latest_round_event_id": "cfs_2026_round",
+      "caveat": "Financing is not evidence of electricity production; exclude PPAs from capital totals."
+    },
+    "source_ids": [
+      "MAG_CFS_FUND_2026",
+      "MAG_CFS_SPARC",
+      "MAG_CFS_ARC",
+      "MAG_CFS_MAGNET"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "helion",
+    "name": "Helion",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "pulsed_frc",
+    "approach_variant": "pulsed_frc",
+    "family": "magneto_inertial",
+    "summary": "Pulsed FRC developer pursuing direct inductive electricity recovery and an early Microsoft power project.",
+    "mechanism": [
+      "Two magnetized plasmas merge and are compressed. Their subsequent expansion can induce current in surrounding coils and return energy to capacitors."
+    ],
+    "operating_fuel": "Polaris lists D-D, D-T and D-He3; January 2026 reported result specifically used D-T.",
+    "intended_fuel": "D-He3; deuterium reactions and helium-3 production remain part of the proposed fuel cycle.",
+    "site_ids": [
+      "helion_office",
+      "helion_polaris",
+      "helion_orion"
+    ],
+    "evidence_claim_ids": [
+      "helion_evidence_01"
+    ],
+    "target_claim_ids": [
+      "helion_target_01",
+      "helion_target_02"
+    ],
+    "risk_note_ids": [
+      "helion_risk_01",
+      "helion_risk_02",
+      "helion_risk_03"
+    ],
+    "funding_summary": {
+      "display": "Series G finalized at $500M in September 2026; $1.5B cumulative reported June",
+      "latest_cumulative_event_id": "helion_total_june",
+      "latest_round_event_id": "helion_g_final",
+      "caveat": "Do not add initial $465M to final $500M. October CHIPS LOI up to $175M and planned $50M private spending are conditional, not closed equity."
+    },
+    "source_ids": [
+      "MAG_HELION_FUND",
+      "PHY_037",
+      "MAG_HELION_POLARIS",
+      "MAG_HELION_ORION",
+      "MAG_HELION_POLARIS_RESULTS",
+      "MAG_HELION_CHIPS"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-He3"
+    ]
+  },
+  {
+    "id": "tae",
+    "name": "TAE Technologies",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "beam_frc",
+    "approach_variant": "beam_driven_frc",
+    "family": "magnetic",
+    "summary": "Neutral-beam FRC developer whose preferred commercial fuel is hydrogen-boron; its shortened roadmap proceeds directly toward Da Vinci.",
+    "mechanism": [
+      "Energetic neutral beams create and sustain a field-reversed plasma. The preferred p-B11 power concept would collect radiation and particle energy as heat for electricity."
+    ],
+    "operating_fuel": "Experimental light-ion plasmas; no commercial p-B11 burning plasma established in the reviewed evidence. Exact current mixture not independently verified here.",
+    "intended_fuel": "Preferred p-B11; D-He3 is an additional prospective option, not a verified replacement baseline.",
+    "site_ids": [
+      "tae_office",
+      "tae_norm",
+      "tae_davinci"
+    ],
+    "evidence_claim_ids": [
+      "tae_evidence_01",
+      "tae_evidence_02"
+    ],
+    "target_claim_ids": [
+      "tae_target_01"
+    ],
+    "risk_note_ids": [
+      "tae_risk_01",
+      "tae_risk_02",
+      "tae_risk_03"
+    ],
+    "funding_summary": {
+      "display": ">$1.3B equity reported June 2025; $200M convertible-note proceeds confirmed March 2026",
+      "latest_cumulative_event_id": "tae_2025_equity_total",
+      "latest_round_event_id": "tae_2025_round",
+      "caveat": "Do not count merger valuation as cash, the extra $100M as drawn, or automatically add debt to equity."
+    },
+    "source_ids": [
+      "MAG_TAE_FUND",
+      "MAG_TAE_ROADMAP",
+      "MAG_TAE_NATURE",
+      "MAG_TAE_FUEL",
+      "MAG_TAE_HE3",
+      "MAG_TAE_DEBT",
+      "MAG_TAE_MERGER"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "p-B11"
+    ]
+  },
+  {
+    "id": "tokamak_energy",
+    "name": "Tokamak Energy",
+    "entity_type": "reactor_developer_and_magnet_supplier",
+    "sector": "company_or_supplier",
+    "approach_id": "spherical_tokamak",
+    "approach_variant": "spherical_tokamak",
+    "family": "magnetic",
+    "summary": "Spherical-tokamak developer with a separate commercial HTS magnet business, TE Magnetics.",
+    "mechanism": [
+      "A compact, low-aspect-ratio tokamak confines plasma using external fields and plasma current; HTS technology is being developed for later systems."
+    ],
+    "operating_fuel": "ST40 experimental hydrogen-isotope plasma; exact current campaign mixture not established in the reviewed sources.",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "tokamak_energy_office",
+      "te_st40"
+    ],
+    "evidence_claim_ids": [
+      "tokamak_energy_evidence_01",
+      "tokamak_energy_evidence_02"
+    ],
+    "target_claim_ids": [
+      "tokamak_energy_target_01"
+    ],
+    "risk_note_ids": [
+      "tokamak_energy_risk_01",
+      "tokamak_energy_risk_02"
+    ],
+    "funding_summary": {
+      "display": "$335M reported total: $275M private + $60M government",
+      "latest_cumulative_event_id": "te_2024_all_total",
+      "latest_round_event_id": "te_2024_round",
+      "caveat": "Latest verified financing announcement is November 2024. The STEP magnet supply contract is commercial revenue, not new venture funding."
+    },
+    "source_ids": [
+      "MAG_TE_FUND",
+      "MAG_TE_DEMO4",
+      "MAG_TE_ST40",
+      "MAG_TE_US"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "type_one",
+    "name": "Type One Energy",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "stellarator",
+    "approach_variant": "stellarator",
+    "family": "magnetic",
+    "summary": "HTS stellarator developer planning engineering verification and a grid-power project at a retired TVA coal site.",
+    "mechanism": [
+      "Three-dimensional superconducting coils provide a twisted toroidal confinement field without depending on a large driven plasma current."
+    ],
+    "operating_fuel": "Infinity One not yet commissioned; no company burning-plasma operation established.",
+    "intended_fuel": "D-T for Infinity Two",
+    "site_ids": [
+      "type_one_office",
+      "typeone_infinity_one",
+      "typeone_infinity_two"
+    ],
+    "evidence_claim_ids": [
+      "type_one_evidence_01"
+    ],
+    "target_claim_ids": [
+      "type_one_target_01",
+      "type_one_target_02",
+      "type_one_target_03"
+    ],
+    "risk_note_ids": [
+      "type_one_risk_01",
+      "type_one_risk_02",
+      "type_one_risk_03"
+    ],
+    "funding_summary": {
+      "display": "$200M Series B announced October 2026",
+      "latest_round_event_id": "typeone_2026_b",
+      "latest_cumulative_event_id": null,
+      "caveat": "Current cumulative financing is not asserted; earlier totals and convertible financing may overlap."
+    },
+    "source_ids": [
+      "MAG_TYPEONE_FUND",
+      "MAG_TYPEONE_TECH",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "proxima",
+    "name": "Proxima Fusion",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "stellarator",
+    "approach_variant": "quasi_isodynamic_stellarator",
+    "family": "magnetic",
+    "summary": "European HTS stellarator developer building from Wendelstein 7-X scientific heritage toward Alpha and Stellaris.",
+    "mechanism": [
+      "Optimized quasi-isodynamic three-dimensional magnetic fields are designed to reduce particle losses and support steady plasma confinement."
+    ],
+    "operating_fuel": "No operating company fusion experiment established; Alpha is planned.",
+    "intended_fuel": "D-T for the power-plant concept",
+    "site_ids": [
+      "proxima_office",
+      "proxima_alpha",
+      "proxima_stellaris"
+    ],
+    "evidence_claim_ids": [
+      "proxima_evidence_01"
+    ],
+    "target_claim_ids": [
+      "proxima_target_01",
+      "proxima_target_02",
+      "proxima_target_03"
+    ],
+    "risk_note_ids": [
+      "proxima_risk_01",
+      "proxima_risk_02",
+      "proxima_risk_03"
+    ],
+    "funding_summary": {
+      "display": ">€650M reported funding, including €95M grants; €411M latest round",
+      "latest_cumulative_event_id": "proxima_2026_total",
+      "latest_round_event_id": "proxima_2026_round",
+      "caveat": "Separate €400M Bavaria commitment. Source supplies USD approximations; retain native EUR."
+    },
+    "source_ids": [
+      "MAG_PROXIMA_FUND",
+      "MAG_PROXIMA_ALPHA",
+      "MAG_PROXIMA_STELLARIS",
+      "MAG_PROXIMA_PAPER"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "thea",
+    "name": "Thea Energy",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "stellarator",
+    "approach_variant": "planar_coil_stellarator",
+    "family": "magnetic",
+    "summary": "Stellarator developer replacing individually twisted coils with many actively controlled planar HTS coils.",
+    "mechanism": [
+      "A surrounding array of simple planar coils synthesizes a three-dimensional stellarator field through individually controlled currents."
+    ],
+    "operating_fuel": "No Eos plasma operation established; demonstrated work includes magnet arrays.",
+    "intended_fuel": "D-D for Eos; D-T for Helios electricity plant",
+    "site_ids": [
+      "thea_office",
+      "thea_nj",
+      "thea_eos"
+    ],
+    "evidence_claim_ids": [
+      "thea_evidence_01"
+    ],
+    "target_claim_ids": [
+      "thea_target_01",
+      "thea_target_02",
+      "thea_target_03"
+    ],
+    "risk_note_ids": [
+      "thea_risk_01",
+      "thea_risk_02",
+      "thea_risk_03"
+    ],
+    "funding_summary": {
+      "display": "$100M Series B plus undisclosed extension; $20M ARPA-E award separately",
+      "latest_round_event_id": "thea_2026_b_extension",
+      "latest_cumulative_event_id": null,
+      "caveat": "Unknown extension is not zero; avoid inventing a total from the initial round."
+    },
+    "source_ids": [
+      "MAG_THEA_FUND",
+      "MAG_THEA_EXTENSION",
+      "MAG_THEA_EOS",
+      "MAG_THEA_HELIOS",
+      "MAG_THEA_CANIS"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "renaissance",
+    "name": "Renaissance Fusion",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "stellarator",
+    "approach_variant": "patterned_hts_stellarator",
+    "family": "magnetic",
+    "summary": "Stellarator developer combining patterned HTS surfaces with liquid-metal wall concepts.",
+    "mechanism": [
+      "Laser-patterned superconducting paths would create the confinement field; flowing lithium would absorb heat, shield hardware and breed tritium."
+    ],
+    "operating_fuel": "Component and manufacturing development; no burning-plasma result established.",
+    "intended_fuel": "D-T, consistent with its lithium/tritium power concept",
+    "site_ids": [
+      "renaissance_office",
+      "renaissance_grenoble"
+    ],
+    "evidence_claim_ids": [
+      "renaissance_evidence_01"
+    ],
+    "target_claim_ids": [
+      "renaissance_target_01"
+    ],
+    "risk_note_ids": [
+      "renaissance_risk_01",
+      "renaissance_risk_02"
+    ],
+    "funding_summary": {
+      "display": "€32M Series A first close, March 2025; €10M BPIFrance grant separately",
+      "latest_round_event_id": "renaissance_a_first",
+      "latest_cumulative_event_id": null,
+      "caveat": "No current cumulative private total asserted."
+    },
+    "source_ids": [
+      "MAG_RENAISSANCE_NEWS",
+      "MAG_RENAISSANCE_TECH"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "realta",
+    "name": "Realta Fusion",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "magnetic_mirror",
+    "approach_variant": "magnetic_mirror",
+    "family": "magnetic",
+    "summary": "High-field magnetic-mirror developer pursuing modular industrial heat and power.",
+    "mechanism": [
+      "Stronger end fields reflect particles in a linear plasma. Direct electrostatic recovery may reduce losses, while D-T neutron energy still feeds a thermal power system."
+    ],
+    "operating_fuel": "D-D in the reviewed WHAM direct-conversion experiment",
+    "intended_fuel": "D-T for first-generation commercial plants",
+    "site_ids": [
+      "realta_office",
+      "wham_site_00"
+    ],
+    "evidence_claim_ids": [
+      "realta_evidence_01",
+      "realta_evidence_02"
+    ],
+    "target_claim_ids": [
+      "realta_target_01"
+    ],
+    "risk_note_ids": [
+      "realta_risk_01",
+      "realta_risk_02"
+    ],
+    "funding_summary": {
+      "display": "$36M Series A; $9.5M debt facility separately",
+      "latest_round_event_id": "realta_2025_a",
+      "latest_cumulative_event_id": null,
+      "caveat": "Do not count available facility as fully drawn equity."
+    },
+    "source_ids": [
+      "MAG_REALTA_TECH",
+      "MAG_REALTA_FUND",
+      "MAG_REALTA_DEBT",
+      "MAG_REALTA_WHAM",
+      "MAG_REALTA_DEC",
+      "MAG_REALTA_TIMELINE"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "energy_singularity",
+    "name": "Energy Singularity",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "tokamak",
+    "approach_variant": "high_field_tokamak",
+    "family": "magnetic",
+    "summary": "Shanghai HTS tokamak developer operating HH70 and planning a higher-field successor.",
+    "mechanism": [
+      "HTS magnets surround a tokamak plasma; the programme moves from long-duration experimental operation toward high-field gain studies."
+    ],
+    "operating_fuel": "Experimental HH70 plasma; campaign fuel details not verified in the reviewed primary releases.",
+    "intended_fuel": "D-T for commercial concept",
+    "site_ids": [
+      "energy_singularity_office",
+      "es_hh70"
+    ],
+    "evidence_claim_ids": [
+      "energy_singularity_evidence_01",
+      "energy_singularity_evidence_02",
+      "energy_singularity_evidence_03"
+    ],
+    "target_claim_ids": [
+      "energy_singularity_target_01"
+    ],
+    "risk_note_ids": [
+      "energy_singularity_risk_01",
+      "energy_singularity_risk_02"
+    ],
+    "funding_summary": {
+      "display": "$112.5M company-declared in 2026 survey; historical native-currency total nearly RMB800M in 2023",
+      "latest_cumulative_event_id": "es_2026_survey_total",
+      "latest_round_event_id": "es_prea",
+      "caveat": "A later financing rumor was not reconciled to a readable primary amount. Do not assert the historical round is necessarily the latest actual financing."
+    },
+    "source_ids": [
+      "MAG_ES_DEVICES",
+      "MAG_ES_PULSE",
+      "MAG_ES_MAGNET",
+      "MAG_ES_SEED",
+      "MAG_ES_PREA",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "kyoto_fusioneering",
+    "name": "Kyoto Fusioneering",
+    "entity_type": "fusion_systems_supplier",
+    "sector": "company_or_supplier",
+    "approach_id": null,
+    "approach_variant": "fusion_systems_supplier",
+    "family": "enabling_systems",
+    "summary": "Fusion engineering supplier developing heating, blanket, thermal-cycle and tritium systems.",
+    "mechanism": [
+      "Provides enabling plant components and test loops across multiple reactor approaches; its own test facilities are not fusion-powered grid plants."
+    ],
+    "operating_fuel": "Engineering tests; not a reactor developer’s operating plasma fuel.",
+    "intended_fuel": "Tritium handling, heating and blanket systems for customers, including D-T concepts.",
+    "site_ids": [
+      "kyoto_fusioneering_office",
+      "kyoto_unity1",
+      "kyoto_unity2"
+    ],
+    "evidence_claim_ids": [
+      "kyoto_fusioneering_evidence_01"
+    ],
+    "target_claim_ids": [
+      "kyoto_fusioneering_target_01"
+    ],
+    "risk_note_ids": [
+      "kyoto_fusioneering_risk_01",
+      "kyoto_fusioneering_risk_02"
+    ],
+    "funding_summary": {
+      "display": "¥32.98B cumulative equity; latest ¥16.72B equity plus ¥9B facilities",
+      "latest_cumulative_event_id": "kyoto_equity_total",
+      "latest_round_event_id": "kyoto_d_first",
+      "caveat": "Supplier category. The ¥25.72B headline combines equity and credit facilities."
+    },
+    "source_ids": [
+      "MAG_KYOTO_FUND",
+      "MAG_KYOTO_HQ"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_reactor_developer",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": []
+  },
+  {
+    "id": "nt_tao",
+    "name": "nT-Tao",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "stellarator",
+    "approach_variant": "pulsed_compact_stellarator",
+    "family": "magnetic",
+    "summary": "Compact pulsed stellarator developer targeting modular on-site electricity.",
+    "mechanism": [
+      "High-density pulsed magnetic confinement combines stellarator shaping and rapidly delivered heating; intended plant output would use a thermal cycle."
+    ],
+    "operating_fuel": "Experimental plasma; exact operating mixture not verified here.",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "nt_tao_office",
+      "nttao_c3"
+    ],
+    "evidence_claim_ids": [
+      "nt_tao_evidence_01"
+    ],
+    "target_claim_ids": [
+      "nt_tao_target_01",
+      "nt_tao_target_02"
+    ],
+    "risk_note_ids": [
+      "nt_tao_risk_01",
+      "nt_tao_risk_02"
+    ],
+    "funding_summary": {
+      "display": "$34M company-declared in Q2 2026 survey",
+      "latest_cumulative_event_id": "nttao_2026_total",
+      "latest_round_event_id": "nttao_a",
+      "caveat": "Historical $22M Series A and $28M cumulative at February 2023 are not current totals."
+    },
+    "source_ids": [
+      "MAG_NTTAO_FUND",
+      "MAG_NTTAO_POWER",
+      "MAG_NTTAO_TECH",
+      "MAG_NTTAO_FAQ",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "helical_fusion",
+    "name": "Helical Fusion",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "stellarator",
+    "approach_variant": "helical_stellarator",
+    "family": "magnetic",
+    "summary": "Japanese helical-stellarator developer pairing continuous HTS coils with liquid-metal blanket technology.",
+    "mechanism": [
+      "Two helical superconducting coils wind around the plasma torus to produce its twisted magnetic field; the plant concept captures fusion heat for electricity."
+    ],
+    "operating_fuel": "HARUKA is under construction; no company burning plasma established.",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "helical_fusion_office",
+      "helical_haruka",
+      "helical_kanata"
+    ],
+    "evidence_claim_ids": [
+      "helical_fusion_evidence_01"
+    ],
+    "target_claim_ids": [
+      "helical_fusion_target_01",
+      "helical_fusion_target_02"
+    ],
+    "risk_note_ids": [
+      "helical_fusion_risk_01",
+      "helical_fusion_risk_02"
+    ],
+    "funding_summary": {
+      "display": "¥13.05B cumulative mixed funding; ¥3.23B latest Series B second close",
+      "latest_cumulative_event_id": "helical_company_total",
+      "latest_round_event_id": "helical_b_second",
+      "caveat": "English page says ¥13.15B; newer Japanese text says ¥13.05B. Includes loans and grants; conditional METI subsidy excluded."
+    },
+    "source_ids": [
+      "MAG_HELICAL_FUND_EN",
+      "MAG_HELICAL_FUND_JP",
+      "MAG_HELICAL_TECH",
+      "MAG_HELICAL_MANUFACTURE",
+      "MAG_HELICAL_HQ"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "inertia",
+    "name": "Inertia Enterprises",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "laser_indirect",
+    "approach_variant": "laser_indirect_drive",
+    "family": "inertial",
+    "summary": "Scales NIF-style indirect-drive laser fusion toward a repetitive electricity-producing plant.",
+    "mechanism": [
+      "Diode-pumped beamlines deliver light to a hohlraum surrounding a cryogenic DT capsule.",
+      "X-rays generated inside the hohlraum compress and ignite the capsule.",
+      "The proposed gas-armored chamber and replaceable solid wall surround a heat-capturing, tritium-breeding system; turbines would make electricity.",
+      "Fresh targets and laser shots repeat at the planned plant rate."
+    ],
+    "operating_fuel": "Component development; no company integrated fusion experiment identified",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "inertia_office",
+      "inertia_site_01"
+    ],
+    "evidence_claim_ids": [
+      "inertia_evidence_01",
+      "inertia_evidence_02",
+      "inertia_evidence_03"
+    ],
+    "target_claim_ids": [
+      "inertia_target_01",
+      "inertia_target_02",
+      "inertia_target_03"
+    ],
+    "risk_note_ids": [
+      "inertia_risk_01",
+      "inertia_risk_02",
+      "inertia_risk_03"
+    ],
+    "funding_summary": {
+      "display": "$450 million milestone-based Series A announced February 2026",
+      "funding_event_ids": [
+        "ALT_FIN_INERTIA_SERIES_A"
+      ],
+      "amount": 450000000,
+      "currency": "USD",
+      "basis": "milestone_based_series_a",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_INERTIA_FUND",
+      "ALT_INERTIA_GAIN",
+      "ALT_INERTIA_MODEL",
+      "ALT_INERTIA_PAPER",
+      "ALT_INERTIA_HOME",
+      "ALT_INERTIA_PHASE1",
+      "ALT_INERTIA_FUELING",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+      "model_conflict_note": "The live FAQ18/30/45 scenarios and newer >25–43 simulations with 250–1300 MWe estimates use different model snapshots. Do not fit them into one universal line. Preserve source and version labels."
+    },
+    "company_models": {
+      "faq_scenarios": [
+        {
+          "target_gain": 18,
+          "net_grid_MW": 50,
+          "source_ids": [
+            "ALT_INERTIA_GAIN"
+          ],
+          "evidence_type": "company_model",
+          "warning": "Requires company-specific plant assumptions; not experimentally demonstrated."
+        },
+        {
+          "target_gain": 30,
+          "net_grid_MW": 500,
+          "source_ids": [
+            "ALT_INERTIA_GAIN"
+          ],
+          "evidence_type": "company_model"
+        },
+        {
+          "target_gain": 45,
+          "net_grid_MW": 1500,
+          "source_ids": [
+            "ALT_INERTIA_GAIN"
+          ],
+          "evidence_type": "company_model"
+        }
+      ],
+      "phase1_power_balance": {
+        "evidence_type": "simplified_company_model",
+        "source_ids": [
+          "ALT_INERTIA_PHASE1"
+        ],
+        "laser_energy_MJ": 10,
+        "repetition_Hz": 10,
+        "laser_efficiency": 0.12,
+        "thermal_efficiency": 0.45,
+        "other_energy_per_shot_MJ": 5,
+        "formula": "P_net_MW = repetition_Hz * (thermal_efficiency * target_gain * laser_energy_MJ - laser_energy_MJ / laser_efficiency - other_energy_per_shot_MJ)",
+        "examples": [
+          {
+            "target_gain": 25,
+            "laser_efficiency": 0.12,
+            "calculated_net_MW": 241.6667,
+            "company_rounded_net_MW": 250
+          },
+          {
+            "target_gain": 40,
+            "laser_efficiency": 0.12,
+            "calculated_net_MW": 916.6667,
+            "company_rounded_net_MW": 900,
+            "company_operator": "greater_than"
+          },
+          {
+            "target_gain": 40,
+            "laser_efficiency": 0.15,
+            "calculated_net_MW": 1083.3333,
+            "company_rounded_net_MW": 1085
+          }
+        ],
+        "notes": [
+          "Arithmetic using the rounded source assumptions differs slightly from company rounded examples.",
+          "Illustrative steady-running balance, not measured plant performance or a complete plant engineering model.",
+          "Do not force this model to reproduce the separate gain 18/30/45 FAQ scenarios; source assumptions and versions differ."
+        ]
+      },
+      "version_note": "The live FAQ18/30/45 scenarios and newer >25–43 simulations with 250–1300 MWe estimates use different model snapshots. Do not fit them into one universal line. Preserve source and version labels."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "pacific_fusion",
+    "name": "Pacific Fusion",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "pulsed_power_inertial",
+    "approach_variant": "pulsed_magnetic_inertial",
+    "family": "magneto_inertial",
+    "summary": "Uses synchronized pulsed-power modules to magnetically compress a fuel target.",
+    "mechanism": [
+      "Capacitor modules store electrical energy.",
+      "Synchronized short current pulses create a strong magnetic force around a target.",
+      "The target implodes, compressing and heating DT fuel.",
+      "Future plant systems must turn the released heat into electricity and replace spent targets."
+    ],
+    "operating_fuel": "Driver/target experiments; prototype fuel details differ by campaign",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "pacific_fusion_office",
+      "pacific_fusion_site_01",
+      "pacific_fusion_site_02",
+      "pacific_fusion_site_03"
+    ],
+    "evidence_claim_ids": [
+      "pacific_fusion_evidence_01",
+      "pacific_fusion_evidence_02"
+    ],
+    "target_claim_ids": [
+      "pacific_fusion_target_01"
+    ],
+    "risk_note_ids": [
+      "pacific_fusion_risk_01",
+      "pacific_fusion_risk_02",
+      "pacific_fusion_risk_03"
+    ],
+    "funding_summary": {
+      "display": ">$1 billion private capital reported July 2026; original Series A was milestone-released",
+      "funding_event_ids": [
+        "ALT_FIN_PACIFIC_2024",
+        "ALT_FIN_PACIFIC_2026"
+      ],
+      "amount": 1000000000,
+      "currency": "USD",
+      "basis": "reported_private_capital_commitment_basis_uncertain",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true,
+      "amount_operator": "greater_than"
+    },
+    "source_ids": [
+      "ALT_PACIFIC_FOUND",
+      "ALT_PACIFIC_MODULE",
+      "ALT_PACIFIC_CAPITAL",
+      "ALT_PACIFIC_SITE",
+      "ALT_PACIFIC_LOC"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "xcimer",
+    "name": "Xcimer Energy",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "hybrid_direct_drive",
+    "approach_variant": "hybrid_direct_drive_excimer",
+    "family": "inertial",
+    "summary": "Develops high-energy excimer lasers and a liquid-wall chamber for inertial fusion power.",
+    "mechanism": [
+      "Excimer gas amplifiers create a long laser pulse.",
+      "Optical pulse compression shortens it for target implosion.",
+      "Target design uses initial hohlraum-generated X-ray drive followed by direct laser drive; this hybrid direct-drive design is not fast ignition.",
+      "An inertial-fusion target releases energy inside a liquid-wall chamber.",
+      "Molten salt captures heat, shields structures and is intended to breed fuel."
+    ],
+    "operating_fuel": "Laser-component tests; no integrated power-generating fusion system identified",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "xcimer_office",
+      "xcimer_site_01",
+      "xcimer_site_02"
+    ],
+    "evidence_claim_ids": [
+      "xcimer_evidence_01"
+    ],
+    "target_claim_ids": [
+      "xcimer_target_01",
+      "xcimer_target_02",
+      "xcimer_target_03"
+    ],
+    "risk_note_ids": [
+      "xcimer_risk_01",
+      "xcimer_risk_02",
+      "xcimer_risk_03"
+    ],
+    "funding_summary": {
+      "display": "Nearly $200 million in seed and Series A investment on live FAQ; July 2026 survey snapshot was $178 million",
+      "funding_event_ids": [
+        "ALT_FIN_XCIMER_A",
+        "ALT_FIN_XCIMER_FIA",
+        "ALT_FIN_XCIMER_LIVE_TOTAL"
+      ],
+      "amount": 200000000,
+      "currency": "USD",
+      "basis": "approximate_private_investment_live_website",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true,
+      "amount_operator": "nearly"
+    },
+    "source_ids": [
+      "ALT_XCIMER_FUND",
+      "ALT_XCIMER_ROADMAP",
+      "ALT_XCIMER_DOE",
+      "ALT_XCIMER_FAQ",
+      "MAG_FIA_2026",
+      "PAR_XCIMER_HDD"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "focused_energy",
+    "name": "Focused Energy",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "laser_direct",
+    "approach_variant": "laser_direct_drive_fast_ignition",
+    "family": "inertial",
+    "summary": "Develops direct-drive laser fusion, modular lasers and manufactured DT fuel capsules.",
+    "mechanism": [
+      "Fresh DT capsules enter the chamber.",
+      "Direct laser drive compresses the fuel.",
+      "Published development work also tests focused laser-generated protons for fast ignition.",
+      "Repeated fusion heat is intended to feed a conventional electricity plant."
+    ],
+    "operating_fuel": "Target/laser and proton-focusing experiments",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "focused_energy_office",
+      "focused_energy_site_01",
+      "focused_energy_site_02",
+      "focused_energy_site_03"
+    ],
+    "evidence_claim_ids": [
+      "focused_energy_evidence_01"
+    ],
+    "target_claim_ids": [
+      "focused_energy_target_01",
+      "focused_energy_target_02",
+      "focused_energy_target_03"
+    ],
+    "risk_note_ids": [
+      "focused_energy_risk_01",
+      "focused_energy_risk_02",
+      "focused_energy_risk_03"
+    ],
+    "funding_summary": {
+      "display": "$500 million total declared in 2026 survey; $240 million Series A announced May 2026",
+      "funding_event_ids": [
+        "ALT_FIN_FOCUSED_A",
+        "ALT_FIN_FOCUSED_ENERGY_FIA"
+      ],
+      "amount": 500000000,
+      "currency": "USD",
+      "basis": "mixed_or_unspecified_total",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_FOCUSED_FUND",
+      "ALT_FOCUSED_TECH",
+      "ALT_FOCUSED_EXP",
+      "ALT_FOCUSED_ROADMAP",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+      "mechanism_note": "Current homepage emphasizes direct drive; older primary milestone release specifies proton fast ignition. Keep both with dates instead of asserting every present design detail is unchanged."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "general_fusion",
+    "name": "General Fusion",
+    "entity_type": "public_reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "magnetized_target",
+    "approach_variant": "mechanical_magnetized_target",
+    "family": "magneto_inertial",
+    "summary": "Compresses a magnetized plasma with a metal liner, aiming for a reusable liquid-metal power-plant wall.",
+    "mechanism": [
+      "An injector forms a deuterium spherical-tokamak plasma.",
+      "A metal liner compresses and heats the magnetized fuel.",
+      "LM26 uses a solid lithium liner; commercial machinery envisages liquid metal.",
+      "The commercial liquid wall would capture heat and breed tritium."
+    ],
+    "operating_fuel": "LM26 deuterium spherical-tokamak plasmas (solid-liner experiments)",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "general_fusion_office",
+      "general_fusion_site_01"
+    ],
+    "evidence_claim_ids": [
+      "general_fusion_evidence_01",
+      "general_fusion_evidence_02"
+    ],
+    "target_claim_ids": [
+      "general_fusion_target_01",
+      "general_fusion_target_02"
+    ],
+    "risk_note_ids": [
+      "general_fusion_risk_01",
+      "general_fusion_risk_02",
+      "general_fusion_risk_03"
+    ],
+    "funding_summary": {
+      "display": "≈$500 million survey total; ≈$150 million cash at July 2026 listing shown separately",
+      "funding_event_ids": [
+        "ALT_FIN_GENERAL_FUSION_FIA",
+        "ALT_FIN_GENERAL_LIST_CASH"
+      ],
+      "amount": 500000000,
+      "currency": "USD",
+      "basis": "mixed_or_unspecified_total",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true,
+      "amount_operator": "approximately"
+    },
+    "source_ids": [
+      "ALT_GENERAL_TEMP",
+      "ALT_GENERAL_LIST",
+      "ALT_GENERAL_PATH",
+      "ALT_GENERAL_LOC",
+      "ALT_GENERAL_PAPER",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+      "location_note": "Company press releases use Vancouver metropolitan label; street address is Richmond. Do not plot two independent reactor sites.",
+      "prior_plan_note": "Older Culham demonstration plans should not be shown as an active operating project without a current dedicated source."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "zap_energy",
+    "name": "Zap Energy",
+    "entity_type": "integrated_nuclear_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "z_pinch",
+    "approach_variant": "sheared_flow_z_pinch",
+    "family": "magnetic_pulsed",
+    "summary": "Uses the plasma current to pinch a flowing column, with sheared flow intended to suppress instabilities.",
+    "mechanism": [
+      "Current accelerates plasma into a narrow column.",
+      "The current generates a magnetic field that compresses the column.",
+      "Different axial flow speeds help stabilize the pinch.",
+      "Future liquid-metal walls capture heat; fission and hybrid products are separate development tracks."
+    ],
+    "operating_fuel": "Deuterium fusion experiments; Century engineering platform uses hydrogen",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "zap_energy_office",
+      "zap_energy_site_01"
+    ],
+    "evidence_claim_ids": [
+      "zap_energy_evidence_01",
+      "zap_energy_evidence_02",
+      "zap_energy_evidence_03"
+    ],
+    "target_claim_ids": [
+      "zap_energy_target_01"
+    ],
+    "risk_note_ids": [
+      "zap_energy_risk_01",
+      "zap_energy_risk_02",
+      "zap_energy_risk_03"
+    ],
+    "funding_summary": {
+      "display": "$338 million declared 2026 survey total; $130 million Series D verified October 2024",
+      "funding_event_ids": [
+        "ALT_FIN_ZAP_D",
+        "ALT_FIN_ZAP_ENERGY_FIA"
+      ],
+      "amount": 338000000,
+      "currency": "USD",
+      "basis": "mixed_or_unspecified_total",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_ZAP_FUND",
+      "ALT_ZAP_PRESSURE",
+      "ALT_ZAP_STRATEGY",
+      "ALT_ZAP_LOC",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "first_light",
+    "name": "First Light Fusion",
+    "entity_type": "fuel_system_and_partnered_reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "hybrid_fast_ignition",
+    "approach_variant": "hybrid_fast_ignition",
+    "family": "inertial",
+    "summary": "Develops FLARE, a two-stage fuel system, with partners supplying major plant and driver systems.",
+    "mechanism": [
+      "An engineered fuel package controls the compression of DT fuel.",
+      "An electrical pulse compresses the fuel with limited premature heating.",
+      "A separate rapid heating step is intended to trigger ignition.",
+      "Partner-built systems complete the plant around the fuel-system design."
+    ],
+    "operating_fuel": "Hydrodynamics/compression tests; not integrated ignition",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "first_light_office",
+      "first_light_site_01"
+    ],
+    "evidence_claim_ids": [
+      "first_light_evidence_01"
+    ],
+    "target_claim_ids": [
+      "first_light_target_01",
+      "first_light_target_02"
+    ],
+    "risk_note_ids": [
+      "first_light_risk_01",
+      "first_light_risk_02",
+      "first_light_risk_03"
+    ],
+    "funding_summary": {
+      "display": "$156.38 million survey total; £25 million first-close round April 2026",
+      "funding_event_ids": [
+        "ALT_FIN_FIRSTLIGHT_2026",
+        "ALT_FIN_FIRST_LIGHT_FIA"
+      ],
+      "amount": 156379800,
+      "currency": "USD",
+      "basis": "mixed_or_unspecified_total",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_FIRSTLIGHT_FUND",
+      "ALT_FIRSTLIGHT_TEST",
+      "ALT_FIRSTLIGHT_TECH",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+      "prior_plan_note": "Do not present historic projectile-driven power-plant plans as the current strategy. Current FLARE is a partnered fuel-system/hybrid-fast-ignition program."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "marvel_fusion",
+    "name": "Marvel Fusion",
+    "entity_type": "reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "laser_direct",
+    "approach_variant": "laser_fast_ignition",
+    "family": "inertial",
+    "summary": "Pursues hollow-shell fast ignition using nanostructured targets and high-repetition lasers.",
+    "mechanism": [
+      "Laser pulses interact with nanostructured target materials.",
+      "Converters couple energy through fast particles and radiation into fuel.",
+      "A fast-ignition architecture is intended to initiate burn.",
+      "Near-term DT plants use a liquid blanket for heat extraction and tritium breeding."
+    ],
+    "operating_fuel": "Laser/target component research",
+    "intended_fuel": "Near-term noncryogenic D-T; longer-term tritium-lean options",
+    "site_ids": [
+      "marvel_fusion_office",
+      "marvel_fusion_site_01",
+      "marvel_fusion_site_02"
+    ],
+    "evidence_claim_ids": [
+      "marvel_fusion_evidence_01",
+      "marvel_fusion_evidence_02"
+    ],
+    "target_claim_ids": [
+      "marvel_fusion_target_01",
+      "marvel_fusion_target_02",
+      "marvel_fusion_target_03",
+      "marvel_fusion_target_04",
+      "marvel_fusion_target_05"
+    ],
+    "risk_note_ids": [
+      "marvel_fusion_risk_01",
+      "marvel_fusion_risk_02",
+      "marvel_fusion_risk_03"
+    ],
+    "funding_summary": {
+      "display": "€170 million private investment plus €215 million public cooperation projects (March 2025 disclosure)",
+      "funding_event_ids": [
+        "ALT_FIN_MARVEL_B_EXT",
+        "ALT_FIN_MARVEL_PRIVATE",
+        "ALT_FIN_MARVEL_PUBLIC"
+      ],
+      "amount": 170000000,
+      "currency": "EUR",
+      "basis": "private_investment_with_separate_public_projects",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_MARVEL_FUND",
+      "ALT_MARVEL_TECH",
+      "ALT_MARVEL_SITE",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+      "conflict_note": "2026 survey says $440 million declared total and 300–500 MWe; live roadmap says ~100 MW pilot with net 2036. Keep source-vintage differences visible; do not silently blend."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "avalanche_energy",
+    "name": "Avalanche Energy",
+    "entity_type": "reactor_and_neutron_source_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "electrostatic",
+    "approach_variant": "magneto_electrostatic",
+    "family": "electrostatic_magnetic",
+    "summary": "Develops compact crossed-field devices, combining electrostatic ion orbits with magnetic electron confinement.",
+    "mechanism": [
+      "A negative central electrode attracts fast ions into orbits.",
+      "A surrounding magnetic field confines electrons.",
+      "Co-confined charged populations are intended to sustain fusion reactions.",
+      "First commercial infrastructure targets neutron testing; electricity-producing compact machines remain future goals."
+    ],
+    "operating_fuel": "Hydrogen/ion-confinement experiments; DT gain program planned",
+    "intended_fuel": "D-T near-term; other fuels discussed as longer-term options",
+    "site_ids": [
+      "avalanche_energy_office",
+      "avalanche_energy_site_01"
+    ],
+    "evidence_claim_ids": [
+      "avalanche_energy_evidence_01"
+    ],
+    "target_claim_ids": [
+      "avalanche_energy_target_01",
+      "avalanche_energy_target_02",
+      "avalanche_energy_target_03"
+    ],
+    "risk_note_ids": [
+      "avalanche_energy_risk_01",
+      "avalanche_energy_risk_02",
+      "avalanche_energy_risk_03"
+    ],
+    "funding_summary": {
+      "display": "$104.2 million 2026 survey total; $29 million round and $10 million state grant separately identified",
+      "funding_event_ids": [
+        "ALT_FIN_AVALANCHE_2026",
+        "ALT_FIN_AVALANCHE_GRANT",
+        "ALT_FIN_AVALANCHE_ENERGY_FIA"
+      ],
+      "amount": 104200000,
+      "currency": "USD",
+      "basis": "mixed_or_unspecified_total",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_AVALANCHE_FUND",
+      "ALT_AVALANCHE_TECH",
+      "ALT_AVALANCHE_GRANT",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "ex_fusion",
+    "name": "EX-Fusion",
+    "entity_type": "reactor_and_laser_technology_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "laser_direct",
+    "approach_variant": "laser_direct_fast_ignition",
+    "family": "inertial",
+    "summary": "Builds laser control, target delivery and laser systems toward repeated inertial-fusion operation.",
+    "mechanism": [
+      "A target-feed system delivers fresh fuel capsules.",
+      "Feedback control tracks targets and aims laser beams.",
+      "The referenced LIFT design uses multi-direction laser compression followed by a separate laser ignition stage.",
+      "A future thermal plant converts repeated fusion heat to power."
+    ],
+    "operating_fuel": "Surrogate-target laser irradiation; fusion-neutron operation is a future integrated milestone",
+    "intended_fuel": "D-T",
+    "site_ids": [
+      "ex_fusion_office",
+      "ex_fusion_site_01"
+    ],
+    "evidence_claim_ids": [
+      "ex_fusion_evidence_01"
+    ],
+    "target_claim_ids": [
+      "ex_fusion_target_01",
+      "ex_fusion_target_02"
+    ],
+    "risk_note_ids": [
+      "ex_fusion_risk_01",
+      "ex_fusion_risk_02",
+      "ex_fusion_risk_03"
+    ],
+    "funding_summary": {
+      "display": "JPY 6 billion cumulative financing, including loans (October 2025)",
+      "funding_event_ids": [
+        "ALT_FIN_EXFUSION_A",
+        "ALT_FIN_EXFUSION_EXT",
+        "ALT_FIN_EXFUSION_TOTAL"
+      ],
+      "amount": 6000000000,
+      "currency": "JPY",
+      "basis": "equity_and_debt",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_EXFUSION_A",
+      "ALT_EXFUSION_EXT",
+      "ALT_EXFUSION_TEST",
+      "ALT_EXFUSION_LOC",
+      "MAG_FIA_2026",
+      "PAR_EXFUSION_TECH"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+      "survey_funding_note": "FIA2026 reports $38 million total as a survey conversion. Original-currencyJPY 6 billion is preferred; do not add the two figures."
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "hb11",
+    "name": "HB11 Energy",
+    "entity_type": "reactor_and_laser_technology_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "laser_direct",
+    "approach_variant": "laser_proton_boron",
+    "family": "inertial",
+    "summary": "Develops laser-driven proton-boron fusion and related laser and target technologies.",
+    "mechanism": [
+      "The proposed fast-ignition sequence begins with a nanosecond laser pulse that compresses a proton-boron fuel pellet.",
+      "A picosecond pulse generates focused energetic protons intended to ignite the compressed fuel.",
+      "The main proton-boron-11 reaction yields three helium nuclei; experiments study target geometry and reaction yield.",
+      "The concept feeds about one pellet per second and recovers heat through a conventional steam cycle; this is a future plant design."
+    ],
+    "operating_fuel": "Proton-boron reaction experiments in collaborating facilities",
+    "intended_fuel": "p-B11",
+    "site_ids": [
+      "hb11_office"
+    ],
+    "evidence_claim_ids": [
+      "hb11_evidence_01"
+    ],
+    "target_claim_ids": [
+      "hb11_target_01"
+    ],
+    "risk_note_ids": [
+      "hb11_risk_01",
+      "hb11_risk_02",
+      "hb11_risk_03"
+    ],
+    "funding_summary": {
+      "display": "Company total not verified; AUD 22 million consortium project disclosed separately",
+      "funding_event_ids": [
+        "ALT_FIN_HB11_PROJECT"
+      ],
+      "amount": null,
+      "currency": null,
+      "basis": "mixed_or_unspecified_total",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_HB11_TECH",
+      "ALT_HB11_PAPER",
+      "ALT_HB11_PROJECT"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+      "coverage_tier": "supplemental"
+    },
+    "intended_fuel_ids": [
+      "p-B11"
+    ]
+  },
+  {
+    "id": "fuse",
+    "name": "Fuse Energy Technologies",
+    "entity_type": "neutron_source_and_reactor_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "pulsed_power_inertial",
+    "approach_variant": "pulsed_magnetic_inertial",
+    "family": "magneto_inertial",
+    "summary": "Commercializes radiation-testing hardware while developing pulsed-power inertial-fusion concepts.",
+    "mechanism": [
+      "Pulsed-power systems drive high-current loads.",
+      "Existing dense-plasma-focus hardware produces neutrons for testing.",
+      "A future MagLIF system would compress preconditioned fuel.",
+      "Energy production remains distinct from existing radiation-service revenue."
+    ],
+    "operating_fuel": "D-D neutron-source tests; future MagLIF route",
+    "intended_fuel": "D-D / D-T",
+    "site_ids": [
+      "fuse_office",
+      "fuse_site_01",
+      "fuse_site_02"
+    ],
+    "evidence_claim_ids": [
+      "fuse_evidence_01"
+    ],
+    "target_claim_ids": [
+      "fuse_target_01"
+    ],
+    "risk_note_ids": [
+      "fuse_risk_01",
+      "fuse_risk_02",
+      "fuse_risk_03"
+    ],
+    "funding_summary": {
+      "display": "$65 million total declared in 2026 industry survey",
+      "funding_event_ids": [
+        "ALT_FIN_FUSE_FIA"
+      ],
+      "amount": 65000000,
+      "currency": "USD",
+      "basis": "mixed_or_unspecified_total",
+      "as_of": "2026-10-22",
+      "cash_on_hand": null,
+      "do_not_sum_events": true
+    },
+    "source_ids": [
+      "ALT_FUSE_TEST",
+      "ALT_FUSE_CONCEPT",
+      "ALT_FUSE_HOME",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+    "research_notes": {
+      "net_electricity_evidence_note": "No positive net-electric demonstration found in reviewed sources; this is an evidence status, not an assertion about unpublished work.",
+      "coverage_tier": "supplemental"
+    },
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "startorus",
+    "name": "Startorus Fusion",
+    "entity_type": "fusion_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "spherical_tokamak",
+    "approach_variant": "spherical_tokamak",
+    "family": "magnetic",
+    "summary": "Chinese developer of spherical tokamaks using repetitive magnetic reconnection heating and HTS magnets.",
+    "mechanism": [
+      "A compact toroidal plasma is heated in repeated magnetic reconnection pulses. High-current-density magnets support the small central-column geometry."
+    ],
+    "operating_fuel": "Experimental fuel is not specified consistently in the reviewed company releases; do not infer a D-T burn.",
+    "intended_fuel": "D-T (company-reported FIA 2026 profile); equivalent-Q targets are not measured D-T gain.",
+    "site_ids": [
+      "startorus_office",
+      "startorus_site_01",
+      "startorus_site_02"
+    ],
+    "evidence_claim_ids": [
+      "startorus_evidence_01",
+      "startorus_evidence_02"
+    ],
+    "target_claim_ids": [
+      "startorus_target_01",
+      "startorus_target_02",
+      "startorus_target_03"
+    ],
+    "risk_note_ids": [
+      "startorus_risk_01",
+      "startorus_risk_02"
+    ],
+    "funding_summary": {
+      "display": "RMB880m A++ round announced August 2026; earlier cumulative financing exceeded RMB2bn in May 2026. Do not display their sum as a company-reported latest total."
+    },
+    "source_ids": [
+      "PAR_STARTORUS_A_PLUS",
+      "PAR_STARTORUS_A_PLUS_PLUS",
+      "PAR_STARTORUS_MAGNET",
+      "MAG_FIA_2026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "openstar",
+    "name": "OpenStar Technologies",
+    "entity_type": "fusion_developer",
+    "sector": "company_or_supplier",
+    "approach_id": "levitated_dipole",
+    "approach_variant": "levitated_dipole",
+    "family": "magnetic",
+    "summary": "Develops a levitated superconducting ring that confines plasma around its dipole field.",
+    "mechanism": [
+      "Unlike an external-coil torus, the central magnet sits inside the plasma chamber. The ring must remain cold and shielded while plasma surrounds it; prospective D-T plants still require a blanket and fuel cycle."
+    ],
+    "operating_fuel": "Prototype plasma; exact experimental fuel not carried from reviewed partner release.",
+    "intended_fuel": "D-T in the published Tama Nui plant design.",
+    "site_ids": [
+      "openstar_office",
+      "openstar_site_01"
+    ],
+    "evidence_claim_ids": [
+      "openstar_evidence_01"
+    ],
+    "target_claim_ids": [
+      "openstar_target_01"
+    ],
+    "risk_note_ids": [
+      "openstar_risk_01",
+      "openstar_risk_02"
+    ],
+    "funding_summary": {
+      "display": "Government loan of up to NZD35m announced February 2026. Comparable current cumulative private funding not established in this record."
+    },
+    "source_ids": [
+      "PAR_OPENSTAR_PPPL",
+      "PAR_OPENSTAR_LOAN",
+      "PAR_OPENSTAR_TECH",
+      "PAR_OPENSTAR_TEAM"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_established_in_reviewed_public_sources",
+    "net_electricity_note": "This is a reviewed-public-evidence status, not an assertion about unpublished experiments.",
+    "research_notes": {},
+    "intended_fuel_ids": [
+      "D-T"
+    ]
+  },
+  {
+    "id": "nif",
+    "name": "National Ignition Facility",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "laser_indirect",
+    "approach_variant": "laser_indirect",
+    "family": "inertial",
+    "summary": "Laser-fusion experiment and national security research facility.",
+    "role": "ignition_and_high_energy_density_research",
+    "operator": null,
+    "status": "operating",
+    "site_ids": [
+      "nif_site_00"
+    ],
+    "evidence_claim_ids": [
+      "nif_evidence_01",
+      "nif_evidence_02"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_009",
+      "PHY_010",
+      "PHY_011"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "jet",
+    "name": "Joint European Torus",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "tokamak",
+    "approach_variant": "tokamak",
+    "family": "magnetic",
+    "summary": "Major D-T tokamak; scientific operation ended December 2023.",
+    "role": "historical_dt_research",
+    "operator": null,
+    "status": "scientific_operations_ended",
+    "site_ids": [
+      "jet_site_00"
+    ],
+    "evidence_claim_ids": [
+      "jet_evidence_01",
+      "jet_evidence_02"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_013",
+      "PHY_014",
+      "PHY_020"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "w7x",
+    "name": "Wendelstein 7-X",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "stellarator",
+    "approach_variant": "stellarator",
+    "family": "magnetic",
+    "summary": "Optimized stellarator testing the long-pulse physics of this approach; not an electricity plant.",
+    "role": "stellarator_confinement_research",
+    "operator": null,
+    "status": "operating",
+    "site_ids": [
+      "w7x_site_00"
+    ],
+    "evidence_claim_ids": [
+      "w7x_evidence_01"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_015"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "east",
+    "name": "EAST",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "tokamak",
+    "approach_variant": "tokamak",
+    "family": "magnetic",
+    "summary": "Superconducting tokamak studying stable long-duration plasma operation.",
+    "role": "long_pulse_tokamak_research",
+    "operator": null,
+    "status": "operating",
+    "site_ids": [
+      "east_site_00"
+    ],
+    "evidence_claim_ids": [
+      "east_evidence_01"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_016"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "kstar",
+    "name": "KSTAR",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "tokamak",
+    "approach_variant": "tokamak",
+    "family": "magnetic",
+    "summary": "Superconducting tokamak studying hot-ion and long-pulse operation.",
+    "role": "high_temperature_tokamak_research",
+    "operator": null,
+    "status": "operating",
+    "site_ids": [
+      "kstar_site_00"
+    ],
+    "evidence_claim_ids": [
+      "kstar_evidence_01",
+      "kstar_evidence_02"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_017"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "west",
+    "name": "WEST",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "tokamak",
+    "approach_variant": "tokamak",
+    "family": "magnetic",
+    "summary": "Tokamak used for long-pulse plasma-facing-component and control research.",
+    "role": "long_pulse_tungsten_wall_research",
+    "operator": null,
+    "status": "operating",
+    "site_ids": [
+      "west_site_00"
+    ],
+    "evidence_claim_ids": [
+      "west_evidence_01",
+      "west_evidence_02"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_018"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "iter",
+    "name": "ITER",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "tokamak",
+    "approach_variant": "tokamak",
+    "family": "magnetic",
+    "summary": "International experiment designed to study burning plasma and reactor systems; no electricity generator.",
+    "role": "burning_plasma_and_integrated_technology_experiment",
+    "operator": null,
+    "status": "under_construction",
+    "site_ids": [
+      "iter_site_00"
+    ],
+    "evidence_claim_ids": [],
+    "target_claim_ids": [
+      "iter_target_01",
+      "iter_target_02",
+      "iter_target_03",
+      "iter_target_04"
+    ],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_019",
+      "PHY_020",
+      "PHY_021"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "jt60sa",
+    "name": "JT-60SA",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "tokamak",
+    "approach_variant": "tokamak",
+    "family": "magnetic",
+    "summary": "Japan-Europe research tokamak supporting ITER and future power-plant plasma scenarios. Current campaign state not independently refreshed here.",
+    "role": "tokamak_scenario_and_superconducting_research",
+    "operator": null,
+    "status": "first_plasma_demonstrated",
+    "site_ids": [
+      "jt60sa_site_00"
+    ],
+    "evidence_claim_ids": [
+      "jt60sa_evidence_01"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_026"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "ifmif_dones",
+    "name": "IFMIF-DONES",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": null,
+    "approach_variant": null,
+    "family": "enabling_systems",
+    "summary": "Accelerator-driven neutron source for testing fusion materials; not a fusion reactor or a grid-power project.",
+    "role": "materials_irradiation_infrastructure",
+    "operator": null,
+    "status": "under_construction",
+    "site_ids": [
+      "ifmif_dones_site_00"
+    ],
+    "evidence_claim_ids": [],
+    "target_claim_ids": [
+      "ifmif_dones_target_01"
+    ],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_024",
+      "PHY_025"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "sandia_z",
+    "name": "Sandia Z and MagLIF",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "pulsed_power_inertial",
+    "approach_variant": "pulsed_power_inertial",
+    "family": "magneto_inertial",
+    "summary": "Pulsed-power facility developing magnetized liner fusion experiments.",
+    "role": "pulsed_power_and_fusion_research",
+    "operator": null,
+    "status": "research_facility",
+    "site_ids": [
+      "sandia_z_site_00"
+    ],
+    "evidence_claim_ids": [
+      "sandia_z_evidence_01"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_033"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "omega",
+    "name": "OMEGA",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "laser_direct",
+    "approach_variant": "laser_direct",
+    "family": "inertial",
+    "summary": "University laser facility studying direct-drive implosions and diagnostics.",
+    "role": "laser_direct_drive_research",
+    "operator": null,
+    "status": "research_facility",
+    "site_ids": [
+      "omega_site_00"
+    ],
+    "evidence_claim_ids": [],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_034"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "wham",
+    "name": "WHAM",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "magnetic_mirror",
+    "approach_variant": "magnetic_mirror",
+    "family": "magnetic",
+    "summary": "UW–Madison experiment with Realta; keep the university facility distinct from the company.",
+    "role": "public_private_mirror_experiment",
+    "operator": null,
+    "status": "scientific_operation",
+    "site_ids": [
+      "wham_site_00"
+    ],
+    "evidence_claim_ids": [
+      "wham_evidence_01",
+      "wham_evidence_02"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "Public infrastructure funding is not comparable with startup equity funding."
+    },
+    "source_ids": [
+      "PHY_035"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "step",
+    "name": "STEP",
+    "entity_type": "public_pilot_program",
+    "sector": "public_project_or_facility",
+    "approach_id": "spherical_tokamak",
+    "approach_variant": "spherical_tokamak",
+    "family": "magnetic",
+    "summary": "Prototype intended to export net electricity, breed tritium and demonstrate a route to commercial availability.",
+    "role": "Prototype intended to export net electricity, breed tritium and demonstrate a route to commercial availability.",
+    "operator": "UK Fusion Energy",
+    "status": "development_and_site_preparation",
+    "site_ids": [
+      "step_site_00"
+    ],
+    "evidence_claim_ids": [
+      "step_evidence_01"
+    ],
+    "target_claim_ids": [
+      "step_target_01"
+    ],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "GBP1.3bn for next STEP stage, within wider GBP2.5bn UK fusion support; not total lifetime plant cost."
+    },
+    "source_ids": [
+      "PAR_STEP_STRATEGY",
+      "PAR_UK_STRATEGY",
+      "PAR_STEP_PARTNERS"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "program_target_not_demonstrated"
+  },
+  {
+    "id": "best",
+    "name": "BEST",
+    "entity_type": "public_research_project",
+    "sector": "public_project_or_facility",
+    "approach_id": "tokamak",
+    "approach_variant": "tokamak",
+    "family": "magnetic",
+    "summary": "Compact high-field tokamak for D-T burning-plasma research and technology testing.",
+    "role": "Compact high-field tokamak for D-T burning-plasma research and technology testing.",
+    "operator": "ASIPP with EUROfusion research collaboration",
+    "status": "under_construction",
+    "site_ids": [
+      "best_site_00"
+    ],
+    "evidence_claim_ids": [
+      "best_evidence_01"
+    ],
+    "target_claim_ids": [
+      "best_target_01",
+      "best_target_02"
+    ],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "No directly comparable project cash total included; state-linked capital and programme budgets have different boundaries."
+    },
+    "source_ids": [
+      "PAR_BEST_PLAN",
+      "PAR_F4E_REPORT"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  },
+  {
+    "id": "craft",
+    "name": "CRAFT",
+    "entity_type": "enabling_facility",
+    "sector": "public_project_or_facility",
+    "approach_id": null,
+    "approach_variant": null,
+    "family": "enabling_systems",
+    "summary": "Engineering and technology test infrastructure supporting future fusion systems.",
+    "role": "Engineering and technology test infrastructure supporting future fusion systems.",
+    "operator": "ASIPP",
+    "status": "engineering_test_infrastructure",
+    "site_ids": [
+      "craft_site_00"
+    ],
+    "evidence_claim_ids": [
+      "craft_evidence_01"
+    ],
+    "target_claim_ids": [],
+    "risk_note_ids": [],
+    "funding_summary": {
+      "display": "No comparable cash figure included."
+    },
+    "source_ids": [
+      "PAR_F4E_REPORT"
+    ],
+    "as_of": "2026-10-22",
+    "net_electricity_evidence_status": "not_a_grid_power_facility"
+  }
+]

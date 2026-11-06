@@ -1,0 +1,159 @@
+[
+  {
+    "id": "fuel_physics",
+    "label": "Fuel physics",
+    "question": "Has the intended fuel demonstrated relevant reaction and loss physics?",
+    "evidence_required": "Measured reaction yield, ion/electron temperatures, radiation losses and fuel composition with uncertainty.",
+    "interpretation": "A result with hydrogen or D-D is informative but does not demonstrate D-T or p-B11 plant performance.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_002",
+      "PHY_006"
+    ]
+  },
+  {
+    "id": "confinement_gain",
+    "label": "Confinement and gain",
+    "question": "Can the concept produce enough fusion energy at relevant conditions?",
+    "evidence_required": "Simultaneous density, temperature, confinement and actual gain at a declared boundary.",
+    "interpretation": "High temperature or a long pulse alone does not answer the gain question.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_007",
+      "PHY_015"
+    ]
+  },
+  {
+    "id": "heating_driver",
+    "label": "Heating and driver efficiency",
+    "question": "Can the plant deliver the required pulse or heating economically?",
+    "evidence_required": "End-to-end electrical efficiency at required energy, power, repetition and component lifetime.",
+    "interpretation": "An efficient small driver or isolated subsystem may not scale to the required duty cycle.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_006",
+      "PHY_033",
+      "PHY_034"
+    ]
+  },
+  {
+    "id": "fuel_cycle",
+    "label": "Fuel supply and processing",
+    "question": "Can the plant obtain, recover and replenish its operating fuel?",
+    "evidence_required": "Integrated mass balance, extraction/recycle rates, inventories, retention and leakage; D-T additionally net breeding.",
+    "interpretation": "Advanced fuel substitutes one set of constraints for another; it does not make fuel automatically free or available.",
+    "applies_to": "fuel_dependent",
+    "source_ids": [
+      "PHY_002",
+      "PHY_022"
+    ]
+  },
+  {
+    "id": "materials",
+    "label": "Neutrons and materials",
+    "question": "Do structural and functional materials survive the actual particle spectrum?",
+    "evidence_required": "Irradiation and component tests at relevant spectrum, fluence, temperature and stress, plus replacement plans.",
+    "interpretation": "Short discharges establish little about multiyear component life.",
+    "applies_to": "all_but_burden_fuel_dependent",
+    "source_ids": [
+      "PHY_024",
+      "PHY_042"
+    ]
+  },
+  {
+    "id": "heat_exhaust",
+    "label": "Heat and particle exhaust",
+    "question": "Can heat and particles leave without destroying surfaces or degrading plasma?",
+    "evidence_required": "Integrated heat-flux control, impurity management, coolant conditions and component tests.",
+    "interpretation": "Successful confinement can make exhaust more demanding.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_018",
+      "PHY_023"
+    ]
+  },
+  {
+    "id": "conversion",
+    "label": "Energy conversion",
+    "question": "Can the released energy become useful electricity?",
+    "evidence_required": "Measured thermal/direct conversion efficiency and full recirculating electrical ledger.",
+    "interpretation": "Energy recovered from a charged system may largely be previously supplied energy.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_006",
+      "PHY_037"
+    ]
+  },
+  {
+    "id": "repetition",
+    "label": "Repetition and availability",
+    "question": "Can the device operate often enough and recover between shots?",
+    "evidence_required": "Long-run pulse/duty-cycle data at relevant output including failures, scheduled downtime and consumables.",
+    "interpretation": "One successful shot, high repetition at low power and full-rate high-output operation are separate results.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_034",
+      "PHY_038",
+      "PHY_042"
+    ]
+  },
+  {
+    "id": "maintenance",
+    "label": "Maintenance and replacement",
+    "question": "Can worn or activated parts be changed affordably?",
+    "evidence_required": "Demonstrated remote access, validated replacement duration, component life and waste handling.",
+    "interpretation": "A cheaper core can still be an expensive plant if downtime is frequent.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_023",
+      "PHY_042",
+      "PHY_043"
+    ]
+  },
+  {
+    "id": "integration",
+    "label": "Integrated net output",
+    "question": "Has the complete plant exported net energy over a meaningful interval?",
+    "evidence_required": "Metered complete-cycle energy balance with all auxiliaries and storage state restored, then repeat operation.",
+    "interpretation": "A set of independently successful components does not demonstrate an integrated plant.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_006",
+      "PHY_042"
+    ]
+  },
+  {
+    "id": "financing_economics",
+    "label": "Financing and economics",
+    "question": "Can a complete plant be built, operated and replicated at an acceptable cost?",
+    "evidence_required": "Cost scope, financing terms, capex, availability, lifetime, consumables, maintenance and electricity-market assumptions.",
+    "interpretation": "Capital raised is capacity to attempt the next milestone, not proof it can be reached.",
+    "applies_to": "commercial_projects",
+    "source_ids": [
+      "PHY_042"
+    ]
+  },
+  {
+    "id": "licensing_siting",
+    "label": "Licensing and site delivery",
+    "question": "Are a specific plant design and site permitted and connectable?",
+    "evidence_required": "Applicable license, environmental/site approvals, cooling and grid agreements, not merely a national policy statement.",
+    "interpretation": "A lighter regulatory category reduces one burden but does not remove permitting or engineering obligations.",
+    "applies_to": "commercial_projects",
+    "source_ids": [
+      "PHY_040",
+      "PHY_041"
+    ]
+  },
+  {
+    "id": "evidence_quality",
+    "label": "Evidence and transparency",
+    "question": "How directly does public evidence support the claim?",
+    "evidence_required": "Method, measurement boundary, uncertainty, raw/result detail, peer review and independent verification where available.",
+    "interpretation": "Unknown public evidence must be shown as unknown; company-authored peer review is not the same as replication.",
+    "applies_to": "all",
+    "source_ids": [
+      "PHY_007"
+    ]
+  }
+]

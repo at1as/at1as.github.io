@@ -1,0 +1,51 @@
+[
+  {
+    "id": "fia_2026",
+    "title": "FIA 2026 survey",
+    "metric": "declared_cumulative_funding",
+    "value": 14240000000,
+    "currency": "USD",
+    "cohort_companies": 56,
+    "period_end": "2026-Q2",
+    "annual_value": 4480000000,
+    "scope": "Voluntary industry-company responses; includes disclosed commitments and heterogeneous funding; not an audited cash balance or complete census.",
+    "source_ids": [
+      "PAR_FIA_RELEASE"
+    ]
+  },
+  {
+    "id": "f4e_2026",
+    "title": "F4E five-actor comparison",
+    "period_start": "2022",
+    "period_end": "2025",
+    "metric": "identified_mobilised_or_committed_public_and_private_funding",
+    "values": [
+      {
+        "actor": "United States",
+        "amount": 7380000000
+      },
+      {
+        "actor": "China",
+        "amount": 6940000000
+      },
+      {
+        "actor": "European Union",
+        "amount": 3340000000
+      },
+      {
+        "actor": "United Kingdom",
+        "amount": 1490000000
+      },
+      {
+        "actor": "Japan",
+        "amount": 1210000000
+      }
+    ],
+    "currency": "EUR",
+    "scope": "Includes public funding, ITER in-kind and private capital within a fixed window. Do not add to, subtract from, or directly rank against FIA cumulative company totals.",
+    "source_ids": [
+      "PAR_F4E_RELEASE",
+      "PAR_F4E_REPORT"
+    ]
+  }
+]

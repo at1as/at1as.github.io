@@ -1,0 +1,231 @@
+[
+  {
+    "id": "plasma",
+    "term": "Plasma",
+    "definition": "An ionized state of matter containing free electrons and ions.",
+    "do_not_confuse_with": "First plasma establishes operation, not fusion gain.",
+    "source_ids": [
+      "PHY_003"
+    ]
+  },
+  {
+    "id": "deuterium",
+    "term": "Deuterium",
+    "definition": "Hydrogen isotope whose nucleus has one proton and one neutron.",
+    "do_not_confuse_with": "Ordinary hydrogen and tritium.",
+    "source_ids": [
+      "PHY_002"
+    ]
+  },
+  {
+    "id": "tritium",
+    "term": "Tritium",
+    "definition": "Radioactive hydrogen isotope with one proton and two neutrons; half-life about 12.3 years.",
+    "do_not_confuse_with": "An abundant ready-to-use fuel reserve.",
+    "source_ids": [
+      "PHY_002"
+    ]
+  },
+  {
+    "id": "alpha",
+    "term": "Alpha particle",
+    "definition": "Helium-4 nucleus produced in D-T fusion; its charged-particle energy can heat the plasma.",
+    "do_not_confuse_with": "The neutron, which carries most D-T energy and is not magnetically confined.",
+    "source_ids": [
+      "PHY_001",
+      "PHY_002"
+    ]
+  },
+  {
+    "id": "q_plasma",
+    "term": "Plasma gain",
+    "definition": "Fusion power divided by external heating power delivered across the stated plasma or device boundary.",
+    "do_not_confuse_with": "Power drawn from the grid; denominator conventions vary and must be disclosed.",
+    "source_ids": [
+      "PHY_006",
+      "PHY_019"
+    ]
+  },
+  {
+    "id": "target_gain",
+    "term": "Target gain",
+    "definition": "Fusion energy from one implosion divided by driver energy delivered to the target.",
+    "do_not_confuse_with": "Wall-plug electricity, fuel-absorbed energy, or electrical output.",
+    "source_ids": [
+      "PHY_009",
+      "PHY_007"
+    ]
+  },
+  {
+    "id": "q_fuel",
+    "term": "Fuel gain",
+    "definition": "Fusion output divided by energy actually coupled into the fusion fuel under a stated definition.",
+    "do_not_confuse_with": "Target gain; much driver energy may never reach the fuel.",
+    "source_ids": [
+      "PHY_006"
+    ]
+  },
+  {
+    "id": "driver_efficiency",
+    "term": "Driver efficiency",
+    "definition": "Energy delivered to the target or plasma divided by electrical input to the driver system.",
+    "do_not_confuse_with": "Fusion gain; a device can improve one while the other remains low.",
+    "source_ids": [
+      "PHY_006"
+    ]
+  },
+  {
+    "id": "electric_gain",
+    "term": "Electrical gain",
+    "definition": "For this site only: gross electrical output divided by all recirculating plant electrical consumption over the same complete interval.",
+    "do_not_confuse_with": "Other authors may call different ratios engineering Q; always display the actual numerator and denominator.",
+    "source_ids": [
+      "PHY_006"
+    ]
+  },
+  {
+    "id": "net_electricity",
+    "term": "Net electricity",
+    "definition": "Gross generated electrical energy minus every included plant electrical input, measured over a stated complete cycle or interval.",
+    "do_not_confuse_with": "Momentary current, capacitor recovery, or gross generation.",
+    "source_ids": [
+      "PHY_006"
+    ]
+  },
+  {
+    "id": "grid_export",
+    "term": "Grid export",
+    "definition": "Net electrical energy delivered at the grid connection over an interval, accounting for imports and stored-energy changes.",
+    "do_not_confuse_with": "An isolated pulse or a signed power-purchase agreement.",
+    "source_ids": [
+      "PHY_006"
+    ]
+  },
+  {
+    "id": "ignition",
+    "term": "Ignition",
+    "definition": "Fusion-product self-heating becomes sufficient to sustain or propagate the burn under the specified physical criterion.",
+    "do_not_confuse_with": "A universal synonym for Q greater than 1; physical ignition and target breakeven are distinct.",
+    "source_ids": [
+      "PHY_007",
+      "PHY_011"
+    ]
+  },
+  {
+    "id": "burning_plasma",
+    "term": "Burning plasma",
+    "definition": "A plasma substantially heated by its own fusion products, typically with self-heating dominating external heating.",
+    "do_not_confuse_with": "Continuous commercial electricity generation.",
+    "source_ids": [
+      "PHY_011",
+      "PHY_020"
+    ]
+  },
+  {
+    "id": "triple_product",
+    "term": "Triple product",
+    "definition": "Number density times temperature times energy confinement time, with conventions, units and averaging stated.",
+    "do_not_confuse_with": "Pulse duration times record temperature from a different experiment.",
+    "source_ids": [
+      "PHY_006",
+      "PHY_007"
+    ]
+  },
+  {
+    "id": "confinement_time",
+    "term": "Energy confinement time",
+    "definition": "Characteristic time for stored plasma thermal energy to be lost; commonly W_plasma / P_loss under the stated power balance.",
+    "do_not_confuse_with": "Total duration of a maintained plasma discharge.",
+    "source_ids": [
+      "PHY_006"
+    ]
+  },
+  {
+    "id": "pulse_duration",
+    "term": "Pulse duration",
+    "definition": "Length of an experimental discharge or specified high-performance interval.",
+    "do_not_confuse_with": "Energy confinement time or full power-plant availability.",
+    "source_ids": [
+      "PHY_015",
+      "PHY_017",
+      "PHY_018"
+    ]
+  },
+  {
+    "id": "repetition_rate",
+    "term": "Repetition rate",
+    "definition": "Number of complete shots or pulses per second, measured with specified driver energy and target conditions.",
+    "do_not_confuse_with": "A one-off maximum shot rate maintained at low power.",
+    "source_ids": [
+      "PHY_033",
+      "PHY_034"
+    ]
+  },
+  {
+    "id": "blanket",
+    "term": "Blanket",
+    "definition": "A surrounding reactor subsystem that may absorb energy, shield components and breed tritium.",
+    "do_not_confuse_with": "A demonstrated fuel-self-sufficient plant simply because a blanket is drawn.",
+    "source_ids": [
+      "PHY_022"
+    ]
+  },
+  {
+    "id": "tbr",
+    "term": "Tritium breeding ratio",
+    "definition": "Tritium generated divided by tritium consumed under a stated neutronics and accounting boundary.",
+    "do_not_confuse_with": "Net recoverable surplus after processing losses, decay and inventory needs.",
+    "source_ids": [
+      "PHY_022",
+      "PHY_002"
+    ]
+  },
+  {
+    "id": "divertor",
+    "term": "Divertor",
+    "definition": "A magnetic-plasma exhaust region that handles escaping heat and particles.",
+    "do_not_confuse_with": "A blanket; exhaust and neutron-heating loads are different.",
+    "source_ids": [
+      "PHY_023"
+    ]
+  },
+  {
+    "id": "hts",
+    "term": "High temperature superconductor",
+    "definition": "A material that remains superconducting at higher temperatures than conventional low-temperature superconductors; fusion magnets still require cryogenic cooling.",
+    "do_not_confuse_with": "Room-temperature magnets or a guarantee of low overall plant demand.",
+    "source_ids": [
+      "PHY_035",
+      "PHY_042"
+    ]
+  },
+  {
+    "id": "frc",
+    "term": "Field reversed configuration",
+    "definition": "A compact plasma configuration with magnetic-field reversal in its core and no material center column through the confined region.",
+    "do_not_confuse_with": "A specific company, fuel or energy-conversion method.",
+    "source_ids": [
+      "PHY_036",
+      "PHY_037"
+    ]
+  },
+  {
+    "id": "aneutronic",
+    "term": "Aneutronic",
+    "definition": "A description for reactions whose main products are charged particles rather than neutrons.",
+    "do_not_confuse_with": "Zero neutron production, zero radiation, or no shielding in an operating plant.",
+    "source_ids": [
+      "PHY_002"
+    ]
+  },
+  {
+    "id": "thermal_vs_electric",
+    "term": "MW fusion and MW electric",
+    "definition": "Fusion power describes nuclear energy release; gross electrical output and net electrical output describe different later boundaries.",
+    "do_not_confuse_with": "Interchangeable units just because all use MW.",
+    "source_ids": [
+      "PHY_019",
+      "PHY_006"
+    ]
+  }
+]

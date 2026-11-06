@@ -1,0 +1,41 @@
+[
+  {
+    "id": "not_census",
+    "note": "Curated coverage, selected for architecture, evidence, prior discussion and disclosed milestones. Inclusion is not endorsement. Absence is not failure."
+  },
+  {
+    "id": "records_selection",
+    "note": "The records are selected published results, not every shot or every world record. A running maximum is titled Best gain among included shots."
+  },
+  {
+    "id": "nif_2025_oct_discrepancy",
+    "note": "LLNL lists 3.5 MJ / 2.065 MJ and target gain 1.74 for 1 October 2025; arithmetic gives about 1.695. Preserve the source discrepancy and exclude the point from the plotted gain dataset pending clarification.",
+    "source_ids": [
+      "PHY_009"
+    ]
+  },
+  {
+    "id": "funding_no_total",
+    "note": "Do not sum rounds, cumulative totals, grants, debt, commitments and cash snapshots. No all-company funding ranking is computed."
+  },
+  {
+    "id": "coords",
+    "note": "Coordinates are approximate city/locality navigation aids, not verified facility positions. Entity headquarters and project sites are distinct records."
+  },
+  {
+    "id": "date_precision",
+    "note": "Publication/reporting dates are distinguished from event dates. Fuzzy windows retain wording; no invented exact deadlines."
+  },
+  {
+    "id": "no_probabilities",
+    "note": "Risk interpretations describe unresolved requirements. They are neither calibrated success probabilities nor investment recommendations."
+  },
+  {
+    "id": "source_review",
+    "note": "Last reviewed dates record this research pass, not independent replication, continuous monitoring or proof that all public information has been found."
+  },
+  {
+    "id": "current_state",
+    "note": "Public projects have unequal refresh depth. JT-60SA first plasma is dated historical evidence; its current campaign state was not independently refreshed."
+  }
+]

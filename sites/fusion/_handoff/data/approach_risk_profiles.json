@@ -1,0 +1,827 @@
+{
+  "meta": {
+    "as_of": "2026-10-22",
+    "timezone": "America/Los_Angeles",
+    "scope": "Architecture-level engineering tradeoffs for the six-theme risk view",
+    "interpretation_type": "editorial_architecture_assessment",
+    "disclaimer": "These descriptions interpret physical mechanisms and the reviewed evidence. They are not company scores, rankings, calibrated success probabilities, or claims that an entire approach has passed a requirement. Fuel and plant choices can change an individual project's exposure.",
+    "rendering_rule": "Render the six descriptions as qualitative text. Do not convert their wording or source count into a numerical or color-ranked risk score.",
+    "source_rule": "All source IDs resolve in the canonical sources array.",
+    "normalization_note": "Fifteen normalized approaches: eleven base mechanisms plus levitated_dipole, electrostatic, hybrid_direct_drive and hybrid_fast_ignition. EX-Fusion maps to laser_direct with fast_ignition as a variant."
+  },
+  "theme_labels": {
+    "plasma_and_fuel_physics": "Plasma and fuel physics",
+    "electrical_balance": "Electrical balance",
+    "sustained_operation": "Sustained or repeated operation",
+    "fuel_cycle": "Fuel cycle",
+    "materials_and_maintenance": "Materials and maintenance",
+    "delivery_and_economics": "Delivery and economics"
+  },
+  "profiles": [
+    {
+      "approach_id": "tokamak",
+      "scope_note": "Conventional tokamaks, especially proposed D-T thermal plants; design-specific current-drive and pulsing choices still matter.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Substantial D-T experimental heritage supports this route. Reactor operating points still require control of transport, instabilities and disruptions together.",
+          "source_ids": [
+            "PHY_004",
+            "PHY_013",
+            "PHY_019"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Heating, current drive and plant auxiliaries consume electricity. Plasma Q alone cannot establish net output after those loads and thermal conversion.",
+          "source_ids": [
+            "PHY_006",
+            "PHY_019"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Long pulses support control and exhaust development. Sustained reactor conditions, current maintenance and recovery between pulses remain distinct demonstrations.",
+          "source_ids": [
+            "PHY_016",
+            "PHY_018",
+            "PHY_023"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "A D-T plant needs startup tritium, adequate breeding, rapid extraction and recycling. Blanket coverage must coexist with ports and other systems.",
+          "source_ids": [
+            "PHY_002",
+            "PHY_022"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Neutrons challenge structural life and shielding; concentrated exhaust challenges divertors. Replacement access and downtime belong in the plant assessment.",
+          "source_ids": [
+            "PHY_023",
+            "PHY_024"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Experimental maturity reduces some physics uncertainty. Large integrated systems, qualified manufacturing and component replacement still determine cost and availability.",
+          "source_ids": [
+            "PHY_020",
+            "PHY_042"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "spherical_tokamak",
+      "scope_note": "Low-aspect-ratio tokamak variant; compactness is a geometry choice rather than evidence of cheap electricity.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "High-pressure compact plasmas are attractive, but a high-temperature result does not establish reactor gain, stability or an integrated D-T operating regime.",
+          "source_ids": [
+            "MAG_TE_ST40",
+            "PHY_007"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Current drive, magnet operation and cooling must fit the compact configuration. A smaller core does not by itself reduce recirculating power per net megawatt.",
+          "source_ids": [
+            "PHY_006",
+            "PAR_STEP_STRATEGY"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "The geometry retains tokamak current and exhaust questions. Long-duration operation must be demonstrated with the intended center-column and heating design.",
+          "source_ids": [
+            "PHY_004",
+            "PAR_STEP_STRATEGY"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "For D-T designs, limited inboard space makes allocation among magnets, shielding and breeding material consequential; a complete breeding balance remains necessary.",
+          "source_ids": [
+            "PHY_022",
+            "PAR_STEP_STRATEGY"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "The compact center column needs protection and a credible replacement strategy. Exhaust and neutron exposure remain reactor-scale component requirements.",
+          "source_ids": [
+            "PHY_042",
+            "PAR_STEP_STRATEGY"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Reduced dimensions could help some construction costs, while constrained access or frequent center-column replacement could offset that benefit; compare complete plant cases.",
+          "source_ids": [
+            "MAG_TE_DEMO4",
+            "PAR_STEP_STRATEGY"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "stellarator",
+      "scope_note": "Externally shaped three-dimensional confinement; coil architecture varies, including nonplanar coils and planar-coil arrays.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Optimized fields reduce reliance on a large tokamak-like plasma current. Long-pulse stellarator results do not yet establish D-T reactor performance.",
+          "source_ids": [
+            "PHY_005",
+            "PHY_015"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Reduced current-drive demand is a potential benefit. Plasma heating, cryogenics, pumps and conversion losses must still appear in the complete electrical ledger.",
+          "source_ids": [
+            "PHY_005",
+            "MAG_THEA_HELIOS"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "The magnetic configuration suits sustained operation; fuel control, exhaust, component life and maintenance still govern the plant's actual duty and availability.",
+          "source_ids": [
+            "PHY_015",
+            "PHY_023"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "D-T breeding and processing requirements remain. A three-dimensional vessel must provide sufficient blanket coverage while leaving access for services and maintenance.",
+          "source_ids": [
+            "PHY_022",
+            "MAG_THEA_HELIOS"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Field accuracy and component access matter alongside neutron and heat exposure. Planar-coil alternatives change the manufacturing problem without eliminating reactor protection requirements.",
+          "source_ids": [
+            "PHY_005",
+            "MAG_THEA_CANIS",
+            "MAG_THEA_HELIOS"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Optimization and new magnet methods may simplify construction. Modeled availability or component lifetimes are design assumptions until validated in relevant operation.",
+          "source_ids": [
+            "MAG_THEA_HELIOS",
+            "MAG_THEA_CANIS"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "magnetic_mirror",
+      "scope_note": "Linear mirror systems; current D-T commercial examples still need a thermal path for neutron energy.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Open ends make particle and energy losses central. Strong end magnets support confinement development but do not alone establish sufficient fusion gain.",
+          "source_ids": [
+            "PHY_035",
+            "MAG_REALTA_TECH"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Recovering escaping charged-particle energy may reduce consumption. Recovery of externally supplied heating is different from new fusion electricity or net plant output.",
+          "source_ids": [
+            "MAG_REALTA_DEC",
+            "PHY_006"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "A linear steady-operating design must sustain adequate confinement while continuously handling end losses, fueling and exhaust at the intended conditions.",
+          "source_ids": [
+            "MAG_REALTA_TECH",
+            "MAG_REALTA_TIMELINE"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "D-T versions require breeding and processing despite their open geometry. Alternative fuel plans need their own supply and reaction-performance evidence.",
+          "source_ids": [
+            "MAG_REALTA_DEC",
+            "PHY_002",
+            "PHY_022"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "End exhaust, collection hardware and magnet shielding need relevant lifetime data. Direct access is a possible maintenance advantage, not a measured plant availability.",
+          "source_ids": [
+            "MAG_REALTA_TECH",
+            "MAG_REALTA_DEC"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Linear construction may simplify assembly. The economic case still depends on confinement, heating efficiency, energy recovery and full-system component life.",
+          "source_ids": [
+            "MAG_REALTA_TECH",
+            "PHY_035"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "beam_frc",
+      "scope_note": "Beam-sustained FRCs as represented by TAE; its p-B11 goal is a company fuel choice, not a property of every FRC.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Beam formation and sustainment are demonstrated research directions. Extending performance to the intended advanced fuel adds temperature, confinement and radiation-loss requirements.",
+          "source_ids": [
+            "PHY_036",
+            "MAG_TAE_FUEL",
+            "PHY_007"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Neutral beams supply substantial energy; their electrical efficiency and the plasma's loss channels must be included before inferring useful plant gain.",
+          "source_ids": [
+            "PHY_036",
+            "PHY_006"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Sustaining an experimental FRC does not establish long-duration reactor operation. Beams, end regions, fueling and control must remain compatible over the required duty.",
+          "source_ids": [
+            "PHY_036",
+            "MAG_TAE_ROADMAP"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "A p-B11 plant avoids relying on a primary D-T breeding cycle, but still needs specified fuel purity, preparation, recovery and byproduct management.",
+          "source_ids": [
+            "MAG_TAE_FUEL",
+            "PHY_002"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Predominantly charged primary products could reduce neutron burdens. Side reactions, radiation, heat loads and beam hardware still require protection and lifetime evidence.",
+          "source_ids": [
+            "MAG_TAE_FUEL",
+            "PHY_002"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "A linear, high-pressure core may simplify parts of the plant. That potential depends on efficient beam systems and validating the intended fuel regime.",
+          "source_ids": [
+            "PHY_036",
+            "MAG_TAE_ROADMAP"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "pulsed_frc",
+      "scope_note": "Pulsed magnetic compression and inductive recovery as represented by Helion; current experimental fuels and intended D-He3 cycle remain separate fields.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Formation, merging and compression must produce adequate fusion output in the intended fuel regime; individual temperature or pulse results address only part of this requirement.",
+          "source_ids": [
+            "PHY_037",
+            "MAG_HELION_POLARIS_RESULTS"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Inductive return includes recovered pulse energy. Measure the fusion contribution and all losses over a complete cycle with equal starting and ending stored energy.",
+          "source_ids": [
+            "MAG_HELION_POLARIS",
+            "PHY_037"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Repetitive operation couples pulse timing to coil fatigue, switches, heat removal and recovery. Single-pulse success does not validate power-plant repetition or availability.",
+          "source_ids": [
+            "PHY_037",
+            "MAG_HELION_POLARIS"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "The intended D-He3 cycle needs a credible helium-3 production and recycling balance. D-D reactions and their tritium byproducts must remain in that accounting.",
+          "source_ids": [
+            "PHY_037",
+            "PHY_002"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Charged-product conversion could change shielding demands, but D-D side-reaction neutrons and repeated electromagnetic and thermal stresses still affect hardware life.",
+          "source_ids": [
+            "PHY_037",
+            "PHY_002"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Direct conversion could simplify the electricity path. Fuel production, durable pulsed hardware and demonstrated integrated net output remain prerequisites for the cost claim.",
+          "source_ids": [
+            "MAG_HELION_POLARIS",
+            "MAG_HELION_ORION"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "z_pinch",
+      "scope_note": "Sheared-flow-stabilized plasma Z-pinch; do not conflate fusion-plasma experiments with repetitive nonfusion engineering platforms.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Flow shear is intended to suppress pinch instability. Relevant ion conditions, duration and gain must accompany pressure measurements and high-current scaling.",
+          "source_ids": [
+            "PHY_038",
+            "ALT_ZAP_PRESSURE",
+            "PHY_007"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Avoiding external confinement magnets removes one subsystem, not the electrical ledger. Pulse delivery, plasma coupling, fusion gain and conversion all remain consequential.",
+          "source_ids": [
+            "PHY_038",
+            "PHY_006"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Frequent pulses require durable electrodes, reliable liquid-metal handling and complete reset. A repetitive hydrogen engineering test does not establish repetitive fusion gain.",
+          "source_ids": [
+            "ALT_ZAP_FUND",
+            "PHY_038"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "A D-T version still needs tritium supply, breeding and recovery. A proposed liquid-metal system must demonstrate its fuel-processing role as well as cooling.",
+          "source_ids": [
+            "PHY_038",
+            "PHY_022"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Electrodes and current-carrying components face local wear; the chamber faces heat and neutron exposure. Renewable liquid protection remains an integrated engineering requirement.",
+          "source_ids": [
+            "PHY_038",
+            "ALT_ZAP_FUND"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "A compact core and simpler magnet inventory could reduce some costs. Pulse hardware, consumables, cooling and replacement frequency determine whether those savings survive integration.",
+          "source_ids": [
+            "PHY_038",
+            "ALT_ZAP_STRATEGY"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "magnetized_target",
+      "scope_note": "Mechanically compressed magnetized plasma, especially General Fusion; distinguish experimental solid liners from future renewable liquid walls.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Compression must preserve fuel quality and confinement while raising reaction rates. Electron temperature, inferred ion temperature and D-T-equivalent modeling are different evidence.",
+          "source_ids": [
+            "ALT_GENERAL_TEMP",
+            "ALT_GENERAL_PATH",
+            "PHY_039"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Mechanical or electromagnetic compression consumes energy. Useful gain requires the complete compression, thermal conversion and auxiliary balance, not temperature alone.",
+          "source_ids": [
+            "PHY_039",
+            "PHY_006"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Each compression must leave a recoverable chamber and a fresh plasma target. Repeatable liner or liquid-wall behavior is distinct from one successful compression.",
+          "source_ids": [
+            "PHY_039",
+            "ALT_GENERAL_PATH"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "Lithium-containing walls may combine breeding and heat capture. Tritium extraction and replenishment must work under the actual pulsed fluid and temperature conditions.",
+          "source_ids": [
+            "PHY_039",
+            "PHY_022"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "A renewable liquid wall could protect permanent structures. Mixing, erosion, corrosion, moving components and access can shift rather than eliminate maintenance burdens.",
+          "source_ids": [
+            "PHY_039",
+            "PHY_023"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "The concept trades some confinement demands for compression and fluid engineering. Commercial cost depends on reliable repeated operation and integrated, demonstrated gain.",
+          "source_ids": [
+            "PHY_039",
+            "ALT_GENERAL_PATH"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "laser_indirect",
+      "scope_note": "Laser indirect drive through a hohlraum; NIF is predecessor physics evidence, not any startup's own demonstrated plant.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "NIF establishes ignition and target gain above one for this family. Larger or more manufacturable commercial targets still require their own validated performance.",
+          "source_ids": [
+            "PHY_009",
+            "ALT_INERTIA_PAPER"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Laser wall-plug efficiency, energy transfer through the hohlraum, target gain and thermal conversion multiply together; target breakeven alone leaves substantial plant demand.",
+          "source_ids": [
+            "PHY_006",
+            "PHY_009"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "A power plant needs repeated high-gain shots, target delivery and chamber recovery. Cryogenic-layer production or one successful shot does not establish that integrated rate.",
+          "source_ids": [
+            "ALT_INERTIA_FUELING",
+            "ALT_INERTIA_PHASE1"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "D-T must be manufactured into targets, tracked through the factory and chamber, replenished by breeding and recovered from unburned fuel and debris.",
+          "source_ids": [
+            "ALT_INERTIA_FUELING",
+            "PHY_022"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Optics, chamber surfaces and blankets face neutrons, radiation and target debris. Protection, clearing and replacement must support the intended operating schedule.",
+          "source_ids": [
+            "PHY_023",
+            "ALT_INERTIA_PHASE1"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Laser infrastructure and consumable targets both enter cost. Target price per shot becomes meaningful only with net output, repetition and replacement assumptions attached.",
+          "source_ids": [
+            "ALT_INERTIA_GAIN",
+            "ALT_INERTIA_PHASE1"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "laser_direct",
+      "scope_note": "Direct-drive laser family; show hybrid-direct-drive and fast-ignition variants explicitly rather than assuming one common pulse sequence.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Illumination symmetry and laser-plasma coupling are central. Fast-ignition variants add separate energy-deposition requirements; indirect-drive ignition does not validate each variant's gain.",
+          "source_ids": [
+            "PHY_034",
+            "PHY_007",
+            "ALT_FOCUSED_EXP"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Direct coupling may avoid some indirect-drive losses. Driver efficiency, target gain, any separate ignition driver and plant conversion still determine net output.",
+          "source_ids": [
+            "PHY_034",
+            "PHY_006",
+            "ALT_FOCUSED_TECH"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Targets and multiple beams must align repeatedly at relevant energy. High-rate irradiation of surrogate targets is component evidence, not high-rate fusion ignition.",
+          "source_ids": [
+            "ALT_EXFUSION_TEST",
+            "ALT_FOCUSED_TECH"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "D-T variants require breeding and target-factory inventories. An advanced-fuel variant needs a separate reaction and fuel-processing assessment; laser drive does not determine fuel.",
+          "source_ids": [
+            "PHY_002",
+            "PHY_022",
+            "ALT_MARVEL_TECH"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Final optics and chamber structures need protection from repeated bursts and debris. Target and shielding design can change exposure without proving component lifetime.",
+          "source_ids": [
+            "PHY_034",
+            "ALT_XCIMER_DOE"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Potential coupling gains compete with laser, target and alignment requirements. Simulation-derived gain and manufacturing claims require separate validation before projecting electricity cost.",
+          "source_ids": [
+            "ALT_FOCUSED_TECH",
+            "ALT_MARVEL_TECH",
+            "PHY_006"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "pulsed_power_inertial",
+      "scope_note": "Electrical-pulse-driven inertial compression; fuel magnetization and laser preheat belong only to implementations that specify them.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Target or liner compression must reach sufficient fusion output. MagLIF's pre-magnetization and laser-preheat evidence does not automatically transfer to a different pulsed-power target.",
+          "source_ids": [
+            "PHY_033",
+            "ALT_PACIFIC_MODULE",
+            "ALT_FUSE_CONCEPT"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Efficient electrical pulse delivery is potentially useful, but generator energy, energy coupled into fuel, fusion yield and net electricity are distinct boundaries.",
+          "source_ids": [
+            "PHY_033",
+            "ALT_PACIFIC_MODULE",
+            "PHY_006"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Repetition may require replacing targets and parts of the transmission path, clearing debris and recharging. Component-rate demonstrations must match the eventual energy per shot.",
+          "source_ids": [
+            "PHY_033",
+            "ALT_PACIFIC_MODULE",
+            "ALT_FUSE_CONCEPT"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "D-T target systems need reproducible fuel loading and a mass balance across target manufacture, burn, debris recovery and breeding infrastructure.",
+          "source_ids": [
+            "PHY_002",
+            "PHY_022",
+            "ALT_FUSE_CONCEPT"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Large transient currents, target debris, mechanical impulse and neutrons stress different components. Consumable hardware and remote replacement need an explicit operating plan.",
+          "source_ids": [
+            "PHY_033",
+            "ALT_FUSE_CONCEPT"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Modular electrical drivers may offer manufacturing advantages. Those must be weighed against consumables, chamber turnaround, reliable gain and plant integration.",
+          "source_ids": [
+            "ALT_PACIFIC_MODULE",
+            "ALT_PACIFIC_SITE",
+            "ALT_FUSE_CONCEPT"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "levitated_dipole",
+      "scope_note": "Levitated internal superconducting ring, represented by OpenStar; prototype results and its published D-T plant concept have different evidence status.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "The dipole field supports a distinctive confinement route. Prototype plasma formation and confinement do not establish reactor-density D-T gain or a burning-plasma regime.",
+          "source_ids": [
+            "PAR_OPENSTAR_PPPL",
+            "PAR_OPENSTAR_TECH"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Plasma heating, levitation/control, cryogenic management and heat conversion must share one plant ledger; a superconducting ring does not imply negligible operating demand.",
+          "source_ids": [
+            "PAR_OPENSTAR_PPPL",
+            "PAR_OPENSTAR_TECH"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Sustained plasma operation must remain compatible with the internal magnet's temperature, energy storage and servicing needs, not just stable magnetic levitation.",
+          "source_ids": [
+            "PAR_OPENSTAR_TECH"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "The proposed D-T plant requires breeding, extraction and recycling. Internal structures and access routes must be included when estimating useful blanket coverage.",
+          "source_ids": [
+            "PAR_OPENSTAR_TECH",
+            "PHY_022"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "An internal cryogenic magnet creates a distinctive shielding and heat-management challenge. Its protection, inspection and replacement must work inside the reactor environment.",
+          "source_ids": [
+            "PAR_OPENSTAR_PPPL",
+            "PAR_OPENSTAR_TECH"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "A comparatively simple coil shape may help construction; an internally protected cold component may complicate service. Published plant economics remain design-level estimates.",
+          "source_ids": [
+            "PAR_OPENSTAR_TECH"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "electrostatic",
+      "scope_note": "Electrostatic confinement with magnetic assistance, represented by Avalanche's Orbitron; do not generalize all electrostatic concepts to one electrode geometry.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Maintaining useful ion orbits and reaction rates requires control of particle, collision and electron losses. A voltage milestone does not establish fusion energy gain.",
+          "source_ids": [
+            "ALT_AVALANCHE_TECH",
+            "ALT_AVALANCHE_FUND",
+            "PHY_006"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "High-voltage input, electron control, cooling and power conversion must be counted against measured fusion output. Compact confinement does not ensure low recirculating demand.",
+          "source_ids": [
+            "ALT_AVALANCHE_TECH",
+            "PHY_006"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Electrodes, insulators, vacuum quality and particle control must remain stable at the intended operating point. Short tests do not establish useful duty or service intervals.",
+          "source_ids": [
+            "ALT_AVALANCHE_TECH",
+            "ALT_AVALANCHE_FUND"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "Fuel requirements follow the actual reaction, not the device size. D-T testing or operation requires tritium accounting; an advanced-fuel goal needs separate evidence.",
+          "source_ids": [
+            "ALT_AVALANCHE_FUND",
+            "PHY_002"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Small geometry does not remove neutron, radiation or local heat loads. Electrode protection and replacement need evidence at relevant output and duration.",
+          "source_ids": [
+            "ALT_AVALANCHE_TECH",
+            "PHY_043"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Small modules could support incremental manufacture. Their economics still depend on actual net output, service life and the repeated balance-of-plant costs around each module.",
+          "source_ids": [
+            "ALT_AVALANCHE_TECH",
+            "ALT_AVALANCHE_FUND"
+          ]
+        }
+      }
+    },
+    {
+      "approach_id": "hybrid_direct_drive",
+      "scope_note": "Xcimer hybrid direct-drive laser target: an initial X-ray stage followed by direct laser drive. This is an inertial approach, not fast ignition or magnetized-target fusion.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "Initial X-ray preparation and later direct drive must produce a sufficiently symmetric, high-gain implosion. Published target calculations do not establish an integrated measured gain.",
+          "source_ids": [
+            "PAR_XCIMER_HDD",
+            "PHY_007"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Hybrid coupling aims to improve energy transfer while retaining useful indirect-drive features. Count every laser pulse, driver inefficiency and plant load in the electrical balance.",
+          "source_ids": [
+            "PAR_XCIMER_HDD",
+            "PHY_006"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Two-sided illumination can simplify chamber openings, but target positioning, repeated high-energy laser operation and chamber recovery must succeed together.",
+          "source_ids": [
+            "PAR_XCIMER_HDD",
+            "ALT_XCIMER_ROADMAP"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "The D-T capsule and surrounding target require manufacturable fuel loading and recovery. The liquid-salt breeding proposal needs a demonstrated extraction and inventory balance.",
+          "source_ids": [
+            "ALT_XCIMER_FAQ",
+            "ALT_XCIMER_DOE",
+            "PHY_022"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "A thick liquid wall is intended to protect permanent structures. Reliable fluid recovery, optical protection, corrosion control and access still require plant-relevant testing.",
+          "source_ids": [
+            "ALT_XCIMER_DOE",
+            "PAR_XCIMER_HDD"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "The gas-laser, target and liquid-wall combination offers proposed cost advantages. Laser-component progress and accepted design milestones do not validate whole-plant cost or availability.",
+          "source_ids": [
+            "ALT_XCIMER_DOE",
+            "ALT_XCIMER_ROADMAP"
+          ]
+        }
+      },
+      "diagram_sequence": [
+        "Send two opposed laser beams through openings in a protective cavity.",
+        "An initial pulse heats the cavity, producing X-rays that begin capsule ablation and set the initial fuel conditions.",
+        "Later pulses illuminate and drive the capsule directly.",
+        "The compressed fuel is intended to ignite and burn; show chamber heat capture and reset as proposed plant functions."
+      ],
+      "diagram_guardrail": "Preserve both coupling stages. Do not show every pulse striking only the hohlraum, every pulse striking only the capsule, a separate fast-ignition heater, or magnetic fuel confinement."
+    },
+    {
+      "approach_id": "hybrid_fast_ignition",
+      "scope_note": "First Light FLARE: electrically driven multi-shell compression followed by separate rapid ignition; inertial family, not a claim of magnetized fuel or classic MagLIF.",
+      "themes": {
+        "plasma_and_fuel_physics": {
+          "interpretation": "A successful compression stage leaves ignition coupling and integrated high gain unresolved. Current compression evidence must not be promoted into a measured ignition result.",
+          "source_ids": [
+            "ALT_FIRSTLIGHT_TEST",
+            "ALT_FIRSTLIGHT_TECH"
+          ]
+        },
+        "electrical_balance": {
+          "interpretation": "Account for both compression and ignition inputs, their electrical efficiencies and all auxiliaries. A modeled target gain requires an explicit combined input boundary.",
+          "source_ids": [
+            "ALT_FIRSTLIGHT_TECH",
+            "PHY_006"
+          ]
+        },
+        "sustained_operation": {
+          "interpretation": "Fresh engineered targets, compression and ignition timing, chamber reset and both driver systems must operate together repeatedly at relevant energy.",
+          "source_ids": [
+            "ALT_FIRSTLIGHT_TEST",
+            "ALT_FIRSTLIGHT_TECH"
+          ]
+        },
+        "fuel_cycle": {
+          "interpretation": "The D-T multi-shell fuel system needs scalable loading, inventories, unburned-fuel recovery and breeding. Simpler driver requirements do not remove target-factory obligations.",
+          "source_ids": [
+            "ALT_FIRSTLIGHT_TECH",
+            "PHY_022"
+          ]
+        },
+        "materials_and_maintenance": {
+          "interpretation": "Liners and surrounding structures face debris, transient loads and neutrons. The proposed target architecture needs its own chamber and replacement evidence.",
+          "source_ids": [
+            "ALT_FIRSTLIGHT_TEST",
+            "ALT_FIRSTLIGHT_TECH"
+          ]
+        },
+        "delivery_and_economics": {
+          "interpretation": "Shifting function from the driver into the target can trade machine complexity for manufacturing demands. Partner delivery and integrated cost remain separate from compression validation.",
+          "source_ids": [
+            "ALT_FIRSTLIGHT_TECH",
+            "ALT_FIRSTLIGHT_FUND"
+          ]
+        }
+      }
+    }
+  ],
+  "normalization_recommendations": [
+    {
+      "entity_id": "xcimer",
+      "approach_id": "hybrid_direct_drive",
+      "family": "inertial",
+      "subtype": "hybrid_direct_drive",
+      "display_label": "Laser inertial fusion — hybrid direct drive",
+      "source_ids": [
+        "PAR_XCIMER_HDD",
+        "ALT_XCIMER_FAQ"
+      ],
+      "diagram_sequence": [
+        "Send two opposed laser beams through openings in a protective cavity.",
+        "An initial pulse heats the cavity, producing X-rays that begin capsule ablation and set the initial fuel conditions.",
+        "Later pulses illuminate and drive the capsule directly.",
+        "The compressed fuel is intended to ignite and burn; show chamber heat capture and reset as proposed plant functions."
+      ],
+      "guardrail": "Hybrid direct drive is not fast ignition and is not magnetic-inertial confinement. Preserve the initial X-ray stage; do not render Xcimer as ordinary NIF indirect drive or as direct illumination throughout. Research design performance is modeled.",
+      "classification_basis": "Explicit company and peer-reviewed terminology; current company whitepaper retains the hybrid direct-drive label."
+    },
+    {
+      "entity_id": "ex_fusion",
+      "approach_id": "laser_direct",
+      "family": "inertial",
+      "subtype": "laser_fast_ignition",
+      "display_label": "Laser inertial fusion — fast ignition",
+      "source_ids": [
+        "PAR_EXFUSION_TECH",
+        "ALT_EXFUSION_TEST"
+      ],
+      "diagram_sequence": [
+        "Inject and track a fresh target.",
+        "Compression lasers illuminate the target from multiple directions.",
+        "A separate laser pulse supplies rapid ignition heating.",
+        "A proposed blanket and thermal cycle recover fusion energy."
+      ],
+      "guardrail": "Label this as the company's publicly described LIFT reference concept. The separate target-tracking demonstration used surrogate targets; it is not an integrated fast-ignition experiment. Do not assert an unverified final commercial target geometry.",
+      "classification_basis": "Fast ignition is explicit on the live Japanese company page; direct laser compression follows its described multi-directional target illumination. A separate laser_fast_ignition row is also acceptable if that is the normalized taxonomy."
+    },
+    {
+      "entity_id": "first_light",
+      "approach_id": "hybrid_fast_ignition",
+      "family": "inertial",
+      "subtype": "electrical_compression_then_separate_ignition",
+      "display_label": "Inertial fusion — electrical compression and fast ignition",
+      "source_ids": [
+        "ALT_FIRSTLIGHT_TECH",
+        "ALT_FIRSTLIGHT_TEST"
+      ],
+      "diagram_sequence": [
+        "An electrical driver acts on an engineered multi-shell fuel system.",
+        "A timed shock sequence assembles dense fuel with limited premature heating.",
+        "A separate rapid energy pulse is intended to initiate burn."
+      ],
+      "guardrail": "The reviewed sources do not establish fuel premagnetization or the final ignition-driver implementation. Do not draw MagLIF's axial field and pre-compression laser heating, or the company's historical projectile concept, as the current FLARE architecture. Compression-stage tests did not demonstrate ignition or gain.",
+      "classification_basis": "Explicit current company description and September 2026 compression-stage test announcement."
+    }
+  ],
+  "additional_source_ids": [
+    "PAR_XCIMER_HDD",
+    "PAR_EXFUSION_TECH"
+  ]
+}
