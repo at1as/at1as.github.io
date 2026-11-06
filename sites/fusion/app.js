@@ -194,11 +194,11 @@ $("#detail-dialog").addEventListener("click", (e) => {
 const reactionSteps = [
   [
     "Start with the fuel",
-    "Deuterium has one proton and one neutron. Tritium has one proton and two neutrons.",
+    "Deuterium and tritium are isotopes of hydrogen: both have one proton, but deuterium has one neutron and tritium has two. Deuterium occurs naturally in water and can be extracted from it. Tritium is scarce in nature, so a D–T power plant needs to produce it from lithium.",
   ],
   [
     "Create the conditions",
-    "High temperature makes fusion more likely when nuclei collide. Density sets how often they collide; energy confinement determines how long the fuel stays hot.",
+    "High temperature makes fusion more likely when nuclei collide. Higher density means more nuclei in the same volume, increasing the collision rate. Energy confinement describes how well the fuel retains its heat. If heat escapes too quickly, the fuel cools and fusion slows.",
   ],
   [
     "Release energy",
@@ -206,11 +206,11 @@ const reactionSteps = [
   ],
   [
     "Capture the energy",
-    "The charged helium nucleus transfers its energy to the plasma. The uncharged neutron escapes into the surrounding blanket, which absorbs its energy as heat and uses lithium to breed fresh tritium.",
+    "The charged helium nucleus transfers its energy to the plasma. The uncharged neutron escapes into the surrounding blanket, where its energy becomes heat. Neutrons also react with lithium in the blanket to produce tritium, which is recovered and fed back into the reactor as fuel for further fusion reactions.",
   ],
   [
     "Turn heat into electricity",
-    "Captured heat produces steam or heats another working fluid. The expanding fluid spins a turbine connected to an electrical generator. The remaining heat leaves through the cooling system.",
+    "A coolant carries heat from the blanket to a heat exchanger. In this steam cycle, that heat boils water in a separate circuit. The steam spins a turbine connected to an electrical generator. Heat that is not converted to electricity leaves through the cooling system.",
   ],
   [
     "Power the reactor and its systems",
@@ -276,7 +276,7 @@ function reaction() {
 function stopReaction() {
   clearInterval(playReaction);
   playReaction = null;
-  $("#reaction-play").textContent = "Play sequence ▷";
+  $("#reaction-play").textContent = "Play ▷";
   $("#reaction-scene").classList.remove("playing");
 }
 $("#reaction-back").onclick = () => {

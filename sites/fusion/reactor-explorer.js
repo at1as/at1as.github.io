@@ -17,7 +17,7 @@ export function createReactorExplorer(host, id, options = {}) {
   const content = getReactorContent(id, options),
     uid = `reactor-${++nextId}`;
   const sources = options.citations || (() => "");
-  let selected = content.defaultPart || content.parts[0]?.id,
+  let selected = content.defaultPart,
     alive = true,
     model,
     renderer,

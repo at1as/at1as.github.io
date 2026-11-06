@@ -25,8 +25,8 @@ function validate(id, options = {}) {
   );
   assert.equal(
     content.defaultPart,
-    content.parts[0].id,
-    `${id}: new configurations must start with component 01`,
+    null,
+    `${id}: new configurations must start with no selected component`,
   );
   if (options.experimental)
     assert.ok(

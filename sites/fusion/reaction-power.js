@@ -12,7 +12,7 @@ export function renderPowerCycle(recirculate = false) {
     <rect x="43" y="103" width="66" height="62" rx="28" fill="#eee1d0" stroke="#b78d6d" stroke-width="2"/>
     <ellipse cx="76" cy="134" rx="20" ry="16" fill="#d48d62"/>
     <path d="M126 134H186" class="cycle-flow heat" fill="none" stroke="#af5835" stroke-width="3" marker-end="url(#cycle-heat-arrow)"/>
-    <text x="155" y="107" text-anchor="middle" font-size="24" fill="#9d5232">Heat</text>
+    <text x="155" y="73" text-anchor="middle" font-size="20" fill="#9d5232">Blanket heat</text>
 
     <!-- Expanding turbine casing, blade rows, and shared mechanical shaft -->
     <path d="M192 119 282 94V174L192 149Z" fill="#e1e7dd" stroke="#698373" stroke-width="2" stroke-linejoin="round"/>

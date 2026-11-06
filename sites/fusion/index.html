@@ -103,6 +103,18 @@
           <button data-open="glossary">Fusion glossary ↗</button>
         </div>
         <div class="reaction-layout">
+          <div
+            class="step-controls reaction-navigation"
+            role="group"
+            aria-label="Reaction sequence controls"
+          >
+            <button id="reaction-back" aria-label="Previous reaction stage">
+              ←</button
+            ><span id="reaction-progress"></span
+            ><button id="reaction-next" aria-label="Next reaction stage">
+              →</button
+            ><button id="reaction-play" class="play">Play ▷</button>
+          </div>
           <div class="reaction-visual">
             <div class="panel-label">
               DEUTERIUM + TRITIUM
@@ -114,14 +126,6 @@
               id="reaction-caption"
               aria-live="polite"
             ></div>
-            <div class="step-controls">
-              <button id="reaction-back" aria-label="Previous reaction stage">
-                ←</button
-              ><span id="reaction-progress"></span
-              ><button id="reaction-next" aria-label="Next reaction stage">
-                →</button
-              ><button id="reaction-play" class="play">Play sequence ▷</button>
-            </div>
           </div>
           <div class="reaction-steps" id="reaction-steps"></div>
         </div>
