@@ -1,3 +1,4 @@
+import { renderPowerCycle } from "./reaction-power.js";
 import { approaches, renderMachine } from "./diagrams.js";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import {
@@ -103,7 +104,7 @@ function mountReactor(host, id, options = {}) {
   releaseReactor(host);
   const mount = { key, cancelled: false, view: null, observer: null };
   reactorMounts.set(host, mount);
-  host.innerHTML = `<div class="reactor-loading">${renderMachine(id, 3, options)}<div><h3>Look inside the machine.</h3><p>Rotate the assembly, reveal its systems, and follow the connections between them.</p><button data-load-reactor>Open interactive model ↗</button></div></div>`;
+  host.innerHTML = `<div class="reactor-loading">${renderMachine(id, 3, options)}<div><h3>Interactive model</h3><p>Rotate the model and inspect its components</p><button data-load-reactor>Open interactive model ↗</button></div></div>`;
   let loading = false;
   async function load() {
     if (loading || mount.cancelled) return;
@@ -197,7 +198,7 @@ const reactionSteps = [
     "A helium-4 nucleus carries 3.5 MeV; a neutron carries 14.1 MeV. Together: 17.6 MeV.",
   ],
   [
-    "Catch the energy",
+    "Capture the energy",
     "Charged helium can heat the plasma. Neutrons travel into the blanket, where energy capture and tritium breeding are required.",
   ],
   [
@@ -205,7 +206,7 @@ const reactionSteps = [
     "A thermal power cycle converts part of the captured heat to electricity. The rest leaves as waste heat.",
   ],
   [
-    "Pay the plant’s energy bill",
+    "Supply the plant systems",
     "Heating, pumps, cooling, fuel processing and other systems consume power. Only the remainder can reach the grid.",
   ],
 ];
@@ -240,17 +241,14 @@ function reaction() {
   } else if (s === 2) {
     content = `${nucleus(90, 140, 2, "Deuterium")}${nucleus(235, 140, 3, "Tritium")}<text x="160" y="148" fill="#63776a" font-size="25">+</text><path d="M285 140H347m-10-8 10 8-10 8" fill="none" stroke="#718772" stroke-width="3"/>${nucleus(410, 140, 4, "Helium-4")}${circle(555, 140, 14, "#6a8e9c")}<text x="555" y="202" text-anchor="middle" fill="#203c40" font-size="28">Neutron</text><text x="410" y="80" text-anchor="middle" fill="#a84e2e" font-size="30">3.5 MeV</text><text x="555" y="80" text-anchor="middle" fill="#a84e2e" font-size="30">14.1 MeV</text><text x="315" y="270" text-anchor="middle" fill="#47634f" font-size="20">17.6 MeV released per reaction</text>`;
   } else if (s === 3) {
-    content = `<rect x="180" y="40" width="270" height="210" rx="95" fill="#e2e9da" stroke="#6c866e" stroke-width="2"/><ellipse cx="315" cy="145" rx="70" ry="54" fill="#e6b897" stroke="#b5663e"/><text x="315" y="152" text-anchor="middle" font-size="28" fill="#77472e">Plasma</text><path d="M365 118 412 80m-12 2 12-2-4 12" fill="none" stroke="#467588" stroke-width="3"/>${circle(390, 100, 7, "#6a8e9c")}<text x="480" y="75" font-size="20" fill="#416777">Neutrons</text><text x="315" y="282" text-anchor="middle" font-size="20" fill="#47634f">Lithium blanket</text><path d="M285 165q-13 25 15 30" fill="none" stroke="#b75e37" stroke-width="3"/><text x="66" y="160" font-size="20" fill="#a35834">Helium</text><text x="66" y="187" font-size="24" fill="#a35834">heats fuel</text>`;
+    content = `<rect x="180" y="40" width="270" height="210" rx="95" fill="#e2e9da" stroke="#6c866e" stroke-width="2"/><ellipse cx="315" cy="145" rx="70" ry="54" fill="#e6b897" stroke="#b5663e"/><text x="315" y="152" text-anchor="middle" font-size="28" fill="#77472e">Plasma</text><path d="M365 118 412 80m-12 2 12-2-4 12" fill="none" stroke="#467588" stroke-width="3"/>${circle(390, 100, 7, "#6a8e9c")}<text x="480" y="75" font-size="20" fill="#416777">Neutrons</text><text x="315" y="282" text-anchor="middle" font-size="20" fill="#47634f">Lithium blanket</text><path d="M285 165q-13 25 15 30" fill="none" stroke="#b75e37" stroke-width="3"/><text x="90" y="156" text-anchor="middle" font-size="24" fill="#a35834">Helium</text><text x="90" y="190" text-anchor="middle" font-size="24" fill="#a35834">heats fuel</text>`;
   } else {
-    content = `<rect x="22" y="85" width="140" height="120" rx="60" fill="#e2e9da" stroke="#6e8b73"/><ellipse cx="92" cy="145" rx="40" ry="30" fill="#e5b99b" stroke="#b96643"/><text x="92" y="243" text-anchor="middle" font-size="24">Reactor</text><path d="M165 145H242m-10-8 10 8-10 8" fill="none" stroke="#bb6c42" stroke-width="3"/><text x="203" y="124" text-anchor="middle" fill="#9d5232" font-size="24">Heat</text><rect x="250" y="105" width="145" height="85" rx="5" fill="#e1e7dd" stroke="#799080"/><circle cx="289" cy="148" r="22" fill="none" stroke="#66806e"/><path d="m289 126 13 30-33-8 30-15-10 36M311 148h25" fill="none" stroke="#66806e"/><rect x="337" y="131" width="37" height="34" rx="4" fill="none" stroke="#66806e"/><text x="322" y="243" text-anchor="middle" font-size="24">Turbine + generator</text><path d="M397 145H475m-10-8 10 8-10 8" fill="none" stroke="#448069" stroke-width="3"/><text x="455" y="112" text-anchor="middle" fill="#37664f" font-size="24">Electricity</text><path d="M530 90 500 198H560ZM505 120H555M500 148H560M530 90V203M490 120H570M490 148H570" fill="none" stroke="#568170" stroke-width="2"/><text x="530" y="243" text-anchor="middle" font-size="24">Grid</text><path d="M322 105V65H410m-10-6 10 6-10 6" fill="none" stroke="#7d8a7f" stroke-width="2"/><text x="423" y="71" font-size="22" fill="#596c60">Waste heat</text>`;
-    if (s === 5)
-      content +=
-        '<path d="M450 145V285H10V145H22m-6-6 6 6-6 6" fill="none" stroke="#43846c" stroke-dasharray="6 4" stroke-width="2"/><text x="275" y="274" text-anchor="middle" font-size="20" fill="#37664f">Electricity for plant systems</text>';
+    content = renderPowerCycle(s === 5);
   }
   $("#reaction-scene").innerHTML =
     `<svg viewBox="0 0 630 300" role="img" aria-label="${esc(reactionSteps[s][1])}">${content}</svg>`;
   $("#reaction-caption").innerHTML =
-    `<strong>${reactionSteps[s][0]}.</strong> ${reactionSteps[s][1]} ${s === 2 ? "MeV means million electronvolts, a unit of particle energy. About 80% goes to the neutron; this is not electrical efficiency." : ""}`;
+    `<h3>${reactionSteps[s][0]}</h3><p>${reactionSteps[s][1]} ${s === 2 ? "MeV means million electronvolts, a unit of particle energy. About 80% goes to the neutron; this is not electrical efficiency." : ""}</p>`;
   $("#reaction-progress").textContent = `0${s + 1} / 06`;
   const reactionFocus = document.activeElement?.dataset.reaction;
   $("#reaction-steps").innerHTML = reactionSteps
@@ -268,6 +266,7 @@ function stopReaction() {
   clearInterval(playReaction);
   playReaction = null;
   $("#reaction-play").textContent = "Play sequence ▷";
+  $("#reaction-scene").classList.remove("playing");
 }
 $("#reaction-back").onclick = () => {
   stopReaction();
@@ -284,6 +283,7 @@ $("#reaction-play").onclick = () => {
   if (reactionStage === 5) reactionStage = 0;
   reaction();
   $("#reaction-play").textContent = "Pause Ⅱ";
+  $("#reaction-scene").classList.add("playing");
   playReaction = setInterval(
     () => {
       reactionStage++;
@@ -324,8 +324,7 @@ function machine() {
     fastIgnition,
   });
   mountReactor($("#reactor-explorer"), a.id, { fastIgnition });
-  $("#machine-family").textContent =
-    human(a.family).toUpperCase() + " / NOT TO SCALE";
+  $("#machine-family").textContent = human(a.family).toUpperCase();
   $("#machine-index").textContent =
     `CONFIGURATION ${String(approaches.indexOf(a) + 1).padStart(2, "0")} / ${approaches.length}`;
   $("#machine-name").textContent = a.name;
@@ -350,10 +349,6 @@ function machine() {
   $("#machine-back").disabled = machineStage === 0;
   $("#machine-next").disabled = machineStage === a.stages.length - 1;
   $("#approach-select").value = approach;
-  $$("[data-approach]").forEach((b) => {
-    b.classList.toggle("active", b.dataset.approach === approach);
-    b.setAttribute("aria-pressed", b.dataset.approach === approach);
-  });
   if (data) {
     const entities = data.entities.filter((e) => machineId(e) === approach);
     $("#machine-entities").innerHTML =
@@ -502,8 +497,8 @@ function calcControls() {
   });
   $("#calc-context").innerHTML =
     mode === "inertia"
-      ? `<strong>ATTRIBUTED COMPANY MODEL · Inertia Phase I roadmap.</strong> A modeled scenario, not measured electricity. Defaults: 10 MJ, 10 Hz, 12% laser efficiency, 45% thermal efficiency, 5 MJ other demand per shot. Those inputs give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated page reviewed 22 Oct 2026. ${citations(["ALT_INERTIA_PHASE1"])}`
-      : "<strong>ILLUSTRATIVE ASSUMPTIONS.</strong> Change the inputs and watch generation compete with the plant’s own demand. These defaults describe no particular company or experiment.";
+      ? `<strong>ATTRIBUTED COMPANY MODEL · Inertia Phase I roadmap</strong> A modeled scenario, not measured electricity. Defaults: 10 MJ, 10 Hz, 12% laser efficiency, 45% thermal efficiency, 5 MJ other demand per shot. Those inputs give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated page reviewed 22 Oct 2026. ${citations(["ALT_INERTIA_PHASE1"])}`
+      : "<strong>ILLUSTRATIVE ASSUMPTIONS</strong> Adjust the inputs to calculate gross generation, plant demand, and net output. These defaults describe no particular company or experiment.";
   const keys = [
     "gain",
     ...(mode === "continuous" ? ["heating"] : ["energy", "rate"]),
@@ -559,13 +554,13 @@ function calc() {
     `<span class="axis-zero">0</span><span class="axis-dot" style="left:${50 + (r.net / scale) * 47}%;background:${r.net < 0 ? "#b15130" : "#2e6451"}"></span><div class="axis-labels"><span>−${fmt(scale)} MW · consumption</span><span>+${fmt(scale)} MW · export</span></div>`;
   $("#threshold").textContent =
     r.threshold === null
-      ? "Break-even gain: unavailable (zero delivered or captured electrical energy)."
-      : `Electrical break-even requires gain ${fmt(r.threshold)} at these assumptions.`;
+      ? "Break-even gain unavailable: no delivered or captured electrical energy"
+      : `Electrical break-even requires gain ${fmt(r.threshold)} with these assumptions`;
   $("#equations").innerHTML =
     `<code>Fusion = ${p.mode === "continuous" ? `${fmt(p.gain)} × ${fmt(p.heating)}` : `${fmt(p.energy)} × ${fmt(p.gain)} × ${fmt(p.rate)}`} = ${fmt(r.fusion)} MW<br>Gross = ${p.thermal} × ${p.capture} × ${fmt(r.fusion)} = ${fmt(r.gross)} MW<br>Driver = ${fmt(r.delivered)} / ${p.driver} = ${fmt(r.driver)} MW<br>Net = ${fmt(r.gross)} − ${fmt(r.driver)} − ${fmt(r.aux)} = ${fmt(r.net)} MW</code>`;
   $("#target-cost").textContent =
     p.mode === "continuous"
-      ? "Pulsed target modes also show an illustrative target-manufacturing cost."
+      ? "Select a pulsed mode to estimate the contribution of target manufacturing to electricity cost"
       : `${fmt(p.rate * 86400)} targets per operating day. At a hypothetical $1 per target: ${r.net > 0 ? "$" + fmt(targetCost(p.rate, 1, r.net)) + "/MWh of delivered electricity" : "cost per delivered MWh unavailable with nonpositive net output"}. Target cost alone excludes every other plant cost and is not an electricity price.`;
 }
 $("#calc-controls").oninput = (e) => {
@@ -689,7 +684,7 @@ function entityCard(e) {
   const claim =
     e.claims.find((c) => !/target|agreement|organization/i.test(c.category)) ||
     e.claims[0];
-  return `<article class="entity-card"><div class="card-top"><span>${esc(human(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not established")}</p><div class="card-evidence">${claim ? badge(claim.category) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds.slice(0, 2))}</div>` : "<p>No included result.</p>"}</div><div class="card-bottom"><span>${e.claims.length} evidence entries</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
+  return `<article class="entity-card"><div class="card-top"><span>${esc(human(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not established")}</p><div class="card-evidence">${claim ? badge(claim.category) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds.slice(0, 2))}</div>` : "<p>No result included</p>"}</div><div class="card-bottom"><span>${e.claims.length} evidence entries</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
 }
 function atlas() {
   if (!data) return;
@@ -708,7 +703,7 @@ function atlas() {
           .join(
             "",
           )}</div>${entities.length > 9 ? `<button id="show-all-cards" style="display:block;margin:25px auto 0">${showAllCards ? "Show fewer organizations" : "Explore all " + entities.length + " organizations ↓"}</button>` : ""}`
-      : '<div class="empty"><h3>No organizations match.</h3><p>Try a broader search or clear the filters.</p></div>';
+      : '<div class="empty"><h3>No matching organizations</h3><p>Try a broader search or clear the filters</p></div>';
   if (view === "table")
     $("#atlas-content").innerHTML =
       `<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable data table"><table class="data-table"><thead><tr><th>Organization</th><th>Approach / intended fuel</th><th>Included evidence</th><th>Announced target</th><th>Financing snapshot</th></tr></thead><tbody>${entities
@@ -722,7 +717,7 @@ function atlas() {
   if (view === "sites") sites(entities);
   if (!entities.length)
     $("#atlas-content").innerHTML =
-      '<div class="empty"><h3>No organizations match.</h3><p>Try a broader search or clear the filters.</p></div>';
+      '<div class="empty"><h3>No matching organizations</h3><p>Try a broader search or clear the filters</p></div>';
   tray();
   updateURL({
     view: view === "cards" ? "" : view,
@@ -861,7 +856,7 @@ function entityDetail(id) {
   updateURL({ entity: e.id });
   modal(
     "ORGANIZATION FIELD NOTES",
-    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2><p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(s.role)} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">An absent public result is not a failed experiment. Source review is not independent replication. Company targets remain targets until a reviewed result changes their category.</p>`,
+    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2><p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(s.role)} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
   );
   if (m) {
     const options = getEntityReactorOptions(e);
@@ -872,7 +867,7 @@ function compareDetail(fundingView = false) {
   const list = [...comparison].map((id) => entityMap.get(id)).filter(Boolean);
   modal(
     "SIDE-BY-SIDE EVIDENCE",
-    `<h2>Compare the evidence.</h2><p>Each column preserves the type of evidence and its scope. No overall score or ranking is implied.</p><div class="segmented"><button data-compare-view="evidence" aria-pressed="${!fundingView}" class="${!fundingView ? "active" : ""}">Evidence and remaining questions</button><button data-compare-view="funding" aria-pressed="${fundingView}" class="${fundingView ? "active" : ""}">Financing observations</button></div><div class="comparison-grid" style="--columns:${list.length}">${list
+    `<h2>Compare the evidence</h2><p>Each column preserves the type of evidence and its scope. No overall score or ranking is implied.</p><div class="segmented"><button data-compare-view="evidence" aria-pressed="${!fundingView}" class="${!fundingView ? "active" : ""}">Evidence and remaining questions</button><button data-compare-view="funding" aria-pressed="${fundingView}" class="${fundingView ? "active" : ""}">Financing observations</button></div><div class="comparison-grid" style="--columns:${list.length}">${list
       .map(
         (e) =>
           `<article><h3>${esc(e.name)}</h3><p>${esc(e.approach)}</p>${
@@ -938,7 +933,7 @@ function riskQuestions() {
           .filter((r) => t.dimension_ids.includes(r.id))
           .map(
             (r) =>
-              `<p><strong>${esc(r.name)}.</strong> ${esc(r.interpretation)}</p><p>Evidence to look for: ${esc(r.evidenceNeeded)}</p><div class="citation">${citations(r.sourceIds)}</div>`,
+              `<h4>${esc(r.name)}</h4><p>${esc(r.interpretation)}</p><p>Evidence to look for: ${esc(r.evidenceNeeded)}</p><div class="citation">${citations(r.sourceIds)}</div>`,
           )
           .join("")}</details>`,
     )
@@ -947,7 +942,7 @@ function riskQuestions() {
 function historyDetail() {
   modal(
     "SELECTED HISTORY",
-    `<h2>Different milestones.<br>Different questions.</h2><p>Selected events, with original date precision and event type. Announced plans remain targets after their dates pass.</p><div style="margin-top:30px">${data.history.map((h) => `${/target/i.test(h.category) && h.id === data.history.find((x) => /target/i.test(x.category))?.id ? '<h3 class="snapshot-divider">Snapshot · 22 October 2026</h3><p class="quiet">ANNOUNCED PLANS · No achievement implied</p>' : ""}<article class="history-event ${/target/i.test(h.category) ? "planned" : ""}"><strong>${esc(h.date)} · ${esc(human(h.dateRole))}</strong><h4>${esc(h.title)}</h4>${badge(h.category)}<p>${esc(h.displayText || h.text)}</p>${citations(h.sourceIds)}</article>`).join("")}</div>`,
+    `<h2>Fusion research timeline</h2><p>Selected events, with original date precision and event type. Announced plans remain targets after their dates pass.</p><div style="margin-top:30px">${data.history.map((h) => `${/target/i.test(h.category) && h.id === data.history.find((x) => /target/i.test(x.category))?.id ? '<h3 class="snapshot-divider">Snapshot · 22 October 2026</h3><p class="quiet">ANNOUNCED PLANS · No achievement implied</p>' : ""}<article class="history-event ${/target/i.test(h.category) ? "planned" : ""}"><strong>${esc(h.date)} · ${esc(human(h.dateRole))}</strong><h4>${esc(h.title)}</h4>${badge(h.category)}<p>${esc(h.displayText || h.text)}</p>${citations(h.sourceIds)}</article>`).join("")}</div>`,
   );
 }
 function glossaryDetail() {
@@ -959,7 +954,7 @@ function glossaryDetail() {
 function fuelDetail() {
   modal(
     "FUEL CHOICES",
-    `<h2>Every fuel changes the problem.</h2><div class="fuel-grid">${data.fuels.map((f) => `<article><h3>${esc(f.name)}</h3><p><strong>${esc(f.label)}</strong></p><p>${esc(f.benefits)}</p><p><strong>The difficulty:</strong> ${esc(f.challenges)}</p>${citations(f.sourceIds)}</article>`).join("")}</div>`,
+    `<h2>Fusion fuels</h2><div class="fuel-grid">${data.fuels.map((f) => `<article><h3>${esc(f.name)}</h3><p><strong>${esc(f.label)}</strong></p><p>${esc(f.benefits)}</p><p><strong>The difficulty:</strong> ${esc(f.challenges)}</p>${citations(f.sourceIds)}</article>`).join("")}</div>`,
   );
 }
 document.addEventListener("click", (e) => {
@@ -970,7 +965,6 @@ document.addEventListener("click", (e) => {
     reactionStage = +b.dataset.reaction;
     reaction();
   }
-  if (b.dataset.approach) selectMachine(b.dataset.approach);
   if (b.dataset.machineStage !== undefined) {
     stopMachine();
     machineStage = +b.dataset.machineStage;
@@ -1004,7 +998,7 @@ document.addEventListener("click", (e) => {
     const a = approaches.find((a) => a.id === approach);
     modal(
       "MECHANISM DETAIL",
-      `<h2>${esc(a.name)}</h2><div class="expanded-cycle">${renderMachine(a.id, machineStage, { fastIgnition })}</div><h3>${esc(a.stages[machineStage].title)}</h3><p>${esc(a.stages[machineStage].text)}</p><p class="quiet">Conceptual diagram · not to scale.</p>${citations(getReactorContent(a.id, { fastIgnition }).sourceIds)}`,
+      `<h2>${esc(a.name)}</h2><div class="expanded-cycle">${renderMachine(a.id, machineStage, { fastIgnition })}</div><h3>${esc(a.stages[machineStage].title)}</h3><p>${esc(a.stages[machineStage].text)}</p><p class="quiet">Conceptual diagram · not to scale</p>${citations(getReactorContent(a.id, { fastIgnition }).sourceIds)}`,
     );
   }
   if (b.dataset.open === "glossary" && data) glossaryDetail();
@@ -1083,16 +1077,6 @@ $("#source-search").oninput = () => {
 async function init() {
   reaction();
   boundaries();
-  $("#popular-machines").innerHTML = [
-    "tokamak",
-    "stellarator",
-    "indirect-laser",
-  ]
-    .map((id) => {
-      const a = approaches.find((a) => a.id === id);
-      return `<button data-approach="${id}">${esc(a.name)}</button>`;
-    })
-    .join("");
   const options = approaches
     .map((a) => `<option value="${a.id}">${esc(a.name)}</option>`)
     .join("");

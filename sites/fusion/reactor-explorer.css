@@ -363,20 +363,31 @@
 }
 .reactor-concept-note {
   border-top: 1px solid #304854;
-  padding: 14px 22px;
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 20px;
-  color: #8ca8b7;
+  padding: 12px 18px;
+  color: #a7beca;
 }
-.reactor-concept-note > span {
-  font-size: 8px;
-  letter-spacing: 0.08em;
-  padding-top: 3px;
+.reactor-concept-note summary,
+.reactor-display-options summary {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.5;
+  width: fit-content;
 }
 .reactor-concept-note p {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.8;
+  margin-top: 12px;
+  max-width: 900px;
+}
+.reactor-display-options {
+  border-top: 1px solid #314551;
+}
+.reactor-display-options summary {
+  margin: 10px 18px;
+  color: #b9cbd4;
+}
+.reactor-display-options[open] summary {
+  margin-bottom: 15px;
 }
 .reactor-fallback .reactor-stage {
   height: auto;
@@ -970,5 +981,147 @@ dialog:has(.company-reactor) {
   #dialog-content .reactor-engineering p,
   #dialog-content .reactor-concept-note p {
     font-size: 12px;
+  }
+}
+
+/* Keep the configuration and the complete model within a laptop viewport.
+   Reading detail may scroll independently; mobile returns to a single flow. */
+.machine-workspace {
+  position: relative;
+  background: #101c29;
+  border: 1px solid #354854;
+  border-radius: 7px;
+  scroll-margin-top: 84px;
+  --model-height: clamp(300px, calc(100svh - 350px), 500px);
+}
+.machine-picker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 72px;
+  padding: 12px 380px 12px 18px;
+  border-bottom: 1px solid #314450;
+}
+.machine-picker label {
+  color: #b9cbd4;
+  font-size: 12px;
+  font-weight: 400;
+}
+.machine-picker select {
+  background: #1c3342;
+  border-color: #587180;
+  color: #f2f4ef;
+  width: 310px;
+  min-width: 0;
+  font-size: 14px;
+}
+.machine-workspace .reactor-loading {
+  min-height: calc(var(--model-height) + 177px);
+}
+.machine-workspace .reactor-explorer {
+  margin: 0;
+  border: 0;
+  border-radius: 0 0 7px 7px;
+}
+#reactor-explorer .reactor-toolbar {
+  position: absolute;
+  top: 17px;
+  right: 18px;
+  padding: 0;
+  border: 0;
+}
+#reactor-explorer .reactor-toolbar > div:first-child {
+  display: none;
+}
+#reactor-explorer .reactor-body {
+  align-items: start;
+}
+#reactor-explorer .reactor-stage {
+  height: var(--model-height);
+  min-height: 0;
+  flex: none;
+}
+#reactor-explorer .reactor-inspector {
+  height: calc(var(--model-height) + 134px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #597787 #132532;
+  scrollbar-width: thin;
+  padding: 16px;
+}
+#reactor-explorer .reactor-inspector:focus-visible {
+  outline: 2px solid #ffae7a;
+  outline-offset: -3px;
+}
+#reactor-explorer .reactor-part-detail {
+  margin-top: 18px;
+  padding-top: 16px;
+}
+#reactor-explorer .reactor-part-detail h4 {
+  margin: 8px 0 12px;
+}
+#reactor-explorer .reactor-legend {
+  padding: 0 18px 12px;
+}
+.machine-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding: 16px 0;
+}
+.machine-options label {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+}
+.machine-overview-row {
+  margin-top: 20px;
+}
+.machine-overview-row p {
+  max-width: 760px;
+}
+@media (max-width: 1000px) {
+  .machine-picker {
+    padding-right: 330px;
+    gap: 10px;
+  }
+  .machine-picker label {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .machine-picker {
+    min-height: 70px;
+    padding: 12px 16px;
+  }
+  .machine-picker label {
+    display: block;
+  }
+  .machine-picker select {
+    flex: 1;
+    width: auto;
+    font-size: 16px;
+  }
+  #reactor-explorer .reactor-toolbar {
+    position: static;
+    padding: 10px 12px;
+    border-bottom: 1px solid #314450;
+  }
+  #reactor-explorer .reactor-stage {
+    height: 330px;
+  }
+  #reactor-explorer .reactor-inspector {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: 20px;
+  }
+  #reactor-explorer .reactor-legend {
+    padding: 0 16px 14px;
+  }
+  .machine-options {
+    gap: 10px;
+    flex-direction: column;
   }
 }
