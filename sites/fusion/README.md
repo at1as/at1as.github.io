@@ -122,3 +122,7 @@ Original machine and reaction schematics: this implementation. World outline: Na
 - The section opens with the complete plant balance, including starting and sustaining fusion and running the facility. Fuel gain is the default; each of the five views explains what it measures, a concrete interpretation, and what it leaves out.
 - NIF’s 4.13 target gain and ITER’s Q = 10 goal distinguish delivered laser/heating energy from facility electricity. The recovery example shows 102 − 100 − 3 = −1 MJ and explains the stored-energy condition. The ignition note states why neither milestone is net electricity.
 - Primary checks: ITER’s Q FAQ, LLNL’s ignition history, and LLNL’s published April 2025 target-gain result. Reviewed all five views and the expanded examples on desktop; phone examples stack without horizontal overflow.
+
+## Machine-model review · 6 November 2026
+
+Reviewed every family and the distinct company architectures against primary descriptions. Corrected spherical-tokamak exhaust clearance, periodic stellarator geometry, Renaissance’s winding surfaces, dipole and FRC field topology, LM26’s central geometry, target illumination, pinch current paths, and electrostatic fields and heat recovery. The [model review record](_model-review.md) lists each finding, source and validation result. All 55 model configurations and the production checks pass.

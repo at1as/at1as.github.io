@@ -1166,3 +1166,7 @@ dialog:has(.company-reactor) {
 .machine-comparison #comparison-copy {
   margin-bottom: 24px;
 }
+
+.reactor-legend .electric::before {
+  background: #c7a2ed;
+}

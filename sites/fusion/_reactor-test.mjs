@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { Box3, Vector3 } from "./assets/vendor/three.module.min.js";
 import { readFileSync } from "node:fs";
 import { buildReactor } from "./reactor-geometry.js";
+import { loopFieldDirection } from "./reactor-fields.js";
 import {
   getReactorContent,
   getEntityReactorOptions,
@@ -76,6 +77,128 @@ function validate(id, options = {}) {
         previous = distance;
       }
     }
+  // A periodic skin must meet itself: finite vertices alone do not catch a seam.
+  model.root.traverse((mesh) => {
+    const grid = mesh.geometry?.userData.surfaceGrid;
+    if (!grid?.periodic) return;
+    const vertices = mesh.geometry.attributes.position;
+    for (let j = 0; j <= grid.cross; j++) {
+      const first = new Vector3().fromBufferAttribute(vertices, j);
+      const last = new Vector3().fromBufferAttribute(
+        vertices,
+        grid.longitudinal * (grid.cross + 1) + j,
+      );
+      assert.ok(
+        first.distanceTo(last) < 1e-5,
+        `${id}: open seam in ${mesh.userData.partId}`,
+      );
+    }
+  });
+  const group = (partId) => model.parts.find((p) => p.id === partId)?.object;
+  const paths = (partId) =>
+    group(partId)
+      ?.children.filter((m) => m.geometry.type === "TubeGeometry")
+      .map((m) => m.geometry.parameters.path) || [];
+  if (["tokamak", "spherical", "stellarator"].includes(id)) {
+    assert.ok(paths("coils").length);
+    for (const path of paths("coils"))
+      assert.ok(path.closed, `${id}: open magnet winding`);
+  }
+  if (id === "spherical") {
+    const plasmaBounds = new Box3().setFromObject(group("plasma"));
+    const divertorBounds = new Box3();
+    for (const mesh of group("exhaust").children.filter(
+      (m) => m.geometry.type === "TubeGeometry",
+    ))
+      divertorBounds.union(new Box3().setFromObject(mesh));
+    assert.ok(
+      divertorBounds.max.y < plasmaBounds.min.y - 0.1,
+      "spherical: divertor intersects confined plasma",
+    );
+  }
+  if (id === "dipole") {
+    for (const path of paths("field")) {
+      assert.ok(path.closed, "dipole: flux line terminates in the chamber");
+      for (const p of path.getPoints(180))
+        assert.ok(
+          Math.hypot(Math.hypot(p.x, p.z) - 1.05, p.y) > 0.28,
+          "dipole: flux line crosses ring housing",
+        );
+    }
+    group("plasma").traverse((mesh) => {
+      const vertices = mesh.geometry?.attributes.position;
+      if (!vertices) return;
+      for (let i = 0; i < vertices.count; i++) {
+        const p = new Vector3().fromBufferAttribute(vertices, i);
+        assert.ok(
+          Math.hypot(Math.hypot(p.x, p.z) - 1.05, p.y) > 0.28,
+          "dipole: plasma intersects ring housing",
+        );
+      }
+    });
+  }
+  if (id === "beam-frc" || id === "pulsed-frc") {
+    const fieldPaths = paths("field");
+    assert.ok(
+      fieldPaths.some((p) => p.closed) && fieldPaths.some((p) => !p.closed),
+      `${id}: missing closed core or open external field`,
+    );
+    for (const path of fieldPaths.filter((p) => p.closed)) {
+      assert.ok(
+        path.getTangent(0).x * path.getTangent(0.5).x < -0.9,
+        `${id}: axial field must reverse between outer and inner legs`,
+      );
+      for (const p of path.getPoints(100))
+        assert.ok(
+          Math.hypot(p.y, p.z) > 0.08,
+          `${id}: closed flux surface collapses onto axis`,
+        );
+    }
+  }
+  if (
+    id === "z-pinch" ||
+    ["direct-laser", "indirect-laser", "hybrid-laser"].includes(id)
+  ) {
+    for (let time = 0; time < 7; time += 0.11) {
+      model.update(time);
+      for (const partId of id === "z-pinch"
+        ? ["plasma"]
+        : ["drivers", "hohlraum"]) {
+        group(partId)?.traverse((mesh) => {
+          if (!mesh.userData.tracer) return;
+          if (id === "z-pinch")
+            assert.ok(
+              Math.hypot(mesh.position.y, mesh.position.z) +
+                mesh.geometry.parameters.radius <=
+                0.13,
+              "Z-pinch: shear tracer lies outside plasma column",
+            );
+          else
+            assert.ok(
+              mesh.position.length() >= 0.37,
+              `${id}: drive path continues inside the capsule`,
+            );
+        });
+      }
+    }
+  }
+  if (id === "electrostatic") {
+    assert.ok(
+      paths("field").every((p) => !p.closed),
+      "electrostatic: magnetic lines must pass along chamber, not orbit cathode",
+    );
+    const arrows = group("field").children.filter(
+      (m) => m.geometry.type === "ConeGeometry",
+    );
+    assert.ok(arrows.length);
+    for (const arrow of arrows)
+      assert.ok(
+        new Vector3(0, 1, 0)
+          .applyQuaternion(arrow.quaternion)
+          .dot(arrow.position) < 0,
+        "electrostatic: electric field must point toward negative cathode",
+      );
+  }
   const geometries = new Set(),
     materials = new Set();
   model.root.traverse((o) => {
@@ -99,6 +222,14 @@ function validate(id, options = {}) {
   assert.equal(model.root.children.length, 0);
   cases++;
 }
+assert.ok(
+  loopFieldDirection(0, 0).y > 0.99,
+  "Dipole field points through the ring bore",
+);
+assert.ok(
+  loopFieldDirection(2.2, 0).y < -0.99,
+  "Dipole field returns outside the ring",
+);
 for (const a of approaches) validate(a.id);
 validate("direct-laser", { fastIgnition: true });
 for (const e of data.entities) {
@@ -131,7 +262,15 @@ assert.equal(
   ).name,
   "Theta-pinch compression coils",
 );
+for (const mesh of lm26.parts.find((p) => p.id === "plasma").object.children) {
+  const vertices = mesh.geometry.attributes.position;
+  for (let i = 0; i < vertices.count; i++)
+    assert.ok(
+      Math.hypot(vertices.getX(i), vertices.getZ(i)) > 0.3,
+      "LM26: toroidal plasma must leave space for the central shaft",
+    );
+}
 lm26.dispose();
 console.log(
-  `PASS: ${cases} 3D configurations, ${models} organization models, ${infrastructure} infrastructure views; part/source/connection integrity, experimental exclusions, animation boundaries, noncontracting assembly separation and disposal.`,
+  `PASS: ${cases} 3D configurations, ${models} organization models, ${infrastructure} infrastructure views; part/source/connection integrity, experimental exclusions, animation boundaries, noncontracting assembly separation, closed surfaces/coils, field topology, target-path boundaries and disposal.`,
 );
