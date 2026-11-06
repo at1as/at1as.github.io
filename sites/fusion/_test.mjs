@@ -1,7 +1,17 @@
 import assert from "node:assert/strict";
+import {
+  massBeforeU,
+  massAfterU,
+  massDifferenceU,
+  reactionEnergyMeV,
+} from "./reaction-physics.js";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import { approaches, renderMachine } from "./diagrams.js";
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-8, `${a} ≠ ${b}`);
+assert.ok(massAfterU < massBeforeU);
+close(massDifferenceU, 0.018882833325);
+assert.ok(reactionEnergyMeV > 17.58 && reactionEnergyMeV < 17.6);
+assert.equal(reactionEnergyMeV.toFixed(1), "17.6");
 close(balance(defaults.continuous).net, 50);
 close(balance({ ...defaults.continuous, driver: 0.25 }).net, -50);
 close(balance(defaults.pulsed).net, 600);
@@ -57,5 +67,5 @@ for (const a of approaches) {
   }
 }
 console.log(
-  "PASS: 7 supplied power examples, negative/zero/invalid cases, scenario bounds, target costs, and 60 distinct diagram states.",
+  "PASS: 7 supplied power examples, negative/zero/invalid cases, scenario bounds, target costs, 60 distinct diagram states, and D–T mass/energy conversion.",
 );

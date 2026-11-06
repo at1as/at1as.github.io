@@ -187,6 +187,7 @@ export function buildReactor(id, options = {}) {
     tracerMaterial.depthWrite = false;
     materials.add(tracerMaterial);
     const o = ball(group, 0, 0, 0, radius, tracerMaterial);
+    o.userData.tracer = true;
     const closed = fn(0).distanceTo(fn(1)) < 0.02;
     tracers.push({
       object: o,
@@ -1358,6 +1359,68 @@ export function buildReactor(id, options = {}) {
   else if (id === "pulsed-power") pulsedPower();
   else if (id === "electrostatic") electrostatic();
   else throw new Error(`Unknown reactor approach: ${id}`);
+
+  // Open nested shells decisively. Constrain relative displacement so no pair
+  // of component centres moves closer as the assembly slider increases.
+  root.updateMatrixWorld(true);
+  const centers = parts.map((p) => {
+    const bounds = new THREE.Box3();
+    p.object.traverse((mesh) => {
+      if (mesh.isMesh && !mesh.userData.tracer)
+        bounds.union(new THREE.Box3().setFromObject(mesh));
+    });
+    return bounds.getCenter(V());
+  });
+  for (const p of parts)
+    p.explode
+      .multiplyScalar(3)
+      .addScaledVector(p.anchor.clone().normalize(), 0.6);
+  if (["tokamak", "spherical", "stellarator"].includes(id)) {
+    // Spread toroidal shells across the wide inspection view; pulling every
+    // component upwards crowds the model and forces excessive camera retreat.
+    const offsets = {
+      vessel: [-7, 0, -1],
+      blanket: [-4, 0.4, -3],
+      coils: [6, 0.3, -3],
+      solenoid: [0, 2.4, 0],
+      plasma: [0, 0, 0.8],
+      field: [3, 0.3, 2],
+      heating: [6, 0, 2],
+      exhaust: [0, -2.6, 0.5],
+    };
+    for (const p of parts) if (offsets[p.id]) p.explode.set(...offsets[p.id]);
+  }
+  if (["indirect-laser", "direct-laser", "hybrid-laser"].includes(id)) {
+    const offsets = {
+      vessel: [-6, -0.5, 0],
+      blanket: [-3, -0.5, -3],
+      drivers: [6, 0.5, -3],
+      hohlraum: [2, 1, 1],
+      target: [0, 0.7, 0.6],
+      plasma: [0, -1, 2],
+      injector: [-3, 0, -2],
+    };
+    for (const p of parts) if (offsets[p.id]) p.explode.set(...offsets[p.id]);
+  }
+  for (let pass = 0; pass < 512; pass++) {
+    let corrected = false;
+    for (let i = 0; i < parts.length; i++)
+      for (let j = i + 1; j < parts.length; j++) {
+        const offset = centers[j].clone().sub(centers[i]);
+        const length = offset.lengthSq();
+        if (length < 1e-12) continue;
+        const inward = parts[j].explode
+          .clone()
+          .sub(parts[i].explode)
+          .dot(offset);
+        if (inward >= -1e-9) continue;
+        offset.multiplyScalar(-inward / (2 * length));
+        parts[j].explode.add(offset);
+        parts[i].explode.sub(offset);
+        corrected = true;
+      }
+    if (!corrected) break;
+  }
 
   return {
     root,

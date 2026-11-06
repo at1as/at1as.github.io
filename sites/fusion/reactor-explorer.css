@@ -436,10 +436,11 @@
   margin: 30px 0 10px;
 }
 .machine-overview-row h3 {
-  font-size: 40px;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 .machine-overview-row > div {
-  max-width: 600px;
+  width: 100%;
 }
 .machine-overview-row p {
   font-size: 13px;
@@ -977,7 +978,7 @@ dialog:has(.company-reactor) {
   border: 1px solid #354854;
   border-radius: 7px;
   scroll-margin-top: 84px;
-  --model-height: clamp(300px, calc(100svh - 350px), 500px);
+  --model-height: clamp(260px, calc(100svh - 430px), 470px);
 }
 .machine-picker {
   display: flex;
@@ -1027,7 +1028,7 @@ dialog:has(.company-reactor) {
   flex: none;
 }
 .machine-workspace .reactor-explorer .reactor-inspector {
-  height: calc(var(--model-height) + 134px);
+  height: var(--inspector-height, calc(var(--model-height) + 234px));
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-color: #597787 #132532;
@@ -1064,7 +1065,8 @@ dialog:has(.company-reactor) {
   margin-top: 20px;
 }
 .machine-overview-row p {
-  max-width: 760px;
+  max-width: none;
+  font-size: 14px;
 }
 @media (max-width: 1000px) {
   .machine-picker {
