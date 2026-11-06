@@ -164,8 +164,22 @@ p + p {
   text-decoration: none;
 }
 .byline {
-  font-size: 11px;
-  color: #5d686c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 4px;
+  background: #a44325;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.byline:hover {
+  background: #80351e;
+  color: #fff;
 }
 .hero {
   display: grid;
@@ -673,6 +687,9 @@ p + p {
   letter-spacing: 0;
   color: #52665c;
 }
+.anchor-number.recovery-status {
+  font-size: clamp(36px, 3.5vw, 48px);
+}
 .anchor-grid p {
   font-size: 13px;
   color: #617178;
@@ -948,6 +965,11 @@ summary {
 #record-chart svg {
   width: 100%;
   height: auto;
+}
+#record-chart .record-context {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #42564c;
 }
 .data-table {
   border-collapse: collapse;
@@ -1637,6 +1659,12 @@ dialog::backdrop {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+.fuel-name {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
 .comparison-grid {
   display: grid;
   grid-template-columns: repeat(var(--columns, 3), minmax(0, 1fr));
@@ -1787,10 +1815,21 @@ body:has(dialog[open]) {
     padding-right: 30px;
   }
   .site-header {
-    padding: 0 25px;
+    height: auto;
+    padding: 10px 25px 0;
+    gap: 4px 24px;
+    flex-wrap: wrap;
   }
-  .byline {
-    display: none;
+  .site-header nav {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .site-header nav a {
+    padding: 10px 0 12px;
+  }
+  html {
+    scroll-padding-top: 140px;
   }
   .hero {
     min-height: 640px;
@@ -2425,7 +2464,8 @@ canvas:focus-visible {
 }
 @media (max-width: 700px) {
   .site-header .byline {
-    display: none;
+    padding: 8px;
+    font-size: 10px;
   }
   .reference .source-link {
     font-size: 11px;
@@ -2665,7 +2705,11 @@ h2 {
   margin-bottom: 5px;
 }
 .record-layout:has(#nif-record-note[hidden]) {
-  grid-template-columns: minmax(0, 850px);
+  grid-template-columns: minmax(0, 1fr);
+}
+#record-table {
+  margin-top: 24px;
+  min-width: 0;
 }
 .atlas-primary-filters {
   display: grid;
