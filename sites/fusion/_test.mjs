@@ -7,6 +7,26 @@ import {
 } from "./reaction-physics.js";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import { approaches, renderMachine } from "./diagrams.js";
+import { torusPoint, torusPointVisible } from "./schematic-torus.js";
+const heroTorus = { R: 146, r: 42, h: 48, stellarator: false };
+assert.equal(
+  torusPointVisible(torusPoint(Math.PI / 2, 0, heroTorus, 1.025), heroTorus),
+  true,
+  "near outer surface is visible",
+);
+assert.equal(
+  torusPointVisible(
+    torusPoint(Math.PI / 2, Math.PI, heroTorus, 1.025),
+    heroTorus,
+  ),
+  false,
+  "near inner surface is hidden by the torus",
+);
+assert.equal(
+  torusPointVisible(torusPoint(3.4, 3.4, heroTorus, 1.025), heroTorus),
+  false,
+  "a front-facing far surface can still be occluded by the near torus",
+);
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-8, `${a} ≠ ${b}`);
 assert.ok(massAfterU < massBeforeU);
 close(massDifferenceU, 0.018882833325);

@@ -398,22 +398,7 @@ function machine() {
       getReactorContent(a.id, { fastIgnition }).sourceIds,
     );
   }
-  compareMachine();
 }
-function compareMachine() {
-  const open = $("#comparison-machine").open;
-  if (!open) {
-    releaseReactor($("#comparison-diagram"));
-    return;
-  }
-  const a =
-    approaches.find((a) => a.id === $("#second-approach").value) ||
-    approaches[2];
-  mountReactor($("#comparison-diagram"), a.id);
-  $("#comparison-copy").innerHTML =
-    `<p>${esc(a.description)} ${esc(a.constraint)}</p>`;
-}
-
 function stopMachine() {
   clearInterval(playMachine);
   playMachine = null;
@@ -432,8 +417,6 @@ $("#fast-ignition").onchange = (e) => {
   updateURL({ variant: fastIgnition ? "fast-ignition" : "" });
 };
 $("#approach-select").onchange = (e) => selectMachine(e.target.value);
-$("#second-approach").onchange = compareMachine;
-$("#comparison-machine").addEventListener("toggle", compareMachine);
 $("#machine-back").onclick = () => {
   stopMachine();
   machineStage--;
@@ -737,7 +720,10 @@ function selectedEntities() {
           .join(" ")
           .toLowerCase()
           .includes(q)) &&
-      (!f || e.family === f) &&
+      (!f ||
+        (f.startsWith("approach:")
+          ? e.approachId === f.slice(9)
+          : e.family === f)) &&
       (!fuel ||
         (e.intended_fuel_ids || []).includes(fuel) ||
         e.intendedFuel?.includes(fuel)) &&
@@ -745,6 +731,36 @@ function selectedEntities() {
       (!country || e.locations.some((l) => l.country === country)) &&
       (!evidence || e.claims.some((c) => c.category === evidence)),
   );
+}
+function approachOverview() {
+  const companies = data.entities.filter((e) =>
+    (e.roles || [e.role]).includes("developer"),
+  );
+  const counts = new Map();
+  for (const e of companies) {
+    const id = e.approachId || "unclassified";
+    if (!counts.has(id))
+      counts.set(id, {
+        id,
+        name:
+          approaches.find((a) => a.id === machineId(e))?.name ||
+          "Other approaches",
+        count: 0,
+      });
+    counts.get(id).count++;
+  }
+  const rows = [...counts.values()].sort(
+    (a, b) => b.count - a.count || a.name.localeCompare(b.name),
+  );
+  const maximum = Math.max(1, ...rows.map((r) => r.count));
+  $("#approach-overview-count").textContent =
+    `${companies.length} developers in this atlas · 22 Oct 2026`;
+  $("#approach-chart").innerHTML = rows
+    .map(
+      (r) =>
+        `<button data-approach-filter="${esc(r.id)}" aria-pressed="false" aria-label="${esc(r.name)}: ${r.count} ${r.count === 1 ? "company" : "companies"}; show companies"><span class="approach-bar-label">${esc(r.name)}</span><span class="approach-bar-track" aria-hidden="true"><span style="width:${(r.count / maximum) * 100}%"></span></span><strong>${r.count}</strong></button>`,
+    )
+    .join("");
 }
 function entityCard(e) {
   const claim =
@@ -765,6 +781,14 @@ function atlas() {
     !$("#filter-family").value &&
     !$("#atlas-search").value.trim();
   const entities = selectedEntities();
+  $$("[data-approach-filter]").forEach((button) => {
+    button.setAttribute(
+      "aria-pressed",
+      $("#filter-family").value ===
+        `approach:${button.dataset.approachFilter}` &&
+        $("#filter-role").value === "developer",
+    );
+  });
   $$("[data-view]").forEach((b) => {
     b.classList.toggle("active", b.dataset.view === view);
     b.setAttribute("aria-pressed", b.dataset.view === view);
@@ -1091,6 +1115,21 @@ document.addEventListener("click", (e) => {
     scenario = { ...defaults[b.dataset.mode] };
     calcControls();
   }
+  if (b.dataset.approachFilter) {
+    $("#atlas-search").value = "";
+    ["fuel", "country", "evidence"].forEach(
+      (key) => ($("#filter-" + key).value = ""),
+    );
+    $("#filter-family").value = `approach:${b.dataset.approachFilter}`;
+    $("#filter-role").value = "developer";
+    $("#atlas-more-filters").open = true;
+    view = "cards";
+    atlas();
+    $(".atlas-controls").scrollIntoView({
+      block: "start",
+      behavior: reduced ? "instant" : "smooth",
+    });
+  }
   if (b.dataset.view) {
     view = b.dataset.view;
     atlas();
@@ -1208,8 +1247,6 @@ async function init() {
     .map((a) => `<option value="${a.id}">${esc(a.name)}</option>`)
     .join("");
   $("#approach-select").innerHTML = options;
-  $("#second-approach").innerHTML = options;
-  $("#second-approach").value = "stellarator";
   $("#hero-machine").innerHTML = renderMachine("tokamak", 3);
   machine();
   calcControls();
@@ -1232,12 +1269,20 @@ async function init() {
     );
     $("#atlas-stats").innerHTML =
       `<span><b>${data.entities.filter((e) => e.role !== "public").length}</b>companies & suppliers</span><span><b>${data.entities.filter((e) => e.role === "public").length}</b>public programmes</span><span><b>${data.sources.length}</b>sources</span>`;
-    $("#filter-family").innerHTML += [
-      ...new Set(data.entities.map((e) => e.family)),
-    ]
-      .sort()
-      .map((v) => `<option value="${esc(v)}">${esc(human(v))}</option>`)
-      .join("");
+    const families = [...new Set(data.entities.map((e) => e.family))].sort();
+    const configurations = [
+      ...new Map(
+        data.entities
+          .filter((e) => e.approachId)
+          .map((e) => [
+            e.approachId,
+            approaches.find((a) => a.id === machineId(e))?.name || e.approach,
+          ]),
+      ).entries(),
+    ].sort((a, b) => a[1].localeCompare(b[1]));
+    $("#filter-family").innerHTML +=
+      `<optgroup label="Configurations">${configurations.map(([id, name]) => `<option value="approach:${esc(id)}">${esc(name)}</option>`).join("")}</optgroup><optgroup label="Confinement families">${families.map((v) => `<option value="${esc(v)}">${esc(human(v))}</option>`).join("")}</optgroup>`;
+    approachOverview();
     $("#filter-country").innerHTML += [
       ...new Set(data.sites.map((s) => s.country).filter(Boolean)),
     ]

@@ -139,8 +139,8 @@
           <p>
             Deuterium–tritium (D–T) needs less demanding plasma conditions than
             other candidate fuels, making it a leading choice for proposed
-            fusion power plants. Its energetic neutrons damage materials, and a
-            plant must produce fresh tritium from lithium.
+            fusion power plants. However, its energetic neutrons damage
+            materials, and a plant must produce fresh tritium from lithium.
           </p>
           <p class="fuel-alternatives">
             Compare D–T, deuterium–deuterium, deuterium–helium-3, and
@@ -249,35 +249,6 @@
               Animations show the operating sequence, with timing slowed for
               explanation.
             </p>
-          </details>
-          <details id="comparison-machine" class="machine-comparison">
-            <summary>Compare another configuration</summary>
-            <div class="machine-workspace">
-              <div class="machine-picker">
-                <label for="second-approach">Compare with</label>
-                <div class="machine-choice">
-                  <button
-                    data-config-step="-1"
-                    data-select="second-approach"
-                    aria-label="Previous comparison configuration"
-                    title="Previous configuration"
-                  >
-                    ←
-                  </button>
-                  <select id="second-approach"></select>
-                  <button
-                    data-config-step="1"
-                    data-select="second-approach"
-                    aria-label="Next comparison configuration"
-                    title="Next configuration"
-                  >
-                    →
-                  </button>
-                </div>
-              </div>
-              <div class="reactor-slot" id="comparison-diagram"></div>
-            </div>
-            <div id="comparison-copy"></div>
           </details>
         </div>
       </section>
@@ -478,14 +449,48 @@
               identified separately
             </p>
           </div>
-          <div class="atlas-topline">
-            <div id="atlas-stats"></div>
-            <div class="segmented" id="view-tabs">
-              <button data-view="cards">Organizations</button
-              ><button data-view="table">Evidence table</button
-              ><button data-view="sites">Sites</button
-              ><button data-view="funding">Financing</button>
+          <section
+            class="approach-overview"
+            aria-labelledby="approach-overview-title"
+          >
+            <div class="approach-overview-heading">
+              <h3 id="approach-overview-title">Companies by approach</h3>
+              <p id="approach-overview-count"></p>
             </div>
+            <div
+              id="approach-chart"
+              class="approach-chart"
+              role="group"
+              aria-label="Company counts by approach; select one to see its companies"
+            ></div>
+            <p class="approach-overview-note">
+              Each company is counted once by its primary approach. Public
+              programmes and supplier-only companies are excluded. Select a bar
+              to see the companies
+            </p>
+          </section>
+          <div class="atlas-topline"><div id="atlas-stats"></div></div>
+          <div
+            id="view-tabs"
+            class="atlas-views"
+            role="group"
+            aria-label="Explore the atlas"
+          >
+            <button data-view="cards">
+              <strong>Organizations</strong
+              ><span>Projects and field notes</span>
+            </button>
+            <button data-view="table">
+              <strong>Evidence table</strong
+              ><span>Results and announced targets</span>
+            </button>
+            <button data-view="sites">
+              <strong>Sites</strong><span>Facilities around the world</span>
+            </button>
+            <button data-view="funding">
+              <strong>Financing</strong
+              ><span>Rounds, grants and commitments</span>
+            </button>
           </div>
           <div class="atlas-controls">
             <div class="atlas-primary-filters">

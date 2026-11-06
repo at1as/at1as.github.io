@@ -1,3 +1,4 @@
+import { torusPoint, torusPointVisible } from "./schematic-torus.js";
 /** Original editable fusion mechanism drawings. Schematic geometry, never to scale. */
 export const approaches = [
   {
@@ -530,16 +531,10 @@ function torus(kind, s) {
     R = spherical ? 98 : 146,
     r = spherical ? 53 : 42,
     h = spherical ? 88 : 48;
+  const shape = { R, r, h, stellarator };
   const project = (t, p, expansion = 1) => {
-    const bend = stellarator ? 17 * Math.cos(3 * t) : 0;
-    const wave = stellarator ? 26 * Math.sin(3 * t) : 0;
-    const radial = R + bend + r * expansion * Math.cos(p);
-    return [
-      cx + radial * Math.cos(t),
-      cy +
-        radial * Math.sin(t) * 0.45 -
-        (h * expansion * Math.sin(p) + wave) * 0.88,
-    ];
+    const [x, y, z] = torusPoint(t, p, shape, expansion);
+    return [cx + x, cy + z * 0.45 - y * 0.88];
   };
   let out = ellipse(cx, 364, 203, 18, "machine-shadow");
   out += path(
@@ -630,22 +625,19 @@ function torus(kind, s) {
     );
   }
   if (s > 0) {
-    // Hide the far side of each winding behind the plasma surface. Drawing
-    // every segment on top made the field look like crossed wires in the hole.
-    for (const phase of [0.4, Math.PI]) {
+    // Trace a helix on a flux surface, with two toroidal turns per poloidal
+    // turn. Occlude it against the entire torus, including the near inner rim.
+    for (const phase of [0.4, 2.3]) {
       let d = "",
         connected = false;
-      for (let i = 0; i <= 360; i++) {
-        const t = (i * Math.PI * 2) / 360,
-          p = t * 3 + phase,
-          visible =
-            stellarator ||
-            0.88 * Math.sin(t) * Math.cos(p) + 0.45 * Math.sin(p) > 0.06;
-        if (!visible) {
+      for (let i = 0; i <= 720; i++) {
+        const t = (i * Math.PI * 4) / 720;
+        const p = t / 2 + phase;
+        if (!torusPointVisible(torusPoint(t, p, shape, 1.025), shape)) {
           connected = false;
           continue;
         }
-        const [x, y] = project(t, p, 1.04);
+        const [x, y] = project(t, p, 1.025);
         d += `${connected ? "L" : "M"}${n(x)} ${n(y)}`;
         connected = true;
       }
@@ -668,7 +660,7 @@ function torus(kind, s) {
     "Plasma",
     "machine-label-plasma",
   );
-  const fieldAnchor = s > 0 ? project(0.4, 1.6, 1.04) : [cx + R - 17, 196];
+  const fieldAnchor = s > 0 ? project(0.4, 0.6, 1.025) : [cx + R - 17, 196];
   out += leader(
     `M${n(fieldAnchor[0])} ${n(fieldAnchor[1])}L585 145H712`,
     712,
@@ -1486,6 +1478,6 @@ export function renderMachine(id, stage = 0, opts = {}) {
     <path d="M28 437H732" class="machine-casing"/>
     ${line(30, 454, 51, 454, "machine-field")}${text(59, 458, "Field", "machine-small")}
     ${line(123, 454, 144, 454, "machine-legend-plasma")}${text(151, 458, ["tokamak", "spherical", "stellarator"].includes(approach.id) ? "Plasma" : "Plasma / particles", "machine-small")}
-    ${line(296, 454, 317, 454, "machine-energy")}${text(325, 458, "Driver / energy", "machine-small")}
+    ${line(["tokamak", "spherical", "stellarator"].includes(approach.id) ? 222 : 296, 454, ["tokamak", "spherical", "stellarator"].includes(approach.id) ? 243 : 317, 454, "machine-energy")}${text(["tokamak", "spherical", "stellarator"].includes(approach.id) ? 251 : 325, 458, "Driver / energy", "machine-small")}
   </svg>`;
 }

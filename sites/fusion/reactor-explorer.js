@@ -1,5 +1,5 @@
 import * as THREE from "./assets/vendor/three.module.min.js";
-import { buildReactor } from "./reactor-geometry.js";
+import { buildReactor, applyReactorLayers } from "./reactor-geometry.js";
 import { getReactorContent } from "./reactor-content.js";
 import { renderMachine } from "./diagrams.js";
 const esc = (v) =>
@@ -125,9 +125,8 @@ export function createReactorExplorer(host, id, options = {}) {
   }
   function apply() {
     if (!model) return;
+    applyReactorLayers(model, layers, isolate ? selected : null);
     for (const p of model.parts) {
-      p.object.visible =
-        layers[p.layer || "structure"] && (!isolate || p.id === selected);
       p.object.position
         .copy(p.basePosition)
         .addScaledVector(p.explode || new THREE.Vector3(), explosion);
@@ -145,11 +144,12 @@ export function createReactorExplorer(host, id, options = {}) {
       if (model && camera) fit(model.parts.map((p) => p.object));
     }
     const p = model?.parts.find((p) => p.id === selected);
-    if (p && !layers[p.layer]) {
-      layers[p.layer] = true;
-      const input = q(`[data-layer="${p.layer}"]`);
-      if (input) input.checked = true;
-    }
+    if (p)
+      for (const layer of p.layers) {
+        layers[layer] = true;
+        const input = q(`[data-layer="${layer}"]`);
+        if (input) input.checked = true;
+      }
     detail();
     // A new component starts at its heading even after reading a long prior note.
     q(".reactor-inspector").scrollTop = 0;
@@ -332,7 +332,7 @@ export function createReactorExplorer(host, id, options = {}) {
     isolate = false;
     labels = true;
     Object.keys(layers).forEach((k) => (layers[k] = true));
-    qa("[data-layer]").forEach((i) => (i.checked = true));
+    qa("[data-layer]").forEach((i) => (i.checked = !i.disabled));
     q('[data-action="labels"]').checked = true;
     q('[data-action="isolate"]').checked = false;
     q(".reactor-explode input").value = 0;
@@ -488,6 +488,14 @@ export function createReactorExplorer(host, id, options = {}) {
     fill.position.set(1, -2, 4);
     scene.add(fill);
     model = buildReactor(id, options);
+    const availableLayers = new Set(model.parts.flatMap((p) => p.layers));
+    qa("[data-layer]").forEach((input) => {
+      input.disabled = !availableLayers.has(input.dataset.layer);
+      input.checked = !input.disabled;
+      input.parentElement.title = input.disabled
+        ? "Not used in this configuration"
+        : "";
+    });
     scene.add(model.root);
     model.parts.forEach((p) => (p.basePosition = p.object.position.clone()));
     const box = new THREE.Box3().setFromObject(model.root),
@@ -521,12 +529,15 @@ export function createReactorExplorer(host, id, options = {}) {
         (-(e.clientY - r.top) / r.height) * 2 + 1,
       );
       raycaster.setFromCamera(pointer, camera);
-      const objects = model.parts
-        .filter(
-          (p) => p.object.visible && p.layer !== "field" && p.layer !== "flow",
+      const objects = [];
+      model.root.traverseVisible((mesh) => {
+        if (
+          mesh.isMesh &&
+          ["structure", "plasma"].includes(mesh.userData.layer)
         )
-        .map((p) => p.object);
-      const hits = raycaster.intersectObjects(objects, true);
+          objects.push(mesh);
+      });
+      const hits = raycaster.intersectObjects(objects, false);
       for (const h of hits) {
         let o = h.object;
         while (o && !o.userData.partId) o = o.parent;

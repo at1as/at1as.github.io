@@ -72,10 +72,17 @@ export function buildReactor(id, options = {}) {
       side: THREE.DoubleSide,
     }),
   };
+  // A selectable system can contain both equipment and an energy path.
+  // Assign display layers to meshes so hiding hardware also hides injectors,
+  // laser housings and exhaust collectors without hiding the paths they carry.
+  for (const key of ["field", "electric"]) M[key].userData.layer = "field";
+  for (const key of ["energy", "laser", "xray"]) M[key].userData.layer = "flow";
+  M.plasma.userData.layer = "plasma";
   function part(partId, anchor, explode, layer = "structure") {
     const object = new THREE.Group();
     object.name = partId;
     object.userData.partId = partId;
+    object.userData.layer = layer;
     root.add(object);
     parts.push({
       id: partId,
@@ -91,6 +98,10 @@ export function buildReactor(id, options = {}) {
     const object = new THREE.Mesh(geometry, material);
     object.position.copy(pos);
     object.userData.partId = group.userData.partId;
+    object.userData.layer = material.isMeshBasicMaterial
+      ? material.userData.layer ||
+        (group.userData.layer === "structure" ? "plasma" : group.userData.layer)
+      : "structure";
     group.add(object);
     return object;
   }
@@ -1562,6 +1573,14 @@ export function buildReactor(id, options = {}) {
     if (!corrected) break;
   }
 
+  for (const p of parts) {
+    const usedLayers = new Set();
+    p.object.traverse((mesh) => {
+      if (mesh.isMesh) usedLayers.add(mesh.userData.layer);
+    });
+    p.layers = [...usedLayers];
+  }
+
   return {
     root,
     parts,
@@ -1582,4 +1601,16 @@ export function buildReactor(id, options = {}) {
       tracers.length = 0;
     },
   };
+}
+
+export function applyReactorLayers(model, layers, isolatedPart = null) {
+  for (const p of model.parts) {
+    let visible = false;
+    p.object.traverse((mesh) => {
+      if (!mesh.isMesh) return;
+      mesh.visible = Boolean(layers[mesh.userData.layer]);
+      visible ||= mesh.visible;
+    });
+    p.object.visible = visible && (!isolatedPart || p.id === isolatedPart);
+  }
 }

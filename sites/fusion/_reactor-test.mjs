@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { Box3, Vector3 } from "./assets/vendor/three.module.min.js";
 import { readFileSync } from "node:fs";
-import { buildReactor } from "./reactor-geometry.js";
+import { buildReactor, applyReactorLayers } from "./reactor-geometry.js";
 import { loopFieldDirection } from "./reactor-fields.js";
 import {
   getReactorContent,
@@ -34,6 +34,46 @@ function validate(id, options = {}) {
       !ids.has("blanket"),
       `${id}: research device must not get a plant blanket`,
     );
+  // Hiding hardware must also remove solid equipment in mixed systems such as
+  // heating injectors, laser drivers and exhaust collectors, leaving paths.
+  applyReactorLayers(model, {
+    structure: false,
+    field: true,
+    plasma: true,
+    flow: true,
+  });
+  model.root.traverse((mesh) => {
+    if (!mesh.isMesh) return;
+    if (mesh.material.isMeshStandardMaterial)
+      assert.equal(
+        mesh.visible,
+        false,
+        `${id}/${mesh.userData.partId}: equipment survived Hardware off`,
+      );
+    else
+      assert.equal(
+        mesh.visible,
+        true,
+        `${id}: Hardware off hid a field, fuel or energy path`,
+      );
+  });
+  // Conversely, hiding energy paths must retain the solid equipment.
+  applyReactorLayers(model, {
+    structure: true,
+    field: true,
+    plasma: true,
+    flow: false,
+  });
+  model.root.traverse((mesh) => {
+    if (mesh.isMesh && mesh.material.isMeshStandardMaterial)
+      assert.equal(mesh.visible, true, `${id}: Energy paths off hid equipment`);
+  });
+  applyReactorLayers(model, {
+    structure: true,
+    field: true,
+    plasma: true,
+    flow: true,
+  });
   for (const p of content.parts) {
     assert.ok(p.description && p.challenge && p.role);
     for (const related of p.connectsTo)
