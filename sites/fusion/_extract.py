@@ -109,6 +109,10 @@ for e in C['entities']:
     funding = [adapt_funding(f) for f in C['funding_events'] if f['entity_id'] == e['id']]
     assessment = [{**risks_by_id[i], 'text': risks_by_id[i]['headline'] + '. ' + risks_by_id[i]['interpretation'],
                    'sourceIds': risks_by_id[i]['source_ids']} for i in e['risk_note_ids']]
+    for a in assessment:
+        headline = a['headline'].rstrip('. ')
+        interpretation = a['interpretation'].strip()
+        a['displayText'] = interpretation if headline == interpretation.rstrip('. ') else headline + '. ' + interpretation
     role = 'public' if e['sector'] == 'public_project_or_facility' else 'developer' if 'developer' in e['entity_type'] else 'supplier'
     roles = [role] + (['supplier'] if role == 'developer' and 'supplier' in e['entity_type'] else [])
     approach = approaches.get(e.get('approach_id'), {})
@@ -143,6 +147,18 @@ results = [{**r, 'canonicalId': r['id'], 'entityId': entity_ids[r['entity_id']],
 risks = [{**r, 'name': r['label'], 'evidenceNeeded': r['evidence_required'], 'sourceIds': r['source_ids']} for r in C['risk_dimensions']]
 glossary = [{**g, 'distinction': g['do_not_confuse_with'], 'sourceIds': g['source_ids']} for g in C['glossary']]
 
+# Reader-facing edits keep the exact source wording alongside the display copy.
+# A changed upstream record requires a fresh editorial review, not a silent override.
+copy_overrides = json.loads((ROOT / '_copy.json').read_text())
+copy_records = {e['canonicalId']: e for e in entities}
+copy_records.update({r['id']: r for e in entities for r in e['claims'] + e['assessment'] + e['funding']})
+copy_records.update({r['id']: r for r in history})
+for edit in copy_overrides:
+    record = copy_records[edit['id']]
+    field = edit['field']
+    assert record[field] == edit['sourceText'], f"Review stale display copy: {edit['id']}.{field}"
+    record['display' + field[0].upper() + field[1:]] = edit['displayText']
+
 # Only these explanatory tables use the accompanying narrative; canonical JSON
 # has no separate fuel-comparison or gain-definition collection.
 fuels = [{'name': name, 'benefits': benefits, 'challenges': challenges, 'label': label,
@@ -169,4 +185,5 @@ data = {'meta': {**C['meta'], 'subtitle': C['meta']['public_title'], 'snapshot':
 (ROOT / 'data.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
 (ROOT / 'fusion_atlas.json').write_bytes(canonical_bytes)
 shutil.copyfile(report_path, ROOT / '_research.md')
+shutil.copyfile(report_path, ROOT / 'research-report.md')
 print(json.dumps(data['meta']['counts'], indent=2))
