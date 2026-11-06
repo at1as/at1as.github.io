@@ -71,24 +71,17 @@
           <p class="eyebrow">
             <span class="live-dot"></span> AN INTERACTIVE GUIDE TO FUSION ENERGY
           </p>
-          <h1>The paths to<br /><em>fusion power.</em></h1>
+          <h1>The paths to <em>fusion power.</em></h1>
           <p class="hero-deck">
-            We can make fusion happen.<br />Making a power plant is the harder
-            part.
-          </p>
-          <p class="hero-copy">
-            Explore the machines, follow the energy, and see what each route
-            still has to prove.
+            Reactor designs, experimental results, and the engineering of fusion
+            power
           </p>
           <a class="primary-link" href="#learn"
             >Start with a reaction <span>↓</span></a
           >
           <div class="snapshot">
             RESEARCH SNAPSHOT <strong>22 OCTOBER 2026</strong
-            ><span
-              >Experiments, proposed plants, and the engineering between
-              them.</span
-            >
+            ><span>42 organizations · 15 reactor configurations</span>
           </div>
         </div>
         <figure class="hero-figure">
@@ -98,9 +91,9 @@
           </div>
           <div id="hero-machine"></div>
           <figcaption>
-            <span class="legend-line orange"></span> A plasma hotter than the
-            Sun’s core, held away from the walls by magnetic fields.
-            <span>Geometry is schematic; not to scale.</span>
+            <span class="legend-line orange"></span> Tokamak concept: magnetic
+            fields confine a ring-shaped plasma
+            <span>Schematic geometry · not to scale</span>
           </figcaption>
         </figure>
       </section>
@@ -113,10 +106,11 @@
       <section id="learn" class="section wrap">
         <div class="section-heading">
           <p class="eyebrow">01 / FROM NUCLEI TO A POWER PLANT</p>
-          <h2>What happens<br />after the nuclei fuse?</h2>
+          <h2>From fusion reactions to electricity</h2>
           <p>
-            Many near-term designs start with two forms of hydrogen. The
-            reaction is only the first link in the chain.
+            Follow a deuterium–tritium reaction through a proposed power plant,
+            from the energy released by the nuclei to electricity exported to
+            the grid
           </p>
           <button data-open="glossary">Fusion glossary ↗</button>
         </div>
@@ -126,7 +120,11 @@
               DEUTERIUM + TRITIUM <span>SCHEMATIC · NOT TO SCALE</span>
             </div>
             <div id="reaction-scene"></div>
-            <div class="reaction-caption" id="reaction-caption"></div>
+            <div
+              class="reaction-caption"
+              id="reaction-caption"
+              aria-live="polite"
+            ></div>
             <div class="step-controls">
               <button id="reaction-back" aria-label="Previous reaction stage">
                 ←</button
@@ -139,7 +137,7 @@
           <div class="reaction-steps" id="reaction-steps"></div>
         </div>
         <div class="margin-note">
-          <span>THE FUEL CHOICE MATTERS</span>
+          <span>FUSION FUELS</span>
           <p>
             Deuterium–tritium (D–T) needs less demanding plasma conditions than
             other candidate fuels. Its energetic neutrons damage materials, and
@@ -149,7 +147,7 @@
         </div>
         <div class="history-teaser">
           <div class="history-teaser-heading">
-            <p class="eyebrow">DECADES OF DIFFERENT BREAKTHROUGHS</p>
+            <p class="eyebrow">RESEARCH MILESTONES</p>
             <button data-open="history">Explore the timeline ↗</button>
           </div>
           <div id="history-milestones"></div>
@@ -159,21 +157,30 @@
         <div class="wrap">
           <div class="section-heading horizontal">
             <div>
-              <p class="eyebrow">02 / THE MACHINE EXPLORER</p>
-              <h2>How the<br />machines work.</h2>
+              <p class="eyebrow">02 / REACTOR CONFIGURATIONS</p>
+              <h2>Machine explorer</h2>
             </div>
             <p>
-              Rotate the machine, separate its assembly, and select a system to
-              see what it does. Follow the connections from the fuel to the
-              hardware around it.
+              Select a configuration, rotate the model, and inspect its
+              components
             </p>
           </div>
-          <div class="machine-picker">
-            <div class="popular-machines" id="popular-machines"></div>
+          <div class="machine-workspace">
+            <div class="machine-picker">
+              <label for="approach-select">Configuration</label>
+              <select id="approach-select"></select>
+            </div>
+            <div class="reactor-slot" id="reactor-explorer"></div>
+          </div>
+          <div class="machine-options">
             <label
-              >All configurations
-              <select id="approach-select"></select
-            ></label>
+              ><input id="compare-machines" type="checkbox" /> Compare
+              configurations</label
+            >
+            <label id="fast-ignition-control" hidden
+              ><input id="fast-ignition" type="checkbox" /> Separate
+              fast-ignition stage</label
+            >
           </div>
           <div class="machine-overview-row">
             <div>
@@ -184,20 +191,10 @@
               <h3 id="machine-name"></h3>
               <p id="machine-description"></p>
             </div>
-            <div>
-              <label
-                ><input id="compare-machines" type="checkbox" /> Compare
-                mechanisms</label
-              ><label id="fast-ignition-control" hidden
-                ><input id="fast-ignition" type="checkbox" /> Separate
-                fast-ignition stage</label
-              >
-            </div>
           </div>
-          <div class="reactor-slot" id="reactor-explorer"></div>
           <div class="machine-context-row">
             <div class="constraint">
-              <span>THE ENGINEERING QUESTION</span>
+              <span>ENGINEERING CHALLENGE</span>
               <p id="machine-constraint"></p>
             </div>
             <div>
@@ -241,19 +238,21 @@
             <div id="comparison-copy"></div>
           </div>
           <p class="quiet">
-            Conceptual schematics, not reactor blueprints. Stage timing is
-            presentational; pulsed sequences are slowed schematics. Fields,
-            particles, heat, and electricity are different things.
+            Models show operating principles rather than construction details.
+            Operating sequences are slowed for explanation and do not represent
+            actual cycle times.
           </p>
         </div>
       </section>
       <section id="gain" class="section wrap">
         <div class="section-heading">
-          <p class="eyebrow">03 / THE ACCOUNTING THAT CHANGES THE HEADLINE</p>
-          <h2>“More energy out”<br /><em>than what went in?</em></h2>
+          <p class="eyebrow">03 / ENERGY ACCOUNTING</p>
+          <h2>Fusion gain and net electricity</h2>
           <p>
-            The answer changes when you move the boundary. A successful fusion
-            experiment can still consume far more electricity than it produces.
+            Plasma Q compares fusion power with external plasma heating. Target
+            gain compares fusion energy with energy delivered to a target. Net
+            electricity also accounts for conversion losses and the power used
+            by the entire plant.
           </p>
         </div>
         <div class="boundaries">
@@ -305,8 +304,8 @@
         <div class="calculator">
           <div class="calculator-heading">
             <div>
-              <p class="eyebrow">THE POWER-PLANT BOOKKEEPER</p>
-              <h3>Can you get power onto the grid?</h3>
+              <p class="eyebrow">EXPLORE THE ASSUMPTIONS</p>
+              <h3>Power balance</h3>
             </div>
             <div class="segmented" id="mode-tabs">
               <button data-mode="continuous">Continuous plasma</button
@@ -354,10 +353,8 @@
           </details>
         </div>
         <div class="records-heading">
-          <h3>Progress has more than one axis.</h3>
-          <p>
-            Energy, gain, temperature, and duration answer different questions.
-          </p>
+          <h3>Experimental results</h3>
+          <p>Compare results within each measurement and operating regime</p>
         </div>
         <div class="record-layout">
           <div>
@@ -396,12 +393,12 @@
           <div class="section-heading horizontal">
             <div>
               <p class="eyebrow">04 / THE FUSION ATLAS</p>
-              <h2>Who is building what.</h2>
+              <h2>Organizations and projects</h2>
             </div>
             <p>
-              Explore the organizations and public experiments behind the
-              machines. Read what they’ve demonstrated, what they model, and
-              what they’re aiming for.
+              Research programs, reactor developers, and suppliers, with
+              reported experiments, design studies, and future targets
+              identified separately
             </p>
           </div>
           <div class="atlas-topline">
@@ -457,11 +454,11 @@
       </section>
       <section id="questions" class="section wrap">
         <div class="section-heading">
-          <p class="eyebrow">05 / THE DISTANCE BETWEEN A SHOT AND A STATION</p>
-          <h2>What a power plant<br />still has to prove.</h2>
+          <p class="eyebrow">05 / ENGINEERING CHALLENGES</p>
+          <h2>Power-plant engineering</h2>
           <p>
-            A stronger physics result can coexist with unresolved engineering.
-            These are questions to investigate, not scores to add up.
+            Fuel supply, materials, heat extraction, and maintenance determine
+            whether a reactor can operate reliably as a power plant
           </p>
         </div>
         <div class="questions-grid" id="risk-questions"></div>
@@ -470,13 +467,13 @@
         <div class="wrap">
           <div class="section-heading horizontal">
             <div>
-              <p class="eyebrow">06 / OPEN THE NOTEBOOK</p>
-              <h2>Sources and methods.</h2>
+              <p class="eyebrow">06 / REFERENCES</p>
+              <h2>Sources and methods</h2>
             </div>
             <p>
-              This is a curated snapshot, not a live industry feed or an
-              investment ranking. A company source establishes what the company
-              reports; it does not independently verify the result.
+              Sources include scientific publications, public research programs,
+              and company announcements. Company-reported results are attributed
+              and are not treated as independent verification.
             </p>
           </div>
           <div class="methodology-grid">
@@ -484,11 +481,11 @@
               <h3>How to read this atlas</h3>
               <p>
                 <span class="badge experiment">● EXPERIMENT</span> A reported
-                observation, with its measurement boundary.
+                observation, with its measurement boundary
               </p>
               <p>
                 <span class="badge model">○ MODEL</span> A simulation or design
-                study, with assumptions.
+                study, with assumptions
               </p>
               <p>
                 <span class="badge target">◇ TARGET</span> An announced plan.
@@ -512,8 +509,7 @@
               <p>
                 Map positions are approximate city or area centers. Unselected
                 or unknown sites are left unmapped. Financing retains
-                currencies, dates, revisions and conditions. Unknowns stay
-                unknown.
+                currencies, dates, revisions and conditions.
               </p>
               <a class="text-link" href="./fusion_atlas.json" download
                 >Download the complete dataset ↓</a

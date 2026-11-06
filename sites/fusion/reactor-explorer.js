@@ -48,14 +48,14 @@ export function createReactorExplorer(host, id, options = {}) {
     lastFrame = 0;
   host.classList.add("reactor-explorer");
   host.classList.remove("reactor-fallback");
-  host.innerHTML = `<div class="reactor-toolbar"><div><span class="reactor-eyebrow">INTERACTIVE ANATOMY</span><strong>${esc(options.title || content.title)}</strong></div><div class="reactor-views" aria-label="Camera view"><button data-camera="iso" class="active" aria-pressed="true">Perspective</button><button data-camera="top" aria-pressed="false">Top</button><button data-camera="front" aria-pressed="false">Front</button><button data-action="reset" title="Reset view and layers">Reset ↺</button></div></div>
+  host.innerHTML = `<div class="reactor-toolbar"><div><span class="reactor-eyebrow">COMPONENT VIEW</span><strong>${esc(options.title || content.title)}</strong></div><div class="reactor-views" aria-label="Camera view"><button data-camera="iso" class="active" aria-pressed="true">Perspective</button><button data-camera="top" aria-pressed="false">Top</button><button data-camera="front" aria-pressed="false">Front</button><button data-action="reset" title="Reset view and layers">Reset ↺</button></div></div>
   <div class="reactor-body"><div class="reactor-visual"><div class="reactor-stage"><div class="reactor-canvas"></div><div class="reactor-annotations" aria-label="Selectable machine components"></div><div class="reactor-hover" hidden></div><div class="reactor-view-note">CONCEPTUAL GEOMETRY · NOT TO SCALE</div><div class="reactor-navigation"><button data-action="zoom-in" aria-label="Zoom in">+</button><button data-action="zoom-out" aria-label="Zoom out">−</button><button data-action="rotate-left" aria-label="Rotate left">↶</button><button data-action="rotate-right" aria-label="Rotate right">↷</button></div></div>
   <div class="reactor-interaction-hint"><span>Drag to rotate · select a part</span><button data-action="motion" aria-pressed="false">Trace the paths ▷</button></div>
   <div class="reactor-legend" aria-label="Diagram color key"><span>Field geometry</span><span class="plasma">Fuel / particles</span><span class="energy">Driver / energy flow</span></div>
-  <div class="reactor-layer-controls"><label><input type="checkbox" data-layer="structure" checked> Hardware</label><label><input type="checkbox" data-layer="field" checked> Fields</label><label><input type="checkbox" data-layer="plasma" checked> Plasma / fuel</label><label><input type="checkbox" data-layer="flow" checked> Energy paths</label><label><input type="checkbox" data-action="labels" checked> Labels</label></div>
-  <div class="reactor-explode"><label for="${uid}-explode">Separate the assembly</label><input id="${uid}-explode" type="range" min="0" max="100" value="0" aria-label="Separate the assembly"><output for="${uid}-explode">Assembled</output></div></div>
-  <aside class="reactor-inspector"><div class="reactor-inspector-heading"><span class="reactor-eyebrow">SELECT A SYSTEM</span><label><input type="checkbox" data-action="isolate"> Isolate</label></div><div class="reactor-parts" role="group" aria-label="Machine systems">${content.parts.map((p, i) => `<button data-part="${p.id}" aria-pressed="${p.id === selected}"><span>${String(i + 1).padStart(2, "0")}</span>${esc(p.name)}</button>`).join("")}</div><div class="reactor-part-detail" aria-live="polite"></div></aside></div>
-  <div class="reactor-concept-note"><span>ABOUT THIS VIEW</span><p>${esc(options.conceptNote || content.conceptNote)} Moving dots indicate paths, not a timed firing sequence.</p></div>`;
+  <details class="reactor-display-options"><summary>Display options</summary><div class="reactor-layer-controls"><label><input type="checkbox" data-layer="structure" checked> Hardware</label><label><input type="checkbox" data-layer="field" checked> Fields</label><label><input type="checkbox" data-layer="plasma" checked> Plasma / fuel</label><label><input type="checkbox" data-layer="flow" checked> Energy paths</label><label><input type="checkbox" data-action="labels" checked> Labels</label></div>
+  <div class="reactor-explode"><label for="${uid}-explode">Separate the assembly</label><input id="${uid}-explode" type="range" min="0" max="100" value="0" aria-label="Separate the assembly"><output for="${uid}-explode">Assembled</output></div></details></div>
+  <aside class="reactor-inspector" tabindex="0" aria-label="Component descriptions"><div class="reactor-inspector-heading"><span class="reactor-eyebrow">COMPONENTS</span><label><input type="checkbox" data-action="isolate"> Isolate</label></div><div class="reactor-parts" role="group" aria-label="Machine systems">${content.parts.map((p, i) => `<button data-part="${p.id}" aria-pressed="${p.id === selected}"><span>${String(i + 1).padStart(2, "0")}</span>${esc(p.name)}</button>`).join("")}</div><div class="reactor-part-detail" aria-live="polite"></div></aside></div>
+  <details class="reactor-concept-note"><summary>About this schematic</summary><p>${esc(options.conceptNote || content.conceptNote)} Moving dots indicate paths, not a timed firing sequence.</p></details>`;
   const q = (s) => host.querySelector(s),
     qa = (s) => [...host.querySelectorAll(s)],
     stage = q(".reactor-stage"),
@@ -70,9 +70,9 @@ export function createReactorExplorer(host, id, options = {}) {
       b.setAttribute("aria-pressed", b.dataset.part === selected);
     });
     q(".reactor-part-detail").innerHTML =
-      `<p class="reactor-part-role">${esc(p.role)}</p><h4>${esc(p.name)}</h4><button class="reactor-focus" data-action="focus">Focus on this part ⊕</button><p>${esc(p.description)}</p><div class="reactor-engineering"><strong>Why it is difficult</strong><p>${esc(p.challenge)}</p></div>${
+      `<p class="reactor-part-role">${esc(p.role)}</p><h4>${esc(p.name)}</h4><button class="reactor-focus" data-action="focus">Focus on this part ⊕</button><p>${esc(p.description)}</p><div class="reactor-engineering"><strong>Engineering challenge</strong><p>${esc(p.challenge)}</p></div>${
         p.connectsTo?.length
-          ? `<div class="reactor-connections"><span>Follow the connection</span>${p.connectsTo
+          ? `<div class="reactor-connections"><span>Connected components</span>${p.connectsTo
               .map((id) => {
                 const t = content.parts.find((t) => t.id === id);
                 return t
@@ -141,6 +141,8 @@ export function createReactorExplorer(host, id, options = {}) {
       if (input) input.checked = true;
     }
     detail();
+    // A new component starts at its heading even after reading a long prior note.
+    q(".reactor-inspector").scrollTop = 0;
     if (!renderer) q('[data-action="focus"]').disabled = true;
     apply();
     if (focused) focusPart();
