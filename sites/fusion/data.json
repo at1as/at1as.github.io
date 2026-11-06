@@ -24943,7 +24943,8 @@
       "sourceIds": [
         "PHY_009",
         "PHY_012"
-      ]
+      ],
+      "displayText": "Target gain 4.13 means the fusion reaction released 4.13 times the laser energy delivered to the target: 8.6 MJ from 2.08 MJ on 7 April 2025. It compares fusion energy with laser energy at the target, excluding electricity used by the lasers and the rest of the facility."
     },
     {
       "id": "phy_history_w7x",

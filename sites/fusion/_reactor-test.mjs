@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Box3, Vector3 } from "./assets/vendor/three.module.min.js";
 import { readFileSync } from "node:fs";
 import { buildReactor } from "./reactor-geometry.js";
 import {
@@ -48,6 +49,33 @@ function validate(id, options = {}) {
       `${id}: animation moved component group`,
     ),
   );
+  model.root.updateMatrixWorld(true);
+  const centers = model.parts.map((p) => {
+    const bounds = new Box3();
+    p.object.traverse((mesh) => {
+      if (mesh.isMesh && !mesh.userData.tracer)
+        bounds.union(new Box3().setFromObject(mesh));
+    });
+    return bounds.getCenter(new Vector3());
+  });
+  for (let i = 0; i < centers.length; i++)
+    for (let j = i + 1; j < centers.length; j++) {
+      let previous = centers[i].distanceTo(centers[j]);
+      for (const fraction of [0.01, 0.25, 0.5, 0.75, 1]) {
+        const a = centers[i]
+          .clone()
+          .addScaledVector(model.parts[i].explode, fraction);
+        const b = centers[j]
+          .clone()
+          .addScaledVector(model.parts[j].explode, fraction);
+        const distance = a.distanceTo(b);
+        assert.ok(
+          distance + 1e-7 >= previous,
+          `${id}: separating ${model.parts[i].id}/${model.parts[j].id} moved them closer`,
+        );
+        previous = distance;
+      }
+    }
   const geometries = new Set(),
     materials = new Set();
   model.root.traverse((o) => {
@@ -105,5 +133,5 @@ assert.equal(
 );
 lm26.dispose();
 console.log(
-  `PASS: ${cases} 3D configurations, ${models} organization models, ${infrastructure} infrastructure views; part/source/connection integrity, experimental exclusions, animation boundaries and disposal.`,
+  `PASS: ${cases} 3D configurations, ${models} organization models, ${infrastructure} infrastructure views; part/source/connection integrity, experimental exclusions, animation boundaries, noncontracting assembly separation and disposal.`,
 );

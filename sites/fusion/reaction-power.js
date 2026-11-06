@@ -27,7 +27,7 @@ export function renderPowerCycle(recirculate = false) {
     <rect x="368" y="122" width="35" height="25" rx="4" fill="#698373"/>
     <path d="M353 163v20m67-20v20M345 184h83" stroke="#698373" stroke-width="3" fill="none"/>
     <path d="M434 134H512" class="cycle-flow electricity" fill="none" stroke="#376e5c" stroke-width="3" marker-end="url(#cycle-electric-arrow)"/>
-    <text x="482" y="73" text-anchor="middle" font-size="24" fill="#37664f">Electricity</text>
+    <text x="482" y="73" text-anchor="middle" font-size="24" fill="#37664f">${recirculate ? "Net electricity" : "Electricity"}</text>
 
     <!-- Lattice transmission tower, crossarms, and hanging insulators -->
     <g fill="none" stroke="#536f66" stroke-width="2.3" stroke-linejoin="round">
@@ -41,6 +41,6 @@ export function renderPowerCycle(recirculate = false) {
     </g>
     <path d="M257 94V49H341" class="cycle-flow cooling" fill="none" stroke="#637b83" stroke-width="2" marker-end="url(#cycle-cooling-arrow)"/>
     <text x="257" y="27" font-size="22" text-anchor="middle" fill="#526a72">Waste heat</text>
-    ${recirculate ? `<circle cx="471" cy="134" r="4" fill="#376e5c"/><path d="M471 134V267H356" class="cycle-flow electricity" fill="none" stroke="#376e5c" stroke-width="2" marker-end="url(#cycle-electric-arrow)"/><rect x="130" y="244" width="220" height="46" rx="5" fill="#e2eae4" stroke="#698373" stroke-width="1.5"/><text x="240" y="275" text-anchor="middle" font-size="24" fill="#37664f">Plant systems</text>` : `<text x="315" y="278" text-anchor="middle" font-size="20" fill="#526a72">Energy transfers · cooling circuit omitted</text>`}
+    ${recirculate ? `<circle cx="471" cy="134" r="4" fill="#376e5c"/><path d="M471 134V267H356" class="cycle-flow electricity" fill="none" stroke="#376e5c" stroke-width="2" marker-end="url(#cycle-electric-arrow)"/><rect x="130" y="244" width="220" height="46" rx="5" fill="#e2eae4" stroke="#698373" stroke-width="1.5"/><text x="240" y="275" text-anchor="middle" font-size="23" fill="#37664f">Run this plant</text><path d="M130 267H18V134H25" class="cycle-flow electricity" fill="none" stroke="#376e5c" stroke-width="2" marker-end="url(#cycle-electric-arrow)"/>` : ""}
   </g>`;
 }

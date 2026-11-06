@@ -52,7 +52,7 @@ export function createReactorExplorer(host, id, options = {}) {
   <div class="reactor-body"><div class="reactor-visual"><div class="reactor-stage"><div class="reactor-canvas"></div><div class="reactor-annotations" aria-label="Selectable machine components"></div><div class="reactor-hover" hidden></div><div class="reactor-navigation"><button data-action="zoom-in" aria-label="Zoom in">+</button><button data-action="zoom-out" aria-label="Zoom out">−</button><button data-action="rotate-left" aria-label="Rotate left">↶</button><button data-action="rotate-right" aria-label="Rotate right">↷</button></div></div>
   <div class="reactor-interaction-hint"><span>Drag to rotate · select a part</span><button data-action="motion" aria-pressed="false">Trace the paths ▷</button></div>
   <div class="reactor-legend" aria-label="Diagram color key"><span>Field geometry</span><span class="plasma">Fuel / particles</span><span class="energy">Driver / energy flow</span></div>
-  <details class="reactor-display-options"><summary>Display options</summary><div class="reactor-layer-controls"><label><input type="checkbox" data-layer="structure" checked> Hardware</label><label><input type="checkbox" data-layer="field" checked> Fields</label><label><input type="checkbox" data-layer="plasma" checked> Plasma / fuel</label><label><input type="checkbox" data-layer="flow" checked> Energy paths</label><label><input type="checkbox" data-action="labels" checked> Labels</label></div>
+  <details class="reactor-display-options" open><summary>Display options</summary><div class="reactor-layer-controls"><label><input type="checkbox" data-layer="structure" checked> Hardware</label><label><input type="checkbox" data-layer="field" checked> Fields</label><label><input type="checkbox" data-layer="plasma" checked> Plasma / fuel</label><label><input type="checkbox" data-layer="flow" checked> Energy paths</label><label><input type="checkbox" data-action="labels" checked> Labels</label></div>
   <div class="reactor-explode"><label for="${uid}-explode">Separate the assembly</label><input id="${uid}-explode" type="range" min="0" max="100" value="0" aria-label="Separate the assembly"><output for="${uid}-explode">Assembled</output></div></details></div>
   <aside class="reactor-inspector" tabindex="0" aria-label="Component descriptions"><div class="reactor-inspector-heading"><span class="reactor-eyebrow">COMPONENTS</span><label><input type="checkbox" data-action="isolate"> Isolate</label></div><div class="reactor-parts" role="group" aria-label="Machine systems">${content.parts.map((p, i) => `<button data-part="${p.id}" aria-pressed="${p.id === selected}"><span>${String(i + 1).padStart(2, "0")}</span>${esc(p.name)}</button>`).join("")}</div><div class="reactor-part-detail" aria-live="polite"></div></aside></div>
   ${content.conceptNote ? `<details class="reactor-concept-note"><summary>Model notes</summary><p>${esc(content.conceptNote)}</p></details>` : ""}`;
@@ -62,15 +62,19 @@ export function createReactorExplorer(host, id, options = {}) {
     canvasHost = q(".reactor-canvas"),
     overlay = q(".reactor-annotations");
   function detail() {
-    const p = content.parts.find((p) => p.id === selected) || content.parts[0];
-    if (!p) return;
-    selected = p.id;
+    const p = content.parts.find((p) => p.id === selected);
     qa("[data-part]").forEach((b) => {
       b.classList.toggle("active", b.dataset.part === selected);
       b.setAttribute("aria-pressed", b.dataset.part === selected);
     });
+    q('[data-action="isolate"]').disabled = !p || !renderer;
+    if (!p) {
+      q(".reactor-part-detail").innerHTML =
+        '<p class="reactor-empty-selection">Select a component to read how it works</p>';
+      return;
+    }
     q(".reactor-part-detail").innerHTML =
-      `<p class="reactor-part-role">${esc(p.role)}</p><h4>${esc(p.name)}</h4><button class="reactor-focus" data-action="focus">Focus on this part ⊕</button><p>${esc(p.description)}</p><div class="reactor-engineering"><strong>Engineering challenge</strong><p>${esc(p.challenge)}</p></div>${
+      `<p class="reactor-part-role">${esc(p.role)}</p><h4>${esc(p.name)}</h4><button class="reactor-focus" data-action="focus" ${renderer ? "" : "disabled"}>Focus on this part ⊕</button><p>${esc(p.description)}</p><div class="reactor-engineering"><strong>Engineering challenge</strong><p>${esc(p.challenge)}</p></div>${
         p.connectsTo?.length
           ? `<div class="reactor-connections"><span>Connected components</span>${p.connectsTo
               .map((id) => {
@@ -133,8 +137,14 @@ export function createReactorExplorer(host, id, options = {}) {
   }
   function select(part) {
     if (!content.parts.some((p) => p.id === part)) return;
-    selected = part;
-    const p = model?.parts.find((p) => p.id === part);
+    selected = selected === part ? null : part;
+    if (!selected) {
+      isolate = false;
+      focused = false;
+      q('[data-action="isolate"]').checked = false;
+      if (model && camera) fit(model.parts.map((p) => p.object));
+    }
+    const p = model?.parts.find((p) => p.id === selected);
     if (p && !layers[p.layer]) {
       layers[p.layer] = true;
       const input = q(`[data-layer="${p.layer}"]`);
@@ -143,16 +153,20 @@ export function createReactorExplorer(host, id, options = {}) {
     detail();
     // A new component starts at its heading even after reading a long prior note.
     q(".reactor-inspector").scrollTop = 0;
-    if (!renderer) q('[data-action="focus"]').disabled = true;
+    if (!renderer && q('[data-action="focus"]'))
+      q('[data-action="focus"]').disabled = true;
     apply();
     if (focused) focusPart();
     host.dispatchEvent(
-      new CustomEvent("reactorselect", { detail: { part, id }, bubbles: true }),
+      new CustomEvent("reactorselect", {
+        detail: { part: selected, id },
+        bubbles: true,
+      }),
     );
   }
   function positionCamera() {
     if (!camera) return;
-    const d = baseDistance * zoom * (1 + explosion * 0.24);
+    const d = baseDistance * zoom;
     camera.position
       .set(
         Math.sin(yaw) * Math.cos(pitch) * d,
@@ -206,9 +220,9 @@ export function createReactorExplorer(host, id, options = {}) {
   }
   function focusPart() {
     if (!model || !camera) return;
-    focused = true;
     const p = model.parts.find((p) => p.id === selected);
     if (!p) return;
+    focused = true;
     const box = new THREE.Box3().setFromObject(p.object);
     fit([p.object], box.getCenter(new THREE.Vector3()));
     draw();
@@ -407,7 +421,7 @@ export function createReactorExplorer(host, id, options = {}) {
       apply();
     }
     if (input.dataset.action === "isolate") {
-      isolate = input.checked;
+      isolate = Boolean(selected && input.checked);
       apply();
     }
     if (input.dataset.action === "labels") {
@@ -421,8 +435,24 @@ export function createReactorExplorer(host, id, options = {}) {
       ? `${Math.round(explosion * 100)}% separated`
       : "Assembled";
     apply();
+    if (model && camera) {
+      if (focused) focusPart();
+      else {
+        const currentZoom = zoom;
+        fit(model.parts.map((p) => p.object));
+        zoom = currentZoom;
+        draw();
+      }
+    }
   });
   detail();
+  const inspectorObserver = new ResizeObserver(() => {
+    host.style.setProperty(
+      "--inspector-height",
+      `${q(".reactor-visual").offsetHeight}px`,
+    );
+  });
+  inspectorObserver.observe(q(".reactor-visual"));
   let resizeObserver, intersectionObserver;
   try {
     renderer = new THREE.WebGLRenderer({
@@ -666,6 +696,7 @@ export function createReactorExplorer(host, id, options = {}) {
       { threshold: 0.02 },
     );
     intersectionObserver.observe(host);
+    detail();
     apply();
   } catch (error) {
     renderer?.dispose();
@@ -707,6 +738,7 @@ export function createReactorExplorer(host, id, options = {}) {
       alive = false;
       pause();
       restoreMaterials();
+      inspectorObserver.disconnect();
       resizeObserver?.disconnect();
       intersectionObserver?.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);

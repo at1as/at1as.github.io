@@ -346,5 +346,11 @@
     "field": "question",
     "sourceText": "Can the complete facility be financed, built, permitted and operated economically?",
     "displayText": "What will it take to build and operate the complete plant?"
+  },
+  {
+    "id": "phy_history_nif2025",
+    "field": "text",
+    "sourceText": "Record listed: 8.6 MJ fusion yield from 2.08 MJ laser input; target boundary only.",
+    "displayText": "Target gain 4.13 means the fusion reaction released 4.13 times the laser energy delivered to the target: 8.6 MJ from 2.08 MJ on 7 April 2025. It compares fusion energy with laser energy at the target, excluding electricity used by the lasers and the rest of the facility."
   }
 ]

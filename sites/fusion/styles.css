@@ -2101,9 +2101,12 @@ body:has(dialog[open]) {
   margin: 0;
 }
 .history-teaser-heading button {
-  font-size: 10px;
-  border: 0;
-  padding-right: 0;
+  font-size: 12px;
+  border: 1px solid #58715d;
+  border-radius: 4px;
+  padding: 12px 18px;
+  background: #f6f8f0;
+  flex-shrink: 0;
 }
 #history-milestones {
   display: grid;
@@ -2512,5 +2515,38 @@ h2 {
   }
   .reaction-step .step-title {
     font-size: 13px;
+  }
+}
+
+.mass-calculation {
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.mass-calculation summary {
+  cursor: pointer;
+  color: #3d614e;
+}
+.mass-calculation p {
+  margin: 12px 0;
+  font-size: 12px;
+}
+.source-context {
+  margin: 24px 0;
+  padding: 20px;
+  background: #eef2e7;
+  border-radius: 5px;
+}
+.source-context h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.source-context p {
+  margin: 0;
+}
+@media (max-width: 480px) {
+  .history-teaser-heading {
+    align-items: start;
+    flex-direction: column;
   }
 }

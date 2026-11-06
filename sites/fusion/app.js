@@ -1,3 +1,10 @@
+import {
+  nuclearMassU,
+  massBeforeU,
+  massAfterU,
+  massDifferenceU,
+  reactionEnergyMeV,
+} from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
 import { approaches, renderMachine } from "./diagrams.js";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
@@ -50,7 +57,7 @@ const categoryClass = (s) =>
         : "neutral";
 const badge = (s) =>
   `<span class="badge ${categoryClass(s)}">${categoryClass(s) === "target" ? "◇" : categoryClass(s) === "model" ? "○" : categoryClass(s) === "experiment" ? "●" : "—"} ${esc(human(s))}</span>`;
-function citations(ids = []) {
+function citations(ids = [], context = "") {
   return [...new Set(ids)]
     .filter((id) => sourceMap?.has(id))
     .map((id) => {
@@ -60,7 +67,7 @@ function citations(ids = []) {
         .replace("Department of Energy", "DOE")
         .replace("Lawrence Livermore National Laboratory", "LLNL")
         .replace("Max Planck Institute for Plasma Physics", "IPP");
-      return `<span class="reference"><a class="source-link" href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.title)}" aria-label="Reference ${sourceNumbers.get(id)}: ${esc(s.title)} (opens a new tab)">[${sourceNumbers.get(id)}] ${esc(label)} ↗</a><button class="source-info" data-source="${esc(id)}" aria-label="Source details: ${esc(s.title)}">ⓘ</button></span>`;
+      return `<span class="reference"><a class="source-link" href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.title)}" aria-label="Reference ${sourceNumbers.get(id)}: ${esc(s.title)} (opens a new tab)">[${sourceNumbers.get(id)}] ${esc(label)} ↗</a><button class="source-info" data-source="${esc(id)}" data-history="${esc(context)}" aria-label="Source details: ${esc(s.title)}">ⓘ</button></span>`;
     })
     .join(" ");
 }
@@ -195,19 +202,19 @@ const reactionSteps = [
   ],
   [
     "Release energy",
-    "The helium nucleus and neutron together have less mass than the starting nuclei. The mass difference becomes energy (E = Δmc²), carried by the two particles.",
+    "The products have less combined mass than the starting nuclei. The difference becomes their kinetic energy: E = Δmc². Masses are in atomic mass units (u); energies are in million electronvolts (MeV).",
   ],
   [
     "Capture the energy",
-    "Charged helium can heat the plasma. Neutrons travel into the blanket, where energy capture and tritium breeding are required.",
+    "The charged helium nucleus transfers its energy to the plasma. The uncharged neutron escapes into the surrounding blanket, which absorbs its energy as heat and uses lithium to breed fresh tritium.",
   ],
   [
     "Turn heat into electricity",
-    "A thermal power cycle converts part of the captured heat to electricity. The rest leaves as waste heat.",
+    "Captured heat produces steam or heats another working fluid. The expanding fluid spins a turbine connected to an electrical generator. The remaining heat leaves through the cooling system.",
   ],
   [
-    "Supply the plant systems",
-    "Heating, pumps, cooling, fuel processing and other systems consume power. Only the remainder can reach the grid.",
+    "Power the reactor and its systems",
+    "Some electricity runs the same plant: heating or compressing the fuel, pumping coolant, and processing fuel. Subtract this internal demand from the generator’s output to find the net electricity available to the grid. The energy-accounting section below explores this balance.",
   ],
 ];
 const circle = (x, y, r, fill, stroke = "none") =>
@@ -240,16 +247,19 @@ function reaction() {
   if (s < 2) {
     content = `${s === 1 ? '<rect x="100" y="48" width="430" height="185" rx="90" fill="#eee1d0" stroke="#b78d6d" stroke-dasharray="6 6"/>' : ""}${nucleus(225, 130, 2, "Deuterium")}${nucleus(405, 130, 3, "Tritium")}<text x="315" y="138" text-anchor="middle" fill="#63776a" font-size="30">+</text><text x="315" y="265" text-anchor="middle" fill="#47634f" font-size="20">${s === 0 ? "Orange: proton · blue: neutron" : "Heat and confine the fuel"}</text>`;
   } else if (s === 2) {
-    content = `${nucleus(90, 140, 2, "Deuterium")}${nucleus(235, 140, 3, "Tritium")}<text x="160" y="148" fill="#63776a" font-size="25">+</text><path d="M285 140H347m-10-8 10 8-10 8" fill="none" stroke="#718772" stroke-width="3"/>${nucleus(410, 140, 4, "Helium-4")}${circle(555, 140, 14, "#6a8e9c")}<text x="555" y="202" text-anchor="middle" fill="#203c40" font-size="28">Neutron</text><text x="410" y="80" text-anchor="middle" fill="#a84e2e" font-size="30">3.5 MeV</text><text x="555" y="80" text-anchor="middle" fill="#a84e2e" font-size="30">14.1 MeV</text><text x="315" y="270" text-anchor="middle" fill="#47634f" font-size="20">17.6 MeV released per reaction</text>`;
+    content = `${nucleus(90, 108, 2, "Deuterium")}${nucleus(235, 108, 3, "Tritium")}<text x="160" y="116" fill="#63776a" font-size="25">+</text><path d="M285 108H347m-10-8 10 8-10 8" fill="none" stroke="#718772" stroke-width="3"/>${nucleus(410, 108, 4, "Helium-4")}${circle(555, 108, 14, "#6a8e9c")}<text x="555" y="170" text-anchor="middle" fill="#203c40" font-size="28">Neutron</text><text x="410" y="50" text-anchor="middle" fill="#a84e2e" font-size="28">3.5 MeV</text><text x="555" y="50" text-anchor="middle" fill="#a84e2e" font-size="28">14.1 MeV</text><text x="162" y="210" text-anchor="middle" fill="#47634f" font-size="22">Before: ${massBeforeU.toFixed(6)} u</text><text x="482" y="210" text-anchor="middle" fill="#47634f" font-size="22">After: ${massAfterU.toFixed(6)} u</text><rect x="62" y="237" width="506" height="50" rx="5" fill="#e8ede2"/><text x="315" y="269" text-anchor="middle" fill="#294d40" font-size="23">Δm = ${massDifferenceU.toFixed(6)} u → ${reactionEnergyMeV.toFixed(1)} MeV</text>`;
   } else if (s === 3) {
-    content = `<rect x="180" y="40" width="270" height="210" rx="95" fill="#e2e9da" stroke="#6c866e" stroke-width="2"/><ellipse cx="315" cy="145" rx="70" ry="54" fill="#e6b897" stroke="#b5663e"/><text x="315" y="152" text-anchor="middle" font-size="28" fill="#77472e">Plasma</text><path d="M365 118 412 80m-12 2 12-2-4 12" fill="none" stroke="#467588" stroke-width="3"/>${circle(390, 100, 7, "#6a8e9c")}<text x="480" y="75" font-size="20" fill="#416777">Neutrons</text><text x="315" y="282" text-anchor="middle" font-size="20" fill="#47634f">Lithium blanket</text><path d="M285 165q-13 25 15 30" fill="none" stroke="#b75e37" stroke-width="3"/><text x="90" y="156" text-anchor="middle" font-size="24" fill="#a35834">Helium</text><text x="90" y="190" text-anchor="middle" font-size="24" fill="#a35834">heats fuel</text>`;
+    content = `<defs><marker id="helium-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 7 4 1 7" fill="none" stroke="#b75e37" stroke-width="1.5"/></marker><marker id="neutron-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 7 4 1 7" fill="none" stroke="#467588" stroke-width="1.5"/></marker></defs><ellipse cx="190" cy="148" rx="125" ry="91" fill="#eee1d0" stroke="#b78d6d" stroke-width="2"/><text x="190" y="213" text-anchor="middle" font-size="26" fill="#77472e">Plasma</text><circle cx="220" cy="150" r="5" fill="#faf8ef" stroke="#8a7666" stroke-width="2"/><text x="220" y="179" text-anchor="middle" font-size="16" fill="#775f4c">Fusion</text><path d="M210 145L135 96" fill="none" stroke="#b75e37" stroke-width="3" marker-end="url(#helium-arrow)"/>${circle(164, 113, 6, "#ba5e3e", "#fff8ef")}${circle(174, 113, 6, "#ba5e3e", "#fff8ef")}${circle(164, 123, 6, "#6a8e9c", "#fff8ef")}${circle(174, 123, 6, "#6a8e9c", "#fff8ef")}<text x="128" y="44" text-anchor="middle" font-size="24" fill="#a35834">Helium-4</text><text x="190" y="273" text-anchor="middle" font-size="21" fill="#a35834">Helium heats the fuel</text><path d="M232 150H492" fill="none" stroke="#467588" stroke-width="3" marker-end="url(#neutron-arrow)"/><circle cx="367" cy="150" r="9" fill="#6a8e9c" stroke="#fff8ef" stroke-width="2"/><text x="367" y="123" text-anchor="middle" font-size="24" fill="#416777">Neutron</text><rect x="497" y="62" width="111" height="177" rx="14" fill="#e2e9da" stroke="#6c866e" stroke-width="2"/><text x="552" y="33" text-anchor="middle" font-size="22" fill="#47634f">Blanket</text><text x="552" y="127" text-anchor="middle" font-size="23" fill="#47634f">Heat</text><path d="M514 150H591" stroke="#b3c2ab"/><text x="552" y="188" text-anchor="middle" font-size="23" fill="#47634f">Tritium</text><text x="552" y="216" text-anchor="middle" font-size="15" fill="#47634f">from lithium</text>`;
   } else {
     content = renderPowerCycle(s === 5);
   }
   $("#reaction-scene").innerHTML =
-    `<svg viewBox="0 0 630 300" role="img" aria-label="${esc(reactionSteps[s][1])}">${content}</svg>`;
+    `<svg viewBox="0 0 630 300" role="img" aria-label="${esc(reactionSteps[s][1] + (s === 2 ? ` Before: ${massBeforeU.toFixed(6)} u. After: ${massAfterU.toFixed(6)} u. Mass difference: ${massDifferenceU.toFixed(6)} u, equivalent to ${reactionEnergyMeV.toFixed(1)} MeV.` : ""))}">${content}</svg>`;
   $("#reaction-caption").innerHTML =
-    `<h3>${reactionSteps[s][0]}</h3><p>${reactionSteps[s][1]} ${s === 2 ? "MeV means million electronvolts, a unit of energy." : ""}</p>`;
+    `<h3>${reactionSteps[s][0]}</h3><p>${reactionSteps[s][1]}</p>`;
+  if (s === 2)
+    $("#reaction-caption").innerHTML +=
+      `<details class="mass-calculation"><summary>Mass calculation and source</summary><p>Nuclear rest masses, excluding electrons. Before: ${nuclearMassU.deuterium.toFixed(9)} u (deuterium) + ${nuclearMassU.tritium.toFixed(9)} u (tritium). After: ${nuclearMassU.helium4.toFixed(9)} u (helium-4) + ${nuclearMassU.neutron.toFixed(9)} u (neutron). The difference is ${((massDifferenceU / massBeforeU) * 100).toFixed(3)}% of the starting mass.</p><a href="https://physics.nist.gov/cuu/Constants/Table/allascii.txt" target="_blank" rel="noopener">NIST · 2022 CODATA masses ↗</a></details>`;
   $("#reaction-progress").textContent = `0${s + 1} / 06`;
   const reactionFocus = document.activeElement?.dataset.reaction;
   $("#reaction-steps").innerHTML = reactionSteps
@@ -325,9 +335,6 @@ function machine() {
     fastIgnition,
   });
   mountReactor($("#reactor-explorer"), a.id, { fastIgnition });
-  $("#machine-family").textContent = human(a.family).toUpperCase();
-  $("#machine-index").textContent =
-    `CONFIGURATION ${String(approaches.indexOf(a) + 1).padStart(2, "0")} / ${approaches.length}`;
   $("#machine-name").textContent = a.name;
   $("#machine-description").textContent =
     a.description +
@@ -903,12 +910,13 @@ function compareDetail(fundingView = false) {
       .join("")}</div>`,
   );
 }
-function sourceDetail(id) {
+function sourceDetail(id, historyId) {
   const s = sourceMap?.get(id);
   if (!s) return;
   sourceFocus = document.activeElement;
+  const event = data.history.find((h) => h.id === historyId);
   $("#source-content").innerHTML =
-    `<div class="detail-meta">Reference ${sourceNumbers.get(id)} · ${esc(human(s.type))}</div><h2 id="source-title">${esc(s.title)}</h2><p>${esc(s.publisher)}</p><p>Published: ${esc(s.published || "Undated live page")}<br>Reviewed for the snapshot: ${esc(s.reviewed || "2026-10-22")}</p><p>${esc(s.note || s.description || "")}</p><p><a href="${esc(s.url)}" target="_blank" rel="noopener">Open the original source ↗</a></p><p class="quiet">Dataset reference: ${esc(s.id)}. A company announcement documents what the company reports; it is not independent verification.</p>`;
+    `<div class="detail-meta">Reference ${sourceNumbers.get(id)} · ${esc(human(s.type))}</div><h2 id="source-title">${esc(s.title)}</h2>${event ? `<section class="source-context"><h3>${esc(event.title)}</h3><p>${esc(event.displayText || event.text)}</p></section>` : ""}<p>${esc(s.publisher)}</p><p>Published: ${esc(s.published || "Undated live page")}<br>Reviewed for the snapshot: ${esc(s.reviewed || "2026-10-22")}</p>${s.note ? `<p>${esc(s.note)}</p>` : ""}<p><a href="${esc(s.url)}" target="_blank" rel="noopener">Open the original source ↗</a></p>`;
   $("#close-source").textContent = $("#detail-dialog").open
     ? "Back to details ×"
     : "Close ×";
@@ -979,7 +987,7 @@ function toggleRisk(button) {
 function historyDetail() {
   modal(
     "SELECTED HISTORY",
-    `<h2>Fusion research timeline</h2><p>Selected events, with original date precision and event type. Announced plans remain targets after their dates pass.</p><div style="margin-top:30px">${data.history.map((h) => `${/target/i.test(h.category) && h.id === data.history.find((x) => /target/i.test(x.category))?.id ? '<h3 class="snapshot-divider">Snapshot · 22 October 2026</h3><p class="quiet">ANNOUNCED PLANS · No achievement implied</p>' : ""}<article class="history-event ${/target/i.test(h.category) ? "planned" : ""}"><strong>${esc(h.date)} · ${esc(human(h.dateRole))}</strong><h4>${esc(h.title)}</h4>${badge(h.category)}<p>${esc(h.displayText || h.text)}</p>${citations(h.sourceIds)}</article>`).join("")}</div>`,
+    `<h2>Fusion research timeline</h2><p>Selected events, with original date precision and event type. Announced plans remain targets after their dates pass.</p><div style="margin-top:30px">${data.history.map((h) => `${/target/i.test(h.category) && h.id === data.history.find((x) => /target/i.test(x.category))?.id ? '<h3 class="snapshot-divider">Snapshot · 22 October 2026</h3><p class="quiet">ANNOUNCED PLANS · No achievement implied</p>' : ""}<article class="history-event ${/target/i.test(h.category) ? "planned" : ""}"><strong>${esc(h.date)} · ${esc(human(h.dateRole))}</strong><h4>${esc(h.title)}</h4>${badge(h.category)}<p>${esc(h.displayText || h.text)}</p>${citations(h.sourceIds, h.id)}</article>`).join("")}</div>`,
   );
 }
 function glossaryDetail() {
@@ -1031,7 +1039,7 @@ document.addEventListener("click", (e) => {
     });
   }
   if (b.dataset.entity) entityDetail(b.dataset.entity);
-  if (b.dataset.source) sourceDetail(b.dataset.source);
+  if (b.dataset.source) sourceDetail(b.dataset.source, b.dataset.history);
   if (b.dataset.open === "diagram") {
     const a = approaches.find((a) => a.id === approach);
     modal(
@@ -1212,7 +1220,7 @@ async function init() {
       .map((id) => data.history.find((h) => h.id === id))
       .map(
         (h) =>
-          `<article><span>${h.date.slice(0, 4)}</span><h4>${esc(h.title)}</h4><p>${esc(h.dateRole)}</p><div class="citation">${citations(h.sourceIds.slice(0, 1))}</div></article>`,
+          `<article><span>${h.date.slice(0, 4)}</span><h4>${esc(h.title)}</h4><p>${esc(h.dateRole)}</p><div class="citation">${citations(h.sourceIds.slice(0, 1), h.id)}</div></article>`,
       )
       .join("");
     const eid = params.get("entity");
