@@ -241,10 +241,10 @@
           <p class="eyebrow">03 / ENERGY ACCOUNTING</p>
           <h2>Fusion gain and net electricity</h2>
           <p>
-            Plasma Q compares fusion power with external plasma heating. Target
-            gain compares fusion energy with energy delivered to a target. Net
-            electricity also accounts for conversion losses and the power used
-            by the entire plant.
+            To supply electricity to the grid, a fusion plant must generate more
+            than it uses to start and sustain the reaction and run the rest of
+            the facility. The surplus is its net electricity. Each gain
+            measurement below counts a different part of that process
           </p>
         </div>
         <div class="boundaries">
@@ -262,12 +262,19 @@
             <h3>NIF</h3>
             <div class="anchor-number">4.13<span>target gain</span></div>
             <p>
-              8.6 ± 0.45 MJ of fusion energy / 2.08 MJ delivered to the target.
-              Listed maximum: 7 April 2025.
+              On 7 April 2025, NIF released 8.6 ± 0.45 megajoules (MJ) of fusion
+              energy from 2.08 MJ of laser light delivered to a target. The
+              ratio is 4.13, the highest target gain in this snapshot.
+            </p>
+            <p>
+              The 2.08 MJ counts the light arriving at the target. The lasers
+              consumed much more electricity to produce that light, and the
+              facility used electricity for other systems. Those demands are
+              outside this ratio.
             </p>
             <strong
-              >This excludes electricity used by the lasers and facility. NIF
-              exports no electricity.</strong
+              >NIF does not generate electricity. Its fusion output is measured
+              as energy released by the reaction.</strong
             >
             <p class="citation" data-cites="PHY_009 PHY_012"></p>
           </article>
@@ -275,9 +282,19 @@
             <span class="badge target">◇ DESIGN TARGET</span>
             <h3>ITER</h3>
             <div class="anchor-number">10<span>plasma Q</span></div>
-            <p>500 MW planned fusion power / 50 MW delivered plasma heating.</p>
+            <p>
+              ITER aims to produce 500 megawatts (MW) of fusion power while
+              delivering 50 MW of heating to the plasma. Dividing 500 by 50
+              gives Q = 10. MW measures a rate of energy production or use.
+            </p>
+            <p>
+              The 50 MW counts heat reaching the plasma. Generating that heating
+              requires more electricity; magnets, cooling and other systems add
+              further demand. The 500 MW is fusion power, before any conversion
+              into electricity.
+            </p>
             <strong
-              >ITER is a research experiment. It is not designed to generate
+              >Q = 10 is a research goal. ITER has no system for generating
               electricity.</strong
             >
             <p class="citation" data-cites="PHY_019 PHY_020"></p>
@@ -286,10 +303,21 @@
             <span class="badge model">○ FICTIONAL EXAMPLE</span>
             <h3>Electrical recovery</h3>
             <div class="anchor-number">−1<span>MJ net</span></div>
-            <p>100 MJ supplied. 102 MJ returned. 3 MJ of other plant demand.</p>
+            <p>
+              A pulse uses 100 MJ of electricity and the recovery system returns
+              102 MJ. Pumps, cooling and other plant systems consume another 3
+              MJ. Total consumption is 103 MJ; only 102 MJ comes back.
+            </p>
+            <p class="recovery-equation">102 − 100 − 3 = −1 MJ</p>
+            <p>
+              The plant has consumed 1 MJ overall. Although the recovery system
+              returned more than the pulse used, the surplus did not cover the
+              other loads. The calculation also requires the same stored energy
+              at the start and end of the cycle.
+            </p>
             <strong
-              >Recovered electricity can include recycled input energy. Count a
-              full cycle with the same stored-energy state.</strong
+              >Recovered energy includes recycled input. Only a surplus after
+              all plant consumption counts as net generation.</strong
             >
           </article>
         </div>
@@ -365,9 +393,11 @@
           <aside id="nif-record-note">
             <h4>Ignition ≠ electrical break-even</h4>
             <p>
-              NIF reached physical hot-spot ignition in August 2021. Target gain
-              exceeded one in December 2022. Neither milestone is net
-              electricity.
+              NIF reached hot-spot ignition in August 2021, when fusion heating
+              sustained the burn in the fuel’s hot centre. Target gain exceeded
+              one in December 2022. Neither milestone is net electricity (these
+              measurements exclude the electricity used by the laser and
+              facility, and NIF does not convert fusion heat into electricity).
             </p>
             <p>
               The latest listed NIF ignition at this snapshot, 20 June 2026, had

@@ -33,7 +33,7 @@ let data, sourceMap, sourceNumbers, entityMap, world;
 let approach = params.get("approach") || "tokamak",
   machineStage = 0,
   reactionStage = 0,
-  boundary = 1,
+  boundary = 0,
   playMachine,
   playReaction,
   view = ["cards", "table", "sites", "funding"].includes(params.get("view"))
@@ -433,32 +433,37 @@ const boundaryData = [
   [
     "Fuel gain",
     "Fusion energy ÷ energy absorbed by the fuel",
-    "In inertial fusion, only part of the driver energy reaches the fuel. A gain measured here omits the losses in the laser, target and energy coupling.",
+    "In a laser-driven experiment, energy passes from the laser into a target and then into the fuel inside it. Fuel gain counts only the energy absorbed by that fuel. For example, if the fuel absorbs 1 MJ and releases 2 MJ through fusion, its fuel gain is 2.",
     "fuel",
+    "Producing the laser pulse and transferring its energy to the fuel both incur losses. Fuel gain leaves those losses out, along with the rest of the facility’s electricity use. A fuel gain above 1 can therefore coexist with a target gain below 1 and a net loss of electrical energy.",
   ],
   [
     "Plasma Q",
     "Fusion power ÷ external heating power delivered to the plasma",
-    "ITER’s Q = 10 design goal means 500 MW of fusion power for 50 MW of external plasma heating. It does not include the electricity needed to run that heating or the rest of the facility.",
+    "Q measures how much fusion power a hot plasma produces compared with the heating power supplied to it from outside. A plasma producing 500 MW of fusion power while receiving 50 MW of external heating has Q = 10. Heating from the fusion reactions themselves is not counted as an external input.",
     "reaction",
+    "The 50 MW is heat delivered to the plasma. Producing that heating takes more electricity, and magnets, cooling and other systems consume electricity too. Q leaves these demands out. It also does not account for the losses when fusion heat is converted into electricity.",
   ],
   [
     "Target gain",
     "Fusion energy ÷ driver energy delivered to the target",
-    "NIF compares the fusion yield of a shot with laser energy arriving at the target. This is an energy ratio for a pulse; plasma Q is normally a power ratio. Neither is a whole-plant electrical balance.",
+    "A target is the complete object struck by a laser or another driver, including the fuel inside it. Target gain compares the fusion energy from one pulse with the energy delivered to that target. At NIF, the measured 8.6 MJ divided by 2.08 MJ of laser light gives a target gain of 4.13.",
     "reaction",
+    "This includes losses between the target and its fuel, which fuel gain omits. It still excludes the electricity needed to produce the laser pulse and run the facility. Fusion energy would also have to be collected and converted into electricity before any could reach the grid.",
   ],
   [
     "Electrical recovery",
-    "Electricity returned by an energy-recovery system",
-    "A recovery circuit can return some of the electricity used to drive a pulse. Returned energy is not all new fusion energy. Compare input and output over a full cycle, with the same stored energy at the start and end.",
+    "Electricity returned after a pulse",
+    "Some pulsed machines recover electrical energy from their magnets or plasma after a pulse. Much of the returned energy can be electricity that was supplied to drive the pulse in the first place. Recovery reduces the amount that must be supplied for the next pulse.",
     "conversion",
+    "To establish net generation, count every electrical input and output over a complete cycle, including pumps, cooling and other loads. Stored energy must be the same at the start and end: emptying a battery or discharging a magnet is not new energy from fusion.",
   ],
   [
     "Whole plant",
-    "Gross electricity − all plant electrical consumption",
-    "Subtract heating or driver demand, cooling, pumps, magnets and fuel processing over the same interval. Positive net output is necessary for a power plant; reliability and cost still matter.",
+    "Electricity generated − all electricity consumed by the plant",
+    "This is the balance that determines whether a plant can supply the grid. Start with the electricity produced by the generator or direct-conversion system, then subtract everything used to start and maintain fusion, run the magnets and cooling, pump fluids and process fuel.",
     "plant",
+    "The result is net electricity. A positive value is a surplus available to export; a negative value means the plant needs electricity from elsewhere. Count startup, operation and shutdown over a complete cycle, with no net withdrawal of stored energy. Converting fusion energy into electricity also incurs losses, so fusion gain above 1 is not enough.",
   ],
 ];
 function boundaries() {
@@ -477,14 +482,14 @@ function boundaries() {
     <div class="energy-chain-steps">
       <div class="energy-node"><span>Electricity in</span><strong>Heating / driver</strong><small>Losses before the energy reaches the experiment</small></div>
       <span class="energy-arrow" aria-hidden="true">→</span>
-      <div class="energy-node ${b[3] === "reaction" ? "selected" : ""}"><span>${boundary === 2 ? "Driver energy delivered" : "Heating power delivered"}</span><strong>${boundary === 2 ? "Target" : boundary === 1 ? "Plasma" : "Plasma / target"}</strong><span class="fuel-boundary ${b[3] === "fuel" ? "selected" : ""}">Fuel</span></div>
+      <div class="energy-node ${b[3] === "reaction" ? "selected" : ""}"><span>${boundary === 0 || boundary === 2 ? "Driver energy delivered" : "Heating power delivered"}</span><strong>${boundary === 0 || boundary === 2 ? "Target" : boundary === 1 ? "Plasma" : "Plasma / target"}</strong><span class="fuel-boundary ${b[3] === "fuel" ? "selected" : ""}">Fuel</span></div>
       <span class="energy-arrow" aria-hidden="true">→</span>
-      <div class="energy-node ${b[3] === "conversion" ? "selected" : ""}"><span>Energy released</span><strong>Energy conversion</strong><small>Gross electricity out; conversion losses leave as heat</small></div>
+      <div class="energy-node ${b[3] === "conversion" ? "selected" : ""}"><span>${boundary === 3 ? "Electricity recovered" : "Energy released"}</span><strong>${boundary === 3 ? "Recovery circuit" : "Energy conversion"}</strong><small>${boundary === 3 ? "Some input energy returns after the pulse" : "Gross electricity out; conversion losses leave as heat"}</small></div>
     </div>
-    <p class="energy-return">Gross electricity − the plant’s own electricity use = net output</p>
+    <p class="energy-return">${boundary === 3 ? "Returned electricity − pulse input − other plant loads = net output" : "Gross electricity − the plant’s own electricity use = net output"}</p>
   </div>`;
   $("#boundary-caption").innerHTML =
-    `<h3>${b[0]}</h3><div><strong>${b[1]}</strong><p>${b[2]}</p></div>`;
+    `<h3>${b[0]}</h3><div><strong>${b[1]}</strong><p>${b[2]}</p><p>${b[4]}</p></div>`;
 }
 const sliderMeta = {
   gain: ["Fusion gain", 0, 100, 0.1, "×"],
