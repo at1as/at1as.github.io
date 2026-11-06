@@ -58,7 +58,7 @@ const blanket = (links) =>
     "Future plant blanket",
     "Capture heat and breed fuel",
     "In a proposed D–T plant, a blanket absorbs neutron energy and uses lithium to produce tritium. Coolant carries the captured heat toward electricity-generating equipment outside this view.",
-    "This is a plant requirement, not a claim that the experiment shown has a working breeding blanket.",
+    "The blanket must recover enough tritium, remove heat and protect surrounding hardware while leaving access for maintenance.",
     links,
   );
 const heat = (links) =>
@@ -156,7 +156,7 @@ const MODELS = {
         "Confined plasma",
         "Maintain hot fuel inside the field",
         "The plasma occupies the magnetic volume established by the coils. External heating sustains it without relying on a tokamak-sized transformer-driven plasma current.",
-        "Sustained confinement is only one requirement for sustained plant operation.",
+        "Heat loss and impurities must stay low while heating and exhaust operate continuously.",
         ["field", "heating", "exhaust"],
       ),
       heat(["plasma"]),
@@ -176,7 +176,7 @@ const MODELS = {
         "Mirror magnets",
         "Strengthen the field at both ends",
         "End magnets constrict the bundle of field lines. The stronger end regions reflect particles with suitable motion back toward the center.",
-        "A stronger magnet is a subsystem result, not a demonstration of fusion gain.",
+        "Magnetic forces, coil protection and access through the narrow throats constrain the design.",
         ["field", "plasma"],
       ),
       part(
@@ -233,7 +233,7 @@ const MODELS = {
         "field",
         "Dipole field",
         "Organize plasma around the ring",
-        "Nested field geometry surrounds the internal magnet. The drawn lines illustrate the field arrangement, not a simulated particle trajectory.",
+        "Field lines form closed loops around the superconducting ring, passing through its central opening and returning outside. The plasma occupies the space between these nested surfaces.",
         "Useful confinement must be demonstrated at the required plasma conditions.",
         ["ring", "plasma"],
       ),
@@ -267,7 +267,7 @@ const MODELS = {
         "field",
         "Reversed field region",
         "Define the compact confinement volume",
-        "The internal field reverses direction relative to the surrounding field. A boundary called the separatrix encloses the compact closed-field region.",
+        "Plasma current reverses the axial field in the core. Closed field lines loop back inside the plasma while the surrounding field continues along the machine. The separatrix is the boundary between these regions.",
         "Keeping that configuration stable and well confined requires active plasma control.",
         ["coils", "plasma"],
       ),
@@ -311,6 +311,14 @@ const MODELS = {
         "Prepare two compact plasma configurations",
         "Separate sections form field-reversed plasmas on either side of the machine. Those plasmas become the fuel configurations that meet in the central chamber.",
         "Each pulse must begin with suitable, repeatable plasma conditions.",
+        ["plasma", "coils"],
+      ),
+      part(
+        "field",
+        "Reversed magnetic field",
+        "Close the field inside the compact plasma",
+        "Current in each plasma reverses the field near its axis. Closed field lines surround the central current region; the magnetic field outside the plasma continues along the machine.",
+        "The reversed-field region must survive acceleration, merging and compression.",
         ["plasma", "coils"],
       ),
       part(
@@ -622,6 +630,14 @@ const MODELS = {
         ["capacitors", "liner"],
       ),
       part(
+        "field",
+        "Pinch magnetic field",
+        "Push the current-carrying liner inward",
+        "Current runs along the liner and produces a magnetic field around it. The interaction between that current and field drives the liner inward, compressing the fuel.",
+        "The liner must remain sufficiently uniform as magnetic pressure accelerates it.",
+        ["drivers", "liner", "plasma"],
+      ),
+      part(
         "liner",
         "Imploding liner or load",
         "Convert current into inward magnetic pressure",
@@ -674,8 +690,8 @@ const MODELS = {
         "field",
         "Crossed-field region",
         "Organize the charged particle populations",
-        "Electric and magnetic fields play different roles for ions and electrons. The drawn curves indicate the concept rather than calculated particle trajectories.",
-        "A promising field geometry still needs measured confinement and energy accounting.",
+        "The blue magnetic field runs along the chamber and narrows near its ends to help confine electrons. Purple electric-field arrows point toward the negative central electrode. Orange paths show ions orbiting that electrode.",
+        "The fields must limit electron losses while preventing energetic ions from striking the electrode.",
         ["electrodes", "coils", "plasma"],
       ),
       part(
@@ -688,9 +704,9 @@ const MODELS = {
       ),
       part(
         "collector",
-        "Energy-output boundary",
-        "Separate useful output from electrical input",
-        "A power system needs to collect the released energy and account for its electrical demand.",
+        "Future heat recovery",
+        "Capture reaction energy for a thermal cycle",
+        "Avalanche’s initial D–T power concept collects neutron energy as heat in the chamber walls. That heat would supply a thermal cycle outside this view.",
         "High voltage and neutron yield do not establish net electrical power.",
         ["plasma", "vessel"],
       ),
@@ -819,7 +835,7 @@ const PATCHES = {
       coils: {
         name: "Patterned HTS current paths",
         description:
-          "Laser-patterned paths in superconducting material are intended to create the confinement field. This replaces a generic set of separate sculpted stellarator coils in the concept view.",
+          "Laser-patterned superconducting paths cover cylindrical sections arranged around the torus. Currents in those paths create the three-dimensional confinement field.",
       },
       blanket: {
         name: "Proposed flowing lithium wall",
@@ -843,6 +859,16 @@ const PATCHES = {
     sources: ["ALT_GENERAL_PAPER", "ALT_GENERAL_TEMP", "ALT_GENERAL_PATH"],
     note: "LM26 compresses a magnetized plasma inside a solid lithium liner driven by theta-pinch coils. This simplified mechanism view omits the future commercial liquid wall and breeding blanket; coil count and geometry are illustrative.",
     parts: {
+      vessel: {
+        name: "Chamber & central shaft",
+        description:
+          "A vacuum chamber surrounds the compression region. A central shaft and two conical sections shape the space available to the plasma as the lithium liner moves inward.",
+      },
+      plasma: {
+        name: "Magnetized toroidal plasma",
+        description:
+          "A spherical-tokamak plasma surrounds the central shaft. The collapsing liner compresses it radially; contact with the cones traps it in the central region.",
+      },
       injector: {
         description:
           "An injector forms a deuterium spherical-tokamak plasma with an embedded magnetic field. That plasma enters the compression region before the liner moves inward.",

@@ -4,6 +4,7 @@
  * Each selectable component owns its meshes; the viewer controls transforms and layers.
  */
 import * as THREE from "./assets/vendor/three.module.min.js";
+import { dipoleLoop } from "./reactor-fields.js";
 
 const TAU = Math.PI * 2;
 const V = (x = 0, y = 0, z = 0) => new THREE.Vector3(x, y, z);
@@ -16,6 +17,7 @@ const PALETTE = {
   plasma: 0xff9860,
   core: 0xffd9a0,
   field: 0x74bde4,
+  electric: 0xc7a2ed,
   energy: 0xa0e4cd,
   blanket: 0xbba374,
   wall: 0x354a5c,
@@ -57,6 +59,7 @@ export function buildReactor(id, options = {}) {
     blanket: mat("blanket", { side: THREE.DoubleSide }),
     wall: mat("wall", { side: THREE.DoubleSide }),
     field: luminous("field", 0.63),
+    electric: luminous("electric", 0.85),
     energy: luminous("energy", 0.9),
     plasma: luminous("plasma", 0.38),
     hot: luminous("core", 0.8),
@@ -135,9 +138,12 @@ export function buildReactor(id, options = {}) {
     radius = 0.025,
     material = M.field,
     samples = 96,
-    closed = false,
+    closed,
   ) {
     const pts = Array.from({ length: samples + 1 }, (_, i) => fn(i / samples));
+    const coincidentEnds = pts[0].distanceTo(pts.at(-1)) < 1e-6;
+    closed ??= coincidentEnds;
+    if (closed && coincidentEnds) pts.pop();
     const path = new THREE.CatmullRomCurve3(pts, closed, "centripetal");
     return mesh(
       group,
@@ -169,7 +175,7 @@ export function buildReactor(id, options = {}) {
       tube,
       material,
       Math.max(24, Math.ceil((48 * arc) / TAU)),
-      false,
+      Math.abs(arc - TAU) < 1e-6,
     );
   }
   function tracer(
@@ -422,6 +428,11 @@ export function buildReactor(id, options = {}) {
       new THREE.Float32BufferAttribute(positions, 3),
     );
     geometry.setIndex(indices);
+    geometry.userData.surfaceGrid = {
+      longitudinal,
+      cross,
+      periodic: Math.abs(end - start - TAU) < 1e-6,
+    };
     geometry.computeVertexNormals();
     return mesh(group, geometry, material);
   }
@@ -434,8 +445,7 @@ export function buildReactor(id, options = {}) {
     const shape = (phi, theta, scale = 1) => {
       let rr, yy;
       if (stellarator) {
-        const twist =
-          phi * (options.variant === "quasi_isodynamic_stellarator" ? 2 : 1.5);
+        const twist = phi * 2;
         rr =
           R +
           0.16 * Math.cos(phi * 3) +
@@ -522,37 +532,44 @@ export function buildReactor(id, options = {}) {
       for (const y of [-1.45, 1.45])
         ring(coils, [0, y, 0], R + 0.1, 0.12, M.magnet);
     } else if (stellarator && options.variant === "patterned_hts_stellarator") {
-      // Patterned current paths on a simple supporting surface. These schematic
-      // contours distinguish the idea from individually sculpted modular coils.
-      const substrate = mesh(
-        coils,
-        new THREE.CylinderGeometry(
-          3.17,
-          3.17,
-          2.7,
-          64,
-          1,
-          true,
-          Math.PI * 0.53,
-          Math.PI,
-        ),
-        M.ghost,
-      );
-      substrate.rotation.y = -0.35;
-      for (let j = 0; j < 12; j++) {
-        const level = (j - 5.5) * 0.165;
-        const fn = (t) => {
-          const p = t * TAU;
-          return V(
-            3.2 * Math.cos(p),
-            level + 0.24 * Math.sin(p * 3 + j * 0.12),
-            3.2 * Math.sin(p),
-          );
+      // Patterned cylindrical sections form a toroidal array. Mitered ends
+      // preserve a gap between adjacent sections, including at the inner bore.
+      const count = 8,
+        radius = 1.75;
+      for (let i = 0; i < count; i++) {
+        const phi = (i / count) * TAU;
+        const radial = V(Math.cos(phi), 0, Math.sin(phi));
+        const tangent = V(-Math.sin(phi), 0, Math.cos(phi));
+        const point = (u, theta, r = radius) => {
+          const rr = R + r * Math.cos(theta);
+          return radial
+            .clone()
+            .multiplyScalar(rr)
+            .addScaledVector(tangent, u * rr * Math.tan(Math.PI / count))
+            .add(V(0, r * Math.sin(theta), 0));
         };
-        curve(coils, fn, 0.04, M.magnet, 128);
-        curve(coils, (t) => fn(t).add(V(0, 0.022, 0)), 0.012, M.silver, 128);
+        tubeSurface(
+          coils,
+          (u, theta) => point(u * 0.88, theta),
+          M.ghost,
+          8,
+          40,
+          -1,
+          1,
+        );
+        for (const end of [-0.88, 0.88])
+          curve(coils, (t) => point(end, t * TAU), 0.035, M.steel, 64);
+        for (let j = 0; j < 6; j++) {
+          const level = (j - 2.5) * 0.25;
+          const pattern = (t) =>
+            point(
+              level + 0.1 * Math.sin(t * TAU * 3 + i * 0.7),
+              t * TAU,
+              radius + 0.012,
+            );
+          curve(coils, pattern, 0.025, M.magnet, 96);
+        }
       }
-      for (const y of [-1.3, 1.3]) ring(coils, [0, y, 0], 3.2, 0.065, M.steel);
     } else if (stellarator && options.variant === "planar_coil_stellarator") {
       // Small, individually planar coils tile a surrounding winding surface.
       // Counts and current patterns are illustrative, not a Thea device layout.
@@ -583,27 +600,12 @@ export function buildReactor(id, options = {}) {
           ball(coils, bolt.x, bolt.y, bolt.z, 0.038, M.silver);
         }
     } else {
-      const planar =
-        stellarator && options.variant === "planar_coil_stellarator";
-      const patterned =
-        stellarator && options.variant === "patterned_hts_stellarator";
-      const count = planar ? 16 : patterned ? 18 : highField ? 16 : 12;
+      const count = highField ? 16 : 12;
       for (let i = 0; i < count; i++) {
         const phi = (i / count) * TAU;
-        const planeTilt = planar ? 0.32 * Math.sin(phi * 3) : 0;
         const coilPath = (t) => {
           const theta = t * TAU;
           if (!stellarator) return shape(phi, theta, 1.98);
-          if (planar) {
-            const rr = R + 0.98 * Math.cos(theta),
-              yy = 1.35 * Math.sin(theta),
-              sideways = yy * Math.sin(planeTilt);
-            return V(
-              rr * Math.cos(phi) - sideways * Math.sin(phi),
-              yy * Math.cos(planeTilt),
-              rr * Math.sin(phi) + sideways * Math.cos(phi),
-            );
-          }
           const p = shape(phi, theta, 1.9),
             warp = 0.28 * Math.sin(theta * 2 + phi * 3);
           return p.add(V(-Math.sin(phi) * warp, 0, Math.cos(phi) * warp));
@@ -611,7 +613,7 @@ export function buildReactor(id, options = {}) {
         curve(
           coils,
           coilPath,
-          highField ? 0.145 : patterned ? 0.09 : 0.115,
+          highField ? 0.145 : spherical ? 0.07 : 0.115,
           M.magnet,
           48,
         );
@@ -682,11 +684,12 @@ export function buildReactor(id, options = {}) {
     );
     flow(heating, end.toArray(), point.toArray(), M.energy);
     box(heating, 3.32, 0.65, 2.25, 0.48, 0.62, 0.64, M.dark);
-    const exhaust = part("exhaust", [1.3, -1.4, 1], [0, -1.1, 0.5], "flow");
+    const exhaustY = spherical ? -2.05 : -1.35;
+    const exhaust = part("exhaust", [1.3, exhaustY, 1], [0, -1.1, 0.5], "flow");
     for (const r of [R - 0.3, R + 0.35])
       ring(
         exhaust,
-        [0, -1.35, 0],
+        [0, exhaustY, 0],
         r,
         0.095,
         M.copper,
@@ -698,8 +701,8 @@ export function buildReactor(id, options = {}) {
       const phi = (i / 9) * Math.PI * 1.2;
       flow(
         exhaust,
-        [R * Math.cos(phi), -0.7, R * Math.sin(phi)],
-        [(R + 0.1) * Math.cos(phi), -1.35, (R + 0.1) * Math.sin(phi)],
+        [R * Math.cos(phi), spherical ? -1.5 : -0.7, R * Math.sin(phi)],
+        [(R + 0.1) * Math.cos(phi), exhaustY, (R + 0.1) * Math.sin(phi)],
         M.energy,
         1,
       );
@@ -728,7 +731,7 @@ export function buildReactor(id, options = {}) {
         return V(x, Math.cos(a) * r, Math.sin(a) * r);
       };
       curve(field, fn, 0.017, M.field, 100);
-      tracer(field, fn, 0.15, i / 10, M.hot, 0.04);
+      tracer(field, fn, 0.15, i / 10, M.field, 0.04);
     }
     const heating = part("heating", [0.3, 1.7, 1.4], [0, 1, 1], "flow");
     for (const x of [-0.7, 0.7]) {
@@ -778,33 +781,30 @@ export function buildReactor(id, options = {}) {
     for (const x of [-1.6, 1.6])
       rod(levitation, [x, 2.7, 0], [x, 1.75, -1.6], 0.075, M.steel);
     const field = part("field", [0.8, 1.1, 0.7], [0.2, 0.6, 0.7], "field");
+    const fluxLoops = [dipoleLoop(1.8), dipoleLoop(2.2)];
     for (let az = 0; az < 7; az++)
-      for (const size of [1.55, 2.2]) {
+      for (const path of fluxLoops) {
         const phi = (az * TAU) / 7;
-        // Ideal dipole meridional line r = L sin²(theta), outside a finite protected ring.
         const fn = (t) => {
-          const th = 0.3 + t * (Math.PI - 0.6),
-            r = size * Math.pow(Math.sin(th), 2);
-          return V(
-            r * Math.sin(th) * Math.cos(phi),
-            r * Math.cos(th),
-            r * Math.sin(th) * Math.sin(phi),
-          );
+          const p = path.getPoint(t);
+          return V(p.x * Math.cos(phi), p.y, p.x * Math.sin(phi));
         };
-        curve(field, fn, 0.016, M.field, 60);
-        tracer(field, fn, 0.08, az / 7, M.hot, 0.035);
+        curve(field, fn, 0.016, M.field, 100);
+        tracer(field, fn, 0.08, az / 7, M.field, 0.035);
       }
     const plasma = part("plasma", [1.7, 0.3, 0.2], [0.3, 0, 0.8], "plasma");
-    tubeSurface(
-      plasma,
-      (p, t) => {
-        const r = 1.5 + 0.43 * Math.cos(t);
-        return V(r * Math.cos(p), 0.7 * Math.sin(t), r * Math.sin(p));
-      },
-      M.plasma,
-      72,
-      24,
-    );
+    // Plasma lies between nested flux surfaces, leaving the protected ring clear.
+    for (const path of fluxLoops)
+      tubeSurface(
+        plasma,
+        (phi, theta) => {
+          const p = path.getPoint(theta / TAU);
+          return V(p.x * Math.cos(phi), p.y, p.x * Math.sin(phi));
+        },
+        M.plasma,
+        72,
+        48,
+      );
     const heating = part("heating", [2.6, 0.6, 1.4], [0.8, 0.6, 0.7], "flow");
     port(heating, [2, 0.25, 0.9], [2.9, 0.6, 1.7], 0.24, M.magnet);
     flow(heating, [2.9, 0.6, 1.7], [1.6, 0.2, 0.5]);
@@ -812,6 +812,7 @@ export function buildReactor(id, options = {}) {
 
   function frc(pulsed = false) {
     const length = pulsed ? 8 : 6.8;
+    frcField(pulsed, length);
     const vessel = part("vessel", [0, -0.9, -0.6], [0, -0.6, -0.55]);
     axialVessel(vessel, length, 1.04);
     const coils = part("coils", [1.2, 1, 0], [0, 1, -0.3]);
@@ -890,22 +891,36 @@ export function buildReactor(id, options = {}) {
         );
         flow(injector, from, to, M.energy, 3);
       }
-      const field = part("field", [1, 0.7, 0.3], [0, 0.8, 0.6], "field");
-      for (let i = 0; i < 6; i++) {
-        const phi = (i / 6) * TAU;
-        const fn = (t) => {
-          const a = t * TAU,
-            r = 0.63 * Math.sin(a);
-          return V(2.1 * Math.cos(a), r * Math.cos(phi), r * Math.sin(phi));
-        };
-        curve(field, fn, 0.016, M.field, 80);
-        tracer(field, fn, 0.1, i / 6, M.hot, 0.032);
-      }
       const exhaust = part("exhaust", [3.7, 0, 0], [1.1, 0, 0], "flow");
       for (const sign of [-1, 1]) {
         ring(exhaust, [sign * 3.7, 0, 0], 0.72, 0.095, M.copper, "x");
         flow(exhaust, [sign * 2.3, 0.1, 0], [sign * 4.1, 0.1, 0], M.energy, 2);
       }
+    }
+  }
+  function frcField(pulsed, length) {
+    const field = part("field", [0.9, 0.55, 0.3], [0, 0.8, 0.6], "field");
+    for (let i = 0; i < 5; i++) {
+      const phi = (i / 5) * TAU;
+      // On the inner leg the axial field points opposite to the outer leg.
+      const loop = (t) => {
+        const angle = t * TAU;
+        const r = 0.3 + 0.2 * Math.cos(angle);
+        return V(
+          (pulsed ? 1.05 : 1.55) * Math.sin(angle),
+          r * Math.cos(phi),
+          r * Math.sin(phi),
+        );
+      };
+      curve(field, loop, 0.016, M.field, 96);
+      tracer(field, loop, 0.12, i / 5, M.field, 0.036);
+      const outer = (t) => {
+        const x = (t - 0.5) * length;
+        const r = 0.74 + 0.15 * Math.exp((-x * x) / 3);
+        return V(x, r * Math.cos(phi), r * Math.sin(phi));
+      };
+      curve(field, outer, 0.013, M.field, 96);
+      tracer(field, outer, 0.1, i / 5, M.field, 0.032);
     }
   }
   function pinch() {
@@ -922,14 +937,14 @@ export function buildReactor(id, options = {}) {
     rod(plasma, [-2.08, 0, 0], [2.08, 0, 0], 0.035, M.hot, 0.035, 12);
     for (let i = 0; i < 6; i++) {
       const a = (i / 6) * TAU,
-        r = 0.16 + (i % 2) * 0.07;
+        r = 0.055 + (i % 2) * 0.05;
       tracer(
         plasma,
         (t) => V((t - 0.5) * 4.15, Math.cos(a) * r, Math.sin(a) * r),
         i % 2 ? 0.18 : 0.3,
         i / 6,
         M.hot,
-        0.035,
+        0.024,
       );
     }
     const field = part("field", [1, 0.6, 0], [0, 0.8, 0], "field");
@@ -968,33 +983,84 @@ export function buildReactor(id, options = {}) {
     mesh(
       liner,
       lm26
-        ? new THREE.CylinderGeometry(1.34, 1.34, 1.8, 40, 1, true, 3, TAU - 1.8)
+        ? new THREE.CylinderGeometry(
+            1.34,
+            1.34,
+            1.8,
+            40,
+            1,
+            true,
+            1.65,
+            TAU - 1.8,
+          )
         : new THREE.SphereGeometry(1.34, 36, 24, 3, TAU - 1.8),
       M.copper,
     );
     const plasma = part("plasma", [0, 0.2, 0.2], [0, 0.6, 0.8], "plasma");
-    ball(plasma, 0, 0, 0, 0.57, M.plasma);
-    for (let j = 0; j < 3; j++)
-      curve(
-        plasma,
-        (t) => {
-          const a = t * TAU,
-            r = 0.4 + 0.1 * Math.cos(a * 2);
-          return V(
-            r * Math.cos(a),
-            0.21 * Math.sin(a * 2 + j),
-            r * Math.sin(a),
-          );
-        },
-        0.02,
-        M.field,
-        60,
-      );
+    if (lm26) {
+      rod(vessel, [0, -0.95, 0], [0, 0.95, 0], 0.13, M.silver);
+      for (const sign of [-1, 1])
+        rod(
+          vessel,
+          [0, sign * 0.25, 0],
+          [0, sign * 0.95, 0],
+          0.14,
+          M.steel,
+          0.75,
+          32,
+        );
+      const shape = (phi, theta) => {
+        const r = 0.68 + 0.32 * Math.cos(theta);
+        return V(r * Math.cos(phi), 0.55 * Math.sin(theta), r * Math.sin(phi));
+      };
+      tubeSurface(plasma, shape, M.plasma, 64, 28);
+      for (let j = 0; j < 3; j++)
+        curve(
+          plasma,
+          (t) => shape(t * TAU, t * TAU * 2 + (j * TAU) / 3),
+          0.015,
+          M.field,
+          100,
+        );
+    } else {
+      ball(plasma, 0, 0, 0, 0.57, M.plasma);
+      for (let j = 0; j < 3; j++)
+        curve(
+          plasma,
+          (t) => {
+            const a = t * TAU,
+              r = 0.4 + 0.1 * Math.cos(a * 2);
+            return V(
+              r * Math.cos(a),
+              0.21 * Math.sin(a * 2 + j),
+              r * Math.sin(a),
+            );
+          },
+          0.02,
+          M.field,
+          60,
+        );
+    }
     const injector = part("injector", [0, 2.7, 0], [0, 1.2, 0], "flow");
     rod(injector, [0, 1.5, 0], [0, 3.25, 0], 0.34, M.dark);
     for (let i = 0; i < 7; i++)
       ring(injector, [0, 1.7 + i * 0.2, 0], 0.37, 0.065, M.magnet);
-    flow(injector, [0, 1.5, 0], [0, 0.3, 0], M.hot);
+    if (lm26) {
+      for (let j = 0; j < 4; j++) {
+        const phi = (j * TAU) / 4;
+        const path = new THREE.CatmullRomCurve3(
+          [
+            [0.2, 1.5],
+            [0.86, 1],
+            [0.78, 0.6],
+            [0.68, 0.25],
+          ].map(([r, y]) => V(r * Math.cos(phi), y, r * Math.sin(phi))),
+        );
+        const fn = (t) => path.getPoint(t);
+        curve(injector, fn, 0.015, M.hot, 48);
+        tracer(injector, fn, 0.12, j / 4, M.hot, 0.035);
+      }
+    } else flow(injector, [0, 1.5, 0], [0, 0.3, 0], M.hot);
     const drivers = part("drivers", [2.7, 0, 0.3], [1.1, 0.1, 0.2], "flow");
     if (lm26) {
       drivers.userData.driverType = "theta-pinch";
@@ -1105,7 +1171,10 @@ export function buildReactor(id, options = {}) {
           flow(
             hohlraum,
             impact,
-            [impact[0] * 0.25, impact[1] * 0.3, impact[2] * 0.3],
+            V(...impact)
+              .normalize()
+              .multiplyScalar(0.38)
+              .toArray(),
             M.xray,
             1,
           );
@@ -1115,7 +1184,16 @@ export function buildReactor(id, options = {}) {
         for (const sign of [-1, 1]) {
           const from = [sign * 3.7, 0.25, 0.22];
           port(drivers, [sign * 4.1, 0.25, 0.22], from, 0.25, M.copper);
-          flow(drivers, from, [sign * 0.3, 0.1, 0.12], M.hot, 3);
+          flow(
+            drivers,
+            from,
+            V(...from)
+              .normalize()
+              .multiplyScalar(0.38)
+              .toArray(),
+            M.laser,
+            3,
+          );
         }
       }
     } else {
@@ -1210,20 +1288,57 @@ export function buildReactor(id, options = {}) {
       const a = (j / 10) * TAU,
         c = Math.cos(a),
         s = Math.sin(a);
-      rod(
-        drivers,
-        [c * 0.55, -0.15, s * 0.55],
-        [c * 2.95, -0.15, s * 2.95],
-        0.095,
-        M.copper,
-      );
-      flow(
-        drivers,
-        [c * 2.95, 0, s * 2.95],
-        [c * 0.5, 0, s * 0.5],
-        M.energy,
-        2,
-      );
+      if (flare) {
+        rod(
+          drivers,
+          [c * 0.55, -0.15, s * 0.55],
+          [c * 2.95, -0.15, s * 2.95],
+          0.095,
+          M.copper,
+        );
+        flow(
+          drivers,
+          [c * 2.95, 0, s * 2.95],
+          [c * 0.5, 0, s * 0.5],
+          M.energy,
+          2,
+        );
+      } else {
+        // Feed and return conductors meet the two ends of the cylindrical load.
+        for (const sign of [-1, 1]) {
+          const inner = [c * 0.4, sign * 0.69, s * 0.4];
+          const outer = [c * 2.95, sign * 0.69, s * 2.95];
+          rod(drivers, inner, outer, 0.045, M.copper);
+          const start = sign > 0 ? outer : inner;
+          const end = sign > 0 ? inner : outer;
+          flow(
+            drivers,
+            start.map((v, i) => (i === 1 ? v + 0.06 : v)),
+            end.map((v, i) => (i === 1 ? v + 0.06 : v)),
+            M.energy,
+            1,
+          );
+        }
+      }
+    }
+    if (!flare) {
+      for (let j = 0; j < 4; j++) {
+        const a = (j / 4) * TAU;
+        flow(
+          drivers,
+          [0.37 * Math.cos(a), 0.62, 0.37 * Math.sin(a)],
+          [0.37 * Math.cos(a), -0.62, 0.37 * Math.sin(a)],
+          M.energy,
+          1,
+        );
+      }
+      const field = part("field", [0.65, 0.35, 0.2], [0.6, 0.8, 0.1], "field");
+      for (const y of [-0.4, 0, 0.4]) {
+        const loop = (t) =>
+          V(0.65 * Math.cos(t * TAU), y, 0.65 * Math.sin(t * TAU));
+        curve(field, loop, 0.015, M.field, 64);
+        tracer(field, loop, 0.13, y + 0.4, M.field, 0.032);
+      }
     }
     const target = part("target", [0.35, 0.2, 0.3], [0.5, 0.4, 0.6]);
     if (flare) capsule(target, 0.45, true);
@@ -1314,22 +1429,37 @@ export function buildReactor(id, options = {}) {
       64,
       20,
     );
-    const field = part("field", [1.2, 0.6, 0.2], [0.2, 0.8, 0.6], "field");
-    for (let i = 0; i < 5; i++) {
-      const y = (i - 2) * 0.34,
-        r = 0.7 + Math.abs(y) * 0.35;
-      const fn = (t) => V(r * Math.cos(t * TAU), y, r * Math.sin(t * TAU));
-      curve(field, fn, 0.016, M.field, 64);
-      tracer(field, fn, 0.12, i / 5, M.hot, 0.045);
+    for (const height of [-0.25, 0.25]) {
+      const orbit = (t) => {
+        const angle = t * TAU * 5;
+        const r = 0.82 / (1 + 0.22 * Math.cos(angle * 0.8));
+        return V(r * Math.cos(angle), height, r * Math.sin(angle));
+      };
+      curve(plasma, orbit, 0.012, M.hot, 220);
+      tracer(plasma, orbit, 0.035, height < 0 ? 0 : 0.5, M.hot, 0.04);
     }
+    const field = part("field", [1.2, 0.6, 0.2], [0.2, 0.8, 0.6], "field");
     for (let i = 0; i < 8; i++) {
-      const a = (i / 8) * TAU;
-      rod(
+      const phi = (i * TAU) / 8;
+      const magnetic = (t) => {
+        const y = (t - 0.5) * 4;
+        const r = 0.55 + 0.72 * Math.exp(-Math.pow(y / 1.4, 4));
+        return V(r * Math.cos(phi), y, r * Math.sin(phi));
+      };
+      curve(field, magnetic, 0.015, M.field, 80);
+      tracer(field, magnetic, 0.08, i / 8, M.field, 0.03);
+      const from = V(Math.cos(phi) * 1.28, 0, Math.sin(phi) * 1.28);
+      const to = V(Math.cos(phi) * 0.25, 0, Math.sin(phi) * 0.25);
+      rod(field, from, to, 0.014, M.electric);
+      const arrow = mesh(
         field,
-        [Math.cos(a) * 0.25, 0, Math.sin(a) * 0.25],
-        [Math.cos(a) * 1.35, 0, Math.sin(a) * 1.35],
-        0.012,
-        M.energy,
+        new THREE.ConeGeometry(0.055, 0.15, 8),
+        M.electric,
+        to,
+      );
+      arrow.quaternion.setFromUnitVectors(
+        V(0, 1, 0),
+        to.clone().sub(from).normalize(),
       );
     }
     const collector = part(
@@ -1338,10 +1468,20 @@ export function buildReactor(id, options = {}) {
       [1, -0.2, 0.4],
       "flow",
     );
-    port(collector, [1.85, -0.35, 0.7], [2.9, -0.35, 0.7], 0.29, M.steel);
-    box(collector, 3.05, -0.35, 0.7, 0.25, 0.95, 0.95, M.dark);
-    for (const z of [0.38, 0.7, 1.02])
-      box(collector, 3.2, -0.35, z, 0.035, 0.7, 0.12, M.silver);
+    // A pair of coolant pipes connects the chamber to a heat exchanger.
+    for (const y of [-0.65, -0.1]) {
+      rod(collector, [1.85, y, 0.7], [2.95, y, 0.7], 0.075, M.copper);
+      flow(
+        collector,
+        y > -0.4 ? [1.85, y, 0.8] : [2.95, y, 0.8],
+        y > -0.4 ? [2.95, y, 0.8] : [1.85, y, 0.8],
+        M.energy,
+        1,
+      );
+    }
+    box(collector, 3.05, -0.35, 0.7, 0.35, 1.1, 0.8, M.steel);
+    for (let i = 0; i < 6; i++)
+      box(collector, 3.25, -0.78 + i * 0.17, 0.7, 0.22, 0.045, 0.9, M.silver);
   }
 
   if (id === "tokamak") toroidal();
