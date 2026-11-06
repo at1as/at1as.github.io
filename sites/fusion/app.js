@@ -225,7 +225,7 @@ $("#detail-dialog").addEventListener("click", (e) => {
 const reactionSteps = [
   [
     "Start with the fuel",
-    "Deuterium and tritium are isotopes of hydrogen: both have one proton, but deuterium has one neutron and tritium has two. Deuterium occurs naturally in water and can be extracted from it. Tritium is scarce in nature, so a D–T power plant needs to produce it from lithium.",
+    "Deuterium and tritium are isotopes of hydrogen: both have one proton, but deuterium has one neutron and tritium has two. Deuterium occurs naturally in water, including seawater, and can be extracted from it. Tritium is scarce in nature, so a D–T power plant needs to produce it from lithium.",
   ],
   [
     "Create the conditions",
@@ -233,7 +233,7 @@ const reactionSteps = [
   ],
   [
     "Release energy",
-    "The deuterium and tritium nuclei fuse, forming a helium-4 nucleus and releasing a neutron. Together, these products have less mass than the starting nuclei. The difference becomes their kinetic energy: E = Δmc². Masses are in atomic mass units (u); energies are in million electronvolts (MeV).",
+    "At extreme temperatures, deuterium and tritium nuclei can fuse, forming a helium-4 nucleus and releasing a neutron. Together, these products have less mass than the starting nuclei. The difference becomes their kinetic energy: E = Δmc². Masses are in atomic mass units (u); energies are in million electronvolts (MeV).",
   ],
   [
     "Capture the energy",
@@ -388,6 +388,7 @@ function machine() {
   $("#machine-back").disabled = machineStage === 0;
   $("#machine-next").disabled = machineStage === a.stages.length - 1;
   $("#approach-select").value = approach;
+  $("#cycle-approach-select").value = approach;
   if (data) {
     const entities = data.entities.filter((e) => machineId(e) === approach);
     $("#machine-entities").innerHTML =
@@ -418,6 +419,7 @@ $("#fast-ignition").onchange = (e) => {
   updateURL({ variant: fastIgnition ? "fast-ignition" : "" });
 };
 $("#approach-select").onchange = (e) => selectMachine(e.target.value);
+$("#cycle-approach-select").onchange = (e) => selectMachine(e.target.value);
 $("#machine-back").onclick = () => {
   stopMachine();
   machineStage--;
@@ -470,7 +472,7 @@ const boundaryData = [
     "Electricity returned after a pulse",
     "Some pulsed machines recover electrical energy from their magnets or plasma after a pulse. Much of the returned energy can be electricity that was supplied to drive the pulse in the first place. Recovery reduces the amount that must be supplied for the next pulse.",
     "conversion",
-    "To establish net generation, count every electrical input and output over a complete cycle, including pumps, cooling and other loads. Stored energy must be the same at the start and end: emptying a battery or discharging a magnet is not new energy from fusion.",
+    "To establish net generation, count every electrical input and output over a complete cycle, including pumps, cooling and other loads. Stored energy must be the same at the start and end: emptying a battery or discharging a magnet is not new energy from fusion. A useful power plant must also sustain the reaction or repeat it reliably, producing net electricity over the long term; a brief gain alone is not enough.",
   ],
   [
     "Whole plant",
@@ -694,10 +696,12 @@ function records() {
     svg +=
       '<text x="60" y="23" font-size="11" fill="#5d7565">TARGET GAIN · SELECTED PUBLISHED SHOTS</text>';
     $("#record-chart").innerHTML =
-      `<svg viewBox="0 0 650 270" role="img" aria-label="Selected NIF target gain shots from December 2022 to June 2026; all data in the table below">${svg}</svg><p class="quiet">Curated shots, not every attempt. No success rate can be inferred. The inconsistent October 2025 row is excluded from this series.</p>`;
+      `<p class="record-context">The National Ignition Facility (NIF) at Lawrence Livermore National Laboratory in California uses powerful lasers to compress tiny fuel targets in fusion experiments.</p><svg viewBox="0 0 650 270" role="img" aria-label="Selected NIF target gain shots from December 2022 to June 2026; all data in the table below">${svg}</svg><p class="quiet">Curated shots, not every attempt. No success rate can be inferred. The inconsistent October 2025 row is excluded from this series.</p>`;
   } else
     $("#record-chart").innerHTML =
-      `<p class="quiet">${mode === "duration" ? "Separate operating regimes; these are not points on one interchangeable progress scale." : mode === "plasma" ? "Peak plasma gain uses external heating delivered to the plasma. It is not an electrical gain." : "Fusion energy is measured in MJ. It is not grid electricity or a power rating."}</p>`;
+      mode === "duration"
+        ? `<p class="record-context">A power plant must maintain useful fusion conditions for long periods, or repeat pulses reliably, to deliver electricity over time. Duration is therefore an important goal alongside net energy gain, but a long plasma discharge alone does not demonstrate sustained fusion or net electricity.</p><p class="quiet">These experiments use different operating regimes; their durations are not points on one interchangeable progress scale.</p>`
+        : `<p class="record-context">JET, the Joint European Torus, was a European experimental tokamak at Culham in Oxfordshire, England. It operated until 2023 and studied fusion using deuterium and tritium.</p><p class="quiet">${mode === "plasma" ? "Peak plasma gain uses external heating delivered to the plasma. It is not an electrical gain." : "Fusion energy is measured in MJ. It is not grid electricity or a power rating."}</p>`;
   $("#record-table").innerHTML =
     `<details ${mode !== "nif" ? "open" : ""}><summary>Data and sources · ${rows.length} results</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Experiment results"><table class="data-table"><thead><tr><th>Experiment / date</th><th>Metric and result</th><th>Evidence</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r.facility)}<br>${esc(r.date)}<br><small>${esc(human(r.date_role || "event date"))}</small></td><td>${esc(r.metric)}<br><b>${esc(r.reported_display || String(r.value))} ${r.unit === "ratio" ? "×" : esc(r.unit)}</b><br>${esc(human(r.boundary))}${recordConditions(r)}${r.fusion_energy_mj !== undefined ? `<p>Yield: ${r.fusion_energy_mj}${r.fusion_energy_uncertainty_mj ? " ± " + r.fusion_energy_uncertainty_mj : ""} MJ<br>Delivered driver: ${r.driver_energy_mj === null ? "not supplied" : r.driver_energy_mj + " MJ"}</p>` : ""}</td><td>${badge(r.category)}<br>${citations(r.sourceIds)}</td></tr>`).join("")}</tbody></table></div></details>`;
 }
@@ -951,10 +955,11 @@ function entityDetail(id) {
   const e = entityMap?.get(id);
   if (!e) return;
   const m = machineId(e);
+  const configuration = approaches.find((a) => a.id === m);
   updateURL({ entity: e.id });
   modal(
     "ORGANIZATION FIELD NOTES",
-    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2><p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(s.role)} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
+    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2><p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(s.role)} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
   );
   if (m) {
     const options = getEntityReactorOptions(e);
@@ -1084,9 +1089,15 @@ function glossaryDetail() {
   );
 }
 function fuelDetail() {
+  const fuelNames = {
+    "D-T": "deuterium–tritium",
+    "D-D": "deuterium–deuterium",
+    "D-He3": "deuterium–helium-3",
+    "p-B11": "proton–boron-11",
+  };
   modal(
     "FUEL CHOICES",
-    `<h2>Fusion fuels</h2><div class="fuel-grid">${data.fuels.map((f) => `<article><h3>${esc(f.name)}</h3><p><strong>${esc(f.label)}</strong></p><p>${esc(f.benefits)}</p><p><strong>The difficulty:</strong> ${esc(f.challenges)}</p>${citations(f.sourceIds)}</article>`).join("")}</div>`,
+    `<h2>Fusion fuels</h2><div class="fuel-grid">${data.fuels.map((f) => `<article><h3>${esc(f.name)}${fuelNames[f.name] ? ` <span class="fuel-name">(${esc(fuelNames[f.name])})</span>` : ""}</h3><p><strong>${esc(f.label)}</strong></p><p>${esc(f.benefits)}</p><p><strong>The difficulty:</strong> ${esc(f.challenges)}</p>${citations(f.sourceIds)}</article>`).join("")}</div>`,
   );
 }
 document.addEventListener("click", (e) => {
@@ -1253,6 +1264,7 @@ async function init() {
     .map((a) => `<option value="${a.id}">${esc(a.name)}</option>`)
     .join("");
   $("#approach-select").innerHTML = options;
+  $("#cycle-approach-select").innerHTML = options;
   $("#hero-machine").innerHTML = renderMachine("tokamak", 3);
   machine();
   calcControls();

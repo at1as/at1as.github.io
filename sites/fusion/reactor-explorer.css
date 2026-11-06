@@ -1220,6 +1220,31 @@ dialog:has(.company-reactor) {
 .operating-cycle .cycle-layout {
   margin-top: 0;
 }
+.cycle-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-bottom: 18px;
+}
+.cycle-picker label {
+  font-size: 12px;
+}
+.cycle-choice {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 310px) 44px;
+  gap: 6px;
+  width: min(100%, 410px);
+}
+.cycle-choice select {
+  width: 100%;
+  min-width: 0;
+}
+.cycle-choice button {
+  min-height: 44px;
+  padding: 6px;
+  font-size: 18px;
+}
 .operating-cycle > .quiet {
   margin: 18px 0 24px;
 }

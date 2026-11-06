@@ -77,7 +77,7 @@
             power
           </p>
           <div class="snapshot">
-            Updated <strong>22 Oct 2026</strong
+            Updated <strong>6 Nov 2026</strong
             ><span>42 organizations · 15 reactor configurations</span>
           </div>
         </div>
@@ -97,14 +97,17 @@
           <h2>From fusion reactions to electricity</h2>
           <p>
             Fusion joins light atomic nuclei to form heavier ones, releasing
-            energy. This example follows deuterium and tritium, two forms of
-            hydrogen, from the reaction to electricity exported by a power plant
+            energy. This example follows <strong>deuterium</strong> and
+            <strong>tritium</strong> (D–T), two forms of hydrogen, from the reaction to
+            electricity exported by a power plant
           </p>
           <p>
             Fully fusing one gram of D–T releases roughly as much energy as
-            burning eight tonnes of oil. Harnessing that energy in a power plant
-            could provide electricity day and night, without burning fossil
-            fuels
+            burning eight tonnes of oil. Yet no fusion power plant has produced
+            electricity, and building one remains a major scientific and
+            engineering challenge. Researchers and companies are pursuing it
+            because it could help meet the world's growing energy needs with
+            electricity day and night, helping replace our use of fossil fuels.
           </p>
         </div>
         <div class="reaction-layout">
@@ -165,9 +168,12 @@
               <p>
                 The IEA projects electricity use by all data centres to nearly
                 double by 2030, with AI-focused facilities growing faster.
-                Fusion could eventually help supply dependable, low-carbon power
-                for computing, industry and electrified transport. The current
-                expansion of data centres relies on existing energy sources
+                AI's growing appetite for electricity has also helped renew
+                interest in fusion as a potential long-term power source. Google,
+                for example, has invested in fusion and agreed to buy electricity
+                from a future plant. Fusion
+                could eventually serve computing, industry and electrified
+                transport, but today's data centres rely on existing energy sources
               </p>
             </div>
           </div>
@@ -335,6 +341,14 @@
               </li>
               <li>
                 <a
+                  href="https://blog.google/company-news/outreach-and-initiatives/sustainability/our-latest-bet-on-a-fusion-powered-future/"
+                  target="_blank"
+                  rel="noopener"
+                  >Google · investment and future fusion power agreement ↗</a
+                >
+              </li>
+              <li>
+                <a
                   href="https://www.energy.gov/ne/articles/fission-and-fusion-what-difference"
                   target="_blank"
                   rel="noopener"
@@ -470,6 +484,16 @@
           </details>
           <details class="operating-cycle">
             <summary>Read the operating sequence</summary>
+            <div class="cycle-picker">
+              <label for="cycle-approach-select">Configuration</label>
+              <div class="cycle-choice">
+                <button data-config-step="-1" data-select="cycle-approach-select"
+                  aria-label="Previous operating sequence configuration">←</button>
+                <select id="cycle-approach-select"></select>
+                <button data-config-step="1" data-select="cycle-approach-select"
+                  aria-label="Next operating sequence configuration">→</button>
+              </div>
+            </div>
             <div class="cycle-layout">
               <div class="cycle-visual">
                 <div id="machine-diagram"></div>
@@ -539,9 +563,11 @@
             <h3>NIF</h3>
             <div class="anchor-number">4.13<span>target gain</span></div>
             <p>
-              On 7 April 2025, NIF released 8.6 ± 0.45 megajoules (MJ) of fusion
-              energy from 2.08 MJ of laser light delivered to a target. The
-              ratio is 4.13, the highest target gain in this snapshot.
+              The National Ignition Facility (NIF) is a laser research facility
+              at Lawrence Livermore National Laboratory in California. On 7
+              April 2025, a NIF experiment released 8.6 ± 0.45 megajoules (MJ)
+              of fusion energy from 2.08 MJ of laser light delivered to a target.
+              The ratio is 4.13, the highest target gain in this snapshot.
             </p>
             <p>
               The 2.08 MJ counts the light arriving at the target. The lasers
@@ -560,7 +586,9 @@
             <h3>ITER</h3>
             <div class="anchor-number">10<span>plasma Q</span></div>
             <p>
-              ITER aims to produce 500 megawatts (MW) of fusion power while
+              ITER is an international experimental fusion reactor being built
+              in southern France by seven partners, including the European
+              Union. It aims to produce 500 megawatts (MW) of fusion power while
               delivering 50 MW of heating to the plasma. Dividing 500 by 50
               gives Q = 10. MW measures a rate of energy production or use.
             </p>
@@ -577,24 +605,34 @@
             <p class="citation" data-cites="PHY_019 PHY_020"></p>
           </article>
           <article>
-            <span class="badge model">○ FICTIONAL EXAMPLE</span>
+            <span class="badge model">○ CURRENT STATUS</span>
             <h3>Electrical recovery</h3>
-            <div class="anchor-number">−1<span>MJ net</span></div>
+            <div class="anchor-number recovery-status">
+              Not yet<span>net electricity demonstrated</span>
+            </div>
             <p>
-              A pulse uses 100 MJ of electricity and the recovery system returns
-              102 MJ. Pumps, cooling and other plant systems consume another 3
-              MJ. Total consumption is 103 MJ; only 102 MJ comes back.
+              Some pulsed designs aim to recover electricity from their magnets
+              or plasma after each pulse. Recovered energy can include electricity
+              supplied to drive the pulse; it is not all new energy from fusion.
+            </p>
+            <p>
+              For example, a pulse uses 100 MJ of electricity and its recovery
+              system returns 102 MJ. Pumps, cooling and other plant systems
+              consume another 3 MJ, leaving a net result of −1 MJ.
             </p>
             <p class="recovery-equation">102 − 100 − 3 = −1 MJ</p>
             <p>
-              The plant has consumed 1 MJ overall. Although the recovery system
-              returned more than the pulse used, the surplus did not cover the
-              other loads. The calculation also requires the same stored energy
-              at the start and end of the cycle.
+              This is an illustrative example. A complete accounting also
+              requires the same stored energy at the start and end of the cycle.
+            </p>
+            <p>
+              To supply electricity to the grid, a fusion plant's net output
+              must be greater than zero after all its own consumption. Scaling
+              fusion power also requires reliable, economical operation.
             </p>
             <strong
-              >Recovered energy includes recycled input. Only a surplus after
-              all plant consumption counts as net generation.</strong
+              >A positive result must account for the entire plant, not just
+              energy recovered after a pulse.</strong
             >
           </article>
         </div>
@@ -665,7 +703,6 @@
               </select></label
             >
             <div id="record-chart"></div>
-            <div id="record-table"></div>
           </div>
           <aside id="nif-record-note">
             <h4>Ignition ≠ electrical break-even</h4>
@@ -684,6 +721,7 @@
             <button data-open="history">Open the historical timeline ↗</button>
           </aside>
         </div>
+        <div id="record-table"></div>
       </section>
       <section id="landscape" class="section landscape-section">
         <div class="wrap">
@@ -880,7 +918,7 @@
         Built by <a href="https://www.jasonwillems.com">Jason Willems</a> ·
         <a href="/sites/">More visual explorations ↗</a>
       </p>
-      <span>Updated 22 Oct 2026</span>
+      <span>Updated 6 Nov 2026</span>
     </footer>
     <dialog id="detail-dialog" aria-labelledby="detail-title">
       <div class="dialog-toolbar">
