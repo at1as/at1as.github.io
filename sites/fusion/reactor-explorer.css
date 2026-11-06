@@ -1023,25 +1023,25 @@ dialog:has(.company-reactor) {
   border: 0;
   border-radius: 0 0 7px 7px;
 }
-#reactor-explorer .reactor-toolbar {
+.machine-workspace .reactor-explorer .reactor-toolbar {
   position: absolute;
   top: 17px;
   right: 18px;
   padding: 0;
   border: 0;
 }
-#reactor-explorer .reactor-toolbar > div:first-child {
+.machine-workspace .reactor-explorer .reactor-toolbar > div:first-child {
   display: none;
 }
-#reactor-explorer .reactor-body {
+.machine-workspace .reactor-explorer .reactor-body {
   align-items: start;
 }
-#reactor-explorer .reactor-stage {
+.machine-workspace .reactor-explorer .reactor-stage {
   height: var(--model-height);
   min-height: 0;
   flex: none;
 }
-#reactor-explorer .reactor-inspector {
+.machine-workspace .reactor-explorer .reactor-inspector {
   height: calc(var(--model-height) + 134px);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -1049,18 +1049,18 @@ dialog:has(.company-reactor) {
   scrollbar-width: thin;
   padding: 16px;
 }
-#reactor-explorer .reactor-inspector:focus-visible {
+.machine-workspace .reactor-explorer .reactor-inspector:focus-visible {
   outline: 2px solid #ffae7a;
   outline-offset: -3px;
 }
-#reactor-explorer .reactor-part-detail {
+.machine-workspace .reactor-explorer .reactor-part-detail {
   margin-top: 18px;
   padding-top: 16px;
 }
-#reactor-explorer .reactor-part-detail h4 {
+.machine-workspace .reactor-explorer .reactor-part-detail h4 {
   margin: 8px 0 12px;
 }
-#reactor-explorer .reactor-legend {
+.machine-workspace .reactor-explorer .reactor-legend {
   padding: 0 18px 12px;
 }
 .machine-options {
@@ -1103,25 +1103,79 @@ dialog:has(.company-reactor) {
     width: auto;
     font-size: 16px;
   }
-  #reactor-explorer .reactor-toolbar {
+  .machine-workspace .reactor-explorer .reactor-toolbar {
     position: static;
     padding: 10px 12px;
     border-bottom: 1px solid #314450;
   }
-  #reactor-explorer .reactor-stage {
+  .machine-workspace .reactor-explorer .reactor-stage {
     height: 330px;
   }
-  #reactor-explorer .reactor-inspector {
+  .machine-workspace .reactor-explorer .reactor-inspector {
     height: auto;
     max-height: none;
     overflow: visible;
     padding: 20px;
   }
-  #reactor-explorer .reactor-legend {
+  .machine-workspace .reactor-explorer .reactor-legend {
     padding: 0 16px 14px;
   }
   .machine-options {
     gap: 10px;
     flex-direction: column;
   }
+}
+
+.machine-notes,
+.operating-cycle,
+#comparison-machine {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #bfcdc0;
+}
+.machine-notes {
+  margin-top: 22px;
+}
+.machine-notes > summary,
+.operating-cycle > summary,
+.machine-comparison > summary {
+  cursor: pointer;
+  min-height: 62px;
+  padding: 20px 0;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: #2c4940;
+}
+.machine-notes-body {
+  padding: 24px;
+  margin-bottom: 22px;
+  background: #f7f9f3;
+  border: 1px solid #c7d2c7;
+  border-radius: 6px;
+}
+.machine-notes .machine-overview-row {
+  margin: 0;
+}
+.machine-notes .machine-overview-row > div {
+  max-width: 850px;
+}
+.machine-notes .machine-overview-row h3 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+.machine-notes .machine-context-row {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+.operating-cycle .cycle-layout {
+  margin-top: 0;
+}
+.operating-cycle > .quiet {
+  margin: 18px 0 24px;
+}
+.machine-comparison #comparison-copy {
+  margin-bottom: 24px;
 }

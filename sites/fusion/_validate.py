@@ -88,6 +88,14 @@ assert data['storyContent'] == canonical['story_content']
 assert data['approaches'] == canonical['approaches']
 
 copy_records = {**entities, **claims, **funding, **{r['id']: r for e in data['entities'] for r in e['assessment']}, **{r['id']: r for r in data['history']}}
+copy_records.update({'risk-dimension:' + r['id']: r for r in data['risks']})
+copy_records.update({'risk-theme:' + t['id']: t for t in data['riskThemes']})
+# Editorial display fields must not replace the underlying engineering evidence.
+for key, adapted in [('risk_dimensions', data['risks']), ('risk_themes', data['riskThemes'])]:
+    by_id = {r['id']: r for r in adapted}
+    for record in canonical[key]:
+        for field, value in record.items():
+            assert by_id[record['id']][field] == value, (record['id'], field)
 for edit in json.loads((ROOT / '_copy.json').read_text()):
     record = copy_records[edit['id']]
     field = edit['field']

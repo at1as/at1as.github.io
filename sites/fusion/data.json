@@ -25525,7 +25525,9 @@
       "sourceIds": [
         "PHY_002",
         "PHY_006"
-      ]
+      ],
+      "displayInterpretation": "Experiments with hydrogen or deuterium help establish how a plasma behaves. A plant using D–T or proton–boron still needs evidence for that fuel’s reaction rates and energy losses.",
+      "displayEvidenceNeeded": "Fuel composition, fusion yield, ion and electron temperatures, and radiation losses, with measurement uncertainties."
     },
     {
       "id": "confinement_gain",
@@ -25543,7 +25545,9 @@
       "sourceIds": [
         "PHY_007",
         "PHY_015"
-      ]
+      ],
+      "displayInterpretation": "The fuel must be hot and dense enough, and retain its energy long enough, for fusion to compete with losses. Temperature and pulse duration alone do not establish gain.",
+      "displayEvidenceNeeded": "Density, temperature, and energy confinement measured together, alongside fusion gain with a clearly defined measurement boundary."
     },
     {
       "id": "heating_driver",
@@ -25563,7 +25567,9 @@
         "PHY_006",
         "PHY_033",
         "PHY_034"
-      ]
+      ],
+      "displayInterpretation": "Heating and compression systems require electricity. Their efficiency must hold at the power, pulse energy, and operating rate a plant needs.",
+      "displayEvidenceNeeded": "Electricity consumed versus energy delivered to the fuel, measured at the intended operating conditions and over the component’s working life."
     },
     {
       "id": "fuel_cycle",
@@ -25581,7 +25587,9 @@
       "sourceIds": [
         "PHY_002",
         "PHY_022"
-      ]
+      ],
+      "displayInterpretation": "A D–T plant needs an initial tritium supply, then must breed replacement tritium from lithium and recover it fast enough to keep running. Other fuels bring different supply and processing requirements.",
+      "displayEvidenceNeeded": "An integrated fuel balance: supply and breeding rates, extraction and recycling times, stored inventory, material retention, and losses, including radioactive decay where relevant."
     },
     {
       "id": "materials",
@@ -25599,7 +25607,9 @@
       "sourceIds": [
         "PHY_024",
         "PHY_042"
-      ]
+      ],
+      "displayInterpretation": "Neutrons can change material properties, while heat and repeated loading add stress. Component lifetimes depend on the fuel, particle energies, accumulated exposure, and operating temperature.",
+      "displayEvidenceNeeded": "Irradiation and component tests at relevant particle energies, exposure, temperature, and stress, with a justified lifetime estimate."
     },
     {
       "id": "heat_exhaust",
@@ -25617,7 +25627,9 @@
       "sourceIds": [
         "PHY_018",
         "PHY_023"
-      ]
+      ],
+      "displayInterpretation": "Heat and particles must leave without eroding surfaces or contaminating the plasma. Cooling and exhaust systems have to work while the reactor maintains its fusion conditions.",
+      "displayEvidenceNeeded": "Heat-load and cooling measurements, impurity levels, and component tests under the intended operating conditions."
     },
     {
       "id": "conversion",
@@ -25635,7 +25647,9 @@
       "sourceIds": [
         "PHY_006",
         "PHY_037"
-      ]
+      ],
+      "displayInterpretation": "A thermal plant loses energy when converting heat to electricity. Direct-conversion designs also have losses; recovered electricity can include energy supplied earlier to drive the pulse.",
+      "displayEvidenceNeeded": "Measured conversion efficiency and a complete electrical balance, including heating, cooling, pumps, fuel processing, and changes in stored energy."
     },
     {
       "id": "repetition",
@@ -25655,7 +25669,9 @@
         "PHY_034",
         "PHY_038",
         "PHY_042"
-      ]
+      ],
+      "displayInterpretation": "A pulsed design must repeat its full cycle, including fuel delivery, chamber recovery, and driver recharge where needed. A continuously operating design must sustain fusion while its supporting systems keep running.",
+      "displayEvidenceNeeded": "Long runs at the required output and pulse rate or operating duration, including failed shots, recovery time, downtime, and consumables."
     },
     {
       "id": "maintenance",
@@ -25675,7 +25691,9 @@
         "PHY_023",
         "PHY_042",
         "PHY_043"
-      ]
+      ],
+      "displayInterpretation": "Worn components must be accessible for replacement. Where radiation prevents hands-on work, remote handling and the time needed to restore operation become part of the plant design.",
+      "displayEvidenceNeeded": "Demonstrated access and replacement procedures, realistic outage durations, and plans for handling removed components and waste."
     },
     {
       "id": "integration",
@@ -25693,7 +25711,9 @@
       "sourceIds": [
         "PHY_006",
         "PHY_042"
-      ]
+      ],
+      "displayInterpretation": "The reactor, power conversion, cooling, and fuel systems must work together. Component tests establish parts of that case; the complete plant still needs an operating demonstration.",
+      "displayEvidenceNeeded": "Metered net electricity over complete operating cycles, with every auxiliary load included and energy stores returned to their starting state."
     },
     {
       "id": "financing_economics",
@@ -25709,7 +25729,9 @@
       "evidenceNeeded": "Cost scope, financing terms, capex, availability, lifetime, consumables, maintenance and electricity-market assumptions.",
       "sourceIds": [
         "PHY_042"
-      ]
+      ],
+      "displayInterpretation": "Electricity cost depends on construction, financing, operating life, and how much time the plant actually generates. A funding announcement alone does not establish those costs.",
+      "displayEvidenceNeeded": "A costed plant design with explicit assumptions for construction, financing, maintenance, component replacement, fuel or targets, and operating availability."
     },
     {
       "id": "licensing_siting",
@@ -25727,7 +25749,9 @@
       "sourceIds": [
         "PHY_040",
         "PHY_041"
-      ]
+      ],
+      "displayInterpretation": "A proposed plant needs a site and approvals suited to its design and location. Cooling infrastructure and a grid connection must be secured as part of delivery.",
+      "displayEvidenceNeeded": "The applicable licences, environmental and site approvals, and cooling and grid agreements, with their status and remaining conditions stated."
     },
     {
       "id": "evidence_quality",
@@ -25743,7 +25767,9 @@
       "evidenceNeeded": "Method, measurement boundary, uncertainty, raw/result detail, peer review and independent verification where available.",
       "sourceIds": [
         "PHY_007"
-      ]
+      ],
+      "displayInterpretation": "A useful result identifies what was measured, how it was measured, and its uncertainty. Peer review and independent replication provide different kinds of scrutiny.",
+      "displayEvidenceNeeded": "Methods, measurement boundaries, uncertainties, and enough experimental detail to assess the claim, with independent checks identified where available."
     }
   ],
   "glossary": [
@@ -27554,7 +27580,8 @@
       "dimension_ids": [
         "fuel_physics",
         "confinement_gain"
-      ]
+      ],
+      "displayQuestion": "Can the intended fuel produce enough fusion under the required conditions?"
     },
     {
       "id": "electrical_balance",
@@ -27563,7 +27590,8 @@
       "dimension_ids": [
         "heating_driver",
         "conversion"
-      ]
+      ],
+      "displayQuestion": "How much electricity is left after running the entire plant?"
     },
     {
       "id": "sustained_operation",
@@ -27572,7 +27600,8 @@
       "dimension_ids": [
         "repetition",
         "heat_exhaust"
-      ]
+      ],
+      "displayQuestion": "Can the machine keep operating at the required output?"
     },
     {
       "id": "fuel_cycle",
@@ -27580,7 +27609,8 @@
       "question": "Can the plant obtain, process and replenish fuel at its own operating rate?",
       "dimension_ids": [
         "fuel_cycle"
-      ]
+      ],
+      "displayQuestion": "Can the fuel supply keep up with operation?"
     },
     {
       "id": "materials_and_maintenance",
@@ -27589,7 +27619,8 @@
       "dimension_ids": [
         "materials",
         "maintenance"
-      ]
+      ],
+      "displayQuestion": "How long will components last, and how long will replacement take?"
     },
     {
       "id": "delivery_and_economics",
@@ -27600,7 +27631,8 @@
         "financing_economics",
         "licensing_siting",
         "evidence_quality"
-      ]
+      ],
+      "displayQuestion": "What will it take to build and operate the complete plant?"
     }
   ],
   "approachRiskProfiles": {
