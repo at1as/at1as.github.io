@@ -1226,7 +1226,7 @@ summary {
   border-radius: 6px;
 }
 .risk-panel > * {
-  max-width: 850px;
+  max-width: none;
 }
 .risk-panel .risk-question {
   font-size: 18px;
@@ -2735,5 +2735,177 @@ h2 {
   }
   .atlas-controls {
     scroll-margin-top: 145px;
+  }
+}
+
+.energy-context {
+  margin-top: 36px;
+  padding: 28px;
+  border: 1px solid #c6d0c1;
+  border-radius: 6px;
+  background: #fcfbf7;
+}
+.energy-context > h3 {
+  margin-bottom: 24px;
+}
+.energy-context p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #465e51;
+}
+.energy-demand {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 2fr);
+  align-items: center;
+  gap: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #d4dccf;
+}
+.energy-demand-stat > strong {
+  display: block;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 42px;
+  font-weight: 450;
+  color: #355c47;
+  letter-spacing: -0.025em;
+}
+.energy-demand-stat > strong span {
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.energy-demand-stat p {
+  margin-top: 8px;
+  font-size: 12px;
+}
+.energy-context h4 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.energy-context .nuclear-comparison-intro {
+  margin: 24px 0 18px;
+  color: #263f34;
+}
+.nuclear-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+.nuclear-comparison article {
+  border-left: 2px solid #91a78f;
+  padding-left: 16px;
+}
+.energy-comparison {
+  margin-top: 26px;
+  border-top: 1px solid #d4dccf;
+}
+.energy-comparison > summary,
+.energy-context-sources > summary {
+  min-height: 48px;
+  padding: 14px 0;
+  cursor: pointer;
+  color: #304f3d;
+  font-size: 14px;
+}
+.energy-comparison > p {
+  margin: 0 0 18px;
+}
+.energy-comparison-table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.energy-comparison-table caption {
+  text-align: left;
+  padding: 0 0 14px;
+  color: #53695b;
+  font-size: 12px;
+}
+.energy-table-hint {
+  display: none;
+}
+.energy-comparison-table th,
+.energy-comparison-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #d6ddd1;
+  text-align: left;
+  vertical-align: top;
+}
+.energy-comparison-table thead {
+  background: #e7ede2;
+}
+.energy-comparison-table thead th {
+  font-size: 11px;
+  font-weight: 600;
+}
+.energy-comparison-table tbody th {
+  width: 17%;
+  font-weight: 600;
+  color: #2a4d3a;
+}
+.energy-comparison-table td {
+  width: 41.5%;
+  color: #465e51;
+}
+.energy-comparison-table tbody tr:first-child {
+  background: #f0f4eb;
+}
+.energy-context-sources {
+  border-top: 1px solid #d4dccf;
+}
+.energy-context-sources > summary {
+  font-size: 12px;
+}
+.energy-context-sources p,
+.energy-context-sources li {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.energy-context-sources ul {
+  padding-left: 18px;
+  margin: 16px 0 0;
+}
+.energy-context-sources li + li {
+  margin-top: 9px;
+}
+.energy-context-sources a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .energy-table-hint {
+    display: block;
+    margin-top: 6px;
+    color: #365840;
+  }
+  .energy-comparison-table tbody th {
+    position: sticky;
+    left: 0;
+    background: #fcfbf7;
+    box-shadow: 1px 0 #d6ddd1;
+  }
+  .energy-comparison-table tbody tr:first-child th {
+    background: #f0f4eb;
+  }
+  .energy-context {
+    padding: 22px 18px;
+  }
+  .energy-demand {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .nuclear-comparison {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .energy-demand-stat > strong {
+    font-size: 38px;
+  }
+  .energy-context h3 {
+    font-size: 30px;
   }
 }
