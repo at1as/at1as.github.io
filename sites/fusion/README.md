@@ -109,3 +109,10 @@ Original machine and reaction schematics: this implementation. World outline: Na
 - Assembly displacement preserves or increases the distance between every pair of static component centres throughout the slider range. Toroidal shells and laser assemblies spread across the wider view; the camera fits the displaced geometry. The 55-configuration regression suite checks the separation property alongside existing geometry and disposal checks.
 - The full timeline has a visible button. Milestone info panels explain the associated event; NIF’s 4.13 gain includes the 8.6/2.08 MJ calculation and target-energy boundary. Source dialogs retain specific source notes without repeating generic warnings.
 - Follow-up browser review covers the revised reaction graphics, 320/390 px phone layouts, 1280 px laptop layouts, disclosure sizing, component deselection, focus/isolation, assembly/reset, configuration switching, milestone context, and timeline focus restoration.
+
+## Fuel, heat flow and navigation follow-up · 6 November 2026
+
+- The fuel step identifies deuterium and tritium as hydrogen isotopes, distinguishes deuterium extraction from water from tritium production using lithium, and connects recovered tritium to further reactions. Checked against [DOE’s fuel explanation](https://www.energy.gov/science/doe-explainsdeuterium-tritium-fusion-fuel).
+- Density now increases the collision rate; energy confinement explains heat retention and cooling. The steam-cycle explanation follows blanket heat through coolant and a heat exchanger into a separate steam circuit, then through the turbine and generator. Checked against [ITER’s heat-conversion explanation](https://www.iter.org/node/20687/turning-neutrons-electricity).
+- Reaction navigation sits in a toolbar above the changing content. Its fixed-width step counter prevents sideways movement. The caption uses the available column width.
+- Configurations now open with no selected component, superseding the earlier component-01 default. All 15 selector choices were checked after a prior component selection; none retained a selection or highlighted pin. The 55-configuration suite checks the empty default.

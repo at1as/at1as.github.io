@@ -1072,7 +1072,7 @@ export function getReactorContent(id, options = {}) {
         : ""),
     sourceIds,
     parts,
-    defaultPart: parts[0].id,
+    defaultPart: null,
   };
 }
 
