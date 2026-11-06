@@ -179,7 +179,7 @@ test('nearby markers alternate around the slider with stems anchored to its axis
     rail.getBoundingClientRect = () => ({ width });
     app.w.dispatchEvent(new app.w.Event('resize'));
     assert.equal(app.w.document.activeElement, buttons.at(-1), 'Relayout preserves keyboard focus');
-    assert.notEqual(app.q('[data-release="fable-5-1"]').dataset.side, app.q('[data-release="astra"]').dataset.side);
+    assert.notEqual(app.q('[data-release="opus-5-5"]').dataset.side, app.q('[data-release="gpt-6-sol-luna"]').dataset.side);
     for (let i = 0; i < buttons.length; i++) {
       const button = buttons[i];
       const dotY = parseFloat(button.style.top) + 24;
@@ -200,7 +200,8 @@ test('playback crosses releases and out-of-range events are omitted', async () =
   const app = await boot();
   app.q('#time-slider').value = '0'; app.event('#time-slider', 'input');
   assert.equal(app.q('[aria-pressed="true"]'), null);
-  const fable = history.snapshots.findIndex(snapshot => snapshot.as_of >= '2026-09-01');
+  const fableRelease = releases.find(release => release.id === 'fable-5-1');
+  const fable = history.snapshots.findIndex(snapshot => snapshot.as_of >= fableRelease.date);
   app.q('#time-slider').value = String(fable - 1); app.event('#time-slider', 'input');
   app.event('#play-timeline', 'click'); app.tick();
   assert.equal(app.q('[data-release="fable-5-1"]').getAttribute('aria-pressed'), 'true');
