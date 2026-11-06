@@ -86,6 +86,7 @@ function updateURL(extra = {}) {
   );
 }
 const reactorMounts = new Map();
+let reactorFactory;
 function releaseReactor(host) {
   const mount = reactorMounts.get(host);
   if (!mount) return;
@@ -107,39 +108,68 @@ function mountReactor(host, id, options = {}) {
     (options.entityId || "") +
     ":" +
     !!options.fastIgnition;
-  if (reactorMounts.get(host)?.key === key) return;
+  const previous = reactorMounts.get(host);
+  if (previous?.key === key) return;
+  const bounds = host.getBoundingClientRect();
+  const displayOptionsOpen =
+    host.querySelector(".reactor-display-options")?.open ?? true;
+  // Reserve the current footprint before disposal so scroll anchoring cannot
+  // follow a temporarily empty viewer or a differently sized fallback image.
+  if (previous?.view) host.style.height = `${bounds.height}px`;
   releaseReactor(host);
   const mount = { key, cancelled: false, view: null, observer: null };
   reactorMounts.set(host, mount);
-  host.innerHTML = `<div class="reactor-loading">${renderMachine(id, 3, options)}<div><h3>Interactive model</h3><p>Rotate the model and inspect its components</p><button data-load-reactor>Open interactive model ↗</button></div></div>`;
+  host.setAttribute("aria-busy", "true");
+  host.classList.add("is-model-loading");
+  host.classList.toggle("is-model-replacing", !!previous?.view);
+  host.innerHTML = `<div class="reactor-loading" role="status"><span class="reactor-spinner" aria-hidden="true"></span><p>Loading ${esc(approaches.find((a) => a.id === id)?.name || "model")}</p><button data-load-reactor>Load interactive model</button></div>`;
   let loading = false;
   async function load() {
     if (loading || mount.cancelled) return;
     loading = true;
     mount.observer?.disconnect();
     try {
-      const { createReactorExplorer } = await import("./reactor-explorer.js");
+      if (!reactorFactory) {
+        const module = await import("./reactor-explorer.js");
+        reactorFactory = module.createReactorExplorer;
+      }
       if (mount.cancelled || !host.isConnected) return;
-      mount.view = createReactorExplorer(host, id, { ...options, citations });
+      // Subsequent configuration changes run synchronously: no fallback flash.
+      mount.view = reactorFactory(host, id, {
+        ...options,
+        displayOptionsOpen,
+        citations,
+      });
+      host.style.height = "";
+      host.classList.remove("is-model-loading", "is-model-replacing");
+      host.removeAttribute("aria-busy");
     } catch (error) {
       if (!mount.cancelled) {
-        host.querySelector(".reactor-loading p").textContent =
-          "The 3D view could not load. The schematic and operating-cycle descriptions remain available.";
-        host.querySelector("[data-load-reactor]").textContent =
-          "Retry interactive model";
+        host.style.height = "";
+        host.classList.remove("is-model-loading", "is-model-replacing");
+        host.removeAttribute("aria-busy");
+        host.innerHTML = `<div class="reactor-loading reactor-loading-error">${renderMachine(id, 3, options)}<div><p>The 3D view could not load. The schematic and operating-cycle descriptions remain available.</p><button data-load-reactor>Retry interactive model</button></div></div>`;
+        host.querySelector("[data-load-reactor]").onclick = load;
         loading = false;
       }
       console.error("Reactor explorer:", error);
     }
   }
   host.querySelector("[data-load-reactor]").onclick = load;
-  mount.observer = new IntersectionObserver(
-    (entries) => {
-      if (entries.some((e) => e.isIntersecting)) load();
-    },
-    { rootMargin: "100px" },
-  );
-  mount.observer.observe(host);
+  if (
+    previous?.view ||
+    (bounds.top < innerHeight + 100 && bounds.bottom > -100)
+  ) {
+    load();
+  } else {
+    mount.observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) load();
+      },
+      { rootMargin: "100px" },
+    );
+    mount.observer.observe(host);
+  }
 }
 function infrastructure(entity) {
   const c = getInfrastructureContent(entity);
@@ -202,7 +232,7 @@ const reactionSteps = [
   ],
   [
     "Release energy",
-    "The products have less combined mass than the starting nuclei. The difference becomes their kinetic energy: E = Δmc². Masses are in atomic mass units (u); energies are in million electronvolts (MeV).",
+    "The deuterium and tritium nuclei fuse, forming a helium-4 nucleus and releasing a neutron. Together, these products have less mass than the starting nuclei. The difference becomes their kinetic energy: E = Δmc². Masses are in atomic mass units (u); energies are in million electronvolts (MeV).",
   ],
   [
     "Capture the energy",
@@ -470,12 +500,20 @@ function boundaries() {
   const b = boundaryData[boundary];
   if (!$("#boundary-tabs").children.length)
     $("#boundary-tabs").innerHTML = boundaryData
-      .map((x, i) => `<button data-boundary="${i}">${x[0]}</button>`)
+      .map(
+        (x, i) =>
+          `<button id="boundary-tab-${i}" role="tab" aria-controls="boundary-panel" data-boundary="${i}">${x[0]}</button>`,
+      )
       .join("");
   $$("[data-boundary]").forEach((button, i) => {
     button.classList.toggle("active", i === boundary);
-    button.setAttribute("aria-pressed", i === boundary);
+    button.setAttribute("aria-selected", i === boundary);
+    button.tabIndex = i === boundary ? 0 : -1;
   });
+  $("#boundary-panel").setAttribute(
+    "aria-labelledby",
+    `boundary-tab-${boundary}`,
+  );
   $("#boundary-visual").innerHTML =
     `<div class="energy-chain ${b[3] === "plant" ? "selected" : ""}">
     <p class="energy-chain-label">WHOLE PLANT</p>
@@ -491,6 +529,21 @@ function boundaries() {
   $("#boundary-caption").innerHTML =
     `<h3>${b[0]}</h3><div><strong>${b[1]}</strong><p>${b[2]}</p><p>${b[4]}</p></div>`;
 }
+$("#boundary-tabs").addEventListener("keydown", (event) => {
+  const directions = {
+    ArrowRight: 1,
+    ArrowLeft: -1,
+    Home: -boundary,
+    End: boundaryData.length - 1 - boundary,
+  };
+  if (!(event.key in directions)) return;
+  event.preventDefault();
+  boundary =
+    (boundary + directions[event.key] + boundaryData.length) %
+    boundaryData.length;
+  boundaries();
+  $(`#boundary-tab-${boundary}`).focus({ preventScroll: true });
+});
 const sliderMeta = {
   gain: ["Fusion gain", 0, 100, 0.1, "×"],
   heating: ["Heating delivered to plasma", 0, 200, 1, "MW"],
@@ -1011,6 +1064,15 @@ document.addEventListener("click", (e) => {
   const b = e.target.closest("button,[data-cluster]");
   if (!b) return;
   if (b.dataset.riskToggle) toggleRisk(b);
+  if (b.dataset.configStep) {
+    const select = document.getElementById(b.dataset.select);
+    select.selectedIndex =
+      (select.selectedIndex +
+        Number(b.dataset.configStep) +
+        select.options.length) %
+      select.options.length;
+    select.dispatchEvent(new Event("change", { bubbles: true }));
+  }
   if (b.dataset.reaction !== undefined) {
     stopReaction();
     reactionStage = +b.dataset.reaction;

@@ -52,7 +52,7 @@ export function createReactorExplorer(host, id, options = {}) {
   <div class="reactor-body"><div class="reactor-visual"><div class="reactor-stage"><div class="reactor-canvas"></div><div class="reactor-annotations" aria-label="Selectable machine components"></div><div class="reactor-hover" hidden></div><div class="reactor-navigation"><button data-action="zoom-in" aria-label="Zoom in">+</button><button data-action="zoom-out" aria-label="Zoom out">−</button><button data-action="rotate-left" aria-label="Rotate left">↶</button><button data-action="rotate-right" aria-label="Rotate right">↷</button></div></div>
   <div class="reactor-interaction-hint"><span>Drag to rotate · select a part</span><button data-action="motion" aria-pressed="false">Trace the paths ▷</button></div>
   <div class="reactor-legend" aria-label="Diagram color key"><span>Field geometry</span><span class="plasma">Fuel / particles</span><span class="energy">Driver / energy flow</span>${id === "electrostatic" ? '<span class="electric">Electric field</span>' : ""}</div>
-  <details class="reactor-display-options" open><summary>Display options</summary><div class="reactor-layer-controls"><label><input type="checkbox" data-layer="structure" checked> Hardware</label><label><input type="checkbox" data-layer="field" checked> Fields</label><label><input type="checkbox" data-layer="plasma" checked> Plasma / fuel</label><label><input type="checkbox" data-layer="flow" checked> Energy paths</label><label><input type="checkbox" data-action="labels" checked> Labels</label></div>
+  <details class="reactor-display-options"${options.displayOptionsOpen === false ? "" : " open"}><summary>Display options</summary><div class="reactor-layer-controls"><label><input type="checkbox" data-layer="structure" checked> Hardware</label><label><input type="checkbox" data-layer="field" checked> Fields</label><label><input type="checkbox" data-layer="plasma" checked> Plasma / fuel</label><label><input type="checkbox" data-layer="flow" checked> Energy paths</label><label><input type="checkbox" data-action="labels" checked> Labels</label></div>
   <div class="reactor-explode"><label for="${uid}-explode">Separate the assembly</label><input id="${uid}-explode" type="range" min="0" max="100" value="0" aria-label="Separate the assembly"><output for="${uid}-explode">Assembled</output></div></details></div>
   <aside class="reactor-inspector" tabindex="0" aria-label="Component descriptions"><div class="reactor-inspector-heading"><span class="reactor-eyebrow">COMPONENTS</span><label><input type="checkbox" data-action="isolate"> Isolate</label></div><div class="reactor-parts" role="group" aria-label="Machine systems">${content.parts.map((p, i) => `<button data-part="${p.id}" aria-pressed="${p.id === selected}"><span>${String(i + 1).padStart(2, "0")}</span>${esc(p.name)}</button>`).join("")}</div><div class="reactor-part-detail" aria-live="polite"></div></aside></div>
   ${content.conceptNote ? `<details class="reactor-concept-note"><summary>Model notes</summary><p>${esc(content.conceptNote)}</p></details>` : ""}`;
@@ -446,12 +446,14 @@ export function createReactorExplorer(host, id, options = {}) {
     }
   });
   detail();
-  const inspectorObserver = new ResizeObserver(() => {
+  const sizeInspector = () => {
     host.style.setProperty(
       "--inspector-height",
       `${q(".reactor-visual").offsetHeight}px`,
     );
-  });
+  };
+  sizeInspector();
+  const inspectorObserver = new ResizeObserver(sizeInspector);
   inspectorObserver.observe(q(".reactor-visual"));
   let resizeObserver, intersectionObserver;
   try {
