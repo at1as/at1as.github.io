@@ -644,12 +644,12 @@ p + p {
   color: #52665c;
 }
 .anchor-grid p {
-  font-size: 12px;
+  font-size: 13px;
   color: #617178;
 }
 .anchor-grid strong {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.7;
   margin-top: 14px;
   font-weight: 600;
@@ -2566,3 +2566,11 @@ h2 {
     flex-direction: column;
   }
 }
+
+.anchor-grid .recovery-equation {
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  color: #93482e;
+  margin: 16px 0;
+}
+.boundary-caption p { margin-top: 14px; line-height: 1.8; }

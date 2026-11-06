@@ -116,3 +116,9 @@ Original machine and reaction schematics: this implementation. World outline: Na
 - Density now increases the collision rate; energy confinement explains heat retention and cooling. The steam-cycle explanation follows blanket heat through coolant and a heat exchanger into a separate steam circuit, then through the turbine and generator. Checked against [ITER’s heat-conversion explanation](https://www.iter.org/node/20687/turning-neutrons-electricity).
 - Reaction navigation sits in a toolbar above the changing content. Its fixed-width step counter prevents sideways movement. The caption uses the available column width.
 - Configurations now open with no selected component, superseding the earlier component-01 default. All 15 selector choices were checked after a prior component selection; none retained a selection or highlighted pin. The 55-configuration suite checks the empty default.
+
+## Energy-gain explanations · 6 November 2026
+
+- The section opens with the complete plant balance, including starting and sustaining fusion and running the facility. Fuel gain is the default; each of the five views explains what it measures, a concrete interpretation, and what it leaves out.
+- NIF’s 4.13 target gain and ITER’s Q = 10 goal distinguish delivered laser/heating energy from facility electricity. The recovery example shows 102 − 100 − 3 = −1 MJ and explains the stored-energy condition. The ignition note states why neither milestone is net electricity.
+- Primary checks: ITER’s Q FAQ, LLNL’s ignition history, and LLNL’s published April 2025 target-gain result. Reviewed all five views and the expanded examples on desktop; phone examples stack without horizontal overflow.
