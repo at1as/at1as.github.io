@@ -102,8 +102,9 @@
           </p>
           <p>
             Fully fusing one gram of D–T releases roughly as much energy as
-            burning eight tonnes of oil. A working fusion plant could supply
-            power day and night, without burning fossil fuels
+            burning eight tonnes of oil. Harnessing that energy in a power plant
+            could provide electricity day and night, without burning fossil
+            fuels
           </p>
         </div>
         <div class="reaction-layout">
@@ -171,8 +172,10 @@
             </div>
           </div>
           <p class="nuclear-comparison-intro">
-            Fusion and fission both release energy from atomic nuclei. Today's
-            nuclear power stations use fission
+            Fusion and fission both release energy from atomic nuclei. Fission
+            power stations already supply electricity to the grid. Fusion
+            experiments operate today, but no fusion power station supplies
+            electricity to the grid yet
           </p>
           <div class="nuclear-comparison">
             <article>
@@ -227,8 +230,8 @@
                   <tr>
                     <th scope="row">Fusion · D–T</th>
                     <td>
-                      Heat from joining light nuclei; designed to run
-                      independently of sunlight or wind
+                      Experimental today; no grid electricity yet. Proposed
+                      plants would use heat from joining light nuclei
                     </td>
                     <td>
                       Net electricity, tritium breeding, durable materials and
@@ -238,8 +241,8 @@
                   <tr>
                     <th scope="row">Fission</th>
                     <td>
-                      Heat from splitting heavy nuclei; established generation
-                      without needing sunlight or wind
+                      Operating power stations use heat from splitting heavy
+                      nuclei, without needing sunlight or wind
                     </td>
                     <td>
                       Construction time and cost, cooling, and long-term
@@ -355,6 +358,14 @@
               </li>
               <li>
                 <a
+                  href="https://www.iws.fraunhofer.de/en/future-innovation/nuclear-fusion.html"
+                  target="_blank"
+                  rel="noopener"
+                  >Fraunhofer IWS · current status of fusion power ↗</a
+                >
+              </li>
+              <li>
+                <a
                   href="https://www.eia.gov/energyexplained/electricity/how-electricity-is-generated.php"
                   target="_blank"
                   rel="noopener"
@@ -429,16 +440,16 @@
               </div>
             </div>
             <div class="reactor-slot" id="reactor-explorer"></div>
-          </div>
-          <div class="machine-options" id="fast-ignition-control" hidden>
-            <label
-              ><input id="fast-ignition" type="checkbox" /> Separate
-              fast-ignition stage</label
-            >
-          </div>
-          <div class="machine-overview-row" aria-live="polite">
-            <div>
-              <h3 id="machine-name"></h3>
+            <div class="machine-overview-row" aria-live="polite">
+              <div>
+                <h3 id="machine-name"></h3>
+                <div class="machine-options" id="fast-ignition-control" hidden>
+                  <label
+                    ><input id="fast-ignition" type="checkbox" /> Separate
+                    fast-ignition stage</label
+                  >
+                </div>
+              </div>
               <p id="machine-description"></p>
             </div>
           </div>
@@ -714,18 +725,18 @@
             role="group"
             aria-label="Explore the atlas"
           >
-            <button data-view="cards">
+            <button data-view="cards" class="active" aria-pressed="true">
               <strong>Organizations</strong
               ><span>Projects and field notes</span>
             </button>
-            <button data-view="table">
+            <button data-view="table" aria-pressed="false">
               <strong>Evidence table</strong
               ><span>Results and announced targets</span>
             </button>
-            <button data-view="sites">
+            <button data-view="sites" aria-pressed="false">
               <strong>Sites</strong><span>Facilities around the world</span>
             </button>
-            <button data-view="funding">
+            <button data-view="funding" aria-pressed="false">
               <strong>Financing</strong
               ><span>Rounds, grants and commitments</span>
             </button>

@@ -447,36 +447,29 @@
   }
 }
 .machine-overview-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 35px;
-  margin: 30px 0 10px;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  min-height: 94px;
+  padding: 16px 18px;
+  margin: 0;
+  border-top: 1px solid #314450;
 }
 .machine-overview-row h3 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-.machine-overview-row > div {
-  width: 100%;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #eef2ec;
+  margin: 0;
 }
 .machine-overview-row p {
-  font-size: 13px;
-  color: #587069;
-  line-height: 1.8;
-}
-.machine-overview-row .eyebrow {
-  font-size: 9px;
-  color: #52665c;
-  margin-bottom: 10px;
-}
-.machine-overview-row label {
-  flex-direction: row;
-  font-size: 10px;
-  font-weight: 400;
-  align-items: center;
-  gap: 7px;
-  white-space: nowrap;
+  max-width: none;
+  font-size: 14px;
+  color: #bbccd5;
+  line-height: 1.65;
+  margin: 0;
 }
 .machine-context-row {
   display: grid;
@@ -751,14 +744,9 @@ dialog:has(.company-reactor) {
     right: 12px;
   }
   .machine-overview-row {
-    flex-direction: column;
-    gap: 15px;
-  }
-  .machine-overview-row h3 {
-    font-size: 36px;
-  }
-  .machine-overview-row p {
-    font-size: 12px;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 14px 12px;
   }
   .machine-context-row,
   .cycle-layout {
@@ -1030,7 +1018,7 @@ dialog:has(.company-reactor) {
 .machine-workspace .reactor-explorer {
   margin: 0;
   border: 0;
-  border-radius: 0 0 7px 7px;
+  border-radius: 0;
 }
 .machine-workspace .reactor-explorer .reactor-toolbar {
   position: absolute;
@@ -1093,24 +1081,26 @@ dialog:has(.company-reactor) {
   min-height: 24px;
   margin: 0;
 }
-.machine-options {
+.machine-overview-row .machine-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 28px;
-  padding: 16px 0;
+  margin-top: 6px;
+  color: #bbccd5;
 }
 .machine-options label {
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  font-size: 11px;
+  line-height: 1.5;
   font-weight: 400;
+  min-height: 28px;
 }
-.machine-overview-row {
-  margin-top: 20px;
-}
-.machine-overview-row p {
-  max-width: none;
-  font-size: 14px;
+.machine-options input {
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+  margin: 0;
 }
 @media (max-width: 1000px) {
   .machine-picker {
@@ -1122,6 +1112,10 @@ dialog:has(.company-reactor) {
   }
 }
 @media (max-width: 760px) {
+  .machine-options label {
+    min-height: 44px;
+    font-size: 12px;
+  }
   .machine-picker {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 40px 40px;
@@ -1214,16 +1208,6 @@ dialog:has(.company-reactor) {
   background: #f7f9f3;
   border: 1px solid #c7d2c7;
   border-radius: 6px;
-}
-.machine-notes .machine-overview-row {
-  margin: 0;
-}
-.machine-notes .machine-overview-row > div {
-  max-width: 850px;
-}
-.machine-notes .machine-overview-row h3 {
-  font-size: 30px;
-  margin-bottom: 12px;
 }
 .machine-notes .machine-context-row {
   grid-template-columns: minmax(0, 1fr);

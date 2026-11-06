@@ -6,6 +6,7 @@ import {
   reactionEnergyMeV,
 } from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
+import { engineeringDiagram } from "./engineering-diagrams.js";
 import { approaches, renderMachine } from "./diagrams.js";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import {
@@ -789,10 +790,7 @@ function atlas() {
         $("#filter-role").value === "developer",
     );
   });
-  $$("[data-view]").forEach((b) => {
-    b.classList.toggle("active", b.dataset.view === view);
-    b.setAttribute("aria-pressed", b.dataset.view === view);
-  });
+  highlightAtlasView();
   $("#result-count").textContent =
     `${entities.length} of ${data.entities.length} organizations · curated snapshot, 22 Oct 2026`;
   if (view === "cards")
@@ -1027,6 +1025,12 @@ function sourceList() {
       ? `<button id="show-all-sources">${showAllSources ? "Show fewer sources" : "Show all " + items.length + " sources ↓"}</button>`
       : "");
 }
+function highlightAtlasView() {
+  $$("[data-view]").forEach((b) => {
+    b.classList.toggle("active", b.dataset.view === view);
+    b.setAttribute("aria-pressed", b.dataset.view === view);
+  });
+}
 function riskQuestions() {
   const dimensions = new Map(data.risks.map((r) => [r.id, r]));
   const topics = data.riskThemes.map((t, i) => {
@@ -1039,6 +1043,7 @@ function riskQuestions() {
     return `<h3 class="risk-heading" style="--risk-column:${(i % 2) + 1}"><button class="risk-toggle" id="${toggleId}" data-risk-toggle="${t.id}" aria-expanded="false" aria-controls="${panelId}"><span class="number">${String(i + 1).padStart(2, "0")}</span><span>${esc(t.label)}</span></button></h3>
       <section class="risk-panel" id="${panelId}" aria-labelledby="${toggleId}" hidden>
         <p class="risk-question">${esc(t.displayQuestion || t.question)}</p>
+        ${engineeringDiagram(t.id)}
         ${checks.map((r) => `<div class="risk-check"><h4>${esc(r.name)}</h4><p>${esc(r.displayInterpretation || r.interpretation)}</p><p class="risk-evidence"><strong>Evidence</strong> ${esc(r.displayEvidenceNeeded || r.evidenceNeeded)}</p></div>`).join("")}
         <details class="risk-references"><summary>Sources · ${sourceIds.length}</summary><div class="citation">${citations(sourceIds)}</div></details>
       </section>`;
@@ -1227,6 +1232,7 @@ $("#source-search").oninput = () => {
   sourceList();
 };
 async function init() {
+  highlightAtlasView();
   const initialHash = location.hash;
   const anchorListeners = new AbortController();
   let readerHasNavigated = false;
