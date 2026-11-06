@@ -908,20 +908,21 @@ function sourceDetail(id) {
 let showAllSources = false;
 function sourceList() {
   if (!data) return;
+  const previewCount = 8;
   const q = $("#source-search").value.trim().toLowerCase();
   const items = data.sources.filter((s) =>
     [s.id, s.title, s.publisher, s.type].join(" ").toLowerCase().includes(q),
   );
   $("#source-list").innerHTML =
-    `<p class="quiet" role="status">${items.length} matching sources${items.length > 16 && !showAllSources ? " · showing the first 16" : ""}</p>` +
+    `<p class="quiet" role="status">${items.length}${q ? " matching" : ""} ${items.length === 1 ? "source" : "sources"}${items.length > previewCount && !showAllSources ? ` · showing the first ${previewCount}` : ""}</p>` +
     items
-      .slice(0, showAllSources ? items.length : 16)
+      .slice(0, showAllSources ? items.length : previewCount)
       .map(
         (s) =>
-          `<div class="source-row" id="source-${s.id}"><span>[${sourceNumbers.get(s.id)}]<br>${esc(s.publisher)}</span><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)} ↗</a><button data-source="${s.id}" aria-label="Details for ${esc(s.title)}">Details</button></div>`,
+          `<article class="source-row" id="source-${s.id}"><span class="source-meta">[${sourceNumbers.get(s.id)}] ${esc(s.publisher)}</span><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)} ↗</a> <button data-source="${s.id}" aria-label="Source notes: ${esc(s.title)}">Notes</button></article>`,
       )
       .join("") +
-    (items.length > 16
+    (items.length > previewCount
       ? `<button id="show-all-sources">${showAllSources ? "Show fewer sources" : "Show all " + items.length + " sources ↓"}</button>`
       : "");
 }
@@ -1199,12 +1200,18 @@ let chapterFrame = 0;
 function markChapter() {
   chapterFrame = 0;
   const sections = $$("main > section[id]");
-  const current = sections
-    .filter(
-      (s) =>
-        s.getBoundingClientRect().top < $(".site-header").offsetHeight + 180,
-    )
-    .at(-1)?.id;
+  // A collapsed final chapter cannot scroll all the way to the header.
+  const atEnd =
+    scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+  const current = atEnd
+    ? sections.at(-1)?.id
+    : sections
+        .filter(
+          (s) =>
+            s.getBoundingClientRect().top <
+            $(".site-header").offsetHeight + 180,
+        )
+        .at(-1)?.id;
   $$(".site-header nav a").forEach((a) => {
     if (a.hash === "#" + current) a.setAttribute("aria-current", "location");
     else a.removeAttribute("aria-current");
@@ -1218,4 +1225,5 @@ addEventListener(
   { passive: true },
 );
 addEventListener("resize", markChapter);
+$(".sources-disclosure").addEventListener("toggle", markChapter);
 markChapter();

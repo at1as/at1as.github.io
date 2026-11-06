@@ -465,77 +465,67 @@
       </section>
       <section id="sources" class="section sources-section">
         <div class="wrap">
-          <div class="section-heading horizontal">
-            <div>
-              <p class="eyebrow">06 / REFERENCES</p>
+          <details class="sources-disclosure">
+            <summary>
               <h2>Sources and methods</h2>
-            </div>
-            <p>
-              Sources include scientific publications, public research programs,
-              and company announcements. Company-reported results are attributed
-              and are not treated as independent verification.
-            </p>
-          </div>
-          <div class="methodology-grid">
-            <div>
-              <h3>How to read this atlas</h3>
+              <span class="disclosure-mark" aria-hidden="true"></span>
+            </summary>
+            <div class="sources-content">
+              <p class="sources-snapshot">
+                Research snapshot · 22 October 2026
+              </p>
+              <h3>How to read the evidence</h3>
               <p>
-                <span class="badge experiment">● EXPERIMENT</span> A reported
-                observation, with its measurement boundary
+                Experiments report observations, models describe simulations or
+                design studies, and targets describe announced plans. Passing a
+                target date does not establish that it was met. Component tests
+                and predecessor experiments are identified separately.
               </p>
               <p>
-                <span class="badge model">○ MODEL</span> A simulation or design
-                study, with assumptions
+                Sources include scientific publications, public research
+                programs, and company announcements. Company-reported results
+                are attributed and are not treated as independent verification.
+              </p>
+              <h3>Scope and limitations</h3>
+              <p>
+                This selection covers 42 organizations and 15 reactor
+                configurations. It is not a census of every fusion project.
+                Profiles link to the sources behind each claim; the downloadable
+                dataset preserves dates, measurement boundaries, and
+                qualifications.
               </p>
               <p>
-                <span class="badge target">◇ TARGET</span> An announced plan.
-                Passing its date does not turn it into an achievement.
+                Map positions are approximate city or area centers; unknown or
+                unselected sites are left unmapped. Financing records preserve
+                currencies, dates, revisions, and conditions.
               </p>
-              <p>
-                Component tests, predecessor experiments and agreements retain
-                their own labels in the evidence ledger. Public research belongs
-                to its institution and device.
-              </p>
-            </div>
-            <div>
-              <h3>What this snapshot covers</h3>
-              <p>
-                The research cutoff is 22 October 2026. This selection covers 42
-                organizations and 15 machine families; it is not a census of
-                every fusion project. Profiles link to the publications and
-                announcements behind each claim. The downloadable dataset
-                preserves dates, measurement boundaries, and qualifications.
-              </p>
-              <p>
-                Map positions are approximate city or area centers. Unselected
-                or unknown sites are left unmapped. Financing retains
-                currencies, dates, revisions and conditions.
-              </p>
-              <a class="text-link" href="./fusion_atlas.json" download
-                >Download the complete dataset ↓</a
-              ><a class="text-link" href="./research-report.md" download
-                >Download the research notes ↓</a
+              <div class="sources-downloads">
+                <a href="./fusion_atlas.json" download
+                  >Download the dataset ↓</a
+                >
+                <a href="./research-report.md" download
+                  >Download the research notes ↓</a
+                >
+              </div>
+              <h3>References</h3>
+              <label class="source-search"
+                >Search sources
+                <input
+                  id="source-search"
+                  type="search"
+                  placeholder="Title, publisher, or topic"
+                />
+              </label>
+              <div id="source-list"></div>
+              <noscript
+                ><p>
+                  Source search requires JavaScript. The
+                  <a href="./research-report.md">research notes</a> contain the
+                  full source register.
+                </p></noscript
               >
             </div>
-          </div>
-          <label class="source-search"
-            >Search the source register<input
-              id="source-search"
-              type="search"
-              placeholder="Try “ignition”, “Polaris”, or a publisher"
-          /></label>
-          <div id="source-list"></div>
-          <noscript
-            ><p>
-              Interactive controls require JavaScript. The explanations above
-              remain available.
-              <a href="./research-report.md"
-                >Read all profiles, history and sources in the research
-                report</a
-              >
-              or <a href="./data.json">download the dataset</a>.
-            </p></noscript
-          >
+          </details>
         </div>
       </section>
     </main>

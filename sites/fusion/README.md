@@ -45,7 +45,7 @@ The validator checks manifest integrity, canonical relationships and scientific/
 - Five energy boundaries, experimental/target anchors, continuous and pulsed teaching models, and a separate attributed Inertia model. In Inertia mode, other demand is **MJ per shot**, multiplied by repetition rate.
 - Selected published results with compatible metric views and original reported precision. No inferred success rate.
 - Forty-two organizations, filters, evidence table, three-organization comparison, 83 site-role records and 71 financing observations. Shared site records are joined once; distinct roles can share a physical location. Three records remain intentionally unmapped.
-- Six themes of engineering questions, full history, 167 searchable sources, a 24-term glossary, ordinary source links and source detail dialogs that preserve the underlying profile.
+- Six themes of engineering questions, full history, 167 searchable sources in a section collapsed by default (eight initial references, with search and an option to show all), a 24-term glossary, ordinary source links and source detail dialogs that preserve the underlying profile.
 - Deep links preserve approach, fast-ignition variant, filters, selected organization and comparison. “Copy scenario link” includes model inputs. Closing a detail dialog clears the entity query.
 
 Default organization cards are the first nine in curated source order, with a control to expand all; this is not a ranking. Text and downloadable research remain available if JavaScript fails; interactive diagrams, filtering and the map require JavaScript. The map has a synchronized accessible list. No animation starts automatically; reduced-motion preferences disable smooth scrolling and any CSS motion.
