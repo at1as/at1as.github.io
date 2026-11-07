@@ -1,4 +1,5 @@
 import { torusPoint, torusPointVisible } from "./schematic-torus.js";
+import { renderTokamakOverview } from "./tokamak-overview.js";
 /** Original editable fusion mechanism drawings. Schematic geometry, never to scale. */
 export const approaches = [
   {
@@ -523,7 +524,7 @@ function frc(cx, cy, rx, ry, active = true) {
   );
 }
 
-function torus(kind, s, { fieldOverview = false } = {}) {
+function torus(kind, s) {
   const spherical = kind === "spherical",
     stellarator = kind === "stellarator";
   const cx = 372,
@@ -549,9 +550,8 @@ function torus(kind, s, { fieldOverview = false } = {}) {
       "machine-casing",
     );
   }
-  let solenoid = "";
   if (!stellarator) {
-    solenoid += rect(
+    out += rect(
       cx - (spherical ? 12 : 20),
       104,
       spherical ? 24 : 40,
@@ -560,7 +560,7 @@ function torus(kind, s, { fieldOverview = false } = {}) {
       8,
     );
     for (let y = 118; y < 329; y += 13)
-      solenoid += line(
+      out += line(
         cx - (spherical ? 13 : 21),
         y,
         cx + (spherical ? 13 : 21),
@@ -568,15 +568,11 @@ function torus(kind, s, { fieldOverview = false } = {}) {
         "machine-coil",
       );
   }
-  if (!fieldOverview || s === 0) out += solenoid;
   const rearCoils = [],
     frontCoils = [];
   for (let i = 0; i < 10; i++) {
-    // Open the foreground to expose the field winding.
-    if (
-      !stellarator && s > 0 &&
-      (i === 2 || (fieldOverview && (i === 1 || i === 3)))
-    ) continue;
+    // Leave one foreground coil out of the cutaway to expose the field winding.
+    if (!stellarator && s > 0 && i === 2) continue;
     const t = ((i + 0.25) * Math.PI) / 5;
     const d =
       pointsPath(
@@ -590,10 +586,8 @@ function torus(kind, s, { fieldOverview = false } = {}) {
           42,
         ),
       ) + "Z";
-    const coil =
-      path(d, "machine-torus-coil") + path(d, "machine-torus-coil-edge");
     (Math.sin(t) < 0 ? rearCoils : frontCoils).push(
-      fieldOverview ? `<g opacity=".55">${coil}</g>` : coil,
+      path(d, "machine-torus-coil") + path(d, "machine-torus-coil-edge"),
     );
   }
   out += rearCoils.join("");
@@ -619,89 +613,19 @@ function torus(kind, s, { fieldOverview = false } = {}) {
           svg: `<path d="${pointsPath([project(t, p), project(t + dt, p), project(t + dt, p + dp), project(t, p + dp)])}Z" fill="rgb(${tone.join(",")})" stroke="rgb(${tone.join(",")})" stroke-width=".6"/>`,
         });
       }
-    if (fieldOverview) {
-      // The overview is transparent, so sort the field segments, plasma faces
-      // and central column together. The inner winding stays visible without
-      // drawing a field through the opaque solenoid.
-      facets.forEach((facet) => {
-        facet.svg = facet.svg.replace(
-          'stroke-width=".6"', 'stroke-width=".6" opacity=".18"',
-        );
-      });
-      if (solenoid) facets.push({ depth: 0, svg: solenoid });
-      const depthOf = ([, y, z]) => z * 0.88 + y * 0.45;
-      for (let i = 0; i < 180; i++) {
-        const t = i * Math.PI * 2 / 180;
-        const next = (i + 1) * Math.PI * 2 / 180;
-        facets.push({
-          depth: (depthOf(torusPoint(t, 0, shape, 0)) +
-            depthOf(torusPoint(next, 0, shape, 0))) / 2,
-          svg: path(
-            pointsPath([project(t, 0, 0), project(next, 0, 0)]),
-            "machine-overview-core",
-          ),
-        });
-      }
-      // An illustrative q = 3/2 surface: three toroidal turns for two
-      // poloidal turns. This makes the inner-side winding legible.
-      const turns = Math.PI * 6;
-      const steps = 540;
-      const poloidalAngle = (t, phase) => t * 2 / 3 + phase;
-      for (let j = 0; j < 3; j++) {
-        const phase = 0.4 + j * Math.PI * 2 / 9;
-        const fieldPoint = (t) =>
-          torusPoint(t, poloidalAngle(t, phase), shape, 0.94);
-        for (let i = 0; i < steps; i++) {
-          const t = i * turns / steps;
-          const next = (i + 1) * turns / steps;
-          facets.push({
-            depth: (depthOf(fieldPoint(t)) + depthOf(fieldPoint(next))) / 2,
-            svg: path(
-              pointsPath([
-                project(t, poloidalAngle(t, phase), 0.94),
-                project(next, poloidalAngle(next, phase), 0.94),
-              ]),
-              j === 0 ? "machine-overview-field emphasized" : "machine-overview-field",
-            ),
-          });
-        }
-        if (j === 0) {
-          for (const t of [0.6, 4.1, 7.0, 10.5]) {
-            const [x, y] = project(t, poloidalAngle(t, phase), 0.94);
-            const [px, py] = project(
-              t - 0.015, poloidalAngle(t - 0.015, phase), 0.94,
-            );
-            const length = Math.hypot(x - px, y - py);
-            const ux = (x - px) / length,
-              uy = (y - py) / length;
-            facets.push({
-              depth: depthOf(fieldPoint(t)) + 0.2,
-              svg: path(
-                pointsPath([
-                  [x, y],
-                  [x - ux * 6 - uy * 2.6, y - uy * 6 + ux * 2.6],
-                  [x - ux * 6 + uy * 2.6, y - uy * 6 - ux * 2.6],
-                ]) + "Z",
-                "machine-overview-field-arrow",
-              ),
-            });
-          }
-        }
-      }
-    }
     out += facets
       .sort((a, b) => a.depth - b.depth)
       .map((f) => f.svg)
       .join("");
   }
-  for (let i = 0; i < (fieldOverview && s > 0 ? 0 : 6); i++) {
+  for (let i = 0; i < 6; i++) {
     const p = (i * Math.PI * 2) / 6;
     out += path(
       pointsPath(samples((t) => project(t, p), 100)),
       s > 0 ? "machine-plasma-surface" : "machine-ghost",
     );
   }
-  if (s > 0 && !fieldOverview) {
+  if (s > 0) {
     // Trace a helix on a flux surface, with two toroidal turns per poloidal
     // turn. Occlude it against the entire torus, including the near inner rim.
     for (const phase of [0.4, 2.3]) {
@@ -728,7 +652,7 @@ function torus(kind, s, { fieldOverview = false } = {}) {
     `M${n(coilAnchor[0])} ${n(coilAnchor[1])}L141 138H72`,
     72,
     127,
-    stellarator ? "Shaped coils" : fieldOverview ? "Toroidal-field coils" : "External coils",
+    stellarator ? "Shaped coils" : "External coils",
   );
   out += leader(
     `M${cx + R - 10} 265L585 283H691`,
@@ -737,9 +661,7 @@ function torus(kind, s, { fieldOverview = false } = {}) {
     "Plasma",
     "machine-label-plasma",
   );
-  const fieldAnchor = s > 0
-    ? project(0.4, fieldOverview ? 0.4 * 2 / 3 + 0.4 : 0.6, fieldOverview ? 0.94 : 1.025)
-    : [cx + R - 17, 196];
+  const fieldAnchor = s > 0 ? project(0.4, 0.6, 1.025) : [cx + R - 17, 196];
   out += leader(
     `M${n(fieldAnchor[0])} ${n(fieldAnchor[1])}L585 145H712`,
     712,
@@ -1457,6 +1379,7 @@ function electrostatic(s) {
 
 /** opts.fastIgnition selects a visibly separate ignition beam for direct-laser only. */
 export function renderMachine(id, stage = 0, opts = {}) {
+  if (id === "tokamak" && opts.fieldOverview) return renderTokamakOverview(opts);
   const approach = approaches.find((a) => a.id === id) || approaches[0];
   const s = Math.max(
     0,
@@ -1470,7 +1393,7 @@ export function renderMachine(id, stage = 0, opts = {}) {
     case "tokamak":
     case "spherical":
     case "stellarator":
-      drawing = torus(approach.id, s, opts);
+      drawing = torus(approach.id, s);
       break;
     case "mirror":
       drawing = mirror(s);
