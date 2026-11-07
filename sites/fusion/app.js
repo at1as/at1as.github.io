@@ -113,12 +113,24 @@ function mountReactor(host, id, options = {}) {
   if (previous?.key === key) return;
   const bounds = host.getBoundingClientRect();
   const displayOptionsOpen =
-    host.querySelector(".reactor-display-options")?.open ?? true;
+    host.querySelector(".reactor-display-options")?.open ??
+    previous?.displayOptionsOpen ??
+    true;
+  const displaySettings =
+    previous?.view?.getDisplaySettings?.() ??
+    previous?.displaySettings;
   // Reserve the current footprint before disposal so scroll anchoring cannot
   // follow a temporarily empty viewer or a differently sized fallback image.
   if (previous?.view) host.style.height = `${bounds.height}px`;
   releaseReactor(host);
-  const mount = { key, cancelled: false, view: null, observer: null };
+  const mount = {
+    key,
+    cancelled: false,
+    view: null,
+    observer: null,
+    displaySettings,
+    displayOptionsOpen,
+  };
   reactorMounts.set(host, mount);
   host.setAttribute("aria-busy", "true");
   host.classList.add("is-model-loading");
@@ -131,7 +143,7 @@ function mountReactor(host, id, options = {}) {
     mount.observer?.disconnect();
     try {
       if (!reactorFactory) {
-        const module = await import("./reactor-explorer.js");
+        const module = await import("./reactor-explorer.js?v=display-settings-2");
         reactorFactory = module.createReactorExplorer;
       }
       if (mount.cancelled || !host.isConnected) return;
@@ -139,6 +151,7 @@ function mountReactor(host, id, options = {}) {
       mount.view = reactorFactory(host, id, {
         ...options,
         displayOptionsOpen,
+        displaySettings,
         citations,
       });
       host.style.height = "";
@@ -1364,7 +1377,7 @@ async function init() {
     // Restore the requested chapter once its content and fonts are laid out,
     // unless the reader has already interacted or opened a profile.
     await document.fonts.ready;
-    if (!eid && !readerHasNavigated && initialHash === location.hash) {
+    if (initialHash.length > 1 && !eid && !readerHasNavigated && initialHash === location.hash) {
       const target = document.getElementById(initialHash.slice(1));
       if (target?.matches("main > section[id]"))
         target.scrollIntoView({ behavior: "instant", block: "start" });

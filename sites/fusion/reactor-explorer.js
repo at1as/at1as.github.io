@@ -30,12 +30,12 @@ export function createReactorExplorer(host, id, options = {}) {
     pitch = 0.42,
     zoom = 1,
     baseDistance = 15,
-    explosion = 0,
+    explosion = options.displaySettings?.explosion ?? 0,
     isolate = false,
-    labels = true,
+    labels = options.displaySettings?.labels ?? true,
     hovered = null,
     focused = false;
-  const layers = { structure: true, field: true, plasma: true, flow: true };
+  const layers = { structure: true, field: true, plasma: true, flow: true, ...options.displaySettings?.layers };
   const pointers = new Map(),
     originals = new Map(),
     cameraTarget = new THREE.Vector3();
@@ -61,6 +61,14 @@ export function createReactorExplorer(host, id, options = {}) {
     stage = q(".reactor-stage"),
     canvasHost = q(".reactor-canvas"),
     overlay = q(".reactor-annotations");
+  qa("[data-layer]").forEach((input) => {
+    input.checked = layers[input.dataset.layer];
+  });
+  q('[data-action="labels"]').checked = labels;
+  q(".reactor-explode input").value = explosion * 100;
+  q(".reactor-explode output").textContent = explosion
+    ? `${Math.round(explosion * 100)}% separated`
+    : "Assembled";
   function detail() {
     const p = content.parts.find((p) => p.id === selected);
     qa("[data-part]").forEach((b) => {
@@ -491,7 +499,7 @@ export function createReactorExplorer(host, id, options = {}) {
     const availableLayers = new Set(model.parts.flatMap((p) => p.layers));
     qa("[data-layer]").forEach((input) => {
       input.disabled = !availableLayers.has(input.dataset.layer);
-      input.checked = !input.disabled;
+      input.checked = !input.disabled && layers[input.dataset.layer];
       input.parentElement.title = input.disabled
         ? "Not used in this configuration"
         : "";
@@ -743,6 +751,9 @@ export function createReactorExplorer(host, id, options = {}) {
   return {
     select,
     reset,
+    getDisplaySettings() {
+      return { layers: { ...layers }, labels, explosion };
+    },
     refreshSources() {
       detail();
     },
