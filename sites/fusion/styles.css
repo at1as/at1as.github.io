@@ -1676,6 +1676,27 @@ dialog::backdrop {
   color: #52665c;
   margin-bottom: 15px;
 }
+.entity-reactor-type {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0 0 16px;
+  padding: 6px 10px;
+  border: 1px solid #ccd7c9;
+  border-radius: 4px;
+  background: #e7ece3;
+  color: #253e32;
+}
+.entity-reactor-type span {
+  color: #52665c;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.entity-reactor-type strong {
+  font-size: 14px;
+}
 .fuel-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1764,6 +1785,76 @@ dialog::backdrop {
   width: 100%;
   height: auto;
 }
+.map-canvas {
+  display: block;
+  aspect-ratio: 900 / 390;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+}
+.map-canvas.is-zoomed {
+  cursor: grab;
+  touch-action: none;
+}
+.map-canvas.is-dragging,
+.map-canvas.is-dragging .map-marker {
+  cursor: grabbing;
+}
+.map-canvas:focus-visible {
+  outline: 2px solid #a5d7bd;
+  outline-offset: 3px;
+}
+.map-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 14px 0;
+}
+.map-toolbar p {
+  margin: 0;
+  color: #b6cad4;
+  font-size: 12px;
+}
+.map-toolbar p span {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+}
+.map-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.map-controls button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 7px 12px;
+  background: #1b3342;
+  border-color: #597581;
+  color: #edf2ef;
+  font-size: 22px;
+  line-height: 1;
+}
+.map-controls [data-map-reset] {
+  margin-left: 6px;
+  font-size: 12px;
+}
+.map-controls button:hover:not(:disabled) {
+  background: #2e4c5d;
+}
+.map-controls button:disabled {
+  opacity: .4;
+  cursor: default;
+}
+.map-zoom-level {
+  min-width: 3em;
+  color: #edf2ef;
+  font-size: 12px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
 .world-map > .quiet {
   color: #a8bbc5;
 }
@@ -1833,6 +1924,7 @@ dialog::backdrop {
 }
 .site-row.selected {
   outline: 2px solid #b15c35;
+  outline-offset: -2px;
 }
 .map-popup {
   font-size: 12px;

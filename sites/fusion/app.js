@@ -9,6 +9,7 @@ import { renderPowerCycle } from "./reaction-power.js";
 import { engineeringDiagram } from "./engineering-diagrams.js";
 import { approaches, renderMachine } from "./diagrams.js?v=tokamak-cutaway-2";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
+import { clusterMapSites, initialMapView, mountMapViewport } from "./map-viewport.js";
 import {
   getEntityReactorOptions,
   getInfrastructureContent,
@@ -24,7 +25,9 @@ const esc = (x) =>
         c
       ],
   );
-const human = (x) => String(x ?? "").replaceAll("_", " ");
+const human = (x) => String(x ?? "")
+  .replaceAll("_", " ")
+  .replace(/\br\s+and\s+d\b/gi, "R&D");
 const fmt = (n) =>
   Number.isFinite(n)
     ? n.toLocaleString("en-US", { maximumFractionDigits: 1 })
@@ -795,6 +798,8 @@ function entityCard(e) {
 }
 function atlas() {
   if (!data) return;
+  disposeMap?.();
+  disposeMap = null;
   const advancedCount = $$("#atlas-more-filters select").filter(
     (s) => s.value,
   ).length;
@@ -836,7 +841,7 @@ function atlas() {
         })
         .join("")}</tbody></table></div>`;
   if (view === "funding") funding(entities);
-  if (view === "sites") sites(entities);
+  if (view === "sites" && entities.length) sites(entities);
   if (!entities.length)
     $("#atlas-content").innerHTML =
       '<div class="empty"><h3>No matching organizations</h3><p>Try a broader search or clear the filters</p></div>';
@@ -899,6 +904,8 @@ function mapLegend() {
 }
 let mapSites = [],
   mapClusters = [];
+const mapView = initialMapView();
+let disposeMap;
 function sites(entities) {
   const ids = new Set(entities.map((e) => e.id));
   mapSites = data.sites.filter(
@@ -909,13 +916,6 @@ function sites(entities) {
   const visible = mapSites.filter(
     (s) => s.latitude !== null && s.longitude !== null,
   );
-  const grouped = new Map();
-  visible.forEach((s) => {
-    const key = `${Math.round(s.longitude / 3)},${Math.round(s.latitude / 3)}`;
-    if (!grouped.has(key)) grouped.set(key, []);
-    grouped.get(key).push(s);
-  });
-  mapClusters = [...grouped.values()];
   const grid =
     [-120, -60, 0, 60, 120]
       .map(
@@ -929,7 +929,9 @@ function sites(entities) {
           `<line x1="0" x2="900" y1="${(90 - l) * 2.5}" y2="${(90 - l) * 2.5}" stroke="#29404e" stroke-width=".5"/>`,
       )
       .join("");
-  const markers = mapClusters
+  function renderMarkers(zoom, markerScale) {
+    mapClusters = clusterMapSites(visible, markerScale);
+    $("#map-markers").innerHTML = mapClusters
     .map((cluster, i) => {
       const s = cluster[0],
         x =
@@ -945,18 +947,20 @@ function sites(entities) {
             : shape === "outlined_diamond" || s.role.toLowerCase().includes("plant")
               ? mapColors.plant
               : mapColors.site,
-        size = cluster.length > 1 ? 9 : 5;
-      const icon = mapMarkerShape(shape, x, y, size);
-      return `<g class="map-marker" data-cluster="${i}" tabindex="0" role="button" aria-label="${esc(cluster.length > 1 ? cluster.length + " site records near " + s.place : s.name + "; " + s.role + "; " + s.status)}" fill="${shape.includes("diamond") && cluster.length === 1 ? mapColors.background : color}" stroke="${color}" stroke-width="1.4" ${cluster.length === 1 && /planned|construction/.test(s.status) ? 'stroke-dasharray="2 1"' : ""}>${icon}${cluster.length > 1 ? `<text x="${x}" y="${y + 3}" text-anchor="middle" fill="#122e27" stroke="none" font-size="9">${cluster.length}</text>` : ""}</g>`;
+        size = cluster.length > 1 ? 10 : 6;
+      const icon = mapMarkerShape(shape, 0, 0, size);
+      return `<g class="map-marker" data-cluster="${i}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${markerScale})" tabindex="0" role="button" aria-label="${esc(cluster.length > 1 ? cluster.length + " site records; select to see locations" : s.name + "; " + human(s.role) + "; " + s.status)}" fill="${shape.includes("diamond") && cluster.length === 1 ? mapColors.background : color}" stroke="${color}" stroke-width="1.4" ${cluster.length === 1 && /planned|construction/.test(s.status) ? 'stroke-dasharray="2 1"' : ""}><circle r="12" fill="transparent" stroke="none"/>${icon}${cluster.length > 1 ? `<text y="0" dy=".35em" text-anchor="middle" fill="#122e27" stroke="none" font-size="11">${cluster.length}</text>` : ""}</g>`;
     })
     .join("");
+  }
   $("#atlas-content").innerHTML =
-    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map">${mapLegend()}<svg viewBox="0 25 900 390" role="group" aria-label="Fusion sites, approximate world map. An equivalent site list follows.">${grid}<path d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4"/>${markers}</svg><div class="map-popup" id="map-popup" aria-live="polite">Select a marker to inspect its sites. Numbered markers group nearby site records. One location can have more than one role.</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
+    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map">${mapLegend()}<div class="map-toolbar"><p id="map-help">Drag to pan · use +/− to zoom<span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">Select a marker to inspect its sites. Numbered markers group nearby site records. One location can have more than one role.</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
+  disposeMap = mountMapViewport($(".world-map"), mapView, renderMarkers);
   $("#result-count").textContent =
     `${mapSites.length} site records · ${entities.length} organizations · funding is counted per organization, never per marker`;
 }
 function siteRow(s) {
-  return `<article class="site-row" data-site-row="${s.id}"><button data-site="${s.id}">${esc(s.name)}</button><p>${esc(s.role)} · ${esc(s.status)}</p><p>${esc(s.place || "Location not selected")}</p><p>${s.latitude === null ? "Coordinates not established" : `Approximate: ${s.latitude.toFixed(2)}°, ${s.longitude.toFixed(2)}°`}</p>${citations(s.sourceIds)}</article>`;
+  return `<article class="site-row" data-site-row="${s.id}"><button data-site="${s.id}">${esc(s.name)}</button><p>${esc(human(s.role))} · ${esc(s.status)}</p><p>${esc(s.place || "Location not selected")}</p><p>${s.latitude === null ? "Coordinates not established" : `Approximate: ${s.latitude.toFixed(2)}°, ${s.longitude.toFixed(2)}°`}</p>${citations(s.sourceIds)}</article>`;
 }
 function selectCluster(i) {
   const sites = mapClusters[i];
@@ -987,7 +991,7 @@ function entityDetail(id) {
   updateURL({ entity: e.id });
   modal(
     "ORGANIZATION FIELD NOTES",
-    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2><p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(s.role)} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
+    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
   );
   if (m) {
     const options = getEntityReactorOptions(e);
@@ -1232,7 +1236,7 @@ document.addEventListener("click", (e) => {
     const s = data.sites.find((s) => s.id === b.dataset.site);
     modal(
       "SITE FIELD NOTES",
-      `<h2>${esc(s.name)}</h2><p>${esc(s.role)} · ${esc(s.status)}</p><p>${esc(s.place || "Location not selected")}</p><p>${s.latitude === null ? "No coordinates established." : `Approximate area center: ${s.latitude.toFixed(2)}°, ${s.longitude.toFixed(2)}°. Not a surveyed facility boundary.`}</p>${citations(s.sourceIds)}<p><button data-entity="${s.entityId}">Open organization notes ↗</button></p>`,
+      `<h2>${esc(s.name)}</h2><p>${esc(human(s.role))} · ${esc(s.status)}</p><p>${esc(s.place || "Location not selected")}</p><p>${s.latitude === null ? "No coordinates established." : `Approximate area center: ${s.latitude.toFixed(2)}°, ${s.longitude.toFixed(2)}°. Not a surveyed facility boundary.`}</p>${citations(s.sourceIds)}<p><button data-entity="${s.entityId}">Open organization notes ↗</button></p>`,
     );
   }
 });
@@ -1301,7 +1305,7 @@ async function init() {
   machine();
   calcControls();
   try {
-    const response = await fetch("./data.json");
+    const response = await fetch("./data.json?v=20261107-rd", { cache: "no-cache" });
     if (!response.ok) throw Error("Dataset failed to load");
     data = await response.json();
     sourceMap = new Map(data.sources.map((s) => [s.id, s]));

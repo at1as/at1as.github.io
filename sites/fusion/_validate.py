@@ -2,6 +2,7 @@
 """Run the supplied canonical validator and verify the UI adapter is lossless."""
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -16,7 +17,7 @@ data = json.loads((ROOT / 'data.json').read_text())
 assert data['meta']['canonicalSha256'] == hashlib.sha256(original).hexdigest()
 assert data['meta']['snapshot'] == canonical['meta']['as_of']
 report = (ROOT / '_handoff/01_RESEARCH_REPORT.md').read_bytes()
-assert (ROOT / 'research-report.md').read_bytes() == report
+assert (ROOT / 'research-report.md').read_text() == re.sub(r'\br\s+and\s+d\b', 'R&D', report.decode(), flags=re.I)
 assert (ROOT / '_research.md').read_bytes() == report
 assert 'missingCompanionDataset' not in data['meta']
 sources = {s['id']: s for s in data['sources']}
