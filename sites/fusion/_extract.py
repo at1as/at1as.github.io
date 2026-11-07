@@ -69,7 +69,7 @@ risks_by_id = {r['id']: r for r in C['risk_assessments']}
 
 def adapt_site(s):
     return {**s, 'canonicalId': s['id'], 'canonicalRole': s['role'],
-            'entityId': entity_ids[s['entity_id']], 'role': s.get('role_label') or human(s['role']),
+            'entityId': entity_ids[s['entity_id']], 'role': re.sub(r'\bR and d\b', 'R&D', s.get('role_label') or human(s['role'])),
             'status': human(s['status']), 'canonicalStatus': s['status'],
             'place': ', '.join(v for v in (s.get('city'), s.get('region'), s.get('country')) if v),
             'latitude': s['lat'], 'longitude': s['lon'], 'precision': s['coordinate_precision'],

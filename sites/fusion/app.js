@@ -7,7 +7,7 @@ import {
 } from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
 import { engineeringDiagram } from "./engineering-diagrams.js";
-import { approaches, renderMachine } from "./diagrams.js?v=field-overview-1";
+import { approaches, renderMachine } from "./diagrams.js?v=tokamak-cutaway-2";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import {
   getEntityReactorOptions,
@@ -508,7 +508,7 @@ function boundaries() {
     $("#boundary-tabs").innerHTML = boundaryData
       .map(
         (x, i) =>
-          `<button id="boundary-tab-${i}" role="tab" aria-controls="boundary-panel" data-boundary="${i}">${x[0]}</button>`,
+          `<button id="boundary-tab-${i}" role="tab" aria-controls="boundary-panel" aria-label="${i + 1}. ${esc(x[0])}" data-boundary="${i}"><svg class="boundary-tab-number" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><mask id="boundary-number-${i}" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="white"/><text x="12" y="12" dy=".35em" text-anchor="middle" fill="black" font-size="13" font-weight="700">${i + 1}</text></mask></defs><circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#boundary-number-${i})"/></svg><span>${x[0]}</span></button>`,
       )
       .join("");
   $$("[data-boundary]").forEach((button, i) => {
@@ -882,6 +882,21 @@ function funding(entities) {
   $("#fund-type").onchange = render;
   render();
 }
+const mapColors = { site: "#a5d7bd", plant: "#ffac77", cluster: "#e7d9bf", background: "#142431" };
+function mapMarkerShape(shape, x, y, size) {
+  if (shape === "square")
+    return `<rect x="${x - size}" y="${y - size}" width="${size * 2}" height="${size * 2}" rx="1"/>`;
+  if (shape === "diamond" || shape === "outlined_diamond")
+    return `<path d="M${x} ${y - size - 2}l${size + 2} ${size + 2}-${size + 2} ${size + 2}-${size + 2}-${size + 2}Z"/>`;
+  if (shape === "hexagon")
+    return `<path d="M${x - size} ${y}l${size / 2}-${size}h${size}l${size / 2} ${size}-${size / 2} ${size}h-${size}Z"/>`;
+  return `<circle cx="${x}" cy="${y}" r="${size}"/>`;
+}
+function mapLegend() {
+  const item = (label, shape, color, { hollow = false, dashed = false, number = "" } = {}) =>
+    `<span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="${hollow ? mapColors.background : color}" stroke="${color}" stroke-width="1.5" ${dashed ? 'stroke-dasharray="3 2"' : ""}>${mapMarkerShape(shape, 12, 12, number ? 10 : 7)}</g>${number ? `<text x="12" y="12" dy=".35em" text-anchor="middle" fill="#122e27" font-size="12">${number}</text>` : ""}</svg>${label}</span>`;
+  return `<div class="map-key" aria-label="Map legend"><strong>Map key</strong><div class="map-key-items">${item("Headquarters / office", "circle", mapColors.site)}${item("Experiment / research", "square", mapColors.site)}${item("Proposed plant", "diamond", mapColors.plant, { hollow: true })}${item("Enabling facility", "hexagon", mapColors.site)}${item("Nearby site records", "circle", mapColors.cluster, { number: "3" })}${item("Planned / under construction", "circle", mapColors.site, { hollow: true, dashed: true })}</div></div>`;
+}
 let mapSites = [],
   mapClusters = [];
 function sites(entities) {
@@ -926,24 +941,17 @@ function sites(entities) {
         shape = cluster.length > 1 ? "circle" : s.marker_shape,
         color =
           cluster.length > 1
-            ? "#e7d9bf"
-            : s.role.toLowerCase().includes("plant")
-              ? "#ffac77"
-              : "#a5d7bd",
+            ? mapColors.cluster
+            : shape === "outlined_diamond" || s.role.toLowerCase().includes("plant")
+              ? mapColors.plant
+              : mapColors.site,
         size = cluster.length > 1 ? 9 : 5;
-      let icon =
-        shape === "square"
-          ? `<rect x="${x - size}" y="${y - size}" width="${size * 2}" height="${size * 2}" rx="1"/>`
-          : shape === "diamond"
-            ? `<path d="M${x} ${y - size - 2}l${size + 2} ${size + 2}-${size + 2} ${size + 2}-${size + 2}-${size + 2}Z"/>`
-            : shape === "hexagon"
-              ? `<path d="M${x - size} ${y}l${size / 2}-${size}h${size}l${size / 2} ${size}-${size / 2} ${size}h-${size}Z"/>`
-              : `<circle cx="${x}" cy="${y}" r="${size}"/>`;
-      return `<g class="map-marker" data-cluster="${i}" tabindex="0" role="button" aria-label="${esc(cluster.length > 1 ? cluster.length + " site records near " + s.place : s.name + "; " + s.role + "; " + s.status)}" fill="${shape === "diamond" && cluster.length === 1 ? "#142431" : color}" stroke="${color}" stroke-width="1.4" ${cluster.length === 1 && /planned|construction/.test(s.status) ? 'stroke-dasharray="2 1"' : ""}>${icon}${cluster.length > 1 ? `<text x="${x}" y="${y + 3}" text-anchor="middle" fill="#122e27" stroke="none" font-size="9">${cluster.length}</text>` : ""}</g>`;
+      const icon = mapMarkerShape(shape, x, y, size);
+      return `<g class="map-marker" data-cluster="${i}" tabindex="0" role="button" aria-label="${esc(cluster.length > 1 ? cluster.length + " site records near " + s.place : s.name + "; " + s.role + "; " + s.status)}" fill="${shape.includes("diamond") && cluster.length === 1 ? mapColors.background : color}" stroke="${color}" stroke-width="1.4" ${cluster.length === 1 && /planned|construction/.test(s.status) ? 'stroke-dasharray="2 1"' : ""}>${icon}${cluster.length > 1 ? `<text x="${x}" y="${y + 3}" text-anchor="middle" fill="#122e27" stroke="none" font-size="9">${cluster.length}</text>` : ""}</g>`;
     })
     .join("");
   $("#atlas-content").innerHTML =
-    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map"><svg viewBox="0 25 900 390" role="group" aria-label="Fusion sites, approximate world map. An equivalent site list follows.">${grid}<path d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4"/>${markers}</svg><div class="map-key"><span>● Headquarters</span><span>■ Experiment</span><span>◇ Proposed plant</span><span>⬡ Enabling facility</span><span>Dashed outline: planned / construction</span></div><div class="map-popup" id="map-popup" aria-live="polite">Select a marker to inspect its sites. Numbered markers group nearby site records. One location can have more than one role.</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
+    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map">${mapLegend()}<svg viewBox="0 25 900 390" role="group" aria-label="Fusion sites, approximate world map. An equivalent site list follows.">${grid}<path d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4"/>${markers}</svg><div class="map-popup" id="map-popup" aria-live="polite">Select a marker to inspect its sites. Numbered markers group nearby site records. One location can have more than one role.</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
   $("#result-count").textContent =
     `${mapSites.length} site records · ${entities.length} organizations · funding is counted per organization, never per marker`;
 }
@@ -1185,6 +1193,12 @@ document.addEventListener("click", (e) => {
     modal(
       "MECHANISM DETAIL",
       `<h2>${esc(a.name)}</h2><div class="expanded-cycle">${renderMachine(a.id, machineStage, { fastIgnition })}</div><h3>${esc(a.stages[machineStage].title)}</h3><p>${esc(a.stages[machineStage].text)}</p>${citations(getReactorContent(a.id, { fastIgnition }).sourceIds)}`,
+    );
+  }
+  if (b.dataset.open === "hero-diagram") {
+    modal(
+      "TOKAMAK CUTAWAY",
+      `<h2>Magnetic confinement</h2><p class="overview-scroll-hint">Scroll sideways to inspect the whole diagram.</p><div class="expanded-cycle expanded-overview" tabindex="0" role="region" aria-label="Enlarged tokamak diagram; scroll horizontally on small screens">${renderMachine("tokamak", 3, { fieldOverview: true })}</div><p>External coils and a current flowing through the plasma together create the helical magnetic field. External heating supplies energy to the plasma; the divertor below it receives heat and particles from its edge.</p>`,
     );
   }
   if (b.dataset.open === "glossary" && data) glossaryDetail();
