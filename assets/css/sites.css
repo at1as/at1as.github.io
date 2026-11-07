@@ -82,14 +82,13 @@
   border-radius: 12px;
   color: var(--directory-ink);
   background: var(--background-color);
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  transition: border-color .2s ease, box-shadow .2s ease;
 }
 
 .site-project:hover {
-  border-color: #b8c8c7;
+  border-color: #b9cbc8;
   color: var(--directory-ink);
-  box-shadow: 0 10px 28px -16px #293b403d;
-  transform: translateY(-4px);
+  box-shadow: 0 6px 18px -10px #293b4033;
 }
 
 .site-project-preview {
@@ -102,11 +101,6 @@
   display: block;
   width: 100%;
   height: 100%;
-  transition: transform .35s ease;
-}
-
-.site-project:hover .site-project-preview svg {
-  transform: scale(1.025);
 }
 
 .site-project-body {
@@ -164,7 +158,6 @@
 .site-project:hover .site-project-arrow,
 .site-tool:hover .site-tool-arrow {
   color: var(--primary-color);
-  transform: translate(2px, -2px);
 }
 
 .site-directory-more {
