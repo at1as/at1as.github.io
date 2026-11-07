@@ -881,7 +881,7 @@ Scales NIF-style indirect-drive laser fusion toward a repetitive electricity-pro
 | Site | Role / status | Location |
 | --- | --- | --- |
 | Inertia Enterprises headquarters / primary location | headquarters / listed location | Livermore, California, United States |
-| Livermore development and prototyping | r and d / component development | Livermore, California, United States |
+| Livermore development and prototyping | R&D / component development | Livermore, California, United States |
 
 ### Evidence and current plans
 
@@ -982,7 +982,7 @@ Develops high-energy excimer lasers and a liquid-wall chamber for inertial fusio
 | Site | Role / status | Location |
 | --- | --- | --- |
 | Xcimer Energy headquarters / primary location | headquarters / listed location | Denver, Colorado, United States |
-| Denver headquarters and development | r and d / operating | Denver, Colorado, United States |
+| Denver headquarters and development | R&D / operating | Denver, Colorado, United States |
 | Tucson manufacturing | manufacturing / operating | Tucson, Arizona, United States |
 
 ### Evidence and current plans
@@ -1133,7 +1133,7 @@ Uses the plasma current to pinch a flowing column, with sheared flow intended to
 | Site | Role / status | Location |
 | --- | --- | --- |
 | Zap Energy headquarters / primary location | headquarters / listed location | Everett, Washington, United States |
-| Everett R&D | r and d / operating | Everett, Washington, United States |
+| Everett R&D | R&D / operating | Everett, Washington, United States |
 
 ### Evidence and current plans
 
@@ -1182,7 +1182,7 @@ Develops FLARE, a two-stage fuel system, with partners supplying major plant and
 | Site | Role / status | Location |
 | --- | --- | --- |
 | First Light Fusion headquarters / primary location | headquarters / listed location | Yarnton, Oxfordshire, United Kingdom |
-| M3 and Oxfordshire headquarters | r and d / operating | Yarnton, Oxfordshire, United Kingdom |
+| M3 and Oxfordshire headquarters | R&D / operating | Yarnton, Oxfordshire, United Kingdom |
 
 ### Evidence and current plans
 
@@ -1336,7 +1336,7 @@ Builds laser control, target delivery and laser systems toward repeated inertial
 | Site | Role / status | Location |
 | --- | --- | --- |
 | EX-Fusion headquarters / primary location | headquarters / listed location | Suita, Osaka, Japan |
-| Hamamatsu development facility | r and d / operating | Hamamatsu, Shizuoka, Japan |
+| Hamamatsu development facility | R&D / operating | Hamamatsu, Shizuoka, Japan |
 
 ### Evidence and current plans
 
@@ -1427,7 +1427,7 @@ Commercializes radiation-testing hardware while developing pulsed-power inertial
 | Site | Role / status | Location |
 | --- | --- | --- |
 | Fuse Energy Technologies headquarters / primary location | headquarters / listed location | San Leandro, California, United States |
-| San Leandro experimental systems | r and d and testing / operating | San Leandro, California, United States |
+| San Leandro experimental systems | R&D and testing / operating | San Leandro, California, United States |
 | Albuquerque testing expansion | radiation testing / developing | Albuquerque, New Mexico, United States |
 
 ### Evidence and current plans

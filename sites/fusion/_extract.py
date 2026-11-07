@@ -29,6 +29,10 @@ def human(text):
     return text.replace('_', ' ') if isinstance(text, str) else text
 
 
+def display_text(text):
+    return re.sub(r'\br\s+and\s+d\b', 'R&D', text, flags=re.I)
+
+
 def clean(text):
     return re.sub(r'\s+', ' ', LINK.sub('', text).replace('**', '')).strip()
 
@@ -69,7 +73,7 @@ risks_by_id = {r['id']: r for r in C['risk_assessments']}
 
 def adapt_site(s):
     return {**s, 'canonicalId': s['id'], 'canonicalRole': s['role'],
-            'entityId': entity_ids[s['entity_id']], 'role': re.sub(r'\bR and d\b', 'R&D', s.get('role_label') or human(s['role'])),
+            'entityId': entity_ids[s['entity_id']], 'role': display_text(s.get('role_label') or human(s['role'])),
             'status': human(s['status']), 'canonicalStatus': s['status'],
             'place': ', '.join(v for v in (s.get('city'), s.get('region'), s.get('country')) if v),
             'latitude': s['lat'], 'longitude': s['lon'], 'precision': s['coordinate_precision'],
@@ -188,5 +192,5 @@ data = {'meta': {**C['meta'], 'subtitle': C['meta']['public_title'], 'snapshot':
 (ROOT / 'data.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
 (ROOT / 'fusion_atlas.json').write_bytes(canonical_bytes)
 shutil.copyfile(report_path, ROOT / '_research.md')
-shutil.copyfile(report_path, ROOT / 'research-report.md')
+(ROOT / 'research-report.md').write_text(display_text(report))
 print(json.dumps(data['meta']['counts'], indent=2))
