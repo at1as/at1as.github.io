@@ -7,7 +7,7 @@ import {
 } from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
 import { engineeringDiagram } from "./engineering-diagrams.js";
-import { approaches, renderMachine } from "./diagrams.js";
+import { approaches, renderMachine } from "./diagrams.js?v=field-overview-1";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import {
   getEntityReactorOptions,
@@ -263,7 +263,9 @@ const reactionSteps = [
 ];
 const circle = (x, y, r, fill, stroke = "none") =>
   `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${stroke}"/>`;
-function nucleus(x, y, count, name) {
+const nucleonNumber = (x, y, number) =>
+  `<text x="${x}" y="${y}" dy=".35em" text-anchor="middle" fill="#fff8ef" font-size="12" font-weight="500">${number}</text>`;
+function nucleus(x, y, count, name, numbers = []) {
   const offsets =
     count === 2
       ? [
@@ -282,7 +284,7 @@ function nucleus(x, y, count, name) {
             [-10, 10],
             [10, 10],
           ];
-  return `<g>${offsets.map(([dx, dy], i) => circle(x + dx, y + dy, 14, i < (count === 4 ? 2 : 1) ? "#ba5e3e" : "#6a8e9c", "#f9faf5")).join("")}<text x="${x}" y="${y + 62}" text-anchor="middle" fill="#203c40" font-size="28">${name}</text></g>`;
+  return `<g>${offsets.map(([dx, dy], i) => circle(x + dx, y + dy, 14, i < (count === 4 ? 2 : 1) ? "#ba5e3e" : "#6a8e9c", "#f9faf5")).join("")}${offsets.map(([dx, dy], i) => numbers[i] === undefined ? "" : nucleonNumber(x + dx, y + dy, numbers[i])).join("")}<text x="${x}" y="${y + 62}" text-anchor="middle" fill="#203c40" font-size="28">${name}</text></g>`;
 }
 function reaction() {
   const s = reactionStage;
@@ -291,14 +293,14 @@ function reaction() {
   if (s < 2) {
     content = `${s === 1 ? '<rect x="100" y="48" width="430" height="185" rx="90" fill="#eee1d0" stroke="#b78d6d" stroke-dasharray="6 6"/>' : ""}${nucleus(225, 130, 2, "Deuterium")}${nucleus(405, 130, 3, "Tritium")}<text x="315" y="138" text-anchor="middle" fill="#63776a" font-size="30">+</text><text x="315" y="265" text-anchor="middle" fill="#47634f" font-size="20">${s === 0 ? "Orange: proton · blue: neutron" : "Heat and confine the fuel"}</text>`;
   } else if (s === 2) {
-    content = `${nucleus(90, 108, 2, "Deuterium")}${nucleus(235, 108, 3, "Tritium")}<text x="160" y="116" fill="#63776a" font-size="25">+</text><path d="M285 108H347m-10-8 10 8-10 8" fill="none" stroke="#718772" stroke-width="3"/>${nucleus(410, 108, 4, "Helium-4")}${circle(555, 108, 14, "#6a8e9c")}<text x="555" y="170" text-anchor="middle" fill="#203c40" font-size="28">Neutron</text><text x="410" y="50" text-anchor="middle" fill="#a84e2e" font-size="28">3.5 MeV</text><text x="555" y="50" text-anchor="middle" fill="#a84e2e" font-size="28">14.1 MeV</text><text x="162" y="210" text-anchor="middle" fill="#47634f" font-size="22">Before: ${massBeforeU.toFixed(6)} u</text><text x="482" y="210" text-anchor="middle" fill="#47634f" font-size="22">After: ${massAfterU.toFixed(6)} u</text><rect x="62" y="237" width="506" height="50" rx="5" fill="#e8ede2"/><text x="315" y="269" text-anchor="middle" fill="#294d40" font-size="23">Δm = ${massDifferenceU.toFixed(6)} u → ${reactionEnergyMeV.toFixed(1)} MeV</text>`;
+    content = `${nucleus(90, 108, 2, "Deuterium", [1, 1])}${nucleus(235, 108, 3, "Tritium", [2, 2, 3])}<text x="160" y="116" fill="#63776a" font-size="25">+</text><path d="M285 108H347m-10-8 10 8-10 8" fill="none" stroke="#718772" stroke-width="3"/>${nucleus(410, 108, 4, "Helium-4", [1, 2, 1, 2])}<text x="482" y="116" text-anchor="middle" fill="#63776a" font-size="25">+</text>${circle(555, 108, 14, "#6a8e9c")}${nucleonNumber(555, 108, 3)}<text x="555" y="170" text-anchor="middle" fill="#203c40" font-size="28">Neutron</text><text x="410" y="50" text-anchor="middle" fill="#a84e2e" font-size="28">3.5 MeV</text><text x="555" y="50" text-anchor="middle" fill="#a84e2e" font-size="28">14.1 MeV</text><text x="162" y="210" text-anchor="middle" fill="#47634f" font-size="22">Before: ${massBeforeU.toFixed(6)} u</text><text x="482" y="210" text-anchor="middle" fill="#47634f" font-size="22">After: ${massAfterU.toFixed(6)} u</text><rect x="62" y="237" width="506" height="50" rx="5" fill="#e8ede2"/><text x="315" y="269" text-anchor="middle" fill="#294d40" font-size="23">Δm = ${massDifferenceU.toFixed(6)} u → ${reactionEnergyMeV.toFixed(1)} MeV</text>`;
   } else if (s === 3) {
     content = `<defs><marker id="helium-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 7 4 1 7" fill="none" stroke="#b75e37" stroke-width="1.5"/></marker><marker id="neutron-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 7 4 1 7" fill="none" stroke="#467588" stroke-width="1.5"/></marker></defs><ellipse cx="190" cy="148" rx="125" ry="91" fill="#eee1d0" stroke="#b78d6d" stroke-width="2"/><text x="190" y="213" text-anchor="middle" font-size="26" fill="#77472e">Plasma</text><circle cx="220" cy="150" r="5" fill="#faf8ef" stroke="#8a7666" stroke-width="2"/><text x="220" y="179" text-anchor="middle" font-size="16" fill="#775f4c">Fusion</text><path d="M210 145L135 96" fill="none" stroke="#b75e37" stroke-width="3" marker-end="url(#helium-arrow)"/>${circle(164, 113, 6, "#ba5e3e", "#fff8ef")}${circle(174, 113, 6, "#ba5e3e", "#fff8ef")}${circle(164, 123, 6, "#6a8e9c", "#fff8ef")}${circle(174, 123, 6, "#6a8e9c", "#fff8ef")}<text x="128" y="44" text-anchor="middle" font-size="24" fill="#a35834">Helium-4</text><text x="190" y="273" text-anchor="middle" font-size="21" fill="#a35834">Helium heats the fuel</text><path d="M232 150H492" fill="none" stroke="#467588" stroke-width="3" marker-end="url(#neutron-arrow)"/><circle cx="367" cy="150" r="9" fill="#6a8e9c" stroke="#fff8ef" stroke-width="2"/><text x="367" y="123" text-anchor="middle" font-size="24" fill="#416777">Neutron</text><rect x="497" y="62" width="111" height="177" rx="14" fill="#e2e9da" stroke="#6c866e" stroke-width="2"/><text x="552" y="33" text-anchor="middle" font-size="22" fill="#47634f">Blanket</text><text x="552" y="127" text-anchor="middle" font-size="23" fill="#47634f">Heat</text><path d="M514 150H591" stroke="#b3c2ab"/><text x="552" y="188" text-anchor="middle" font-size="23" fill="#47634f">Tritium</text><text x="552" y="216" text-anchor="middle" font-size="15" fill="#47634f">from lithium</text>`;
   } else {
     content = renderPowerCycle(s === 5);
   }
   $("#reaction-scene").innerHTML =
-    `<svg viewBox="0 0 630 300" role="img" aria-label="${esc(reactionSteps[s][1] + (s === 2 ? ` Before: ${massBeforeU.toFixed(6)} u. After: ${massAfterU.toFixed(6)} u. Mass difference: ${massDifferenceU.toFixed(6)} u, equivalent to ${reactionEnergyMeV.toFixed(1)} MeV.` : ""))}">${content}</svg>`;
+    `<svg viewBox="0 0 630 300" role="img" aria-label="${esc(reactionSteps[s][1] + (s === 2 ? ` Deuterium: 1 proton and 1 neutron. Tritium: 1 proton and 2 neutrons. Products: helium-4 with 2 protons and 2 neutrons, plus 1 free neutron. Before: ${massBeforeU.toFixed(6)} u. After: ${massAfterU.toFixed(6)} u. Mass difference: ${massDifferenceU.toFixed(6)} u, equivalent to ${reactionEnergyMeV.toFixed(1)} MeV.` : ""))}">${content}</svg>`;
   $("#reaction-caption").innerHTML =
     `<h3>${reactionSteps[s][0]}</h3><p>${reactionSteps[s][1]}</p>`;
   if (s === 2)
@@ -402,6 +404,11 @@ function machine() {
   $("#machine-next").disabled = machineStage === a.stages.length - 1;
   $("#approach-select").value = approach;
   $("#cycle-approach-select").value = approach;
+  const approachIndex = approaches.findIndex((item) => item.id === approach);
+  $$("[data-config-step]").forEach((button) => {
+    const nextIndex = approachIndex + Number(button.dataset.configStep);
+    button.disabled = nextIndex < 0 || nextIndex >= approaches.length;
+  });
   if (data) {
     const entities = data.entities.filter((e) => machineId(e) === approach);
     $("#machine-entities").innerHTML =
@@ -1119,11 +1126,9 @@ document.addEventListener("click", (e) => {
   if (b.dataset.riskToggle) toggleRisk(b);
   if (b.dataset.configStep) {
     const select = document.getElementById(b.dataset.select);
-    select.selectedIndex =
-      (select.selectedIndex +
-        Number(b.dataset.configStep) +
-        select.options.length) %
-      select.options.length;
+    const nextIndex = select.selectedIndex + Number(b.dataset.configStep);
+    if (b.disabled || nextIndex < 0 || nextIndex >= select.options.length) return;
+    select.selectedIndex = nextIndex;
     select.dispatchEvent(new Event("change", { bubbles: true }));
   }
   if (b.dataset.reaction !== undefined) {
@@ -1278,7 +1283,7 @@ async function init() {
     .join("");
   $("#approach-select").innerHTML = options;
   $("#cycle-approach-select").innerHTML = options;
-  $("#hero-machine").innerHTML = renderMachine("tokamak", 3);
+  $("#hero-machine").innerHTML = renderMachine("tokamak", 3, { fieldOverview: true });
   machine();
   calcControls();
   try {

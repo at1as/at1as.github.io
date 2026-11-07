@@ -49,8 +49,8 @@
     />
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./reactor-explorer.css" />
-    <script type="module" src="./app.js?v=display-settings-2"></script>
+    <link rel="stylesheet" href="./reactor-explorer.css?v=configuration-navigation-1" />
+    <script type="module" src="./app.js?v=configuration-navigation-1"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -484,18 +484,18 @@
           </details>
           <details class="operating-cycle">
             <summary>Read the operating sequence</summary>
-            <div class="cycle-picker">
-              <label for="cycle-approach-select">Configuration</label>
-              <div class="cycle-choice">
-                <button data-config-step="-1" data-select="cycle-approach-select"
-                  aria-label="Previous operating sequence configuration">←</button>
-                <select id="cycle-approach-select"></select>
-                <button data-config-step="1" data-select="cycle-approach-select"
-                  aria-label="Next operating sequence configuration">→</button>
-              </div>
-            </div>
             <div class="cycle-layout">
               <div class="cycle-visual">
+                <div class="cycle-picker">
+                  <label for="cycle-approach-select">Configuration</label>
+                  <div class="cycle-choice">
+                    <button data-config-step="-1" data-select="cycle-approach-select"
+                      aria-label="Previous operating sequence configuration">←</button>
+                    <select id="cycle-approach-select"></select>
+                    <button data-config-step="1" data-select="cycle-approach-select"
+                      aria-label="Next operating sequence configuration">→</button>
+                  </div>
+                </div>
                 <div id="machine-diagram"></div>
                 <div class="step-controls dark-controls">
                   <button id="machine-back" aria-label="Previous machine stage">

@@ -502,6 +502,7 @@
   align-items: center;
 }
 .cycle-layout .cycle-visual {
+  min-width: 0;
   background: #101c29;
   border-radius: 5px;
   padding: 16px;
@@ -1005,9 +1006,14 @@ dialog:has(.company-reactor) {
   color: #c5d7e1;
   font-size: 18px;
 }
-.machine-choice button:hover {
+.machine-choice button:not(:disabled):hover,
+.cycle-choice button:not(:disabled):hover {
   background: #294352;
   color: #fff;
+}
+.machine-choice button:disabled,
+.cycle-choice button:disabled {
+  background: transparent;
 }
 .machine-workspace .reactor-loading {
   min-height: calc(var(--model-height) + 192px);
@@ -1225,10 +1231,14 @@ dialog:has(.company-reactor) {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 14px;
-  margin-bottom: 18px;
+  margin: -16px -16px 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #314450;
 }
 .cycle-picker label {
+  color: #b9cbd4;
   font-size: 12px;
+  font-weight: 400;
 }
 .cycle-choice {
   display: grid;
@@ -1239,10 +1249,16 @@ dialog:has(.company-reactor) {
 .cycle-choice select {
   width: 100%;
   min-width: 0;
+  background: #1c3342;
+  border-color: #587180;
+  color: #f2f4ef;
+  font-size: 14px;
 }
 .cycle-choice button {
   min-height: 44px;
   padding: 6px;
+  border-color: #47616c;
+  color: #c5d7e1;
   font-size: 18px;
 }
 .operating-cycle > .quiet {
