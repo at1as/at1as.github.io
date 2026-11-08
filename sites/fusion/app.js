@@ -9,7 +9,8 @@ import { renderPowerCycle } from "./reaction-power.js";
 import { engineeringDiagram } from "./engineering-diagrams.js";
 import { approaches, renderMachine } from "./diagrams.js?v=tokamak-cutaway-2";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
-import { clusterMapSites, initialMapView, mountMapViewport } from "./map-viewport.js";
+import { recordCopy, glossaryCopy } from "./reader-content.js";
+import { clusterMapSites, initialMapView, mountMapViewport } from "./map-viewport.js?v=fluid-1";
 import {
   getEntityReactorOptions,
   getInfrastructureContent,
@@ -571,7 +572,7 @@ function calcControls() {
   });
   $("#calc-context").innerHTML =
     mode === "inertia"
-      ? `<strong>ATTRIBUTED COMPANY MODEL · Inertia Phase I roadmap</strong> A modeled scenario, not measured electricity. Defaults: 10 MJ, 10 Hz, 12% laser efficiency, 45% thermal efficiency, 5 MJ other demand per shot. Those inputs give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated page reviewed 22 Oct 2026. ${citations(["ALT_INERTIA_PHASE1"])}`
+      ? `<strong>PUBLISHED EXAMPLE · Inertia Phase I roadmap</strong><p>Inertia publishes a set of proposed plant inputs, making its roadmap a useful worked example: you can follow how target gain, laser efficiency and shot rate affect net electricity. These are company assumptions, not measured plant performance.</p><p>Starting inputs: target gain 25, 10 MJ per shot, 10 shots per second, 12% laser efficiency, 45% heat-to-electric efficiency and 5 MJ of other electricity use per shot. They give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated source in the 22 Oct 2026 snapshot. ${citations(["ALT_INERTIA_PHASE1"])}</p><p class="personal-context"><strong>A note from Jason:</strong> Inertia is led by my former CEO. This example lets you inspect the published assumptions; it does not establish that the proposed plant will achieve them.</p>`
       : "<strong>ILLUSTRATIVE ASSUMPTIONS</strong> Adjust the inputs to calculate gross generation, plant demand, and net output. These defaults describe no particular company or experiment.";
   const keys = [
     "gain",
@@ -679,6 +680,10 @@ function recordConditions(r) {
     notes.push("Peak value, not a pulse average");
   return notes.length ? `<p>${notes.map(esc).join("<br>")}</p>` : "";
 }
+function recordMeasurement(r) {
+  const copy = recordCopy[r.metric];
+  return `${esc(copy?.label || human(r.metric))}<br><b>${esc(r.reported_display || String(r.value))} ${r.unit === "ratio" ? "×" : esc(r.unit)}</b><p>${esc(copy?.explanation || human(r.boundary))}</p>${recordConditions(r)}`;
+}
 function records() {
   if (!data) return;
   const mode = $("#record-select").value;
@@ -726,7 +731,7 @@ function records() {
         ? `<p class="record-context">A power plant must maintain useful fusion conditions for long periods, or repeat pulses reliably, to deliver electricity over time. Duration is therefore an important goal alongside net energy gain, but a long plasma discharge alone does not demonstrate sustained fusion or net electricity.</p><p class="quiet">These experiments use different operating regimes; their durations are not points on one interchangeable progress scale.</p>`
         : `<p class="record-context">JET, the Joint European Torus, was a European experimental tokamak at Culham in Oxfordshire, England. It operated until 2023 and studied fusion using deuterium and tritium.</p><p class="quiet">${mode === "plasma" ? "Peak plasma gain uses external heating delivered to the plasma. It is not an electrical gain." : "Fusion energy is measured in MJ. It is not grid electricity or a power rating."}</p>`;
   $("#record-table").innerHTML =
-    `<details ${mode !== "nif" ? "open" : ""}><summary>Data and sources · ${rows.length} results</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Experiment results"><table class="data-table"><thead><tr><th>Experiment / date</th><th>Metric and result</th><th>Evidence</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r.facility)}<br>${esc(r.date)}<br><small>${esc(human(r.date_role || "event date"))}</small></td><td>${esc(r.metric)}<br><b>${esc(r.reported_display || String(r.value))} ${r.unit === "ratio" ? "×" : esc(r.unit)}</b><br>${esc(human(r.boundary))}${recordConditions(r)}${r.fusion_energy_mj !== undefined ? `<p>Yield: ${r.fusion_energy_mj}${r.fusion_energy_uncertainty_mj ? " ± " + r.fusion_energy_uncertainty_mj : ""} MJ<br>Delivered driver: ${r.driver_energy_mj === null ? "not supplied" : r.driver_energy_mj + " MJ"}</p>` : ""}</td><td>${badge(r.category)}<br>${citations(r.sourceIds)}</td></tr>`).join("")}</tbody></table></div></details>`;
+    `<details ${mode !== "nif" ? "open" : ""}><summary>Data and sources · ${rows.length} ${rows.length === 1 ? "result" : "results"}</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Experiment results"><table class="data-table"><thead><tr><th>Experiment / date</th><th>What was measured</th><th>Evidence</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r.facility)}<br>${esc(r.date)}<br><small>${esc(human(r.date_role || "event date"))}</small></td><td>${recordMeasurement(r)}${r.fusion_energy_mj !== undefined ? `<p>Yield: ${r.fusion_energy_mj}${r.fusion_energy_uncertainty_mj ? " ± " + r.fusion_energy_uncertainty_mj : ""} MJ<br>Delivered driver: ${r.driver_energy_mj === null ? "not supplied" : r.driver_energy_mj + " MJ"}</p>` : ""}</td><td>${badge(r.category)}<br>${citations(r.sourceIds)}</td></tr>`).join("")}</tbody></table></div></details>`;
 }
 $("#record-select").onchange = records;
 function selectedEntities() {
@@ -798,8 +803,8 @@ function entityCard(e) {
 }
 function atlas() {
   if (!data) return;
-  disposeMap?.();
-  disposeMap = null;
+  mapController?.dispose();
+  mapController = null;
   const advancedCount = $$("#atlas-more-filters select").filter(
     (s) => s.value,
   ).length;
@@ -905,8 +910,9 @@ function mapLegend() {
 let mapSites = [],
   mapClusters = [];
 const mapView = initialMapView();
-let disposeMap;
+let mapController, mapSelectionKey = "";
 function sites(entities) {
+  mapController?.dispose();
   const ids = new Set(entities.map((e) => e.id));
   mapSites = data.sites.filter(
     (s) =>
@@ -949,13 +955,18 @@ function sites(entities) {
               : mapColors.site,
         size = cluster.length > 1 ? 10 : 6;
       const icon = mapMarkerShape(shape, 0, 0, size);
-      return `<g class="map-marker" data-cluster="${i}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${markerScale})" tabindex="0" role="button" aria-label="${esc(cluster.length > 1 ? cluster.length + " site records; select to see locations" : s.name + "; " + human(s.role) + "; " + s.status)}" fill="${shape.includes("diamond") && cluster.length === 1 ? mapColors.background : color}" stroke="${color}" stroke-width="1.4" ${cluster.length === 1 && /planned|construction/.test(s.status) ? 'stroke-dasharray="2 1"' : ""}><circle r="12" fill="transparent" stroke="none"/>${icon}${cluster.length > 1 ? `<text y="0" dy=".35em" text-anchor="middle" fill="#122e27" stroke="none" font-size="11">${cluster.length}</text>` : ""}</g>`;
+      return `<g class="map-marker" data-cluster="${i}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${markerScale})" tabindex="0" role="button" aria-label="${esc(cluster.length > 1 ? cluster.length + " site records; zoom in to explore locations" : s.name + "; " + human(s.role) + "; " + s.status)}" fill="${shape.includes("diamond") && cluster.length === 1 ? mapColors.background : color}" stroke="${color}" stroke-width="1.4" ${cluster.length === 1 && /planned|construction/.test(s.status) ? 'stroke-dasharray="2 1"' : ""}><circle r="12" fill="transparent" stroke="none"/>${icon}${cluster.length > 1 ? `<text y="0" dy=".35em" text-anchor="middle" fill="#122e27" stroke="none" font-size="11">${cluster.length}</text>` : ""}</g>`;
     })
     .join("");
   }
   $("#atlas-content").innerHTML =
-    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map">${mapLegend()}<div class="map-toolbar"><p id="map-help">Drag to pan · use +/− to zoom<span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">Select a marker to inspect its sites. Numbered markers group nearby site records. One location can have more than one role.</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
-  disposeMap = mountMapViewport($(".world-map"), mapView, renderMarkers);
+    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map">${mapLegend()}<div class="map-toolbar"><p id="map-help">Drag to pan · select a cluster to zoom<span>Pinch or Ctrl/⌘ + scroll to zoom · double-click to zoom in</span><span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path id="map-outline" d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">Select a numbered cluster to zoom into its sites. Select an individual marker for its location. Records at the same approximate position remain grouped.</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
+  mapController = mountMapViewport($(".world-map"), mapView, renderMarkers, visible);
+  const selectionKey = visible.map(s => s.id).join(",");
+  if (selectionKey !== mapSelectionKey) {
+    mapSelectionKey = selectionKey;
+    mapController.focusSites(visible);
+  }
   $("#result-count").textContent =
     `${mapSites.length} site records · ${entities.length} organizations · funding is counted per organization, never per marker`;
 }
@@ -964,7 +975,12 @@ function siteRow(s) {
 }
 function selectCluster(i) {
   const sites = mapClusters[i];
-  $("#map-popup").innerHTML = sites
+  if (!sites?.length) return;
+  // Zoom can replace the selected marker; keep keyboard focus on the map.
+  $("#site-map").focus({ preventScroll: true });
+  mapController?.focusSites(sites, { onlyZoomIn: true });
+  const colocated = sites.length > 1 && sites.every(s => s.latitude === sites[0].latitude && s.longitude === sites[0].longitude);
+  $("#map-popup").innerHTML = (colocated ? '<p>These records share the same approximate map position. Choose a site for details.</p>' : "") + sites
     .map((s) => `<button data-site="${s.id}">${esc(s.name)}</button>`)
     .join(" ");
   $$("[data-site-row]").forEach((r) =>
@@ -1117,7 +1133,10 @@ function historyDetail() {
 function glossaryDetail() {
   modal(
     "FUSION GLOSSARY",
-    `<h2>Terms used in this guide</h2><div class="glossary-grid">${data.glossary.map((g) => `<article class="ledger"><h3>${esc(g.term)}</h3><p>${esc(g.definition)}</p><p class="quiet"><strong>Distinction:</strong> ${esc(g.distinction)}</p>${citations(g.sourceIds)}</article>`).join("")}</div>`,
+    `<h2>Terms used in this guide</h2><div class="glossary-grid">${data.glossary.map((g) => {
+      const copy = glossaryCopy[g.id];
+      return `<article class="ledger"><h3>${esc(g.term)}</h3><p>${esc(copy?.definition || g.definition)}</p><p class="quiet"><strong>${esc(copy?.noteLabel || "Not to be confused with:")}</strong> ${esc(copy?.note || g.distinction)}</p>${citations(g.sourceIds)}</article>`;
+    }).join("")}</div>`,
   );
 }
 function fuelDetail() {
@@ -1370,8 +1389,7 @@ async function init() {
       .then((r) => (r.ok ? r.json() : null))
       .then((map) => {
         world = map;
-        if (view === "sites" && selectedEntities().length)
-          sites(selectedEntities());
+        $("#map-outline")?.setAttribute("d", world?.path || "");
       })
       .catch(() => {});
     for (const mount of reactorMounts.values()) mount.view?.refreshSources();
