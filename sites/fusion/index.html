@@ -93,9 +93,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=hero-actions-1" />
+    <link rel="stylesheet" href="./styles.css?v=timeline-cta-1" />
     <link rel="stylesheet" href="./reactor-explorer.css?v=configuration-navigation-1" />
-    <script type="module" src="./app.js?v=reader-navigation-1"></script>
+    <script type="module" src="./app.js?v=collapsible-sections-1"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -187,14 +187,11 @@
           </div>
           <div class="reaction-steps" id="reaction-steps"></div>
         </div>
-        <section class="fusion-fuels" aria-labelledby="fusion-fuels-title">
-          <div class="fusion-fuels-heading">
+        <details class="fusion-fuels section-disclosure" open>
+          <summary>
             <h3 id="fusion-fuels-title">Fusion fuels</h3>
-            <div class="learning-actions">
-              <button data-open="fuels">Compare the fuels ↗</button>
-              <button data-open="glossary">Fusion glossary ↗</button>
-            </div>
-          </div>
+            <span class="disclosure-mark" aria-hidden="true"></span>
+          </summary>
           <p>
             Deuterium–tritium (D–T) needs less demanding plasma conditions than
             other candidate fuels, making it a leading choice for proposed
@@ -205,9 +202,16 @@
             Compare D–T, deuterium–deuterium, deuterium–helium-3, and
             proton–boron-11: what each fuel offers and what it takes to use it
           </p>
-        </section>
-        <section class="energy-context" aria-labelledby="energy-context-title">
-          <h3 id="energy-context-title">Fusion in the energy system</h3>
+          <div class="learning-actions">
+            <button data-open="fuels">Compare the fuels ↗</button>
+            <button data-open="glossary">Fusion glossary ↗</button>
+          </div>
+        </details>
+        <details class="energy-context section-disclosure" open>
+          <summary>
+            <h3 id="energy-context-title">Fusion in the energy system</h3>
+            <span class="disclosure-mark" aria-hidden="true"></span>
+          </summary>
           <p class="nuclear-comparison-intro">
             Today's nuclear power stations use <strong>fission</strong>.
             <strong>Fusion</strong> is a different nuclear reaction, still being
@@ -620,14 +624,17 @@
               </li>
             </ul>
           </details>
-        </section>
-        <div class="history-teaser">
-          <div class="history-teaser-heading">
-            <p class="eyebrow">RESEARCH MILESTONES</p>
-            <button data-open="history">View the full timeline ↗</button>
-          </div>
+        </details>
+        <details class="history-teaser section-disclosure" open>
+          <summary>
+            <h3>Research milestones</h3>
+            <span class="disclosure-mark" aria-hidden="true"></span>
+          </summary>
           <div id="history-milestones"></div>
-        </div>
+          <div class="learning-actions">
+            <button class="timeline-cta" data-open="history">View the full timeline ↗</button>
+          </div>
+        </details>
       </section>
       <section id="machines" class="section machines-section">
         <div class="wrap">
@@ -847,11 +854,12 @@
             >
           </article>
         </div>
-        <div class="calculator">
+        <details class="calculator section-disclosure" open>
+          <summary>
+            <h3>Power balance</h3>
+            <span class="disclosure-mark" aria-hidden="true"></span>
+          </summary>
           <div class="calculator-heading">
-            <div>
-              <h3>Power balance</h3>
-            </div>
             <div class="segmented" id="mode-tabs">
               <button data-mode="continuous">Continuous plasma</button
               ><button data-mode="pulsed">Pulsed target</button>
@@ -898,44 +906,47 @@
               data-cites="PHY_006 PHY_007 ALT_INERTIA_PHASE1"
             ></p>
           </details>
-        </div>
-        <div class="records-heading">
-          <h3>Experimental results</h3>
-          <p>Compare results within each measurement and operating regime</p>
-        </div>
-        <div class="record-layout">
-          <div>
-            <label
-              >Measurement
-              <select id="record-select">
-                <option value="nif">NIF · target gain</option>
-                <option value="energy">JET · fusion energy</option>
-                <option value="plasma">JET · peak plasma gain</option>
-                <option value="duration">
-                  Plasma duration · separate regimes
-                </option>
-              </select></label
-            >
-            <div id="record-chart"></div>
+        </details>
+        <details class="experimental-results section-disclosure" open>
+          <summary>
+            <h3>Experimental results</h3>
+            <span class="disclosure-mark" aria-hidden="true"></span>
+          </summary>
+          <p class="records-intro">Compare results within each measurement and operating regime</p>
+          <div class="record-layout">
+            <div>
+              <label
+                >Measurement
+                <select id="record-select">
+                  <option value="nif">NIF · target gain</option>
+                  <option value="energy">JET · fusion energy</option>
+                  <option value="plasma">JET · peak plasma gain</option>
+                  <option value="duration">
+                    Plasma duration · separate regimes
+                  </option>
+                </select></label
+              >
+              <div id="record-chart"></div>
+            </div>
+            <aside id="nif-record-note">
+              <h4>Ignition ≠ electrical break-even</h4>
+              <p>
+                NIF reached hot-spot ignition in August 2021, when fusion heating
+                sustained the burn in the fuel’s hot centre. Target gain exceeded
+                one in December 2022. Neither milestone is net electricity (these
+                measurements exclude the electricity used by the laser and
+                facility, and NIF does not convert fusion heat into electricity).
+              </p>
+              <p>
+                The latest listed NIF ignition at this snapshot, 20 June 2026, had
+                target gain ≈3.8. The latest result is not the listed maximum.
+              </p>
+              <p class="citation" data-cites="PHY_009 PHY_010 PHY_011"></p>
+              <button data-open="history">Open the historical timeline ↗</button>
+            </aside>
           </div>
-          <aside id="nif-record-note">
-            <h4>Ignition ≠ electrical break-even</h4>
-            <p>
-              NIF reached hot-spot ignition in August 2021, when fusion heating
-              sustained the burn in the fuel’s hot centre. Target gain exceeded
-              one in December 2022. Neither milestone is net electricity (these
-              measurements exclude the electricity used by the laser and
-              facility, and NIF does not convert fusion heat into electricity).
-            </p>
-            <p>
-              The latest listed NIF ignition at this snapshot, 20 June 2026, had
-              target gain ≈3.8. The latest result is not the listed maximum.
-            </p>
-            <p class="citation" data-cites="PHY_009 PHY_010 PHY_011"></p>
-            <button data-open="history">Open the historical timeline ↗</button>
-          </aside>
-        </div>
-        <div id="record-table"></div>
+          <div id="record-table"></div>
+        </details>
       </section>
       <section id="landscape" class="section landscape-section">
         <div class="wrap">
@@ -950,14 +961,12 @@
               identified separately
             </p>
           </div>
-          <section
-            class="approach-overview"
-            aria-labelledby="approach-overview-title"
-          >
-            <div class="approach-overview-heading">
+          <details class="approach-overview section-disclosure" open>
+            <summary>
               <h3 id="approach-overview-title">Companies by approach</h3>
-              <p id="approach-overview-count"></p>
-            </div>
+              <span class="disclosure-mark" aria-hidden="true"></span>
+            </summary>
+            <p id="approach-overview-count"></p>
             <div
               id="approach-chart"
               class="approach-chart"
@@ -969,7 +978,7 @@
               programmes and supplier-only companies are excluded. Select a bar
               to see the companies
             </p>
-          </section>
+          </details>
           <div class="atlas-topline"><div id="atlas-stats"></div></div>
           <div
             id="view-tabs"
@@ -1002,8 +1011,13 @@
                   placeholder="Company, machine, or place…"
               /></label>
               <label
-                >Approach<select id="filter-family">
-                  <option value="">All approaches</option>
+                >Approach family<select id="filter-family">
+                  <option value="">All families</option>
+                </select></label
+              >
+              <label
+                >Reactor design<select id="filter-configuration">
+                  <option value="">All reactor designs</option>
                 </select></label
               >
             </div>
@@ -1082,6 +1096,9 @@
                 Sources include scientific publications, public research
                 programs, and company announcements. Company-reported results
                 are attributed and are not treated as independent verification.
+                The label beside each evidence badge identifies the cited source,
+                such as a company source, preprint, or peer-reviewed paper. A
+                company summary of a paper is labeled as a company source.
               </p>
               <h3>Scope and limitations</h3>
               <p>
