@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" role="img" aria-labelledby="title desc">
+  <title id="title">Fusion joins two light nuclei</title>
+  <desc id="desc">Deuterium and tritium join, producing a helium-4 nucleus, a neutron and energy. Schematic, not to scale.</desc>
+  <g fill="none" stroke="#80968a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M190 76h52m-7-5 7 5-7 5"/>
+  </g>
+  <g fill="#d4ded4" stroke="#52715f" stroke-width="2">
+    <circle cx="63" cy="76" r="21"/>
+    <circle cx="143" cy="76" r="25"/>
+    <circle cx="289" cy="76" r="30"/>
+  </g>
+  <circle cx="377" cy="76" r="8" fill="#647e8c"/>
+  <g font-family="Inter, Arial, sans-serif" text-anchor="middle" fill="#304f3d">
+    <text x="63" y="83" font-size="20">D</text>
+    <text x="143" y="83" font-size="20">T</text>
+    <text x="289" y="83" font-size="20">He</text>
+    <text x="103" y="82" font-size="20" fill="#80968a">+</text>
+    <text x="345" y="82" font-size="20" fill="#80968a">+</text>
+    <text x="216" y="49" font-size="16" fill="#a14e2c">+ energy</text>
+  </g>
+</svg>

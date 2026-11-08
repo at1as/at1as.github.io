@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" role="img" aria-labelledby="title desc">
+  <title id="title">Fission splits a heavy nucleus</title>
+  <desc id="desc">A neutron strikes uranium. It splits into two smaller nuclei, releasing more neutrons and energy. Schematic, not to scale.</desc>
+  <g fill="none" stroke="#80968a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 76h28m-6-5 6 5-6 5M157 76h52m-7-5 7 5-7 5"/>
+    <path d="m295 62 43-27m-7 0 7 0-3 7m-35 9 40 22m-8-1 8 1-4-7m-29 31 28 24m-8-1 8 1-2-7"/>
+  </g>
+  <circle cx="26" cy="76" r="7" fill="#647e8c"/>
+  <circle cx="112" cy="76" r="34" fill="#d4ded4" stroke="#52715f" stroke-width="2"/>
+  <circle cx="262" cy="57" r="26" fill="#d4ded4" stroke="#52715f" stroke-width="2"/>
+  <circle cx="282" cy="108" r="20" fill="#d4ded4" stroke="#52715f" stroke-width="2"/>
+  <g fill="#647e8c">
+    <circle cx="353" cy="27" r="6"/><circle cx="355" cy="79" r="6"/><circle cx="350" cy="130" r="6"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" text-anchor="middle" fill="#304f3d">
+    <text x="112" y="83" font-size="22">U</text>
+    <text x="185" y="49" font-size="16" fill="#a14e2c">+ energy</text>
+  </g>
+</svg>

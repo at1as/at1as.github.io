@@ -3111,29 +3111,11 @@ h2 {
 }
 .energy-demand {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) minmax(0, 2fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   align-items: center;
   gap: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #d4dccf;
-}
-.energy-demand-stat > strong {
-  display: block;
-  font-family: Newsreader, Georgia, serif;
-  font-size: 42px;
-  font-weight: 450;
-  color: #355c47;
-  letter-spacing: -0.025em;
-}
-.energy-demand-stat > strong span {
-  font-family: Inter, sans-serif;
-  font-size: 12px;
-  letter-spacing: 0;
-  white-space: nowrap;
-}
-.energy-demand-stat p {
-  margin-top: 8px;
-  font-size: 12px;
+  padding-top: 28px;
+  border-top: 1px solid #d4dccf;
 }
 .energy-context h4 {
   margin-bottom: 8px;
@@ -3141,17 +3123,305 @@ h2 {
   font-weight: 600;
 }
 .energy-context .nuclear-comparison-intro {
-  margin: 24px 0 18px;
+  margin: 0 0 22px;
   color: #263f34;
+  max-width: 850px;
 }
 .nuclear-comparison {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
+  gap: 20px;
 }
 .nuclear-comparison article {
-  border-left: 2px solid #91a78f;
-  padding-left: 16px;
+  min-width: 0;
+  border: 1px solid #d4dccf;
+  border-radius: 4px;
+  padding: 20px;
+  background: #f1f4ed;
+}
+.nuclear-status {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #355c47;
+  font-size: 11px;
+  font-weight: 600;
+}
+.nuclear-status-future {
+  color: #994723;
+}
+.nuclear-reaction {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 12px 0 6px;
+}
+.nuclear-reaction-labels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #304f3d;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+.energy-context .nuclear-caveat {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #d4dccf;
+  font-size: 12px;
+}
+.energy-context .nuclear-shared-route {
+  margin-top: 18px;
+  font-size: 13px;
+}
+.fusion-benefits {
+  margin-top: 26px;
+}
+.fusion-benefits > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.fusion-benefits p + p {
+  margin-top: 0;
+}
+.electricity-mix {
+  margin: 28px 0;
+  padding: 26px 0;
+  border-top: 1px solid #d4dccf;
+}
+.electricity-mix figcaption p {
+  font-size: 12px;
+}
+.mix-coal {
+  --mix-color: #53616a;
+}
+.mix-gas {
+  --mix-color: #b77b4c;
+}
+.mix-renewables {
+  --mix-color: #5b8068;
+}
+.mix-fission {
+  --mix-color: #637fa6;
+}
+.mix-other {
+  --mix-color: #a99783;
+}
+.electricity-mix-bar {
+  display: flex;
+  height: 38px;
+  overflow: hidden;
+  margin: 20px 0 18px;
+  border-radius: 3px;
+}
+.electricity-mix-bar > span {
+  position: relative;
+  min-width: 0;
+  background: var(--mix-color);
+  cursor: pointer;
+}
+.electricity-mix-bar > span + span {
+  border-left: 2px solid #fcfbf7;
+}
+.electricity-mix-legend {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.electricity-mix-legend button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 8px 10px 10px 38px;
+  border: 0;
+  text-align: left;
+  font-size: 12px;
+  color: #304f3d;
+}
+.electricity-mix-legend button::before {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: var(--mix-color);
+}
+.electricity-mix.is-highlighting .electricity-mix-bar > span:not(.is-active) {
+  opacity: 0.25;
+}
+.electricity-mix-bar > span.is-active {
+  outline: 2px solid #263f34;
+  outline-offset: -2px;
+}
+.electricity-mix-legend button.is-active {
+  background: #e7ede2;
+  box-shadow: inset 0 0 0 2px var(--mix-color);
+}
+.electricity-mix-legend strong,
+.electricity-mix-legend span,
+.electricity-mix-legend small {
+  display: block;
+}
+.electricity-mix-legend strong {
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 550;
+  margin-bottom: 5px;
+  font-variant-numeric: tabular-nums;
+}
+.electricity-mix-legend small {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #576c60;
+}
+.renewable-hydro {
+  --renewable-color: #4f86a0;
+}
+.renewable-wind {
+  --renewable-color: #66977e;
+}
+.renewable-solar {
+  --renewable-color: #c49643;
+}
+.renewable-other {
+  --renewable-color: #817d9b;
+}
+.renewables-segments {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+}
+.mix-renewables.is-active .renewables-segments {
+  opacity: 1;
+}
+.renewables-segments > span {
+  background: var(--renewable-color);
+}
+.renewables-segments > span + span {
+  border-left: 1px solid #fcfbf7;
+}
+.renewables-breakdown {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border: 1px solid #b9cbb6;
+  border-radius: 4px;
+  background: #f1f4ed;
+}
+.renewables-breakdown > p:first-child {
+  font-size: 12px;
+}
+.renewables-breakdown ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+}
+.renewables-breakdown li {
+  border-left: 4px solid var(--renewable-color);
+  padding-left: 10px;
+  font-size: 12px;
+  color: #304f3d;
+}
+.renewables-breakdown li strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+}
+.energy-context .fusion-mix-note {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 20px 0 12px;
+  padding: 12px 16px;
+  border: 1px dashed #acbca7;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.fusion-mix-note strong {
+  font-size: 14px;
+  color: #304f3d;
+}
+.energy-context .energy-chart-source {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #576c60;
+}
+.energy-demand-chart {
+  padding: 22px;
+  border: 1px solid #d4dccf;
+  border-radius: 4px;
+  background: #f1f4ed;
+}
+.energy-demand-chart figcaption {
+  font-size: 12px;
+  font-weight: 600;
+  color: #304f3d;
+  margin-bottom: 20px;
+}
+.energy-demand-row + .energy-demand-row {
+  margin-top: 18px;
+}
+.energy-demand-label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 12px;
+  color: #304f3d;
+}
+.energy-demand-label > span {
+  font-size: 11px;
+  color: #576c60;
+}
+.energy-demand-label > b {
+  margin-left: auto;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.energy-demand-label small {
+  font-size: 10px;
+  font-weight: 400;
+}
+.energy-demand-track {
+  height: 22px;
+  background: #e1e7db;
+  border-left: 1px solid #71846e;
+  border-right: 1px solid #acbca7;
+}
+.energy-demand-track > span {
+  display: block;
+  height: 100%;
+  background: #5b8068;
+}
+.energy-demand-projection .energy-demand-track > span {
+  border: 1px solid #5b8068;
+  background: repeating-linear-gradient(135deg, #c4d4c4 0 4px, #edf2e8 4px 8px);
+}
+.energy-demand-axis {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0 16px;
+  font-size: 10px;
+  color: #576c60;
 }
 .energy-comparison {
   margin-top: 26px;
@@ -3258,8 +3528,22 @@ h2 {
     grid-template-columns: 1fr;
     gap: 22px;
   }
-  .energy-demand-stat > strong {
-    font-size: 38px;
+  .fusion-benefits > div {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .nuclear-comparison article,
+  .energy-demand-chart {
+    padding: 16px;
+  }
+  .electricity-mix-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .renewables-breakdown ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .electricity-mix-bar {
+    height: 30px;
   }
   .energy-context h3 {
     font-size: 30px;
