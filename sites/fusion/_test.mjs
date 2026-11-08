@@ -10,12 +10,24 @@ import { balance, defaults, readScenario, targetCost } from "./model.js";
 import { approaches, renderMachine } from "./diagrams.js";
 import { torusPoint, torusPointVisible } from "./schematic-torus.js";
 import { renderGainDiagram } from "./gain-diagram.js";
+import { efficiencyExamples } from "./engineering-diagrams.js";
+import { engineeringPanels } from "./engineering-content.js";
 import {
   atlasFamilies, atlasFamilyId, matchesApproach, readApproachFilters,
   sourceTypeLabel, claimSourceLabels,
 } from "./atlas-metadata.js";
 const snapshot = JSON.parse(readFileSync(new URL("./data.json", import.meta.url), "utf8"));
 const sources = new Map(snapshot.sources.map(s => [s.id, s]));
+assert.deepEqual(Object.keys(engineeringPanels).sort(), snapshot.riskThemes.map(t => t.id).sort());
+for (const panel of Object.values(engineeringPanels)) {
+  for (const id of panel.sourceIds) assert.ok(sources.has(id), `engineering source ${id} must exist`);
+}
+// The worked comparison changes heating efficiency alone: identical plasma
+// performance can yield either an electrical surplus or a shortfall.
+assert.deepEqual(efficiencyExamples.map(e => e.fusion), [500, 500]);
+assert.deepEqual(efficiencyExamples.map(e => e.gross), [200, 200]);
+assert.deepEqual(efficiencyExamples.map(e => e.driver), [100, 200]);
+assert.deepEqual(efficiencyExamples.map(e => e.net), [50, -50]);
 for (const source of snapshot.sources) {
   assert.notEqual(sourceTypeLabel(source), "Source type not recorded", source.id);
   if (source.source_type.startsWith("company_")) {
