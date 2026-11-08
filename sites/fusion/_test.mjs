@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import {
   massBeforeU,
   massAfterU,
@@ -8,6 +9,72 @@ import {
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import { approaches, renderMachine } from "./diagrams.js";
 import { torusPoint, torusPointVisible } from "./schematic-torus.js";
+import { renderGainDiagram } from "./gain-diagram.js";
+import {
+  atlasFamilies, atlasFamilyId, matchesApproach, readApproachFilters,
+  sourceTypeLabel, claimSourceLabels,
+} from "./atlas-metadata.js";
+const snapshot = JSON.parse(readFileSync(new URL("./data.json", import.meta.url), "utf8"));
+const sources = new Map(snapshot.sources.map(s => [s.id, s]));
+for (const source of snapshot.sources) {
+  assert.notEqual(sourceTypeLabel(source), "Source type not recorded", source.id);
+  if (source.source_type.startsWith("company_")) {
+    assert.ok(sourceTypeLabel(source).startsWith("Company"), "a company summary must not become a peer-reviewed source");
+  }
+}
+assert.equal(sourceTypeLabel(), "Source type not recorded");
+assert.deepEqual(claimSourceLabels({ sourceIds: ["MAG_TAE_NATURE"] }, sources), ["Peer-reviewed paper"]);
+assert.deepEqual(claimSourceLabels({ sourceIds: ["MAG_THEA_CANIS"] }, sources), ["Preprint"]);
+assert.deepEqual(claimSourceLabels({ sourceIds: ["MAG_PROXIMA_PAPER"] }, sources), ["Company source"]);
+assert.deepEqual(claimSourceLabels({ sourceIds: ["MAG_TAE_NATURE", "MAG_THEA_CANIS", "MAG_TAE_NATURE"] }, sources), ["Peer-reviewed paper", "Preprint"]);
+const configurations = snapshot.approaches.map(a => ({ ...a, family: atlasFamilyId(a.family) }));
+for (const entity of snapshot.entities) {
+  assert.ok(atlasFamilies.some(f => f.id === atlasFamilyId(entity.family)), entity.id);
+  assert.ok(matchesApproach(entity, "", ""));
+  if (entity.approachId) {
+    const choice = configurations.find(c => c.id === entity.approachId);
+    assert.ok(matchesApproach(entity, choice.family, choice.id));
+  }
+}
+const designFilters = query => readApproachFilters(new URLSearchParams(query), configurations);
+assert.deepEqual(designFilters("family=approach:stellarator"), { family: "magnetic", configuration: "stellarator" });
+assert.deepEqual(designFilters("family=magnetic_pulsed"), { family: "magnetic", configuration: "z_pinch" });
+assert.deepEqual(designFilters("family=inertial&configuration=tokamak"), { family: "magnetic", configuration: "tokamak" });
+assert.deepEqual(designFilters("family=missing&configuration=missing"), { family: "", configuration: "" });
+assert.deepEqual(snapshot.entities.filter(e => matchesApproach(e, "enabling_systems", "")).map(e => e.id), ["kyoto-fusioneering", "ifmif-dones", "craft"]);
+assert.ok(matchesApproach(snapshot.entities.find(e => e.id === "zap-energy"), "magnetic", "z_pinch"));
+assert.ok(!matchesApproach(snapshot.entities[0], "inertial", "tokamak"));
+// The highlighted routes must match the accounting boundary, including in
+// the vertical phone layout. Plant electricity is not fuel or plasma input.
+const gainRoutes = [
+  [["absorbed"], ["fusion"]],
+  [["delivered"], ["fusion"]],
+  [["delivered"], ["fusion"]],
+  [["electricity"], ["returned"]],
+  [["aux", "electricity"], ["gross"]],
+];
+for (const [index, [inputs, outputs]] of gainRoutes.entries()) {
+  const diagram = renderGainDiagram(index);
+  assert.ok(!/NaN|undefined/.test(diagram));
+  const ids = [...diagram.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
+  assert.equal(ids.length, new Set(ids).size, "responsive diagrams must have unique SVG references");
+  for (const match of diagram.matchAll(/url\(#([^)]*)\)/g)) assert.ok(ids.includes(match[1]));
+  const scenes = [...diagram.matchAll(/<svg\b[\s\S]*?<\/svg>/g)].map(m => m[0]);
+  assert.equal(scenes.length, 2);
+  for (const scene of scenes) {
+    const routes = [...scene.matchAll(/data-energy-flow="([^"]+)" data-count="([^"]+)"/g)];
+    assert.deepEqual(routes.filter(m => m[2] === "input").map(m => m[1]).sort(), inputs);
+    assert.deepEqual(routes.filter(m => m[2] === "output").map(m => m[1]).sort(), outputs);
+    assert.ok(routes.some(m => m[1] === "return"), "show recirculating plant use in every view");
+    assert.ok(routes.some(m => m[1] === "aux"), "show auxiliary plant loads in every view");
+    assert.ok(routes.some(m => m[1] === "export"), "show the grid in the broader context");
+    if (index === 3) {
+      assert.ok(routes.some(m => m[1] === "recycled"));
+      assert.ok(routes.some(m => m[1] === "fusion-contribution"));
+      assert.ok(!routes.some(m => m[1] === "gross"), "recovery must not imply thermal generation");
+    }
+  }
+}
 const heroTorus = { R: 146, r: 42, h: 48, stellarator: false };
 assert.equal(
   torusPointVisible(torusPoint(Math.PI / 2, 0, heroTorus, 1.025), heroTorus),
@@ -87,5 +154,5 @@ for (const a of approaches) {
   }
 }
 console.log(
-  "PASS: 7 supplied power examples, negative/zero/invalid cases, scenario bounds, target costs, 60 distinct diagram states, and D–T mass/energy conversion.",
+  "PASS: source provenance, linked approach filters, 5 gain boundaries in both layouts, 7 supplied power examples, negative/zero/invalid cases, scenario bounds, target costs, 60 diagram states, and D–T mass/energy conversion.",
 );

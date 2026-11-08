@@ -447,17 +447,11 @@ p + p {
   border-radius: 6px;
   background: #eef1e7;
 }
-.fusion-fuels-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 18px;
-}
 .fusion-fuels h3 {
   font-size: 32px;
 }
 .learning-actions {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -467,6 +461,25 @@ p + p {
   border-color: #718371;
   background: #f9faf3;
   font-size: 12px;
+}
+.learning-actions .timeline-cta {
+  min-height: 48px;
+  padding: 12px 18px;
+  border-color: #29473b;
+  background: #29473b;
+  color: #fffef9;
+  font-size: 14px;
+  font-weight: 650;
+}
+.learning-actions .timeline-cta:hover {
+  border-color: #162e25;
+  background: #162e25;
+  box-shadow: 0 3px 10px #193c3130;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.learning-actions .timeline-cta:active {
+  box-shadow: inset 0 2px 4px #0003;
 }
 .fusion-fuels > p {
   font-size: 14px;
@@ -795,11 +808,7 @@ p + p {
   padding-bottom: 20px;
   border-bottom: 1px solid #d5dcd2;
 }
-.calculator-heading .eyebrow {
-  font-size: 10px;
-  margin-bottom: 10px;
-}
-.calculator-heading h3 {
+.calculator > summary h3 {
   font-size: 31px;
 }
 .segmented {
@@ -1017,14 +1026,13 @@ summary {
 .model-notes p {
   margin-top: 12px;
 }
-.records-heading {
+.experimental-results {
   margin-top: 60px;
-  margin-bottom: 26px;
 }
-.records-heading p {
+.records-intro {
   font-size: 13px;
   color: #52665c;
-  margin-top: 12px;
+  margin: 0 0 26px;
 }
 .record-layout {
   display: grid;
@@ -1205,6 +1213,29 @@ summary {
   font-size: 11px;
   line-height: 1.7;
   margin-top: 9px;
+}
+.evidence-labels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 9px;
+}
+.evidence-provenance {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.source-type {
+  display: inline-block;
+  padding: 4px 7px;
+  border: 1px solid #bcc9bf;
+  border-radius: 3px;
+  background: #f2f5ee;
+  color: #40574a;
+  font-size: 10px;
+  font-weight: 550;
+  line-height: 1.4;
 }
 .card-bottom {
   display: flex;
@@ -1570,6 +1601,49 @@ summary {
 .sources-disclosure[open] .disclosure-mark::before {
   content: "−";
 }
+.section-disclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 44px;
+  list-style: none;
+  border-radius: 3px;
+}
+.section-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+.section-disclosure > summary h3 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 32px);
+  line-height: 1.2;
+}
+.section-disclosure[open] > summary {
+  margin-bottom: 20px;
+}
+.section-disclosure > summary .disclosure-mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #a5b5a9;
+  border-radius: 50%;
+  color: #365544;
+  font-size: 22px;
+  line-height: 1;
+}
+.section-disclosure[open] > summary .disclosure-mark::before {
+  content: "−";
+}
+.section-disclosure > summary:hover .disclosure-mark {
+  background: #dfe8dc;
+  border-color: #526d5b;
+}
+.history-teaser.section-disclosure,
+.experimental-results.section-disclosure {
+  padding-block: 20px;
+  border-block: 1px solid #cbd5c7;
+}
 .sources-content {
   max-width: 760px;
   padding-top: 24px;
@@ -1702,7 +1776,15 @@ dialog::backdrop {
   letter-spacing: 0.1em;
 }
 .dialog-toolbar button {
-  font-size: 11px;
+  background: #29473b;
+  border-color: #29473b;
+  color: #fffef9;
+  font-size: 12px;
+  font-weight: 650;
+}
+.dialog-toolbar button:hover {
+  background: #1e382e;
+  border-color: #1e382e;
 }
 :is(#dialog-content, #source-content) {
   padding: 30px;
@@ -1935,13 +2017,6 @@ dialog::backdrop {
   border-radius: 5px;
   background: #1b3342;
   color: #edf2ef;
-}
-.map-key > strong {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 11px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
 }
 .map-key-items {
   display: flex;
@@ -2223,10 +2298,6 @@ body:has(dialog[open]) {
   .fusion-fuels {
     padding: 20px;
   }
-  .fusion-fuels-heading {
-    align-items: start;
-    flex-direction: column;
-  }
   .fusion-fuels h3 {
     font-size: 30px;
   }
@@ -2312,7 +2383,7 @@ body:has(dialog[open]) {
   .calculator {
     padding: 20px 16px;
   }
-  .calculator-heading h3 {
+  .calculator > summary h3 {
     font-size: 29px;
   }
   .segmented {
@@ -2366,7 +2437,7 @@ body:has(dialog[open]) {
   .data-table th {
     padding: 10px 7px;
   }
-  .records-heading h3 {
+  .experimental-results > summary h3 {
     font-size: 30px;
   }
   .atlas-topline {
@@ -2541,24 +2612,6 @@ body:has(dialog[open]) {
 .history-teaser {
   margin-top: 50px;
 }
-.history-teaser-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 23px;
-}
-.history-teaser-heading .eyebrow {
-  margin: 0;
-}
-.history-teaser-heading button {
-  font-size: 12px;
-  border: 1px solid #58715d;
-  border-radius: 4px;
-  padding: 12px 18px;
-  background: #f6f8f0;
-  flex-shrink: 0;
-}
 #history-milestones {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -2605,15 +2658,6 @@ body:has(dialog[open]) {
   #history-milestones {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 22px;
-  }
-  .history-teaser-heading {
-    align-items: start;
-  }
-  .history-teaser-heading .eyebrow {
-    max-width: 170px;
-  }
-  .history-teaser-heading button {
-    font-size: 10px;
   }
   #history-milestones h4 {
     font-size: 12px;
@@ -2719,67 +2763,100 @@ canvas:focus-visible {
     font-size: 16px;
   }
 }
-.energy-chain {
-  border: 1px solid #becabc;
+/* One plant context, with the measured input and output highlighted per tab. */
+.energy-overview {
+  border: 1px solid #c6d0c3;
   border-radius: 8px;
-  padding: 20px;
-}
-.energy-chain-label {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: #4f6758;
-  margin: 0 0 18px;
-}
-.energy-chain-steps {
-  display: grid;
-  grid-template-columns: 1fr 30px 1fr 30px 1fr;
-  gap: 12px;
-  align-items: center;
-}
-.energy-node {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 9px;
   padding: 18px;
-  border: 1px solid #c8cec1;
-  border-radius: 5px;
-  background: #f4f3e9;
+  background: #fbfbf5;
 }
-.energy-node > span,
-.energy-node small {
+.energy-overview-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  color: #304c45;
+  font-size: 13px;
+}
+.energy-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
   font-size: 11px;
-  color: #54665b;
 }
-.energy-node > strong {
-  font-size: 16px;
+.energy-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
-.energy-arrow {
-  color: #82634d;
-  font-size: 25px;
-  text-align: center;
+.energy-key i {
+  display: inline-block;
+  width: 18px;
+  border-top: 3px solid currentColor;
 }
-.energy-node .fuel-boundary {
-  border: 1px solid #c49876;
-  border-radius: 30px;
-  padding: 8px 12px;
-  text-align: center;
-  background: #ead9c6;
-  color: #714830;
+.gain-input { color: #a45330; }
+.gain-output { color: #2e6853; }
+.gain-context { color: #64786b; }
+#boundary-visual .energy-scene {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  font-family: Inter, Arial, sans-serif;
+  fill: #304c45;
 }
-.energy-chain .selected,
-.energy-chain.selected {
-  border: 2px solid #985332;
-  background-color: #f0e1ce;
+#boundary-visual .energy-scene-mobile { display: none; }
+.energy-path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
-.energy-return {
-  border-top: 1px solid #c6cec1;
-  padding-top: 16px;
-  margin: 20px 0 0;
-  text-align: center;
-  font-size: 12px;
-  color: #3a5c49;
+.energy-path.gain-context {
+  stroke-width: 2;
+  stroke: #8a9891;
+}
+.energy-loss { stroke-dasharray: 4 5; }
+.energy-callout {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+.energy-component { font-size: 16px; font-weight: 600; }
+.energy-flow-label { fill: currentColor; font-size: 14px; font-weight: 550; }
+.energy-small { fill: #617468; font-size: 13px; }
+.energy-art-label { fill: #703f23; font-size: 12px; font-weight: 650; }
+.energy-measurement {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.energy-measurement > span {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 12px;
+  border-left: 3px solid currentColor;
+  background: #f3e8de;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.energy-measurement > .gain-output { background: #e5eee6; }
+.energy-measurement b { font-size: 10px; letter-spacing: .06em; }
+.energy-overview figcaption {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #465d50;
+}
+.energy-overview .energy-schematic-note {
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #617468;
 }
 @media (max-width: 700px) {
   .boundary-tabs {
@@ -2793,27 +2870,13 @@ canvas:focus-visible {
   .boundary-tabs button:last-child {
     grid-column: 1 / -1;
   }
-  .energy-chain {
-    padding: 15px;
-  }
-  .energy-chain-steps {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-  .energy-arrow {
-    transform: rotate(90deg);
-    line-height: 1;
-  }
-  .energy-node {
-    padding: 14px;
-  }
-  .energy-node > span,
-  .energy-node small {
-    font-size: 12px;
-  }
-  .energy-return {
-    text-align: left;
-  }
+  .energy-overview { padding: 12px 8px; }
+  .energy-overview-heading { gap: 12px; }
+  .energy-key { gap: 8px 12px; }
+  #boundary-visual .energy-scene-wide { display: none; }
+  #boundary-visual .energy-scene-mobile { display: block; }
+  .energy-measurement { grid-template-columns: 1fr; }
+
 }
 
 .reaction-step .step-title,
@@ -2950,9 +3013,19 @@ h2 {
 }
 .atlas-primary-filters {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.2fr);
   gap: 16px;
-  max-width: 900px;
+}
+.atlas-primary-filters label,
+.atlas-primary-filters select,
+.atlas-primary-filters input {
+  min-width: 0;
+  width: 100%;
+}
+.atlas-primary-filters select:disabled {
+  color: #647168;
+  background: #e5eae1;
+  cursor: default;
 }
 #atlas-more-filters {
   margin-top: 10px;
@@ -3011,12 +3084,6 @@ h2 {
 .source-context p {
   margin: 0;
 }
-@media (max-width: 480px) {
-  .history-teaser-heading {
-    align-items: start;
-    flex-direction: column;
-  }
-}
 
 .anchor-grid .recovery-equation {
   font-size: 17px;
@@ -3037,20 +3104,16 @@ h2 {
   border: 1px solid #c6d0c1;
   border-radius: 6px;
 }
-.approach-overview-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 18px;
-}
 .approach-overview h3 {
   font-size: 30px;
 }
-.approach-overview-heading p,
+#approach-overview-count,
 .approach-overview-note {
   font-size: 12px;
   color: #52655a;
+}
+#approach-overview-count {
+  margin-bottom: 16px;
 }
 .approach-overview-note {
   margin-top: 18px;
@@ -3142,11 +3205,6 @@ h2 {
   .approach-overview {
     padding: 20px 14px;
   }
-  .approach-overview-heading {
-    align-items: start;
-    flex-direction: column;
-    gap: 8px;
-  }
   .approach-chart {
     grid-template-columns: minmax(0, 1fr);
     gap: 2px;
@@ -3175,9 +3233,6 @@ h2 {
   border: 1px solid #c6d0c1;
   border-radius: 6px;
   background: #fcfbf7;
-}
-.energy-context > h3 {
-  margin-bottom: 24px;
 }
 .energy-context p {
   font-size: 14px;

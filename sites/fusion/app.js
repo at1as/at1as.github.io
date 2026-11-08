@@ -6,6 +6,11 @@ import {
   reactionEnergyMeV,
 } from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
+import { renderGainDiagram } from "./gain-diagram.js";
+import {
+  atlasFamilies, atlasFamilyId, atlasFamilyLabel, matchesApproach,
+  readApproachFilters, claimSourceLabels, sourceTypeLabel,
+} from "./atlas-metadata.js";
 import { engineeringDiagram } from "./engineering-diagrams.js";
 import { approaches, renderMachine } from "./diagrams.js?v=tokamak-cutaway-2";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
@@ -35,6 +40,7 @@ const fmt = (n) =>
     : "Unavailable";
 const params = new URLSearchParams(location.search);
 let data, sourceMap, sourceNumbers, entityMap, world;
+let atlasConfigurations = [];
 let approach = params.get("approach") || "tokamak",
   machineStage = 0,
   reactionStage = 0,
@@ -62,6 +68,9 @@ const categoryClass = (s) =>
         : "neutral";
 const badge = (s) =>
   `<span class="badge ${categoryClass(s)}">${categoryClass(s) === "target" ? "◇" : categoryClass(s) === "model" ? "○" : categoryClass(s) === "experiment" ? "●" : "—"} ${esc(human(s))}</span>`;
+function evidenceLabels(claim) {
+  return `<div class="evidence-labels">${badge(claim.category)}<span class="evidence-provenance" aria-label="Source types">${claimSourceLabels(claim, sourceMap).map(label => `<span class="source-type">${esc(label)}</span>`).join("")}</span></div>`;
+}
 function citations(ids = [], context = "") {
   return [...new Set(ids)]
     .filter((id) => sourceMap?.has(id))
@@ -524,18 +533,7 @@ function boundaries() {
     "aria-labelledby",
     `boundary-tab-${boundary}`,
   );
-  $("#boundary-visual").innerHTML =
-    `<div class="energy-chain ${b[3] === "plant" ? "selected" : ""}">
-    <p class="energy-chain-label">WHOLE PLANT</p>
-    <div class="energy-chain-steps">
-      <div class="energy-node"><span>Electricity in</span><strong>Heating / driver</strong><small>Losses before the energy reaches the experiment</small></div>
-      <span class="energy-arrow" aria-hidden="true">→</span>
-      <div class="energy-node ${b[3] === "reaction" ? "selected" : ""}"><span>${boundary === 0 || boundary === 2 ? "Driver energy delivered" : "Heating power delivered"}</span><strong>${boundary === 0 || boundary === 2 ? "Target" : boundary === 1 ? "Plasma" : "Plasma / target"}</strong><span class="fuel-boundary ${b[3] === "fuel" ? "selected" : ""}">Fuel</span></div>
-      <span class="energy-arrow" aria-hidden="true">→</span>
-      <div class="energy-node ${b[3] === "conversion" ? "selected" : ""}"><span>${boundary === 3 ? "Electricity recovered" : "Energy released"}</span><strong>${boundary === 3 ? "Recovery circuit" : "Energy conversion"}</strong><small>${boundary === 3 ? "Some input energy returns after the pulse" : "Gross electricity out; conversion losses leave as heat"}</small></div>
-    </div>
-    <p class="energy-return">${boundary === 3 ? "Returned electricity − pulse input − other plant loads = net output" : "Gross electricity − the plant’s own electricity use = net output"}</p>
-  </div>`;
+  $("#boundary-visual").innerHTML = renderGainDiagram(boundary);
   $("#boundary-caption").innerHTML =
     `<h3>${b[0]}</h3><div><strong>${b[1]}</strong><p>${b[2]}</p><p>${b[4]}</p></div>`;
 }
@@ -731,12 +729,29 @@ function records() {
         ? `<p class="record-context">A power plant must maintain useful fusion conditions for long periods, or repeat pulses reliably, to deliver electricity over time. Duration is therefore an important goal alongside net energy gain, but a long plasma discharge alone does not demonstrate sustained fusion or net electricity.</p><p class="quiet">These experiments use different operating regimes; their durations are not points on one interchangeable progress scale.</p>`
         : `<p class="record-context">JET, the Joint European Torus, was a European experimental tokamak at Culham in Oxfordshire, England. It operated until 2023 and studied fusion using deuterium and tritium.</p><p class="quiet">${mode === "plasma" ? "Peak plasma gain uses external heating delivered to the plasma. It is not an electrical gain." : "Fusion energy is measured in MJ. It is not grid electricity or a power rating."}</p>`;
   $("#record-table").innerHTML =
-    `<details ${mode !== "nif" ? "open" : ""}><summary>Data and sources · ${rows.length} ${rows.length === 1 ? "result" : "results"}</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Experiment results"><table class="data-table"><thead><tr><th>Experiment / date</th><th>What was measured</th><th>Evidence</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r.facility)}<br>${esc(r.date)}<br><small>${esc(human(r.date_role || "event date"))}</small></td><td>${recordMeasurement(r)}${r.fusion_energy_mj !== undefined ? `<p>Yield: ${r.fusion_energy_mj}${r.fusion_energy_uncertainty_mj ? " ± " + r.fusion_energy_uncertainty_mj : ""} MJ<br>Delivered driver: ${r.driver_energy_mj === null ? "not supplied" : r.driver_energy_mj + " MJ"}</p>` : ""}</td><td>${badge(r.category)}<br>${citations(r.sourceIds)}</td></tr>`).join("")}</tbody></table></div></details>`;
+    `<details ${mode !== "nif" ? "open" : ""}><summary>Data and sources · ${rows.length} ${rows.length === 1 ? "result" : "results"}</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Experiment results"><table class="data-table"><thead><tr><th>Experiment / date</th><th>What was measured</th><th>Evidence</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r.facility)}<br>${esc(r.date)}<br><small>${esc(human(r.date_role || "event date"))}</small></td><td>${recordMeasurement(r)}${r.fusion_energy_mj !== undefined ? `<p>Yield: ${r.fusion_energy_mj}${r.fusion_energy_uncertainty_mj ? " ± " + r.fusion_energy_uncertainty_mj : ""} MJ<br>Delivered driver: ${r.driver_energy_mj === null ? "not supplied" : r.driver_energy_mj + " MJ"}</p>` : ""}</td><td>${evidenceLabels(r)}${citations(r.sourceIds)}</td></tr>`).join("")}</tbody></table></div></details>`;
 }
 $("#record-select").onchange = records;
+function refreshConfigurationFilter(preferred = "") {
+  const family = $("#filter-family").value;
+  const groups = atlasFamilies.filter(f => !family || f.id === family).map(f => ({
+    ...f, designs: atlasConfigurations.filter(c => c.family === f.id),
+  })).filter(f => f.designs.length);
+  const select = $("#filter-configuration");
+  select.innerHTML = `<option value="">${groups.length ? "All reactor designs" : "No reactor design — enabling systems"}</option>` +
+    groups.map(f => `<optgroup label="${esc(f.label)}">${f.designs.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join("")}</optgroup>`).join("");
+  select.disabled = !groups.length;
+  select.value = groups.some(f => f.designs.some(c => c.id === preferred)) ? preferred : "";
+}
+function selectAtlasConfiguration(id) {
+  const selected = atlasConfigurations.find(c => c.id === id);
+  $("#filter-family").value = selected?.family || "";
+  refreshConfigurationFilter(selected?.id);
+}
 function selectedEntities() {
   const q = $("#atlas-search").value.trim().toLowerCase(),
     f = $("#filter-family").value,
+    configuration = $("#filter-configuration").value,
     fuel = $("#filter-fuel").value,
     role = $("#filter-role").value,
     country = $("#filter-country").value,
@@ -753,10 +768,7 @@ function selectedEntities() {
           .join(" ")
           .toLowerCase()
           .includes(q)) &&
-      (!f ||
-        (f.startsWith("approach:")
-          ? e.approachId === f.slice(9)
-          : e.family === f)) &&
+      matchesApproach(e, f, configuration) &&
       (!fuel ||
         (e.intended_fuel_ids || []).includes(fuel) ||
         e.intendedFuel?.includes(fuel)) &&
@@ -799,7 +811,7 @@ function entityCard(e) {
   const claim =
     e.claims.find((c) => !/target|agreement|organization/i.test(c.category)) ||
     e.claims[0];
-  return `<article class="entity-card"><div class="card-top"><span>${esc(human(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not established")}</p><div class="card-evidence">${claim ? badge(claim.category) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds.slice(0, 2))}</div>` : "<p>No result included</p>"}</div><div class="card-bottom"><span>${e.claims.length} evidence entries</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
+  return `<article class="entity-card"><div class="card-top"><span>${esc(atlasFamilyLabel(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not established")}</p><div class="card-evidence">${claim ? evidenceLabels(claim) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds)}</div>` : "<p>No result included</p>"}</div><div class="card-bottom"><span>${e.claims.length} evidence entries</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
 }
 function atlas() {
   if (!data) return;
@@ -814,13 +826,13 @@ function atlas() {
   $("#clear-filters").hidden =
     !advancedCount &&
     !$("#filter-family").value &&
+    !$("#filter-configuration").value &&
     !$("#atlas-search").value.trim();
   const entities = selectedEntities();
   $$("[data-approach-filter]").forEach((button) => {
     button.setAttribute(
       "aria-pressed",
-      $("#filter-family").value ===
-        `approach:${button.dataset.approachFilter}` &&
+      $("#filter-configuration").value === button.dataset.approachFilter &&
         $("#filter-role").value === "developer",
     );
   });
@@ -842,7 +854,7 @@ function atlas() {
         .map((e) => {
           const c = e.claims.find((c) => !/target/i.test(c.category)),
             t = e.targets[0];
-          return `<tr><td><button data-entity="${e.id}">${esc(e.name)}</button><p>${esc(e.locations[0]?.place || "Unknown")}</p></td><td>${esc(e.approach)}<p>${esc(e.intendedFuel || "Not established")}</p></td><td>${c ? badge(c.category) + `<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}` + citations(c.sourceIds) : "Not established in this record"}</td><td>${t ? badge("Target") + `<p>${esc(t.displayText || t.text)}</p>${t.date ? `<p class="detail-meta">${esc(t.dateRole)}: ${esc(t.date)}</p>` : ""}` + citations(t.sourceIds) : "No included target"}</td><td>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}<p>${citations(e.funding.flatMap((f) => f.sourceIds).slice(0, 1))}</p></td></tr>`;
+          return `<tr><td><button data-entity="${e.id}">${esc(e.name)}</button><p>${esc(e.locations[0]?.place || "Unknown")}</p></td><td>${esc(e.approach)}<p>${esc(e.intendedFuel || "Not established")}</p></td><td>${c ? evidenceLabels(c) + `<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}` + citations(c.sourceIds) : "Not established in this record"}</td><td>${t ? evidenceLabels(t) + `<p>${esc(t.displayText || t.text)}</p>${t.date ? `<p class="detail-meta">${esc(t.dateRole)}: ${esc(t.date)}</p>` : ""}` + citations(t.sourceIds) : "No included target"}</td><td>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}<p>${citations(e.funding.flatMap((f) => f.sourceIds).slice(0, 1))}</p></td></tr>`;
         })
         .join("")}</tbody></table></div>`;
   if (view === "funding") funding(entities);
@@ -855,6 +867,7 @@ function atlas() {
     view: view === "cards" ? "" : view,
     q: $("#atlas-search").value,
     family: $("#filter-family").value,
+    configuration: $("#filter-configuration").value,
     fuel: $("#filter-fuel").value,
     role: $("#filter-role").value,
     country: $("#filter-country").value,
@@ -905,7 +918,7 @@ function mapMarkerShape(shape, x, y, size) {
 function mapLegend() {
   const item = (label, shape, color, { hollow = false, dashed = false, number = "" } = {}) =>
     `<span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="${hollow ? mapColors.background : color}" stroke="${color}" stroke-width="1.5" ${dashed ? 'stroke-dasharray="3 2"' : ""}>${mapMarkerShape(shape, 12, 12, number ? 10 : 7)}</g>${number ? `<text x="12" y="12" dy=".35em" text-anchor="middle" fill="#122e27" font-size="12">${number}</text>` : ""}</svg>${label}</span>`;
-  return `<div class="map-key" aria-label="Map legend"><strong>Map key</strong><div class="map-key-items">${item("Headquarters / office", "circle", mapColors.site)}${item("Experiment / research", "square", mapColors.site)}${item("Proposed plant", "diamond", mapColors.plant, { hollow: true })}${item("Enabling facility", "hexagon", mapColors.site)}${item("Nearby site records", "circle", mapColors.cluster, { number: "3" })}${item("Planned / under construction", "circle", mapColors.site, { hollow: true, dashed: true })}</div></div>`;
+  return `<div class="map-key" aria-label="Map legend"><div class="map-key-items">${item("Headquarters / office", "circle", mapColors.site)}${item("Experiment / research", "square", mapColors.site)}${item("Proposed plant", "diamond", mapColors.plant, { hollow: true })}${item("Enabling facility", "hexagon", mapColors.site)}${item("Nearby site records", "circle", mapColors.cluster, { number: "3" })}${item("Planned / under construction", "circle", mapColors.site, { hollow: true, dashed: true })}</div></div>`;
 }
 let mapSites = [],
   mapClusters = [];
@@ -1007,7 +1020,7 @@ function entityDetail(id) {
   updateURL({ entity: e.id });
   modal(
     "ORGANIZATION FIELD NOTES",
-    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
+    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
   );
   if (m) {
     const options = getEntityReactorOptions(e);
@@ -1037,7 +1050,7 @@ function compareDetail(fundingView = false) {
                     return `<h4>${esc(t.label)}</h4><p>${esc(t.displayQuestion || t.question)}</p>${notes.length ? notes.map((a) => `<p><strong>Assessment:</strong> ${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}`).join("") : "<p>No separate assessment for this question is included in the snapshot. The reported evidence appears below.</p>"}`;
                   })
                   .join("") +
-                `<h4>Included evidence</h4>${e.claims.map((c) => `<div class="ledger">${badge(c.category)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}`
+                `<h4>Included evidence</h4>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}`
           }</article>`,
       )
       .join("")}</div>`,
@@ -1049,7 +1062,7 @@ function sourceDetail(id, historyId) {
   sourceFocus = document.activeElement;
   const event = data.history.find((h) => h.id === historyId);
   $("#source-content").innerHTML =
-    `<div class="detail-meta">Reference ${sourceNumbers.get(id)} · ${esc(human(s.type))}</div><h2 id="source-title">${esc(s.title)}</h2>${event ? `<section class="source-context"><h3>${esc(event.title)}</h3><p>${esc(event.displayText || event.text)}</p></section>` : ""}<p>${esc(s.publisher)}</p><p>Published: ${esc(s.published || "Undated live page")}<br>Reviewed for the snapshot: ${esc(s.reviewed || "2026-10-22")}</p>${s.note ? `<p>${esc(s.note)}</p>` : ""}<p><a href="${esc(s.url)}" target="_blank" rel="noopener">Open the original source ↗</a></p>`;
+    `<div class="detail-meta">Reference ${sourceNumbers.get(id)} · ${esc(sourceTypeLabel(s))}</div><h2 id="source-title">${esc(s.title)}</h2>${event ? `<section class="source-context"><h3>${esc(event.title)}</h3><p>${esc(event.displayText || event.text)}</p></section>` : ""}<p>${esc(s.publisher)}</p><p>Published: ${esc(s.published || "Undated live page")}<br>Reviewed for the snapshot: ${esc(s.reviewed || "2026-10-22")}</p>${s.note ? `<p>${esc(s.note)}</p>` : ""}<p><a href="${esc(s.url)}" target="_blank" rel="noopener">Open the original source ↗</a></p>`;
   $("#close-source").textContent = $("#detail-dialog").open
     ? "Back to details ×"
     : "Close ×";
@@ -1185,7 +1198,7 @@ document.addEventListener("click", (e) => {
     ["fuel", "country", "evidence"].forEach(
       (key) => ($("#filter-" + key).value = ""),
     );
-    $("#filter-family").value = `approach:${b.dataset.approachFilter}`;
+    selectAtlasConfiguration(b.dataset.approachFilter);
     $("#filter-role").value = "developer";
     $("#atlas-more-filters").open = true;
     view = "cards";
@@ -1283,12 +1296,22 @@ document.addEventListener("change", (e) => {
   }
 });
 $("#atlas-search").oninput = atlas;
-["family", "fuel", "role", "country", "evidence"].forEach(
+$("#filter-family").onchange = () => {
+  refreshConfigurationFilter("");
+  atlas();
+};
+$("#filter-configuration").onchange = () => {
+  if ($("#filter-configuration").value) selectAtlasConfiguration($("#filter-configuration").value);
+  atlas();
+};
+["fuel", "role", "country", "evidence"].forEach(
   (k) => ($("#filter-" + k).onchange = atlas),
 );
 $("#clear-filters").onclick = () => {
   $("#atlas-search").value = "";
-  ["family", "fuel", "role", "country", "evidence"].forEach(
+  $("#filter-family").value = "";
+  refreshConfigurationFilter("");
+  ["fuel", "role", "country", "evidence"].forEach(
     (k) => ($("#filter-" + k).value = ""),
   );
   atlas();
@@ -1342,19 +1365,18 @@ async function init() {
     );
     $("#atlas-stats").innerHTML =
       `<span><b>${data.entities.filter((e) => e.role !== "public").length}</b>companies & suppliers</span><span><b>${data.entities.filter((e) => e.role === "public").length}</b>public programmes</span><span><b>${data.sources.length}</b>sources</span>`;
-    const families = [...new Set(data.entities.map((e) => e.family))].sort();
-    const configurations = [
-      ...new Map(
-        data.entities
-          .filter((e) => e.approachId)
-          .map((e) => [
-            e.approachId,
-            approaches.find((a) => a.id === machineId(e))?.name || e.approach,
-          ]),
-      ).entries(),
-    ].sort((a, b) => a[1].localeCompare(b[1]));
-    $("#filter-family").innerHTML +=
-      `<optgroup label="Configurations">${configurations.map(([id, name]) => `<option value="approach:${esc(id)}">${esc(name)}</option>`).join("")}</optgroup><optgroup label="Confinement families">${families.map((v) => `<option value="${esc(v)}">${esc(human(v))}</option>`).join("")}</optgroup>`;
+    atlasConfigurations = [
+      ...new Map(data.entities.filter(e => e.approachId).map(e => [e.approachId, {
+        id: e.approachId,
+        name: approaches.find(a => a.id === machineId(e))?.name || e.approach,
+        family: atlasFamilyId(e.family),
+      }])).values(),
+    ].sort((a, b) => a.name.localeCompare(b.name));
+    $("#filter-family").innerHTML = '<option value="">All families</option>' +
+      atlasFamilies.map(f => `<option value="${esc(f.id)}">${esc(f.label)}</option>`).join("");
+    const initialFilters = readApproachFilters(params, atlasConfigurations);
+    $("#filter-family").value = initialFilters.family;
+    refreshConfigurationFilter(initialFilters.configuration);
     approachOverview();
     $("#filter-country").innerHTML += [
       ...new Set(data.sites.map((s) => s.country).filter(Boolean)),
@@ -1369,7 +1391,7 @@ async function init() {
       .map((v) => `<option>${esc(v)}</option>`)
       .join("");
     $("#atlas-search").value = params.get("q") || "";
-    ["family", "fuel", "role", "country", "evidence"].forEach(
+    ["fuel", "role", "country", "evidence"].forEach(
       (k) => ($("#filter-" + k).value = params.get(k) || ""),
     );
     $("#atlas-more-filters").open = $$("#atlas-more-filters select").some(
@@ -1545,5 +1567,7 @@ addEventListener(
   { passive: true },
 );
 addEventListener("resize", markChapter);
-$(".sources-disclosure").addEventListener("toggle", markChapter);
+$$(".sources-disclosure, .section-disclosure").forEach(section =>
+  section.addEventListener("toggle", markChapter),
+);
 markChapter();
