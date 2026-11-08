@@ -11,7 +11,8 @@ import {
   atlasFamilies, atlasFamilyId, atlasFamilyLabel, matchesApproach,
   readApproachFilters, claimSourceLabels, sourceTypeLabel,
 } from "./atlas-metadata.js";
-import { engineeringDiagram } from "./engineering-diagrams.js";
+import { engineeringDiagram } from "./engineering-diagrams.js?v=engineering-stories-1";
+import { engineeringPanels } from "./engineering-content.js";
 import { approaches, renderMachine } from "./diagrams.js?v=tokamak-cutaway-2";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import { recordCopy, glossaryCopy } from "./reader-content.js";
@@ -1103,14 +1104,17 @@ function riskQuestions() {
     const checks = t.dimension_ids
       .map((id) => dimensions.get(id))
       .filter(Boolean);
-    const sourceIds = [...new Set(checks.flatMap((r) => r.sourceIds))];
+    const story = engineeringPanels[t.id];
+    const sourceIds = [...new Set([...story.sourceIds, ...checks.flatMap(r => r.sourceIds)])];
     const toggleId = `risk-toggle-${t.id}`;
     const panelId = `risk-panel-${t.id}`;
     return `<h3 class="risk-heading" style="--risk-column:${(i % 2) + 1}"><button class="risk-toggle" id="${toggleId}" data-risk-toggle="${t.id}" aria-expanded="false" aria-controls="${panelId}"><span class="number">${String(i + 1).padStart(2, "0")}</span><span>${esc(t.label)}</span></button></h3>
       <section class="risk-panel" id="${panelId}" aria-labelledby="${toggleId}" hidden>
-        <p class="risk-question">${esc(t.displayQuestion || t.question)}</p>
-        ${engineeringDiagram(t.id)}
-        ${checks.map((r) => `<div class="risk-check"><h4>${esc(r.name)}</h4><p>${esc(r.displayInterpretation || r.interpretation)}</p><p class="risk-evidence"><strong>Evidence</strong> ${esc(r.displayEvidenceNeeded || r.evidenceNeeded)}</p></div>`).join("")}
+        <div class="engineering-story engineering-${story.layout}">
+          <div class="engineering-copy"><h4>${esc(story.title)}</h4><p class="engineering-lead">${esc(story.lead)}</p>${story.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}${story.note ? `<p class="engineering-point">${esc(story.note)}</p>` : ""}</div>
+          ${engineeringDiagram(t.id)}
+        </div>
+        <details class="engineering-proof"><summary>What would demonstrate progress?</summary>${checks.map(r => `<div class="risk-check"><h5>${esc(r.name)}</h5><p>${esc(r.displayEvidenceNeeded || r.evidenceNeeded)}</p></div>`).join("")}</details>
         <details class="risk-references"><summary>Sources · ${sourceIds.length}</summary><div class="citation">${citations(sourceIds)}</div></details>
       </section>`;
   });
