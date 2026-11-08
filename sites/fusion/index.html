@@ -93,9 +93,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=energy-swatches-1" />
+    <link rel="stylesheet" href="./styles.css?v=hero-actions-1" />
     <link rel="stylesheet" href="./reactor-explorer.css?v=configuration-navigation-1" />
-    <script type="module" src="./app.js?v=renewables-breakdown-1"></script>
+    <script type="module" src="./app.js?v=reader-navigation-1"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -104,8 +104,8 @@
         ><span class="brand-icon">◎</span> FUSION ATLAS</a
       >
       <nav aria-label="Chapters">
-        <a href="#learn">The basics</a><a href="#machines">Machines</a>
-        <a href="#gain">Energy gain</a><a href="#landscape">The atlas</a>
+        <a href="#learn">The Basics</a><a href="#machines">Machines</a>
+        <a href="#gain">Energy Gain</a><a href="#landscape">The Atlas</a>
         <a href="#questions">Engineering</a><a href="#sources">Sources</a>
       </nav>
       <a class="byline" href="/sites/">A project by Jason Willems ↗</a>
@@ -121,6 +121,10 @@
             Reactor designs, experimental results, and the engineering of fusion
             power
           </p>
+          <div class="hero-actions">
+            <a class="hero-learn" href="#learn">Learn the Basics</a>
+            <a class="hero-explore" href="#machines">Explore the Machines</a>
+          </div>
           <div class="snapshot">
             Updated <strong>6 Nov 2026</strong
             ><span>42 organizations · 15 reactor configurations</span>
@@ -850,9 +854,12 @@
             </div>
             <div class="segmented" id="mode-tabs">
               <button data-mode="continuous">Continuous plasma</button
-              ><button data-mode="pulsed">Pulsed target</button
-              ><button data-mode="inertia">Inertia model</button>
+              ><button data-mode="pulsed">Pulsed target</button>
             </div>
+          </div>
+          <div class="published-scenario">
+            <span>Published example scenario</span>
+            <button data-mode="inertia" aria-pressed="false">Inertia · Phase I roadmap</button>
           </div>
           <div id="calc-context"></div>
           <div class="calculator-grid">

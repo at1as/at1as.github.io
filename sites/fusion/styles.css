@@ -210,6 +210,45 @@ p + p {
   line-height: 1.55;
   margin-top: 25px;
 }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 24px;
+}
+.hero-actions a {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  border: 1px solid #29473b;
+  border-radius: 4px;
+  color: #29473b;
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.hero-actions .hero-explore {
+  background: #29473b;
+  color: #fffef9;
+}
+.hero-actions .hero-explore:hover {
+  background: #1e382e;
+}
+.hero-learn:hover {
+  background: #e6ebe1;
+}
+.hero-actions a:focus-visible {
+  outline: 3px solid #b9633d;
+  outline-offset: 4px;
+}
+.hero-text .snapshot {
+  margin-top: 28px;
+}
 
 .primary-link {
   display: inline-flex;
@@ -786,6 +825,29 @@ p + p {
   line-height: 1.7;
   padding: 16px 0;
   color: #687979;
+}
+.published-scenario {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 18px;
+  font-size: 12px;
+  color: #52645b;
+}
+.published-scenario button {
+  font-size: 12px;
+}
+.published-scenario button.active {
+  background: #29473b;
+  color: #fffef9;
+}
+#calc-context p {
+  margin: 7px 0;
+}
+#calc-context .personal-context {
+  padding-top: 8px;
+  border-top: 1px solid #d5dcd2;
 }
 .calculator-grid {
   display: grid;
@@ -1789,7 +1851,7 @@ dialog::backdrop {
   display: block;
   aspect-ratio: 900 / 390;
   overflow: hidden;
-  touch-action: pan-y;
+  touch-action: none;
   user-select: none;
 }
 .map-canvas.is-zoomed {
@@ -1927,9 +1989,22 @@ dialog::backdrop {
   outline-offset: -2px;
 }
 .map-popup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
   font-size: 12px;
   padding: 10px;
   min-height: 40px;
+}
+.map-popup > p {
+  flex-basis: 100%;
+  margin: 0;
+}
+.map-popup > button {
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
 }
 .table-scroll .data-table {
   min-width: 680px;
