@@ -51,9 +51,9 @@
       content="https://www.jasonwillems.com/sites/fusion/share-card.png?v=20261107"
     />
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=site-card-highlight-1" />
+    <link rel="stylesheet" href="./styles.css?v=energy-swatches-1" />
     <link rel="stylesheet" href="./reactor-explorer.css?v=configuration-navigation-1" />
-    <script type="module" src="./app.js?v=entity-reactor-type-1"></script>
+    <script type="module" src="./app.js?v=renewables-breakdown-1"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -162,59 +162,173 @@
         </section>
         <section class="energy-context" aria-labelledby="energy-context-title">
           <h3 id="energy-context-title">Fusion in the energy system</h3>
-          <div class="energy-demand">
-            <div class="energy-demand-stat">
-              <strong>485 → 950 <span>TWh/year</span></strong>
-              <p>All data centres · 2025 estimate → 2030 projection</p>
+          <p class="nuclear-comparison-intro">
+            Today's nuclear power stations use <strong>fission</strong>.
+            <strong>Fusion</strong> is a different nuclear reaction, still being
+            developed for electricity generation. Both release energy from
+            atomic nuclei — the centres of atoms
+          </p>
+          <div class="nuclear-comparison">
+            <article>
+              <span class="nuclear-status">Supplies electricity today</span>
+              <h4>Fission splits heavy nuclei</h4>
+              <img
+                class="nuclear-reaction"
+                src="./assets/fission-reaction.svg"
+                width="440" height="140"
+                alt="A neutron strikes a uranium nucleus, splitting it into smaller nuclei and releasing neutrons and energy"
+              />
+              <div class="nuclear-reaction-labels" aria-hidden="true"><span>Neutron + uranium</span><span>Smaller nuclei + neutrons</span></div>
+              <p>
+                A neutron can split a heavy nucleus such as uranium, releasing
+                energy and more neutrons. Those neutrons can split other nuclei,
+                sustaining a chain reaction that a power station controls
+              </p>
+              <p class="nuclear-caveat">
+                Spent fuel remains radioactive and needs long-term management
+              </p>
+            </article>
+            <article>
+              <span class="nuclear-status nuclear-status-future">No grid electricity yet</span>
+              <h4>Fusion joins light nuclei</h4>
+              <img
+                class="nuclear-reaction"
+                src="./assets/fusion-reaction.svg"
+                width="440" height="140"
+                alt="Deuterium and tritium nuclei join, producing a helium-4 nucleus, a neutron and energy"
+              />
+              <div class="nuclear-reaction-labels" aria-hidden="true"><span>Deuterium + tritium</span><span>Helium-4 + neutron</span></div>
+              <p>
+                In D–T fusion, deuterium and tritium combine into helium and a
+                neutron, releasing energy. Keeping the fuel hot and confined
+                enough to sustain fusion is one of the central challenges
+              </p>
+              <p class="nuclear-caveat">
+                Tritium is radioactive, and fusion neutrons can make reactor
+                materials radioactive too
+              </p>
+            </article>
+          </div>
+          <p class="nuclear-shared-route">
+            <strong>Different reactions, a familiar route to electricity:</strong>
+            fission plants and most proposed fusion plants use the released
+            energy as heat to drive a turbine and generator. Reaction sketches
+            above are schematic, not to scale
+          </p>
+          <div class="fusion-benefits">
+            <h4>What fusion could offer</h4>
+            <div>
+              <p>
+                <strong>More energy from each gram.</strong> Fully reacting D–T
+                fuel releases about four times as much energy per gram as
+                fissioning uranium-235, and millions of times more than burning
+                fossil fuels. These are fuel-level comparisons; electricity
+                output would be lower after conversion losses and plant power use
+              </p>
+              <p>
+                <strong>Potentially shorter-lived waste.</strong> D–T
+                fusion needs no uranium or plutonium fuel and produces no spent
+                fission fuel. Choosing suitable reactor materials could make its
+                radioactive waste shorter-lived and easier to manage. It is not
+                waste-free: radioactive tritium and reactor components made
+                radioactive by neutrons still need careful handling and disposal
+              </p>
             </div>
+          </div>
+
+          <figure class="electricity-mix" aria-labelledby="electricity-mix-title">
+            <figcaption>
+              <h4 id="electricity-mix-title">Where the world's electricity comes from</h4>
+              <p>2025 · Approximate share of global electricity generation</p>
+            </figcaption>
+            <div class="electricity-mix-bar" aria-hidden="true">
+              <span class="mix-coal" data-mix="coal" style="flex: 10858"></span>
+              <span class="mix-renewables" data-mix="renewables" style="flex: 10808">
+                <span class="renewables-segments">
+                  <span class="renewable-hydro" style="flex: 4470.2"></span>
+                  <span class="renewable-wind" style="flex: 2723.3"></span>
+                  <span class="renewable-solar" style="flex: 2653.1"></span>
+                  <span class="renewable-other" style="flex: 961.2"></span>
+                </span>
+              </span>
+              <span class="mix-gas" data-mix="gas" style="flex: 6822"></span>
+              <span class="mix-fission" data-mix="fission" style="flex: 2858"></span>
+              <span class="mix-other" data-mix="other" style="flex: 786"></span>
+            </div>
+            <ul class="electricity-mix-legend" aria-label="Electricity generation shares">
+              <li class="mix-coal"><button type="button" data-mix="coal"><strong>34%</strong><span>Coal</span></button></li>
+              <li class="mix-renewables"><button type="button" data-mix="renewables" aria-describedby="renewables-breakdown"><strong>34%</strong><span>Renewables</span><small>Hover or select for breakdown</small></button></li>
+              <li class="mix-gas"><button type="button" data-mix="gas"><strong>21%</strong><span>Natural gas</span></button></li>
+              <li class="mix-fission"><button type="button" data-mix="fission"><strong>9%</strong><span>Nuclear <b>fission</b></span></button></li>
+              <li class="mix-other"><button type="button" data-mix="other"><strong>2%</strong><span>Oil and other sources</span></button></li>
+            </ul>
+            <div class="renewables-breakdown" id="renewables-breakdown" hidden>
+              <p><strong>Inside renewables</strong> · Share of all electricity generation, 2025</p>
+              <ul>
+                <li class="renewable-hydro"><span>Hydro</span><strong>13.9%</strong></li>
+                <li class="renewable-wind"><span>Wind</span><strong>8.5%</strong></li>
+                <li class="renewable-solar"><span>Solar PV</span><strong>8.3%</strong></li>
+                <li class="renewable-other"><span>Other renewables</span><strong>3.0%</strong></li>
+              </ul>
+              <p class="energy-chart-source">
+                Together ≈34% of world electricity. Figures rounded independently.
+                Other renewables includes bioenergy and waste, geothermal,
+                concentrating solar power and marine energy.
+                <a href="https://www.iea.org/data-and-statistics/charts/global-renewable-generation-by-source-2015-2025" target="_blank" rel="noopener">IEA · Renewable generation by source ↗</a>
+              </p>
+            </div>
+            <p class="fusion-mix-note">
+              <strong>Fusion: 0%</strong>
+              No fusion power station supplies electricity to the grid yet
+            </p>
+            <p class="energy-chart-source">
+              <a href="https://www.iea.org/reports/global-energy-review-2026/electricity-supply" target="_blank" rel="noopener">IEA · Global Energy Review 2026 ↗</a>
+              · Rounded estimates. Electricity generation only; direct fuel use
+              for transport and heating is outside this chart
+            </p>
+          </figure>
+
+          <div class="energy-demand">
             <div>
               <h4>Growing demand, including AI</h4>
               <p>
                 The IEA projects electricity use by all data centres to nearly
-                double by 2030, with AI-focused facilities growing faster.
-                AI's growing appetite for electricity has also helped renew
-                interest in fusion as a potential long-term power source. Google,
-                for example, has invested in fusion and agreed to buy electricity
-                from a future plant. Fusion
-                could eventually serve computing, industry and electrified
-                transport, but today's data centres rely on existing energy sources
+                double by 2030, reaching about <strong>3% of global electricity
+                demand</strong>. AI-focused facilities are growing faster
+              </p>
+              <p>
+                AI's appetite for electricity has helped renew interest in
+                fusion. Google, for example, has invested in fusion and agreed
+                to buy electricity from a future plant. Fusion could eventually
+                serve computing, industry and electrified transport, but today's
+                data centres rely on existing energy sources
               </p>
             </div>
-          </div>
-          <p class="nuclear-comparison-intro">
-            Fusion and fission both release energy from atomic nuclei. Fission
-            power stations already supply electricity to the grid. Fusion
-            experiments operate today, but no fusion power station supplies
-            electricity to the grid yet
-          </p>
-          <div class="nuclear-comparison">
-            <article>
-              <h4>Fusion joins light nuclei</h4>
-              <p>
-                Deuterium and tritium combine into helium and a neutron. The
-                reaction stops when the fuel loses the required temperature or
-                confinement. Tritium is radioactive, and neutrons can make
-                reactor materials radioactive too
+            <figure class="energy-demand-chart" aria-labelledby="energy-demand-title">
+              <figcaption id="energy-demand-title">Electricity used by all data centres</figcaption>
+              <div class="energy-demand-row">
+                <div class="energy-demand-label"><strong>2025</strong><span>Estimate</span><b>485 <small>TWh</small></b></div>
+                <div class="energy-demand-track" aria-hidden="true"><span style="width: 48.5%"></span></div>
+              </div>
+              <div class="energy-demand-row energy-demand-projection">
+                <div class="energy-demand-label"><strong>2030</strong><span>Projection</span><b>950 <small>TWh</small></b></div>
+                <div class="energy-demand-track" aria-hidden="true"><span style="width: 95%"></span></div>
+              </div>
+              <div class="energy-demand-axis" aria-hidden="true"><span>0</span><span>1,000 TWh/year</span></div>
+              <p class="energy-chart-source">
+                <a href="https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary" target="_blank" rel="noopener">IEA · Key Questions on Energy and AI, 2026 ↗</a>
+                <br />Includes AI and other computing. One TWh = one billion kWh
               </p>
-            </article>
-            <article>
-              <h4>Fission splits heavy nuclei</h4>
-              <p>
-                A controlled chain reaction splits heavy nuclei such as uranium.
-                Fission plants already supply steady, low-carbon electricity.
-                Their spent fuel remains radioactive and needs long-term
-                management
-              </p>
-            </article>
+            </figure>
           </div>
           <details class="energy-comparison">
             <summary>
-              Compare fusion, fission and five other energy sources
+              Compare fusion, fission and six other energy sources
             </summary>
             <p>
-              Coal, oil and nuclear fuels store energy in matter. Solar, wind
+              Coal, gas, oil and nuclear fuels store energy in matter. Solar, wind
               and hydro collect natural energy flows, so energy per gram of fuel
-              is not a useful comparison across all seven
+              is not a useful comparison across all eight
             </p>
             <div
               class="table-scroll"
@@ -267,6 +381,17 @@
                     </td>
                     <td>
                       CO₂ emissions, air pollution, ash and mining impacts
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Natural gas</th>
+                    <td>
+                      Burns gas in a turbine; combined-cycle plants also use
+                      the exhaust heat to make steam and generate more electricity
+                    </td>
+                    <td>
+                      CO₂ emissions, methane leaks along the supply chain, and
+                      dependence on fuel supply and prices
                     </td>
                   </tr>
                   <tr>
@@ -325,6 +450,35 @@
               plant's materials are additional inputs.
             </p>
             <ul>
+              <li>
+                <a
+                  href="https://www.iea.org/reports/global-energy-review-2026/electricity-supply"
+                  target="_blank"
+                  rel="noopener"
+                  >IEA · Global Energy Review 2026, electricity supply ↗</a
+                >
+                · 2025 estimates, shown as whole percentages. Bar widths use
+                the report's generation totals: coal 10,858 TWh, renewables
+                10,808 TWh, gas 6,822 TWh and nuclear 2,858 TWh, out of
+                32,132 TWh worldwide. Oil and other sources make up the remainder
+              </li>
+              <li>
+                <a
+                  href="https://www.iea.org/data-and-statistics/charts/global-renewable-generation-by-source-2015-2025"
+                  target="_blank"
+                  rel="noopener"
+                  >IEA · renewable generation by source, 2015–2025 ↗</a
+                >
+                · The 2025 breakdown uses hydro 4,470.2 TWh, wind 2,723.3 TWh,
+                solar PV 2,653.1 TWh and other renewables 961.2 TWh (bioenergy
+                and waste 840.3 TWh, plus other sources 120.9 TWh). Each share
+                is divided by 32,132 TWh and rounded to one decimal place
+              </li>
+              <li>
+                <a href="https://www.iter.org/fusion-energy/advantages-fusion" target="_blank" rel="noopener">ITER · fusion's potential advantages ↗</a>
+                and
+                <a href="https://www.iaea.org/bulletin/safety-in-fusion" target="_blank" rel="noopener">IAEA · radioactive materials and safety in fusion ↗</a>
+              </li>
               <li>
                 <a
                   href="https://www.iter.org/sites/default/files/media/iter_progress_in_pictures_2019.pdf"
@@ -395,6 +549,13 @@
                   target="_blank"
                   rel="noopener"
                   >environmental effects ↗</a
+                >
+                ·
+                <a
+                  href="https://www.eia.gov/energyexplained/natural-gas/natural-gas-and-the-environment.php"
+                  target="_blank"
+                  rel="noopener"
+                  >Natural gas impacts ↗</a
                 >
                 ·
                 <a

@@ -1415,6 +1415,69 @@ async function init() {
 }
 init();
 
+// Link the electricity mix's segments and legend, including keyboard and touch.
+const electricityMix = $(".electricity-mix");
+const mixItems = $$(".electricity-mix [data-mix]");
+const renewablesBreakdown = $("#renewables-breakdown");
+let hoveredMix = null, focusedMix = null;
+function highlightElectricityMix() {
+  const active = hoveredMix || focusedMix;
+  electricityMix.classList.toggle("is-highlighting", Boolean(active));
+  for (const item of mixItems)
+    item.classList.toggle("is-active", item.dataset.mix === active);
+  renewablesBreakdown.hidden = active !== "renewables";
+}
+for (const item of mixItems) {
+  item.addEventListener("pointerenter", (event) => {
+    if (event.pointerType === "touch") return;
+    hoveredMix = item.dataset.mix;
+    highlightElectricityMix();
+  });
+  item.addEventListener("pointerleave", () => {
+    // Keep the detail panel open while the pointer travels from its trigger.
+    if (hoveredMix === "renewables") return;
+    hoveredMix = null;
+    highlightElectricityMix();
+  });
+  item.addEventListener("focus", () => {
+    hoveredMix = null;
+    focusedMix = item.dataset.mix;
+    highlightElectricityMix();
+  });
+  item.addEventListener("blur", (event) => {
+    focusedMix = renewablesBreakdown.contains(event.relatedTarget) ? "renewables" : null;
+    highlightElectricityMix();
+  });
+  item.addEventListener("click", () => {
+    hoveredMix = null;
+    focusedMix = item.dataset.mix;
+    mixItems.find((label) => label.matches("button") && label.dataset.mix === item.dataset.mix)
+      ?.focus({ preventScroll: true });
+    highlightElectricityMix();
+  });
+}
+electricityMix.addEventListener("pointerleave", () => {
+  hoveredMix = null;
+  highlightElectricityMix();
+});
+renewablesBreakdown.addEventListener("focusin", () => {
+  hoveredMix = null;
+  focusedMix = "renewables";
+  highlightElectricityMix();
+});
+renewablesBreakdown.addEventListener("focusout", (event) => {
+  if (!renewablesBreakdown.contains(event.relatedTarget)) {
+    focusedMix = null;
+    highlightElectricityMix();
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !renewablesBreakdown.hidden) {
+    hoveredMix = focusedMix = null;
+    highlightElectricityMix();
+  }
+});
+
 // Keep reading position and motion predictable when a reader leaves a chapter.
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
