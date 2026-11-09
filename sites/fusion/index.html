@@ -93,9 +93,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=desktop-spacing-1" />
+    <link rel="stylesheet" href="./styles.css?v=integrated-examples-1" />
     <link rel="stylesheet" href="./reactor-explorer.css?v=configuration-navigation-1" />
-    <script type="module" src="./app.js?v=pulsed-scenario-1"></script>
+    <script type="module" src="./app.js?v=integrated-examples-1"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -748,10 +748,9 @@
           <p class="eyebrow">03 / ENERGY ACCOUNTING</p>
           <h2>Fusion gain and net electricity</h2>
           <p>
-            To supply electricity to the grid, a fusion plant must generate more
-            than it uses to start and sustain the reaction and run the rest of
-            the facility. The surplus is its net electricity. Each gain
-            measurement below counts a different part of that process
+            A fusion power plant must generate more electricity than it consumes.
+            Each measurement below counts a different part of the process;
+            only the whole-plant balance tells us what can reach the grid
           </p>
         </div>
         <div class="boundaries">
@@ -773,86 +772,60 @@
               id="boundary-caption"
               aria-live="polite"
             ></div>
+            <article class="boundary-example" data-boundary-example="1" hidden>
+              <header>
+                <span class="badge target">◇ DESIGN TARGET</span>
+                <h4>ITER</h4>
+              </header>
+              <div>
+                <p>
+                  ITER is an international experimental fusion reactor being
+                  built in southern France by seven partners, including the
+                  European Union. It aims for 500 megawatts (MW) of fusion power
+                  from 50 MW of heating delivered to the plasma.
+                </p>
+                <p class="example-equation">500 MW ÷ 50 MW = Q of 10</p>
+                <p>MW measures power: the rate of energy production or use.</p>
+                <p class="example-caveat"><strong>Q = 10 is a research goal. ITER has no system for generating electricity.</strong></p>
+                <p class="citation" data-cites="PHY_019 PHY_020"></p>
+              </div>
+            </article>
+            <article class="boundary-example" data-boundary-example="2" hidden>
+              <header>
+                <span class="badge experiment">● EXPERIMENT</span>
+                <h4>NIF</h4>
+              </header>
+              <div>
+                <p>
+                  The National Ignition Facility (NIF) is a laser research
+                  facility at Lawrence Livermore National Laboratory in
+                  California. On 7 April 2025, it released 8.6 ± 0.45
+                  megajoules (MJ) of fusion energy from 2.08 MJ of laser light
+                  delivered to a target.
+                </p>
+                <p class="example-equation">8.6 MJ ÷ 2.08 MJ ≈ 4.13 target gain</p>
+                <p>This is the highest target gain in this snapshot. MJ measures an amount of energy.</p>
+                <p class="example-caveat"><strong>NIF does not generate electricity. Its lasers and other systems consume electricity outside this ratio.</strong></p>
+                <p class="citation" data-cites="PHY_009 PHY_012"></p>
+              </div>
+            </article>
+            <article class="boundary-example" data-boundary-example="3" hidden>
+              <header>
+                <span class="badge model">○ CURRENT STATUS</span>
+                <h4>Not yet</h4>
+                <p>Net electricity has not been demonstrated.</p>
+              </header>
+              <div>
+                <p>
+                  In this illustrative example, a pulse uses 100 MJ of electricity
+                  and the recovery system returns 102 MJ. Pumps, cooling and
+                  other systems consume another 3 MJ, leaving a net loss of 1 MJ.
+                </p>
+                <p class="example-equation">102 − 100 − 3 = −1 MJ</p>
+                <p class="example-caveat"><strong>The whole plant must finish with a surplus to supply the grid, even when the pulse recovers more than its own input.</strong></p>
+              </div>
+            </article>
           </div>
-        </div>
-        <div class="anchor-grid">
-          <article>
-            <span class="badge experiment">● EXPERIMENT</span>
-            <h3>NIF</h3>
-            <div class="anchor-number">4.13<span>target gain</span></div>
-            <p>
-              The National Ignition Facility (NIF) is a laser research facility
-              at Lawrence Livermore National Laboratory in California. On 7
-              April 2025, a NIF experiment released 8.6 ± 0.45 megajoules (MJ)
-              of fusion energy from 2.08 MJ of laser light delivered to a target.
-              The ratio is 4.13, the highest target gain in this snapshot.
-            </p>
-            <p>
-              The 2.08 MJ counts the light arriving at the target. The lasers
-              consumed much more electricity to produce that light, and the
-              facility used electricity for other systems. Those demands are
-              outside this ratio.
-            </p>
-            <strong
-              >NIF does not generate electricity. Its fusion output is measured
-              as energy released by the reaction.</strong
-            >
-            <p class="citation" data-cites="PHY_009 PHY_012"></p>
-          </article>
-          <article>
-            <span class="badge target">◇ DESIGN TARGET</span>
-            <h3>ITER</h3>
-            <div class="anchor-number">10<span>plasma Q</span></div>
-            <p>
-              ITER is an international experimental fusion reactor being built
-              in southern France by seven partners, including the European
-              Union. It aims to produce 500 megawatts (MW) of fusion power while
-              delivering 50 MW of heating to the plasma. Dividing 500 by 50
-              gives Q = 10. MW measures a rate of energy production or use.
-            </p>
-            <p>
-              The 50 MW counts heat reaching the plasma. Generating that heating
-              requires more electricity; magnets, cooling and other systems add
-              further demand. The 500 MW is fusion power, before any conversion
-              into electricity.
-            </p>
-            <strong
-              >Q = 10 is a research goal. ITER has no system for generating
-              electricity.</strong
-            >
-            <p class="citation" data-cites="PHY_019 PHY_020"></p>
-          </article>
-          <article>
-            <span class="badge model">○ CURRENT STATUS</span>
-            <h3>Electrical recovery</h3>
-            <div class="anchor-number recovery-status">
-              Not yet<span>net electricity demonstrated</span>
-            </div>
-            <p>
-              Some pulsed designs aim to recover electricity from their magnets
-              or plasma after each pulse. Recovered energy can include electricity
-              supplied to drive the pulse; it is not all new energy from fusion.
-            </p>
-            <p>
-              For example, a pulse uses 100 MJ of electricity and its recovery
-              system returns 102 MJ. Pumps, cooling and other plant systems
-              consume another 3 MJ, leaving a net result of −1 MJ.
-            </p>
-            <p class="recovery-equation">102 − 100 − 3 = −1 MJ</p>
-            <p>
-              This is an illustrative example. A complete accounting also
-              requires the same stored energy at the start and end of the cycle.
-            </p>
-            <p>
-              To supply electricity to the grid, a fusion plant's net output
-              must be greater than zero after all its own consumption. Scaling
-              fusion power also requires reliable, economical operation.
-            </p>
-            <strong
-              >A positive result must account for the entire plant, not just
-              energy recovered after a pulse.</strong
-            >
-          </article>
         </div>
         <details class="calculator section-disclosure" open>
           <summary>
@@ -931,18 +904,24 @@
             <aside id="nif-record-note">
               <h4>Ignition ≠ electrical break-even</h4>
               <p>
-                NIF reached hot-spot ignition in August 2021, when fusion heating
-                sustained the burn in the fuel’s hot centre. Target gain exceeded
-                one in December 2022. Neither milestone is net electricity (these
-                measurements exclude the electricity used by the laser and
-                facility, and NIF does not convert fusion heat into electricity).
+                NIF’s target gain excludes the electricity used by its lasers
+                and other systems. NIF does not generate electricity.
               </p>
-              <p>
-                The latest listed NIF ignition at this snapshot, 20 June 2026, had
-                target gain ≈3.8. The latest result is not the listed maximum.
-              </p>
-              <p class="citation" data-cites="PHY_009 PHY_010 PHY_011"></p>
-              <button data-open="history">Open the historical timeline ↗</button>
+              <details class="record-background">
+                <summary>Ignition milestones and context</summary>
+                <p>
+                  NIF reached hot-spot ignition in August 2021, when fusion
+                  heating sustained the burn in the fuel’s hot centre. Target
+                  gain exceeded one in December 2022. Neither milestone
+                  establishes net electricity.
+                </p>
+                <p>
+                  The latest listed NIF ignition at this snapshot, 20 June 2026,
+                  had target gain ≈3.8. The latest result is not the listed maximum.
+                </p>
+                <p class="citation" data-cites="PHY_009 PHY_010 PHY_011"></p>
+                <button data-open="history">Open the historical timeline ↗</button>
+              </details>
             </aside>
           </div>
           <div id="record-table"></div>

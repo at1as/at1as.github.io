@@ -706,21 +706,39 @@ p + p {
 .boundary-caption h3 {
   font-size: 26px;
 }
-.anchor-grid {
+.boundary-caveat {
+  padding-left: 14px;
+  border-left: 3px solid #975236;
+}
+.boundary-example {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 34px 0 65px;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 30px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #cbd0c6;
+  font-size: 13px;
+  line-height: 1.8;
 }
-.anchor-grid article {
-  padding: 5px 28px;
-  border-left: 1px solid #d1d6cd;
+.boundary-example h4 {
+  margin-top: 14px;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 27px;
+  font-weight: 500;
 }
-.anchor-grid article:first-child {
-  border-left: 0;
-  padding-left: 0;
+.boundary-example p {
+  margin: 10px 0 0;
 }
-.anchor-grid article:last-child {
-  padding-right: 0;
+.boundary-example > div > p:first-child {
+  margin-top: 0;
+}
+.boundary-example .example-equation {
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  color: #93482e;
+}
+.boundaries + .calculator {
+  margin-top: 36px;
 }
 .badge {
   display: inline-block;
@@ -742,38 +760,6 @@ p + p {
   border-style: dashed;
   border-color: #b99875;
   color: #83562b;
-}
-.anchor-grid h3 {
-  margin-top: 18px;
-  font-size: 27px;
-}
-.anchor-number {
-  font-family: Newsreader, Georgia, serif;
-  font-size: 68px;
-  line-height: 1.1;
-  margin: 20px 0 12px;
-  letter-spacing: -0.05em;
-}
-.anchor-number span {
-  display: block;
-  font-family: Inter, sans-serif;
-  font-size: 11px;
-  letter-spacing: 0;
-  color: #52665c;
-}
-.anchor-number.recovery-status {
-  font-size: clamp(36px, 3.5vw, 48px);
-}
-.anchor-grid p {
-  font-size: 13px;
-  color: #617178;
-}
-.anchor-grid strong {
-  display: block;
-  font-size: 12px;
-  line-height: 1.7;
-  margin-top: 14px;
-  font-weight: 600;
 }
 .citation {
   font-size: 9px !important;
@@ -857,6 +843,15 @@ p + p {
 #calc-context .personal-context {
   padding-top: 8px;
   border-top: 1px solid #d5dcd2;
+}
+.scenario-background,
+.record-background {
+  margin-top: 12px;
+}
+.scenario-background > summary,
+.record-background > summary {
+  padding: 8px 0;
+  color: #36533f;
 }
 .calculator-grid {
   display: grid;
@@ -2341,39 +2336,12 @@ body:has(dialog[open]) {
   .boundary-caption h3 {
     font-size: 25px;
   }
-  .anchor-grid {
+  .boundary-example {
     grid-template-columns: 1fr;
-    margin-bottom: 35px;
+    gap: 14px;
   }
-  .anchor-grid article {
-    padding: 23px 0;
-    border-left: 0;
-    border-bottom: 1px solid #d1d6cd;
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 0 15px;
-  }
-  .anchor-grid article .badge {
-    grid-column: 1 / -1;
-    justify-self: start;
-  }
-  .anchor-grid h3 {
+  .boundary-example h4 {
     font-size: 24px;
-    grid-column: 1 / -1;
-  }
-  .anchor-number {
-    font-size: 56px;
-    grid-column: 1;
-    grid-row: 3 / 6;
-    margin-top: 17px;
-  }
-  .anchor-grid article > p {
-    grid-column: 2;
-    margin-top: 15px;
-  }
-  .anchor-grid strong {
-    grid-column: 2;
-    font-size: 12px;
   }
   .calculator {
     padding: 20px 16px;
@@ -2737,9 +2705,6 @@ canvas:focus-visible {
   .eyebrow {
     font-size: 10px;
   }
-  .anchor-grid article .citation {
-    grid-column: 1 / -1;
-  }
   .calc-footer p,
   .model-notes p,
   .funding-note,
@@ -3080,12 +3045,6 @@ h2 {
   margin: 0;
 }
 
-.anchor-grid .recovery-equation {
-  font-size: 17px;
-  font-variant-numeric: tabular-nums;
-  color: #93482e;
-  margin: 16px 0;
-}
 .boundary-caption p {
   margin-top: 14px;
   line-height: 1.8;

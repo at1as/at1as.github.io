@@ -148,6 +148,6 @@ export function renderGainDiagram(index) {
     <div class="energy-overview-heading"><strong>${view.title}</strong><div class="energy-key" aria-label="Diagram key"><span class="gain-input"><i aria-hidden="true"></i>${index === 3 ? "Pulse input" : index === 4 ? "Plant use" : "Counted input"}</span><span class="gain-output"><i aria-hidden="true"></i>${index === 3 ? "Recovered output" : index === 4 ? "Gross output" : "Counted output"}</span><span class="gain-context"><i aria-hidden="true"></i>Other energy paths</span></div></div>
     ${scene(view, index, false)}${scene(view, index, true)}
     <div class="energy-measurement"><span class="gain-input"><b>${index === 4 ? "SUBTRACT" : "IN"}</b>${view.inputLabel}</span><span class="gain-output"><b>${index === 4 ? "GENERATED" : "OUT"}</b>${view.outputLabel}</span></div>
-    <figcaption>${view.note}</figcaption><p class="energy-schematic-note">Proposed plant context, not an operating facility. Arrows show energy routes, not amounts. Imported electricity supplies any shortfall.</p>
+    <figcaption class="energy-schematic-note">Proposed plant context, not an operating facility. Arrows show energy routes, not amounts. Imported electricity supplies any shortfall.</figcaption>
   </figure>`;
 }
