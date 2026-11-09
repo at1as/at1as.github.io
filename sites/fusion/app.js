@@ -565,9 +565,13 @@ const sliderMeta = {
 };
 function calcControls() {
   const mode = scenario.mode;
+  $(".published-scenario").hidden = mode === "continuous";
   $$("[data-mode]").forEach((b) => {
-    b.classList.toggle("active", b.dataset.mode === mode);
-    b.setAttribute("aria-pressed", b.dataset.mode === mode);
+    const selected =
+      b.dataset.mode === mode ||
+      (b.dataset.mode === "pulsed" && mode === "inertia");
+    b.classList.toggle("active", selected);
+    b.setAttribute("aria-pressed", selected);
   });
   $("#calc-context").innerHTML =
     mode === "inertia"

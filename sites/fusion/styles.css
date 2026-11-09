@@ -2070,12 +2070,27 @@ body:has(dialog[open]) {
 [hidden] {
   display: none !important;
 }
+/* Compact the desktop chapter layout without scaling its contents. */
+@media (min-width: 1051px) {
+  main > .section:not(.sources-section) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .hero {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 640px;
+  }
+  .section-heading h2 {
+    font-size: clamp(36px, 4.05vw, 58.5px);
+  }
+}
 @media (min-width: 1450px) {
   .wrap {
     max-width: 1400px;
   }
   .hero {
-    min-height: 780px;
+    min-height: 700px;
   }
   .hero-figure #hero-machine {
     min-height: 370px;
