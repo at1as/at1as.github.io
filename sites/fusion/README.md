@@ -30,6 +30,7 @@ python3 sites/fusion/_validate.py
 node sites/fusion/_test.mjs
 node sites/fusion/_reactor-test.mjs
 node sites/fusion/_map-test.mjs
+node sites/fusion/_atlas-exploration-test.mjs
 node sites/fusion/_assets.mjs
 rsvg-convert sites/fusion/share-card.svg -o sites/fusion/share-card.png
 JEKYLL_ENV=production bundle exec ruby -E UTF-8 -S jekyll build
