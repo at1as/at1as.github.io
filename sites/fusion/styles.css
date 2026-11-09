@@ -462,6 +462,15 @@ p + p {
   background: #f9faf3;
   font-size: 12px;
 }
+.fusion-fuels .learning-actions button {
+  border-color: #29473b;
+  background: #29473b;
+  color: #fffef9;
+}
+.fusion-fuels .learning-actions button:hover {
+  border-color: #162e25;
+  background: #162e25;
+}
 .learning-actions .timeline-cta {
   min-height: 48px;
   padding: 12px 18px;
@@ -779,7 +788,8 @@ p + p {
   color: #52665c;
   font-size: 10px;
 }
-.calculator {
+.calculator,
+.experimental-results {
   background: #fffef9;
   border: 1px solid #c9d2c8;
   border-radius: 5px;
@@ -1022,7 +1032,7 @@ summary {
   margin-top: 12px;
 }
 .experimental-results {
-  margin-top: 60px;
+  margin-top: 36px;
 }
 .records-intro {
   font-size: 13px;
@@ -1073,6 +1083,45 @@ summary {
   padding: 12px;
   vertical-align: top;
 }
+.data-table .table-sort {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin: -6px 0;
+  padding: 6px 0;
+  border: 0;
+  border-radius: 2px;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  color: #294b3a;
+}
+.data-table .table-sort:hover:not(:disabled) {
+  background: #d7e3d3;
+  color: #142f22;
+}
+.sort-arrow {
+  font-size: 15px;
+  line-height: 1;
+}
+.data-table th[aria-sort] {
+  background: #d7e3d3;
+  box-shadow: inset 0 -2px #526f5a;
+}
+.data-table .table-sort:disabled {
+  cursor: default;
+  color: #617168;
+  opacity: 1;
+}
+.table-sort:disabled .sort-arrow { opacity: .4; }
+.table-sort-note {
+  margin: -4px 0 16px;
+  color: #52665c;
+  font-size: 12px;
+}
+.funding-table .fund-date { white-space: nowrap; }
 .data-table td {
   border-bottom: 1px solid #d1d9d0;
   padding: 13px 12px;
@@ -1614,8 +1663,7 @@ summary {
   background: #dfe8dc;
   border-color: #526d5b;
 }
-.history-teaser.section-disclosure,
-.experimental-results.section-disclosure {
+.history-teaser.section-disclosure {
   padding-block: 20px;
   border-block: 1px solid #cbd5c7;
 }
@@ -2010,6 +2058,15 @@ dialog::backdrop {
   height: 22px;
   flex: 0 0 22px;
 }
+.map-key-count { font-variant-numeric: tabular-nums; }
+.map-key-empty { color: #9bafb9; }
+.map-key-empty svg { opacity: .5; }
+.map-key-note {
+  margin: 12px 0 0;
+  color: #b5c6cf;
+  font-size: 11px;
+  line-height: 1.6;
+}
 .site-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2343,7 +2400,8 @@ body:has(dialog[open]) {
   .boundary-example h4 {
     font-size: 24px;
   }
-  .calculator {
+  .calculator,
+  .experimental-results {
     padding: 20px 16px;
   }
   .calculator > summary h3 {

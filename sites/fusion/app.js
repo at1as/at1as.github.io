@@ -16,6 +16,10 @@ import { engineeringPanels } from "./engineering-content.js";
 import { approaches, renderMachine } from "./diagrams.js?v=tokamak-cutaway-2";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import { recordCopy, glossaryCopy } from "./reader-content.js";
+import {
+  sortAtlasRows, fundingSortValues, evidenceSortValues,
+  isMappedSite, isPlannedSite, mapSiteCounts,
+} from "./atlas-exploration.js";
 import { clusterMapSites, initialMapView, mountMapViewport } from "./map-viewport.js?v=fluid-1";
 import {
   getEntityReactorOptions,
@@ -42,6 +46,11 @@ const fmt = (n) =>
 const params = new URLSearchParams(location.search);
 let data, sourceMap, sourceNumbers, entityMap, world;
 let atlasConfigurations = [];
+const tableSort = {
+  evidence: { key: "", direction: "ascending" },
+  funding: { key: "", direction: "ascending" },
+};
+const fundingFilters = { currency: "", type: "" };
 let approach = params.get("approach") || "tokamak",
   machineStage = 0,
   reactionStage = 0,
@@ -821,6 +830,24 @@ function entityCard(e) {
     e.claims[0];
   return `<article class="entity-card"><div class="card-top"><span>${esc(atlasFamilyLabel(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not established")}</p><div class="card-evidence">${claim ? evidenceLabels(claim) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds)}</div>` : "<p>No result included</p>"}</div><div class="card-bottom"><span>${e.claims.length} evidence entries</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
 }
+function sortHeader(table, key, label, { disabled = false, sortLabel = label } = {}) {
+  const state = tableSort[table], active = state.key === key;
+  const next = active && state.direction === "ascending" ? "descending" : "ascending";
+  const description = disabled ? "Choose an original currency to sort amounts" : `Sort by ${sortLabel.toLowerCase()}, ${next}`;
+  return `<th scope="col"${active ? ` aria-sort="${state.direction}"` : ""}><button type="button" class="table-sort" data-table-sort="${table}" data-sort-key="${key}" aria-label="${esc(description)}" title="${esc(description)}" ${disabled ? 'disabled aria-describedby="fund-sort-note"' : ""}><span>${esc(label)}</span><span class="sort-arrow" aria-hidden="true">${active ? state.direction === "ascending" ? "↑" : "↓" : "↕"}</span></button></th>`;
+}
+function evidenceTable(entities) {
+  const state = tableSort.evidence;
+  const rows = sortAtlasRows(entities, evidenceSortValues[state.key], state.direction);
+  $("#atlas-content").innerHTML =
+    `<div class="table-scroll" tabindex="0" role="region" aria-label="Evidence table"><table class="data-table"><thead><tr>${sortHeader("evidence", "organization", "Organization")}${sortHeader("evidence", "approach", "Approach / intended fuel", { sortLabel: "reactor approach" })}<th scope="col">Included evidence</th><th scope="col">Announced target</th><th scope="col">Financing snapshot</th></tr></thead><tbody>${rows
+        .map((e) => {
+          const c = e.claims.find((c) => !/target/i.test(c.category)),
+            t = e.targets[0];
+          return `<tr><td><button data-entity="${e.id}">${esc(e.name)}</button><p>${esc(e.locations[0]?.place || "Unknown")}</p></td><td>${esc(e.approach)}<p>${esc(e.intendedFuel || "Not established")}</p></td><td>${c ? evidenceLabels(c) + `<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}` + citations(c.sourceIds) : "Not established in this record"}</td><td>${t ? evidenceLabels(t) + `<p>${esc(t.displayText || t.text)}</p>${t.date ? `<p class="detail-meta">${esc(t.dateRole)}: ${esc(t.date)}</p>` : ""}` + citations(t.sourceIds) : "No included target"}</td><td>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}<p>${citations(e.funding.flatMap((f) => f.sourceIds).slice(0, 1))}</p></td></tr>`;
+        })
+        .join("")}</tbody></table></div>`;
+}
 function atlas() {
   if (!data) return;
   mapController?.dispose();
@@ -856,18 +883,10 @@ function atlas() {
             "",
           )}</div>${entities.length > 9 ? `<button id="show-all-cards" style="display:block;margin:25px auto 0">${showAllCards ? "Show fewer organizations" : "Explore all " + entities.length + " organizations ↓"}</button>` : ""}`
       : '<div class="empty"><h3>No matching organizations</h3><p>Try a broader search or clear the filters</p></div>';
-  if (view === "table")
-    $("#atlas-content").innerHTML =
-      `<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable data table"><table class="data-table"><thead><tr><th>Organization</th><th>Approach / intended fuel</th><th>Included evidence</th><th>Announced target</th><th>Financing snapshot</th></tr></thead><tbody>${entities
-        .map((e) => {
-          const c = e.claims.find((c) => !/target/i.test(c.category)),
-            t = e.targets[0];
-          return `<tr><td><button data-entity="${e.id}">${esc(e.name)}</button><p>${esc(e.locations[0]?.place || "Unknown")}</p></td><td>${esc(e.approach)}<p>${esc(e.intendedFuel || "Not established")}</p></td><td>${c ? evidenceLabels(c) + `<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}` + citations(c.sourceIds) : "Not established in this record"}</td><td>${t ? evidenceLabels(t) + `<p>${esc(t.displayText || t.text)}</p>${t.date ? `<p class="detail-meta">${esc(t.dateRole)}: ${esc(t.date)}</p>` : ""}` + citations(t.sourceIds) : "No included target"}</td><td>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}<p>${citations(e.funding.flatMap((f) => f.sourceIds).slice(0, 1))}</p></td></tr>`;
-        })
-        .join("")}</tbody></table></div>`;
+  if (view === "table") evidenceTable(entities);
   if (view === "funding") funding(entities);
-  if (view === "sites" && entities.length) sites(entities);
-  if (!entities.length)
+  if (view === "sites") sites(entities);
+  if (!entities.length && view !== "sites")
     $("#atlas-content").innerHTML =
       '<div class="empty"><h3>No matching organizations</h3><p>Try a broader search or clear the filters</p></div>';
   tray();
@@ -882,36 +901,41 @@ function atlas() {
     evidence: $("#filter-evidence").value,
   });
 }
-function funding(entities) {
-  const rows = entities.flatMap((e) =>
-    e.funding.map((f) => ({ ...f, entity: e })),
-  );
-  const currencies = [
-      ...new Set(rows.map((r) => r.currency).filter(Boolean)),
-    ].sort(),
-    types = [...new Set(rows.map((r) => r.type))].sort();
-  $("#atlas-content").innerHTML =
-    `<p class="funding-note">These are financing observations, not cash balances. Cumulative totals include earlier rounds. Revised rounds, conditional commitments, debt, grants, public budgets and valuations remain distinct. No aggregate is calculated.</p><div class="funding-filters"><label>Original currency<select id="fund-currency"><option value="">All currencies</option>${currencies.map((c) => `<option>${esc(c)}</option>`).join("")}</select></label><label>Accounting basis<select id="fund-type"><option value="">All types</option>${types.map((c) => `<option>${esc(c)}</option>`).join("")}</select></label></div><div class="table-scroll" id="fund-table" tabindex="0" role="region" aria-label="Financing observations"></div>`;
-  function render() {
-    const c = $("#fund-currency").value,
-      t = $("#fund-type").value;
-    if (!rows.some((r) => (!c || r.currency === c) && (!t || r.type === t))) {
-      $("#fund-table").innerHTML =
-        '<p class="empty">No financing observations match these filters.</p>';
-      return;
-    }
-    $("#fund-table").innerHTML =
-      `<table class="data-table"><thead><tr><th>Organization / date</th><th>Amount as reported</th><th>Type</th><th>Scope, conditions and sources</th></tr></thead><tbody>${rows
-        .filter((r) => (!c || r.currency === c) && (!t || r.type === t))
-        .map(
-          (r) =>
-            `<tr><td><button data-entity="${r.entity.id}">${esc(r.entity.name)}</button><br>${esc(r.date || "Undated")}</td><td>${esc(r.amountLabel || "Undisclosed")}</td><td>${esc(human(r.type))}${r.superseded_by ? "<br><b>Superseded amount</b>" : ""}</td><td>${esc(r.displayScope || r.scope)}<p>${citations(r.sourceIds)}</p></td></tr>`,
-        )
-        .join("")}</tbody></table>`;
+function fundingRows(entities) {
+  return entities.flatMap(e => e.funding.map(f => ({ ...f, entity: e })));
+}
+function renderFundingRows(rows) {
+  const currency = $("#fund-currency").value,
+    type = $("#fund-type").value,
+    state = tableSort.funding;
+  fundingFilters.currency = currency;
+  fundingFilters.type = type;
+  // An amount ordering must never carry over into a mixed-currency view.
+  if (!currency && state.key === "amount") state.key = "";
+  $("#fund-sort-note").textContent = currency
+    ? "Amounts sort by their stated figures, including estimates and bounds. Qualifiers remain attached."
+    : "Choose an original currency to sort amounts.";
+  const filtered = rows.filter(row => (!currency || row.currency === currency) && (!type || row.type === type));
+  if (!filtered.length) {
+    $("#fund-table").innerHTML = '<p class="empty">No financing observations match these filters.</p>';
+    return;
   }
-  $("#fund-currency").onchange = render;
-  $("#fund-type").onchange = render;
-  render();
+  $("#fund-table").innerHTML =
+    `<table class="data-table funding-table"><thead><tr>${sortHeader("funding", "organization", "Organization")}${sortHeader("funding", "date", "Date")}${sortHeader("funding", "amount", "Amount as reported", { disabled: !currency })}${sortHeader("funding", "type", "Type")}<th scope="col">Scope, conditions and sources</th></tr></thead><tbody>${sortAtlasRows(filtered, fundingSortValues[state.key], state.direction)
+      .map(row => `<tr><td><button data-entity="${row.entity.id}">${esc(row.entity.name)}</button></td><td class="fund-date">${esc(row.date || "Undated")}</td><td>${esc(row.amountLabel || "Undisclosed")}</td><td>${esc(human(row.type))}${row.superseded_by ? "<br><b>Superseded amount</b>" : ""}</td><td>${esc(row.displayScope || row.scope)}<p>${citations(row.sourceIds)}</p></td></tr>`)
+      .join("")}</tbody></table>`;
+}
+function funding(entities) {
+  const rows = fundingRows(entities);
+  const currencies = [...new Set(rows.map(row => row.currency).filter(Boolean))].sort(),
+    types = [...new Set(rows.map(row => row.type))].sort();
+  $("#atlas-content").innerHTML =
+    `<p class="funding-note">These are financing observations, not cash balances. Cumulative totals include earlier rounds. Revised rounds, conditional commitments, debt, grants, public budgets and valuations remain distinct. No aggregate is calculated.</p><div class="funding-filters"><label>Original currency<select id="fund-currency"><option value="">All currencies</option>${currencies.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Accounting basis<select id="fund-type"><option value="">All types</option>${types.map(t => `<option>${esc(t)}</option>`).join("")}</select></label></div><p class="table-sort-note" id="fund-sort-note"></p><div class="table-scroll" id="fund-table" tabindex="0" role="region" aria-label="Financing observations"></div>`;
+  $("#fund-currency").value = currencies.includes(fundingFilters.currency) ? fundingFilters.currency : "";
+  $("#fund-type").value = types.includes(fundingFilters.type) ? fundingFilters.type : "";
+  $("#fund-currency").onchange = () => renderFundingRows(rows);
+  $("#fund-type").onchange = () => renderFundingRows(rows);
+  renderFundingRows(rows);
 }
 const mapColors = { site: "#a5d7bd", plant: "#ffac77", cluster: "#e7d9bf", background: "#142431" };
 function mapMarkerShape(shape, x, y, size) {
@@ -923,10 +947,13 @@ function mapMarkerShape(shape, x, y, size) {
     return `<path d="M${x - size} ${y}l${size / 2}-${size}h${size}l${size / 2} ${size}-${size / 2} ${size}h-${size}Z"/>`;
   return `<circle cx="${x}" cy="${y}" r="${size}"/>`;
 }
-function mapLegend() {
-  const item = (label, shape, color, { hollow = false, dashed = false, number = "" } = {}) =>
-    `<span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="${hollow ? mapColors.background : color}" stroke="${color}" stroke-width="1.5" ${dashed ? 'stroke-dasharray="3 2"' : ""}>${mapMarkerShape(shape, 12, 12, number ? 10 : 7)}</g>${number ? `<text x="12" y="12" dy=".35em" text-anchor="middle" fill="#122e27" font-size="12">${number}</text>` : ""}</svg>${label}</span>`;
-  return `<div class="map-key" aria-label="Map legend"><div class="map-key-items">${item("Headquarters / office", "circle", mapColors.site)}${item("Experiment / research", "square", mapColors.site)}${item("Proposed plant", "diamond", mapColors.plant, { hollow: true })}${item("Enabling facility", "hexagon", mapColors.site)}${item("Nearby site records", "circle", mapColors.cluster, { number: "3" })}${item("Planned / under construction", "circle", mapColors.site, { hollow: true, dashed: true })}</div></div>`;
+function mapLegend(sites) {
+  const counts = mapSiteCounts(sites);
+  const item = (label, shape, color, { hollow = false, dashed = false, number = "", category = "" } = {}) => {
+    const count = category ? counts[category] : null;
+    return `<span${category ? ` data-map-category="${category}"` : ""}${count === 0 ? ' class="map-key-empty"' : ""}><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="${hollow ? mapColors.background : color}" stroke="${color}" stroke-width="1.5" ${dashed ? 'stroke-dasharray="3 2"' : ""}>${mapMarkerShape(shape, 12, 12, number ? 10 : 7)}</g>${number ? `<text x="12" y="12" dy=".35em" text-anchor="middle" fill="#122e27" font-size="12">${number}</text>` : ""}</svg><span>${label}${count !== null ? ` <b class="map-key-count">(${count})</b>` : ""}</span></span>`;
+  };
+  return `<div class="map-key" aria-label="Map legend"><div class="map-key-items">${item("Headquarters / office", "circle", mapColors.site, { category: "circle" })}${item("Experiment / research", "square", mapColors.site, { category: "square" })}${item("Proposed plant", "diamond", mapColors.plant, { hollow: true, category: "diamond" })}${item("Enabling facility", "hexagon", mapColors.site, { category: "hexagon" })}${item("Nearby site records", "circle", mapColors.cluster, { number: "3" })}${item("Planned / under construction", "circle", mapColors.site, { hollow: true, dashed: true, category: "planned" })}</div><p class="map-key-note">Counts reflect mapped site records matching the filters. Planned / under construction is a subset of the facility types.</p></div>`;
 }
 let mapSites = [],
   mapClusters = [];
@@ -940,9 +967,7 @@ function sites(entities) {
       ids.has(s.entityId) ||
       (s.relatedEntityIds || []).some((id) => ids.has(id)),
   );
-  const visible = mapSites.filter(
-    (s) => s.latitude !== null && s.longitude !== null,
-  );
+  const visible = mapSites.filter(isMappedSite);
   const grid =
     [-120, -60, 0, 60, 120]
       .map(
@@ -976,12 +1001,12 @@ function sites(entities) {
               : mapColors.site,
         size = cluster.length > 1 ? 10 : 6;
       const icon = mapMarkerShape(shape, 0, 0, size);
-      return `<g class="map-marker" data-cluster="${i}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${markerScale})" tabindex="0" role="button" aria-label="${esc(cluster.length > 1 ? cluster.length + " site records; zoom in to explore locations" : s.name + "; " + human(s.role) + "; " + s.status)}" fill="${shape.includes("diamond") && cluster.length === 1 ? mapColors.background : color}" stroke="${color}" stroke-width="1.4" ${cluster.length === 1 && /planned|construction/.test(s.status) ? 'stroke-dasharray="2 1"' : ""}><circle r="12" fill="transparent" stroke="none"/>${icon}${cluster.length > 1 ? `<text y="0" dy=".35em" text-anchor="middle" fill="#122e27" stroke="none" font-size="11">${cluster.length}</text>` : ""}</g>`;
+      return `<g class="map-marker" data-cluster="${i}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${markerScale})" tabindex="0" role="button" aria-label="${esc(cluster.length > 1 ? cluster.length + " site records; zoom in to explore locations" : s.name + "; " + human(s.role) + "; " + s.status)}" fill="${shape.includes("diamond") && cluster.length === 1 ? mapColors.background : color}" stroke="${color}" stroke-width="1.4" ${cluster.length === 1 && isPlannedSite(s) ? 'stroke-dasharray="2 1"' : ""}><circle r="12" fill="transparent" stroke="none"/>${icon}${cluster.length > 1 ? `<text y="0" dy=".35em" text-anchor="middle" fill="#122e27" stroke="none" font-size="11">${cluster.length}</text>` : ""}</g>`;
     })
     .join("");
   }
   $("#atlas-content").innerHTML =
-    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map">${mapLegend()}<div class="map-toolbar"><p id="map-help">Drag to pan · select a cluster to zoom<span>Pinch or Ctrl/⌘ + scroll to zoom · double-click to zoom in</span><span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path id="map-outline" d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">Select a numbered cluster to zoom into its sites. Select an individual marker for its location. Records at the same approximate position remain grouped.</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
+    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map">${mapLegend(visible)}<div class="map-toolbar"><p id="map-help">Drag to pan · select a cluster to zoom<span>Pinch or Ctrl/⌘ + scroll to zoom · double-click to zoom in</span><span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path id="map-outline" d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">${visible.length ? "Select a numbered cluster to zoom into its sites. Select an individual marker for its location. Records at the same approximate position remain grouped." : "No mapped sites match these filters."}</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
   mapController = mountMapViewport($(".world-map"), mapView, renderMarkers, visible);
   const selectionKey = visible.map(s => s.id).join(",");
   if (selectionKey !== mapSelectionKey) {
@@ -1178,6 +1203,20 @@ function fuelDetail() {
 document.addEventListener("click", (e) => {
   const b = e.target.closest("button,[data-cluster]");
   if (!b) return;
+  if (b.dataset.tableSort) {
+    if (b.disabled) return;
+    const table = b.dataset.tableSort, key = b.dataset.sortKey;
+    const state = tableSort[table];
+    state.direction = state.key === key && state.direction === "ascending" ? "descending" : "ascending";
+    state.key = key;
+    const scroller = b.closest(".table-scroll"), scrollLeft = scroller.scrollLeft;
+    if (table === "funding") renderFundingRows(fundingRows(selectedEntities()));
+    else evidenceTable(selectedEntities());
+    const replacement = $(`[data-table-sort="${table}"][data-sort-key="${key}"]`);
+    replacement.closest(".table-scroll").scrollLeft = scrollLeft;
+    replacement.focus({ preventScroll: true });
+    return;
+  }
   if (b.dataset.riskToggle) toggleRisk(b);
   if (b.dataset.configStep) {
     const select = document.getElementById(b.dataset.select);
@@ -1319,6 +1358,8 @@ $("#filter-configuration").onchange = () => {
   (k) => ($("#filter-" + k).onchange = atlas),
 );
 $("#clear-filters").onclick = () => {
+  fundingFilters.currency = "";
+  fundingFilters.type = "";
   $("#atlas-search").value = "";
   $("#filter-family").value = "";
   refreshConfigurationFilter("");
