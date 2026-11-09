@@ -71,7 +71,7 @@ function scene(view, index, mobile) {
   const role = id => view.input.includes(id) ? "input" : view.output.includes(id) ? "output" : "context";
   const flow = (id, d, loss = false) => `<path data-energy-flow="${id}" data-count="${role(id)}" d="${d}" class="energy-path gain-${role(id)}${loss ? " energy-loss" : ""}" marker-end="url(#${prefix}-${role(id)})"/>`;
   const label = (id, x, y, words, anchor = "middle") => text(x, y, words, `energy-flow-label gain-${role(id)}`, anchor);
-  const defs = `<defs>${["input", "output", "context"].map(r => `<marker id="${prefix}-${r}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1 7 4 1 7" fill="none" stroke="${r === "input" ? "#a45330" : r === "output" ? "#2e6853" : "#8a9891"}" stroke-width="1.5"/></marker>`).join("")}</defs>`;
+  const defs = `<defs>${["input", "output", "context"].map(r => `<marker id="${prefix}-${r}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1 7 4 1 7" fill="none" stroke="${r === "input" ? "#a45330" : r === "output" ? "#176344" : "#929896"}" stroke-width="1.5"/></marker>`).join("")}</defs>`;
   let art;
   if (!mobile) {
     art = `${place(driver(view.kind), 132, 200)}${place(reactor(view.kind), 415, 200)}${place(grid(), 1065, 200)}
