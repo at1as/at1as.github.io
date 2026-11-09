@@ -6,7 +6,7 @@ import {
   reactionEnergyMeV,
 } from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
-import { renderGainDiagram } from "./gain-diagram.js?v=integrated-examples-1";
+import { renderGainDiagram } from "./gain-diagram.js?v=counted-path-contrast-1";
 import {
   atlasFamilies, atlasFamilyId, atlasFamilyLabel, matchesApproach,
   readApproachFilters, claimSourceLabels, sourceTypeLabel,
