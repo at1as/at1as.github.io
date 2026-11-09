@@ -1664,11 +1664,12 @@ summary {
   border-color: #526d5b;
 }
 .history-teaser.section-disclosure {
-  padding-block: 20px;
-  border-block: 1px solid #cbd5c7;
+  padding: 26px;
+  border: 1px solid #cbd5c7;
+  border-radius: 6px;
+  background: #fffef9;
 }
 .sources-content {
-  max-width: 760px;
   padding-top: 24px;
 }
 .sources-content > p {
@@ -2676,6 +2677,9 @@ body:has(dialog[open]) {
   padding-top: 25px;
 }
 @media (max-width: 700px) {
+  .history-teaser.section-disclosure {
+    padding: 20px 16px;
+  }
   #history-milestones {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 22px;
