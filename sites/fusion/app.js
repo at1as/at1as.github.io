@@ -6,7 +6,7 @@ import {
   reactionEnergyMeV,
 } from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
-import { renderGainDiagram } from "./gain-diagram.js";
+import { renderGainDiagram } from "./gain-diagram.js?v=integrated-examples-1";
 import {
   atlasFamilies, atlasFamilyId, atlasFamilyLabel, matchesApproach,
   readApproachFilters, claimSourceLabels, sourceTypeLabel,
@@ -480,41 +480,41 @@ $("#machine-play").onclick = () => {
   );
 };
 const boundaryData = [
-  [
-    "Fuel gain",
-    "Fusion energy ÷ energy absorbed by the fuel",
-    "In a laser-driven experiment, energy passes from the laser into a target and then into the fuel inside it. Fuel gain counts only the energy absorbed by that fuel. For example, if the fuel absorbs 1 MJ and releases 2 MJ through fusion, its fuel gain is 2.",
-    "fuel",
-    "Producing the laser pulse and transferring its energy to the fuel both incur losses. Fuel gain leaves those losses out, along with the rest of the facility’s electricity use. A fuel gain above 1 can therefore coexist with a target gain below 1 and a net loss of electrical energy.",
-  ],
-  [
-    "Plasma Q",
-    "Fusion power ÷ external heating power delivered to the plasma",
-    "Q measures how much fusion power a hot plasma produces compared with the heating power supplied to it from outside. A plasma producing 500 MW of fusion power while receiving 50 MW of external heating has Q = 10. Heating from the fusion reactions themselves is not counted as an external input.",
-    "reaction",
-    "The 50 MW is heat delivered to the plasma. Producing that heating takes more electricity, and magnets, cooling and other systems consume electricity too. Q leaves these demands out. It also does not account for the losses when fusion heat is converted into electricity.",
-  ],
-  [
-    "Target gain",
-    "Fusion energy ÷ driver energy delivered to the target",
-    "A target is the complete object struck by a laser or another driver, including the fuel inside it. Target gain compares the fusion energy from one pulse with the energy delivered to that target. At NIF, the measured 8.6 MJ divided by 2.08 MJ of laser light gives a target gain of 4.13.",
-    "reaction",
-    "This includes losses between the target and its fuel, which fuel gain omits. It still excludes the electricity needed to produce the laser pulse and run the facility. Fusion energy would also have to be collected and converted into electricity before any could reach the grid.",
-  ],
-  [
-    "Electrical recovery",
-    "Electricity returned after a pulse",
-    "Some pulsed machines recover electrical energy from their magnets or plasma after a pulse. Much of the returned energy can be electricity that was supplied to drive the pulse in the first place. Recovery reduces the amount that must be supplied for the next pulse.",
-    "conversion",
-    "To establish net generation, count every electrical input and output over a complete cycle, including pumps, cooling and other loads. Stored energy must be the same at the start and end: emptying a battery or discharging a magnet is not new energy from fusion. A useful power plant must also sustain the reaction or repeat it reliably, producing net electricity over the long term; a brief gain alone is not enough.",
-  ],
-  [
-    "Whole plant",
-    "Electricity generated − all electricity consumed by the plant",
-    "This is the balance that determines whether a plant can supply the grid. Start with the electricity produced by the generator or direct-conversion system, then subtract everything used to start and maintain fusion, run the magnets and cooling, pump fluids and process fuel.",
-    "plant",
-    "The result is net electricity. A positive value is a surplus available to export; a negative value means the plant needs electricity from elsewhere. Count startup, operation and shutdown over a complete cycle, with no net withdrawal of stored energy. Converting fusion energy into electricity also incurs losses, so fusion gain above 1 is not enough.",
-  ],
+  {
+    title: "Fuel gain",
+    formula: "Fusion energy ÷ energy absorbed by the fuel",
+    text: "In laser fusion, energy reaches a target and then the fuel inside it. Fuel gain counts only the energy the fuel absorbs: absorbing 1 MJ and releasing 2 MJ through fusion gives a fuel gain of 2.",
+    caveatLabel: "Leaves out",
+    caveat: "Losses in producing the laser pulse, transferring its energy to the fuel and converting fusion energy into electricity, plus the rest of the plant’s electricity use. Fuel gain above 1 can still mean a net electrical loss.",
+  },
+  {
+    title: "Plasma Q",
+    formula: "Fusion power ÷ external heating power delivered to the plasma",
+    text: "Q compares the fusion power a plasma produces with the heat supplied to it from outside. Heating from the fusion reactions themselves does not count as external input.",
+    caveatLabel: "Leaves out",
+    caveat: "Electricity lost in producing that heating, power for magnets and other plant systems, and losses when fusion heat is converted into electricity.",
+  },
+  {
+    title: "Target gain",
+    formula: "Fusion energy ÷ driver energy delivered to the target",
+    text: "A target is the complete object struck by a laser or another driver, including the fuel inside it. Target gain counts energy delivered to that whole target, including the energy that never reaches the fuel.",
+    caveatLabel: "Leaves out",
+    caveat: "Electricity used to produce the pulse and run the facility, and losses in converting fusion energy into electricity. Target gain above 1 does not establish net electricity.",
+  },
+  {
+    title: "Electrical recovery",
+    formula: "Electricity returned after a pulse",
+    text: "Some pulsed machines recover energy from their magnets or plasma to help drive the next pulse. The returned electricity can include energy supplied earlier; it is not all new energy from fusion.",
+    caveatLabel: "Count the complete cycle",
+    caveat: "Subtract every electrical input, including pumps and cooling. Stored energy must be the same at the start and end: discharging a battery or magnet is not new energy from fusion. A useful plant must repeat this reliably over the long term.",
+  },
+  {
+    title: "Whole plant",
+    formula: "Electricity generated − all electricity consumed by the plant",
+    text: "Subtract all the electricity used to start and sustain fusion and run the plant from its electrical output. A positive balance is a surplus for the grid; a negative one means the plant needs electricity from elsewhere.",
+    caveatLabel: "For a useful power plant",
+    caveat: "Net output must be positive over sustained or reliably repeated operation. Count startup, operation and shutdown over a complete cycle, with no net withdrawal of stored energy. Reliable, economical operation is also essential.",
+  },
 ];
 function boundaries() {
   const b = boundaryData[boundary];
@@ -522,7 +522,7 @@ function boundaries() {
     $("#boundary-tabs").innerHTML = boundaryData
       .map(
         (x, i) =>
-          `<button id="boundary-tab-${i}" role="tab" aria-controls="boundary-panel" aria-label="${i + 1}. ${esc(x[0])}" data-boundary="${i}"><svg class="boundary-tab-number" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><mask id="boundary-number-${i}" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="white"/><text x="12" y="12" dy=".35em" text-anchor="middle" fill="black" font-size="13" font-weight="700">${i + 1}</text></mask></defs><circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#boundary-number-${i})"/></svg><span>${x[0]}</span></button>`,
+          `<button id="boundary-tab-${i}" role="tab" aria-controls="boundary-panel" aria-label="${i + 1}. ${esc(x.title)}" data-boundary="${i}"><svg class="boundary-tab-number" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><mask id="boundary-number-${i}" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="white"/><text x="12" y="12" dy=".35em" text-anchor="middle" fill="black" font-size="13" font-weight="700">${i + 1}</text></mask></defs><circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#boundary-number-${i})"/></svg><span>${x.title}</span></button>`,
       )
       .join("");
   $$("[data-boundary]").forEach((button, i) => {
@@ -536,7 +536,10 @@ function boundaries() {
   );
   $("#boundary-visual").innerHTML = renderGainDiagram(boundary);
   $("#boundary-caption").innerHTML =
-    `<h3>${b[0]}</h3><div><strong>${b[1]}</strong><p>${b[2]}</p><p>${b[4]}</p></div>`;
+    `<h3>${b.title}</h3><div><strong>${b.formula}</strong><p>${b.text}</p><p class="boundary-caveat"><strong>${b.caveatLabel}:</strong> ${b.caveat}</p></div>`;
+  $$("[data-boundary-example]").forEach((example) => {
+    example.hidden = Number(example.dataset.boundaryExample) !== boundary;
+  });
 }
 $("#boundary-tabs").addEventListener("keydown", (event) => {
   const directions = {
@@ -575,7 +578,7 @@ function calcControls() {
   });
   $("#calc-context").innerHTML =
     mode === "inertia"
-      ? `<strong>PUBLISHED EXAMPLE · Inertia Phase I roadmap</strong><p>Inertia publishes a set of proposed plant inputs, making its roadmap a useful worked example: you can follow how target gain, laser efficiency and shot rate affect net electricity. These are company assumptions, not measured plant performance.</p><p>Starting inputs: target gain 25, 10 MJ per shot, 10 shots per second, 12% laser efficiency, 45% heat-to-electric efficiency and 5 MJ of other electricity use per shot. They give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated source in the 22 Oct 2026 snapshot. ${citations(["ALT_INERTIA_PHASE1"])}</p><p class="personal-context"><strong>A note from Jason:</strong> Inertia is led by my former CEO. This example lets you inspect the published assumptions; it does not establish that the proposed plant will achieve them.</p>`
+      ? `<strong>PUBLISHED EXAMPLE · Inertia Phase I roadmap</strong><p>Explore how Inertia’s proposed target gain, laser efficiency and shot rate affect net electricity. These are company assumptions, not measured plant performance.</p><p class="personal-context"><strong>A note from Jason:</strong> Inertia is led by my former CEO. This example lets you inspect its assumptions; it does not establish that the plant will achieve them.</p><details class="scenario-background"><summary>Published inputs and source</summary><p>Starting inputs: target gain 25, 10 MJ per shot, 10 shots per second, 12% laser efficiency, 45% heat-to-electric efficiency and 5 MJ of other electricity use per shot. They give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated source in the 22 Oct 2026 snapshot.</p>${citations(["ALT_INERTIA_PHASE1"])}</details>`
       : "<strong>ILLUSTRATIVE ASSUMPTIONS</strong> Adjust the inputs to calculate gross generation, plant demand, and net output. These defaults describe no particular company or experiment.";
   const keys = [
     "gain",
