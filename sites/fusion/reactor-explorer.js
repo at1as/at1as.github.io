@@ -611,8 +611,12 @@ export function createReactorExplorer(host, id, options = {}) {
       if (id) {
         hint.textContent = content.parts.find((p) => p.id === id).name;
         const r = canvas.getBoundingClientRect();
-        hint.style.left = `${Math.min(e.clientX - r.left + 14, r.width - 170)}px`;
-        hint.style.top = `${e.clientY - r.top - 30}px`;
+        // Pointer coordinates are displayed pixels; CSS positions use the
+        // unscaled stage, including when an ancestor is scaled.
+        const x = (e.clientX - r.left) * stage.clientWidth / r.width;
+        const y = (e.clientY - r.top) * stage.clientHeight / r.height;
+        hint.style.left = `${Math.max(0, Math.min(x + 14, stage.clientWidth - hint.offsetWidth))}px`;
+        hint.style.top = `${Math.max(0, y - 30)}px`;
       }
     });
     canvas.addEventListener("pointerup", (e) => {

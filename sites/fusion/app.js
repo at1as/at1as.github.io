@@ -135,7 +135,7 @@ function mountReactor(host, id, options = {}) {
     previous?.displaySettings;
   // Reserve the current footprint before disposal so scroll anchoring cannot
   // follow a temporarily empty viewer or a differently sized fallback image.
-  if (previous?.view) host.style.height = `${bounds.height}px`;
+  if (previous?.view) host.style.height = `${host.offsetHeight}px`;
   releaseReactor(host);
   const mount = {
     key,
@@ -157,7 +157,7 @@ function mountReactor(host, id, options = {}) {
     mount.observer?.disconnect();
     try {
       if (!reactorFactory) {
-        const module = await import("./reactor-explorer.js?v=display-settings-2");
+        const module = await import("./reactor-explorer.js?v=layout-coordinates-1");
         reactorFactory = module.createReactorExplorer;
       }
       if (mount.cancelled || !host.isConnected) return;
@@ -1555,7 +1555,7 @@ function markChapter() {
         .filter(
           (s) =>
             s.getBoundingClientRect().top <
-            $(".site-header").offsetHeight + 180,
+            $(".site-header").getBoundingClientRect().bottom + 180,
         )
         .at(-1)?.id;
   $$(".site-header nav a").forEach((a) => {
