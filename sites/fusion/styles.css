@@ -651,6 +651,12 @@ p + p {
   border: 1px solid #c7cec1;
   border-radius: 6px;
 }
+.boundaries > summary {
+  padding: 26px;
+}
+.boundaries.section-disclosure[open] > summary {
+  margin-bottom: 0;
+}
 #boundary-panel {
   padding: 26px;
 }
@@ -663,8 +669,8 @@ p + p {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   padding: 0 18px;
   background: #e5e9df;
+  border-top: 1px solid #c7cec1;
   border-bottom: 1px solid #c7cec1;
-  border-radius: 6px 6px 0 0;
 }
 .boundary-tabs button {
   display: flex;
@@ -849,10 +855,6 @@ p + p {
 }
 #calc-context p {
   margin: 7px 0;
-}
-#calc-context .personal-context {
-  padding-top: 8px;
-  border-top: 1px solid #d5dcd2;
 }
 .scenario-background,
 .record-background {
@@ -2373,6 +2375,7 @@ body:has(dialog[open]) {
   .machine-compare-grid svg {
     min-height: 220px;
   }
+  .boundaries > summary,
   #boundary-panel {
     padding: 20px 15px;
   }
@@ -2632,7 +2635,7 @@ body:has(dialog[open]) {
   }
 }
 .history-teaser {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 #history-milestones {
   display: grid;
@@ -3245,7 +3248,7 @@ h2 {
 }
 
 .energy-context {
-  margin-top: 36px;
+  margin-top: 40px;
   padding: 28px;
   border: 1px solid #c6d0c1;
   border-radius: 6px;

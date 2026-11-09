@@ -93,9 +93,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=milestones-card-1" />
+    <link rel="stylesheet" href="./styles.css?v=gain-disclosure-1" />
     <link rel="stylesheet" href="./reactor-explorer.css?v=configuration-navigation-1" />
-    <script type="module" src="./app.js?v=atlas-exploration-1"></script>
+    <script type="module" src="./app.js?v=scenario-context-2"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -753,7 +753,11 @@
             only the whole-plant balance tells us what can reach the grid
           </p>
         </div>
-        <div class="boundaries">
+        <details class="boundaries section-disclosure" open>
+          <summary>
+            <h3>What the gain numbers mean</h3>
+            <span class="disclosure-mark" aria-hidden="true"></span>
+          </summary>
           <div
             class="boundary-tabs"
             id="boundary-tabs"
@@ -826,7 +830,7 @@
               </div>
             </article>
           </div>
-        </div>
+        </details>
         <details class="calculator section-disclosure" open>
           <summary>
             <h3>Power balance</h3>
