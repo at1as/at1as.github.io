@@ -65,6 +65,7 @@
             "name": "The paths to fusion power — Fusion Atlas",
             "description": "Explore how fusion machines work, what experiments have demonstrated, and the engineering between a fusion reaction and electricity on the grid.",
             "inLanguage": "en",
+            "dateModified": "2026-11-12",
             "author": {
               "@type": "Person",
               "name": "Jason Willems",
@@ -95,7 +96,7 @@
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css?v=gain-disclosure-1" />
     <link rel="stylesheet" href="./reactor-explorer.css?v=configuration-navigation-1" />
-    <script type="module" src="./app.js?v=scenario-context-2"></script>
+    <script type="module" src="./app.js?v=correctness-20261112"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -126,8 +127,9 @@
             <a class="hero-explore" href="#machines">Explore the Machines</a>
           </div>
           <div class="snapshot">
-            Updated <strong>6 Nov 2026</strong
-            ><span>42 organizations · 15 reactor configurations</span>
+            <span>Page updated <strong>12 Nov 2026</strong></span>
+            <span>Research cutoff <strong>22 Oct 2026</strong></span>
+            <span>42 organizations · 15 reactor configurations</span>
           </div>
         </div>
         <figure class="hero-figure">
@@ -1010,11 +1012,13 @@
               </summary>
               <div class="filters">
                 <label
-                  >Fuel<select id="filter-fuel">
+                  >Fuel used or planned<select id="filter-fuel" aria-describedby="fuel-filter-note">
                     <option value="">All fuels</option>
-                    <option>D-T</option>
-                    <option>D-He3</option>
-                    <option>p-B11</option>
+                    <option value="H">Hydrogen (H)</option>
+                    <option value="D-D">Deuterium (D / D–D)</option>
+                    <option value="D-T">D–T</option>
+                    <option value="D-He3">D–He3</option>
+                    <option value="p-B11">p–B11</option>
                   </select></label
                 >
                 <label
@@ -1026,7 +1030,7 @@
                   </select></label
                 >
                 <label
-                  >Country<select id="filter-country">
+                  ><span id="country-filter-label">Organization presence</span><select id="filter-country">
                     <option value="">All countries</option>
                   </select></label
                 >
@@ -1036,6 +1040,7 @@
                   </select></label
                 >
               </div>
+              <p class="quiet" id="fuel-filter-note">Fuel matches documented experiments or announced plans, including research plasmas. A match does not establish fusion gain or an operating power plant; field notes distinguish each use.</p>
             </details>
           </div>
           <div class="results-line">
@@ -1066,8 +1071,10 @@
             </summary>
             <div class="sources-content">
               <p class="sources-snapshot">
-                Research snapshot · 22 October 2026
+                Page updated · 12 November 2026<br>
+                Research cutoff · 22 October 2026
               </p>
+              <p>Fuel metadata and financing citations received targeted corrections on 12 November 2026. Other evidence remains at the research cutoff; this was not a full data refresh.</p>
               <h3>How to read the evidence</h3>
               <p>
                 Experiments report observations, models describe simulations or
@@ -1132,7 +1139,7 @@
         Built by <a href="https://www.jasonwillems.com">Jason Willems</a> ·
         <a href="/sites/">More visual explorations ↗</a>
       </p>
-      <span>Updated 6 Nov 2026</span>
+      <span>Page updated 12 Nov 2026 · Research cutoff 22 Oct 2026</span>
     </footer>
     <dialog id="detail-dialog" aria-labelledby="detail-title">
       <div class="dialog-toolbar">

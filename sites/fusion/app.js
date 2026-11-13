@@ -18,8 +18,9 @@ import { balance, defaults, readScenario, targetCost } from "./model.js";
 import { recordCopy, glossaryCopy } from "./reader-content.js";
 import {
   sortAtlasRows, fundingSortValues, evidenceSortValues,
-  isMappedSite, isPlannedSite, mapSiteCounts,
-} from "./atlas-exploration.js";
+  isMappedSite, isPlannedSite, mapSiteCounts, matchesFuel, selectedSites,
+  readFundingState, fundingURLState, hasFundingFilters,
+} from "./atlas-exploration.js?v=correctness-1";
 import { clusterMapSites, initialMapView, mountMapViewport } from "./map-viewport.js?v=fluid-1";
 import {
   getEntityReactorOptions,
@@ -786,9 +787,7 @@ function selectedEntities() {
           .toLowerCase()
           .includes(q)) &&
       matchesApproach(e, f, configuration) &&
-      (!fuel ||
-        (e.intended_fuel_ids || []).includes(fuel) ||
-        e.intendedFuel?.includes(fuel)) &&
+      matchesFuel(e, fuel) &&
       (!role || (e.roles || [e.role]).includes(role)) &&
       (!country || e.locations.some((l) => l.country === country)) &&
       (!evidence || e.claims.some((c) => c.category === evidence)),
@@ -828,7 +827,7 @@ function entityCard(e) {
   const claim =
     e.claims.find((c) => !/target|agreement|organization/i.test(c.category)) ||
     e.claims[0];
-  return `<article class="entity-card"><div class="card-top"><span>${esc(atlasFamilyLabel(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not established")}</p><div class="card-evidence">${claim ? evidenceLabels(claim) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds)}</div>` : "<p>No result included</p>"}</div><div class="card-bottom"><span>${e.claims.length} evidence entries</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
+  return `<article class="entity-card"><div class="card-top"><span>${esc(atlasFamilyLabel(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not established")}</p><div class="card-evidence">${claim ? evidenceLabels(claim) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds)}</div>` : "<p>No result included</p>"}</div><div class="card-bottom"><span>${e.claims.length} records</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
 }
 function sortHeader(table, key, label, { disabled = false, sortLabel = label } = {}) {
   const state = tableSort[table], active = state.key === key;
@@ -836,22 +835,35 @@ function sortHeader(table, key, label, { disabled = false, sortLabel = label } =
   const description = disabled ? "Choose an original currency to sort amounts" : `Sort by ${sortLabel.toLowerCase()}, ${next}`;
   return `<th scope="col"${active ? ` aria-sort="${state.direction}"` : ""}><button type="button" class="table-sort" data-table-sort="${table}" data-sort-key="${key}" aria-label="${esc(description)}" title="${esc(description)}" ${disabled ? 'disabled aria-describedby="fund-sort-note"' : ""}><span>${esc(label)}</span><span class="sort-arrow" aria-hidden="true">${active ? state.direction === "ascending" ? "↑" : "↓" : "↕"}</span></button></th>`;
 }
+function fuelSummary(e) {
+  if (!e.fuel_contexts) return `<p><strong>Intended plant fuel:</strong> ${esc(e.intendedFuel || "Not established in the reviewed record")}</p>`;
+  return ["experimental", "planned_research"].filter(key => e.fuel_contexts[key].status !== "not_established")
+    .map(key => `<p><strong>${key === "experimental" ? "Experiment" : "Planned research"}:</strong> ${esc(e.fuel_contexts[key].text)}</p>${citations(e.fuel_contexts[key].source_ids)}`).join("");
+}
+function fuelDetails(e) {
+  const contexts = e.fuel_contexts || {
+    experimental: { text: e.displayExperimentalFuel || e.experimentalFuel || "Not established in the reviewed record" },
+    commercial: { text: e.intendedFuel || "Not established in the reviewed record" },
+  };
+  const labels = { experimental: "Experimental fuel / status", planned_research: "Planned research fuel", commercial: "Intended commercial fuel" };
+  return `<div class="methodology-grid" style="margin-top:25px;gap:30px">${Object.entries(contexts).map(([key, context]) => `<div><h4>${labels[key]}</h4><p>${esc(context.text)}</p>${citations(context.source_ids)}</div>`).join("")}</div>`;
+}
+function financingSummary(e) {
+  return `<p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.fundingSummaryNote ? `<p>${esc(e.fundingSummaryNote)}</p>` : ""}${citations(e.fundingSummarySourceIds)}`;
+}
 function evidenceTable(entities) {
   const state = tableSort.evidence;
   const rows = sortAtlasRows(entities, evidenceSortValues[state.key], state.direction);
   $("#atlas-content").innerHTML =
-    `<div class="table-scroll" tabindex="0" role="region" aria-label="Evidence table"><table class="data-table"><thead><tr>${sortHeader("evidence", "organization", "Organization")}${sortHeader("evidence", "approach", "Approach / intended fuel", { sortLabel: "reactor approach" })}<th scope="col">Included evidence</th><th scope="col">Announced target</th><th scope="col">Financing snapshot</th></tr></thead><tbody>${rows
+    `<div class="table-scroll" tabindex="0" role="region" aria-label="Evidence table"><table class="data-table"><thead><tr>${sortHeader("evidence", "organization", "Organization")}${sortHeader("evidence", "approach", "Approach / fuel", { sortLabel: "reactor approach" })}<th scope="col">Included evidence</th><th scope="col">Announced target</th><th scope="col">Financing snapshot</th></tr></thead><tbody>${rows
         .map((e) => {
           const c = e.claims.find((c) => !/target/i.test(c.category)),
             t = e.targets[0];
-          return `<tr><td><button data-entity="${e.id}">${esc(e.name)}</button><p>${esc(e.locations[0]?.place || "Unknown")}</p></td><td>${esc(e.approach)}<p>${esc(e.intendedFuel || "Not established")}</p></td><td>${c ? evidenceLabels(c) + `<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}` + citations(c.sourceIds) : "Not established in this record"}</td><td>${t ? evidenceLabels(t) + `<p>${esc(t.displayText || t.text)}</p>${t.date ? `<p class="detail-meta">${esc(t.dateRole)}: ${esc(t.date)}</p>` : ""}` + citations(t.sourceIds) : "No included target"}</td><td>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}<p>${citations(e.funding.flatMap((f) => f.sourceIds).slice(0, 1))}</p></td></tr>`;
+          return `<tr><td><button data-entity="${e.id}">${esc(e.name)}</button><p>${esc(e.locations[0]?.place || "Unknown")}</p></td><td>${esc(e.approach)}${fuelSummary(e)}</td><td>${c ? evidenceLabels(c) + `<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}` + citations(c.sourceIds) : "Not established in this record"}</td><td>${t ? evidenceLabels(t) + `<p>${esc(t.displayText || t.text)}</p>${t.date ? `<p class="detail-meta">${esc(t.dateRole)}: ${esc(t.date)}</p>` : ""}` + citations(t.sourceIds) : "No included target"}</td><td>${financingSummary(e)}</td></tr>`;
         })
         .join("")}</tbody></table></div>`;
 }
-function atlas() {
-  if (!data) return;
-  mapController?.dispose();
-  mapController = null;
+function updateFilterIndicators() {
   const advancedCount = $$("#atlas-more-filters select").filter(
     (s) => s.value,
   ).length;
@@ -860,9 +872,17 @@ function atlas() {
     : "";
   $("#clear-filters").hidden =
     !advancedCount &&
+    !hasFundingFilters(fundingFilters) &&
     !$("#filter-family").value &&
     !$("#filter-configuration").value &&
     !$("#atlas-search").value.trim();
+}
+function atlas() {
+  if (!data) return;
+  mapController?.dispose();
+  mapController = null;
+  updateFilterIndicators();
+  $("#country-filter-label").textContent = view === "sites" ? "Site country" : "Organization presence";
   const entities = selectedEntities();
   $$("[data-approach-filter]").forEach((button) => {
     button.setAttribute(
@@ -899,6 +919,7 @@ function atlas() {
     role: $("#filter-role").value,
     country: $("#filter-country").value,
     evidence: $("#filter-evidence").value,
+    ...fundingURLState(fundingFilters, tableSort.funding),
   });
 }
 function fundingRows(entities) {
@@ -912,6 +933,8 @@ function renderFundingRows(rows) {
   fundingFilters.type = type;
   // An amount ordering must never carry over into a mixed-currency view.
   if (!currency && state.key === "amount") state.key = "";
+  updateFilterIndicators();
+  updateURL(fundingURLState(fundingFilters, state));
   $("#fund-sort-note").textContent = currency
     ? "Amounts sort by their stated figures, including estimates and bounds. Qualifiers remain attached."
     : "Choose an original currency to sort amounts.";
@@ -927,10 +950,11 @@ function renderFundingRows(rows) {
 }
 function funding(entities) {
   const rows = fundingRows(entities);
-  const currencies = [...new Set(rows.map(row => row.currency).filter(Boolean))].sort(),
-    types = [...new Set(rows.map(row => row.type))].sort();
+  const allRows = fundingRows(data.entities);
+  const currencies = [...new Set(allRows.map(row => row.currency).filter(Boolean))].sort(),
+    types = [...new Set(allRows.map(row => row.type))].sort();
   $("#atlas-content").innerHTML =
-    `<p class="funding-note">These are financing observations, not cash balances. Cumulative totals include earlier rounds. Revised rounds, conditional commitments, debt, grants, public budgets and valuations remain distinct. No aggregate is calculated.</p><div class="funding-filters"><label>Original currency<select id="fund-currency"><option value="">All currencies</option>${currencies.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Accounting basis<select id="fund-type"><option value="">All types</option>${types.map(t => `<option>${esc(t)}</option>`).join("")}</select></label></div><p class="table-sort-note" id="fund-sort-note"></p><div class="table-scroll" id="fund-table" tabindex="0" role="region" aria-label="Financing observations"></div>`;
+    `<p class="funding-note">These observations distinguish funding rounds, cumulative totals and reported cash snapshots. Money raised is not the same as cash available. Cumulative totals include earlier rounds. Revised rounds, conditional commitments, debt, grants, public budgets and valuations remain distinct. No aggregate is calculated.</p><div class="funding-filters"><label>Original currency<select id="fund-currency"><option value="">All currencies</option>${currencies.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Accounting basis<select id="fund-type"><option value="">All types</option>${types.map(t => `<option>${esc(t)}</option>`).join("")}</select></label></div><p class="table-sort-note" id="fund-sort-note"></p><div class="table-scroll" id="fund-table" tabindex="0" role="region" aria-label="Financing observations"></div>`;
   $("#fund-currency").value = currencies.includes(fundingFilters.currency) ? fundingFilters.currency : "";
   $("#fund-type").value = types.includes(fundingFilters.type) ? fundingFilters.type : "";
   $("#fund-currency").onchange = () => renderFundingRows(rows);
@@ -961,12 +985,7 @@ const mapView = initialMapView();
 let mapController, mapSelectionKey = "";
 function sites(entities) {
   mapController?.dispose();
-  const ids = new Set(entities.map((e) => e.id));
-  mapSites = data.sites.filter(
-    (s) =>
-      ids.has(s.entityId) ||
-      (s.relatedEntityIds || []).some((id) => ids.has(id)),
-  );
+  mapSites = selectedSites(data.sites, entities, $("#filter-country").value);
   const visible = mapSites.filter(isMappedSite);
   const grid =
     [-120, -60, 0, 60, 120]
@@ -1053,7 +1072,7 @@ function entityDetail(id) {
   updateURL({ entity: e.id });
   modal(
     "ORGANIZATION FIELD NOTES",
-    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}<div class="methodology-grid" style="margin-top:25px;gap:30px"><div><h4>Experimental fuel / status</h4><p>${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in this record")}</p></div><div><h4>Intended commercial fuel</h4><p>${esc(e.intendedFuel || "Not established in this record")}</p></div></div><h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3><p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
+    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}${fuelDetails(e)}<h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3>${financingSummary(e)}${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
   );
   if (m) {
     const options = getEntityReactorOptions(e);
@@ -1095,7 +1114,7 @@ function sourceDetail(id, historyId) {
   sourceFocus = document.activeElement;
   const event = data.history.find((h) => h.id === historyId);
   $("#source-content").innerHTML =
-    `<div class="detail-meta">Reference ${sourceNumbers.get(id)} · ${esc(sourceTypeLabel(s))}</div><h2 id="source-title">${esc(s.title)}</h2>${event ? `<section class="source-context"><h3>${esc(event.title)}</h3><p>${esc(event.displayText || event.text)}</p></section>` : ""}<p>${esc(s.publisher)}</p><p>Published: ${esc(s.published || "Undated live page")}<br>Reviewed for the snapshot: ${esc(s.reviewed || "2026-10-22")}</p>${s.note ? `<p>${esc(s.note)}</p>` : ""}<p><a href="${esc(s.url)}" target="_blank" rel="noopener">Open the original source ↗</a></p>`;
+    `<div class="detail-meta">Reference ${sourceNumbers.get(id)} · ${esc(sourceTypeLabel(s))}</div><h2 id="source-title">${esc(s.title)}</h2>${event ? `<section class="source-context"><h3>${esc(event.title)}</h3><p>${esc(event.displayText || event.text)}</p></section>` : ""}<p>${esc(s.publisher)}</p><p>Published: ${esc(s.published || "Undated live page")}<br>Source last reviewed: ${esc(s.reviewed || "2026-10-22")}</p>${s.note ? `<p>${esc(s.note)}</p>` : ""}<p><a href="${esc(s.url)}" target="_blank" rel="noopener">Open the original source ↗</a></p>`;
   $("#close-source").textContent = $("#detail-dialog").open
     ? "Back to details ×"
     : "Close ×";
@@ -1360,6 +1379,7 @@ $("#filter-configuration").onchange = () => {
 $("#clear-filters").onclick = () => {
   fundingFilters.currency = "";
   fundingFilters.type = "";
+  if (tableSort.funding.key === "amount") tableSort.funding.key = "";
   $("#atlas-search").value = "";
   $("#filter-family").value = "";
   refreshConfigurationFilter("");
@@ -1399,12 +1419,15 @@ async function init() {
   machine();
   calcControls();
   try {
-    const response = await fetch("./data.json?v=20261107-rd", { cache: "no-cache" });
+    const response = await fetch("./data.json?v=20261112-correctness", { cache: "no-cache" });
     if (!response.ok) throw Error("Dataset failed to load");
     data = await response.json();
     sourceMap = new Map(data.sources.map((s) => [s.id, s]));
     sourceNumbers = new Map(data.sources.map((s, i) => [s.id, i + 1]));
     entityMap = new Map(data.entities.map((e) => [e.id, e]));
+    const initialFunding = readFundingState(params, fundingRows(data.entities));
+    Object.assign(fundingFilters, initialFunding.filters);
+    Object.assign(tableSort.funding, initialFunding.sort);
     comparison = new Set(
       [...comparison]
         .map((id) =>

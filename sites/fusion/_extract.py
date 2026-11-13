@@ -2,7 +2,8 @@
 """Reproducible presentation adapter for the supplied canonical Fusion Atlas.
 
 Native records govern facts, numbers, coordinates, evidence categories and joins.
-UI slugs are preserved alongside canonicalId. The original is published verbatim.
+UI slugs are preserved alongside canonicalId. Reviewed corrections are applied
+to both public downloads; the original handoff is retained in the archive.
 Run python3 sites/fusion/_extract.py; no network or third-party dependencies.
 """
 import hashlib
@@ -11,9 +12,10 @@ import re
 import shutil
 import unicodedata
 from pathlib import Path
+from _research import canonical_bytes as corrected_bytes
 
 ROOT = Path(__file__).resolve().parent
-canonical_bytes = (ROOT / '_handoff/data/fusion_atlas.json').read_bytes()
+canonical_bytes = corrected_bytes()
 C = json.loads(canonical_bytes)
 report_path = ROOT / '_handoff/01_RESEARCH_REPORT.md'
 report = report_path.read_text()
@@ -128,11 +130,16 @@ for e in C['entities']:
             'mechanismSteps': e.get('mechanism', []), 'mechanism': ' '.join(e.get('mechanism', [])),
             'locations': [adapt_site(sites[i]) for i in e['site_ids']], 'claims': claims,
             'targets': targets, 'funding': funding, 'assessment': assessment,
-            'fundingSummary': e['funding_summary']['display'], 'additionalContext': ' '.join(note_strings),
+            'fundingSummary': e['funding_summary']['display'],
+            'fundingSummarySourceIds': e['funding_summary'].get('source_ids', []),
+            'fundingSummaryNote': e['funding_summary'].get('display_note', ''),
+            'additionalContext': ' '.join(note_strings),
             'sourceIds': e['source_ids']}
     item['rawMarkdown'] = '\n\n'.join([
         '## ' + e['name'], e['summary'], '**Approach:** ' + item['approach'],
-        '**Experimental fuel/status:** ' + item['experimentalFuel'], '**Intended fuel:** ' + item['intendedFuel'],
+        '**Experimental fuel/status:** ' + item['experimentalFuel'],
+        '**Planned research fuel:** ' + e.get('fuel_contexts', {}).get('planned_research', {}).get('text', 'Not separately established in this record.'),
+        '**Intended commercial fuel:** ' + item['intendedFuel'],
         '**Mechanism:** ' + item['mechanism'], *['- **' + c['category'] + '.** ' + c['text'] for c in claims],
         '**Financing snapshot:** ' + item['fundingSummary'], *['- ' + a['text'] for a in assessment], item['additionalContext']])
     entities.append(item)
@@ -175,7 +182,7 @@ gain_boundaries = [{'name': name, 'definition': definition, 'limitation': limita
                    for name, definition, limitation in rows(section(section(report, '6 The gain explainer is the central interactive'), 'Define the denominator', 3))]
 
 data = {'meta': {**C['meta'], 'subtitle': C['meta']['public_title'], 'snapshot': C['meta']['as_of'], 'schemaVersion': 2,
-                 'provenance': 'Presentation adapter of the supplied canonical Fusion Atlas snapshot; records, numbers, coordinates and categories come from fusion_atlas.json.',
+                 'provenance': 'Presentation adapter of the supplied Fusion Atlas snapshot plus reviewed corrections; records, numbers, coordinates and categories come from fusion_atlas.json.',
                  'canonicalFile': 'fusion_atlas.json', 'canonicalSha256': hashlib.sha256(canonical_bytes).hexdigest(),
                  'reportSha256': hashlib.sha256(report.encode()).hexdigest(), 'coordinates': C['meta']['location_policy'],
                  'funding': C['meta']['currency_policy'], 'sourceStatus': C['meta']['source_policy'],

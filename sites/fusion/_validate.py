@@ -1,20 +1,42 @@
 #!/usr/bin/env python3
 """Run the supplied canonical validator and verify the UI adapter is lossless."""
 import hashlib
+import importlib.util
 import json
 import re
 import subprocess
 import sys
 from pathlib import Path
+from _research import canonical_bytes
 
 ROOT = Path(__file__).resolve().parent
 subprocess.run([sys.executable, str(ROOT / '_handoff/scripts/validate_data.py'),
-                str(ROOT / 'fusion_atlas.json'), '--strict-warnings'], check=True)
+                str(ROOT / '_handoff/data/fusion_atlas.json'), '--strict-warnings'], check=True)
 original = (ROOT / '_handoff/data/fusion_atlas.json').read_bytes()
-assert (ROOT / 'fusion_atlas.json').read_bytes() == original, 'Public canonical download must be byte-identical'
-canonical = json.loads(original)
+published = (ROOT / 'fusion_atlas.json').read_bytes()
+assert published == canonical_bytes(), 'Public download must reproduce the reviewed corrections'
+canonical = json.loads(published)
+# Keep historical events/publications bounded by the original research cutoff.
+# Only source-access/review dates may extend to the targeted correction review.
+spec = importlib.util.spec_from_file_location('handoff_validator', ROOT / '_handoff/scripts/validate_data.py')
+handoff = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(handoff)
+
+
+class CorrectedValidator(handoff.Validator):
+    def check_date(self, value, path, precision=None, nullable=False, historical=True):
+        review = path.rsplit('.', 1)[-1] in {'accessed_at', 'last_reviewed_at'}
+        bounds = super().check_date(value, path, precision, nullable, historical and not review)
+        if bounds and review:
+            self.check(bounds[0] <= handoff.date_bounds(canonical['meta']['corrections_reviewed_at'])[0], path, 'Review date exceeds the corrections review')
+        return bounds
+
+
+validation = CorrectedValidator(canonical).run()
+assert not validation.errors and not validation.warnings, '\n'.join(validation.errors + validation.warnings)
 data = json.loads((ROOT / 'data.json').read_text())
-assert data['meta']['canonicalSha256'] == hashlib.sha256(original).hexdigest()
+assert data['meta']['canonicalSha256'] == hashlib.sha256(published).hexdigest()
+assert data['meta']['original_sha256'] == hashlib.sha256(original).hexdigest()
 assert data['meta']['snapshot'] == canonical['meta']['as_of']
 report = (ROOT / '_handoff/01_RESEARCH_REPORT.md').read_bytes()
 assert (ROOT / 'research-report.md').read_text() == re.sub(r'\br\s+and\s+d\b', 'R&D', report.decode(), flags=re.I)
@@ -55,6 +77,14 @@ for e in canonical['entities']:
     assert a['mechanismSteps'] == e.get('mechanism', [])
     assert [s['id'] for s in a['locations']] == e['site_ids']
     assert a['targets'] == [c for c in a['claims'] if c['canonicalCategory'] == 'target']
+    assert a['fundingSummarySourceIds'] == e['funding_summary'].get('source_ids', [])
+    if e['sector'] == 'public_project_or_facility':
+        assert set(e['fuel_contexts']) == {'experimental', 'planned_research', 'commercial'}
+        for context in e['fuel_contexts'].values():
+            assert context['text'] and context['status']
+            assert set(context['fuel_ids']) <= {'H', 'D-D', 'D-T', 'D-He3', 'p-B11'}
+            if context['fuel_ids']:
+                assert context['source_ids'], e['id']
 for c in canonical['claims']:
     a = claims[c['id']]
     assert a['text'] == c['claim'] and a['canonicalCategory'] == c['category']
