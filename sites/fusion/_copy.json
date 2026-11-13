@@ -3,7 +3,7 @@
     "id": "tae",
     "field": "experimentalFuel",
     "sourceText": "Experimental light-ion plasmas; no commercial p-B11 burning plasma established in the reviewed evidence. Exact current mixture not independently verified here.",
-    "displayText": "Experimental light-ion plasmas. The exact current mixture is not publicly established; no commercial proton–boron burning plasma is demonstrated."
+    "displayText": "Experimental light-ion plasmas. The exact current mixture is not established in the reviewed sources; no commercial proton–boron burning plasma is demonstrated."
   },
   {
     "id": "tae_target_01",
@@ -21,7 +21,7 @@
     "id": "tokamak_energy",
     "field": "experimentalFuel",
     "sourceText": "ST40 experimental hydrogen-isotope plasma; exact current campaign mixture not established in the reviewed sources.",
-    "displayText": "ST40 uses experimental hydrogen-isotope plasma. The exact mixture in the current campaign is not publicly established."
+    "displayText": "ST40 uses experimental hydrogen-isotope plasma. The exact mixture in the current campaign is not established in the reviewed sources."
   },
   {
     "id": "renaissance_target_01",
@@ -39,7 +39,7 @@
     "id": "energy_singularity",
     "field": "experimentalFuel",
     "sourceText": "Experimental HH70 plasma; campaign fuel details not verified in the reviewed primary releases.",
-    "displayText": "Experimental HH70 plasma. Primary releases do not establish the campaign’s fuel mixture."
+    "displayText": "Experimental HH70 plasma. The reviewed primary releases do not establish the campaign’s fuel mixture."
   },
   {
     "id": "kyoto_fusioneering_evidence_01",
@@ -81,7 +81,7 @@
     "id": "startorus",
     "field": "experimentalFuel",
     "sourceText": "Experimental fuel is not specified consistently in the reviewed company releases; do not infer a D-T burn.",
-    "displayText": "Company releases do not consistently specify the experimental fuel. They do not establish a D–T burn."
+    "displayText": "The reviewed company releases do not consistently specify the experimental fuel. They do not establish a D–T burn."
   },
   {
     "id": "startorus",
@@ -153,7 +153,7 @@
     "id": "phy_target_iter2036",
     "field": "text",
     "sourceText": "Announced baseline target; do not label this as commercial operation.",
-    "displayText": "Announced baseline target for D–T research. ITER is an experimental facility and will not sell electricity."
+    "displayText": "The cited baseline targets full magnetic energy and deuterium–deuterium research in 2036; deuterium–tritium (D–T) operation follows in 2039. These are announced research milestones. ITER will not sell electricity."
   },
   {
     "id": "risk-dimension:fuel_physics",

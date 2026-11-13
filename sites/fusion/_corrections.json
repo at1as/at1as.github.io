@@ -1,0 +1,1529 @@
+{
+  "base_sha256": "0336bbffd134620d3e18798ed3df641647fb4c46e449c02dc14a4fff2b02eff6",
+  "reviewed_at": "2026-11-12",
+  "scope": "Targeted fuel metadata and financing-citation corrections. The research cutoff remains 2026-10-22; this is not a full evidence refresh.",
+  "sources": [
+    {
+      "id": "COR_W7X_FUELS",
+      "url": "https://www.ipp.mpg.de/16931/einfuehrung",
+      "title": "Wendelstein 7-X: introduction",
+      "publisher": "Max Planck Institute for Plasma Physics",
+      "published_date": null,
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "institution_primary",
+      "access_quality": "opened_text",
+      "claims": [
+        "Hydrogen and deuterium are the research plasma species; tritium is not used."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_W7X_DEUTERIUM",
+      "url": "https://www.ipp.mpg.de/17064/strahlenschutz",
+      "title": "Wendelstein 7-X: radiation protection",
+      "publisher": "Max Planck Institute for Plasma Physics",
+      "published_date": null,
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "institution_primary",
+      "access_quality": "opened_text",
+      "claims": [
+        "Deuterium experiments are described as a future phase, distinct from hydrogen operation."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_EAST_FUEL",
+      "url": "https://english.cas.cn/newsroom/research_news/phys/201911/t20191104_222463.shtml",
+      "title": "Hydrogen content and fuel recycling control on EAST",
+      "publisher": "Chinese Academy of Sciences",
+      "published_date": "2019-11-04",
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "institution_primary",
+      "access_quality": "opened_text",
+      "claims": [
+        "The reported EAST experiments study hydrogen content in deuterium plasmas, including H/(H+D) control. This does not identify every subsequent campaign mixture."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_KSTAR_FUEL",
+      "url": "https://www.nature.com/articles/s41467-022-34092-0",
+      "title": "Observation of a new type of self-generated current in magnetized plasmas",
+      "publisher": "Nature Communications",
+      "published_date": "2022-10-29",
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "peer_reviewed_paper",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "KSTAR experimental methods describe deuterium beam injection and deuterium gas fueling."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_JT60SA_FUEL",
+      "url": "https://www.jt60sa.org/wp/main-research-objectve/",
+      "title": "JT-60SA: main research objectives",
+      "publisher": "JT-60SA",
+      "published_date": null,
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "institution_primary",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "The research programme uses hydrogen initially and deuterium later, rather than a deuterium–tritium fuel mix."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_DONES_BEAM",
+      "url": "https://ifmif-dones.es/fusion-energy/about-ifmif-dones/",
+      "title": "About IFMIF-DONES",
+      "publisher": "IFMIF-DONES",
+      "published_date": null,
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "institution_primary",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "An accelerator sends deuterons into liquid lithium to produce neutrons for materials testing; this is not a burning fusion plasma."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_BEST_FUEL",
+      "url": "https://english.cas.cn/newsroom/news/202510/t20251010_1089035.shtml",
+      "title": "Key component installed in China’s compact fusion device, BEST",
+      "publisher": "Chinese Academy of Sciences",
+      "published_date": "2025-10-10",
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "institution_primary",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "BEST is designed for burning deuterium–tritium plasma and aims to demonstrate fusion electricity. These are planned capabilities."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_CRAFT_ROLE",
+      "url": "https://lssf.cas.cn/en/facilities/energy/craft/",
+      "title": "Comprehensive Research Facility for Fusion Technology (CRAFT)",
+      "publisher": "Chinese Academy of Sciences",
+      "published_date": null,
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "institution_primary",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "CRAFT comprises engineering test facilities, including magnet, heating and component test platforms."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_STEP_FUEL",
+      "url": "https://www.gov.uk/government/news/gainsborough-steps-forward-to-fusion-energy",
+      "title": "Gainsborough STEPs forward to fusion energy",
+      "publisher": "UK Atomic Energy Authority",
+      "published_date": "2024-07-23",
+      "accessed_at": "2026-11-12",
+      "last_reviewed_at": "2026-11-12",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "government_program",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "STEP is a planned prototype power plant using deuterium and tritium."
+      ],
+      "aliases": []
+    }
+  ],
+  "entities": {
+    "nif": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Deuterium–tritium (D–T) targets in the reported ignition experiments.",
+            "fuel_ids": [
+              "D-T"
+            ],
+            "source_ids": [
+              "PHY_009",
+              "PHY_010"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "No separate future fuel programme is included in the reviewed record.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_established"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Deuterium–tritium (D–T) targets in the reported ignition experiments.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "jet": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Deuterium–tritium (D–T), including the final 2023 campaign. Scientific operations have ended.",
+            "fuel_ids": [
+              "D-T"
+            ],
+            "source_ids": [
+              "PHY_013",
+              "PHY_014"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "No separate future fuel programme is included in the reviewed record.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_established"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Deuterium–tritium (D–T), including the final 2023 campaign. Scientific operations have ended.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "w7x": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Hydrogen plasmas; these are confinement experiments, not a D–T burn.",
+            "fuel_ids": [
+              "H"
+            ],
+            "source_ids": [
+              "COR_W7X_FUELS",
+              "COR_W7X_DEUTERIUM"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "Deuterium experiments are planned. Wendelstein 7-X does not use tritium.",
+            "fuel_ids": [
+              "D-D"
+            ],
+            "source_ids": [
+              "COR_W7X_DEUTERIUM",
+              "COR_W7X_FUELS"
+            ],
+            "status": "planned"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Hydrogen plasmas; these are confinement experiments, not a D–T burn.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "east": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Deuterium plasmas with controlled hydrogen content are documented in the cited experiments. This does not establish the mixture in every later campaign.",
+            "fuel_ids": [
+              "D-D"
+            ],
+            "source_ids": [
+              "COR_EAST_FUEL"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "No separate future fuel programme is included in the reviewed record.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_established"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Deuterium plasmas with controlled hydrogen content are documented in the cited experiments. This does not establish the mixture in every later campaign.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "kstar": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Deuterium plasmas in the cited experiments. A plasma-temperature or duration result is not a D–T burning-plasma result.",
+            "fuel_ids": [
+              "D-D"
+            ],
+            "source_ids": [
+              "COR_KSTAR_FUEL"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "No separate future fuel programme is included in the reviewed record.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_established"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Deuterium plasmas in the cited experiments. A plasma-temperature or duration result is not a D–T burning-plasma result.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "west": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Hydrogen plasma for the 1,337-second result reported in February 2025. The duration is not a sustained D–T burn.",
+            "fuel_ids": [
+              "H"
+            ],
+            "source_ids": [
+              "PHY_018"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "No separate future fuel programme is included in the reviewed record.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_established"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Hydrogen plasma for the 1,337-second result reported in February 2025. The duration is not a sustained D–T burn.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "iter": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "No operating plasma in the reviewed record; ITER is under construction.",
+            "fuel_ids": [],
+            "source_ids": [
+              "PHY_019",
+              "PHY_021"
+            ],
+            "status": "not_operating"
+          },
+          "planned_research": {
+            "text": "The cited baseline schedules full magnetic energy and deuterium–deuterium research for 2036, followed by deuterium–tritium (D–T) operation in 2039.",
+            "fuel_ids": [
+              "D-D",
+              "D-T"
+            ],
+            "source_ids": [
+              "PHY_021"
+            ],
+            "status": "planned"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "No operating plasma in the reviewed record; ITER is under construction.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "jt60sa": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Initial hydrogen-plasma research. The reviewed record does not establish a later deuterium campaign.",
+            "fuel_ids": [
+              "H"
+            ],
+            "source_ids": [
+              "PHY_026",
+              "COR_JT60SA_FUEL"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "Deuterium research is planned; JT-60SA is not designed for D–T operation.",
+            "fuel_ids": [
+              "D-D"
+            ],
+            "source_ids": [
+              "COR_JT60SA_FUEL"
+            ],
+            "status": "planned"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Initial hydrogen-plasma research. The reviewed record does not establish a later deuterium campaign.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "ifmif_dones": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Not applicable: an accelerator-based materials-testing facility, not a fusion plasma experiment.",
+            "fuel_ids": [],
+            "source_ids": [
+              "PHY_024",
+              "COR_DONES_BEAM"
+            ],
+            "status": "not_applicable"
+          },
+          "planned_research": {
+            "text": "A deuteron beam will strike liquid lithium to generate test neutrons. This is not a D–D or D–T fusion-fuel cycle.",
+            "fuel_ids": [],
+            "source_ids": [
+              "COR_DONES_BEAM"
+            ],
+            "status": "not_applicable"
+          },
+          "commercial": {
+            "text": "Not applicable: materials-testing infrastructure.",
+            "fuel_ids": [],
+            "source_ids": [
+              "PHY_024"
+            ],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Not applicable: an accelerator-based materials-testing facility, not a fusion plasma experiment.",
+        "intended_fuel": "Not applicable: materials-testing infrastructure.",
+        "intended_fuel_ids": []
+      }
+    },
+    "sandia_z": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Deuterium (D–D) in the reported MagLIF experiments on Z. Other Z experiments have different targets.",
+            "fuel_ids": [
+              "D-D"
+            ],
+            "source_ids": [
+              "PHY_033"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "No separate future fuel programme is included in the reviewed record.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_established"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Deuterium (D–D) in the reported MagLIF experiments on Z. Other Z experiments have different targets.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "omega": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Deuterium–tritium (D–T) cryogenic targets in the cited OMEGA implosion programme.",
+            "fuel_ids": [
+              "D-T"
+            ],
+            "source_ids": [
+              "PHY_034"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "No separate future fuel programme is included in the reviewed record.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_established"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Deuterium–tritium (D–T) cryogenic targets in the cited OMEGA implosion programme.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "wham": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Deuterium (D–D) in the June 2026 direct-energy-conversion experiment, as reported by Realta. Most recovered energy came from external plasma heating.",
+            "fuel_ids": [
+              "D-D"
+            ],
+            "source_ids": [
+              "MAG_REALTA_DEC"
+            ],
+            "status": "reported"
+          },
+          "planned_research": {
+            "text": "No separate future fuel programme is included in the reviewed record.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_established"
+          },
+          "commercial": {
+            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "fuel_ids": [],
+            "source_ids": [],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Deuterium (D–D) in the June 2026 direct-energy-conversion experiment, as reported by Realta. Most recovered energy came from external plasma heating.",
+        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel_ids": []
+      }
+    },
+    "step": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null,
+        "funding_summary": {
+          "display": "GBP1.3bn for next STEP stage, within wider GBP2.5bn UK fusion support; not total lifetime plant cost."
+        }
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "No operating fusion plasma in the reviewed record; STEP is a planned prototype.",
+            "fuel_ids": [],
+            "source_ids": [
+              "PAR_STEP_STRATEGY"
+            ],
+            "status": "not_operating"
+          },
+          "planned_research": {
+            "text": "Deuterium–tritium (D–T) for the planned prototype power plant.",
+            "fuel_ids": [
+              "D-T"
+            ],
+            "source_ids": [
+              "COR_STEP_FUEL"
+            ],
+            "status": "planned"
+          },
+          "commercial": {
+            "text": "Deuterium–tritium (D–T). STEP is a prototype intended to establish a path to commercial plants.",
+            "fuel_ids": [
+              "D-T"
+            ],
+            "source_ids": [
+              "COR_STEP_FUEL",
+              "PAR_STEP_STRATEGY"
+            ],
+            "status": "planned"
+          }
+        },
+        "operating_fuel": "No operating fusion plasma in the reviewed record; STEP is a planned prototype.",
+        "intended_fuel": "Deuterium–tritium (D–T). STEP is a prototype intended to establish a path to commercial plants.",
+        "intended_fuel_ids": [
+          "D-T"
+        ],
+        "funding_summary": {
+          "display": "GBP1.3bn for next STEP stage, within wider GBP2.5bn UK fusion support; not total lifetime plant cost.",
+          "source_ids": [
+            "PAR_STEP_STRATEGY",
+            "PAR_UK_STRATEGY"
+          ]
+        }
+      }
+    },
+    "best": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "No operating plasma in the reviewed record; BEST is under construction.",
+            "fuel_ids": [],
+            "source_ids": [
+              "COR_BEST_FUEL"
+            ],
+            "status": "not_operating"
+          },
+          "planned_research": {
+            "text": "Deuterium–tritium (D–T) burning-plasma research, with an announced electricity-demonstration goal.",
+            "fuel_ids": [
+              "D-T"
+            ],
+            "source_ids": [
+              "COR_BEST_FUEL"
+            ],
+            "status": "planned"
+          },
+          "commercial": {
+            "text": "A commercial fuel programme is not established in the reviewed record; BEST is an experimental device.",
+            "fuel_ids": [],
+            "source_ids": [
+              "COR_BEST_FUEL"
+            ],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "No operating plasma in the reviewed record; BEST is under construction.",
+        "intended_fuel": "A commercial fuel programme is not established in the reviewed record; BEST is an experimental device.",
+        "intended_fuel_ids": []
+      }
+    },
+    "craft": {
+      "expected": {
+        "fuel_contexts": null,
+        "operating_fuel": null,
+        "intended_fuel": null,
+        "intended_fuel_ids": null
+      },
+      "replace": {
+        "fuel_contexts": {
+          "experimental": {
+            "text": "Not applicable: engineering test platforms for fusion components, rather than a single fusion-fuel experiment.",
+            "fuel_ids": [],
+            "source_ids": [
+              "COR_CRAFT_ROLE"
+            ],
+            "status": "not_applicable"
+          },
+          "planned_research": {
+            "text": "Not applicable to the facility as a whole: individual component tests have their own working materials.",
+            "fuel_ids": [],
+            "source_ids": [
+              "COR_CRAFT_ROLE"
+            ],
+            "status": "not_applicable"
+          },
+          "commercial": {
+            "text": "Not applicable: enabling engineering infrastructure.",
+            "fuel_ids": [],
+            "source_ids": [
+              "COR_CRAFT_ROLE"
+            ],
+            "status": "not_applicable"
+          }
+        },
+        "operating_fuel": "Not applicable: engineering test platforms for fusion components, rather than a single fusion-fuel experiment.",
+        "intended_fuel": "Not applicable: enabling engineering infrastructure.",
+        "intended_fuel_ids": []
+      }
+    },
+    "helion": {
+      "expected": {
+        "operating_fuel_ids": null,
+        "funding_summary": {
+          "display": "Series G finalized at $500M in September 2026; $1.5B cumulative reported June",
+          "latest_cumulative_event_id": "helion_total_june",
+          "latest_round_event_id": "helion_g_final",
+          "caveat": "Do not add initial $465M to final $500M. October CHIPS LOI up to $175M and planned $50M private spending are conditional, not closed equity."
+        }
+      },
+      "replace": {
+        "operating_fuel_ids": [
+          "D-D",
+          "D-T"
+        ],
+        "funding_summary": {
+          "display": "Series G finalized at $500M in September 2026; $1.5B cumulative reported June",
+          "latest_cumulative_event_id": "helion_total_june",
+          "latest_round_event_id": "helion_g_final",
+          "caveat": "Do not add initial $465M to final $500M. October CHIPS LOI up to $175M and planned $50M private spending are conditional, not closed equity.",
+          "source_ids": [
+            "MAG_HELION_FUND"
+          ]
+        }
+      }
+    },
+    "realta": {
+      "expected": {
+        "operating_fuel_ids": null,
+        "funding_summary": {
+          "display": "$36M Series A; $9.5M debt facility separately",
+          "latest_round_event_id": "realta_2025_a",
+          "latest_cumulative_event_id": null,
+          "caveat": "Do not count available facility as fully drawn equity."
+        }
+      },
+      "replace": {
+        "operating_fuel_ids": [
+          "D-D"
+        ],
+        "funding_summary": {
+          "display": "$36M Series A; $9.5M debt facility separately",
+          "latest_round_event_id": "realta_2025_a",
+          "latest_cumulative_event_id": null,
+          "caveat": "Do not count available facility as fully drawn equity.",
+          "source_ids": [
+            "MAG_REALTA_FUND",
+            "MAG_REALTA_DEBT"
+          ]
+        }
+      }
+    },
+    "general_fusion": {
+      "expected": {
+        "operating_fuel_ids": null,
+        "funding_summary": {
+          "display": "≈$500 million survey total; ≈$150 million cash at July 2026 listing shown separately",
+          "funding_event_ids": [
+            "ALT_FIN_GENERAL_FUSION_FIA",
+            "ALT_FIN_GENERAL_LIST_CASH"
+          ],
+          "amount": 500000000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "amount_operator": "approximately"
+        }
+      },
+      "replace": {
+        "operating_fuel_ids": [
+          "D-D"
+        ],
+        "funding_summary": {
+          "display": "≈$500 million survey total; ≈$150 million cash at July 2026 listing shown separately",
+          "funding_event_ids": [
+            "ALT_FIN_GENERAL_FUSION_FIA",
+            "ALT_FIN_GENERAL_LIST_CASH"
+          ],
+          "amount": 500000000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "amount_operator": "approximately",
+          "source_ids": [
+            "MAG_FIA_2026",
+            "ALT_GENERAL_LIST"
+          ]
+        }
+      }
+    },
+    "zap_energy": {
+      "expected": {
+        "operating_fuel_ids": null,
+        "funding_summary": {
+          "display": "$338 million declared 2026 survey total; $130 million Series D verified October 2024",
+          "funding_event_ids": [
+            "ALT_FIN_ZAP_D",
+            "ALT_FIN_ZAP_ENERGY_FIA"
+          ],
+          "amount": 338000000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "operating_fuel_ids": [
+          "D-D",
+          "H"
+        ],
+        "funding_summary": {
+          "display": "$338 million declared 2026 survey total; $130 million Series D verified October 2024",
+          "funding_event_ids": [
+            "ALT_FIN_ZAP_D",
+            "ALT_FIN_ZAP_ENERGY_FIA"
+          ],
+          "amount": 338000000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "MAG_FIA_2026",
+            "ALT_ZAP_FUND"
+          ]
+        }
+      }
+    },
+    "avalanche_energy": {
+      "expected": {
+        "operating_fuel_ids": null,
+        "funding_summary": {
+          "display": "$104.2 million 2026 survey total; $29 million round and $10 million state grant separately identified",
+          "funding_event_ids": [
+            "ALT_FIN_AVALANCHE_2026",
+            "ALT_FIN_AVALANCHE_GRANT",
+            "ALT_FIN_AVALANCHE_ENERGY_FIA"
+          ],
+          "amount": 104200000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "operating_fuel_ids": [
+          "H"
+        ],
+        "funding_summary": {
+          "display": "$104.2 million 2026 survey total; $29 million round and $10 million state grant separately identified",
+          "funding_event_ids": [
+            "ALT_FIN_AVALANCHE_2026",
+            "ALT_FIN_AVALANCHE_GRANT",
+            "ALT_FIN_AVALANCHE_ENERGY_FIA"
+          ],
+          "amount": 104200000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "MAG_FIA_2026",
+            "ALT_AVALANCHE_FUND",
+            "ALT_AVALANCHE_GRANT"
+          ]
+        }
+      }
+    },
+    "hb11": {
+      "expected": {
+        "operating_fuel_ids": null,
+        "funding_summary": {
+          "display": "Company total not verified; AUD 22 million consortium project disclosed separately",
+          "funding_event_ids": [
+            "ALT_FIN_HB11_PROJECT"
+          ],
+          "amount": null,
+          "currency": null,
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "operating_fuel_ids": [
+          "p-B11"
+        ],
+        "funding_summary": {
+          "display": "Company total not verified; AUD 22 million consortium project disclosed separately",
+          "funding_event_ids": [
+            "ALT_FIN_HB11_PROJECT"
+          ],
+          "amount": null,
+          "currency": null,
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "ALT_HB11_PROJECT"
+          ]
+        }
+      }
+    },
+    "fuse": {
+      "expected": {
+        "operating_fuel_ids": null,
+        "funding_summary": {
+          "display": "$65 million total declared in 2026 industry survey",
+          "funding_event_ids": [
+            "ALT_FIN_FUSE_FIA"
+          ],
+          "amount": 65000000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "operating_fuel_ids": [
+          "D-D"
+        ],
+        "funding_summary": {
+          "display": "$65 million total declared in 2026 industry survey",
+          "funding_event_ids": [
+            "ALT_FIN_FUSE_FIA"
+          ],
+          "amount": 65000000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "MAG_FIA_2026"
+          ]
+        }
+      }
+    },
+    "cfs": {
+      "expected": {
+        "funding_summary": {
+          "display": "$4.0B capital raised, July 2026",
+          "latest_cumulative_event_id": "cfs_2026_total",
+          "latest_round_event_id": "cfs_2026_round",
+          "caveat": "Financing is not evidence of electricity production; exclude PPAs from capital totals."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$4.0B capital raised, July 2026",
+          "latest_cumulative_event_id": "cfs_2026_total",
+          "latest_round_event_id": "cfs_2026_round",
+          "caveat": "Financing is not evidence of electricity production; exclude PPAs from capital totals.",
+          "source_ids": [
+            "MAG_CFS_FUND_2026"
+          ]
+        }
+      }
+    },
+    "tae": {
+      "expected": {
+        "funding_summary": {
+          "display": ">$1.3B equity reported June 2025; $200M convertible-note proceeds confirmed March 2026",
+          "latest_cumulative_event_id": "tae_2025_equity_total",
+          "latest_round_event_id": "tae_2025_round",
+          "caveat": "Do not count merger valuation as cash, the extra $100M as drawn, or automatically add debt to equity."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": ">$1.3B equity reported June 2025; $200M convertible-note proceeds confirmed March 2026",
+          "latest_cumulative_event_id": "tae_2025_equity_total",
+          "latest_round_event_id": "tae_2025_round",
+          "caveat": "Do not count merger valuation as cash, the extra $100M as drawn, or automatically add debt to equity.",
+          "source_ids": [
+            "MAG_TAE_FUND",
+            "MAG_TAE_DEBT"
+          ]
+        }
+      }
+    },
+    "tokamak_energy": {
+      "expected": {
+        "funding_summary": {
+          "display": "$335M reported total: $275M private + $60M government",
+          "latest_cumulative_event_id": "te_2024_all_total",
+          "latest_round_event_id": "te_2024_round",
+          "caveat": "Latest verified financing announcement is November 2024. The STEP magnet supply contract is commercial revenue, not new venture funding."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$335M reported total: $275M private + $60M government",
+          "latest_cumulative_event_id": "te_2024_all_total",
+          "latest_round_event_id": "te_2024_round",
+          "caveat": "Latest verified financing announcement is November 2024. The STEP magnet supply contract is commercial revenue, not new venture funding.",
+          "source_ids": [
+            "MAG_TE_FUND"
+          ]
+        }
+      }
+    },
+    "type_one": {
+      "expected": {
+        "funding_summary": {
+          "display": "$200M Series B announced October 2026",
+          "latest_round_event_id": "typeone_2026_b",
+          "latest_cumulative_event_id": null,
+          "caveat": "Current cumulative financing is not asserted; earlier totals and convertible financing may overlap."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$200M Series B announced October 2026",
+          "latest_round_event_id": "typeone_2026_b",
+          "latest_cumulative_event_id": null,
+          "caveat": "Current cumulative financing is not asserted; earlier totals and convertible financing may overlap.",
+          "source_ids": [
+            "MAG_TYPEONE_FUND"
+          ]
+        }
+      }
+    },
+    "proxima": {
+      "expected": {
+        "funding_summary": {
+          "display": ">€650M reported funding, including €95M grants; €411M latest round",
+          "latest_cumulative_event_id": "proxima_2026_total",
+          "latest_round_event_id": "proxima_2026_round",
+          "caveat": "Separate €400M Bavaria commitment. Source supplies USD approximations; retain native EUR."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": ">€650M reported funding, including €95M grants; €411M latest round",
+          "latest_cumulative_event_id": "proxima_2026_total",
+          "latest_round_event_id": "proxima_2026_round",
+          "caveat": "Separate €400M Bavaria commitment. Source supplies USD approximations; retain native EUR.",
+          "source_ids": [
+            "MAG_PROXIMA_FUND"
+          ]
+        }
+      }
+    },
+    "thea": {
+      "expected": {
+        "funding_summary": {
+          "display": "$100M Series B plus undisclosed extension; $20M ARPA-E award separately",
+          "latest_round_event_id": "thea_2026_b_extension",
+          "latest_cumulative_event_id": null,
+          "caveat": "Unknown extension is not zero; avoid inventing a total from the initial round."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$100M Series B plus undisclosed extension; $20M ARPA-E award separately",
+          "latest_round_event_id": "thea_2026_b_extension",
+          "latest_cumulative_event_id": null,
+          "caveat": "Unknown extension is not zero; avoid inventing a total from the initial round.",
+          "source_ids": [
+            "MAG_THEA_FUND",
+            "MAG_THEA_EXTENSION"
+          ]
+        }
+      }
+    },
+    "renaissance": {
+      "expected": {
+        "funding_summary": {
+          "display": "€32M Series A first close, March 2025; €10M BPIFrance grant separately",
+          "latest_round_event_id": "renaissance_a_first",
+          "latest_cumulative_event_id": null,
+          "caveat": "No current cumulative private total asserted."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "€32M Series A first close, March 2025; €10M BPIFrance grant separately",
+          "latest_round_event_id": "renaissance_a_first",
+          "latest_cumulative_event_id": null,
+          "caveat": "No current cumulative private total asserted.",
+          "source_ids": [
+            "MAG_RENAISSANCE_NEWS"
+          ]
+        }
+      }
+    },
+    "energy_singularity": {
+      "expected": {
+        "funding_summary": {
+          "display": "$112.5M company-declared in 2026 survey; historical native-currency total nearly RMB800M in 2023",
+          "latest_cumulative_event_id": "es_2026_survey_total",
+          "latest_round_event_id": "es_prea",
+          "caveat": "A later financing rumor was not reconciled to a readable primary amount. Do not assert the historical round is necessarily the latest actual financing."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$112.5M company-declared in 2026 survey; historical native-currency total nearly RMB800M in 2023",
+          "latest_cumulative_event_id": "es_2026_survey_total",
+          "latest_round_event_id": "es_prea",
+          "caveat": "A later financing rumor was not reconciled to a readable primary amount. Do not assert the historical round is necessarily the latest actual financing.",
+          "source_ids": [
+            "MAG_FIA_2026",
+            "MAG_ES_PREA"
+          ]
+        }
+      }
+    },
+    "kyoto_fusioneering": {
+      "expected": {
+        "funding_summary": {
+          "display": "¥32.98B cumulative equity; latest ¥16.72B equity plus ¥9B facilities",
+          "latest_cumulative_event_id": "kyoto_equity_total",
+          "latest_round_event_id": "kyoto_d_first",
+          "caveat": "Supplier category. The ¥25.72B headline combines equity and credit facilities."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "¥32.98B cumulative equity; latest ¥16.72B equity plus ¥9B facilities",
+          "latest_cumulative_event_id": "kyoto_equity_total",
+          "latest_round_event_id": "kyoto_d_first",
+          "caveat": "Supplier category. The ¥25.72B headline combines equity and credit facilities.",
+          "source_ids": [
+            "MAG_KYOTO_FUND"
+          ]
+        }
+      }
+    },
+    "nt_tao": {
+      "expected": {
+        "funding_summary": {
+          "display": "$34M company-declared in Q2 2026 survey",
+          "latest_cumulative_event_id": "nttao_2026_total",
+          "latest_round_event_id": "nttao_a",
+          "caveat": "Historical $22M Series A and $28M cumulative at February 2023 are not current totals."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$34M company-declared in Q2 2026 survey",
+          "latest_cumulative_event_id": "nttao_2026_total",
+          "latest_round_event_id": "nttao_a",
+          "caveat": "Historical $22M Series A and $28M cumulative at February 2023 are not current totals.",
+          "source_ids": [
+            "MAG_FIA_2026"
+          ]
+        }
+      }
+    },
+    "helical_fusion": {
+      "expected": {
+        "funding_summary": {
+          "display": "¥13.05B cumulative mixed funding; ¥3.23B latest Series B second close",
+          "latest_cumulative_event_id": "helical_company_total",
+          "latest_round_event_id": "helical_b_second",
+          "caveat": "English page says ¥13.15B; newer Japanese text says ¥13.05B. Includes loans and grants; conditional METI subsidy excluded."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "¥13.05B cumulative mixed funding; ¥3.23B latest Series B second close",
+          "latest_cumulative_event_id": "helical_company_total",
+          "latest_round_event_id": "helical_b_second",
+          "caveat": "English page says ¥13.15B; newer Japanese text says ¥13.05B. Includes loans and grants; conditional METI subsidy excluded.",
+          "source_ids": [
+            "MAG_HELICAL_FUND_JP",
+            "MAG_HELICAL_FUND_EN"
+          ],
+          "display_note": "English page says ¥13.15B; newer Japanese text says ¥13.05B. Includes loans and grants; conditional METI subsidy excluded."
+        }
+      }
+    },
+    "inertia": {
+      "expected": {
+        "funding_summary": {
+          "display": "$450 million milestone-based Series A announced February 2026",
+          "funding_event_ids": [
+            "ALT_FIN_INERTIA_SERIES_A"
+          ],
+          "amount": 450000000,
+          "currency": "USD",
+          "basis": "milestone_based_series_a",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$450 million milestone-based Series A announced February 2026",
+          "funding_event_ids": [
+            "ALT_FIN_INERTIA_SERIES_A"
+          ],
+          "amount": 450000000,
+          "currency": "USD",
+          "basis": "milestone_based_series_a",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "ALT_INERTIA_FUND"
+          ]
+        }
+      }
+    },
+    "pacific_fusion": {
+      "expected": {
+        "funding_summary": {
+          "display": ">$1 billion private capital reported July 2026; original Series A was milestone-released",
+          "funding_event_ids": [
+            "ALT_FIN_PACIFIC_2024",
+            "ALT_FIN_PACIFIC_2026"
+          ],
+          "amount": 1000000000,
+          "currency": "USD",
+          "basis": "reported_private_capital_commitment_basis_uncertain",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "amount_operator": "greater_than"
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": ">$1 billion private capital reported July 2026; original Series A was milestone-released",
+          "funding_event_ids": [
+            "ALT_FIN_PACIFIC_2024",
+            "ALT_FIN_PACIFIC_2026"
+          ],
+          "amount": 1000000000,
+          "currency": "USD",
+          "basis": "reported_private_capital_commitment_basis_uncertain",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "amount_operator": "greater_than",
+          "source_ids": [
+            "ALT_PACIFIC_CAPITAL",
+            "ALT_PACIFIC_FOUND"
+          ]
+        }
+      }
+    },
+    "xcimer": {
+      "expected": {
+        "funding_summary": {
+          "display": "Nearly $200 million in seed and Series A investment on live FAQ; July 2026 survey snapshot was $178 million",
+          "funding_event_ids": [
+            "ALT_FIN_XCIMER_A",
+            "ALT_FIN_XCIMER_FIA",
+            "ALT_FIN_XCIMER_LIVE_TOTAL"
+          ],
+          "amount": 200000000,
+          "currency": "USD",
+          "basis": "approximate_private_investment_live_website",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "amount_operator": "nearly"
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "Nearly $200 million in seed and Series A investment on live FAQ; July 2026 survey snapshot was $178 million",
+          "funding_event_ids": [
+            "ALT_FIN_XCIMER_A",
+            "ALT_FIN_XCIMER_FIA",
+            "ALT_FIN_XCIMER_LIVE_TOTAL"
+          ],
+          "amount": 200000000,
+          "currency": "USD",
+          "basis": "approximate_private_investment_live_website",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "amount_operator": "nearly",
+          "source_ids": [
+            "ALT_XCIMER_FAQ",
+            "MAG_FIA_2026"
+          ]
+        }
+      }
+    },
+    "focused_energy": {
+      "expected": {
+        "funding_summary": {
+          "display": "$500 million total declared in 2026 survey; $240 million Series A announced May 2026",
+          "funding_event_ids": [
+            "ALT_FIN_FOCUSED_A",
+            "ALT_FIN_FOCUSED_ENERGY_FIA"
+          ],
+          "amount": 500000000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$500 million total declared in 2026 survey; $240 million Series A announced May 2026",
+          "funding_event_ids": [
+            "ALT_FIN_FOCUSED_A",
+            "ALT_FIN_FOCUSED_ENERGY_FIA"
+          ],
+          "amount": 500000000,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "MAG_FIA_2026",
+            "ALT_FOCUSED_FUND"
+          ]
+        }
+      }
+    },
+    "first_light": {
+      "expected": {
+        "funding_summary": {
+          "display": "$156.38 million survey total; £25 million first-close round April 2026",
+          "funding_event_ids": [
+            "ALT_FIN_FIRSTLIGHT_2026",
+            "ALT_FIN_FIRST_LIGHT_FIA"
+          ],
+          "amount": 156379800,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "$156.38 million survey total; £25 million first-close round April 2026",
+          "funding_event_ids": [
+            "ALT_FIN_FIRSTLIGHT_2026",
+            "ALT_FIN_FIRST_LIGHT_FIA"
+          ],
+          "amount": 156379800,
+          "currency": "USD",
+          "basis": "mixed_or_unspecified_total",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "MAG_FIA_2026",
+            "ALT_FIRSTLIGHT_FUND"
+          ]
+        }
+      }
+    },
+    "marvel_fusion": {
+      "expected": {
+        "funding_summary": {
+          "display": "€170 million private investment plus €215 million public cooperation projects (March 2025 disclosure)",
+          "funding_event_ids": [
+            "ALT_FIN_MARVEL_B_EXT",
+            "ALT_FIN_MARVEL_PRIVATE",
+            "ALT_FIN_MARVEL_PUBLIC"
+          ],
+          "amount": 170000000,
+          "currency": "EUR",
+          "basis": "private_investment_with_separate_public_projects",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "€170 million private investment plus €215 million public cooperation projects (March 2025 disclosure)",
+          "funding_event_ids": [
+            "ALT_FIN_MARVEL_B_EXT",
+            "ALT_FIN_MARVEL_PRIVATE",
+            "ALT_FIN_MARVEL_PUBLIC"
+          ],
+          "amount": 170000000,
+          "currency": "EUR",
+          "basis": "private_investment_with_separate_public_projects",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "ALT_MARVEL_FUND"
+          ]
+        }
+      }
+    },
+    "ex_fusion": {
+      "expected": {
+        "funding_summary": {
+          "display": "JPY 6 billion cumulative financing, including loans (October 2025)",
+          "funding_event_ids": [
+            "ALT_FIN_EXFUSION_A",
+            "ALT_FIN_EXFUSION_EXT",
+            "ALT_FIN_EXFUSION_TOTAL"
+          ],
+          "amount": 6000000000,
+          "currency": "JPY",
+          "basis": "equity_and_debt",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "JPY 6 billion cumulative financing, including loans (October 2025)",
+          "funding_event_ids": [
+            "ALT_FIN_EXFUSION_A",
+            "ALT_FIN_EXFUSION_EXT",
+            "ALT_FIN_EXFUSION_TOTAL"
+          ],
+          "amount": 6000000000,
+          "currency": "JPY",
+          "basis": "equity_and_debt",
+          "as_of": "2026-10-22",
+          "cash_on_hand": null,
+          "do_not_sum_events": true,
+          "source_ids": [
+            "ALT_EXFUSION_EXT"
+          ]
+        }
+      }
+    },
+    "startorus": {
+      "expected": {
+        "funding_summary": {
+          "display": "RMB880m A++ round announced August 2026; earlier cumulative financing exceeded RMB2bn in May 2026. Do not display their sum as a company-reported latest total."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "RMB880m A++ round announced August 2026; earlier cumulative financing exceeded RMB2bn in May 2026. Do not display their sum as a company-reported latest total.",
+          "source_ids": [
+            "PAR_STARTORUS_A_PLUS_PLUS",
+            "PAR_STARTORUS_A_PLUS"
+          ]
+        }
+      }
+    },
+    "openstar": {
+      "expected": {
+        "funding_summary": {
+          "display": "Government loan of up to NZD35m announced February 2026. Comparable current cumulative private funding not established in this record."
+        }
+      },
+      "replace": {
+        "funding_summary": {
+          "display": "Government loan of up to NZD35m announced February 2026. Comparable current cumulative private funding not established in this record.",
+          "source_ids": [
+            "PAR_OPENSTAR_LOAN"
+          ]
+        }
+      }
+    }
+  }
+}
