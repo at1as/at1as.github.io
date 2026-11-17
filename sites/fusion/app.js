@@ -407,12 +407,7 @@ function machine() {
     fastIgnition,
   });
   mountReactor($("#reactor-explorer"), a.id, { fastIgnition });
-  $("#machine-name").textContent = a.name;
-  $("#machine-description").textContent =
-    a.description +
-    (approach === "direct-laser" && fastIgnition
-      ? " Selected variant: compression is followed by a separate fast-ignition pulse."
-      : "");
+  $("#machine-description").textContent = a.description;
   $("#machine-stage-title").textContent =
     `0${machineStage + 1} / ${a.stages[machineStage].title}`;
   $("#machine-stage-text").textContent = a.stages[machineStage].text;
@@ -591,8 +586,8 @@ function calcControls() {
   });
   $("#calc-context").innerHTML =
     mode === "inertia"
-      ? `<strong>PUBLISHED EXAMPLE · Inertia Phase I roadmap</strong><p>Explore how Inertia’s proposed target gain, laser efficiency and shot rate affect net electricity. These are company assumptions, not measured plant performance.</p><details class="scenario-background"><summary>Published inputs and source</summary><p>Starting inputs: target gain 25, 10 MJ per shot, 10 shots per second, 12% laser efficiency, 45% heat-to-electric efficiency and 5 MJ of other electricity use per shot. They give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated source in the 22 Oct 2026 snapshot.</p>${citations(["ALT_INERTIA_PHASE1"])}</details>`
-      : "<strong>ILLUSTRATIVE ASSUMPTIONS</strong> Adjust the inputs to calculate gross generation, plant demand, and net output. These defaults describe no particular company or experiment.";
+      ? `<strong>PUBLISHED EXAMPLE · Inertia Phase I roadmap</strong><p>The starting values come from Inertia’s proposed plant design.</p><details class="scenario-background"><summary>Published inputs and source</summary><p>Starting inputs: target gain 25, 10 MJ per shot, 10 shots per second, 12% laser efficiency, 45% heat-to-electric efficiency and 5 MJ of other electricity use per shot. They give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated source in the 22 Oct 2026 snapshot.</p>${citations(["ALT_INERTIA_PHASE1"])}</details>`
+      : "Example inputs for a hypothetical plant";
   const keys = [
     "gain",
     ...(mode === "continuous" ? ["heating"] : ["energy", "rate"]),
@@ -1042,7 +1037,7 @@ function sites(entities) {
     .join("");
   }
   $("#atlas-content").innerHTML =
-    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Coordinates are approximate city or area centers. ${mapSites.length - visible.length} sites have no selected or supplied position. Select a marker or use the site list.</p><div class="world-map">${mapLegend(visible)}<div class="map-toolbar"><p id="map-help">Drag to pan · select a cluster to zoom<span>Pinch or Ctrl/⌘ + scroll to zoom · double-click to zoom in</span><span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path id="map-outline" d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">${visible.length ? "Select a numbered cluster to zoom into its sites. Select an individual marker for its location. Records at the same approximate position remain grouped." : "No mapped sites match these filters."}</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
+    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Positions are approximate city or area centers.${mapSites.length > visible.length ? ` ${mapSites.length - visible.length} unmapped.` : ""}</p><div class="world-map">${mapLegend(visible)}<div class="map-toolbar"><p id="map-help">Drag to pan · select a cluster to zoom<span>Pinch or Ctrl/⌘ + scroll to zoom · double-click to zoom in</span><span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path id="map-outline" d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">${visible.length ? "Sites that share a map position stay grouped when you zoom in." : "No mapped sites match these filters."}</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
   mapController = mountMapViewport($(".world-map"), mapView, renderMarkers, visible);
   const selectionKey = visible.map(s => s.id).join(",");
   if (selectionKey !== mapSelectionKey) {
@@ -1123,7 +1118,6 @@ function comparisonTarget(e, column) {
 function compareDetail(fundingView = false) {
   const list = [...comparison].map((id) => entityMap.get(id)).filter(Boolean);
   if (!list.length) return;
-  const names = new Intl.ListFormat("en", { type: "conjunction" }).format(list.map(e => e.name));
   const themes = data.riskThemes.filter(theme => list.some(e => {
     const { notes, context } = comparisonAssessment(e, theme.id, data.approachRiskProfiles.profiles);
     return notes.length || context;
@@ -1144,7 +1138,7 @@ function compareDetail(fundingView = false) {
     row("All included records", e => e.claims.map(comparisonRecord).join("") || '<p>No records included.</p>', { expandable: true });
   const financing = () => row("Reported financing", financingSummary, { note: "Figures retain their original currencies and accounting scope. Cumulative funding, commitments and cash balances are not interchangeable." }) +
     row("Financing ledger", e => e.funding.map(f => `<div class="comparison-record"><p><strong>${esc(f.amountLabel)} · ${esc(human(f.type))}</strong></p><p>${esc(f.date)} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("") || '<p>No financing observations included.</p>', { expandable: true });
-  modal("COMPARE BY QUESTION", `<div class="comparison" style="--columns:${list.length}"><h2>Compare the evidence</h2><p>Compare the answers for ${esc(names)}, one question at a time. Evidence is kept separate from plans; no overall ranking is implied.</p><div class="segmented"><button data-compare-view="evidence" aria-pressed="${!fundingView}" class="${!fundingView ? "active" : ""}">Evidence and remaining questions</button><button data-compare-view="funding" aria-pressed="${fundingView}" class="${fundingView ? "active" : ""}">Financing observations</button></div>${fundingView ? financing() : evidence()}</div>`);
+  modal("COMPARE BY QUESTION", `<div class="comparison" style="--columns:${list.length}"><h2>Compare the evidence</h2><div class="segmented"><button data-compare-view="evidence" aria-pressed="${!fundingView}" class="${!fundingView ? "active" : ""}">Evidence and remaining questions</button><button data-compare-view="funding" aria-pressed="${fundingView}" class="${fundingView ? "active" : ""}">Financing observations</button></div>${fundingView ? financing() : evidence()}</div>`);
 }
 function sourceDetail(id, historyId) {
   const s = sourceMap?.get(id);

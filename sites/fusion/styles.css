@@ -263,9 +263,8 @@ p + p {
 }
 .snapshot {
   margin-top: 43px;
-  display: flex;
+  display: grid;
   gap: 10px;
-  flex-wrap: wrap;
   font-size: 10px;
   letter-spacing: 0;
   color: #687279;
@@ -273,10 +272,16 @@ p + p {
 .snapshot strong {
   color: #283840;
 }
-.snapshot span {
-  flex-basis: 100%;
-  font-size: 10px;
-  letter-spacing: 0;
+.snapshot-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+.snapshot-dates > span {
+  white-space: nowrap;
+}
+@media (max-width: 360px) {
+  .hero .snapshot-dates { column-gap: 6px; }
 }
 .hero-figure {
   border-radius: 4px;
@@ -494,11 +499,6 @@ p + p {
   font-size: 14px;
   line-height: 1.8;
   color: #3b5148;
-}
-.fusion-fuels .fuel-alternatives {
-  margin-top: 12px;
-  font-size: 13px;
-  color: #58695e;
 }
 .machines-section {
   background: #e9ede7;

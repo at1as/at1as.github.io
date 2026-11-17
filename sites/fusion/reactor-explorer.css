@@ -447,22 +447,8 @@
   }
 }
 .machine-overview-row {
-  display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  align-items: center;
-  gap: 20px;
-  min-height: 94px;
   padding: 16px 18px;
-  margin: 0;
-  border-top: 1px solid #314450;
-}
-.machine-overview-row h3 {
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
-  color: #eef2ec;
-  margin: 0;
+  border-bottom: 1px solid #314450;
 }
 .machine-overview-row p {
   max-width: none;
@@ -745,8 +731,6 @@ dialog:has(.company-reactor) {
     right: 12px;
   }
   .machine-overview-row {
-    grid-template-columns: 1fr;
-    gap: 6px;
     padding: 14px 12px;
   }
   .machine-context-row,
