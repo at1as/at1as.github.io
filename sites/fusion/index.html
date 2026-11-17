@@ -94,9 +94,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=gain-disclosure-1" />
-    <link rel="stylesheet" href="./reactor-explorer.css?v=configuration-navigation-1" />
-    <script type="module" src="./app.js?v=correctness-20261112"></script>
+    <link rel="stylesheet" href="./styles.css?v=comparison-guidance-1" />
+    <link rel="stylesheet" href="./reactor-explorer.css?v=grouped-explorer-1" />
+    <script type="module" src="./app.js?v=grouped-explorer-1"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -687,21 +687,6 @@
               <p id="machine-description"></p>
             </div>
           </div>
-          <details class="machine-notes">
-            <summary>Engineering and related projects</summary>
-            <div class="machine-notes-body">
-              <div class="machine-context-row">
-                <div class="constraint">
-                  <span>ENGINEERING CHALLENGE</span>
-                  <p id="machine-constraint"></p>
-                </div>
-                <div>
-                  <div id="machine-entities"></div>
-                  <div id="machine-sources"></div>
-                </div>
-              </div>
-            </div>
-          </details>
           <details class="operating-cycle">
             <summary>Read the operating sequence</summary>
             <div class="cycle-layout">
@@ -742,6 +727,21 @@
               Animations show the operating sequence, with timing slowed for
               explanation.
             </p>
+          </details>
+          <details class="machine-notes">
+            <summary>Engineering and related projects</summary>
+            <div class="machine-notes-body">
+              <div class="machine-context-row">
+                <div class="constraint">
+                  <span>ENGINEERING CHALLENGE</span>
+                  <p id="machine-constraint"></p>
+                </div>
+                <div>
+                  <div id="machine-entities"></div>
+                  <div id="machine-sources"></div>
+                </div>
+              </div>
+            </div>
           </details>
         </div>
       </section>
@@ -848,6 +848,13 @@
             <span>Published example scenario</span>
             <button data-mode="inertia" aria-pressed="false">Inertia · Phase I roadmap</button>
           </div>
+          <div class="calculator-guide" id="calculator-guide">
+            <p><strong>The same fusion gain can leave an electrical loss or a surplus.</strong> Try changing only the heating system’s efficiency:</p>
+            <div class="learning-actions">
+              <button data-lesson="loss">1 · Gain, but an electrical loss</button>
+              <button data-lesson="surplus">2 · Improve heating efficiency</button>
+            </div>
+          </div>
           <div id="calc-context"></div>
           <div class="calculator-grid">
             <div class="calc-controls" id="calc-controls"></div>
@@ -856,6 +863,7 @@
               <div id="power-flow"></div>
               <div class="signed-axis" id="signed-axis"></div>
               <p id="threshold"></p>
+              <p id="calc-lesson-note" class="calc-lesson-note" aria-live="polite" hidden></p>
               <details>
                 <summary>Show the accounting</summary>
                 <div id="equations"></div>
