@@ -1878,24 +1878,6 @@ dialog::backdrop {
   font-weight: 500;
   letter-spacing: normal;
 }
-.comparison-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--columns, 3), minmax(0, 1fr));
-  gap: 20px;
-}
-.comparison-grid h3 {
-  font-size: 23px !important;
-}
-.comparison-grid p {
-  font-size: 11px !important;
-}
-.comparison-grid .ledger {
-  font-size: 11px;
-}
-.comparison-grid h4 {
-  margin-top: 20px;
-  font-size: 11px;
-}
 .history-event {
   border-left: 1px solid #b3c5b3;
   padding: 0 0 25px 25px;
@@ -2554,13 +2536,6 @@ body:has(dialog[open]) {
   }
   .dialog-toolbar {
     padding: 12px 18px;
-  }
-  .comparison-grid {
-    grid-template-columns: 1fr;
-  }
-  .comparison-grid > article {
-    border-bottom: 1px solid #bdcdb9;
-    padding-bottom: 25px;
   }
   .fuel-grid {
     grid-template-columns: 1fr;
@@ -3698,4 +3673,49 @@ h2 {
   .energy-context h3 {
     font-size: 30px;
   }
+}
+
+/* Compare one question at a time; each answer shares the same desktop row. */
+dialog:has(.comparison) { width: min(1280px, 96vw); }
+#dialog-content .comparison { font-size: 15px; }
+#dialog-content .comparison p { font-size: 15px; line-height: 1.65; }
+.comparison-question { border-top: 1px solid #b9c9bc; margin-top: 28px; padding-top: 18px; }
+#dialog-content .comparison-question > h3,
+#dialog-content .comparison-question > summary h3 {
+  margin: 0; font: 600 18px/1.5 Inter, sans-serif; letter-spacing: 0;
+}
+.comparison-question > summary { cursor: pointer; padding: 0 0 8px; }
+.comparison-question > summary h3 { display: inline; }
+.comparison-answers { display: grid; grid-template-columns: repeat(var(--columns), minmax(0, 1fr)); margin-top: 14px; }
+.comparison-answer { min-width: 0; padding: 0 22px; border-left: 1px solid #d5ded2; overflow-wrap: anywhere; }
+.comparison-answer:first-child { padding-left: 0; border-left: 0; }
+.comparison-answer:last-child { padding-right: 0; }
+#dialog-content .comparison-answer h4 { margin: 0 0 14px; font: 650 16px/1.5 Inter, sans-serif; color: #29473b; }
+.comparison-record + .comparison-record { margin-top: 22px; padding-top: 18px; border-top: 1px solid #d5ded2; }
+#dialog-content .comparison .comparison-date,
+#dialog-content .comparison .comparison-scope { font-size: 12px; color: #52665c; }
+#dialog-content .comparison .comparison-scope { font-weight: 650; }
+#dialog-content .comparison .comparison-note { margin: 8px 0 14px; color: #52665c; font-size: 13px; }
+.comparison-context-note { padding: 18px; background: #edf0e8; border-radius: 5px; margin: 28px 0; }
+.comparison-empty { color: #52665c; }
+.comparison-more { margin-top: 18px; }
+.comparison-more > summary,
+.comparison-sources > summary { cursor: pointer; font-size: 13px; color: #29473b; }
+.comparison-sources .reference { display: block; margin-top: 7px; }
+.comparison-answer .badge { white-space: normal; }
+.calculator-guide { background: #edf0e8; border: 1px solid #c8d3c7; border-radius: 5px; padding: 18px 22px; margin: 20px 0; }
+.calculator-guide p { margin: 0 0 14px; font-size: 14px; }
+.calculator-guide .learning-actions { margin: 0; }
+.calculator-guide button[aria-pressed="true"] { background: #29473b; border-color: #29473b; color: #fffef9; }
+.calc-lesson-note { padding: 15px; border-left: 3px solid #496c59; background: #edf0e8; }
+.slider-row .target-throughput { grid-column: 1 / -1; margin: 0; font-size: 12px; color: #52665c; }
+@media (max-width: 700px) {
+  .comparison-answers { grid-template-columns: 1fr; }
+  .comparison-answer,
+  .comparison-answer:first-child,
+  .comparison-answer:last-child { padding: 18px 0; border-left: 0; border-top: 1px solid #d5ded2; }
+  .comparison-answer:first-child { border-top: 0; padding-top: 0; }
+  .comparison .segmented { flex-wrap: wrap; gap: 8px; }
+  .calculator-guide { padding: 16px; }
+  .calculator-guide .learning-actions { align-items: stretch; flex-direction: column; }
 }

@@ -13,9 +13,11 @@ import {
 } from "./atlas-metadata.js";
 import { engineeringDiagram } from "./engineering-diagrams.js?v=engineering-stories-1";
 import { engineeringPanels } from "./engineering-content.js";
-import { approaches, renderMachine } from "./diagrams.js?v=tokamak-cutaway-2";
+import { approaches, renderMachine } from "./diagrams.js?v=grouped-designs-1";
 import { balance, defaults, readScenario, targetCost } from "./model.js";
 import { recordCopy, glossaryCopy } from "./reader-content.js";
+import { comparisonClaims, comparisonAssessment } from "./comparison-content.js";
+import { learningScenarios, matchingLesson, targetsPerDay } from "./learning-guide.js";
 import {
   sortAtlasRows, fundingSortValues, evidenceSortValues,
   isMappedSite, isPlannedSite, mapSiteCounts, matchesFuel, selectedSites,
@@ -196,7 +198,7 @@ function mountReactor(host, id, options = {}) {
   host.querySelector("[data-load-reactor]").onclick = load;
   if (
     previous?.view ||
-    (bounds.top < innerHeight + 100 && bounds.bottom > -100)
+    (bounds.width > 0 && bounds.top < innerHeight + 100 && bounds.bottom > -100)
   ) {
     load();
   } else {
@@ -428,10 +430,10 @@ function machine() {
   $("#machine-next").disabled = machineStage === a.stages.length - 1;
   $("#approach-select").value = approach;
   $("#cycle-approach-select").value = approach;
-  const approachIndex = approaches.findIndex((item) => item.id === approach);
-  $$("[data-config-step]").forEach((button) => {
-    const nextIndex = approachIndex + Number(button.dataset.configStep);
-    button.disabled = nextIndex < 0 || nextIndex >= approaches.length;
+  $$("[data-config-step]").forEach(button => {
+    const select = document.getElementById(button.dataset.select);
+    const nextIndex = select.selectedIndex + Number(button.dataset.configStep);
+    button.disabled = nextIndex < 0 || nextIndex >= select.options.length;
   });
   if (data) {
     const entities = data.entities.filter((e) => machineId(e) === approach);
@@ -579,6 +581,7 @@ const sliderMeta = {
 function calcControls() {
   const mode = scenario.mode;
   $(".published-scenario").hidden = mode === "continuous";
+  $("#calculator-guide").hidden = mode !== "continuous";
   $$("[data-mode]").forEach((b) => {
     const selected =
       b.dataset.mode === mode ||
@@ -613,7 +616,7 @@ function calcControls() {
             ? "Electricity-to-heating efficiency"
             : baseLabel;
       const v = scenario[k] * (unit === "%" ? 100 : 1);
-      return `<div class="slider-row"><label for="input-${k}">${label}</label><output id="output-${k}" for="input-${k}">${fmt(v)} ${unit}</output><input id="input-${k}" data-input="${k}" type="range" min="${min}" max="${max}" step="${step}" value="${v}" aria-valuetext="${fmt(v)} ${unit}"></div>`;
+      return `<div class="slider-row"><label for="input-${k}">${label}</label><output id="output-${k}" for="input-${k}">${fmt(v)} ${unit}</output><input id="input-${k}" data-input="${k}" type="range" min="${min}" max="${max}" step="${step}" value="${v}" aria-valuetext="${fmt(v)} ${unit}"${k === "rate" ? ' aria-describedby="target-throughput"' : ""}>${k === "rate" ? '<p id="target-throughput" class="target-throughput"></p>' : ""}</div>`;
     })
     .join("");
   calc();
@@ -628,6 +631,13 @@ function calc() {
   $("#net-number").classList.toggle("negative", r.net < 0);
   $("#net-number").innerHTML =
     `${r.net > 0 ? "+" : ""}${fmt(r.net)}<small>MW</small><span>${r.net < 0 ? "Net consumption" : r.net > 0 ? "Net electricity to the grid" : r.gross === 0 && r.consumption === 0 ? "No electricity generated or consumed" : "Electrical break-even in this simplified model"}</span>`;
+  const lesson = matchingLesson(p);
+  $$("[data-lesson]").forEach(button => button.setAttribute("aria-pressed", button.dataset.lesson === lesson));
+  $("#calc-lesson-note").hidden = !lesson;
+  $("#calc-lesson-note").textContent = lesson === "loss"
+    ? "Q = 10, but the heating system consumes 250 MW to deliver 50 MW to the plasma. Gross generation is 200 MW; another 50 MW of plant demand leaves a 100 MW electrical deficit."
+    : lesson === "surplus" ? "The fusion power is still 500 MW and Q is still 10. At 50% heating efficiency, heating uses 100 MW of electricity instead of 250 MW. After other plant demand, 50 MW remains for the grid in this model." : "";
+  if ($("#target-throughput")) $("#target-throughput").textContent = `${fmt(targetsPerDay(p.rate))} targets per 24 hours of continuous firing at this rate.`;
   const max = Math.max(r.fusion, r.gross, r.driver, r.aux, 1);
   $("#power-flow").innerHTML = [
     ["Fusion power", r.fusion, "fusion"],
@@ -652,7 +662,7 @@ function calc() {
   $("#target-cost").textContent =
     p.mode === "continuous"
       ? "Select a pulsed mode to estimate the contribution of target manufacturing to electricity cost"
-      : `${fmt(p.rate * 86400)} targets per operating day. At a hypothetical $1 per target: ${r.net > 0 ? "$" + fmt(targetCost(p.rate, 1, r.net)) + "/MWh of delivered electricity" : "cost per delivered MWh unavailable with nonpositive net output"}. Target cost alone excludes every other plant cost and is not an electricity price.`;
+      : `${fmt(targetsPerDay(p.rate))} targets per operating day. At a hypothetical $1 per target: ${r.net > 0 ? "$" + fmt(targetCost(p.rate, 1, r.net)) + "/MWh of delivered electricity" : "cost per delivered MWh unavailable with nonpositive net output"}. Target cost alone excludes every other plant cost and is not an electricity price.`;
 }
 $("#calc-controls").oninput = (e) => {
   const k = e.target.dataset.input;
@@ -750,16 +760,23 @@ function records() {
     `<details ${mode !== "nif" ? "open" : ""}><summary>Data and sources · ${rows.length} ${rows.length === 1 ? "result" : "results"}</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Experiment results"><table class="data-table"><thead><tr><th>Experiment / date</th><th>What was measured</th><th>Evidence</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r.facility)}<br>${esc(r.date)}<br><small>${esc(human(r.date_role || "event date"))}</small></td><td>${recordMeasurement(r)}${r.fusion_energy_mj !== undefined ? `<p>Yield: ${r.fusion_energy_mj}${r.fusion_energy_uncertainty_mj ? " ± " + r.fusion_energy_uncertainty_mj : ""} MJ<br>Delivered driver: ${r.driver_energy_mj === null ? "not supplied" : r.driver_energy_mj + " MJ"}</p>` : ""}</td><td>${evidenceLabels(r)}${citations(r.sourceIds)}</td></tr>`).join("")}</tbody></table></div></details>`;
 }
 $("#record-select").onchange = records;
+function groupedDesignOptions(designs) {
+  return atlasFamilies.map(family => {
+    const options = designs
+      .filter(design => design.family === family.id)
+      .map(design => `<option value="${esc(design.id)}">${esc(design.name)}</option>`)
+      .join("");
+    return options ? `<optgroup label="${esc(family.label)}">${options}</optgroup>` : "";
+  }).join("");
+}
 function refreshConfigurationFilter(preferred = "") {
   const family = $("#filter-family").value;
-  const groups = atlasFamilies.filter(f => !family || f.id === family).map(f => ({
-    ...f, designs: atlasConfigurations.filter(c => c.family === f.id),
-  })).filter(f => f.designs.length);
+  const designs = atlasConfigurations.filter(design => !family || design.family === family);
   const select = $("#filter-configuration");
-  select.innerHTML = `<option value="">${groups.length ? "All reactor designs" : "No reactor design — enabling systems"}</option>` +
-    groups.map(f => `<optgroup label="${esc(f.label)}">${f.designs.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join("")}</optgroup>`).join("");
-  select.disabled = !groups.length;
-  select.value = groups.some(f => f.designs.some(c => c.id === preferred)) ? preferred : "";
+  select.innerHTML = `<option value="">${designs.length ? "All reactor designs" : "No reactor design — enabling systems"}</option>` +
+    groupedDesignOptions(designs);
+  select.disabled = !designs.length;
+  select.value = designs.some(design => design.id === preferred) ? preferred : "";
 }
 function selectAtlasConfiguration(id) {
   const selected = atlasConfigurations.find(c => c.id === id);
@@ -1079,34 +1096,55 @@ function entityDetail(id) {
     mountReactor($("#entity-reactor"), options?.id || m, options || {});
   }
 }
+function comparisonRecord(claim) {
+  return `<div class="comparison-record">${evidenceLabels(claim)}<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="comparison-date">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<details class="comparison-sources"><summary>Sources</summary>${citations(claim.sourceIds)}</details></div>`;
+}
+function comparisonRow(list, title, answer, { expandable = false, open = false, note = "" } = {}) {
+  const heading = `<h3>${esc(title)}</h3>`;
+  const cells = `<div class="comparison-answers">${list.map(e => `<article class="comparison-answer"><h4>${esc(e.name)}</h4>${answer(e)}</article>`).join("")}</div>`;
+  return expandable
+    ? `<details class="comparison-question" ${open ? "open" : ""}><summary>${heading}</summary>${note ? `<p class="comparison-note">${esc(note)}</p>` : ""}${cells}</details>`
+    : `<section class="comparison-question">${heading}${note ? `<p class="comparison-note">${esc(note)}</p>` : ""}${cells}</section>`;
+}
+function comparisonFuel(e) {
+  const contexts = e.fuel_contexts;
+  const fuel = contexts ? Object.entries(contexts).filter(([key, value]) => value.status !== "not_established")
+    .map(([key, value]) => `<p><strong>${{experimental:"Experiment",planned_research:"Planned research",commercial:"Commercial use"}[key]}:</strong> ${esc(value.text)}</p>`).join("")
+    : `<p><strong>Experiment:</strong> ${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in the reviewed record")}</p><p><strong>Intended plant fuel:</strong> ${esc(e.intendedFuel || "Not established in the reviewed record")}</p>`;
+  return `<p><strong>${esc(e.approach)}</strong></p>${fuel}<button data-entity="${e.id}">Full field notes ↗</button>`;
+}
+function comparisonTarget(e, column) {
+  const claims = comparisonClaims(e, column);
+  if (claims.length) return claims.map(comparisonRecord).join("");
+  if (column === 2 && e.canonicalId === "best") return `<p>${esc(e.fuel_contexts.planned_research.text)} No dated electricity target is included.</p>${citations(e.fuel_contexts.planned_research.source_ids)}`;
+  if (column === 2 && (e.role === "public" || e.role === "supplier")) return '<p class="comparison-empty">Not a commercial power-plant programme.</p>';
+  return `<p class="comparison-empty">${column === 1 ? "No separate technical milestone specified in the reviewed record." : "No dated electricity or pilot-plant target established in the reviewed record."}</p>`;
+}
 function compareDetail(fundingView = false) {
   const list = [...comparison].map((id) => entityMap.get(id)).filter(Boolean);
-  modal(
-    "SIDE-BY-SIDE EVIDENCE",
-    `<h2>Compare the evidence</h2><p>Each column preserves the type of evidence and its scope. No overall score or ranking is implied.</p><div class="segmented"><button data-compare-view="evidence" aria-pressed="${!fundingView}" class="${!fundingView ? "active" : ""}">Evidence and remaining questions</button><button data-compare-view="funding" aria-pressed="${fundingView}" class="${fundingView ? "active" : ""}">Financing observations</button></div><div class="comparison-grid" style="--columns:${list.length}">${list
-      .map(
-        (e) =>
-          `<article><h3>${esc(e.name)}</h3><p>${esc(e.approach)}</p>${
-            fundingView
-              ? e.funding
-                  .map(
-                    (f) =>
-                      `<div class="ledger"><strong>${esc(f.amountLabel)} · ${esc(human(f.type))}</strong><p>${esc(f.date)} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`,
-                  )
-                  .join("")
-              : data.riskThemes
-                  .map((t) => {
-                    const notes = e.assessment.filter((a) =>
-                      (a.theme_ids || []).includes(t.id),
-                    );
-                    return `<h4>${esc(t.label)}</h4><p>${esc(t.displayQuestion || t.question)}</p>${notes.length ? notes.map((a) => `<p><strong>Assessment:</strong> ${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}`).join("") : "<p>No separate assessment for this question is included in the snapshot. The reported evidence appears below.</p>"}`;
-                  })
-                  .join("") +
-                `<h4>Included evidence</h4>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}`
-          }</article>`,
-      )
-      .join("")}</div>`,
-  );
+  if (!list.length) return;
+  const names = new Intl.ListFormat("en", { type: "conjunction" }).format(list.map(e => e.name));
+  const themes = data.riskThemes.filter(theme => list.some(e => {
+    const { notes, context } = comparisonAssessment(e, theme.id, data.approachRiskProfiles.profiles);
+    return notes.length || context;
+  }));
+  const row = (title, answer, options) => comparisonRow(list, title, answer, options);
+  const evidence = () =>
+    row("Approach and fuel", comparisonFuel) +
+    row("Selected evidence", e => comparisonClaims(e, 0).map(comparisonRecord).join("") || '<p class="comparison-empty">No experimental result or engineering demonstration included in this ledger.</p>', { note: "Selected for relevance, not simply the newest update. A component test, design study and fusion result establish different things." }) +
+    row("Next technical milestone", e => comparisonTarget(e, 1)) +
+    row("Electricity or pilot-plant target", e => comparisonTarget(e, 2), { note: "Announced plans, not achieved output. A pilot date does not establish a complete electrical balance or electricity delivered to the grid." }) +
+    (themes.length ? `<p class="comparison-context-note">The questions below separate organization-specific assessments from challenges common to an approach. Approach-level context is not a verdict on an individual project.</p>` : "") +
+    themes.map(theme => row(theme.displayQuestion || theme.question, e => {
+      const { notes, context } = comparisonAssessment(e, theme.id, data.approachRiskProfiles.profiles);
+      const specific = notes.map(a => `<p class="comparison-scope">Organization-specific assessment</p><p>${esc(a.displayText || a.text)}</p><details class="comparison-sources"><summary>Sources</summary>${citations(a.sourceIds)}</details>`).join("");
+      const general = context ? `<p class="comparison-scope">Approach-level context · ${esc(e.approach)}</p><p>${esc(context.interpretation)}</p><details class="comparison-sources"><summary>Sources</summary>${citations(context.source_ids)}</details>` : "";
+      return specific + (specific && general ? `<details class="comparison-more"><summary>Challenge shared by this approach</summary>${general}</details>` : general) || '<p class="comparison-empty">No assessment for this facility in the reviewed record.</p>';
+    }, { expandable: true, open: ["electrical_balance", "fuel_cycle"].includes(theme.id) })).join("") +
+    row("All included records", e => e.claims.map(comparisonRecord).join("") || '<p>No records included.</p>', { expandable: true });
+  const financing = () => row("Reported financing", financingSummary, { note: "Figures retain their original currencies and accounting scope. Cumulative funding, commitments and cash balances are not interchangeable." }) +
+    row("Financing ledger", e => e.funding.map(f => `<div class="comparison-record"><p><strong>${esc(f.amountLabel)} · ${esc(human(f.type))}</strong></p><p>${esc(f.date)} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("") || '<p>No financing observations included.</p>', { expandable: true });
+  modal("COMPARE BY QUESTION", `<div class="comparison" style="--columns:${list.length}"><h2>Compare the evidence</h2><p>Compare the answers for ${esc(names)}, one question at a time. Evidence is kept separate from plans; no overall ranking is implied.</p><div class="segmented"><button data-compare-view="evidence" aria-pressed="${!fundingView}" class="${!fundingView ? "active" : ""}">Evidence and remaining questions</button><button data-compare-view="funding" aria-pressed="${fundingView}" class="${fundingView ? "active" : ""}">Financing observations</button></div>${fundingView ? financing() : evidence()}</div>`);
 }
 function sourceDetail(id, historyId) {
   const s = sourceMap?.get(id);
@@ -1222,6 +1260,10 @@ function fuelDetail() {
 document.addEventListener("click", (e) => {
   const b = e.target.closest("button,[data-cluster]");
   if (!b) return;
+  if (b.dataset.lesson) {
+    scenario = { ...learningScenarios[b.dataset.lesson] };
+    calcControls();
+  }
   if (b.dataset.tableSort) {
     if (b.disabled) return;
     const table = b.dataset.tableSort, key = b.dataset.sortKey;
@@ -1310,7 +1352,10 @@ document.addEventListener("click", (e) => {
   if (b.dataset.open === "fuels" && data) fuelDetail();
   if (b.dataset.open === "history" && data) historyDetail();
   if (b.dataset.open === "comparison") compareDetail();
-  if (b.dataset.compareView) compareDetail(b.dataset.compareView === "funding");
+  if (b.dataset.compareView) {
+    compareDetail(b.dataset.compareView === "funding");
+    $(`[data-compare-view="${b.dataset.compareView}"]`).focus({ preventScroll: true });
+  }
   if (b.id === "show-all-cards") {
     showAllCards = !showAllCards;
     atlas();
@@ -1410,9 +1455,7 @@ async function init() {
     });
   reaction();
   boundaries();
-  const options = approaches
-    .map((a) => `<option value="${a.id}">${esc(a.name)}</option>`)
-    .join("");
+  const options = groupedDesignOptions(approaches);
   $("#approach-select").innerHTML = options;
   $("#cycle-approach-select").innerHTML = options;
   $("#hero-machine").innerHTML = renderMachine("tokamak", 3, { fieldOverview: true });
@@ -1600,6 +1643,10 @@ document.addEventListener("visibilitychange", () => {
     stopMachine();
   }
 });
+const cycle = $(".operating-cycle");
+cycle.addEventListener("toggle", () => {
+  if (!cycle.open) stopMachine();
+});
 const chapterMotionObserver = new IntersectionObserver((entries) => {
   for (const e of entries)
     if (!e.isIntersecting) {
@@ -1609,10 +1656,6 @@ const chapterMotionObserver = new IntersectionObserver((entries) => {
 });
 chapterMotionObserver.observe($("#learn"));
 chapterMotionObserver.observe($("#machines"));
-const cycle = $(".operating-cycle");
-cycle.addEventListener("toggle", () => {
-  if (!cycle.open) stopMachine();
-});
 let chapterFrame = 0;
 function markChapter() {
   chapterFrame = 0;

@@ -5,7 +5,7 @@ export const approaches = [
   {
     id: "tokamak",
     name: "Tokamak",
-    family: "Magnetic",
+    family: "magnetic",
     tagline: "A magnetic bottle, bent into a ring.",
     description:
       "External coils and a current flowing through the plasma together produce a twisting magnetic field. High-temperature superconductors are a magnet technology, not a separate confinement family.",
@@ -33,7 +33,7 @@ export const approaches = [
   {
     id: "spherical",
     name: "Spherical tokamak",
-    family: "Magnetic",
+    family: "magnetic",
     tagline: "The same idea, with a much tighter waist.",
     description:
       "A tokamak variant with an elongated plasma and a small central hole. Its central column must fit magnets, support and protection into a particularly constrained space.",
@@ -61,7 +61,7 @@ export const approaches = [
   {
     id: "stellarator",
     name: "Stellarator",
-    family: "Magnetic",
+    family: "magnetic",
     tagline: "Put the twist in the magnets.",
     description:
       "A three-dimensional external field confines the plasma without relying on a tokamak-sized plasma current. This generic shaped-coil sketch is not the geometry of every stellarator: Thea proposes arrays of planar coils.",
@@ -89,7 +89,7 @@ export const approaches = [
   {
     id: "mirror",
     name: "Magnetic mirror",
-    family: "Magnetic",
+    family: "magnetic",
     tagline: "An open bottle with stronger fields at its ends.",
     description:
       "A long magnetic chamber has stronger fields at both throats. Some charged particles reflect; others escape along the open ends, where energy recovery may be possible.",
@@ -117,7 +117,7 @@ export const approaches = [
   {
     id: "dipole",
     name: "Levitated dipole",
-    family: "Magnetic",
+    family: "magnetic",
     tagline: "Suspend a magnet inside its own plasma.",
     description:
       "A superconducting ring levitates inside a vacuum chamber, and the plasma surrounds its dipole field. The internal magnet must stay cold and protected in a future plant.",
@@ -145,7 +145,7 @@ export const approaches = [
   {
     id: "beam-frc",
     name: "Beam-sustained FRC",
-    family: "Magnetic",
+    family: "magnetic",
     tagline: "Keep a compact plasma spinning with beams.",
     description:
       "A field-reversed configuration is a compact plasma with a reversed internal field. Neutral beams add energetic particles to help heat and sustain it; TAE’s long-term fuel ambition is proton–boron.",
@@ -173,7 +173,7 @@ export const approaches = [
   {
     id: "pulsed-frc",
     name: "Pulsed FRC",
-    family: "Magneto-inertial",
+    family: "magneto_inertial",
     tagline: "Form. Merge. Compress. Recover. Repeat.",
     description:
       "Two field-reversed plasmas are accelerated together and compressed. A proposed power cycle recovers electricity during expansion; recovery of supplied energy must be distinguished from energy added by fusion.",
@@ -201,7 +201,7 @@ export const approaches = [
   {
     id: "z-pinch",
     name: "Sheared-flow Z-pinch",
-    family: "Magnetic",
+    family: "magnetic",
     tagline: "Let the plasma current do the squeezing.",
     description:
       "A strong axial current generates an encircling magnetic field that pinches the plasma. Axial flow varies across the plasma to help stabilize the column.",
@@ -229,7 +229,7 @@ export const approaches = [
   {
     id: "magnetized-target",
     name: "Magnetized target",
-    family: "Magneto-inertial",
+    family: "magneto_inertial",
     tagline: "Start with a magnetic plasma. Then squeeze it.",
     description:
       "A magnetized plasma enters a chamber, where a moving liner rapidly compresses it. This generic liner sketch is not an LM26 device drawing or a specific commercial liquid-metal architecture.",
@@ -257,7 +257,7 @@ export const approaches = [
   {
     id: "indirect-laser",
     name: "Indirect-drive laser",
-    family: "Inertial",
+    family: "inertial",
     tagline: "Laser light becomes X-rays. X-rays squeeze fuel.",
     description:
       "Lasers enter a cavity called a hohlraum and heat its walls. The resulting X-rays compress a tiny fuel capsule. This is the drive mechanism behind NIF’s ignition experiments.",
@@ -285,7 +285,7 @@ export const approaches = [
   {
     id: "direct-laser",
     name: "Direct-drive laser",
-    family: "Inertial",
+    family: "inertial",
     tagline: "Light directly compresses a tiny fuel capsule.",
     description:
       "Laser beams illuminate the capsule, driving ablation and compression. Fast ignition is a specific variant with a separate ignition pulse; Marvel’s near-term fuel is D–T, while HB11 pursues laser p–B11 fast ignition.",
@@ -313,7 +313,7 @@ export const approaches = [
   {
     id: "hybrid-laser",
     name: "Hybrid direct-drive laser",
-    family: "Inertial",
+    family: "inertial",
     tagline: "An X-ray start. A direct-laser finish.",
     description:
       "Xcimer’s proposed hybrid direct-drive sequence starts with a hohlraum-generated X-ray stage and later uses direct laser drive. It is distinct from both ordinary NIF indirect drive and fast ignition.",
@@ -341,7 +341,7 @@ export const approaches = [
   {
     id: "hybrid-ignition",
     name: "Hybrid fast ignition",
-    family: "Inertial",
+    family: "inertial",
     tagline: "Separate the squeeze from the spark.",
     description:
       "First Light’s FLARE develops a D–T fuel system with electrical multi-shell compression and a distinct rapid ignition stage. Major driver and reactor systems involve partners; this is not its old projectile concept.",
@@ -369,7 +369,7 @@ export const approaches = [
   {
     id: "pulsed-power",
     name: "Pulsed-power inertial",
-    family: "Inertial",
+    family: "magneto_inertial",
     tagline: "Turn stored electricity into a violent squeeze.",
     description:
       "Capacitor modules deliver an intense electrical pulse that compresses a target or liner. Pacific Fusion, Fuse and Sandia’s MagLIF use distinct architectures; this drawing shows only the generic power-to-compression sequence.",
@@ -397,7 +397,7 @@ export const approaches = [
   {
     id: "electrostatic",
     name: "Electrostatic compact",
-    family: "Alternative",
+    family: "electrostatic_magnetic",
     tagline: "Accelerate ions through electric fields.",
     description:
       "Electric fields accelerate and confine ions toward an intended collision region. Avalanche’s crossed-field Orbitron concept also uses magnetic electron confinement.",

@@ -31,6 +31,7 @@ node sites/fusion/_test.mjs
 node sites/fusion/_reactor-test.mjs
 node sites/fusion/_map-test.mjs
 node sites/fusion/_atlas-exploration-test.mjs
+node sites/fusion/_comparison-guidance-test.mjs
 node sites/fusion/_assets.mjs
 rsvg-convert sites/fusion/share-card.svg -o sites/fusion/share-card.png
 JEKYLL_ENV=production bundle exec ruby -E UTF-8 -S jekyll build
@@ -42,11 +43,12 @@ The validator checks the archived handoff, guarded corrections, canonical relati
 ## Experience
 
 - Six narrated reaction/plant stages, manual steps and opt-in playback.
-- Fifteen explorable 3D machine families: orbit, zoom, camera presets, selectable components, focused inspection, assembly separation, isolation, layer controls, and opt-in animated energy paths. A component inspector explains each system, its engineering challenge, connected systems, and sources. Original four-stage SVG cycles remain available as expandable references.
+- The interactive 3D model opens directly in Machine explorer. Its configuration menu groups the fifteen designs by the same four families used in the atlas. The expandable operating sequence shares the selection and menu order. The 3D model supports orbit, zoom, camera presets, selectable components, focused inspection, assembly separation, isolation, layer controls, and opt-in animated energy paths. A component inspector explains each system, its engineering challenge, connected systems, and sources.
 - Company profiles include 39 relevant concept models with architecture-specific content and geometry where supported, including planar coil arrays, helical windings, patterned HTS surfaces, and separate fast ignition. Three enabling-infrastructure profiles use interactive system flows instead. Experimental machines omit future plant blankets and target supply systems. The General Fusion profile shows the LM26 solid-liner mechanism with theta-pinch coils, separate from the generic mechanical-driver plant concept.
-- Five energy boundaries, experimental/target anchors, continuous and pulsed teaching models, and a separate attributed Inertia model. In Inertia mode, other demand is **MJ per shot**, multiplied by repetition rate.
+- Five energy boundaries, experimental/target anchors, continuous and pulsed teaching models, and a separate attributed Inertia model. Two continuous-plasma examples hold fusion power and Q constant while changing heating efficiency, showing an electrical loss and surplus. Pulsed modes show the targets required per day at the selected firing rate. In Inertia mode, other demand is **MJ per shot**, multiplied by repetition rate.
 - Selected published results with compatible metric views and original reported precision. No inferred success rate.
 - Forty-two organizations, filters, evidence table, three-organization comparison, 83 site-role records and 71 financing observations. Shared site records are joined once; distinct roles can share a physical location. Three records remain intentionally unmapped.
+- Comparison aligns answers by question, keeping the selected organizations together under each question on mobile. `comparison-content.js` explicitly selects relevant evidence, technical milestones, and plant/electricity targets from the reviewed ledger; it does not infer strength or rank by recency. Organization assessments and sourced approach-level context are labeled separately. Commercial-plant context applies to developers and STEP, not experimental facilities or suppliers. Complete evidence and financing ledgers remain expandable.
 - Six themes of engineering questions, full history, 176 searchable sources in a section collapsed by default (eight initial references, with search and an option to show all), a 24-term glossary, ordinary source links and source detail dialogs that preserve the underlying profile.
 - Deep links preserve approach, fast-ignition variant, filters, financing currency/accounting basis/sort, selected organization and comparison. “Copy scenario link” includes model inputs. Closing a detail dialog clears the entity query.
 

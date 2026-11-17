@@ -1193,7 +1193,7 @@ dialog:has(.company-reactor) {
   padding: 0;
   border-top: 1px solid #bfcdc0;
 }
-.machine-notes {
+.machine-workspace + .operating-cycle {
   margin-top: 22px;
 }
 .machine-notes > summary,
@@ -1313,4 +1313,13 @@ dialog:has(.company-reactor) {
   .reactor-interaction-hint .reactor-legend {
     grid-column: 1 / -1;
   }
+}
+
+@media (max-width: 380px) {
+  .operating-cycle .step-controls {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+  #machine-stage-buttons { justify-content: center; }
+  #machine-play { grid-column: 1 / 3; justify-self: end; margin-left: 0; }
 }
