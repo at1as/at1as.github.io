@@ -112,6 +112,11 @@ close(massDifferenceU, 0.018882833325);
 assert.ok(reactionEnergyMeV > 17.58 && reactionEnergyMeV < 17.6);
 assert.equal(reactionEnergyMeV.toFixed(1), "17.6");
 close(balance(defaults.continuous).net, 50);
+const smallPlant = { ...defaults.continuous, heating: 1, driver: 1, aux: 0 };
+close(balance({ ...smallPlant, gain: 2.4 }).net, -0.04);
+close(balance({ ...smallPlant, gain: 2.6 }).net, 0.04);
+assert.equal(balance({ ...smallPlant, gain: 100, heating: 10, driver: 0.25, capture: 0.8, thermal: 0.05 }).net, 0,
+  "40 MW of gross power and 40 MW of plant demand are break-even");
 close(balance({ ...defaults.continuous, driver: 0.25 }).net, -50);
 close(balance(defaults.pulsed).net, 600);
 close(balance({ ...defaults.pulsed, driver: 0.1 }).net, 100);
@@ -157,6 +162,17 @@ assert.equal(
 );
 assert.ok(balance({ ...defaults.continuous, mode: "unknown" }).error);
 assert.equal(approaches.length, 15);
+for (const design of ["beam-frc", "pulsed-frc"]) {
+  const section = renderMachine(design, 2);
+  const axis = design === "beam-frc" ? 236 : 237;
+  const loops = [...section.matchAll(/<ellipse [^>]*cy="([\d.]+)"[^>]*ry="([\d.]+)" class="machine-field"/g)];
+  assert.equal(loops.length, 4);
+  assert.ok(loops.every(([, y, radius]) => Math.abs(Number(y) - axis) > Number(radius)),
+    "closed FRC contours must stay off the symmetry axis");
+}
+const dipoleSection = renderMachine("dipole", 1);
+assert.equal([...dipoleSection.matchAll(/<path d="[^"]+Z" class="machine-field"/g)].length, 6,
+  "the dipole field closes around each side of the ring in section");
 for (const a of approaches) {
   const frames = a.stages.map((_, i) => renderMachine(a.id, i));
   assert.equal(new Set(frames).size, a.stages.length);

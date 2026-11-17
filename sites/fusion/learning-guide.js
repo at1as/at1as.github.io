@@ -1,4 +1,4 @@
-import { defaults } from './model.js';
+import { defaults } from './model.js?v=58eee71b';
 
 // The same 500 MW of fusion and Q = 10 in both cases. Only the heating system's
 // electricity-to-plasma efficiency changes; these are not facility predictions.

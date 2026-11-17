@@ -1,4 +1,4 @@
-import { balance } from "./model.js";
+import { balance } from "./model.js?v=58eee71b";
 
 // Both teaching cases have identical plasma performance and thermal conversion.
 export const efficiencyExamples = [0.5, 0.25].map(efficiency => ({

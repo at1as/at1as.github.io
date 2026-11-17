@@ -120,7 +120,7 @@ export const approaches = [
     family: "magnetic",
     tagline: "Suspend a magnet inside its own plasma.",
     description:
-      "A superconducting ring levitates inside a vacuum chamber, and the plasma surrounds its dipole field. The internal magnet must stay cold and protected in a future plant.",
+      "A superconducting ring levitates inside a vacuum chamber. Its magnetic field confines plasma around the ring. The internal magnet must stay cold and protected in a future plant.",
     stages: [
       {
         title: "Levitate the ring",
@@ -152,7 +152,7 @@ export const approaches = [
     stages: [
       {
         title: "Form a compact configuration",
-        text: "A field-reversed plasma forms in the central chamber, with a boundary called the separatrix.",
+        text: "Inside the plasma, magnetic field lines form closed loops. The boundary between these loops and the open field outside is called the separatrix.",
       },
       {
         title: "Inject energetic particles",
@@ -431,6 +431,7 @@ const C = {
   muted: "#9caeb8",
   plasma: "#ff925c",
   field: "#69baff",
+  electric: "#c7a2ed",
   energy: "#9ee4cb",
   white: "#fff3d5",
 };
@@ -508,20 +509,25 @@ function coils(xs, y, h, ry = 12) {
     )
     .join("");
 }
-function frc(cx, cy, rx, ry, active = true) {
-  return (
-    ellipse(cx, cy, rx, ry, active ? "machine-plasma-fill" : "machine-ghost") +
-    [-0.7, -0.35, 0.35, 0.7]
-      .map((v) =>
-        path(
-          `M${cx - rx} ${cy}C${cx - rx * 0.5} ${cy + ry * v * 2},${cx + rx * 0.5} ${cy + ry * v * 2},${cx + rx} ${cy}`,
-          "machine-field",
-        ),
-      )
-      .join("") +
-    line(cx - rx - 12, cy, cx + rx + 12, cy, "machine-field-dash") +
-    (active ? particles(cx, cy, rx * 0.76, ry * 0.67, 14) : "")
-  );
+function magnetizedPlasma(cx, cy, rx, ry) {
+  return ellipse(cx, cy, rx, ry, "machine-plasma-fill") +
+    particles(cx, cy, rx * 0.76, ry * 0.67, 14);
+}
+
+// Side section through an FRC. Each closed flux contour stays on one side
+// of the symmetry axis. The open exterior field passes around the separatrix.
+function frc(cx, cy, rx, ry) {
+  let out = magnetizedPlasma(cx, cy, rx, ry);
+  for (const side of [-1, 1]) {
+    for (const size of [0.55, 1]) {
+      out += ellipse(cx, cy + side * ry * 0.48, rx * 0.72 * size, ry * 0.32 * size, "machine-field");
+    }
+    out += path(pointsPath(samples(t => [
+      cx + rx * 1.15 * t,
+      cy + side * ry * (0.65 + 0.48 * (1 - t * t)),
+    ], 32, -1, 1)), "machine-field");
+  }
+  return out;
 }
 
 function torus(kind, s) {
@@ -695,8 +701,8 @@ function torus(kind, s) {
     );
   if (s >= 2) {
     out +=
-      arrow(101, 270, 199, 243, C.plasma, 3) +
-      text(63, 291, "Heating", "machine-label-plasma");
+      arrow(101, 270, 199, 243, C.energy, 3) +
+      text(63, 291, "Heating", "machine-label-energy");
   }
   if (s >= 3) {
     out += path(
@@ -793,26 +799,27 @@ function dipole(s) {
     line(159, 240, 159, 260, "machine-metal") +
     line(593, 240, 593, 260, "machine-metal");
   out +=
-    ellipse(376, 92, 79, 19, "machine-coil", 'stroke-width="10"') +
-    line(376, 112, 376, 196, "machine-field-dash");
-  if (s > 0) {
-    [1, -1].forEach((side) =>
-      [60, 100, 143, 180].forEach(
-        (d) =>
-          (out += path(
-            `M${376 + side * 42} 218C${376 + side * d} ${218 - d * 0.85},${376 + side * (d + 30)} ${258 + d * 0.72},${376 + side * 42} 258`,
-            "machine-field",
-          )),
-      ),
-    );
-  }
+    ellipse(376, 92, 79, 19, "machine-coil", 'stroke-width="10"');
   if (s >= 2) {
     out +=
       ellipse(376, 240, 135, 55, "machine-plasma-fill") +
       ellipse(376, 240, 76, 27, "machine-hole") +
       particles(264, 242, 22, 35, 12) +
       particles(490, 242, 22, 35, 12);
-    out += arrow(130, 280, 239, 255, C.plasma, 3);
+    out += arrow(130, 280, 239, 255, C.energy, 3);
+  }
+  if (s > 0) {
+    // Nested meridional loops pass through the central hole and around the coil.
+    for (const side of [-1, 1]) {
+      for (const size of [0.5, 0.75, 1]) {
+        const points = samples(angle => {
+          const c = Math.cos(angle);
+          const radius = 67 + size * c * (90 + 42 * c);
+          return [376 + side * radius, 240 + size * Math.sin(angle) * (84 + 32 * c)];
+        });
+        out += path(pointsPath(points) + "Z", "machine-field");
+      }
+    }
   }
   out +=
     ellipse(376, 244, 67, 25, "machine-ring") +
@@ -849,7 +856,7 @@ function beamFrc(s) {
   let out =
     rect(135, 166, 495, 139, "machine-chamber", 65) +
     coils([165, 194, 570, 599], 236, 155, 13);
-  out += frc(385, 236, 138, 53, true);
+  out += frc(385, 236, 138, 53);
   out += rect(
     226,
     84,
@@ -933,8 +940,8 @@ function pulsedFrc(s) {
   if (s === 2)
     out +=
       frc(380, 237, 70, 24) +
-      arrow(380, 167, 380, 205, C.field, 3) +
-      arrow(380, 307, 380, 269, C.field, 3);
+      arrow(380, 167, 380, 205, C.energy, 3) +
+      arrow(380, 307, 380, 269, C.energy, 3);
   if (s === 3)
     out +=
       frc(380, 237, 115, 52) +
@@ -943,7 +950,7 @@ function pulsedFrc(s) {
       text(
         380,
         359,
-        "Recovered input + fusion-added energy",
+        "Returned pulse energy + any fusion contribution",
         "machine-label-energy",
         'text-anchor="middle"',
       );
@@ -1012,8 +1019,8 @@ function pinch(s) {
   );
   if (s === 2)
     out +=
-      arrow(380, 158, 380, 208, C.field, 2.4) +
-      arrow(380, 313, 380, 263, C.field, 2.4);
+      arrow(380, 158, 380, 208, C.energy, 2.4) +
+      arrow(380, 313, 380, 263, C.energy, 2.4);
   if (s === 3)
     out +=
       arrow(594, 235, 683, 235, C.plasma, 2.5) +
@@ -1069,8 +1076,8 @@ function target(s) {
   out += circle(cx, cy, radius, "machine-liner", 'stroke-width="20"');
   out += rect(89, 218, 145, 38, "machine-hardware", 8);
   if (s === 0)
-    out += frc(161, 237, 47, 14) + arrow(216, 237, 281, 237, C.plasma, 2);
-  else out += frc(cx, cy, radius * 0.65, radius * 0.5);
+    out += magnetizedPlasma(161, 237, 47, 14) + arrow(216, 237, 281, 237, C.plasma, 2);
+  else out += magnetizedPlasma(cx, cy, radius * 0.65, radius * 0.5);
   if (s === 3)
     out +=
       burst(cx, cy, 120, 10) +
@@ -1100,6 +1107,8 @@ function laser(kind, s, fastIgnition = false) {
   const cx = 380,
     cy = 230,
     compressed = s >= 2;
+  const targetRadius = compressed ? 17 : 35;
+  const capsuleRadius = targetRadius + 8;
   let out =
     circle(cx, cy, 155, "machine-chamber") +
     circle(cx, cy, 163, "machine-casing");
@@ -1132,10 +1141,10 @@ function laser(kind, s, fastIgnition = false) {
     if (s >= 1) {
       const tx = showHohlraum
         ? cx + Math.sign(Math.cos(a)) * 31
-        : cx + Math.cos(a) * (compressed ? 15 : 35);
+        : cx + Math.cos(a) * capsuleRadius;
       const ty = showHohlraum
-        ? cy - Math.sign(Math.sin(a)) * 51
-        : cy + Math.sin(a) * (compressed ? 15 : 35);
+        ? cy - Math.sign(Math.sin(a)) * 57
+        : cy + Math.sin(a) * capsuleRadius;
       out += path(
         `M${n(x - Math.cos(a) * 36)} ${n(y - Math.sin(a) * 36)}L${n(tx)} ${n(ty)}`,
         "machine-laser",
@@ -1149,9 +1158,9 @@ function laser(kind, s, fastIgnition = false) {
         (dx) =>
           (out += arrow(
             cx + dx,
-            cy + side * 48,
+            cy + side * 57,
             cx + dx * 0.25,
-            cy + side * 22,
+            cy + side * Math.sqrt(capsuleRadius ** 2 - (dx * 0.25) ** 2),
             C.white,
             1.5,
           )),
@@ -1165,9 +1174,8 @@ function laser(kind, s, fastIgnition = false) {
       'text-anchor="middle"',
     );
   }
-  const targetRadius = compressed ? 17 : 35;
   out +=
-    circle(cx, cy, targetRadius + 8, "machine-capsule") +
+    circle(cx, cy, capsuleRadius, "machine-capsule") +
     circle(cx, cy, targetRadius, "machine-plasma-fill") +
     particles(cx, cy, targetRadius * 0.75, targetRadius * 0.75, 13);
   if (s === 2 && !showHohlraum) out += burst(cx, cy, 64, 8);
@@ -1312,8 +1320,8 @@ function pulsedPower(s) {
     out +=
       ellipse(380, 237, 63, 28, "machine-field") +
       ellipse(380, 237, 68, 35, "machine-field") +
-      arrow(316, 238, 353, 238, C.field) +
-      arrow(444, 238, 407, 238, C.field);
+      arrow(316, 238, 353, 238, C.energy) +
+      arrow(444, 238, 407, 238, C.energy);
   if (s === 3) out += burst(380, 237, 100, 10);
   out += leader(
     "M228 133L182 99H66",
@@ -1330,45 +1338,30 @@ function electrostatic(s) {
   let out =
     ellipse(380, 237, 195, 142, "machine-chamber") +
     ellipse(380, 237, 195, 67, "machine-casing");
-  out +=
-    ellipse(380, 237, 112, 107, "machine-electrode") +
-    ellipse(380, 237, 26, 107, "machine-electrode") +
-    rect(371, 107, 18, 260, "machine-electrode", 8);
+  for (const side of [-1, 1]) {
+    const neck = 380 + side * 57;
+    const middle = 380 + side * 128;
+    out += path(`M${neck} 118 Q${middle} 237 ${neck} 356`, "machine-field");
+  }
+  out += rect(371, 107, 18, 260, "machine-electrode", 8);
+  for (const y of [132, 341])
+    out += ellipse(380, y, 86, 15, "machine-coil");
+  out += arrow(299, 237, 368, 237, C.electric) + arrow(461, 237, 392, 237, C.electric);
   if (s >= 1) {
-    [-30, 30].forEach(
-      (deg) =>
-        (out += ellipse(
-          380,
-          237,
-          148,
-          61,
-          "machine-particle-track",
-          `transform="rotate(${deg} 380 237)"`,
-        )),
-    );
-    [
-      [257, 171],
-      [440, 310],
-      [491, 163],
-      [280, 304],
-    ].forEach(([x, y]) => (out += circle(x, y, 5, "machine-particle")));
-    out += arrow(242, 263, 260, 285, C.plasma, 2.5);
+    for (const y of [215, 259]) {
+      out += ellipse(380, y, 108, 23, "machine-particle-track");
+      out += circle(488, y, 4, "machine-particle");
+    }
   }
   if (s >= 2)
-    out +=
-      ellipse(380, 237, 48, 45, "machine-plasma-fill") +
-      particles(380, 237, 37, 33, 24) +
-      path(
-        "M201 217C263 103,491 105,560 216M201 260C263 373,491 372,560 259",
-        "machine-field-dash",
-      );
+    out += text(380, 295, "Collisions between orbiting ions", "machine-label-plasma", 'text-anchor="middle"');
   if (s === 3)
     out +=
-      arrow(423, 258, 579, 339, C.plasma, 2) +
+      arrow(488, 259, 579, 339, C.plasma, 2) +
       text(584, 362, "Losses", "machine-label-plasma");
-  out += leader("M380 110L494 79H663", 504, 61, "High-voltage electrode");
-  out += leader(
-    "M259 176L179 126H69",
+  out += leader("M380 110L494 79H663", 504, 61, "Negative central electrode");
+  if (s >= 1) out += leader(
+    "M277 210L179 126H69",
     65,
     106,
     "Ion tracks",
@@ -1430,7 +1423,7 @@ export function renderMachine(id, stage = 0, opts = {}) {
   }
   return `<svg xmlns="http://www.w3.org/2000/svg" class="machine-svg" viewBox="0 0 760 470" role="img" aria-label="${esc(approach.name + ": " + approach.stages[s].title)}">
     <title>${esc(approach.name + " — " + approach.stages[s].title)}</title>
-    <desc>${esc(approach.stages[s].text)} Blue lines are magnetic fields, orange indicates plasma or particle energy, and mint indicates electrical or driver energy.</desc>
+    <desc>${esc(approach.stages[s].text)} Blue lines are magnetic fields, orange indicates plasma or particle energy, and mint indicates electrical or driver energy.${approach.id === "electrostatic" ? " Purple arrows show the electric field toward the cathode." : ""}</desc>
     <style>
       .machine-svg{display:block;width:100%;height:auto;background:${C.ink};font-family:Arial,Helvetica,sans-serif}
       .machine-svg path,.machine-svg ellipse,.machine-svg rect{vector-effect:non-scaling-stroke}
@@ -1485,5 +1478,6 @@ export function renderMachine(id, stage = 0, opts = {}) {
     ${line(30, 454, 51, 454, "machine-field")}${text(59, 458, "Field", "machine-small")}
     ${line(123, 454, 144, 454, "machine-legend-plasma")}${text(151, 458, ["tokamak", "spherical", "stellarator"].includes(approach.id) ? "Plasma" : "Plasma / particles", "machine-small")}
     ${line(["tokamak", "spherical", "stellarator"].includes(approach.id) ? 222 : 296, 454, ["tokamak", "spherical", "stellarator"].includes(approach.id) ? 243 : 317, 454, "machine-energy")}${text(["tokamak", "spherical", "stellarator"].includes(approach.id) ? 251 : 325, 458, "Driver / energy", "machine-small")}
+    ${approach.id === "electrostatic" ? line(490, 454, 511, 454, "", `stroke="${C.electric}" stroke-width="2"`) + text(519, 458, "Electric field", "machine-small") : ""}
   </svg>`;
 }

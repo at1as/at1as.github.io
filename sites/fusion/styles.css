@@ -1901,8 +1901,20 @@ dialog::backdrop {
   border-radius: 50%;
   background: #617e68;
 }
-.history-event > strong {
+.milestone-date {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.milestone-date .source-info {
+  min-width: 28px;
+  min-height: 28px;
+  font-size: 14px;
+  line-height: 1;
+}
+.history-event time {
   font-size: 11px;
+  font-weight: 650;
   color: #976044;
 }
 .history-event h4 {
@@ -2644,21 +2656,17 @@ body:has(dialog[open]) {
   border-radius: 50%;
   background: #69856c;
 }
-#history-milestones span {
+#history-milestones time {
   font-family: Newsreader, Georgia, serif;
   font-size: 25px;
   color: #8f4c33;
 }
 #history-milestones h4 {
+  text-wrap: balance;
   font-size: 11px;
   font-weight: 550;
   line-height: 1.7;
   margin-top: 8px;
-}
-#history-milestones p {
-  font-size: 10px;
-  color: #52665c;
-  margin-top: 6px;
 }
 .history-event.planned {
   border-left-style: dashed;
@@ -3085,20 +3093,6 @@ h2 {
   margin: 12px 0;
   font-size: 12px;
 }
-.source-context {
-  margin: 24px 0;
-  padding: 20px;
-  background: #eef2e7;
-  border-radius: 5px;
-}
-.source-context h3 {
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-.source-context p {
-  margin: 0;
-}
-
 .boundary-caption p {
   margin-top: 14px;
   line-height: 1.8;
