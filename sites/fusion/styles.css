@@ -867,11 +867,14 @@ p + p {
 }
 .calculator-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 70px;
+  grid-template:
+    "controls net" auto
+    "controls breakdown" 1fr / 1fr 1fr;
+  column-gap: 70px;
   padding: 15px 0 20px;
 }
 .calc-controls {
+  grid-area: controls;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -900,8 +903,9 @@ p + p {
   cursor: pointer;
 }
 .calc-result {
+  grid-area: breakdown;
   background: #edf1e9;
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
   padding: 25px;
   align-self: start;
 }
@@ -910,6 +914,10 @@ p + p {
   margin-bottom: 14px;
 }
 #net-number {
+  grid-area: net;
+  background: #edf1e9;
+  border-radius: 5px 5px 0 0;
+  padding: 25px 25px 0;
   font-family: Newsreader, Georgia, serif;
   font-size: 65px;
   line-height: 1.1;
@@ -931,9 +939,6 @@ p + p {
   font-size: 10px;
   letter-spacing: 0;
   margin-top: 7px;
-}
-#power-flow {
-  margin-top: 25px;
 }
 .power-row {
   margin-bottom: 12px;
@@ -1199,6 +1204,10 @@ summary {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
+#show-all-cards:not([hidden]) {
+  display: block;
+  margin: 25px auto 0;
+}
 .entity-card {
   background: #fafbf6;
   border: 1px solid #c7d1c5;
@@ -1313,7 +1322,6 @@ summary {
 .site-note {
   font-size: 12px;
   margin: 0 0 24px;
-  max-width: 790px;
 }
 .funding-filters {
   display: flex;
@@ -1421,8 +1429,7 @@ summary {
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
 }
 .engineering-wide { grid-template-columns: minmax(0, 1fr); }
-.engineering-copy { min-width: 0; max-width: 78ch; }
-.engineering-wide .engineering-copy { max-width: none; }
+.engineering-copy { min-width: 0; }
 .engineering-copy h4 {
   font: 450 clamp(27px, 2.6vw, 34px)/1.15 Newsreader, Georgia, serif;
   letter-spacing: -.02em;
@@ -2173,7 +2180,7 @@ body:has(dialog[open]) {
     flex-direction: column;
   }
   .calculator-grid {
-    gap: 35px;
+    column-gap: 35px;
   }
   .filters {
     grid-template-columns: repeat(3, 1fr);
@@ -2403,16 +2410,22 @@ body:has(dialog[open]) {
     font-size: 11px;
   }
   .calculator-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    grid-template:
+      "net" auto
+      "controls" auto
+      "breakdown" auto / 1fr;
+    row-gap: 24px;
   }
   .calc-controls {
     gap: 20px;
   }
   .calc-result {
+    border-radius: 5px;
     padding: 22px;
   }
   #net-number {
+    border-radius: 5px;
+    padding: 16px 22px;
     font-size: 66px;
   }
   .calc-footer {
@@ -3250,7 +3263,6 @@ h2 {
 .energy-context .nuclear-comparison-intro {
   margin: 0 0 22px;
   color: #263f34;
-  max-width: 850px;
 }
 .nuclear-comparison {
   display: grid;
@@ -3313,9 +3325,7 @@ h2 {
   margin-top: 0;
 }
 .electricity-mix {
-  margin: 28px 0;
-  padding: 26px 0;
-  border-top: 1px solid #d4dccf;
+  margin: 8px 0 28px;
 }
 .electricity-mix figcaption p {
   font-size: 12px;
@@ -3548,10 +3558,17 @@ h2 {
   font-size: 10px;
   color: #576c60;
 }
-.energy-comparison {
+.grid-context {
   margin-top: 26px;
+}
+.grid-context[open] {
+  padding-bottom: 24px;
+}
+.grid-context,
+.energy-comparison {
   border-top: 1px solid #d4dccf;
 }
+.grid-context > summary,
 .energy-comparison > summary,
 .energy-context-sources > summary {
   min-height: 48px;
@@ -3703,7 +3720,7 @@ dialog:has(.comparison) { width: min(1280px, 96vw); }
 .comparison-sources > summary { cursor: pointer; font-size: 13px; color: #29473b; }
 .comparison-sources .reference { display: block; margin-top: 7px; }
 .comparison-answer .badge { white-space: normal; }
-.calculator-guide { background: #edf0e8; border: 1px solid #c8d3c7; border-radius: 5px; padding: 18px 22px; margin: 20px 0; }
+.calculator-guide { background: #edf0e8; border: 1px solid #c8d3c7; border-radius: 5px; padding: 18px 22px; }
 .calculator-guide p { margin: 0 0 14px; font-size: 14px; }
 .calculator-guide .learning-actions { margin: 0; }
 .calculator-guide button[aria-pressed="true"] { background: #29473b; border-color: #29473b; color: #fffef9; }

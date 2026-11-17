@@ -54,6 +54,10 @@ const tableSort = {
   funding: { key: "", direction: "ascending" },
 };
 const fundingFilters = { currency: "", type: "" };
+const featuredOrganizationIds = [
+  "commonwealth-fusion-systems", "national-ignition-facility", "helion",
+  "proxima-fusion", "focused-energy", "general-fusion",
+];
 let approach = params.get("approach") || "tokamak",
   machineStage = 0,
   reactionStage = 0,
@@ -904,17 +908,22 @@ function atlas() {
     );
   });
   highlightAtlasView();
-  $("#result-count").textContent =
-    `${entities.length} of ${data.entities.length} organizations · curated snapshot, 22 Oct 2026`;
-  if (view === "cards")
-    $("#atlas-content").innerHTML = entities.length
-      ? `<div class="entity-grid">${entities
-          .slice(0, showAllCards ? entities.length : 9)
-          .map(entityCard)
-          .join(
-            "",
-          )}</div>${entities.length > 9 ? `<button id="show-all-cards" style="display:block;margin:25px auto 0">${showAllCards ? "Show fewer organizations" : "Explore all " + entities.length + " organizations ↓"}</button>` : ""}`
-      : '<div class="empty"><h3>No matching organizations</h3><p>Try a broader search or clear the filters</p></div>';
+  const previewAvailable = view === "cards" && entities.length === data.entities.length &&
+    entities.length > featuredOrganizationIds.length;
+  const toggle = $("#show-all-cards");
+  toggle.hidden = !previewAvailable;
+  let cards = entities;
+  let count = `${entities.length} of ${data.entities.length} organizations`;
+  if (previewAvailable) {
+    const featured = featuredOrganizationIds.map(id => entityMap.get(id)).filter(Boolean);
+    cards = showAllCards ? [...featured, ...entities.filter(e => !featured.includes(e))] : featured;
+    if (!showAllCards) count = `Showing ${cards.length} of ${entities.length} organizations`;
+    toggle.textContent = showAllCards ? "Show fewer organizations" : `Explore all ${entities.length} organizations ↓`;
+    toggle.setAttribute("aria-expanded", String(showAllCards));
+  }
+  $("#result-count").textContent = `${count} · curated snapshot, 22 Oct 2026`;
+  if (view === "cards" && entities.length)
+    $("#atlas-content").innerHTML = `<div class="entity-grid">${cards.map(entityCard).join("")}</div>`;
   if (view === "table") evidenceTable(entities);
   if (view === "funding") funding(entities);
   if (view === "sites") sites(entities);
@@ -1351,9 +1360,10 @@ document.addEventListener("click", (e) => {
     $(`[data-compare-view="${b.dataset.compareView}"]`).focus({ preventScroll: true });
   }
   if (b.id === "show-all-cards") {
+    const firstAdded = $$(".entity-card").length;
     showAllCards = !showAllCards;
     atlas();
-    $("#show-all-cards")?.focus({ preventScroll: true });
+    if (showAllCards) $$(".entity-card")[firstAdded]?.querySelector("[data-entity]").focus();
   }
   if (b.id === "show-all-sources") {
     showAllSources = !showAllSources;

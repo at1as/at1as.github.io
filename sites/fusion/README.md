@@ -52,7 +52,7 @@ The validator checks the archived handoff, guarded corrections, canonical relati
 - Six themes of engineering questions, full history, 176 searchable sources in a section collapsed by default (eight initial references, with search and an option to show all), a 24-term glossary, ordinary source links and source detail dialogs that preserve the underlying profile.
 - Deep links preserve approach, fast-ignition variant, filters, financing currency/accounting basis/sort, selected organization and comparison. “Copy scenario link” includes model inputs. Closing a detail dialog clears the entity query.
 
-Default organization cards are the first nine in curated source order, with a control to expand all; this is not a ranking. Text and downloadable research remain available if JavaScript fails; interactive diagrams, filtering and the map require JavaScript. The map has a synchronized accessible list. No animation starts automatically; reduced-motion preferences disable smooth scrolling and any CSS motion.
+The directory opens with six examples spanning different approaches and roles. Readers can expand all 42 organizations or filter the full directory. Text and downloadable research remain available if JavaScript fails; interactive diagrams, filtering and the map require JavaScript. The map has a synchronized accessible list. No animation starts automatically; reduced-motion preferences disable smooth scrolling and any CSS motion.
 
 The SVG site map supports 1–8× zoom, drag-to-pan, and a full-world reset. Its view
 persists through filtering and atlas tab changes. Markers retain their on-screen
