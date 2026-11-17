@@ -25909,7 +25909,8 @@
       "text": "Record combines triple product with long pulse duration; it is not the largest triple product at every pulse length.",
       "sourceIds": [
         "PHY_015"
-      ]
+      ],
+      "displayText": "Wendelstein 7-X sustained a high triple product for 43 seconds. In a June 2025 update, the institute reported that JET had sustained comparable values in pulses lasting up to 60 seconds."
     },
     {
       "id": "phy_history_dones",

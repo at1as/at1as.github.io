@@ -677,11 +677,12 @@ export function buildReactor(id, options = {}) {
       const fn = (t) =>
         shape(
           t * TAU * 2,
-          t * TAU * (stellarator ? 3 : 3.4) + (j * TAU) / 5,
+          // The tokamak sequence illustrates one poloidal turn per two toroidal turns.
+          t * TAU * (stellarator ? 3 : 1) + (j * TAU) / 5,
           1.06,
         );
       curve(field, fn, 0.016, M.field, 170);
-      tracer(field, fn, 0.055, j / 5, M.hot, 0.034);
+      tracer(field, fn, 0.055, j / 5, M.field, 0.034);
     }
     const heating = part("heating", [2.8, 0.2, 1.7], [0.9, 0.3, 0.9], "flow");
     const point = V(R * 0.8, 0.15, R * 0.6),

@@ -29,6 +29,8 @@ export function balance(p) {
     aux = p.mode === "inertia" ? p.aux * p.rate : p.aux,
     consumption = driver + aux;
   const denominator = p.thermal * p.capture * delivered;
+  const difference = gross - consumption;
+  const roundoff = 4 * Number.EPSILON * Math.max(gross, consumption);
   return {
     delivered,
     fusion,
@@ -36,7 +38,7 @@ export function balance(p) {
     driver,
     aux,
     consumption,
-    net: gross - consumption,
+    net: Math.abs(difference) <= roundoff ? 0 : difference,
     threshold: denominator > 0 ? consumption / denominator : null,
     ratio: consumption > 0 ? gross / consumption : null,
   };

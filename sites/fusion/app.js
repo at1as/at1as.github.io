@@ -11,13 +11,13 @@ import {
   atlasFamilies, atlasFamilyId, atlasFamilyLabel, matchesApproach,
   readApproachFilters, claimSourceLabels, sourceTypeLabel,
 } from "./atlas-metadata.js";
-import { engineeringDiagram } from "./engineering-diagrams.js?v=engineering-stories-1";
+import { engineeringDiagram } from "./engineering-diagrams.js?v=4528c3a2";
 import { engineeringPanels } from "./engineering-content.js";
-import { approaches, renderMachine } from "./diagrams.js?v=grouped-designs-1";
-import { balance, defaults, readScenario, targetCost } from "./model.js";
+import { approaches, renderMachine } from "./diagrams.js?v=92d87982";
+import { balance, defaults, readScenario, targetCost } from "./model.js?v=58eee71b";
 import { recordCopy, glossaryCopy } from "./reader-content.js";
 import { comparisonClaims, comparisonAssessment } from "./comparison-content.js";
-import { learningScenarios, matchingLesson, targetsPerDay } from "./learning-guide.js";
+import { learningScenarios, matchingLesson, targetsPerDay } from "./learning-guide.js?v=0bf82395";
 import {
   sortAtlasRows, fundingSortValues, evidenceSortValues,
   isMappedSite, isPlannedSite, mapSiteCounts, matchesFuel, selectedSites,
@@ -44,9 +44,12 @@ const human = (x) => String(x ?? "")
   .replace(/\br\s+and\s+d\b/gi, "R&D");
 const fmt = (n) =>
   Number.isFinite(n)
-    ? n.toLocaleString("en-US", { maximumFractionDigits: 1 })
+    ? n.toLocaleString("en-US", n !== 0 && Math.abs(n) < 0.1
+      ? { maximumSignificantDigits: 2 } : { maximumFractionDigits: 1 })
     : "Unavailable";
 const params = new URLSearchParams(location.search);
+const atlasViews = $$("#view-tabs [data-view]").map(button => button.dataset.view);
+const defaultAtlasView = atlasViews[0];
 let data, sourceMap, sourceNumbers, entityMap, world;
 let atlasConfigurations = [];
 const tableSort = {
@@ -64,9 +67,9 @@ let approach = params.get("approach") || "tokamak",
   boundary = 0,
   playMachine,
   playReaction,
-  view = ["cards", "table", "sites", "funding"].includes(params.get("view"))
+  view = atlasViews.includes(params.get("view"))
     ? params.get("view")
-    : "cards",
+    : defaultAtlasView,
   scenario = readScenario(params),
   comparison = new Set(
     (params.get("compare") || "").split(",").filter(Boolean),
@@ -88,7 +91,7 @@ const badge = (s) =>
 function evidenceLabels(claim) {
   return `<div class="evidence-labels">${badge(claim.category)}<span class="evidence-provenance" aria-label="Source types">${claimSourceLabels(claim, sourceMap).map(label => `<span class="source-type">${esc(label)}</span>`).join("")}</span></div>`;
 }
-function citations(ids = [], context = "") {
+function citations(ids = []) {
   return [...new Set(ids)]
     .filter((id) => sourceMap?.has(id))
     .map((id) => {
@@ -98,7 +101,7 @@ function citations(ids = [], context = "") {
         .replace("Department of Energy", "DOE")
         .replace("Lawrence Livermore National Laboratory", "LLNL")
         .replace("Max Planck Institute for Plasma Physics", "IPP");
-      return `<span class="reference"><a class="source-link" href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.title)}" aria-label="Reference ${sourceNumbers.get(id)}: ${esc(s.title)} (opens a new tab)">[${sourceNumbers.get(id)}] ${esc(label)} ↗</a><button class="source-info" data-source="${esc(id)}" data-history="${esc(context)}" aria-label="Source details: ${esc(s.title)}">ⓘ</button></span>`;
+      return `<span class="reference"><a class="source-link" href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.title)}" aria-label="Reference ${sourceNumbers.get(id)}: ${esc(s.title)} (opens a new tab)">[${sourceNumbers.get(id)}] ${esc(label)} ↗</a><button class="source-info" data-source="${esc(id)}" aria-label="Source details: ${esc(s.title)}">ⓘ</button></span>`;
     })
     .join(" ");
 }
@@ -173,7 +176,7 @@ function mountReactor(host, id, options = {}) {
     mount.observer?.disconnect();
     try {
       if (!reactorFactory) {
-        const module = await import("./reactor-explorer.js?v=layout-coordinates-1");
+        const module = await import("./reactor-explorer.js?v=105fd872");
         reactorFactory = module.createReactorExplorer;
       }
       if (mount.cancelled || !host.isConnected) return;
@@ -655,7 +658,7 @@ function calc() {
   $("#threshold").textContent =
     r.threshold === null
       ? "Break-even gain unavailable: no delivered or captured electrical energy"
-      : `Electrical break-even requires gain ${fmt(r.threshold)} with these assumptions`;
+      : `Electrical break-even gain ≈ ${fmt(r.threshold)} with these assumptions`;
   $("#equations").innerHTML =
     `<code>Fusion = ${p.mode === "continuous" ? `${fmt(p.gain)} × ${fmt(p.heating)}` : `${fmt(p.energy)} × ${fmt(p.gain)} × ${fmt(p.rate)}`} = ${fmt(r.fusion)} MW<br>Gross = ${p.thermal} × ${p.capture} × ${fmt(r.fusion)} = ${fmt(r.gross)} MW<br>Driver = ${fmt(r.delivered)} / ${p.driver} = ${fmt(r.driver)} MW<br>Net = ${fmt(r.gross)} − ${fmt(r.driver)} − ${fmt(r.aux)} = ${fmt(r.net)} MW</code>`;
   $("#target-cost").textContent =
@@ -851,18 +854,26 @@ function sortHeader(table, key, label, { disabled = false, sortLabel = label } =
   const description = disabled ? "Choose an original currency to sort amounts" : `Sort by ${sortLabel.toLowerCase()}, ${next}`;
   return `<th scope="col"${active ? ` aria-sort="${state.direction}"` : ""}><button type="button" class="table-sort" data-table-sort="${table}" data-sort-key="${key}" aria-label="${esc(description)}" title="${esc(description)}" ${disabled ? 'disabled aria-describedby="fund-sort-note"' : ""}><span>${esc(label)}</span><span class="sort-arrow" aria-hidden="true">${active ? state.direction === "ascending" ? "↑" : "↓" : "↕"}</span></button></th>`;
 }
-function fuelSummary(e) {
-  if (!e.fuel_contexts) return `<p><strong>Intended plant fuel:</strong> ${esc(e.intendedFuel || "Not established in the reviewed record")}</p>`;
-  return ["experimental", "planned_research"].filter(key => e.fuel_contexts[key].status !== "not_established")
-    .map(key => `<p><strong>${key === "experimental" ? "Experiment" : "Planned research"}:</strong> ${esc(e.fuel_contexts[key].text)}</p>${citations(e.fuel_contexts[key].source_ids)}`).join("");
-}
-function fuelDetails(e) {
-  const contexts = e.fuel_contexts || {
+function fuelContexts(e) {
+  return e.fuel_contexts || {
     experimental: { text: e.displayExperimentalFuel || e.experimentalFuel || "Not established in the reviewed record" },
     commercial: { text: e.intendedFuel || "Not established in the reviewed record" },
   };
+}
+function fuelSummary(e) {
+  const labels = { experimental: "Experiment", planned_research: "Planned research", commercial: "Intended plant fuel" };
+  return Object.entries(fuelContexts(e))
+    .filter(([key, item]) => item.status !== "not_established" && !(key === "commercial" && item.status === "not_applicable"))
+    .map(([key, item]) => `<p><strong>${labels[key]}:</strong> ${esc(item.text)}</p>${citations(item.source_ids)}`)
+    .join("");
+}
+function fuelDetails(e) {
+  const contexts = fuelContexts(e);
   const labels = { experimental: "Experimental fuel / status", planned_research: "Planned research fuel", commercial: "Intended commercial fuel" };
   return `<div class="methodology-grid" style="margin-top:25px;gap:30px">${Object.entries(contexts).map(([key, context]) => `<div><h4>${labels[key]}</h4><p>${esc(context.text)}</p>${citations(context.source_ids)}</div>`).join("")}</div>`;
+}
+function financingType(row) {
+  return row.status === "conditional_loi" ? `Proposed ${human(row.type)} (letter of intent)` : human(row.type);
 }
 function financingSummary(e) {
   return `<p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.fundingSummaryNote ? `<p>${esc(e.fundingSummaryNote)}</p>` : ""}${citations(e.fundingSummarySourceIds)}`;
@@ -932,7 +943,7 @@ function atlas() {
       '<div class="empty"><h3>No matching organizations</h3><p>Try a broader search or clear the filters</p></div>';
   tray();
   updateURL({
-    view: view === "cards" ? "" : view,
+    view: view === defaultAtlasView ? "" : view,
     q: $("#atlas-search").value,
     family: $("#filter-family").value,
     configuration: $("#filter-configuration").value,
@@ -966,7 +977,7 @@ function renderFundingRows(rows) {
   }
   $("#fund-table").innerHTML =
     `<table class="data-table funding-table"><thead><tr>${sortHeader("funding", "organization", "Organization")}${sortHeader("funding", "date", "Date")}${sortHeader("funding", "amount", "Amount as reported", { disabled: !currency })}${sortHeader("funding", "type", "Type")}<th scope="col">Scope, conditions and sources</th></tr></thead><tbody>${sortAtlasRows(filtered, fundingSortValues[state.key], state.direction)
-      .map(row => `<tr><td><button data-entity="${row.entity.id}">${esc(row.entity.name)}</button></td><td class="fund-date">${esc(row.date || "Undated")}</td><td>${esc(row.amountLabel || "Undisclosed")}</td><td>${esc(human(row.type))}${row.superseded_by ? "<br><b>Superseded amount</b>" : ""}</td><td>${esc(row.displayScope || row.scope)}<p>${citations(row.sourceIds)}</p></td></tr>`)
+      .map(row => `<tr><td><button data-entity="${row.entity.id}">${esc(row.entity.name)}</button></td><td class="fund-date">${esc(row.date || "Undated")}</td><td>${esc(row.amountLabel || "Undisclosed")}</td><td>${esc(financingType(row))}${row.superseded_by ? "<br><b>Superseded amount</b>" : ""}</td><td>${esc(row.displayScope || row.scope)}<p>${citations(row.sourceIds)}</p></td></tr>`)
       .join("")}</tbody></table>`;
 }
 function funding(entities) {
@@ -1093,7 +1104,7 @@ function entityDetail(id) {
   updateURL({ entity: e.id });
   modal(
     "ORGANIZATION FIELD NOTES",
-    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}${fuelDetails(e)}<h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3>${financingSummary(e)}${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(human(f.type))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
+    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}${fuelDetails(e)}<h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3>${financingSummary(e)}${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(financingType(f))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
   );
   if (m) {
     const options = getEntityReactorOptions(e);
@@ -1146,22 +1157,28 @@ function compareDetail(fundingView = false) {
     }, { expandable: true, open: ["electrical_balance", "fuel_cycle"].includes(theme.id) })).join("") +
     row("All included records", e => e.claims.map(comparisonRecord).join("") || '<p>No records included.</p>', { expandable: true });
   const financing = () => row("Reported financing", financingSummary, { note: "Figures retain their original currencies and accounting scope. Cumulative funding, commitments and cash balances are not interchangeable." }) +
-    row("Financing ledger", e => e.funding.map(f => `<div class="comparison-record"><p><strong>${esc(f.amountLabel)} · ${esc(human(f.type))}</strong></p><p>${esc(f.date)} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("") || '<p>No financing observations included.</p>', { expandable: true });
+    row("Financing ledger", e => e.funding.map(f => `<div class="comparison-record"><p><strong>${esc(f.amountLabel)} · ${esc(financingType(f))}</strong></p><p>${esc(f.date)} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("") || '<p>No financing observations included.</p>', { expandable: true });
   modal("COMPARE BY QUESTION", `<div class="comparison" style="--columns:${list.length}"><h2>Compare the evidence</h2><div class="segmented"><button data-compare-view="evidence" aria-pressed="${!fundingView}" class="${!fundingView ? "active" : ""}">Evidence and remaining questions</button><button data-compare-view="funding" aria-pressed="${fundingView}" class="${fundingView ? "active" : ""}">Financing observations</button></div>${fundingView ? financing() : evidence()}</div>`);
 }
-function sourceDetail(id, historyId) {
-  const s = sourceMap?.get(id);
-  if (!s) return;
+function showSourceNotes(contents) {
   sourceFocus = document.activeElement;
-  const event = data.history.find((h) => h.id === historyId);
-  $("#source-content").innerHTML =
-    `<div class="detail-meta">Reference ${sourceNumbers.get(id)} · ${esc(sourceTypeLabel(s))}</div><h2 id="source-title">${esc(s.title)}</h2>${event ? `<section class="source-context"><h3>${esc(event.title)}</h3><p>${esc(event.displayText || event.text)}</p></section>` : ""}<p>${esc(s.publisher)}</p><p>Published: ${esc(s.published || "Undated live page")}<br>Source last reviewed: ${esc(s.reviewed || "2026-10-22")}</p>${s.note ? `<p>${esc(s.note)}</p>` : ""}<p><a href="${esc(s.url)}" target="_blank" rel="noopener">Open the original source ↗</a></p>`;
+  $("#source-content").innerHTML = contents;
   $("#close-source").textContent = $("#detail-dialog").open
     ? "Back to details ×"
     : "Close ×";
   $("#source-dialog").showModal();
   $("#source-dialog").scrollTop = 0;
   $("#close-source").focus();
+}
+function sourceMetadata(s) {
+  return `<p>${esc(s.publisher)}</p><p>Published: ${esc(s.published || "Undated live page")}<br>Source last reviewed: ${esc(s.reviewed || "2026-10-22")}</p>${s.note ? `<p>${esc(s.note)}</p>` : ""}`;
+}
+function sourceDetail(id) {
+  const s = sourceMap?.get(id);
+  if (!s) return;
+  showSourceNotes(`<div class="detail-meta">Reference ${sourceNumbers.get(id)} · ${esc(sourceTypeLabel(s))}</div>
+    <h2 id="source-title">${esc(s.title)}</h2>${sourceMetadata(s)}
+    <p><a href="${esc(s.url)}" target="_blank" rel="noopener">Open the original source ↗</a></p>`);
 }
 let showAllSources = false;
 function sourceList() {
@@ -1233,10 +1250,37 @@ function toggleRisk(button) {
   markChapter();
 }
 
+const milestoneDateFormat = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+function milestoneDate(h) {
+  const prefix = { "publication date": "Published ", "reported at": "Reported ", "target window": "Target " }[h.dateRole] || "";
+  const date = h.timing.precision === "day" ? milestoneDateFormat.format(new Date(h.date)) : h.date;
+  return `${prefix}${date}`;
+}
+function milestoneHeader(h, date, title = h.title) {
+  return `<div class="milestone-date"><time datetime="${esc(h.date)}">${esc(date)}</time>
+    <button class="source-info" data-milestone="${esc(h.id)}" aria-label="Details and sources for ${esc(title)}" aria-haspopup="dialog">ⓘ</button></div>`;
+}
+function milestoneDetails(id) {
+  const h = data.history.find(event => event.id === id);
+  if (!h) return;
+  const sources = h.sourceIds.map(sourceId => {
+    const s = sourceMap.get(sourceId);
+    return `<section class="ledger"><div class="detail-meta">Reference ${sourceNumbers.get(sourceId)} · ${esc(sourceTypeLabel(s))}</div>
+      <p><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)} ↗</a></p>${sourceMetadata(s)}</section>`;
+  }).join("");
+  showSourceNotes(`<div class="detail-meta">${esc(milestoneDate(h))}</div><h2 id="source-title">${esc(h.title)}</h2>
+    <p>${esc(h.displayText || h.text)}</p>${sources}`);
+}
 function historyDetail() {
+  const firstTarget = data.history.find(h => /target/i.test(h.category));
+  const events = data.history.map(h => {
+    const divider = h === firstTarget ? '<h3 class="snapshot-divider">Snapshot · 22 October 2026</h3><p class="quiet">ANNOUNCED PLANS · No achievement implied</p>' : "";
+    return `${divider}<article class="history-event ${/target/i.test(h.category) ? "planned" : ""}">
+      ${milestoneHeader(h, milestoneDate(h))}<h4>${esc(h.title)}</h4>${badge(h.category)}<p>${esc(h.displayText || h.text)}</p></article>`;
+  }).join("");
   modal(
     "SELECTED HISTORY",
-    `<h2>Fusion research timeline</h2><p>Selected events, with original date precision and event type. Announced plans remain targets after their dates pass.</p><div style="margin-top:30px">${data.history.map((h) => `${/target/i.test(h.category) && h.id === data.history.find((x) => /target/i.test(x.category))?.id ? '<h3 class="snapshot-divider">Snapshot · 22 October 2026</h3><p class="quiet">ANNOUNCED PLANS · No achievement implied</p>' : ""}<article class="history-event ${/target/i.test(h.category) ? "planned" : ""}"><strong>${esc(h.date)} · ${esc(human(h.dateRole))}</strong><h4>${esc(h.title)}</h4>${badge(h.category)}<p>${esc(h.displayText || h.text)}</p>${citations(h.sourceIds, h.id)}</article>`).join("")}</div>`,
+    `<h2>Fusion research timeline</h2><div style="margin-top:30px">${events}</div>`,
   );
 }
 function glossaryDetail() {
@@ -1337,7 +1381,8 @@ document.addEventListener("click", (e) => {
     });
   }
   if (b.dataset.entity) entityDetail(b.dataset.entity);
-  if (b.dataset.source) sourceDetail(b.dataset.source, b.dataset.history);
+  if (b.dataset.source) sourceDetail(b.dataset.source);
+  if (b.dataset.milestone) milestoneDetails(b.dataset.milestone);
   if (b.dataset.open === "diagram") {
     const a = approaches.find((a) => a.id === approach);
     modal(
@@ -1466,7 +1511,7 @@ async function init() {
   machine();
   calcControls();
   try {
-    const response = await fetch("./data.json?v=20261112-correctness", { cache: "no-cache" });
+    const response = await fetch("./data.json?v=09f8c628", { cache: "no-cache" });
     if (!response.ok) throw Error("Dataset failed to load");
     data = await response.json();
     sourceMap = new Map(data.sources.map((s) => [s.id, s]));
@@ -1538,18 +1583,17 @@ async function init() {
       .catch(() => {});
     for (const mount of reactorMounts.values()) mount.view?.refreshSources();
     $("#history-milestones").innerHTML = [
-      "phy_history_1934",
-      "phy_history_1957",
-      "phy_history_1997",
-      "phy_history_2021",
-      "phy_history_2022",
-      "phy_history_nif2025",
+      ["phy_history_1934", "Deuterium fusion in the lab"],
+      ["phy_history_1957", "Lawson’s fusion criterion"],
+      ["phy_history_1997", "Plasma gain of 0.67 at JET"],
+      ["phy_history_2021", "NIF ignites its fuel"],
+      ["phy_history_2022", "NIF passes target break-even"],
+      ["phy_history_nif2025", "NIF’s target gain reaches 4.13"],
     ]
-      .map((id) => data.history.find((h) => h.id === id))
-      .map(
-        (h) =>
-          `<article><span>${h.date.slice(0, 4)}</span><h4>${esc(h.title)}</h4><p>${esc(h.dateRole)}</p><div class="citation">${citations(h.sourceIds.slice(0, 1), h.id)}</div></article>`,
-      )
+      .map(([id, title]) => {
+        const h = data.history.find(event => event.id === id);
+        return `<article>${milestoneHeader(h, h.date.slice(0, 4), title)}<h4>${esc(title)}</h4></article>`;
+      })
       .join("");
     const eid = params.get("entity");
     if (eid)

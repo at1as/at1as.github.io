@@ -144,6 +144,11 @@ function validate(id, options = {}) {
     for (const path of paths("coils"))
       assert.ok(path.closed, `${id}: open magnet winding`);
   }
+  if (id === "tokamak" || id === "spherical") {
+    const lines = paths("field");
+    assert.ok(lines.length > 0 && lines.every(path => path.closed),
+      `${id}: the illustrated two-turn field should meet itself`);
+  }
   if (id === "spherical") {
     const plasmaBounds = new Box3().setFromObject(group("plasma"));
     const divertorBounds = new Box3();

@@ -354,6 +354,12 @@
     "displayText": "Helium nuclei produced by fusion, called alpha particles, heat the surrounding fuel and help the fusion reaction spread. The experiment releases over 1.3 MJ of fusion energy, still less than the laser energy delivered to the target (target gain below one)."
   },
   {
+    "id": "phy_history_w7x",
+    "field": "text",
+    "sourceText": "Record combines triple product with long pulse duration; it is not the largest triple product at every pulse length.",
+    "displayText": "Wendelstein 7-X sustained a high triple product for 43 seconds. In a June 2025 update, the institute reported that JET had sustained comparable values in pulses lasting up to 60 seconds."
+  },
+  {
     "id": "phy_history_nif2025",
     "field": "text",
     "sourceText": "Record listed: 8.6 MJ fusion yield from 2.08 MJ laser input; target boundary only.",
