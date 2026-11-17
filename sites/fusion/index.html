@@ -94,9 +94,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=be111cc7" />
-    <link rel="stylesheet" href="./reactor-explorer.css?v=ade780b9" />
-    <script type="module" src="./app.js?v=248182ba"></script>
+    <link rel="stylesheet" href="./styles.css?v=106237a9" />
+    <link rel="stylesheet" href="./reactor-explorer.css?v=bafbffcf" />
+    <script type="module" src="./app.js?v=970abf83"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -212,12 +212,7 @@
             <h3 id="energy-context-title">Fusion in the energy system</h3>
             <span class="disclosure-mark" aria-hidden="true"></span>
           </summary>
-          <p class="nuclear-comparison-intro">
-            Today's nuclear power stations use <strong>fission</strong>.
-            <strong>Fusion</strong> is a different nuclear reaction, still being
-            developed for electricity generation. Both release energy from
-            atomic nuclei — the centres of atoms
-          </p>
+          <p class="nuclear-comparison-intro">Today's nuclear power stations use <strong>fission</strong>. <strong>Fusion</strong> power is still in development. Both reactions release energy from atomic nuclei, the centres of atoms.</p>
           <div class="nuclear-comparison">
             <article>
               <span class="nuclear-status">Supplies electricity today</span>
@@ -286,91 +281,94 @@
             </div>
           </div>
 
-          <figure class="electricity-mix" aria-labelledby="electricity-mix-title">
-            <figcaption>
-              <h4 id="electricity-mix-title">Where the world's electricity comes from</h4>
-              <p>2025 · Approximate share of global electricity generation</p>
-            </figcaption>
-            <div class="electricity-mix-bar" aria-hidden="true">
-              <span class="mix-coal" data-mix="coal" style="flex: 10858"></span>
-              <span class="mix-renewables" data-mix="renewables" style="flex: 10808">
-                <span class="renewables-segments">
-                  <span class="renewable-hydro" style="flex: 4470.2"></span>
-                  <span class="renewable-wind" style="flex: 2723.3"></span>
-                  <span class="renewable-solar" style="flex: 2653.1"></span>
-                  <span class="renewable-other" style="flex: 961.2"></span>
+          <details class="grid-context">
+            <summary>Where would fusion fit in today’s grid?</summary>
+            <figure class="electricity-mix" aria-labelledby="electricity-mix-title">
+              <figcaption>
+                <h4 id="electricity-mix-title">Where the world's electricity comes from</h4>
+                <p>2025 · Approximate share of global electricity generation</p>
+              </figcaption>
+              <div class="electricity-mix-bar" aria-hidden="true">
+                <span class="mix-coal" data-mix="coal" style="flex: 10858"></span>
+                <span class="mix-renewables" data-mix="renewables" style="flex: 10808">
+                  <span class="renewables-segments">
+                    <span class="renewable-hydro" style="flex: 4470.2"></span>
+                    <span class="renewable-wind" style="flex: 2723.3"></span>
+                    <span class="renewable-solar" style="flex: 2653.1"></span>
+                    <span class="renewable-other" style="flex: 961.2"></span>
+                  </span>
                 </span>
-              </span>
-              <span class="mix-gas" data-mix="gas" style="flex: 6822"></span>
-              <span class="mix-fission" data-mix="fission" style="flex: 2858"></span>
-              <span class="mix-other" data-mix="other" style="flex: 786"></span>
-            </div>
-            <ul class="electricity-mix-legend" aria-label="Electricity generation shares">
-              <li class="mix-coal"><button type="button" data-mix="coal"><strong>34%</strong><span>Coal</span></button></li>
-              <li class="mix-renewables"><button type="button" data-mix="renewables" aria-describedby="renewables-breakdown"><strong>34%</strong><span>Renewables</span><small>Hover or select for breakdown</small></button></li>
-              <li class="mix-gas"><button type="button" data-mix="gas"><strong>21%</strong><span>Natural gas</span></button></li>
-              <li class="mix-fission"><button type="button" data-mix="fission"><strong>9%</strong><span>Nuclear <b>fission</b></span></button></li>
-              <li class="mix-other"><button type="button" data-mix="other"><strong>2%</strong><span>Oil and other sources</span></button></li>
-            </ul>
-            <div class="renewables-breakdown" id="renewables-breakdown" hidden>
-              <p><strong>Inside renewables</strong> · Share of all electricity generation, 2025</p>
-              <ul>
-                <li class="renewable-hydro"><span>Hydro</span><strong>13.9%</strong></li>
-                <li class="renewable-wind"><span>Wind</span><strong>8.5%</strong></li>
-                <li class="renewable-solar"><span>Solar PV</span><strong>8.3%</strong></li>
-                <li class="renewable-other"><span>Other renewables</span><strong>3.0%</strong></li>
+                <span class="mix-gas" data-mix="gas" style="flex: 6822"></span>
+                <span class="mix-fission" data-mix="fission" style="flex: 2858"></span>
+                <span class="mix-other" data-mix="other" style="flex: 786"></span>
+              </div>
+              <ul class="electricity-mix-legend" aria-label="Electricity generation shares">
+                <li class="mix-coal"><button type="button" data-mix="coal"><strong>34%</strong><span>Coal</span></button></li>
+                <li class="mix-renewables"><button type="button" data-mix="renewables" aria-describedby="renewables-breakdown"><strong>34%</strong><span>Renewables</span><small>Hover or select for breakdown</small></button></li>
+                <li class="mix-gas"><button type="button" data-mix="gas"><strong>21%</strong><span>Natural gas</span></button></li>
+                <li class="mix-fission"><button type="button" data-mix="fission"><strong>9%</strong><span>Nuclear <b>fission</b></span></button></li>
+                <li class="mix-other"><button type="button" data-mix="other"><strong>2%</strong><span>Oil and other sources</span></button></li>
               </ul>
-              <p class="energy-chart-source">
-                Together ≈34% of world electricity. Figures rounded independently.
-                Other renewables includes bioenergy and waste, geothermal,
-                concentrating solar power and marine energy.
-                <a href="https://www.iea.org/data-and-statistics/charts/global-renewable-generation-by-source-2015-2025" target="_blank" rel="noopener">IEA · Renewable generation by source ↗</a>
-              </p>
-            </div>
-            <p class="fusion-mix-note">
-              <strong>Fusion: 0%</strong>
-              No fusion power station supplies electricity to the grid yet
-            </p>
-            <p class="energy-chart-source">
-              <a href="https://www.iea.org/reports/global-energy-review-2026/electricity-supply" target="_blank" rel="noopener">IEA · Global Energy Review 2026 ↗</a>
-              · Rounded estimates. Electricity generation only; direct fuel use
-              for transport and heating is outside this chart
-            </p>
-          </figure>
-
-          <div class="energy-demand">
-            <div>
-              <h4>Growing demand, including AI</h4>
-              <p>
-                The IEA projects electricity use by all data centres to nearly
-                double by 2030, reaching about <strong>3% of global electricity
-                demand</strong>. AI-focused facilities are growing faster
-              </p>
-              <p>
-                AI's appetite for electricity has helped renew interest in
-                fusion. Google, for example, has invested in fusion and agreed
-                to buy electricity from a future plant. Fusion could eventually
-                serve computing, industry and electrified transport, but today's
-                data centres rely on existing energy sources
-              </p>
-            </div>
-            <figure class="energy-demand-chart" aria-labelledby="energy-demand-title">
-              <figcaption id="energy-demand-title">Electricity used by all data centres</figcaption>
-              <div class="energy-demand-row">
-                <div class="energy-demand-label"><strong>2025</strong><span>Estimate</span><b>485 <small>TWh</small></b></div>
-                <div class="energy-demand-track" aria-hidden="true"><span style="width: 48.5%"></span></div>
+              <div class="renewables-breakdown" id="renewables-breakdown" hidden>
+                <p><strong>Inside renewables</strong> · Share of all electricity generation, 2025</p>
+                <ul>
+                  <li class="renewable-hydro"><span>Hydro</span><strong>13.9%</strong></li>
+                  <li class="renewable-wind"><span>Wind</span><strong>8.5%</strong></li>
+                  <li class="renewable-solar"><span>Solar PV</span><strong>8.3%</strong></li>
+                  <li class="renewable-other"><span>Other renewables</span><strong>3.0%</strong></li>
+                </ul>
+                <p class="energy-chart-source">
+                  Together ≈34% of world electricity. Figures rounded independently.
+                  Other renewables includes bioenergy and waste, geothermal,
+                  concentrating solar power and marine energy.
+                  <a href="https://www.iea.org/data-and-statistics/charts/global-renewable-generation-by-source-2015-2025" target="_blank" rel="noopener">IEA · Renewable generation by source ↗</a>
+                </p>
               </div>
-              <div class="energy-demand-row energy-demand-projection">
-                <div class="energy-demand-label"><strong>2030</strong><span>Projection</span><b>950 <small>TWh</small></b></div>
-                <div class="energy-demand-track" aria-hidden="true"><span style="width: 95%"></span></div>
-              </div>
-              <div class="energy-demand-axis" aria-hidden="true"><span>0</span><span>1,000 TWh/year</span></div>
+              <p class="fusion-mix-note">
+                <strong>Fusion: 0%</strong>
+                No fusion power station supplies electricity to the grid yet
+              </p>
               <p class="energy-chart-source">
-                <a href="https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary" target="_blank" rel="noopener">IEA · Key Questions on Energy and AI, 2026 ↗</a>
-                <br />Includes AI and other computing. One TWh = one billion kWh
+                <a href="https://www.iea.org/reports/global-energy-review-2026/electricity-supply" target="_blank" rel="noopener">IEA · Global Energy Review 2026 ↗</a>
+                · Rounded estimates. Electricity generation only; direct fuel use
+                for transport and heating is outside this chart
               </p>
             </figure>
-          </div>
+
+            <div class="energy-demand">
+              <div>
+                <h4>Growing demand, including AI</h4>
+                <p>
+                  The IEA projects electricity use by all data centres to nearly
+                  double by 2030, reaching about <strong>3% of global electricity
+                  demand</strong>. AI-focused facilities are growing faster
+                </p>
+                <p>
+                  AI's appetite for electricity has helped renew interest in
+                  fusion. Google, for example, has invested in fusion and agreed
+                  to buy electricity from a future plant. Fusion could eventually
+                  serve computing, industry and electrified transport, but today's
+                  data centres rely on existing energy sources
+                </p>
+              </div>
+              <figure class="energy-demand-chart" aria-labelledby="energy-demand-title">
+                <figcaption id="energy-demand-title">Electricity used by all data centres</figcaption>
+                <div class="energy-demand-row">
+                  <div class="energy-demand-label"><strong>2025</strong><span>Estimate</span><b>485 <small>TWh</small></b></div>
+                  <div class="energy-demand-track" aria-hidden="true"><span style="width: 48.5%"></span></div>
+                </div>
+                <div class="energy-demand-row energy-demand-projection">
+                  <div class="energy-demand-label"><strong>2030</strong><span>Projection</span><b>950 <small>TWh</small></b></div>
+                  <div class="energy-demand-track" aria-hidden="true"><span style="width: 95%"></span></div>
+                </div>
+                <div class="energy-demand-axis" aria-hidden="true"><span>0</span><span>1,000 TWh/year</span></div>
+                <p class="energy-chart-source">
+                  <a href="https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary" target="_blank" rel="noopener">IEA · Key Questions on Energy and AI, 2026 ↗</a>
+                  <br />Includes AI and other computing. One TWh = one billion kWh
+                </p>
+              </figure>
+            </div>
+          </details>
           <details class="energy-comparison">
             <summary>
               Compare fusion, fission and six other energy sources
@@ -833,6 +831,7 @@
             <span>Published example scenario</span>
             <button data-mode="inertia" aria-pressed="false">Inertia · Phase I roadmap</button>
           </div>
+          <div id="calc-context"></div>
           <div class="calculator-guide" id="calculator-guide">
             <p>These examples change only the heating system’s efficiency.</p>
             <div class="learning-actions">
@@ -840,11 +839,10 @@
               <button data-lesson="surplus">2 · Improve heating efficiency</button>
             </div>
           </div>
-          <div id="calc-context"></div>
           <div class="calculator-grid">
+            <div id="net-number" aria-live="polite" aria-atomic="true"></div>
             <div class="calc-controls" id="calc-controls"></div>
             <div class="calc-result">
-              <div id="net-number" aria-live="polite"></div>
               <div id="power-flow"></div>
               <div class="signed-axis" id="signed-axis"></div>
               <p id="threshold"></p>
@@ -1041,6 +1039,7 @@
             <button id="clear-filters">Clear filters</button>
           </div>
           <div id="atlas-content"></div>
+          <button id="show-all-cards" aria-controls="atlas-content" aria-expanded="false" hidden></button>
           <div id="comparison-tray" hidden></div>
         </div>
       </section>
