@@ -94,9 +94,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=comparison-guidance-1" />
-    <link rel="stylesheet" href="./reactor-explorer.css?v=grouped-explorer-1" />
-    <script type="module" src="./app.js?v=grouped-explorer-1"></script>
+    <link rel="stylesheet" href="./styles.css?v=be111cc7" />
+    <link rel="stylesheet" href="./reactor-explorer.css?v=ade780b9" />
+    <script type="module" src="./app.js?v=248182ba"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -127,8 +127,10 @@
             <a class="hero-explore" href="#machines">Explore the Machines</a>
           </div>
           <div class="snapshot">
-            <span>Page updated <strong>12 Nov 2026</strong></span>
-            <span>Research cutoff <strong>22 Oct 2026</strong></span>
+            <div class="snapshot-dates">
+              <span>Page updated <strong><time datetime="2026-11-12">12 Nov 2026</time></strong></span>
+              <span>Research cutoff <strong><time datetime="2026-10-22">22 Oct 2026</time></strong></span>
+            </div>
             <span>42 organizations · 15 reactor configurations</span>
           </div>
         </div>
@@ -199,10 +201,6 @@
             other candidate fuels, making it a leading choice for proposed
             fusion power plants. However, its energetic neutrons damage
             materials, and a plant must produce fresh tritium from lithium.
-          </p>
-          <p class="fuel-alternatives">
-            Compare D–T, deuterium–deuterium, deuterium–helium-3, and
-            proton–boron-11: what each fuel offers and what it takes to use it
           </p>
           <div class="learning-actions">
             <button data-open="fuels">Compare the fuels ↗</button>
@@ -640,15 +638,9 @@
       </section>
       <section id="machines" class="section machines-section">
         <div class="wrap">
-          <div class="section-heading horizontal">
-            <div>
-              <p class="eyebrow">02 / REACTOR CONFIGURATIONS</p>
-              <h2>Machine explorer</h2>
-            </div>
-            <p>
-              Select a configuration, rotate the model, and inspect its
-              components
-            </p>
+          <div class="section-heading">
+            <p class="eyebrow">02 / REACTOR CONFIGURATIONS</p>
+            <h2>Machine explorer</h2>
           </div>
           <div class="machine-workspace">
             <div class="machine-picker">
@@ -673,19 +665,13 @@
                 </button>
               </div>
             </div>
-            <div class="reactor-slot" id="reactor-explorer"></div>
-            <div class="machine-overview-row" aria-live="polite">
-              <div>
-                <h3 id="machine-name"></h3>
-                <div class="machine-options" id="fast-ignition-control" hidden>
-                  <label
-                    ><input id="fast-ignition" type="checkbox" /> Separate
-                    fast-ignition stage</label
-                  >
-                </div>
+            <div class="machine-overview-row">
+              <p id="machine-description" aria-live="polite"></p>
+              <div class="machine-options" id="fast-ignition-control" hidden>
+                <label><input id="fast-ignition" type="checkbox" /> Separate fast-ignition stage</label>
               </div>
-              <p id="machine-description"></p>
             </div>
+            <div class="reactor-slot" id="reactor-explorer"></div>
           </div>
           <details class="operating-cycle">
             <summary>Read the operating sequence</summary>
@@ -724,8 +710,7 @@
               </div>
             </div>
             <p class="quiet">
-              Animations show the operating sequence, with timing slowed for
-              explanation.
+              Timing is slowed for illustration.
             </p>
           </details>
           <details class="machine-notes">
@@ -849,7 +834,7 @@
             <button data-mode="inertia" aria-pressed="false">Inertia · Phase I roadmap</button>
           </div>
           <div class="calculator-guide" id="calculator-guide">
-            <p><strong>The same fusion gain can leave an electrical loss or a surplus.</strong> Try changing only the heating system’s efficiency:</p>
+            <p>These examples change only the heating system’s efficiency.</p>
             <div class="learning-actions">
               <button data-lesson="loss">1 · Gain, but an electrical loss</button>
               <button data-lesson="surplus">2 · Improve heating efficiency</button>
@@ -1063,10 +1048,6 @@
         <div class="section-heading">
           <p class="eyebrow">05 / ENGINEERING CHALLENGES</p>
           <h2>Power-plant engineering challenges</h2>
-          <p>
-            Explore what can stop a fusion experiment from becoming a working
-            power plant—and what engineers have to solve
-          </p>
         </div>
         <div class="questions-grid" id="risk-questions"></div>
       </section>
@@ -1078,9 +1059,9 @@
               <span class="disclosure-mark" aria-hidden="true"></span>
             </summary>
             <div class="sources-content">
-              <p class="sources-snapshot">
-                Page updated · 12 November 2026<br>
-                Research cutoff · 22 October 2026
+              <p class="sources-snapshot snapshot-dates">
+                <span>Page updated <strong><time datetime="2026-11-12">12 Nov 2026</time></strong></span>
+                <span>Research cutoff <strong><time datetime="2026-10-22">22 Oct 2026</time></strong></span>
               </p>
               <p>Fuel metadata and financing citations received targeted corrections on 12 November 2026. Other evidence remains at the research cutoff; this was not a full data refresh.</p>
               <h3>How to read the evidence</h3>
