@@ -1,16 +1,15 @@
     <header class="explorer-header">
       <h1 id="page-title">Erdős problems in the AI era</h1>
-      <p class="subtitle">See which Erdős problems have been resolved and which solutions have been checked in Lean.</p>
-      <p class="interpretation">Dates track database updates. AI release dates do not tell us which model, if any, helped solve a problem.</p>
-      <details class="reading-guide"><summary>What do “resolved” and “Lean” mean?</summary>
-        <p><strong>Resolved</strong> includes problems that have been proved, disproved, or otherwise solved. The remaining statuses are grouped as open or unresolved.</p>
-        <p><strong>Lean</strong> is software for checking mathematical proofs. Writing a problem’s statement in Lean is different from checking a solution. A Lean solution may be listed before the database’s resolved status is updated.</p>
-      </details>
+      <p class="subtitle">Track resolutions and Lean proofs as they appear in the catalogs.</p>
       <div class="explorer-toolbar">
         <nav class="explorer-tabs" aria-label="Erdős explorer views">
-          <a href="$snapshot_href"$snapshot_current><span class="view-name">Snapshot</span><span class="view-description">Status breakdown</span></a>
-          <a href="$trends_href"$trends_current><span class="view-name">Changes over time</span><span class="view-description">Trends &amp; rates</span></a>
+          <a href="$snapshot_href"$snapshot_current>Snapshot</a>
+          <a href="$trends_href"$trends_current>Trends</a>
         </nav>
-        <a class="repository-link" href="https://github.com/teorth/erdosproblems">Source data on GitHub <span aria-hidden="true">↗</span></a>
+        <details class="reading-guide"><summary>Reading guide</summary>
+          <p><strong>Resolved</strong> covers proofs, disproofs, and other accepted answers. Each catalog defines its own categories.</p>
+          <p><strong>Lean</strong> checks mathematical proofs. A catalog can list a formal statement of a problem before it lists a checked solution.</p>
+          <p>Dates show when a catalog recorded a change. Model releases provide context. Individual proof records give the available attribution.</p>
+        </details>
       </div>
     </header>

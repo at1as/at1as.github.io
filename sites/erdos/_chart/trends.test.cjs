@@ -141,6 +141,10 @@ test('the global source selection rebuilds charts, evidence and current results 
     app.change('#problem-source', 'combined');
     assert.equal(app.q('.view-meta time').dateTime, '2026-09-01');
     assert.equal(app.q('#source-comparison-count').textContent, '5 resolved · 2 with a Lean solution');
+    assert.equal(app.q('#source-comparison').open, false);
+    assert.equal(app.q('#source-problem-rows').rows.length, 0);
+    app.q('#source-comparison > summary').click();
+    await new Promise(resolve=>app.w.setTimeout(resolve,0));
     assert.equal(app.q('#source-problem-rows').rows.length, 5);
     assert.match(app.q('.count-reconciliation').textContent, /^1 initially resolved \+ 3 changes to resolved.*\+ 1 from later catalog baselines/);
     assert.match(app.q('#formal').closest('.chart-card').querySelector('.chart-readout').textContent, /5 resolved · 2 of those in Lean/);

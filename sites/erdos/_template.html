@@ -48,12 +48,11 @@
             <a id="source-revision" href="$source_url">Source revision <span aria-hidden="true">↗</span></a>
             <span id="extra-source-revisions" hidden></span>
           </div>
-          <div class="view-actions"><a class="changes-link" href="$trends_href#problem-changes">See recent changes <span aria-hidden="true">→</span></a><a id="download-svg" href="diagram.svg" download="erdos-problems-sankey.svg">Download SVG <span aria-hidden="true">↗</span></a></div>
         </div>
         <section class="snapshot-overview" aria-label="Snapshot summary">
-          <article><span>Total problems</span><strong data-total>$total</strong><p>Recorded at this date.</p></article>
-          <article><span>Resolved</span><strong data-overview="resolved">$resolved</strong><p id="resolved-note">Proved, disproved, or otherwise solved.</p></article>
-          <article><span>Solutions in Lean</span><strong data-attribute="solutions">$solutions</strong><p>Across all problem statuses.</p></article>
+          <article><span>Total problems</span><strong data-total>$total</strong></article>
+          <article><span>Resolved</span><strong data-overview="resolved">$resolved</strong></article>
+          <article><span>Solutions in Lean</span><strong data-attribute="solutions">$solutions</strong></article>
         </section>
         <section class="timeline" aria-labelledby="timeline-title">
           <h2 id="timeline-title">Explore earlier snapshots</h2>
@@ -87,14 +86,13 @@
     <div class="snapshot-layout">
     <section class="flow-panel" aria-labelledby="breakdown-title">
       <h2 id="breakdown-title">How the problems break down</h2>
-      <p class="section-intro">Read from left to right: all problems, their status, then whether a solution is recorded in Lean.</p>
       <figure>
-        <div class="chart-options"><label for="include-percentages"><input id="include-percentages" type="checkbox" aria-describedby="percentage-note" checked disabled> Include percentages</label><span id="percentage-note">Share of all problems</span></div>
-        <p class="scroll-hint">Scroll sideways to explore the diagram, or <a href="#text-summary">read the data table</a></p>
+        <div class="chart-options"><label for="include-percentages"><input id="include-percentages" type="checkbox" aria-describedby="percentage-note" checked disabled> Show percentages</label><span id="percentage-note" class="visually-hidden">Share of all problems</span><a id="download-svg" href="diagram.svg" download="erdos-problems-sankey.svg">Download SVG</a></div>
+        <p class="scroll-hint">Scroll across the diagram or <a href="#text-summary">read the table</a>.</p>
         <div class="chart-scroll" tabindex="0" role="region" aria-label="Sankey diagram; scroll horizontally on small screens">
           $diagram
         </div>
-        <figcaption id="flow-caption">Wider bands mean more problems. The open and unresolved categories are separate statuses, not steps toward a proof.</figcaption>
+        <figcaption id="flow-caption">Band widths show the number of problems in each group.</figcaption>
       </figure>
       <section id="text-summary" class="data-table" aria-labelledby="table-title">
         <h2 id="table-title">Problem status</h2>
@@ -113,7 +111,7 @@
       </section>
     </section>
     <details id="bloom-attributes" class="attributes">
-      <summary>More about these problems: prizes, Lean statements, and integer sequences</summary>
+      <summary>Prizes, Lean statements, and integer sequences</summary>
       <p class="aside-intro">These groups overlap. OEIS is the Online Encyclopedia of Integer Sequences.</p>
       <div class="metric-list">$cards</div>
     </details>
@@ -128,6 +126,7 @@
       <p id="bloom-counting-note">“Open / unresolved” includes all seven unresolved statuses, including ZFC independence. Ambiguous statements and literature reviews are counted separately.</p>
       <p id="catalog-counting-note" hidden>Resolved and Lean counts follow each catalog's recorded results. Combined keeps the latest available observation from each catalog and counts each problem once.</p>
       </details>
+      <p><a href="$trends_href#problem-changes">See recent problem changes →</a></p>
       <div class="continue-reading">
         <div><p class="continue-title">More from Jason Willems</p><p>Projects and writing on software, AI, and building products</p></div>
         <a href="$site_home" data-site-link="footer">Explore my site <span aria-hidden="true">→</span></a>

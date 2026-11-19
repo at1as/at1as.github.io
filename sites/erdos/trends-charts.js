@@ -122,8 +122,9 @@
         lanes[lane]=left+width;
         return {r,g,text,width,at,left,lane};
       });
-    margin.top=Math.max(38,lanes.length*26+18);
-    f.height=330+margin.top-38;
+    const laneHeight=23;
+    margin.top=Math.max(34,lanes.length*laneHeight+8);
+    f.height=margin.top + (f.width<600 ? 174 : 212) + margin.bottom;
     const height=f.height;
     svg.attr('viewBox',`0 0 ${f.width} ${height}`).style('height',`${height}px`);
     y.range([height-margin.bottom,margin.top]);
@@ -140,7 +141,7 @@
     const guides=svg.append('g').attr('class','release-guides').attr('pointer-events','none');
     layer.raise();
     markers.forEach(({r,g,text,width,at,left,lane})=> {
-      const top=lane*26+2, ink=r.id===selected?'#74559d':'#65728a';
+      const top=lane*laneHeight+2, ink=r.id===selected?'#74559d':'#65728a';
       const line=guides.append('line').attr('class','release-line').attr('data-release',r.id).attr('x1',at).attr('x2',at).attr('y1',margin.top).attr('y2',height-margin.bottom)
         .attr('stroke',r.id===selected?'#8062a7':'#c5ccd7').attr('stroke-dasharray','4 5').attr('stroke-width',r.id===selected?2:1);
       g.append('line').attr('x1',at).attr('x2',at).attr('y1',margin.top).attr('y2',height-margin.bottom).attr('stroke','transparent').attr('stroke-width',10);

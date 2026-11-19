@@ -153,8 +153,14 @@
     releaseRail.replaceChildren(...buttons);
     releaseRail.hidden = buttons.length === 0;
     $('#release-info').hidden = releaseEvents.length === 0;
-    releasePicker.replaceChildren(new Option('Choose a release', ''), ...releaseEvents.map(release =>
-      new Option(release.name + (release.nextIndex < 0 ? ' · after latest snapshot' : ''), release.id)));
+    releasePicker.replaceChildren(new Option('Choose a release', ''));
+    const later = document.createElement('optgroup');
+    later.label = 'After latest snapshot';
+    for (const release of releaseEvents) {
+      const group = release.nextIndex < 0 ? later : releasePicker;
+      group.append(new Option(release.name, release.id));
+    }
+    if (later.childElementCount) releasePicker.append(later);
     arrangeReleaseMarkers();
   }
 
@@ -168,9 +174,9 @@
     if (!release) return;
     const source = document.createElement('a');
     source.href = release.source;
-    source.textContent = `${release.name} ↗`;
-    source.setAttribute('aria-label', `${release.name}: official release source`);
-    info.append(source, ` · ${formatDate(release.date)}`);
+    source.textContent = `${formatDate(release.date)} ↗`;
+    source.setAttribute('aria-label', `${release.name}, ${formatDate(release.date)}, official release source`);
+    info.append(source);
     if (release.nextIndex < 0) {
       info.append(' · After latest snapshot');
     } else if (selectedRelease && release.date !== date) {
@@ -413,7 +419,6 @@
     for (const id of ['bloom-statuses','bloom-attributes','bloom-data-links','bloom-counting-note']) $(`#${id}`).hidden = !bloom;
     for (const id of ['catalog-statuses','catalog-data-link','catalog-counting-note']) $(`#${id}`).hidden = bloom;
     if (bloom) $('#catalog-statements').hidden = true;
-    $('#resolved-note').textContent = bloom ? 'Proved, disproved, or otherwise solved.' : 'Marked resolved by a selected catalog.';
     $('#flow-caption').textContent = bloom ? bloomCaption : 'Wider bands mean more problems. Lean counts reflect solutions recorded by the selected catalogs.';
     $('#snapshot-history-link').href = bloom ? 'history.json' : 'problems.json';
     const attribution = $('#snapshot-attribution');

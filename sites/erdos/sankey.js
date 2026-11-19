@@ -60,15 +60,18 @@ function layout(data, maxTotal = data.total) {
       flow(id, id + '-other', total - lean);
     }
   }
+  const leafCount = nodes.filter(node => !links.some(link => link.source === node.id)).length;
+  const nodePadding = 44;
+  const bandHeight = (data.statuses ? 352 : 230) * data.total / maxTotal;
   return sankey()
     .nodeId(node => node.id)
     .nodeAlign(sankeyJustify)
     .nodeSort(null)
     .linkSort(null)
     .nodeWidth(16)
-    .nodePadding(44)
+    .nodePadding(nodePadding)
     // Keep one count-to-pixel scale across the entire historical series.
-    .extent([[32, 80], [932, 80 + 528 + 352 * data.total / maxTotal]])
+    .extent([[32, 80], [932, 80 + (leafCount - 1) * nodePadding + bandHeight]])
     .iterations(64)({ nodes, links });
 }
 
@@ -77,7 +80,7 @@ function render(data) {
   const resolved = graph.nodes.find(node => node.id === 'resolved').value;
   const path = sankeyLinkHorizontal();
   const parts = [
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1000" role="group" aria-labelledby="flow-title flow-desc" data-percentages="true">',
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 ${data.statuses ? 1000 : 490}" role="group" aria-labelledby="flow-title flow-desc" data-percentages="true">`,
     '<title id="flow-title">Erdős problems: status and Lean formalization</title>',
     `<desc id="flow-desc">${format(data.total)} problems divide into ${format(resolved)} resolved and ${format(data.total - resolved)} open or unresolved. Layout by D3 Sankey. Bar heights and ribbon widths are proportional to counts. A text table follows the chart.</desc>`,
     `<metadata id="flow-source">Data: ${escape(data.attribution || 'Erdős problems database contributors, maintained by Thomas Bloom and Terence Tao')}. Source: ${escape(data.source)}. Snapshot: ${escape(data.as_of)}. Visualization: Jason Willems. Layout: D3 Sankey.</metadata>`,
