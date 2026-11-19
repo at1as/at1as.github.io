@@ -199,10 +199,11 @@ test('playback crosses releases and newer releases are selectable without invent
   app.q('#time-slider').value = String(fable - 1); app.event('#time-slider', 'input');
   app.event('#play-timeline', 'click'); app.tick();
   assert.equal(app.q('[data-release="fable-5-1"]').getAttribute('aria-pressed'), 'true');
-  assert.match(app.q('#release-current').textContent, /Claude Fable 5.1/);
+  assert.equal(app.q('#snapshot-release').selectedOptions[0].text, 'Claude Fable 5.1');
   const shown = app.q('#snapshot-date').dateTime;
   app.q('#snapshot-release').value = 'gpt-6-2-astra-sol'; app.event('#snapshot-release', 'change');
-  assert.match(app.q('#release-current').textContent, /GPT-6.2 Astra & Sol.*After latest snapshot/);
+  assert.equal(app.q('#snapshot-release').selectedOptions[0].text, 'GPT-6.2 Astra & Sol');
+  assert.match(app.q('#release-current').textContent, /Nov 17, 2026.*After latest snapshot/);
   assert.equal(app.q('#snapshot-date').dateTime, shown);
   app.dom.window.close();
   const shorter = await boot({ data: { ...history, snapshots: history.snapshots.slice(70, 200) } });

@@ -111,9 +111,13 @@
       revisions.append(' · ', link(source.url, `${source.label} ${dateFormat.format(new Date(source.date))}`));
       if (source.license) revisions.append(' (', link(source.license, source.license_label), ')');
     }
-    renderRows();
+    if (section.open) renderRows();
+    else body.replaceChildren();
     document.getElementById('source-comparison-controls').hidden = false;
     document.getElementById('source-comparison-table').hidden = false;
   };
+  section.addEventListener('toggle', () => {
+    if (section.open && problems) renderRows();
+  });
   input.addEventListener('input', renderRows);
 })();
