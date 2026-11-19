@@ -267,9 +267,7 @@
       const payload=sourcePicker ? await read('../problems.json').catch(()=>read('../insights.json')) : await read('../insights.json');
       if(sourcePicker&&payload.schema_version===T.catalogVersion) {
         catalog=payload;
-        const options=catalog.sources.map(source=>new Option(source.label,source.id));
-        if(options.length>1) options.push(new Option('Combined','combined'));
-        sourcePicker.replaceChildren(...options);
+        window.populateErdosSourcePicker(sourcePicker,catalog.sources);
         selectSource();
       } else {
         data=T.validate(payload.schema_version===1?payload:await read('../insights.json'));

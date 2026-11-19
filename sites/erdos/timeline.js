@@ -104,25 +104,43 @@
   }
 
   function arrangeReleaseMarkers() {
-    // Use two compact rails. The picker offers full-size targets on narrow screens.
-    const width = releaseRail.getBoundingClientRect().width || 120;
-    const laneEnds = [-Infinity, -Infinity];
-    releaseEvents.forEach(({button, position: fraction}) => {
-      if (!button) return;
-      const position = fraction * width;
-      const lane = position - laneEnds[0] >= 26 || laneEnds[0] <= laneEnds[1] && position - laneEnds[1] < 26 ? 0 : 1;
-      laneEnds[lane] = position;
-      button.dataset.side = lane ? 'above' : 'below';
-      button.dataset.align = position < 110 ? 'left' : width - position < 110 ? 'right' : 'center';
+    const width = releaseRail.getBoundingClientRect().width;
+    if (!width) return;
+    const lanes = [[], []];
+    for (const event of releaseEvents) {
+      const anchor = event.position * width;
+      const [below, above] = lanes.map(lane => lane.at(-1)?.anchor ?? -Infinity);
+      const lane = anchor - below >= 24 || below <= above ? lanes[0] : lanes[1];
+      lane.push({button:event.button, anchor});
+    }
+    // Center crowded dots around their dates while keeping each dot separately clickable.
+    lanes.forEach((lane, row) => {
+      const gap = Math.min(14, width / Math.max(1, lane.length - 1));
+      let previous = -gap;
+      for (const marker of lane) {
+        marker.fromLeft = Math.max(marker.anchor, previous + gap);
+        previous = marker.fromLeft;
+      }
+      let next = width + gap;
+      for (let i = lane.length - 1; i >= 0; i--) {
+        const {button, anchor, fromLeft} = lane[i];
+        next = Math.min(anchor, next - gap);
+        const midpoint = (fromLeft + next) / 2;
+        const x = Math.max(i * gap, Math.min(midpoint, width - (lane.length - 1 - i) * gap));
+        const offset = x - anchor;
+        button.style.marginLeft = `${offset}px`;
+        button.style.setProperty('--stem-skew', `${Math.atan2(row ? -offset : offset, 18)}rad`);
+        button.dataset.side = row ? 'above' : 'below';
+        button.dataset.align = x < 110 ? 'left' : width - x < 110 ? 'right' : 'center';
+      }
     });
   }
 
   function prepareReleases() {
     const snapshots = history.snapshots;
-    releaseEvents = releases.filter(release => release.date >= snapshots[0].as_of)
+    releaseEvents = releases.filter(release => release.date >= snapshots[0].as_of && release.date <= snapshots.at(-1).as_of)
       .sort((a, b) => a.date.localeCompare(b.date)).map(release => {
         const nextIndex = snapshots.findIndex(snapshot => snapshot.as_of >= release.date);
-        if (nextIndex < 0) return { ...release, nextIndex };
         const steps = Math.max(1, snapshots.length - 1);
         let position = nextIndex;
         if (nextIndex > 0 && snapshots[nextIndex].as_of !== release.date) {
@@ -149,25 +167,20 @@
         button.addEventListener('click', () => { stop(); select(nextIndex, true, release.id); });
         return { ...release, nextIndex, position: position / steps, button };
       });
-    const buttons = releaseEvents.map(release => release.button).filter(Boolean);
+    const buttons = releaseEvents.map(release => release.button);
     releaseRail.replaceChildren(...buttons);
     releaseRail.hidden = buttons.length === 0;
     $('#release-info').hidden = releaseEvents.length === 0;
-    releasePicker.replaceChildren(new Option('Choose a release', ''));
-    const later = document.createElement('optgroup');
-    later.label = 'After latest snapshot';
-    for (const release of releaseEvents) {
-      const group = release.nextIndex < 0 ? later : releasePicker;
-      group.append(new Option(release.name, release.id));
-    }
-    if (later.childElementCount) releasePicker.append(later);
+    const placeholder = new Option('Choose a release', '');
+    placeholder.disabled = true;
+    releasePicker.replaceChildren(placeholder, ...releaseEvents.map(release => new Option(release.name, release.id)));
     arrangeReleaseMarkers();
   }
 
   function updateReleaseInfo(date, selectedRelease) {
     const release = selectedRelease ? releaseEvents.find(event => event.id === selectedRelease) :
-      date === history.snapshots.at(-1).as_of ? releaseEvents.at(-1) : releaseEvents.findLast(event => event.date <= date);
-    releaseEvents.forEach(event => { event.button?.setAttribute('aria-pressed', String(event === release)); });
+      releaseEvents.findLast(event => event.date <= date);
+    releaseEvents.forEach(event => { event.button.setAttribute('aria-pressed', String(event === release)); });
     releasePicker.value = release?.id || '';
     const info = $('#release-current');
     info.replaceChildren();
@@ -177,9 +190,7 @@
     source.textContent = `${formatDate(release.date)} ↗`;
     source.setAttribute('aria-label', `${release.name}, ${formatDate(release.date)}, official release source`);
     info.append(source);
-    if (release.nextIndex < 0) {
-      info.append(' · After latest snapshot');
-    } else if (selectedRelease && release.date !== date) {
+    if (selectedRelease && release.date !== date) {
       info.append(` · Showing ${formatDate(date)} (next recorded snapshot)`);
     }
     if (release.note) {
@@ -194,8 +205,7 @@
     const release = releaseEvents.find(event => event.id === releasePicker.value);
     if (!release) return;
     stop();
-    if (release.nextIndex >= 0) select(release.nextIndex, true, release.id);
-    else updateReleaseInfo(history.snapshots[index].as_of, release.id);
+    select(release.nextIndex, true, release.id);
   });
 
   function geometryFrame(target, animate) {
@@ -448,9 +458,9 @@
     if (!T || !S) return;
     try {
       const payload = await read('problems.json');
-      if (payload.schema_version !== T.catalogVersion || payload.sources.length < 2) return;
+      if (payload.schema_version !== T.catalogVersion || !payload.sources.length) return;
       catalog = payload;
-      sourcePicker.replaceChildren(...catalog.sources.map(source => new Option(source.label, source.id)), new Option('Combined', 'combined'));
+      window.populateErdosSourcePicker(sourcePicker, catalog.sources);
       sourcePicker.value = 'bloom-tao';
       $('#snapshot-source-control').hidden = false;
     } catch (error) {
