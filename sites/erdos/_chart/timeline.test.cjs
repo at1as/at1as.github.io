@@ -28,7 +28,7 @@ async function boot({ fail = false, reduced = true, data = history, problemData 
   w.performance.now = () => now;
   w.URL.createObjectURL = blob => { blobs.push(blob); return 'blob:historical-svg'; };
   w.URL.revokeObjectURL = () => {};
-  if (problemData) for (const file of ['d3.min.js','d3-sankey.min.js','sankey.js','trends-data.js']) {
+  if (problemData) for (const file of ['d3.min.js','d3-sankey.min.js','sankey.js','trends-data.js','source-picker.js']) {
     w.eval(fs.readFileSync(path.join(site, file), 'utf8'));
   }
   w.eval(script);
@@ -185,12 +185,18 @@ test('release markers use two compact rows and preserve keyboard focus on resize
     assert.equal(app.w.document.activeElement, buttons.at(-1), 'Relayout preserves keyboard focus');
     assert.notEqual(app.q('[data-release="opus-5-5"]').dataset.side, app.q('[data-release="gpt-6-sol-luna"]').dataset.side);
     assert.ok(buttons.every(button => ['above','below'].includes(button.dataset.side) && !button.style.top));
-    assert.equal(app.q('#snapshot-release').options.length, 1 + releases.filter(r=>r.date>=history.snapshots[0].as_of).length);
+    for (const side of ['above','below']) {
+      const centers = buttons.filter(button => button.dataset.side === side)
+        .map(button => parseFloat(button.style.left) * width / 100 + parseFloat(button.style.marginLeft));
+      assert.ok(centers[0] >= -0.01 && centers.at(-1) <= width + 0.01);
+      const gap = Math.min(14, width / (centers.length - 1));
+      assert.ok(centers.every((x, i) => i === 0 || x - centers[i - 1] >= gap - 0.01));
+    }
   }
   app.dom.window.close();
 });
 
-test('playback crosses releases and newer releases are selectable without inventing a snapshot', async () => {
+test('playback crosses releases and the picker only offers releases within the snapshot history', async () => {
   const app = await boot();
   app.q('#time-slider').value = '0'; app.event('#time-slider', 'input');
   assert.equal(app.q('[aria-pressed="true"]'), null);
@@ -200,15 +206,20 @@ test('playback crosses releases and newer releases are selectable without invent
   app.event('#play-timeline', 'click'); app.tick();
   assert.equal(app.q('[data-release="fable-5-1"]').getAttribute('aria-pressed'), 'true');
   assert.equal(app.q('#snapshot-release').selectedOptions[0].text, 'Claude Fable 5.1');
-  const shown = app.q('#snapshot-date').dateTime;
-  app.q('#snapshot-release').value = 'gpt-6-2-astra-sol'; app.event('#snapshot-release', 'change');
-  assert.equal(app.q('#snapshot-release').selectedOptions[0].text, 'GPT-6.2 Astra & Sol');
-  assert.match(app.q('#release-current').textContent, /Nov 17, 2026.*After latest snapshot/);
-  assert.equal(app.q('#snapshot-date').dateTime, shown);
+  const expected = releases.filter(r => r.date >= history.snapshots[0].as_of && r.date <= history.snapshots.at(-1).as_of);
+  const picker = app.q('#snapshot-release');
+  assert.deepEqual(Array.from(picker.options, option => option.value), ['', ...expected.map(r => r.id)]);
+  app.q('#time-slider').value = app.q('#time-slider').max; app.event('#time-slider', 'input');
+  assert.equal(picker.value, expected.at(-1).id);
+  for (const release of expected) {
+    picker.value = release.id; app.event('#snapshot-release', 'change');
+    assert.equal(app.q('#snapshot-date').dateTime, history.snapshots.find(s => s.as_of >= release.date).as_of);
+    assert.equal(app.q('.release-marker[aria-pressed="true"]').dataset.release, release.id);
+  }
   app.dom.window.close();
   const shorter = await boot({ data: { ...history, snapshots: history.snapshots.slice(70, 200) } });
-  const expected = releases.filter(r => r.date >= history.snapshots[70].as_of && r.date <= history.snapshots[199].as_of);
-  assert.equal(shorter.w.document.querySelectorAll('.release-marker').length, expected.length);
+  const subset = releases.filter(r => r.date >= history.snapshots[70].as_of && r.date <= history.snapshots[199].as_of);
+  assert.equal(shorter.w.document.querySelectorAll('.release-marker').length, subset.length);
   assert.equal(shorter.q('[data-release="astra"]'), null);
   shorter.dom.window.close();
 });
@@ -219,9 +230,18 @@ test('Snapshot switches calendars, charts, and source citations from the problem
     const select = (id, value) => { app.q(id).value = value; app.event(id, 'change'); };
     const snapshot = id => app.q(`[data-label="${id}"] .node-number`).textContent;
     assert.equal(app.q('#snapshot-source-control').hidden,false);
+    assert.equal(app.q('.source-info').hidden,false);
+    const format = date => new Date(date).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:'UTC'});
+    for (const source of catalog.sources) {
+      const coverage = `${source.label} ${format(source.history[0].date)} – ${format(source.history.at(-1).date)}`;
+      assert.ok(app.q('#source-help').textContent.includes(coverage));
+    }
     assert.deepEqual(Array.from(app.q('#snapshot-source').options, opt=>opt.value), ['bloom-tao','plasma','combined']);
     assert.equal(snapshot('resolved'),'576');
     select('#snapshot-source','plasma');
+    const plasma = catalog.sources.find(source => source.id === 'plasma');
+    const covered = releases.filter(r => r.date >= plasma.history[0].date && r.date <= plasma.history.at(-1).date);
+    assert.deepEqual(Array.from(app.q('#snapshot-release').options, opt=>opt.value), ['', ...covered.map(r => r.id)]);
     assert.equal(app.q('#snapshot-date').dateTime,'2026-11-16');
     assert.equal(app.q('#snapshot-picker').options.length,12);
     assert.equal(snapshot('resolved'),'618');

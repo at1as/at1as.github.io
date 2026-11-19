@@ -82,7 +82,7 @@ Each source also has a `history` of dated, commit-pinned observations. The first
 
 ## Model release annotations
 
-`model-releases.json` contains selected public Claude releases and OpenAI API releases with official sources. GPT-6.2 Astra and Sol share one November 17, 2026 annotation for their joint release. Fable 5.1 uses Anthropic’s September 15 release date. Fable 5 uses its initial June 9 launch date and links the subsequent access interruption and July 1 return. The Snapshot release picker labels later releases as after the latest snapshot. When a release is within 30 days of the last Trends snapshot, the pace chart can mark its date beyond the recorded series. The release comparison labels incomplete windows.
+`model-releases.json` contains selected public Claude releases and OpenAI API releases with official sources. GPT-6.2 Astra and Sol share one November 17, 2026 annotation for their joint release. Fable 5.1 uses Anthropic’s September 15 release date. Fable 5 uses its initial June 9 launch date and links the subsequent access interruption and July 1 return. The Snapshot release picker only lists releases between the selected source’s first and latest snapshots. When a release is within 30 days of the last Trends snapshot, the pace chart can mark its date beyond the recorded series. The release comparison labels incomplete windows.
 
 Hover or keyboard-focus a marker for its model and date. Select a marker or use the release picker to pause playback and show the first recorded snapshot on or after release. If there is a gap, the annotation identifies the actual snapshot shown. The markers use two compact rows, with stems connecting them to their positions on the slider.
 

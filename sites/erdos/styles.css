@@ -43,7 +43,23 @@ h1 { font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.1; letter-spacing: -.03
 .view-meta .changes-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; color:#24558e; font-weight:600; }
 .snapshot-count { color:#17253c; font-size:1rem; }
 .snapshot-count strong { font-size:1.4rem; font-weight:700; font-variant-numeric:tabular-nums; }
-.snapshot-source { display:inline-flex; align-items:center; gap:8px; font-weight:600; }
+.source-picker { display:inline-flex; align-items:center; gap:6px; width:max-content; max-width:100%; anchor-name:--source-picker; }
+.source-picker label { font-weight:600; }
+.source-info { display:grid; place-items:center; width:28px; height:32px; min-height:0; padding:0; border:0; background:transparent; font-size:0; }
+.source-info::before { content:"i"; width:16px; height:16px; border:1px solid currentColor; border-radius:50%; color:#53657b; font:700 12px/16px Georgia,serif; }
+.source-info:hover::before, .source-info:focus-visible::before { background:#e4edf8; color:#24558e; }
+#source-help { box-sizing:border-box; width:min(23rem, calc(100% - 40px)); max-height:80vh; padding:14px 16px; border:1px solid #c9d3e1; border-radius:8px; background:white; color:#354560; box-shadow:0 6px 22px #172f5226; font-size:.875rem; line-height:1.45; }
+@supports (top:anchor(bottom)) {
+  #source-help { position-anchor:--source-picker; inset:auto; top:anchor(bottom); left:anchor(left); margin:4px 0; position-try-fallbacks:flip-block; }
+}
+.source-help-heading { display:flex; align-items:center; justify-content:space-between; }
+.source-help-heading h2 { margin:0; font-size:1rem; color:#17253c; }
+.source-help-heading button { min-height:26px; width:26px; padding:0; border:0; background:transparent; color:#53657b; font-size:1.25rem; }
+#source-help dl { margin:10px 0; }
+#source-help dt { display:flex; flex-wrap:wrap; align-items:baseline; gap:0 8px; margin-top:8px; }
+#source-help dt a { color:#24558e; font-weight:600; text-decoration:underline; }
+#source-help dt span { font-size:.75rem; color:#59657d; }
+#source-help dd { margin:2px 0 0; }
 .source-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
 #download-svg { font-size:.8125rem; text-decoration:none; padding: 9px 12px; border: 1px solid #e0e6ee; border-radius: 7px; }
 #download-svg:hover { background: #f4f7fb; border-color: #aebdd0; }
@@ -67,8 +83,8 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
 .date-control select, .speed-control select { width:100%; }
 .speed-control { min-width:76px; }
 .date-control select { font-weight: 600; }
-.timeline-track { position:relative; padding-block:10px; }
-#time-slider { appearance: none; -webkit-appearance: none; display: block; width: 100%; height: 32px; min-width: 0; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.timeline-track { position:relative; padding-block:21px; }
+#time-slider { position:relative; z-index:1; appearance:none; -webkit-appearance:none; display:block; width:100%; height:16px; min-width:0; margin:0; padding:0; border:0; background:transparent; cursor:pointer; }
 #time-slider::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(to right, #4276ac var(--progress, 100%), #dce4ee var(--progress, 100%)); }
 #time-slider::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 16px; height: 16px; margin-top: -5px; border: 0; border-radius: 50%; background: #4276ac; }
 #time-slider::-moz-range-track { height: 6px; border-radius: 3px; background: #dce4ee; }
@@ -77,14 +93,16 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
 #time-slider:disabled { opacity: .45; cursor: default; }
 .timeline-labels { display: flex; justify-content: space-between; gap: 12px; margin: 0 8px; color: #59657d; font-size: .8125rem; font-variant-numeric: tabular-nums; }
 /* The 8px inset matches the slider thumb radius; zero y is the slider axis. */
-.release-markers { position:absolute; inset-inline:8px; top:26px; height:0; pointer-events:none; }
-.release-marker { position:absolute; top:2px; width:22px; min-height:22px; height:22px; padding:0; transform:translateX(-50%); border:0; background:transparent; border-radius:4px; pointer-events:auto; }
-.release-marker[data-side="above"] { top:-24px; }
-.release-marker::before { content:""; position:absolute; width:1px; height:13px; background:#98a6b8; top:-2px; left:calc(50% - .5px); pointer-events:none; }
-.release-marker[data-side="above"]::before { top:11px; }
-.release-marker::after { content:""; position:absolute; width:6px; height:6px; border-radius:50%; background:#7d8da3; top:8px; left:8px; }
-.release-marker:hover, .release-marker:focus-visible, .release-marker[aria-pressed="true"] { background: #eaf0f8; z-index: 2; }
-.release-marker[aria-pressed="true"]::after { background: #24558e; }
+.release-markers { position:absolute; inset-inline:8px; top:50%; height:0; pointer-events:none; }
+.release-marker { position:absolute; top:7px; width:22px; min-height:22px; height:22px; padding:0; transform:translateX(-50%); border:0; border-radius:50%; background:transparent; pointer-events:auto; }
+.release-marker[data-side="above"] { top:-29px; }
+.release-marker::before { content:""; position:absolute; left:calc(50% - .5px); top:-7px; height:18px; width:1px; background:#98a6b8; transform:skewX(var(--stem-skew, 0rad)); transform-origin:bottom; pointer-events:none; }
+.release-marker[data-side="above"]::before { top:11px; transform-origin:top; }
+.release-marker::after { content:""; position:absolute; inset:8px; border-radius:50%; background:#7d8da3; }
+.release-marker[aria-pressed="true"]::after { inset:7px; background:#24558e; box-shadow:0 0 0 2px white; }
+.release-marker[aria-pressed="true"]::before { background:#24558e; }
+.release-marker:hover, .release-marker:focus-visible { z-index:2; outline:none; }
+.release-marker:hover::after, .release-marker:focus-visible::after { outline:2px solid #24558e; outline-offset:2px; }
 .release-tooltip { display: none; position: absolute; z-index: 3; bottom: calc(100% + 5px); left: 50%; transform: translateX(-50%); width: max-content; max-width: 220px; padding: 7px 10px; border-radius: 5px; background: #172f52; color: white; font-size: .8125rem; line-height: 1.4; text-align: left; pointer-events: none; }
 .release-tooltip time { display: block; color: #d9e6f7; }
 .release-marker[data-side="below"] .release-tooltip { top: calc(100% + 5px); bottom: auto; }

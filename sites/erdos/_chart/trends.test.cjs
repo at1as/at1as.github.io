@@ -90,7 +90,7 @@ async function boot(fail=false,hash='',payload=data,html=fs.readFileSync(path.jo
   w.matchMedia=()=>({matches:true});w.AbortSignal.timeout=()=>new w.AbortController().signal;
   w.HTMLElement.prototype.scrollIntoView=()=>{};
   if(!w.HTMLDialogElement.prototype.showModal) w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};
-  for(const name of ['d3.min.js','trends-data.js','trends-charts.js','source-comparison.js','trends.js']) w.eval(fs.readFileSync(path.join(site,name),'utf8'));
+  for(const name of ['d3.min.js','trends-data.js','trends-charts.js','source-comparison.js','source-picker.js','trends.js']) w.eval(fs.readFileSync(path.join(site,name),'utf8'));
   for(let i=0;i<5;i++) await new Promise(setImmediate);
   const q=s=>w.document.querySelector(s);
   const change=(s,value)=>{q(s).value=value;q(s).dispatchEvent(new w.Event('change',{bubbles:true}));};
