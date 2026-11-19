@@ -97,7 +97,7 @@ def verify_summary(repo, head, snapshot):
     return source
 
 
-def collect(repo=None):
+def collect(repo=None, *, on_snapshot=None):
     if repo is None:
         repo = Path(__file__).parent / '_cache' / 'upstream.git'
         repo.parent.mkdir(exist_ok=True)
@@ -127,6 +127,8 @@ def collect(repo=None):
             except (yaml.YAMLError, ValueError, TypeError, AttributeError) as error:
                 omitted.append(dict(date=date, commit=commit, reason=str(error).splitlines()[0]))
                 continue
+            if on_snapshot:
+                on_snapshot(snapshot, rows, not snapshots)
             snapshots.append(snapshot)
             break  # Latest valid data revision for this UTC date.
     if not snapshots:

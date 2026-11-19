@@ -5,23 +5,26 @@
   const definitions={resolved:'“Resolved” includes proved, disproved, and otherwise solved',lean:'Solutions formalized in Lean, including problems still listed as unresolved',statements:'Problem statements written in Lean. This does not mean they are solved.'};
   const format=date=>new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(T.time(date)));
   let data=null, resizeFrame=null, previewPoint=null, evidenceDate=null;
+  let catalog=null;
+  const sourcePicker=$('#problem-source'), rollups=new Map();
   const metric=()=>$('#trend-metric').value;
   const days=()=>Number($('#pace-window').value);
   function renderSummary() {
     const first=data.points[0],last=data.points.at(-1);
     const number=value=>value.toLocaleString('en-US');
     const signed=value=>(value>=0?'+':'')+number(value);
-    const percent=(part,total)=>(part/total*100).toFixed(1)+'%';
+    const percent=(part,total)=>total?(part/total*100).toFixed(1)+'%':'—';
     const strong=text=>{const el=document.createElement('strong');el.textContent=text;return el;};
     const changes=data.intervals.map(i=>i.changes.resolved);
     const gains=changes.flatMap(change=>change.gained);
-    const count=kind=>changes.reduce((sum,change)=>sum+change[kind].length,0);
+    const count=kind=>changes.reduce((sum,change)=>sum+(change[kind]?.length||0),0);
+    const imported=count('baseline');
     const unmatched=changes.reduce((sum,change)=>sum+change.unmatched,0);
     const backlog=last.resolved-last.resolved_lean,oldBacklog=first.resolved-first.resolved_lean;
     const summary=[
       [number(last.resolved),`${signed(last.resolved-first.resolved)} since the first snapshot`],
       [number(gains.length),`${number(new Set(gains).size)} distinct problems since start`],
-      [percent(last.resolved_lean,last.resolved),`Up from ${percent(first.resolved_lean,first.resolved)} of resolved problems`],
+      [percent(last.resolved_lean,last.resolved),`${percent(first.resolved_lean,first.resolved)} in the first snapshot`],
       [number(backlog),`${number(Math.abs(backlog-oldBacklog))} ${backlog<oldBacklog?'fewer':'more'} than in the first snapshot`]
     ];
     document.querySelectorAll('.trend-stats article').forEach((article,i)=>{
@@ -31,13 +34,34 @@
     document.querySelectorAll('.view-meta time').forEach((el,i)=>{
       el.dateTime=[first,last][i].date;el.textContent=format(el.dateTime);
     });
-    $('.trend-finding').replaceChildren('The resolved share rose from ',
+    const change=last.total-first.total;
+    $('.trend-finding').replaceChildren('Resolved share ',
       strong(`${percent(first.resolved,first.total)} to ${percent(last.resolved,last.total)}`),
-      `. The database grew by ${number(last.total-first.total)} problems; unresolved problems went from ${number(first.total-first.resolved)} to ${number(last.total-last.resolved)}.`);
+      `. ${change===0 ? `The database held ${number(last.total)} problems` : `The database ${change>0?'grew':'shrank'} by ${number(Math.abs(change))} problems`}; unresolved problems went from ${number(first.total-first.resolved)} to ${number(last.total-last.resolved)}.`);
     $('.count-reconciliation').replaceChildren(strong(number(first.resolved)),
-      ` initially resolved + ${number(gains.length)} changes to resolved + ${number(count('added'))} added as already resolved − ${number(count('lost'))} changes back to unresolved − ${number(count('removed'))} removed from the database`,
+      ` initially resolved + ${number(gains.length)} changes to resolved + ${number(count('added'))} added as already resolved`,
+      imported?` + ${number(imported)} from later catalog baselines`:'',
+      ` − ${number(count('lost'))} changes back to unresolved − ${number(count('removed'))} removed from the database`,
       unmatched?` ${signed(unmatched)} unmatched changes`:'',
       ' = ',strong(number(last.resolved)),' currently resolved. New database entries can describe old results.');
+  }
+  function appendRevisions(element, interval, number) {
+    const revisions=T.evidence(interval,metric(),number);
+    // Legacy exported history has a single source and stores the revisions on the interval.
+    const links=interval.revisions?revisions:[{...interval,repository:data.repository}];
+    for(const [index,revision] of links.entries()) {
+      if(!revision.repository) continue;
+      const link=document.createElement('a');
+      if(revision.baseline) {
+        link.href=`${revision.repository}/commit/${revision.after}`;
+        link.textContent=`${revision.label} baseline ↗`;
+      } else {
+        link.href=`${revision.repository}/compare/${revision.before}...${revision.after}`;
+        link.textContent=sourcePicker?.value==='combined'&&revision.label?`${revision.label} revisions ↗`:'View revisions ↗';
+      }
+      if(index) element.append(' · ');
+      element.append(link);
+    }
   }
   function goToRecords() {
     $('#problem-changes').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
@@ -100,23 +124,23 @@
     for(const side of ['before','after']) {
       const window=result[side];
       const count=window.uncertain?`${window.count}–${window.possible}`:String(window.count);
-      $(`#${side}-rate`).textContent=!window.complete?'Incomplete':window.uncertain?'Uncertain':`${window.rate.toFixed(2)}/day`;
+      $(`#${side}-rate`).textContent=!window.complete?'Incomplete':result.coverageChanged?'Coverage changed':window.uncertain?'Uncertain':`${window.rate.toFixed(2)}/day`;
       $(`#${side}-count`).textContent=`${count} observed ${C.copy[metric()][count === '1' ? 'countedSingular' : 'counted']}${window.complete?'':' in available history'}`;
       $(`#${side}-range`).textContent=`${format(window.start)}–${format(T.iso(T.time(window.end)-T.DAY))}`;
     }
     const intervals=result.uncertainIntervals;
     $('#window-uncertainty').hidden=!intervals.length;
     $('#window-intervals').replaceChildren(...intervals.map(interval=>{
-      const row=document.createElement('li'),link=document.createElement('a');
-      const count=interval.changes[metric()].gained.length;
+      const row=document.createElement('li');
+      const count=interval.uncertain_ids.length;
       const boundaries=[[result.before.start,'start of the before window'],[release.date,'release date'],[result.after.end,'end of the after window']]
         .filter(([date])=>interval.start<date&&interval.end>=date).map(([,label])=>label);
       row.append(`${format(interval.start)}–${format(interval.end)}: ${count} observed ${count===1?'change':'changes'} in an interval spanning the ${boundaries.join(', ')}. `);
-      link.href=`https://github.com/teorth/erdosproblems/compare/${interval.before}...${interval.after}`;
-      link.textContent='View revisions ↗';row.append(link);return row;
+      appendRevisions(row,interval);return row;
     }));
     const a=result.before,b=result.after;
     $('#window-verdict').textContent= !a.complete||!b.complete ? 'Not enough history for a full 30 days on both sides' :
+      result.coverageChanged ? 'A catalog joined during these windows, so the rates cover different source histories.' :
       intervals.length ? 'The snapshots cannot place every observed change inside or outside these windows. No exact rate or multiplier is shown for uncertain timing.' :
       a.count===b.count ? `The same number of observed changes before and after the release date (${a.count})` :
       a.count===0 ? `No observed changes in the 30 days before the release date; ${b.count} in the 30 days from it` :
@@ -144,15 +168,18 @@
     }
     const rows=events.map(event=>{
       const tr=document.createElement('tr');
-      const values=[event.number,event.end,C.copy[metric()].changes[event.kind]||'Removed from database',`${event.start} → ${event.end}`,'View revisions ↗'];
+      const start=T.evidence(event,metric(),event.number).map(revision=>revision.start).sort()[0]||event.start;
+      const change=event.kind==='baseline'?'From catalog baseline':C.copy[metric()].changes[event.kind]||'Removed from database';
+      const values=[event.number,event.end,change,event.kind==='baseline'?event.end:`${start} → ${event.end}`,''];
       values.forEach((value,i)=>{
         const td=document.createElement(i===0?'th':'td');
         if(i===0) td.scope='row';
-        if(i===0||i===4) {
+        if(i===0) {
           const link=document.createElement('a');
-          link.href=i===0?`https://www.erdosproblems.com/${event.number}`:`https://github.com/teorth/erdosproblems/compare/${event.before}...${event.after}`;
-          link.textContent=i===0?`#${value}`:value; td.append(link);
-        } else td.textContent=value;
+          link.href=`https://www.erdosproblems.com/${event.number}`;
+          link.textContent=`#${value}`; td.append(link);
+        } else if(i===4) appendRevisions(td,event,event.number);
+        else td.textContent=value;
         tr.append(td);
       });
       return tr;
@@ -165,6 +192,8 @@
   }
   function renderMonths() {
     const rows=T.monthly(data,metric());
+    const showImports=rows.some(row=>row.baseline);
+    document.querySelectorAll('[data-baseline-key]').forEach(el=>el.hidden=!showImports);
     const select=$('#records-month'),selected=select.value;
     select.replaceChildren($('#records-recent'),$('#records-selected'),...rows.map(row=>{
       const option=document.createElement('option');
@@ -174,7 +203,7 @@
     if(!select.value) select.value='recent';
     $('#monthly-rows').replaceChildren(...rows.map(row=> {
       const tr=document.createElement('tr');
-      [row.date.slice(0,7)+(row.partial?' (partial)':''),row.gained,row.added,row.lost,row.removed,row.unmatched,(row.net>=0?'+':'')+row.net].forEach((value,i)=> {
+      [row.date.slice(0,7)+(row.partial?' (partial)':''),row.gained,row.added,...(showImports?[row.baseline]:[]),row.lost,row.removed,row.unmatched,(row.net>=0?'+':'')+row.net].forEach((value,i)=> {
         const cell=document.createElement(i===0?'th':'td'); if(i===0) cell.scope='row'; cell.textContent=value; tr.append(cell);
       });
       return tr;
@@ -182,7 +211,14 @@
   }
   function renderAll() {
     if(!data) return;
-    $('#metric-definition').textContent=definitions[metric()];
+    const sources=catalog ? T.catalogSources(catalog,sourcePicker.value) : [];
+    let definition=definitions[metric()];
+    if(metric()==='statements'&&sources.length>1) {
+      definition=`Lean statement coverage · ${sources.filter(source=>source.metrics.includes('statements')).map(source=>source.label).join(', ')}`;
+    } else if(metric()==='resolved'&&sources.some(source=>source.resolved_statuses.includes('independent'))) {
+      definition='“Resolved” includes proved, disproved, otherwise solved, and accepted independence results';
+    }
+    $('#metric-definition').textContent=definition;
     const copy=C.copy[metric()];
     $('#composition-description').textContent=copy.monthly;
     $('#release-description').textContent=copy.release;
@@ -190,12 +226,30 @@
     renderMonths(); renderPace(); renderComposition(); renderRecords(); renderWindow();
     renderFormal();
   }
+  function selectSource() {
+    const selection=sourcePicker.value;
+    if(!rollups.has(selection)) rollups.set(selection,T.rollup(catalog,selection));
+    data=rollups.get(selection);
+    const sources=T.catalogSources(catalog,selection), metricSelect=$('#trend-metric');
+    for(const option of metricSelect.options) option.disabled=!Object.hasOwn(data.coverage,option.value);
+    if(metricSelect.selectedOptions[0]?.disabled) metricSelect.value=[...metricSelect.options].find(option=>!option.disabled).value;
+    $('#records-month').value='recent'; evidenceDate=null;
+    $('#records-selected').hidden=true;
+    $('#compare-release').value=T.defaultRelease(data,releases);
+    const note=$('#trend-source-note');
+    note.hidden=sources.length===1&&sources[0].metrics.includes('statements');
+    note.textContent=sources.length>1 ? 'Combined starts with the earliest catalog. Later catalogs join at their first snapshot. Their opening balances are counted separately from newly recorded changes.' :
+      'This catalog does not report Lean statement coverage.';
+    renderSummary(); renderAll();
+    window.renderErdosSourceComparison?.(catalog,sources,data.points.at(-1));
+  }
   $('#trend-metric').addEventListener('change',renderAll);
   $('#pace-window').addEventListener('change',()=>{if(data){$('#records-month').value='recent';evidenceDate=null;$('#records-selected').hidden=true;renderPace();renderRecords();}});
   $('#formal-mode').addEventListener('change',()=>{if(data)renderFormal();});
   $('#records-month').addEventListener('change',()=>{if(data){renderRecords();renderPace();}});
   $('#compare-release').addEventListener('change',()=>{if(data){renderPace();renderWindow();}});
   $('#show-pace-changes').addEventListener('click',()=>{if(previewPoint)showPoint(previewPoint);});
+  sourcePicker?.addEventListener('change',selectSource);
   const revealMethodology=()=>{if(location.hash==='#methodology')$('#methodology').open=true;};
   window.addEventListener('hashchange',revealMethodology);
   document.querySelectorAll('a[href="#methodology"]').forEach(link=>link.addEventListener('click',()=>{$('#methodology').open=true;}));
@@ -204,10 +258,24 @@
     $('#retry-trends').hidden=true;
     try {
       if(!T||!C) throw Error('Chart scripts unavailable');
-      const response=await fetch('../insights.json',{cache:'no-cache',signal:AbortSignal.timeout(15000)});
-      if(!response.ok) throw Error('Trends unavailable');
-      data=T.validate(await response.json()); renderSummary(); renderAll();
-      document.querySelectorAll('select').forEach(el=>el.disabled=false);
+      const read=async path=>{
+        const response=await fetch(path,{cache:'no-cache',signal:AbortSignal.timeout(15000)});
+        if(!response.ok) throw Error('Trends unavailable');
+        return response.json();
+      };
+      // The legacy export also supports an older checkout without problems.json.
+      const payload=sourcePicker ? await read('../problems.json').catch(()=>read('../insights.json')) : await read('../insights.json');
+      if(sourcePicker&&payload.schema_version===T.catalogVersion) {
+        catalog=payload;
+        const options=catalog.sources.map(source=>new Option(source.label,source.id));
+        if(options.length>1) options.push(new Option('Combined','combined'));
+        sourcePicker.replaceChildren(...options);
+        selectSource();
+      } else {
+        data=T.validate(payload.schema_version===1?payload:await read('../insights.json'));
+        renderSummary(); renderAll();
+      }
+      document.querySelectorAll('select').forEach(el=>{if(el!==sourcePicker||catalog)el.disabled=false;});
       $('#trends-message').hidden=true;
     } catch(error) {
       $('#trends-message').hidden=false;

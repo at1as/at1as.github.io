@@ -25,6 +25,7 @@
 .chart-grid line { stroke:#e9edf3; }
 .chart-crosshair { stroke:#6e8098; stroke-width:1; stroke-dasharray:3 3; pointer-events:none; }
 .gap-band { fill:#e9edf2; opacity:.6; }
+.after-coverage { fill:#f1edf7; }
 .release-reference { cursor:pointer; }
 .release-reference:hover .release-name, .release-reference:focus .release-name { fill:#74559d; }
 .release-reference:focus .release-label-hit { stroke:#74559d; stroke-width:1; }
@@ -37,9 +38,25 @@
 .chart-note { color:#65728a; font-size:.8125rem; line-height:1.5; margin:10px 0 0; }
 .chart-legend { display:flex; gap:10px 18px; flex-wrap:wrap; margin:14px 0 6px; color:#59657d; font-size:.8125rem; }
 .chart-legend span { display:inline-flex; align-items:center; gap:7px; }
+.chart-legend [hidden] { display:none; }
 .chart-legend i { width:10px; height:10px; background:var(--key); border-radius:2px; }
 .chart-legend i.dot { border-radius:50%; width:7px; height:7px; }
 .records-controls { display:flex; align-items:center; flex-wrap:wrap; gap:10px; color:#59657d; font-size:.875rem; }
+#source-comparison { margin-bottom:24px; }
+#source-comparison-controls input { width:9em; min-height:44px; padding:8px; color:#17253c; border:1px solid #aeb9c7; border-radius:6px; font:inherit; }
+#source-comparison-table { margin-top:8px; }
+#source-comparison-table th { white-space:nowrap; }
+.source-result-meta { display:flex; align-items:center; flex-wrap:wrap; gap:2px 8px; margin-top:3px; }
+.source-resolution-date { color:#59657d; font-size:.8125rem; }
+.source-evidence { min-height:26px; padding:2px 6px; border-color:#d9e2ea; border-radius:4px; color:#24558e; font-size:.75rem; line-height:1.25; }
+.source-evidence:hover { background:#f0f5fb; }
+#source-evidence-dialog { width:min(100% - 32px, 520px); max-height:75vh; padding:16px 20px; border:1px solid #c9d3e1; border-radius:8px; color:#17253c; box-shadow:0 12px 36px #13203233; }
+#source-evidence-dialog::backdrop { background:#17253c55; }
+#source-evidence-dialog h3 { font-size:1rem; margin:0; }
+#source-evidence-dialog button { min-height:34px; padding:4px 12px; }
+#source-evidence-items { margin:12px 0 0; padding-left:20px; font-size:.875rem; }
+#source-evidence-items li { padding:3px 0; }
+.baseline-guide { margin:6px 0 10px; }
 .records-count { color:#17253c; font-size:1rem; font-weight:600; margin:16px 0 0; }
 .records-scroll { max-height:360px; overflow:auto; padding:0 8px; }
 .records-scroll table, #monthly-table table { max-width:none; font-size:.875rem; }

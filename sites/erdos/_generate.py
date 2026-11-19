@@ -174,12 +174,17 @@ def main():
     source.add_argument('--summary', '--readme', type=Path,
                         help='Import saved STATISTICS.md or a legacy README (without existing history)')
     source.add_argument('--history-repo', type=Path, help='Read an existing local bare upstream clone without fetching')
+    parser.add_argument('--plasma-repo', type=Path, help='Read an existing local bare Plasma clone without fetching')
     args = parser.parse_args()
+    if args.plasma_repo and not (args.refresh or args.history_repo):
+        parser.error('--plasma-repo requires --refresh or --history-repo')
     history_path = HERE / 'history.json'
     history = None
     if args.refresh or args.history_repo:
         from _history import collect
-        history = collect(args.history_repo)
+        from _problem_sources import observe_bloom_tao_history
+        bloom_tao_dates, bloom_tao_history = {}, []
+        history = collect(args.history_repo, on_snapshot=observe_bloom_tao_history(bloom_tao_dates, bloom_tao_history))
         data = history['snapshots'][-1]
     elif args.summary:
         if history_path.exists():
@@ -245,19 +250,32 @@ def main():
                ('snapshot.json', json.dumps(data, indent=2, ensure_ascii=False) + '\n')]
     if history:
         outputs.append(('history.json', json.dumps(history, separators=(',', ':'), ensure_ascii=False) + '\n'))
-        from _insights import build, matches
+        from _insights import matches
+        from _problem_sources import SCHEMA_VERSION, collect as collect_problems
         from _trends import render as render_trends
         insights_path = HERE / 'insights.json'
-        insights = json.loads(insights_path.read_text()) if insights_path.exists() else None
+        problems_path = HERE / 'problems.json'
+        problems = json.loads(problems_path.read_text()) if problems_path.exists() else {}
         if args.refresh or args.history_repo:
-            insights = build(history, args.history_repo or HERE / '_cache/upstream.git')
-        if insights is None or not matches(insights, history):
-            raise ValueError('Run --refresh or --history-repo to build matching problem-level trends.')
+            repo = args.history_repo or HERE / '_cache/upstream.git'
+            problems = collect_problems(repo, data, bloom_tao_dates, bloom_tao_history, problems, refresh=args.refresh,
+                                        repositories={'plasma': args.plasma_repo} if args.plasma_repo else {})
+            outputs.append(('problems.json', json.dumps(problems, indent=2, ensure_ascii=False) + '\n'))
+        fallback = None
+        if problems.get('schema_version') != SCHEMA_VERSION:
+            fallback = json.loads(insights_path.read_text()) if insights_path.exists() else None
+            if fallback is None or not matches(fallback, history):
+                raise ValueError('Run --refresh or --history-repo to build matching problem-level trends.')
+        trends_page, insights = render_trends(fallback, releases, site_home, analytics_id, problems)
+        if (args.refresh or args.history_repo) and not matches(insights, history):
+            raise ValueError('Bloom–Tao trend dates do not match the Sankey snapshots')
         outputs.extend([
             ('insights.json', json.dumps(insights, separators=(',', ':')) + '\n'),
-            ('trends/index.html', render_trends(insights, releases, site_home, analytics_id)),
+            ('trends/index.html', trends_page),
             ('d3.min.js', (HERE / '_chart/node_modules/d3/dist/d3.min.js').read_text()),
             ('D3-LICENSE.txt', (HERE / '_chart/node_modules/d3/LICENSE').read_text()),
+            ('d3-sankey.min.js', (HERE / '_chart/node_modules/d3-sankey/dist/d3-sankey.min.js').read_text()),
+            ('D3-SANKEY-LICENSE.txt', (HERE / '_chart/node_modules/d3-sankey/LICENSE').read_text()),
         ])
     for filename, content in outputs:
         destination = HERE / filename

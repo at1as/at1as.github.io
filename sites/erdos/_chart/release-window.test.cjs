@@ -51,6 +51,24 @@ test('a gap spanning both windows is not forced onto either side of the release'
   assert.equal(result.before.rate,null);assert.equal(result.after.rate,null);
 });
 
+test('a combined observation cannot narrow the underlying source’s gap', () => {
+  const source = (id, rows) => ({id, metrics:['resolved'], history:rows.map(([date,changes], i) =>
+    ({date, changes, commit:String(i+1).repeat(40)}))});
+  const combined = T.rollup({schema_version:T.catalogVersion, problems:[], sources:[
+    source('older', [['2026-01-01', {'1':[[]]}], ['2026-02-05', {'1':[['resolved']]}], ['2026-04-01', {}]]),
+    source('newer', [['2026-01-12', {'1':[[]]}], ['2026-01-25', {}], ['2026-04-01', {}]])
+  ]}, 'combined');
+  const result = T.releaseWindow(combined, '2026-02-20', 'resolved');
+  assert.equal(combined.points[0].date, '2026-01-01');
+  assert.equal(result.before.complete, true);
+  assert.deepEqual(counts(result.before), [0,1,1]);
+  assert.equal(result.uncertainIntervals[0].start, '2026-01-01');
+  const acrossImport = T.releaseWindow(combined, '2026-02-05', 'resolved');
+  assert.equal(acrossImport.coverageChanged, true);
+  assert.equal(acrossImport.before.rate, null);
+  assert.equal(acrossImport.after.rate, null);
+});
+
 test('incomplete history has no rate, including a baseline partway through the first window day',()=>{
   const history=sample([['2026-01-11',0],['2026-02-01',3],['2026-02-10',0],['2026-02-20',2]]);
   const result=T.releaseWindow(history,'2026-02-10','resolved');
