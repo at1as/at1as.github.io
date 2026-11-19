@@ -4,6 +4,8 @@ Subsite at `/sites/erdos/`, published by the repository's existing Jekyll / GitH
 
 The **Changes over time** view at `/sites/erdos/trends/` adds a D3 rate chart with model-release references, monthly change decomposition, problem-level evidence, the Lean formalization backlog, and equal-window comparisons around releases. Its default charts, monthly totals, and recent problem records are generated as HTML/SVG so they remain available without browser JavaScript. Charts precede the detailed problem records; the recent-changes link and chart controls jump directly to those records.
 
+Both views have a **Source** selector. Bloom–Tao is the default and supplies the detailed Sankey breakdown and catalog attributes. Other selections build the Snapshot chart, playback, and table from the resolution and Lean histories in `problems.json`. On Trends, the selection also controls the metrics, release comparisons, historical problem records, and current lookup. Combined counts a problem once if any selected source marks it resolved and includes a Lean solution if any selected source records one.
+
 When fresh data loads, the Trends summary, history dates, reconciliation, and month selector update from the same dataset as the charts. Selecting a model-release marker moves keyboard focus to the comparison selector.
 
 The visible **What changed** section defaults to the latest rate window and reports both transition counts and distinct problem counts. Clicking/tapping a rate point, pressing Enter after inspecting with the arrow keys, or using **View these changes** shows the exact gains behind that point, with links to current problem pages and immutable revision comparisons. Monthly selections include gains, losses, additions, and removals. **Methodology** opens the readable counting explanation at `/sites/erdos/trends/#methodology`; raw JSON and the visualization source have separate links.
@@ -33,7 +35,7 @@ Refresh all historical snapshots and the latest page together:
 python3 sites/erdos/_generate.py --refresh
 ```
 
-The first run clones the public upstream repository into the ignored `sites/erdos/_cache/upstream.git`; subsequent runs fetch new history. It reads data only and never executes upstream scripts. Review and publish the generated files through the normal GitHub Pages workflow. No scheduled task is enabled.
+The first run clones the public data repositories into the ignored `sites/erdos/_cache/upstream.git` and `sites/erdos/_cache/plasma.git`. Subsequent runs fetch their history. The generator reads data only and never executes upstream scripts. Review and publish the generated files through the normal GitHub Pages workflow. No scheduled task is enabled.
 
 To rebuild from the saved history without network access:
 
@@ -47,15 +49,19 @@ To import from an existing local bare clone:
 python3 sites/erdos/_generate.py --history-repo /path/to/erdosproblems.git
 ```
 
-`history.json`, `snapshot.json`, `index.html`, `diagram.svg`, `insights.json`, `trends/index.html`, and the local `d3.min.js` / license copy are generated. Edit `_template.html` and `styles.css` for the snapshot page, `timeline.js` for its controls, `_history.py` for extraction, and `_chart/render.cjs` for Sankey configuration. The Trends view uses `_trends_template.html`, `trends.css`, `trends.js`, and `trends-charts.js`. Jekyll ignores the underscore-prefixed tools and dependency directory. Git ignores cached upstream data and `node_modules`.
+An offline import reuses the saved secondary-source records. To refresh Plasma from an already-fetched bare clone, pass `--plasma-repo /path/to/plasma.git` alongside `--history-repo`. Secondary-source adapters are registered in `SECONDARY_SOURCES` in `_problem_sources.py`. Each returns source metadata and records keyed by problem number. Add or remove an adapter and run an import to update the options in the browser.
 
-Both refresh commands rebuild the problem-level transition data from the same selected commits. Offline generation reuses `insights.json` only if its commit sequence matches the saved history; a mismatch requires `--refresh` or `--history-repo`. The generator validates all counts and renders both views before replacing output files.
+`history.json`, `snapshot.json`, `index.html`, `diagram.svg`, `insights.json`, `problems.json`, `trends/index.html`, and the local D3 scripts and licenses are generated. Edit `_template.html` and `styles.css` for the Snapshot page, `timeline.js` for its controls, and `_history.py` for extraction. `sankey.js` provides the shared Sankey renderer for the browser and the build. Trends uses `_trends_template.html`, `trends.css`, `trends.js`, `trends-charts.js`, and `source-comparison.js`. Jekyll ignores the underscore-prefixed tools and dependency directory. Git ignores cached source data and `node_modules`.
+
+Both refresh commands write the source histories and current per-problem records to `problems.json`. Trends recalculates from that file in the browser, so replacing it updates the interactive view. Offline generation uses the same file to rebuild the static Bloom–Tao charts and the `insights.json` compatibility export. The refresh pipeline also updates the separate Bloom–Tao Sankey snapshots and validates its selected commits before replacing output files.
 
 On each refresh, the latest YAML counts must match the generated summary at the fetched branch head. The importer reads `STATISTICS.md` when present and falls back to the inline summary in older `README.md` revisions. A missing, malformed, or mismatched summary stops the refresh before replacing output files. `history.json` records the immutable `summary_source` used for this check. Standalone imports without an existing history accept `--summary FILE` (`--readme FILE` remains an alias) for either summary format.
 
 ## What the trend charts measure
 
-`_insights.py` matches problem numbers across each pair of saved snapshots. For resolved status, Lean solutions, and Lean statements, it separates four types of change: an existing entry gains or loses the property, and a qualifying entry is added or removed. A switch from proved to disproved remains within the resolved group and is not a gain. Lean status can change independently of informal resolution. Duplicate IDs in either snapshot are excluded from identity matching; any residual count change is shown as an unmatched-row adjustment. All five components reconcile to the aggregate change for every interval and every monthly total.
+`trends-data.js` matches problem numbers across each pair of selected observations. For resolved status, Lean solutions, and Lean statements, it separates four types of change: an existing entry gains or loses the property, and a qualifying entry is added or removed. A switch from proved to disproved remains within the resolved group and is not a gain. Lean status can change independently of informal resolution. Duplicate IDs in either snapshot are excluded from identity matching; any residual count change is shown as an unmatched-row adjustment. All five components reconcile to the aggregate change for every interval and every monthly total.
+
+Each catalog's first usable observation is its opening balance. Combined starts at the earliest baseline and carries each catalog's most recent state forward. A later catalog's first snapshot contributes to totals. Any additional qualifying problems appear as “From catalog baseline” in the monthly chart and table. That contribution is excluded from pace and release counts. Release comparisons that span a new catalog's baseline show counts without rates. A complete release comparison also requires data from each catalog that reports the metric through the end of the window. Plasma does not report a catalog-wide count of Lean statements. Combined gets that metric from Bloom–Tao.
 
 - **Pace:** existing-entry gains divided by elapsed calendar days. For a selected trailing window, the baseline is the last saved snapshot on or before the intended start; the readout and evidence section show the actual boundaries, duration, and event count. Initial points without a full trailing window are omitted. No interpolation invents extra events. Widely spaced snapshots are shaded; these can include unchanged days as well as skipped revisions, rather than necessarily missing observations.
 - **Monthly composition:** events are assigned to the first saved snapshot observing them. The first and last months are marked partial. Selecting a bar exposes the underlying problem numbers, observation intervals, and source revision comparisons. Counts are transition events, so a problem can contribute more than once after losing and regaining a status.
@@ -64,13 +70,23 @@ On each refresh, the latest YAML counts must match the generated summary at the 
 
 These are rates of **recorded database changes**, not verified discovery dates or model contributions. Additions, corrections, missing snapshots, and transitions that appear and disappear between snapshots limit interpretation. Model release dates provide context; the status data does not consistently record which model helped. `trends-data.js` contains the calculations shared by the browser, the static renderer, and tests.
 
+`problems.json` stores each source's `status`, `lean_statement`, `lean_solution`, and `evidence` per problem. A `null` Lean flag means the source does not supply it. Plasma's accepted outcomes use the shared status names, such as `proved`, `disproved`, `solved`, and `independent`.
+
+Each evidence entry has a `kind`, `url`, and claim `scope`. Kinds include `lean_proof`, `paper`, `preprint`, `verification_record`, and `claim`. A GitHub permalink carries its commit in `revision`. When available, `record_url` links to the pinned catalog claim, `date` comes from the artifact citation or claim, and `verification` records the upstream labels applicable to the entry. A `lean` label reflects catalog-reported verification. Bloom–Tao's reproduction notes carry an `unspecified` scope when there is no structured scope. An empty array means the importer found no proof citation in that source's data.
+
+The top-level `sources` array stores each catalog's website, repository, UTC GitHub creation timestamp, review policy, dataset license and SPDX identifier, pinned snapshot URL and revision, available metrics, and resolved statuses. A new adapter can supply the same metadata, per-problem records, and observations to join by number.
+
+Each source also has a `history` of dated, commit-pinned observations. The first lists every problem present at import. Later `changes` replace the metric flags for the affected problem number, with `null` for removals. For example, `{"32":[["statements"]]}` means one row with a Lean statement, and `{"32":[[]]}` means one row without any tracked flags. Separate row lists preserve historical duplicates. State observations support Lean additions, reversals, and membership changes alongside terminal dates.
+
+`terminal_by` is the first snapshot date for entries already terminal at the baseline. `terminal_on` is the first observation of the current terminal period for later entries. `terminal_commit` pins that catalog observation. Terminal statuses include `proved`, `disproved`, `solved`, `not_provable`, `not_disprovable`, and `independent`. Bloom–Tao uses the saved snapshots and Plasma uses public main-branch commits.
+
 ## Model release annotations
 
-`model-releases.json` contains a curated selection of public Claude releases and OpenAI API releases, each with an official source. The list was checked on November 6, 2026 and includes releases through October 26: Claude Haiku 5.5 on October 7 and GPT-6.1 Terra on October 26. Fable 5.1 uses Anthropic's September 15 release date. Fable 5 uses its initial June 9 launch date; its annotation also links the subsequent access interruption and July 1 return. These markers provide context and do not attribute problem solutions to any model. Releases after the latest data snapshot appear only in the comparison selector, with incomplete windows clearly labeled.
+`model-releases.json` contains selected public Claude releases and OpenAI API releases with official sources. GPT-6.2 Astra and Sol share one November 17, 2026 annotation for their joint release. Fable 5.1 uses Anthropic’s September 15 release date. Fable 5 uses its initial June 9 launch date and links the subsequent access interruption and July 1 return. The Snapshot release picker labels later releases as after the latest snapshot. When a release is within 30 days of the last Trends snapshot, the pace chart can mark its date beyond the recorded series. The release comparison labels incomplete windows.
 
-Hover or keyboard-focus a marker for its model and date; select it to pause playback and show the first recorded snapshot on or after release. If there is a gap, the annotation identifies the actual snapshot shown. During playback, the annotation follows the latest listed release on or before the selected snapshot. Nearby hit targets alternate below and above the slider, with stems connecting each marker to its exact position on the axis. Drag the slider, use its native keyboard controls, or choose a date from the picker to navigate.
+Hover or keyboard-focus a marker for its model and date. Select a marker or use the release picker to pause playback and show the first recorded snapshot on or after release. If there is a gap, the annotation identifies the actual snapshot shown. The markers use two compact rows, with stems connecting them to their positions on the slider.
 
-Because the slider steps through recorded snapshots, marker positions interpolate between the surrounding snapshot indices, rather than treating the whole slider as a uniform calendar scale. Releases outside the saved history are omitted. To add or correct a release, edit `model-releases.json`, include an official date source, and rerun `_generate.py`; the list is embedded in the page, with no extra network request at runtime.
+The slider steps through recorded snapshots. Marker positions interpolate between the surrounding snapshot indices. To add or correct a release, edit `model-releases.json`, include an official date source, and rerun `_generate.py`. The generator embeds the list in both pages.
 
 ## Discovery and analytics
 
@@ -84,7 +100,7 @@ The prominent header and footer links back to Jason’s site, plus the breadcrum
 
 ## Source consistency and historical coverage
 
-The source is always [`teorth/erdosproblems`](https://github.com/teorth/erdosproblems). History is reconstructed from `data/problems.yaml` along the `main` branch's first-parent history. Each slider step is the latest valid data revision on a recorded UTC date, with an immutable commit URL and its timestamp. The slider advances through **recorded snapshots**, not uniformly spaced calendar days. It does not invent values for missing dates. Playback interpolates chart geometry between snapshots; displayed counts remain actual recorded integers.
+The Sankey uses [`teorth/erdosproblems`](https://github.com/teorth/erdosproblems). Its history comes from `data/problems.yaml` on the `main` branch's first-parent history. Each slider step is the latest valid data revision on a recorded UTC date, with an immutable commit URL and its timestamp. The slider advances through **recorded snapshots**, not uniformly spaced calendar days. It does not invent values for missing dates. Playback interpolates chart geometry between snapshots; displayed counts remain actual recorded integers.
 
 On October 6, 2026, upstream [moved its summary counts to `STATISTICS.md`](https://github.com/teorth/erdosproblems/blob/main/STATISTICS.md) and [froze its displayed progress chart](https://github.com/teorth/erdosproblems#progress), following erdosproblems.com's change in how it presents problem statuses. The underlying YAML, per-problem table, and statistics CSV remain active. This independent visualization continues to use the YAML history and verifies its latest counts against the relocated summary; it does not use the frozen chart as a data source.
 
@@ -106,6 +122,7 @@ Counting follows the current upstream `scripts/generate_readme.py` and `primitiv
 ```sh
 python3 -B sites/erdos/_history_test.py
 python3 -B sites/erdos/_insights_test.py
+python3 -B sites/erdos/_problem_sources_test.py
 npm test --prefix sites/erdos/_chart
 bundle exec ruby -E UTF-8 -S jekyll build
 ```

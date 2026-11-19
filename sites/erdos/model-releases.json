@@ -119,5 +119,12 @@
     "date": "2026-10-26",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
+  },
+  {
+    "id": "gpt-6-2-astra-sol",
+    "name": "GPT-6.2 Astra & Sol",
+    "date": "2026-11-17",
+    "kind": "API release",
+    "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
   }
 ]

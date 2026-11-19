@@ -89,12 +89,96 @@ async function boot(fail=false,hash='',payload=data,html=fs.readFileSync(path.jo
   w.fetch=async()=>{if(fail)throw Error('offline');return{ok:true,json:async()=>structuredClone(payload)};};
   w.matchMedia=()=>({matches:true});w.AbortSignal.timeout=()=>new w.AbortController().signal;
   w.HTMLElement.prototype.scrollIntoView=()=>{};
-  for(const name of ['d3.min.js','trends-data.js','trends-charts.js','trends.js']) w.eval(fs.readFileSync(path.join(site,name),'utf8'));
+  if(!w.HTMLDialogElement.prototype.showModal) w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};
+  for(const name of ['d3.min.js','trends-data.js','trends-charts.js','source-comparison.js','trends.js']) w.eval(fs.readFileSync(path.join(site,name),'utf8'));
   for(let i=0;i<5;i++) await new Promise(setImmediate);
   const q=s=>w.document.querySelector(s);
   const change=(s,value)=>{q(s).value=value;q(s).dispatchEvent(new w.Event('change',{bubbles:true}));};
   return {dom,w,q,change};
 }
+
+test('the global source selection rebuilds charts, evidence and current results from one catalog', async () => {
+  const repository = 'https://example.com/source';
+  const snapshots = rows => rows.map(([date,changes],i) => ({date,changes,commit:String(i+1).repeat(40)}));
+  const sources = [
+    {id:'bloom-tao', label:'Bloom–Tao', date:'2026-11-16', repository, url:repository,
+      resolved_statuses:['proved'], metrics:['resolved','lean','statements'], history:snapshots([
+        ['2026-09-01', {'1':[[]],'2':[['resolved','statements']],'3':[[]],'4':[[]],'5':[[]],'6':[[]]}],
+        ['2026-09-04', {'1':[['resolved']]}], ['2026-10-08', {'6':[['resolved']]}],
+        ['2026-10-11', {'4':[['statements']]}], ['2026-11-16', {}]
+      ])},
+    {id:'plasma', label:'Plasma', date:'2026-11-16', repository:repository+'/plasma', url:repository+'/plasma',
+      resolved_statuses:['proved','independent'], metrics:['resolved','lean'], history:snapshots([
+        ['2026-10-08', {'1':[['resolved','lean']],'2':[[]],'3':[[]],'4':[[]],'5':[['resolved']],'6':[['resolved']]}],
+        ['2026-10-09', {'3':[['resolved','lean']]}], ['2026-11-16', {}]
+      ])}
+  ];
+  const resolved = (date, lean_solution = false, dateField = 'terminal_on') => ({status:'proved', lean_solution,
+    [dateField]:date, terminal_commit:'a'.repeat(40)});
+  const open = {status:'open', lean_solution:false};
+  const proof = repository+'/proof/blob/'+'b'.repeat(40)+'/Erdos1.lean';
+  const cited = {kind:'lean_proof', url:proof, scope:'full', revision:'b'.repeat(40), verification:['lean'],
+    record_url:repository+'/plasma/blob/'+'1'.repeat(40)+'/claims/1.md'};
+  const problems = [
+    {number:1, sources:{'bloom-tao':resolved('2026-09-04'), plasma:{...resolved('2026-10-08', true, 'terminal_by'), evidence:[cited]}}},
+    {number:2, sources:{'bloom-tao':resolved('2026-09-01'), plasma:open}},
+    {number:3, sources:{'bloom-tao':open, plasma:{...resolved('2026-10-09', true), status:'independent'}}},
+    {number:4, sources:{'bloom-tao':open, plasma:open}},
+    {number:5, sources:{'bloom-tao':open, plasma:resolved('2026-10-08', false, 'terminal_by')}},
+    {number:6, sources:{'bloom-tao':resolved('2026-10-08'), plasma:resolved('2026-10-08', false, 'terminal_by')}}
+  ];
+  const catalog = {schema_version:T.catalogVersion, sources, problems};
+  const combined = T.rollup(catalog, 'combined');
+  const joined = combined.intervals.find(i=>i.end==='2026-10-08');
+  assert.deepEqual(joined.changes.resolved.baseline, ['5']);
+  assert.deepEqual(joined.changes.resolved.gained, ['6']);
+  assert.deepEqual(joined.changes.lean.baseline, ['1']);
+  assert.equal(T.rolling(combined,'resolved').find(p=>p.date==='2026-10-08').events, 1);
+  const app = await boot(false, '', catalog);
+  try {
+    assert.equal(app.q('#problem-source').value, 'bloom-tao');
+    assert.equal(app.q('.view-meta time').dateTime, '2026-09-01');
+    app.change('#problem-source', 'combined');
+    assert.equal(app.q('.view-meta time').dateTime, '2026-09-01');
+    assert.equal(app.q('#source-comparison-count').textContent, '5 resolved · 2 with a Lean solution');
+    assert.equal(app.q('#source-problem-rows').rows.length, 5);
+    assert.match(app.q('.count-reconciliation').textContent, /^1 initially resolved \+ 3 changes to resolved.*\+ 1 from later catalog baselines/);
+    assert.match(app.q('#formal').closest('.chart-card').querySelector('.chart-readout').textContent, /5 resolved · 2 of those in Lean/);
+    app.change('#records-month', '2026-10');
+    assert.match(app.q('#record-rows').textContent, /#3.*Marked resolved/);
+    assert.equal(app.q('#record-rows td a').href, `${repository}/plasma/compare/${'1'.repeat(40)}...${'2'.repeat(40)}`);
+    const imported = Array.from(app.q('#record-rows').rows).find(row=>row.textContent.startsWith('#5'));
+    assert.match(imported.textContent, /From catalog baseline/);
+    assert.equal(imported.querySelector('td a').href, `${repository}/plasma/commit/${'1'.repeat(40)}`);
+    assert.equal(app.q('[data-baseline-key]').hidden, false);
+    assert.match(app.q('.baseline-guide').textContent,/first snapshot.*Combined totals/);
+    assert.equal(app.q('.baseline-guide').hidden,false);
+    const input = app.q('#source-problem-number');
+    input.value = '#1';
+    input.dispatchEvent(new app.w.Event('input'));
+    const row = app.q('#source-problem-rows').rows[0];
+    assert.deepEqual(Array.from(row.querySelectorAll('time'), el => el.dateTime), ['2026-09-04', '2026-10-08']);
+    assert.match(row.querySelectorAll('time')[1].textContent, /^≤ /);
+    assert.equal(row.querySelector('time a').href, `${repository}/commit/${'a'.repeat(40)}`);
+    assert.equal(row.querySelector('a[href$="Erdos1.lean"]').href, proof);
+    row.querySelector('.source-evidence').click();
+    assert.equal(app.q('#source-evidence-dialog').open,true);
+    assert.equal(app.q('#source-evidence-items a:last-child').href,cited.record_url);
+    app.change('#problem-source', 'bloom-tao');
+    assert.equal(app.q('#source-comparison-count').textContent, '3 resolved · 0 with a Lean solution');
+    assert.equal(app.q('[data-baseline-key]').hidden, true);
+    app.change('#trend-metric', 'statements');
+    app.change('#problem-source', 'plasma');
+    assert.equal(app.q('#trend-metric').value, 'resolved');
+    assert.equal(app.q('#trend-metric [value="statements"]').disabled, true);
+    assert.equal(app.q('.view-meta time').dateTime, '2026-10-08');
+    assert.equal(app.q('#source-comparison-count').textContent, '4 resolved · 2 with a Lean solution');
+    assert.equal(app.q('#before-rate').textContent, 'Incomplete');
+    input.value = '4';
+    input.dispatchEvent(new app.w.Event('input'));
+    assert.match(app.q('#source-problem-rows').textContent, /#4Open/);
+  } finally { app.dom.window.close(); }
+});
 
 test('cached HTML without the uncertainty section still loads and explains release comparisons',async()=>{
   const html=fs.readFileSync(path.join(site,'trends/index.html'),'utf8')
@@ -236,7 +320,9 @@ test('trends controls render all measures, period evidence, and release comparis
 test('every model release has a readable label on its date, with no label collisions at narrow or wide widths',async()=>{
   const app=await boot();
   const releases=JSON.parse(app.q('#model-releases').textContent);
-  const visible=releases.filter(r=>r.date>=data.points[0].date&&r.date<=data.points.at(-1).date);
+  const latest=data.points.at(-1).date;
+  const visible=releases.filter(r=>r.date>=data.points[0].date&&T.time(r.date)<=T.time(latest)+30*T.DAY);
+  const extentEnd=[latest,...visible.map(r=>r.date)].sort().at(-1);
   for(const width of [240,268,314,340,480,768,960,1400]) {
     const plot=app.q('#pace');
     plot.getBoundingClientRect=()=>({width});
@@ -249,7 +335,7 @@ test('every model release has a readable label on its date, with no label collis
         const release=visible.find(r=>r.id===marker.dataset.release);
         assert.ok(release);
         const line=plot.querySelector(`.release-line[data-release="${release.id}"]`);
-        const expected=52+(T.time(release.date)-T.time(data.points[0].date))/(T.time(data.points.at(-1).date)-T.time(data.points[0].date))*(width-72);
+        const expected=52+(T.time(release.date)-T.time(data.points[0].date))/(T.time(extentEnd)-T.time(data.points[0].date))*(width-72);
         assert.ok(Math.abs(Number(line.getAttribute('x1'))-expected)<1e-6,'Vertical line stays on the release date');
         assert.equal(line.getAttribute('x1'),line.getAttribute('x2'));
         const label=marker.querySelector('.release-name');

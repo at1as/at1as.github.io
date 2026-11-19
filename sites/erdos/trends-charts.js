@@ -1,7 +1,7 @@
 /* D3 7 renders the same SVG charts at build time and in the browser. */
 ((root) => {
   const d3 = root.d3, T = root.ErdosTrends;
-  const colors = {resolved:'#3977bd', lean:'#298761', gained:'#3977bd', added:'#9fbfe3', lost:'#dd7b80', removed:'#a74559', unmatched:'#9b94ae'};
+  const colors = {resolved:'#3977bd', lean:'#298761', gained:'#3977bd', added:'#9fbfe3', baseline:'#8873b7', lost:'#dd7b80', removed:'#a74559', unmatched:'#9b94ae'};
   const copy = {
     resolved: {
       title:'How often problems are marked resolved',
@@ -98,13 +98,16 @@
   }
   function pace(element,data,metric,days,releases,selected,onRelease,inspection) {
     const series = T.rolling(data,metric,days);
-    const f = frame(element,`${copy[metric].title}, looking back ${days} days`,[data.points[0].date,data.points.at(-1).date]);
+    const start = data.points[0].date, latest = data.points.at(-1).date;
+    const releaseDates = releases.filter(r => r.date >= start && T.time(r.date) <= T.time(latest) + 30*T.DAY)
+      .sort((a,b)=>a.date.localeCompare(b.date));
+    const end = [latest, releaseDates.at(-1)?.date || latest].sort().at(-1);
+    const f = frame(element,`${copy[metric].title}, looking back ${days} days`,[start,end]);
     const {svg,x,y,margin,say} = f;
     // Keep every release on its date. Labels use separate rows when they overlap.
     const layer = svg.append('g').attr('class','release-labels');
     const lanes = [];
-    const markers = releases.filter(r=>r.date>=data.points[0].date && r.date<=data.points.at(-1).date)
-      .sort((a,b)=>a.date.localeCompare(b.date)).map(r=> {
+    const markers = releaseDates.map(r=> {
         const g=layer.append('g').attr('class','release-reference').attr('data-release',r.id)
           .attr('tabindex',0).attr('role','button').attr('aria-pressed',r.id===selected)
           .attr('aria-label',`${r.name}, ${label(r.date)}. Compare before and after release.`);
@@ -125,12 +128,15 @@
     svg.attr('viewBox',`0 0 ${f.width} ${height}`).style('height',`${height}px`);
     y.range([height-margin.bottom,margin.top]);
     y.domain([0,d3.max(series,p=>p.value)||1]).nice();
+    if (end > latest) svg.append('rect').attr('class','after-coverage').attr('x',x(date(latest))).attr('y',margin.top)
+      .attr('width',x(date(end))-x(date(latest))).attr('height',height-margin.top-margin.bottom);
     data.intervals.filter(i=>i.days>7).forEach(i=>svg.append('rect').attr('class','gap-band').attr('x',x(date(i.start))).attr('width',x(date(i.end))-x(date(i.start))).attr('y',margin.top).attr('height',height-margin.top-margin.bottom));
     axes(f);
     const line = d3.line().x(p=>x(date(p.date))).y(p=>y(p.value)).curve(d3.curveStepAfter);
     svg.append('path').datum(series).attr('d',d3.area().x(p=>x(date(p.date))).y0(y(0)).y1(p=>y(p.value)).curve(d3.curveStepAfter)).attr('fill',colors[metric]||'#8f6ab3').attr('opacity',.09);
     svg.append('path').datum(series).attr('d',line).attr('fill','none').attr('stroke',colors[metric]||'#8f6ab3').attr('stroke-width',2.5);
     inspect(f,series,p=>`${label(p.date)} · ${p.events} ${copy[metric][p.events === 1 ? 'countedSingular' : 'counted']} in the previous ${p.days} days · ${p.value.toFixed(2)} per day on average`,inspection);
+    if(!series.length) say('Not enough history for this window');
     const guides=svg.append('g').attr('class','release-guides').attr('pointer-events','none');
     layer.raise();
     markers.forEach(({r,g,text,width,at,left,lane})=> {
@@ -145,14 +151,16 @@
       text.attr('x',left+5).attr('y',top+15).attr('fill',ink).raise();
       g.on('pointerenter focus',()=>{
         line.attr('stroke','#74559d').attr('stroke-width',2);
-        say(`${r.name} · ${label(r.date)} · ${r.kind}. Select to compare before and after release.`);
+        const suffix=r.date>latest?'After the latest saved snapshot.':'Select to compare before and after release.';
+        say(`${r.name} · ${label(r.date)} · ${r.kind}. ${suffix}`);
       }).on('pointerleave blur',()=>line.attr('stroke',r.id===selected?'#8062a7':'#c5ccd7').attr('stroke-width',r.id===selected?2:1));
       g.on('click',()=>onRelease?.(r.id));
       g.on('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();onRelease?.(r.id);}});
     });
   }
   function composition(element,data,metric,onMonth) {
-    const rows=T.monthly(data,metric), keys=['gained','added','lost','removed','unmatched'];
+    const rows=T.monthly(data,metric);
+    const keys=['gained','added',...(rows.some(row=>row.baseline)?['baseline']:[]),'lost','removed','unmatched'];
     const f=frame(element,`Monthly changes: ${copy[metric].counted}`,[data.points[0].date,data.points.at(-1).date]);
     const {svg,y,width,height,margin,say}=f;
     const x=f.x=d3.scaleBand().domain(rows.map(r=>r.date)).range([margin.left,width-margin.right]).padding(.28);
@@ -161,7 +169,7 @@
     axes(f,true);
     svg.append('line').attr('x1',margin.left).attr('x2',width-margin.right).attr('y1',y(0)).attr('y2',y(0)).attr('stroke','#8494a9');
     const describe=r=> {
-      const parts=keys.filter(k=>r[k]).map(k=>`${Math.abs(r[k])} ${(copy[metric].changes[k]||{removed:'removed from database',unmatched:'unmatched changes'}[k]).toLowerCase()}`);
+      const parts=keys.filter(k=>r[k]).map(k=>`${Math.abs(r[k])} ${(copy[metric].changes[k]||{baseline:'from catalog baseline',removed:'removed from database',unmatched:'unmatched changes'}[k]).toLowerCase()}`);
       return `${d3.utcFormat('%B %Y')(date(r.date))}${r.partial?' (partial month)':''} · ${r.net>0?'+':''}${r.net} net change${parts.length?' · '+parts.join(' · '):''}`;
     };
     stack.forEach(series=>svg.append('g').attr('fill',colors[series.key]).selectAll('rect').data(series).join('rect').attr('x',p=>x(p.data.date)).attr('width',x.bandwidth()).attr('y',p=>y(p[1])).attr('height',p=>Math.max(0,y(p[0])-y(p[1]))));
@@ -179,7 +187,7 @@
     const points=data.points, percent=mode==='coverage';
     const f=frame(element,percent?'Share of resolved problems with solutions in Lean':'Resolved problems and how many have solutions in Lean',[points[0].date,points.at(-1).date]);
     const {svg,x,y}=f;
-    y.domain([0,percent?100:d3.max(points,p=>p.resolved)]).nice(); axes(f);
+    y.domain([0,percent?100:d3.max(points,p=>p.resolved)||1]).nice(); axes(f);
     if(percent) {
       svg.append('path').datum(points).attr('d',d3.area().x(p=>x(date(p.date))).y0(y(0)).y1(p=>y(p.resolved?p.resolved_lean/p.resolved*100:0)).curve(d3.curveStepAfter)).attr('fill','#298761').attr('opacity',.12);
       svg.append('path').datum(points).attr('d',d3.line().x(p=>x(date(p.date))).y(p=>y(p.resolved?p.resolved_lean/p.resolved*100:0)).curve(d3.curveStepAfter)).attr('fill','none').attr('stroke','#298761').attr('stroke-width',2.5);
@@ -187,7 +195,7 @@
       svg.append('path').datum(points).attr('d',d3.area().x(p=>x(date(p.date))).y0(p=>y(p.resolved_lean)).y1(p=>y(p.resolved)).curve(d3.curveStepAfter)).attr('fill','#3977bd').attr('opacity',.1);
       for(const [key,color] of [['resolved','#3977bd'],['resolved_lean','#298761']]) svg.append('path').datum(points).attr('d',d3.line().x(p=>x(date(p.date))).y(p=>y(p[key])).curve(d3.curveStepAfter)).attr('fill','none').attr('stroke',color).attr('stroke-width',2.5);
     }
-    inspect(f,points,p=>`${label(p.date)} · ${format(p.resolved)} resolved · ${format(p.resolved_lean)} of those in Lean (${(100*p.resolved_lean/p.resolved).toFixed(1)}%) · ${format(p.resolved-p.resolved_lean)} without Lean formalization`);
+    inspect(f,points,p=>`${label(p.date)} · ${format(p.resolved)} resolved · ${format(p.resolved_lean)} of those in Lean (${p.resolved?(100*p.resolved_lean/p.resolved).toFixed(1)+'%':'—'}) · ${format(p.resolved-p.resolved_lean)} without Lean formalization`);
   }
   root.ErdosTrendCharts={pace,composition,formal,copy,paceText};
 })(typeof window==='undefined'?globalThis:window);

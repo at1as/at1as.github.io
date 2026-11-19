@@ -7,17 +7,18 @@ const { layout } = require('./render.cjs');
 
 const site = path.join(__dirname, '..');
 const history = JSON.parse(fs.readFileSync(path.join(site, 'history.json')));
+const catalog = JSON.parse(fs.readFileSync(path.join(site, 'problems.json')));
 const releases = JSON.parse(fs.readFileSync(path.join(site, 'model-releases.json')));
 const html = fs.readFileSync(path.join(site, 'index.html'), 'utf8');
 const script = fs.readFileSync(path.join(site, 'timeline.js'), 'utf8');
 const settle = async () => { for (let i = 0; i < 5; i++) await new Promise(setImmediate); };
 
-async function boot({ fail = false, reduced = true, data = history } = {}) {
+async function boot({ fail = false, reduced = true, data = history, problemData } = {}) {
   const dom = new JSDOM(html, { url: 'https://example.com/sites/erdos/', runScripts: 'outside-only', pretendToBeVisual: true });
   const w = dom.window;
   const timers = new Map(), frames = new Map(), blobs = [];
   let id = 0, now = 0;
-  w.fetch = async () => { if (fail) throw Error('offline'); return { ok: true, json: async () => structuredClone(data) }; };
+  w.fetch = async url => { if (fail) throw Error('offline'); return { ok: true, json: async () => structuredClone(url === 'problems.json' ? problemData : data) }; };
   w.matchMedia = () => ({ matches: reduced });
   w.AbortSignal.timeout = () => new w.AbortController().signal;
   w.setTimeout = (fn, delay) => { timers.set(++id, { fn, delay }); return id; };
@@ -27,6 +28,9 @@ async function boot({ fail = false, reduced = true, data = history } = {}) {
   w.performance.now = () => now;
   w.URL.createObjectURL = blob => { blobs.push(blob); return 'blob:historical-svg'; };
   w.URL.revokeObjectURL = () => {};
+  if (problemData) for (const file of ['d3.min.js','d3-sankey.min.js','sankey.js','trends-data.js']) {
+    w.eval(fs.readFileSync(path.join(site, file), 'utf8'));
+  }
   w.eval(script);
   await settle();
   const q = selector => w.document.querySelector(selector);
@@ -170,7 +174,7 @@ test('optional Sankey percentages follow dates and playback, and persist in SVG 
   app.dom.window.close();
 });
 
-test('nearby markers alternate around the slider with stems anchored to its axis', async () => {
+test('release markers use two compact rows and preserve keyboard focus on resize', async () => {
   const app = await boot();
   const rail = app.q('#release-markers');
   const buttons = [...rail.querySelectorAll('button')];
@@ -180,23 +184,13 @@ test('nearby markers alternate around the slider with stems anchored to its axis
     app.w.dispatchEvent(new app.w.Event('resize'));
     assert.equal(app.w.document.activeElement, buttons.at(-1), 'Relayout preserves keyboard focus');
     assert.notEqual(app.q('[data-release="opus-5-5"]').dataset.side, app.q('[data-release="gpt-6-sol-luna"]').dataset.side);
-    for (let i = 0; i < buttons.length; i++) {
-      const button = buttons[i];
-      const dotY = parseFloat(button.style.top) + 24;
-      const stem = parseFloat(button.style.getPropertyValue('--stem-length'));
-      assert.equal(dotY + (button.dataset.side === 'above' ? stem : -stem), 0, 'Each stem touches the slider axis');
-      for (let j = i + 1; j < buttons.length; j++) {
-        if (buttons[i].style.top === buttons[j].style.top) {
-          const gap = (parseFloat(buttons[j].style.left) - parseFloat(buttons[i].style.left)) * width / 100;
-          assert.ok(gap >= 52 - 1e-8, '48px hit targets have at least 4px of separation');
-        }
-      }
-    }
+    assert.ok(buttons.every(button => ['above','below'].includes(button.dataset.side) && !button.style.top));
+    assert.equal(app.q('#snapshot-release').options.length, 1 + releases.filter(r=>r.date>=history.snapshots[0].as_of).length);
   }
   app.dom.window.close();
 });
 
-test('playback crosses releases and out-of-range events are omitted', async () => {
+test('playback crosses releases and newer releases are selectable without inventing a snapshot', async () => {
   const app = await boot();
   app.q('#time-slider').value = '0'; app.event('#time-slider', 'input');
   assert.equal(app.q('[aria-pressed="true"]'), null);
@@ -206,12 +200,50 @@ test('playback crosses releases and out-of-range events are omitted', async () =
   app.event('#play-timeline', 'click'); app.tick();
   assert.equal(app.q('[data-release="fable-5-1"]').getAttribute('aria-pressed'), 'true');
   assert.match(app.q('#release-current').textContent, /Claude Fable 5.1/);
+  const shown = app.q('#snapshot-date').dateTime;
+  app.q('#snapshot-release').value = 'gpt-6-2-astra-sol'; app.event('#snapshot-release', 'change');
+  assert.match(app.q('#release-current').textContent, /GPT-6.2 Astra & Sol.*After latest snapshot/);
+  assert.equal(app.q('#snapshot-date').dateTime, shown);
   app.dom.window.close();
   const shorter = await boot({ data: { ...history, snapshots: history.snapshots.slice(70, 200) } });
   const expected = releases.filter(r => r.date >= history.snapshots[70].as_of && r.date <= history.snapshots[199].as_of);
   assert.equal(shorter.w.document.querySelectorAll('.release-marker').length, expected.length);
   assert.equal(shorter.q('[data-release="astra"]'), null);
   shorter.dom.window.close();
+});
+
+test('Snapshot switches calendars, charts, and source citations from the problem data', async () => {
+  const app = await boot({problemData:catalog});
+  try {
+    const select = (id, value) => { app.q(id).value = value; app.event(id, 'change'); };
+    const snapshot = id => app.q(`[data-label="${id}"] .node-number`).textContent;
+    assert.equal(app.q('#snapshot-source-control').hidden,false);
+    assert.deepEqual(Array.from(app.q('#snapshot-source').options, opt=>opt.value), ['bloom-tao','plasma','combined']);
+    assert.equal(snapshot('resolved'),'576');
+    select('#snapshot-source','plasma');
+    assert.equal(app.q('#snapshot-date').dateTime,'2026-11-16');
+    assert.equal(app.q('#snapshot-picker').options.length,12);
+    assert.equal(snapshot('resolved'),'618');
+    assert.equal(snapshot('resolved-lean'),'66');
+    assert.equal(app.q('#catalog-statements').hidden,true);
+    assert.match(app.q('#source-revision').href,/plasma-ai\/erdos\/commit/);
+    select('#snapshot-picker','0');
+    assert.equal(app.q('#snapshot-date').dateTime,'2026-10-08');
+    assert.equal(snapshot('resolved'),'606');
+    select('#snapshot-source','combined');
+    assert.equal(app.q('#snapshot-date').dateTime,'2026-10-08');
+    assert.equal(snapshot('resolved'),'613');
+    assert.equal(app.q('#catalog-statements').hidden,false);
+    assert.match(app.q('#extra-source-revisions a').href,/plasma-ai\/erdos\/commit/);
+    select('#snapshot-picker','0');
+    assert.equal(app.q('#snapshot-date').dateTime,'2025-09-03');
+    assert.equal(snapshot('resolved'),'352');
+    assert.equal(app.q('#extra-source-revisions').hidden,true);
+    select('#snapshot-source','bloom-tao');
+    assert.equal(app.q('#snapshot-date').dateTime,'2025-09-03');
+    assert.equal(app.q('#bloom-statuses').hidden,false);
+    assert.ok(app.q('[data-label="proved-lean"]'));
+  } finally { app.dom.window.close(); }
 });
 
 test('play replays from the start, supports speed/pause, and stops at the end', async () => {

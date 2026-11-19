@@ -1,4 +1,4 @@
-/* Historical geometry is computed by D3 at build time. No CDN or live API calls. */
+/* Browse the saved Bloom–Tao snapshots and derive other views from the catalog histories. */
 (() => {
   'use strict';
   const $ = selector => document.querySelector(selector);
@@ -7,7 +7,7 @@
   const play = $('#play-timeline');
   const speed = $('#playback-speed');
   const message = $('#timeline-message');
-  const svg = $('.chart-scroll svg');
+  const bloomChart = $('.chart-scroll svg');
   const download = $('#download-svg');
   const percentages = $('#include-percentages');
   const dock = $('#playback-dock');
@@ -21,6 +21,11 @@
   const formatDate = date => formatter.format(new Date(date + 'T12:00:00Z'));
   const releases = JSON.parse($('#model-releases').textContent);
   const releaseRail = $('#release-markers');
+  const releasePicker = $('#snapshot-release');
+  const sourcePicker = $('#snapshot-source');
+  const T = window.ErdosTrends, S = window.ErdosSankey;
+  const bloomAttribution = [...$('#snapshot-attribution').childNodes];
+  const bloomCaption = $('#flow-caption').textContent;
   let releaseEvents = [];
   const count = value => value.toLocaleString('en-US');
   const setTableNumber = (cell, value, denominator) => {
@@ -28,9 +33,15 @@
     cell.querySelector('.percentage').textContent = `(${denominator ? (100 * value / denominator).toFixed(1) + '%' : '—'})`;
   };
   const numberPattern = /-?\d+(?:\.\d+)?(?:e[-+]?\d+)?/gi;
-  const nodeElements = [...svg.querySelectorAll('[data-node]')];
-  const labelElements = [...svg.querySelectorAll('[data-label]')];
-  const flowElements = [...svg.querySelectorAll('[data-flow]')];
+  let svg, nodeElements, labelElements, flowElements;
+  function bindChart(element) {
+    svg = element;
+    nodeElements = [...svg.querySelectorAll('[data-node]')];
+    labelElements = [...svg.querySelectorAll('[data-label]')];
+    flowElements = [...svg.querySelectorAll('[data-flow]')];
+    svg.setAttribute('data-percentages', String(percentages.checked));
+  }
+  bindChart(bloomChart);
   const statuses = [...document.querySelectorAll('[data-status]')].map(row => row.dataset.status);
   const attributeNames = [...new Set([...document.querySelectorAll('[data-attribute]')].map(el => el.dataset.attribute))];
   let history = null;
@@ -38,6 +49,9 @@
   let timer = null;
   let animation = null;
   let downloadURL = null;
+  let bloomHistory, catalog;
+  let activeSources = [];
+  const catalogHistories = new Map();
 
   function updatePlaybackDock() {
     if (!dock) return;
@@ -90,33 +104,26 @@
   }
 
   function arrangeReleaseMarkers() {
-    // Every stem meets the slider axis. Nearby targets alternate below/above.
+    // Use two compact rails. The picker offers full-size targets on narrow screens.
     const width = releaseRail.getBoundingClientRect().width || 120;
-    const laneEnds = [];
-    let above = 54, below = 54;
-    releaseEvents.forEach(release => {
-      const position = release.position * width;
-      let lane = laneEnds.findIndex(end => position - end >= 52);
-      if (lane < 0) lane = laneEnds.length;
+    const laneEnds = [-Infinity, -Infinity];
+    releaseEvents.forEach(({button, position: fraction}) => {
+      if (!button) return;
+      const position = fraction * width;
+      const lane = position - laneEnds[0] >= 26 || laneEnds[0] <= laneEnds[1] && position - laneEnds[1] < 26 ? 0 : 1;
       laneEnds[lane] = position;
-      const side = lane % 2 ? 'above' : 'below';
-      const distance = 52 + Math.floor(lane / 2) * 52;
-      release.button.dataset.side = side;
-      release.button.style.top = `${(side === 'above' ? -distance : distance) - 24}px`;
-      release.button.style.setProperty('--stem-length', `${distance}px`);
-      if (side === 'above') above = Math.max(above, distance + 26);
-      else below = Math.max(below, distance + 26);
-      release.button.dataset.align = position < 110 ? 'left' : width - position < 110 ? 'right' : 'center';
+      button.dataset.side = lane ? 'above' : 'below';
+      button.dataset.align = position < 110 ? 'left' : width - position < 110 ? 'right' : 'center';
     });
-    $('.timeline-toolbar').style.setProperty('--release-above', `${above}px`);
-    $('.timeline-toolbar').style.setProperty('--release-below', `${below}px`);
   }
 
   function prepareReleases() {
     const snapshots = history.snapshots;
-    releaseEvents = releases.filter(release => release.date >= snapshots[0].as_of && release.date <= snapshots.at(-1).as_of)
+    releaseEvents = releases.filter(release => release.date >= snapshots[0].as_of)
       .sort((a, b) => a.date.localeCompare(b.date)).map(release => {
         const nextIndex = snapshots.findIndex(snapshot => snapshot.as_of >= release.date);
+        if (nextIndex < 0) return { ...release, nextIndex };
+        const steps = Math.max(1, snapshots.length - 1);
         let position = nextIndex;
         if (nextIndex > 0 && snapshots[nextIndex].as_of !== release.date) {
           const start = Date.parse(snapshots[nextIndex - 1].as_of);
@@ -127,7 +134,7 @@
         button.type = 'button';
         button.className = 'release-marker';
         button.dataset.release = release.id;
-        button.style.left = `${100 * position / (snapshots.length - 1)}%`;
+        button.style.left = `${100 * position / steps}%`;
         button.setAttribute('aria-label', `${release.name}, ${release.kind.toLowerCase()}, ${formatDate(release.date)}. View first snapshot on or after release.`);
         button.setAttribute('aria-pressed', 'false');
         const tooltip = document.createElement('span');
@@ -140,27 +147,33 @@
         tooltip.append(date);
         button.append(tooltip);
         button.addEventListener('click', () => { stop(); select(nextIndex, true, release.id); });
-        return { ...release, nextIndex, position: position / (snapshots.length - 1), button };
+        return { ...release, nextIndex, position: position / steps, button };
       });
-    releaseRail.replaceChildren(...releaseEvents.map(release => release.button));
-    releaseRail.hidden = releaseEvents.length === 0;
+    const buttons = releaseEvents.map(release => release.button).filter(Boolean);
+    releaseRail.replaceChildren(...buttons);
+    releaseRail.hidden = buttons.length === 0;
     $('#release-info').hidden = releaseEvents.length === 0;
+    releasePicker.replaceChildren(new Option('Choose a release', ''), ...releaseEvents.map(release =>
+      new Option(release.name + (release.nextIndex < 0 ? ' · after latest snapshot' : ''), release.id)));
     arrangeReleaseMarkers();
   }
 
   function updateReleaseInfo(date, selectedRelease) {
-    const release = selectedRelease ? releaseEvents.find(event => event.id === selectedRelease)
-      : releaseEvents.findLast(event => event.date <= date);
-    releaseEvents.forEach(event => { event.button.setAttribute('aria-pressed', String(event === release)); });
+    const release = selectedRelease ? releaseEvents.find(event => event.id === selectedRelease) :
+      date === history.snapshots.at(-1).as_of ? releaseEvents.at(-1) : releaseEvents.findLast(event => event.date <= date);
+    releaseEvents.forEach(event => { event.button?.setAttribute('aria-pressed', String(event === release)); });
+    releasePicker.value = release?.id || '';
     const info = $('#release-current');
     info.replaceChildren();
-    if (!release) { info.textContent = 'Select a marker to explore a release'; return; }
+    if (!release) return;
     const source = document.createElement('a');
     source.href = release.source;
     source.textContent = `${release.name} ↗`;
     source.setAttribute('aria-label', `${release.name}: official release source`);
-    info.append(source, ` · ${formatDate(release.date)} · ${release.kind}`);
-    if (selectedRelease && release.date !== date) {
+    info.append(source, ` · ${formatDate(release.date)}`);
+    if (release.nextIndex < 0) {
+      info.append(' · After latest snapshot');
+    } else if (selectedRelease && release.date !== date) {
       info.append(` · Showing ${formatDate(date)} (next recorded snapshot)`);
     }
     if (release.note) {
@@ -171,6 +184,13 @@
       info.append(note);
     }
   }
+  releasePicker.addEventListener('change', () => {
+    const release = releaseEvents.find(event => event.id === releasePicker.value);
+    if (!release) return;
+    stop();
+    if (release.nextIndex >= 0) select(release.nextIndex, true, release.id);
+    else updateReleaseInfo(history.snapshots[index].as_of, release.id);
+  });
 
   function geometryFrame(target, animate) {
     if (animation !== null) cancelAnimationFrame(animation);
@@ -212,14 +232,74 @@
     frame(start);
   }
 
+  function snapshotLinks(snapshot) {
+    const primary = $('#source-revision'), extra = $('#extra-source-revisions');
+    if (snapshot.statuses) {
+      primary.href = `https://github.com/teorth/erdosproblems/blob/${snapshot.commit}/data/problems.yaml`;
+      primary.title = `Recorded ${snapshot.recorded_at}`;
+      primary.textContent = 'Source revision ↗';
+      extra.replaceChildren();
+      extra.hidden = true;
+      return [primary.href];
+    }
+    const revisions = activeSources.flatMap(source => {
+      const observation = source.history.findLast(item => item.date <= snapshot.as_of);
+      return observation ? [{label: source.label, date: observation.date, url: `${source.repository}/commit/${observation.commit}`}] : [];
+    });
+    extra.replaceChildren();
+    revisions.forEach(({label, date, url}, i) => {
+      const link = i === 0 ? primary : document.createElement('a');
+      link.href = url;
+      link.title = `${label} snapshot on ${formatDate(date)}`;
+      link.textContent = revisions.length === 1 ? 'Source revision ↗' : `${label} revision ↗`;
+      if (i) extra.append(i === 1 ? '' : ' · ', link);
+    });
+    extra.hidden = revisions.length < 2;
+    return revisions.map(item => item.url);
+  }
+
+  function updateStatusTable(snapshot) {
+    if (snapshot.statuses) {
+      document.querySelectorAll('[data-attribute]').forEach(el => { el.textContent = count(snapshot.attributes[el.dataset.attribute]); });
+      const resolvedLean = Object.values(snapshot.lean).reduce((a, b) => a + b, 0);
+      $('[data-derived="resolved-lean"]').textContent = count(resolvedLean);
+      $('[data-derived="extra-lean"]').textContent = count(snapshot.attributes.solutions - resolvedLean);
+      document.querySelectorAll('[data-status]').forEach(row => {
+        const key = row.dataset.status;
+        const cells = row.querySelectorAll('td');
+        setTableNumber(cells[0], snapshot.statuses[key], snapshot.total);
+        if (snapshot.lean[key] !== undefined) {
+          setTableNumber(cells[1], snapshot.lean[key], snapshot.statuses[key]);
+          setTableNumber(cells[2], snapshot.statuses[key] - snapshot.lean[key], snapshot.statuses[key]);
+        }
+      });
+      return;
+    }
+    $('[data-attribute="solutions"]').textContent = count(snapshot.lean);
+    for (const [key, total, lean] of [
+      ['resolved', snapshot.resolved, snapshot.resolved_lean],
+      ['unresolved', snapshot.total - snapshot.resolved, snapshot.lean - snapshot.resolved_lean]
+    ]) {
+      const cells = $(`[data-catalog-status="${key}"]`).querySelectorAll('td');
+      setTableNumber(cells[0], total, snapshot.total);
+      setTableNumber(cells[1], lean, total);
+      setTableNumber(cells[2], total - lean, total);
+    }
+    const statements = $('#catalog-statements');
+    statements.hidden = !activeSources.some(source => source.metrics.includes('statements') &&
+      source.history[0].date <= snapshot.as_of);
+    statements.textContent = ` · ${count(snapshot.statements)} problem statements in Lean`;
+  }
+
   function select(value, animate = true, selectedRelease = null) {
     if (!history || !Number.isInteger(value) || value < 0 || value >= history.snapshots.length) return;
     index = value;
     const snapshot = history.snapshots[index];
+    snapshot.geometry ??= S.geometry(snapshot, history.max_total);
     const date = formatDate(snapshot.as_of);
     updateReleaseInfo(snapshot.as_of, selectedRelease);
     slider.value = String(index);
-    slider.style.setProperty('--progress', `${100 * index / (history.snapshots.length - 1)}%`);
+    slider.style.setProperty('--progress', `${100 * index / Math.max(1, history.snapshots.length - 1)}%`);
     slider.setAttribute('aria-valuetext', date);
     picker.value = String(index);
     $('#timeline-position').textContent = `Snapshot ${index + 1} of ${history.snapshots.length}`;
@@ -228,23 +308,10 @@
     if (dockDate) { dockDate.textContent = date; dockDate.dateTime = snapshot.as_of; }
     $('#footer-date').textContent = date;
     $('#table-date').textContent = date;
-    $('#source-revision').href = `https://github.com/teorth/erdosproblems/blob/${snapshot.commit}/data/problems.yaml`;
-    $('#source-revision').title = `Recorded ${snapshot.recorded_at}`;
+    const revisions = snapshotLinks(snapshot);
     document.querySelectorAll('[data-total]').forEach(el => { el.textContent = count(snapshot.total); });
     document.title = `Erdős problems in the AI era — ${date} | Jason Willems`;
-    document.querySelectorAll('[data-attribute]').forEach(el => { el.textContent = count(snapshot.attributes[el.dataset.attribute]); });
-    const resolvedLean = Object.values(snapshot.lean).reduce((a, b) => a + b, 0);
-    $('[data-derived="resolved-lean"]').textContent = count(resolvedLean);
-    $('[data-derived="extra-lean"]').textContent = count(snapshot.attributes.solutions - resolvedLean);
-    document.querySelectorAll('[data-status]').forEach(row => {
-      const key = row.dataset.status;
-      const cells = row.querySelectorAll('td');
-      setTableNumber(cells[0], snapshot.statuses[key], snapshot.total);
-      if (snapshot.lean[key] !== undefined) {
-        setTableNumber(cells[1], snapshot.lean[key], snapshot.statuses[key]);
-        setTableNumber(cells[2], snapshot.statuses[key] - snapshot.lean[key], snapshot.statuses[key]);
-      }
-    });
+    updateStatusTable(snapshot);
     snapshot.geometry.nodes.forEach((node, i) => {
       const label = labelElements[i].querySelector('.node-title').textContent;
       labelElements[i].querySelector('.node-number').textContent = count(node.value);
@@ -255,11 +322,12 @@
       const title = flowElements[i].querySelector('title');
       title.textContent = title.textContent.replace(/: [\d,]+$/, ': ' + count(link.value));
     });
-    const resolved = snapshot.statuses.proved + snapshot.statuses.disproved + snapshot.statuses.solved;
+    const resolved = snapshot.resolved ?? snapshot.statuses.proved + snapshot.statuses.disproved + snapshot.statuses.solved;
     document.querySelectorAll('[data-overview="resolved"]').forEach(el => { el.textContent = count(resolved); });
     $('#flow-desc').textContent = `${date}: ${count(snapshot.total)} problems, ${count(resolved)} resolved and ${count(snapshot.total - resolved)} open or unresolved. Bar heights and ribbon widths use the same scale across all dates.`;
     $('#flow-title').textContent = `Erdős problems: ${date}`;
-    $('#flow-source').textContent = `Data: Erdős problems database contributors, maintained by Thomas Bloom and Terence Tao. Source: ${$('#source-revision').href}. Snapshot: ${snapshot.as_of}. Visualization: Jason Willems. Layout: D3 Sankey.`;
+    const attribution = snapshot.attribution || 'Erdős problems database contributors, maintained by Thomas Bloom and Terence Tao';
+    $('#flow-source').textContent = `Data: ${attribution}. Sources: ${revisions.join(' · ')}. Snapshot: ${snapshot.as_of}. Visualization: Jason Willems. Layout: D3 Sankey.`;
     geometryFrame(snapshot.geometry, animate);
     if (timer === null) stop();
   }
@@ -274,7 +342,7 @@
   }
 
   function togglePlayback() {
-    if (!history) return;
+    if (!history || history.snapshots.length < 2) return;
     if (timer !== null) { stop(); return; }
     if (index === history.snapshots.length - 1) select(0, false);
     schedule();
@@ -306,26 +374,96 @@
     if (downloadURL) URL.revokeObjectURL(downloadURL);
     downloadURL = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }));
     download.href = downloadURL;
-    download.download = `erdos-problems-${history ? history.snapshots[index].as_of : $('#snapshot-date').dateTime}.svg`;
+    const source = sourcePicker.value === 'bloom-tao' ? '' : `${sourcePicker.value}-`;
+    download.download = `erdos-problems-${source}${$('#snapshot-date').dateTime}.svg`;
   });
+
+  function showHistory(payload, selectedIndex) {
+    history = payload;
+    prepareReleases();
+    picker.replaceChildren(...history.snapshots.map((snapshot, i) => new Option(formatDate(snapshot.as_of), String(i))));
+    slider.max = String(history.snapshots.length - 1);
+    [slider, play, speed, dockPlay, dockSpeed].forEach(control => { control.disabled = history.snapshots.length < 2; });
+    picker.disabled = false;
+    $('#first-date').textContent = formatDate(history.snapshots[0].as_of);
+    $('#last-date').textContent = formatDate(history.snapshots.at(-1).as_of);
+    select(selectedIndex, false);
+  }
+
+  function selectCatalog() {
+    const selection = sourcePicker.value, bloom = selection === 'bloom-tao';
+    const sources = T.catalogSources(catalog, selection);
+    let payload = bloomHistory;
+    if (!bloom) {
+      if (!catalogHistories.has(selection)) {
+        const {points} = T.rollup(catalog, selection);
+        const attribution = sources.map(source => source.label).join(' and ');
+        const snapshots = points.map(point => ({...point, as_of: point.date, attribution}));
+        catalogHistories.set(selection, {snapshots, max_total: Math.max(...snapshots.map(snapshot => snapshot.total))});
+      }
+      payload = catalogHistories.get(selection);
+    }
+    const selectedIndex = index === history.snapshots.length - 1 ? payload.snapshots.length - 1 :
+      Math.max(0, payload.snapshots.findLastIndex(snapshot => snapshot.as_of <= history.snapshots[index].as_of));
+    stop();
+    activeSources = sources;
+    if (bloom) chart.replaceChildren(bloomChart);
+    else chart.innerHTML = S.render(payload.snapshots[selectedIndex]);
+    bindChart(chart.querySelector('svg'));
+    for (const id of ['bloom-statuses','bloom-attributes','bloom-data-links','bloom-counting-note']) $(`#${id}`).hidden = !bloom;
+    for (const id of ['catalog-statuses','catalog-data-link','catalog-counting-note']) $(`#${id}`).hidden = bloom;
+    if (bloom) $('#catalog-statements').hidden = true;
+    $('#resolved-note').textContent = bloom ? 'Proved, disproved, or otherwise solved.' : 'Marked resolved by a selected catalog.';
+    $('#flow-caption').textContent = bloom ? bloomCaption : 'Wider bands mean more problems. Lean counts reflect solutions recorded by the selected catalogs.';
+    $('#snapshot-history-link').href = bloom ? 'history.json' : 'problems.json';
+    const attribution = $('#snapshot-attribution');
+    attribution.replaceChildren(...(bloom ? bloomAttribution : ['Data: ']));
+    if (!bloom) sources.forEach((source, i) => {
+      const link = document.createElement('a');
+      link.href = source.repository;
+      link.textContent = source.label;
+      attribution.append(i ? ' · ' : '', link);
+      if (source.license) {
+        const license = document.createElement('a');
+        license.href = source.license;
+        license.textContent = source.license_label;
+        attribution.append(' (', license, ')');
+      }
+    });
+    showHistory(payload, selectedIndex);
+  }
+
+  const read = async path => {
+    const response = await fetch(path, { cache: 'no-cache', signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error('History request failed.');
+    return response.json();
+  };
+
+  async function loadSources() {
+    if (!T || !S) return;
+    try {
+      const payload = await read('problems.json');
+      if (payload.schema_version !== T.catalogVersion || payload.sources.length < 2) return;
+      catalog = payload;
+      sourcePicker.replaceChildren(...catalog.sources.map(source => new Option(source.label, source.id)), new Option('Combined', 'combined'));
+      sourcePicker.value = 'bloom-tao';
+      $('#snapshot-source-control').hidden = false;
+    } catch (error) {
+      // The saved Bloom–Tao snapshots are independently usable offline.
+    }
+  }
+  sourcePicker.addEventListener('change', selectCatalog);
 
   async function load() {
     $('#retry-history').hidden = true;
     message.hidden = false;
     message.textContent = 'Loading historical snapshots…';
     try {
-      const response = await fetch('history.json', { cache: 'no-cache', signal: AbortSignal.timeout(15000) });
-      if (!response.ok) throw new Error('History request failed.');
-      history = validate(await response.json());
-      prepareReleases();
-      picker.replaceChildren(...history.snapshots.map((snapshot, i) => new Option(formatDate(snapshot.as_of), String(i))));
-      slider.max = String(history.snapshots.length - 1);
-      [slider, picker, play, speed].forEach(control => { control.disabled = false; });
-      $('#first-date').textContent = formatDate(history.snapshots[0].as_of);
-      $('#last-date').textContent = formatDate(history.snapshots.at(-1).as_of);
+      bloomHistory = validate(await read('history.json'));
+      showHistory(bloomHistory, bloomHistory.snapshots.length - 1);
       message.textContent = '';
       message.hidden = true;
-      select(history.snapshots.length - 1, false);
+      loadSources();
     } catch (error) {
       history = null;
       message.textContent = 'History could not load. The latest saved snapshot is still shown.';

@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-11-06",
-  "recorded_at": "2026-11-06T11:10:55+00:00",
-  "commit": "3a73a3177afcffa5f6947e0896db0a52c43ad8a3",
-  "source": "https://github.com/teorth/erdosproblems/blob/3a73a3177afcffa5f6947e0896db0a52c43ad8a3/data/problems.yaml",
+  "as_of": "2026-11-12",
+  "recorded_at": "2026-11-12T20:33:24+00:00",
+  "commit": "6cd839c9bcefd6aaaf2d9f194816727ab75defd1",
+  "source": "https://github.com/teorth/erdosproblems/blob/6cd839c9bcefd6aaaf2d9f194816727ab75defd1/data/problems.yaml",
   "total": 1221,
   "statuses": {
     "proved": 336,
@@ -23,7 +23,7 @@
   },
   "attributes": {
     "prize": 107,
-    "statements": 1011,
+    "statements": 1018,
     "solutions": 318,
     "oeis_linked": 358,
     "oeis_distinct": 474,
