@@ -1,0 +1,2884 @@
+{
+  "meta": {
+    "schema_version": "1.0",
+    "compiled_on": "2026-11-21",
+    "ordering": "low_to_high",
+    "answer_definition": "Higher in the named metric and scope, NOT universally best",
+    "evidence_policy": "Source links favor original manufacturers, program operators, official standards and employer documentation. URLs are a human-auditable trail, not a promise of immutable future pages.",
+    "editorial_policy": "No automatic pair generation. No comparisons across brands, CPU generations, camera roles, credit issuer/network levels or vendor-defined models without a clear scope.",
+    "categories": [
+      {
+        "id": "ai",
+        "name": "AI model naming",
+        "group": "AI Model Naming"
+      },
+      {
+        "id": "chips",
+        "name": "Chips & computing",
+        "group": "Technology"
+      },
+      {
+        "id": "devices",
+        "name": "Devices & cameras",
+        "group": "Technology"
+      },
+      {
+        "id": "gaming",
+        "name": "Gaming",
+        "group": "Technology"
+      },
+      {
+        "id": "software",
+        "name": "Software & cloud",
+        "group": "Technology"
+      },
+      {
+        "id": "cards",
+        "name": "Credit cards & payment tiers",
+        "group": "Money & status"
+      },
+      {
+        "id": "loyalty",
+        "name": "Loyalty & travel",
+        "group": "Travel & Loyalty"
+      },
+      {
+        "id": "careers",
+        "name": "Careers & ranks",
+        "group": "Institutions"
+      },
+      {
+        "id": "fashion",
+        "name": "Fashion labels",
+        "group": "Lifestyle"
+      },
+      {
+        "id": "cars",
+        "name": "Cars & trims",
+        "group": "Lifestyle"
+      },
+      {
+        "id": "other",
+        "name": "Everyday & specialist",
+        "group": "Lifestyle"
+      },
+      {
+        "id": "food",
+        "name": "Food & drink",
+        "group": "Food & Drink"
+      },
+      {
+        "id": "connectivity",
+        "name": "Connectivity & storage standards",
+        "group": "Tech Standards"
+      },
+      {
+        "id": "sports",
+        "name": "Sports & games",
+        "group": "Sports & Games"
+      },
+      {
+        "id": "outdoors",
+        "name": "Outdoors",
+        "group": "Outdoors"
+      }
+    ]
+  },
+  "ladders": [
+    {
+      "id": "openai-gpt62",
+      "category": "ai",
+      "brand": "OpenAI",
+      "title": "GPT-6.2 Sol and Astra",
+      "low_to_high": [
+        {
+          "id": "openai-gpt62:0",
+          "label": "GPT-6.2 Sol",
+          "tier": 0
+        },
+        {
+          "id": "openai-gpt62:1",
+          "label": "GPT-6.2 Astra",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "vendor capability positioning",
+      "scope": "GPT-6.2 models, OpenAI positioning in November 2026",
+      "story": "A solar name sounds impressive, but Astra is the frontier model.",
+      "caveat": "This is OpenAI’s intended role/capability positioning, not a claim that Astra always wins on speed or cost.",
+      "naming_quirks": [
+        "metaphor",
+        "opaque-order"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "google-gemini4",
+      "category": "ai",
+      "brand": "Google",
+      "title": "Gemini 4 elemental names",
+      "low_to_high": [
+        {
+          "id": "google-gemini4:0",
+          "label": "Gemini 4 Hydrogen",
+          "tier": 0
+        },
+        {
+          "id": "google-gemini4:1",
+          "label": "Gemini 4 Neon",
+          "tier": 1
+        },
+        {
+          "id": "google-gemini4:2",
+          "label": "Gemini 4 Carbon",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "vendor capability positioning",
+      "scope": "Gemini 4 model choices in Gemini Apps, as documented November 2026",
+      "story": "The actual model hierarchy disagrees with the order of atomic masses.",
+      "caveat": "The model positioning is vendor-defined. Atomic-mass comparison is an analogy, not Google’s declared naming rule.",
+      "naming_quirks": [
+        "scientific-metaphor",
+        "inverted-external-scale",
+        "opaque-order"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://support.google.com/gemini/answer/18648722?co=GENIE.Platform%3DDesktop"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "anthropic-claude",
+      "category": "ai",
+      "brand": "Anthropic",
+      "title": "Claude literary tiers",
+      "low_to_high": [
+        {
+          "id": "anthropic-claude:0",
+          "label": "Claude Haiku 5.5",
+          "tier": 0
+        },
+        {
+          "id": "anthropic-claude:1",
+          "label": "Claude Sonnet 5.5",
+          "tier": 1
+        },
+        {
+          "id": "anthropic-claude:2",
+          "label": "Claude Opus 5.5",
+          "tier": 2
+        },
+        {
+          "id": "anthropic-claude:3",
+          "label": "Claude Fable 5.2",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "vendor recommended capability tier",
+      "scope": "Anthropic November 2026 lineup; Fable is version 5.2 while other listed families are 5.5",
+      "story": "After Haiku, Sonnet and Opus, the company chose a short story genre for its most demanding-reasoning model.",
+      "caveat": "Different version numbers and task specializations matter; this is Anthropic’s recommendation for demanding reasoning, not an all-benchmark ranking.",
+      "naming_quirks": [
+        "literary-metaphor",
+        "meaning-shift",
+        "ceiling"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://platform.claude.com/docs/en/models/overview"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "apple-m2-chips",
+      "category": "chips",
+      "brand": "Apple",
+      "title": "M2 chips",
+      "low_to_high": [
+        {
+          "id": "apple-m2-chips:0",
+          "label": "Apple M2",
+          "tier": 0
+        },
+        {
+          "id": "apple-m2-chips:1",
+          "label": "Apple M2 Pro",
+          "tier": 1
+        },
+        {
+          "id": "apple-m2-chips:2",
+          "label": "Apple M2 Max",
+          "tier": 2
+        },
+        {
+          "id": "apple-m2-chips:3",
+          "label": "Apple M2 Ultra",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "Apple chip performance/capability tier",
+      "scope": "M2 generation only, not an assertion about newer-generation chips",
+      "story": "Ultra sits above Max. Maximum was not actually maximum.",
+      "caveat": "Relative power/energy efficiency varies by workload and device. Do not compare chip generations as part of this ladder.",
+      "naming_quirks": [
+        "ceiling",
+        "superlative"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.apple.com/newsroom/2023/06/apple-introduces-m2-ultra/",
+        "https://www.apple.com/mac/compare/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "nvidia-4070",
+      "category": "chips",
+      "brand": "NVIDIA",
+      "title": "GeForce RTX 4070 variants",
+      "low_to_high": [
+        {
+          "id": "nvidia-4070:0",
+          "label": "RTX 4070",
+          "tier": 0
+        },
+        {
+          "id": "nvidia-4070:1",
+          "label": "RTX 4070 SUPER",
+          "tier": 1
+        },
+        {
+          "id": "nvidia-4070:2",
+          "label": "RTX 4070 Ti",
+          "tier": 2
+        },
+        {
+          "id": "nvidia-4070:3",
+          "label": "RTX 4070 Ti SUPER",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "4070 family gaming GPU performance/capability tier",
+      "scope": "Ada Lovelace GeForce RTX 4070 desktop cards, not laptop GPUs",
+      "story": "Ti beats SUPER, but Ti SUPER beats both. The suffixes form a small grammar.",
+      "caveat": "Individual benchmarks, factory overclocks, prices, and VRAM-sensitive games can vary; use NVIDIA’s within-family positioning.",
+      "naming_quirks": [
+        "two-dimensional-suffix",
+        "opaque-order"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "intel-ultra",
+      "category": "chips",
+      "brand": "Intel",
+      "title": "Intel Core Ultra tiers",
+      "low_to_high": [
+        {
+          "id": "intel-ultra:0",
+          "label": "Core Ultra 5",
+          "tier": 0
+        },
+        {
+          "id": "intel-ultra:1",
+          "label": "Core Ultra 7",
+          "tier": 1
+        },
+        {
+          "id": "intel-ultra:2",
+          "label": "Core Ultra 9",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "Intel processor product tier",
+      "scope": "Within a comparable Intel Core Ultra generation and class",
+      "story": "“Ultra” applies to every tier, so it says little about which processor is highest.",
+      "caveat": "Higher series number is a product segment, not guaranteed superior performance across different generations or mobile/desktop power limits.",
+      "naming_quirks": [
+        "numbering",
+        "shared-superlative"
+      ],
+      "editorial_priority": 2,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.intel.com/content/www/us/en/support/articles/000097596/processors/intel-core-ultra-processors.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "amd-ryzen7000",
+      "category": "chips",
+      "brand": "AMD",
+      "title": "Ryzen 7000 (65W desktop)",
+      "low_to_high": [
+        {
+          "id": "amd-ryzen7000:0",
+          "label": "Ryzen 5 7600",
+          "tier": 0
+        },
+        {
+          "id": "amd-ryzen7000:1",
+          "label": "Ryzen 7 7700",
+          "tier": 1
+        },
+        {
+          "id": "amd-ryzen7000:2",
+          "label": "Ryzen 9 7900",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "core count in same 65W Zen 4 desktop cohort",
+      "scope": "2023 65W, non-X Ryzen 7000 Zen 4 desktop CPUs",
+      "story": "Ryzen tier labels use 5, 7 and 9; the model number also changes.",
+      "caveat": "This ranks core counts: 6, 8 and 12. It does not guarantee higher performance in every game, especially versus X3D variants.",
+      "naming_quirks": [
+        "numbering",
+        "numeric-nesting"
+      ],
+      "editorial_priority": 2,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.amd.com/en/newsroom/press-releases/2023-1-4-amd-extends-its-leadership-with-the-introduction-o.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "aws-ec2-t2",
+      "category": "software",
+      "brand": "Amazon Web Services",
+      "title": "EC2 T2 instance sizes",
+      "low_to_high": [
+        {
+          "id": "aws-ec2-t2:0",
+          "label": "t2.nano",
+          "tier": 0
+        },
+        {
+          "id": "aws-ec2-t2:1",
+          "label": "t2.micro",
+          "tier": 1
+        },
+        {
+          "id": "aws-ec2-t2:2",
+          "label": "t2.small",
+          "tier": 2
+        },
+        {
+          "id": "aws-ec2-t2:3",
+          "label": "t2.medium",
+          "tier": 3
+        },
+        {
+          "id": "aws-ec2-t2:4",
+          "label": "t2.large",
+          "tier": 4
+        },
+        {
+          "id": "aws-ec2-t2:5",
+          "label": "t2.xlarge",
+          "tier": 5
+        },
+        {
+          "id": "aws-ec2-t2:6",
+          "label": "t2.2xlarge",
+          "tier": 6
+        }
+      ],
+      "ranking_metric": "instance resource size",
+      "scope": "AWS EC2 T2 instance family",
+      "story": "An instance named “micro” is still larger than “nano”; the rest looks like clothing sizes.",
+      "caveat": "The order is for allocated vCPU/memory within one AWS instance family; not price/performance across generations or instance families.",
+      "naming_quirks": [
+        "size-metaphor",
+        "ceiling",
+        "mixed-size-conventions"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://aws.amazon.com/ec2/instance-types/general-purpose/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "garmin-forerunner",
+      "category": "devices",
+      "brand": "Garmin",
+      "title": "Forerunner 165 / 265 / 965",
+      "low_to_high": [
+        {
+          "id": "garmin-forerunner:0",
+          "label": "Forerunner 165",
+          "tier": 0
+        },
+        {
+          "id": "garmin-forerunner:1",
+          "label": "Forerunner 265",
+          "tier": 1
+        },
+        {
+          "id": "garmin-forerunner:2",
+          "label": "Forerunner 965",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "training-feature and price tier",
+      "scope": "These three Forerunner models as shown on Garmin’s comparison page",
+      "story": "The 965 sits on top of the 265 despite numbering that could be mistaken for model years.",
+      "caveat": "This is scope of training/navigation features, not every feature: case size and battery differences can change preference.",
+      "naming_quirks": [
+        "opaque-number",
+        "product-family"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.garmin.com/en-US/compare/?compareProduct=1055469&compareProduct=886725&compareProduct=886785"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "meta-quest3",
+      "category": "devices",
+      "brand": "Meta",
+      "title": "Quest 3 vs Quest 3S",
+      "low_to_high": [
+        {
+          "id": "meta-quest3:0",
+          "label": "Meta Quest 3S",
+          "tier": 0
+        },
+        {
+          "id": "meta-quest3:1",
+          "label": "Meta Quest 3",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "headset display/optics tier",
+      "scope": "Quest 3 generation, Meta’s compared 2026 US products",
+      "story": "The cheaper-looking letter suffix is actually on the lower-tier Quest.",
+      "caveat": "The two models share a processor; Quest 3S has longer stated battery runtime. Rank specifically by display/optics, not total performance.",
+      "naming_quirks": [
+        "letter-suffix",
+        "non-universal-best"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.meta.com/quest/compare/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "canon-dslr",
+      "category": "devices",
+      "brand": "Canon",
+      "title": "EOS DSLR professional series",
+      "low_to_high": [
+        {
+          "id": "canon-dslr:0",
+          "label": "Canon EOS 5D Mark IV",
+          "tier": 0
+        },
+        {
+          "id": "canon-dslr:1",
+          "label": "Canon EOS-1D X Mark III",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "flagship professional body positioning",
+      "scope": "Canon EOS DSLR era; camera models released in different years",
+      "story": "For Canon’s historical DSLRs, the smaller series number marks the flagship line.",
+      "caveat": "Not a claim of higher megapixels or superior image quality in every use; the 1D line is the rugged professional flagship.",
+      "naming_quirks": [
+        "inverted-number",
+        "specialist-vs-generalist"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://global.canon/en/news/2014/jun10e.html",
+        "https://global.canon/en/news/2022/20220224.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "xbox-series",
+      "category": "gaming",
+      "brand": "Microsoft",
+      "title": "Xbox Series consoles",
+      "low_to_high": [
+        {
+          "id": "xbox-series:0",
+          "label": "Xbox Series S",
+          "tier": 0
+        },
+        {
+          "id": "xbox-series:1",
+          "label": "Xbox Series X",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "graphics hardware capability tier",
+      "scope": "Xbox Series console family",
+      "story": "X beats S, with no obvious meaning in the letters.",
+      "caveat": "The Series S is smaller and more affordable; this compares GPU/rendering capability, not the worth of owning either console.",
+      "naming_quirks": [
+        "letter-suffix",
+        "opaque-order"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.xbox.com/en-US/consoles/xbox-series-x"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "ps5-hardware",
+      "category": "gaming",
+      "brand": "Sony",
+      "title": "PlayStation 5 hardware tiers",
+      "low_to_high": [
+        {
+          "id": "ps5-hardware:0",
+          "label": "PlayStation 5",
+          "tier": 0
+        },
+        {
+          "id": "ps5-hardware:1",
+          "label": "PlayStation 5 Pro",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "graphics/rendering capability tier",
+      "scope": "Standard PS5 versus PS5 Pro; not disc vs digital editions",
+      "story": "Pro is an upgrade over standard, but not every Sony label indicates extra speed.",
+      "caveat": "PS5 Digital Edition and disc-drive edition have the same class of game performance; those are a separate, non-hierarchical comparison.",
+      "naming_quirks": [
+        "superlative",
+        "product-family"
+      ],
+      "editorial_priority": 2,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://blog.playstation.com/2024/09/10/welcome-playstation-5-pro-the-most-visually-impressive-way-to-play-games-on-playstation/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "ps-plus",
+      "category": "gaming",
+      "brand": "Sony",
+      "title": "PlayStation Plus membership tiers",
+      "low_to_high": [
+        {
+          "id": "ps-plus:0",
+          "label": "PlayStation Plus Essential",
+          "tier": 0
+        },
+        {
+          "id": "ps-plus:1",
+          "label": "PlayStation Plus Extra",
+          "tier": 1
+        },
+        {
+          "id": "ps-plus:2",
+          "label": "PlayStation Plus Premium",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "subscription benefit scope",
+      "scope": "US PlayStation Plus plan names",
+      "story": "Extra sounds less premium than Premium, and that is the correct hierarchy.",
+      "caveat": "Premium features and cloud streaming availability vary by region; Deluxe replaces Premium in some markets.",
+      "naming_quirks": [
+        "marketing-adjective",
+        "ceiling"
+      ],
+      "editorial_priority": 2,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.playstation.com/en-us/ps-plus/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "m365-business",
+      "category": "software",
+      "brand": "Microsoft",
+      "title": "Microsoft 365 Business plans",
+      "low_to_high": [
+        {
+          "id": "m365-business:0",
+          "label": "Microsoft 365 Business Basic",
+          "tier": 0
+        },
+        {
+          "id": "m365-business:1",
+          "label": "Microsoft 365 Business Standard",
+          "tier": 1
+        },
+        {
+          "id": "m365-business:2",
+          "label": "Microsoft 365 Business Premium",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "bundle feature/security scope",
+      "scope": "US Microsoft 365 Business plans",
+      "story": "Standard and Premium sound like understandable tiers, but Basic/Standard/Premium recur across hundreds of products.",
+      "caveat": "Plan contents and seat limits may change; use the plan comparison, not a specific price.",
+      "naming_quirks": [
+        "generic-adjective",
+        "ceiling"
+      ],
+      "editorial_priority": 1,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.microsoft.com/en-us/microsoft-365/business/compare-all-microsoft-365-business-products"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "chase-sapphire",
+      "category": "cards",
+      "brand": "Chase",
+      "title": "Sapphire credit cards",
+      "low_to_high": [
+        {
+          "id": "chase-sapphire:0",
+          "label": "Chase Sapphire Preferred",
+          "tier": 0
+        },
+        {
+          "id": "chase-sapphire:1",
+          "label": "Chase Sapphire Reserve",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "premium travel-card positioning",
+      "scope": "US consumer Sapphire cards, November 2026",
+      "story": "A preferred guest sounds important. A reserved seat is apparently higher.",
+      "caveat": "This is Chase’s positioning/annual-fee and travel benefit tier, not a claim Reserve produces greater value for every customer.",
+      "naming_quirks": [
+        "near-synonyms",
+        "opaque-order"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.chase.com/personal/credit-cards/education/rewards-benefits/how-are-sapphire-preferred-and-reserve-different",
+        "https://creditcards.chase.com/rewards-credit-cards/sapphire/preferred",
+        "https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "capitalone-venture",
+      "category": "cards",
+      "brand": "Capital One",
+      "title": "Venture cards",
+      "low_to_high": [
+        {
+          "id": "capitalone-venture:0",
+          "label": "VentureOne",
+          "tier": 0
+        },
+        {
+          "id": "capitalone-venture:1",
+          "label": "Venture",
+          "tier": 1
+        },
+        {
+          "id": "capitalone-venture:2",
+          "label": "Venture X",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "premium travel-card positioning",
+      "scope": "US consumer Capital One Venture lineup",
+      "story": "One appears to be the starter tier; X is the top, although X could mean anything.",
+      "caveat": "Ranks issuer product segment and annual-fee/benefit scope, not universal expected rewards for every spending pattern.",
+      "naming_quirks": [
+        "letter-suffix",
+        "opaque-order"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.capitalone.com/credit-cards/compare/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "amex-consumer",
+      "category": "cards",
+      "brand": "American Express",
+      "title": "US consumer color cards",
+      "low_to_high": [
+        {
+          "id": "amex-consumer:0",
+          "label": "American Express Green",
+          "tier": 0
+        },
+        {
+          "id": "amex-consumer:1",
+          "label": "American Express Gold",
+          "tier": 1
+        },
+        {
+          "id": "amex-consumer:2",
+          "label": "American Express Platinum",
+          "tier": 2
+        },
+        {
+          "id": "amex-consumer:3",
+          "label": "American Express Centurion",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "issuer premium/exclusivity tier",
+      "scope": "US personal Green, Gold, Platinum; invitation-based Centurion at the top",
+      "story": "The ladder moves from colors/metals to a Roman military rank. “Black Card” is a nickname, not the formal product name.",
+      "caveat": "Gold/Platinum are not universally best for all spending categories. Centurion is invitation-only; details and annual fees vary by market.",
+      "naming_quirks": [
+        "material-metaphor",
+        "meaning-shift",
+        "ceiling"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.americanexpress.com/us/credit-cards/",
+        "https://www.americanexpress.com/en-us/travel/lounges/centurion-network/access/",
+        "https://www.cnbc.com/select/most-exclusive-credit-cards/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "mastercard-world",
+      "category": "cards",
+      "brand": "Mastercard",
+      "title": "Mastercard premium credit tiers",
+      "low_to_high": [
+        {
+          "id": "mastercard-world:0",
+          "label": "World Mastercard",
+          "tier": 0
+        },
+        {
+          "id": "mastercard-world:1",
+          "label": "World Elite Mastercard",
+          "tier": 1
+        },
+        {
+          "id": "mastercard-world:2",
+          "label": "World Legend Mastercard",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "Mastercard network premium benefit tier",
+      "scope": "Mastercard global premium CREDIT product portfolio, 2026",
+      "story": "World Elite had to make room for World Legend. What comes after Legend?",
+      "caveat": "Network tiers are separate from an issuing bank’s rewards program and card annual fee. Availability varies by market.",
+      "naming_quirks": [
+        "ceiling",
+        "superlative-stacking"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.mastercard.com/global/en/business/payments/consumer-payments/card/affluent-credit.html",
+        "https://www.mastercard.com/global/en/personal/find-a-card/credit-card/the-mastercard-collection.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "visa-us-levels",
+      "category": "cards",
+      "brand": "Visa",
+      "title": "Visa benefit platforms",
+      "low_to_high": [
+        {
+          "id": "visa-us-levels:0",
+          "label": "Visa Traditional",
+          "tier": 0
+        },
+        {
+          "id": "visa-us-levels:1",
+          "label": "Visa Signature",
+          "tier": 1
+        },
+        {
+          "id": "visa-us-levels:2",
+          "label": "Visa Infinite",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "card-network benefit platform tier",
+      "scope": "US Visa network brand tiers; issuer implementation varies",
+      "story": "Infinite sounds like the end of counting, which is a naming ceiling baked into the name.",
+      "caveat": "Individual card benefits are set by issuers and are not guaranteed identical at each Visa network level. Not a bank-by-bank comparison.",
+      "naming_quirks": [
+        "ceiling",
+        "abstract-superlative"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.visa.com/en-us/personal/cards/credit"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "marriott-bonvoy",
+      "category": "loyalty",
+      "brand": "Marriott",
+      "title": "Marriott Bonvoy statuses",
+      "low_to_high": [
+        {
+          "id": "marriott-bonvoy:0",
+          "label": "Member",
+          "tier": 0
+        },
+        {
+          "id": "marriott-bonvoy:1",
+          "label": "Silver Elite",
+          "tier": 1
+        },
+        {
+          "id": "marriott-bonvoy:2",
+          "label": "Gold Elite",
+          "tier": 2
+        },
+        {
+          "id": "marriott-bonvoy:3",
+          "label": "Platinum Elite",
+          "tier": 3
+        },
+        {
+          "id": "marriott-bonvoy:4",
+          "label": "Titanium Elite",
+          "tier": 4
+        },
+        {
+          "id": "marriott-bonvoy:5",
+          "label": "Ambassador Elite",
+          "tier": 5
+        }
+      ],
+      "ranking_metric": "loyalty status level",
+      "scope": "Marriott Bonvoy, November 2026",
+      "story": "After the precious metals, Marriott invents Titanium, then changes dimensions completely to Ambassador.",
+      "caveat": "Status eligibility involves nights and, for Ambassador, qualifying spend; actual benefits vary by property.",
+      "naming_quirks": [
+        "material-metaphor",
+        "meaning-shift",
+        "ceiling"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.marriott.com/loyalty/member-benefits.mi"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "hyatt-world",
+      "category": "loyalty",
+      "brand": "Hyatt",
+      "title": "World of Hyatt statuses",
+      "low_to_high": [
+        {
+          "id": "hyatt-world:0",
+          "label": "Member",
+          "tier": 0
+        },
+        {
+          "id": "hyatt-world:1",
+          "label": "Discoverist",
+          "tier": 1
+        },
+        {
+          "id": "hyatt-world:2",
+          "label": "Explorist",
+          "tier": 2
+        },
+        {
+          "id": "hyatt-world:3",
+          "label": "Globalist",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "loyalty status level",
+      "scope": "World of Hyatt member tiers, 2026",
+      "story": "Is a Globalist bigger than an Explorist? Hyatt thinks so.",
+      "caveat": "Hyatt’s terms define status tiers; the words do not represent an objective hierarchy of people.",
+      "naming_quirks": [
+        "invented-words",
+        "opaque-order"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://world.hyatt.com/content/gp/en/tiers-and-benefits.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "hilton-honors",
+      "category": "loyalty",
+      "brand": "Hilton",
+      "title": "Hilton Honors statuses",
+      "low_to_high": [
+        {
+          "id": "hilton-honors:0",
+          "label": "Member",
+          "tier": 0
+        },
+        {
+          "id": "hilton-honors:1",
+          "label": "Silver",
+          "tier": 1
+        },
+        {
+          "id": "hilton-honors:2",
+          "label": "Gold",
+          "tier": 2
+        },
+        {
+          "id": "hilton-honors:3",
+          "label": "Diamond",
+          "tier": 3
+        },
+        {
+          "id": "hilton-honors:4",
+          "label": "Diamond Reserve",
+          "tier": 4
+        }
+      ],
+      "ranking_metric": "loyalty status level",
+      "scope": "Hilton Honors as of November 2026",
+      "story": "Diamond was not the ceiling: there is now Diamond Reserve.",
+      "caveat": "Hilton’s criteria/benefits are program-specific; Reserve is not a synonym for the unrelated Chase card.",
+      "naming_quirks": [
+        "ceiling",
+        "reused-adjective"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.hilton.com/en/hilton-honors/member-benefits/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "delta-medallion",
+      "category": "loyalty",
+      "brand": "Delta Air Lines",
+      "title": "Delta Medallion statuses",
+      "low_to_high": [
+        {
+          "id": "delta-medallion:0",
+          "label": "Silver Medallion",
+          "tier": 0
+        },
+        {
+          "id": "delta-medallion:1",
+          "label": "Gold Medallion",
+          "tier": 1
+        },
+        {
+          "id": "delta-medallion:2",
+          "label": "Platinum Medallion",
+          "tier": 2
+        },
+        {
+          "id": "delta-medallion:3",
+          "label": "Diamond Medallion",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "loyalty status level",
+      "scope": "Delta SkyMiles Medallion program, US",
+      "story": "The ladder uses metals until suddenly Diamond is higher than Platinum.",
+      "caveat": "Delta status rules are revised periodically; applies to Medallion tiers, not co-branded Amex card colors.",
+      "naming_quirks": [
+        "material-metaphor",
+        "mixed-scale"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.delta.com/us/en/skymiles/medallion-program/how-to-qualify"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "united-cabins",
+      "category": "loyalty",
+      "brand": "United Airlines",
+      "title": "United long-haul seats",
+      "low_to_high": [
+        {
+          "id": "united-cabins:0",
+          "label": "United Economy",
+          "tier": 0
+        },
+        {
+          "id": "united-cabins:1",
+          "label": "United Economy Plus",
+          "tier": 1
+        },
+        {
+          "id": "united-cabins:2",
+          "label": "United Premium Plus",
+          "tier": 2
+        },
+        {
+          "id": "united-cabins:3",
+          "label": "United Polaris",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "cabin/service product tier",
+      "scope": "Routes/aircraft offering all four seat products; Polaris business-class long-haul service",
+      "story": "Economy Plus versus Premium Plus are different cabins despite nearly interchangeable adjectives.",
+      "caveat": "Economy Plus is extra-legroom economy seating; Premium Plus is premium economy; Polaris is business-class on eligible routes. Not all flights offer all classes.",
+      "naming_quirks": [
+        "near-synonyms",
+        "opaque-order",
+        "meaning-shift"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.united.com/en/us/deals/flights/seat-options"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "gitlab-engineering",
+      "category": "careers",
+      "brand": "GitLab",
+      "title": "Engineering individual contributors",
+      "low_to_high": [
+        {
+          "id": "gitlab-engineering:0",
+          "label": "Intermediate Engineer",
+          "tier": 0
+        },
+        {
+          "id": "gitlab-engineering:1",
+          "label": "Senior Engineer",
+          "tier": 1
+        },
+        {
+          "id": "gitlab-engineering:2",
+          "label": "Staff Engineer",
+          "tier": 2
+        },
+        {
+          "id": "gitlab-engineering:3",
+          "label": "Principal Engineer",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "individual-contributor seniority",
+      "scope": "GitLab Development Department career framework; titles generalized to Engineer",
+      "story": "Outside tech, “staff” can sound like an ordinary employee; in tech it often ranks above senior.",
+      "caveat": "Job ladders vary by employer; this is specifically GitLab, not a universal global salary/status standard. Use Principal, not Principle.",
+      "naming_quirks": [
+        "industry-jargon",
+        "opaque-order"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://handbook.gitlab.com/handbook/engineering/careers/matrix/development/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "us-army-officer",
+      "category": "careers",
+      "brand": "US Army",
+      "title": "US Army commissioned officers",
+      "low_to_high": [
+        {
+          "id": "us-army-officer:0",
+          "label": "Major",
+          "tier": 0
+        },
+        {
+          "id": "us-army-officer:1",
+          "label": "Lieutenant Colonel",
+          "tier": 1
+        },
+        {
+          "id": "us-army-officer:2",
+          "label": "Colonel",
+          "tier": 2
+        },
+        {
+          "id": "us-army-officer:3",
+          "label": "Brigadier General",
+          "tier": 3
+        },
+        {
+          "id": "us-army-officer:4",
+          "label": "Major General",
+          "tier": 4
+        },
+        {
+          "id": "us-army-officer:5",
+          "label": "Lieutenant General",
+          "tier": 5
+        },
+        {
+          "id": "us-army-officer:6",
+          "label": "General",
+          "tier": 6
+        }
+      ],
+      "ranking_metric": "official Army officer rank",
+      "scope": "United States Army commissioned officer structure",
+      "story": "Lieutenant General outranks Major General, even though a Major outranks a Lieutenant in a different part of the rank structure.",
+      "caveat": "Do not compare bare “Lieutenant” to “Major” and extrapolate to general-officer ranks. These are formal ranks, not titles of all militaries.",
+      "naming_quirks": [
+        "prefix-inversion",
+        "historical-title"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.army.mil/ranks/index.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "academic-harvard",
+      "category": "careers",
+      "brand": "Harvard University",
+      "title": "Academic faculty ranks",
+      "low_to_high": [
+        {
+          "id": "academic-harvard:0",
+          "label": "Assistant Professor",
+          "tier": 0
+        },
+        {
+          "id": "academic-harvard:1",
+          "label": "Associate Professor",
+          "tier": 1
+        },
+        {
+          "id": "academic-harvard:2",
+          "label": "Professor",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "tenure-track academic rank",
+      "scope": "Typical Harvard FAS ladder; exact appointments and tenure rules vary",
+      "story": "Assistant Professor is a professor, not a professor’s assistant.",
+      "caveat": "In some universities “Professor of Practice,” research ranks, visiting titles, etc. are separate tracks. Compare conventional tenure-track ranks only.",
+      "naming_quirks": [
+        "false-literal-meaning",
+        "industry-jargon"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://academic-appointments.fas.harvard.edu/chapter-2a"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "ralph-lauren-menswear",
+      "category": "fashion",
+      "brand": "Ralph Lauren",
+      "title": "Ralph Lauren menswear",
+      "low_to_high": [
+        {
+          "id": "ralph-lauren-menswear:0",
+          "label": "Polo Ralph Lauren",
+          "tier": 0
+        },
+        {
+          "id": "ralph-lauren-menswear:1",
+          "label": "Ralph Lauren Purple Label",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "brand luxury/craft positioning",
+      "scope": "Ralph Lauren menswear labels, not women’s Collection or RRL workwear",
+      "story": "Purple Label is the house’s luxury menswear expression; the flagship brand name alone doesn’t identify that tier.",
+      "caveat": "Not a claim that every Purple Label item is more expensive or better than every Polo item. RRL is a parallel aesthetic, not an intermediate rung.",
+      "naming_quirks": [
+        "sub-brand",
+        "hidden-premium"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://corporate.ralphlauren.com/ralph-lauren-luxury"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "armani-labels",
+      "category": "fashion",
+      "brand": "Armani",
+      "title": "Armani fashion houses",
+      "low_to_high": [
+        {
+          "id": "armani-labels:0",
+          "label": "Armani Exchange",
+          "tier": 0
+        },
+        {
+          "id": "armani-labels:1",
+          "label": "Emporio Armani",
+          "tier": 1
+        },
+        {
+          "id": "armani-labels:2",
+          "label": "Giorgio Armani",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "mainline luxury / price positioning",
+      "scope": "Fashion labels in Armani’s brand architecture",
+      "story": "“Exchange” sounds like a verb, “Emporio” like a place, and the founder’s name is the most luxurious tier.",
+      "caveat": "Positioning and average prices, not guaranteed garment-by-garment quality. Product categories and collaborations can differ.",
+      "naming_quirks": [
+        "sub-brand",
+        "opaque-order",
+        "mixed-language"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://armanivalues.com/overview/the-world-of-armani/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "audi-a3-family",
+      "category": "cars",
+      "brand": "Audi",
+      "title": "Audi A3 / S3 / RS 3",
+      "low_to_high": [
+        {
+          "id": "audi-a3-family:0",
+          "label": "Audi A3",
+          "tier": 0
+        },
+        {
+          "id": "audi-a3-family:1",
+          "label": "Audi S3",
+          "tier": 1
+        },
+        {
+          "id": "audi-a3-family:2",
+          "label": "Audi RS 3",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "factory performance version",
+      "scope": "A3-family US cars, comparable 2026 production generation",
+      "story": "Two letters signal higher performance than the normal A model: RS above S.",
+      "caveat": "This compares performance versions, not fuel economy, ride comfort, or price/insurance value.",
+      "naming_quirks": [
+        "letter-prefix",
+        "opaque-order"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.audiusa.com/en/models/sedan-models/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "audi-trim",
+      "category": "cars",
+      "brand": "Audi",
+      "title": "Audi equipment trim names",
+      "low_to_high": [
+        {
+          "id": "audi-trim:0",
+          "label": "Premium",
+          "tier": 0
+        },
+        {
+          "id": "audi-trim:1",
+          "label": "Premium Plus",
+          "tier": 1
+        },
+        {
+          "id": "audi-trim:2",
+          "label": "Prestige",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "vehicle equipment trim tier",
+      "scope": "Audi US trim nomenclature for cars offered with all three trims",
+      "story": "Prestige ranks above Premium Plus, even though “Premium Plus” sounds like the maximum premium.",
+      "caveat": "These trims and content depend on model year/vehicle; verify availability before applying to a specific car.",
+      "naming_quirks": [
+        "superlative",
+        "near-synonyms",
+        "ceiling"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.audiusa.com/en/inventory/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "bmw-m3",
+      "category": "cars",
+      "brand": "BMW",
+      "title": "M3 sedan variants",
+      "low_to_high": [
+        {
+          "id": "bmw-m3:0",
+          "label": "M3",
+          "tier": 0
+        },
+        {
+          "id": "bmw-m3:1",
+          "label": "M3 Competition",
+          "tier": 1
+        },
+        {
+          "id": "bmw-m3:2",
+          "label": "M3 Competition xDrive",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "manufacturer rated horsepower",
+      "scope": "2027 US M3 Sedan versions: standard, Competition, Competition xDrive",
+      "story": "Competition is stronger, but adding xDrive also coincides with a different factory output.",
+      "caveat": "Strictly a horsepower ranking for these listed 2027 US sedans; not a promise the xDrive is lighter or superior for every driving purpose.",
+      "naming_quirks": [
+        "compound-suffix",
+        "hidden-performance"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.bmwusa.com/vehicles/m-series/m3-series/bmw-m3-sedan.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "porsche-carrera",
+      "category": "cars",
+      "brand": "Porsche",
+      "title": "911 Carrera variants",
+      "low_to_high": [
+        {
+          "id": "porsche-carrera:0",
+          "label": "911 Carrera",
+          "tier": 0
+        },
+        {
+          "id": "porsche-carrera:1",
+          "label": "911 Carrera S",
+          "tier": 1
+        },
+        {
+          "id": "porsche-carrera:2",
+          "label": "911 Carrera GTS",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "rated engine horsepower tier",
+      "scope": "US 911 Carrera coupe model family, same current generation",
+      "story": "S and GTS are coded performance levels rather than understandable units.",
+      "caveat": "A ranking by factory horsepower only; Carrera T, Turbo and GT3 serve partly different roles, so exclude them from this simple ladder.",
+      "naming_quirks": [
+        "suffix-letters",
+        "opaque-order"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.porsche.com/usa/models/911/carrera-models/911-carrera-s/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "lucid-air",
+      "category": "cars",
+      "brand": "Lucid",
+      "title": "Lucid Air trims",
+      "low_to_high": [
+        {
+          "id": "lucid-air:0",
+          "label": "Air Pure",
+          "tier": 0
+        },
+        {
+          "id": "lucid-air:1",
+          "label": "Air Touring",
+          "tier": 1
+        },
+        {
+          "id": "lucid-air:2",
+          "label": "Air Grand Touring",
+          "tier": 2
+        },
+        {
+          "id": "lucid-air:3",
+          "label": "Air Sapphire",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "premium performance and price/flagship positioning",
+      "scope": "Lucid Air sedan trim lineup, as presented in 2026",
+      "story": "Sapphire is the performance flagship; the gemstone outranks Grand Touring.",
+      "caveat": "Do not say Sapphire has the best range: Grand Touring may prioritize range. The ladder is price/performance positioning.",
+      "naming_quirks": [
+        "meaning-shift",
+        "gemstone",
+        "opaque-order"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://lucidmotors.com/compare",
+        "https://lucidmotors.com/air-pure"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "starbucks-iced",
+      "category": "food",
+      "brand": "Starbucks",
+      "title": "Iced coffee cup sizes",
+      "low_to_high": [
+        {
+          "id": "starbucks-iced:0",
+          "label": "Tall",
+          "tier": 0
+        },
+        {
+          "id": "starbucks-iced:1",
+          "label": "Grande",
+          "tier": 1
+        },
+        {
+          "id": "starbucks-iced:2",
+          "label": "Venti",
+          "tier": 2
+        },
+        {
+          "id": "starbucks-iced:3",
+          "label": "Trenta",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "fluid ounces per iced coffee serving",
+      "scope": "US Starbucks iced coffee sizes (Tall 12, Grande 16, Venti 24, Trenta 30 fl oz)",
+      "story": "“Tall” is the smallest listed size; “Trenta” is Italian for thirty and means the largest.",
+      "caveat": "Specific to the cited iced coffee product; hot venti is a different volume and Trenta is not offered for every beverage.",
+      "naming_quirks": [
+        "mixed-languages",
+        "misleading-adjective",
+        "opaque-order"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.starbucks.com/menu/product/2123863/iced"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "gia-clarity",
+      "category": "other",
+      "brand": "GIA",
+      "title": "Diamond clarity grades",
+      "low_to_high": [
+        {
+          "id": "gia-clarity:0",
+          "label": "I3",
+          "tier": 0
+        },
+        {
+          "id": "gia-clarity:1",
+          "label": "I2",
+          "tier": 1
+        },
+        {
+          "id": "gia-clarity:2",
+          "label": "I1",
+          "tier": 2
+        },
+        {
+          "id": "gia-clarity:3",
+          "label": "SI2",
+          "tier": 3
+        },
+        {
+          "id": "gia-clarity:4",
+          "label": "SI1",
+          "tier": 4
+        },
+        {
+          "id": "gia-clarity:5",
+          "label": "VS2",
+          "tier": 5
+        },
+        {
+          "id": "gia-clarity:6",
+          "label": "VS1",
+          "tier": 6
+        },
+        {
+          "id": "gia-clarity:7",
+          "label": "VVS2",
+          "tier": 7
+        },
+        {
+          "id": "gia-clarity:8",
+          "label": "VVS1",
+          "tier": 8
+        },
+        {
+          "id": "gia-clarity:9",
+          "label": "IF",
+          "tier": 9
+        },
+        {
+          "id": "gia-clarity:10",
+          "label": "FL",
+          "tier": 10
+        }
+      ],
+      "ranking_metric": "GIA clarity grade",
+      "scope": "GIA 4Cs diamond clarity scale",
+      "story": "In these grades, 1 outranks 2, and FL beats IF; the abbreviations have nothing like a common-sense ordering.",
+      "caveat": "Clarity only—not the overall beauty, rarity, value, color, or cut of a diamond.",
+      "naming_quirks": [
+        "counterintuitive-number",
+        "acronym",
+        "domain-expertise"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://4cs.gia.edu/en-us/diamond-clarity/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "gia-color",
+      "category": "other",
+      "brand": "GIA",
+      "title": "Diamond color grades",
+      "low_to_high": [
+        {
+          "id": "gia-color:0",
+          "label": "Z",
+          "tier": 0
+        },
+        {
+          "id": "gia-color:1",
+          "label": "Y",
+          "tier": 1
+        },
+        {
+          "id": "gia-color:2",
+          "label": "X",
+          "tier": 2
+        },
+        {
+          "id": "gia-color:3",
+          "label": "W",
+          "tier": 3
+        },
+        {
+          "id": "gia-color:4",
+          "label": "V",
+          "tier": 4
+        },
+        {
+          "id": "gia-color:5",
+          "label": "U",
+          "tier": 5
+        },
+        {
+          "id": "gia-color:6",
+          "label": "T",
+          "tier": 6
+        },
+        {
+          "id": "gia-color:7",
+          "label": "S",
+          "tier": 7
+        },
+        {
+          "id": "gia-color:8",
+          "label": "R",
+          "tier": 8
+        },
+        {
+          "id": "gia-color:9",
+          "label": "Q",
+          "tier": 9
+        },
+        {
+          "id": "gia-color:10",
+          "label": "P",
+          "tier": 10
+        },
+        {
+          "id": "gia-color:11",
+          "label": "O",
+          "tier": 11
+        },
+        {
+          "id": "gia-color:12",
+          "label": "N",
+          "tier": 12
+        },
+        {
+          "id": "gia-color:13",
+          "label": "M",
+          "tier": 13
+        },
+        {
+          "id": "gia-color:14",
+          "label": "L",
+          "tier": 14
+        },
+        {
+          "id": "gia-color:15",
+          "label": "K",
+          "tier": 15
+        },
+        {
+          "id": "gia-color:16",
+          "label": "J",
+          "tier": 16
+        },
+        {
+          "id": "gia-color:17",
+          "label": "I",
+          "tier": 17
+        },
+        {
+          "id": "gia-color:18",
+          "label": "H",
+          "tier": 18
+        },
+        {
+          "id": "gia-color:19",
+          "label": "G",
+          "tier": 19
+        },
+        {
+          "id": "gia-color:20",
+          "label": "F",
+          "tier": 20
+        },
+        {
+          "id": "gia-color:21",
+          "label": "E",
+          "tier": 21
+        },
+        {
+          "id": "gia-color:22",
+          "label": "D",
+          "tier": 22
+        }
+      ],
+      "ranking_metric": "GIA diamond colorlessness grade",
+      "scope": "GIA D–Z diamond color scale (normal colorless-to-light-colored grading)",
+      "story": "The highest colorlessness grade is D, not A, and not Z.",
+      "caveat": "This ranks absence of visible color for diamonds assessed on the D–Z scale, not beauty or market price for fancy-colored stones.",
+      "naming_quirks": [
+        "inverted-alphabet",
+        "domain-expertise"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://myapps.gia.edu/ReportCheckPortal/resources/HTML_Pages/About-4Cs-Color.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "burgundy-cru",
+      "category": "food",
+      "brand": "Bourgogne Wines",
+      "title": "Burgundy appellation levels",
+      "low_to_high": [
+        {
+          "id": "burgundy-cru:0",
+          "label": "Bourgogne regional AOC",
+          "tier": 0
+        },
+        {
+          "id": "burgundy-cru:1",
+          "label": "Village AOC",
+          "tier": 1
+        },
+        {
+          "id": "burgundy-cru:2",
+          "label": "Premier Cru",
+          "tier": 2
+        },
+        {
+          "id": "burgundy-cru:3",
+          "label": "Grand Cru",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "Burgundy appellation classification level",
+      "scope": "Traditional Bourgogne wine appellation designations",
+      "story": "Premier is not highest because Grand Cru exists above it.",
+      "caveat": "Ranks legal appellation classification, not a blind-tasting guarantee or a universal claim about every individual bottle.",
+      "naming_quirks": [
+        "non-English-rank",
+        "ceiling"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.bourgogne-wines.com/wine-and-terroir/decoding-the-aocs/bourgogne-wines-decoding-the-aocs,2467,9263.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "openai-gpt56-preview",
+      "category": "ai",
+      "brand": "OpenAI",
+      "title": "GPT-5.6 preview tiers",
+      "low_to_high": [
+        {
+          "id": "openai-gpt56-preview:0",
+          "label": "GPT-5.6 Luna",
+          "tier": 0
+        },
+        {
+          "id": "openai-gpt56-preview:1",
+          "label": "GPT-5.6 Terra",
+          "tier": 1
+        },
+        {
+          "id": "openai-gpt56-preview:2",
+          "label": "GPT-5.6 Sol",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "position in OpenAI’s preview lineup",
+      "scope": "GPT-5.6 preview lineup as announced by OpenAI",
+      "story": "Mass and distance from Earth give different interpretations of these names.",
+      "caveat": "These are the GPT-5.6 preview roles. Sol has a different role in the GPT-6.2 lineup.",
+      "naming_quirks": [
+        "metaphor",
+        "role-shift"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://openai.com/index/previewing-gpt-5-6-sol/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "openai-gpt54-small",
+      "category": "ai",
+      "brand": "OpenAI",
+      "title": "GPT-5.4 mini and nano",
+      "low_to_high": [
+        {
+          "id": "openai-gpt54-small:0",
+          "label": "GPT-5.4 nano",
+          "tier": 0
+        },
+        {
+          "id": "openai-gpt54-small:1",
+          "label": "GPT-5.4 mini",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "listed launch API input prices",
+      "scope": "GPT-5.4 small models at launch, per million uncached API input tokens",
+      "story": "Both names signal smallness, but only one is the cheapest.",
+      "caveat": "Compares launch input prices only. Total task cost depends on token use, pricing, and caching.",
+      "naming_quirks": [
+        "size-metaphor"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://openai.com/index/introducing-gpt-5-4-mini-and-nano/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "google-gemini25-speed",
+      "category": "ai",
+      "brand": "Google",
+      "title": "Gemini 2.5 Flash variants",
+      "low_to_high": [
+        {
+          "id": "google-gemini25-speed:0",
+          "label": "Gemini 2.5 Flash",
+          "tier": 0
+        },
+        {
+          "id": "google-gemini25-speed:1",
+          "label": "Gemini 2.5 Flash-Lite",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "vendor-designated inference speed",
+      "scope": "Google’s June 2025 announcement for the Gemini 2.5 family",
+      "story": "Lite makes Flash faster.",
+      "caveat": "Google’s stated speed positioning. Actual latency varies with prompt, settings, and deployment.",
+      "naming_quirks": [
+        "compound-suffix",
+        "different-metric"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://blog.google/products-and-platforms/products/gemini/gemini-2-5-model-family-expands/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "amazon-nova-v1",
+      "category": "ai",
+      "brand": "Amazon",
+      "title": "First-generation Amazon Nova understanding models",
+      "low_to_high": [
+        {
+          "id": "amazon-nova-v1:0",
+          "label": "Nova Micro",
+          "tier": 0
+        },
+        {
+          "id": "amazon-nova-v1:1",
+          "label": "Nova Lite",
+          "tier": 1
+        },
+        {
+          "id": "amazon-nova-v1:2",
+          "label": "Nova Pro",
+          "tier": 2
+        },
+        {
+          "id": "amazon-nova-v1:3",
+          "label": "Nova Premier",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "vendor product tier",
+      "scope": "First-generation Amazon Nova understanding models in AWS documentation",
+      "story": "Premier claims the top slot above Pro, just as Lite sits above Micro.",
+      "caveat": "Product roles within Nova version 1. These names do not rank newer Nova models or every benchmark.",
+      "naming_quirks": [
+        "ceiling",
+        "near-synonyms"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "meta-llama4-size",
+      "category": "ai",
+      "brand": "Meta",
+      "title": "Llama 4 Scout and Maverick",
+      "low_to_high": [
+        {
+          "id": "meta-llama4-size:0",
+          "label": "Llama 4 Scout",
+          "tier": 0
+        },
+        {
+          "id": "meta-llama4-size:1",
+          "label": "Llama 4 Maverick",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "total parameter count",
+      "scope": "Total parameters of Meta’s released Llama 4 Scout and Maverick models",
+      "story": "Both activate 17 billion parameters, but they have different total sizes.",
+      "caveat": "Total parameters count the entire model, including experts that are not active for a given token.",
+      "naming_quirks": [
+        "opaque-order",
+        "different-metric"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://ai.meta.com/resources/models-and-libraries/llama-downloads/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "cohere-command-r",
+      "category": "ai",
+      "brand": "Cohere",
+      "title": "Command R August 2024 refresh",
+      "low_to_high": [
+        {
+          "id": "cohere-command-r:0",
+          "label": "Command R (Aug 2024)",
+          "tier": 0
+        },
+        {
+          "id": "cohere-command-r:1",
+          "label": "Command R+ (Aug 2024)",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "vendor capability positioning",
+      "scope": "Cohere’s matched August 2024 versions of Command R and Command R+",
+      "story": "The plus sign is the only visible tier marker.",
+      "caveat": "Both models support retrieval and tools. The question is about Cohere’s positioning within this release.",
+      "naming_quirks": [
+        "single-character-suffix"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://docs.cohere.com/changelog/command-gets-refreshed"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "elevenlabs-v25-speed",
+      "category": "ai",
+      "brand": "ElevenLabs",
+      "title": "Flash and Turbo v2.5",
+      "low_to_high": [
+        {
+          "id": "elevenlabs-v25-speed:0",
+          "label": "Eleven Turbo v2.5",
+          "tier": 0
+        },
+        {
+          "id": "elevenlabs-v25-speed:1",
+          "label": "Eleven Flash v2.5",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "vendor-designated speech generation speed",
+      "scope": "ElevenLabs text-to-speech Turbo v2.5 and Flash v2.5 models",
+      "story": "Turbo sounds fast, but Flash was built to respond sooner.",
+      "caveat": "Compares model latency. Network delays and audio quality are separate considerations.",
+      "naming_quirks": [
+        "near-synonyms",
+        "different-metric"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://elevenlabs.io/docs/overview/models",
+        "https://elevenlabs.io/blog/meet-flash"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "adobe-firefly4",
+      "category": "ai",
+      "brand": "Adobe",
+      "title": "Firefly Image Model 4 tiers",
+      "low_to_high": [
+        {
+          "id": "adobe-firefly4:0",
+          "label": "Firefly Image Model 4",
+          "tier": 0
+        },
+        {
+          "id": "adobe-firefly4:1",
+          "label": "Firefly Image Model 4 Ultra",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "vendor positioning for complex image generation",
+      "scope": "Adobe’s launch positioning for its two Firefly Image Model 4 variants",
+      "story": "Ultra is positioned for more intricate images.",
+      "caveat": "This compares Adobe’s recommended use at launch. Prompts and output preferences still matter.",
+      "naming_quirks": [
+        "superlative"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://news.adobe.com/news/2025/04/adobe-revolutionizes-ai-assisted-creativity-firefly"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "hdmi-cables",
+      "category": "connectivity",
+      "brand": "HDMI Licensing Administrator",
+      "title": "HDMI cable names",
+      "low_to_high": [
+        {
+          "id": "hdmi-cables:0",
+          "label": "High Speed HDMI",
+          "tier": 0
+        },
+        {
+          "id": "hdmi-cables:1",
+          "label": "Premium High Speed HDMI",
+          "tier": 1
+        },
+        {
+          "id": "hdmi-cables:2",
+          "label": "Ultra High Speed HDMI",
+          "tier": 2
+        },
+        {
+          "id": "hdmi-cables:3",
+          "label": "Ultra96 HDMI",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "bandwidth of the cable designation",
+      "scope": "Official HDMI cable designations and their published bandwidth limits",
+      "story": "Ultra High Speed reached 48 Gbps, then Ultra96 doubled it without saying High Speed.",
+      "caveat": "Cable certification indicates supported bandwidth. Actual throughput depends on the full setup.",
+      "naming_quirks": [
+        "ceiling",
+        "compound-suffix"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.hdmi.org/resource/cables"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "sd-card-capacity",
+      "category": "connectivity",
+      "brand": "SD Association",
+      "title": "SD memory card capacity standards",
+      "low_to_high": [
+        {
+          "id": "sd-card-capacity:0",
+          "label": "SD",
+          "tier": 0
+        },
+        {
+          "id": "sd-card-capacity:1",
+          "label": "SDHC",
+          "tier": 1
+        },
+        {
+          "id": "sd-card-capacity:2",
+          "label": "SDXC",
+          "tier": 2
+        },
+        {
+          "id": "sd-card-capacity:3",
+          "label": "SDUC",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "maximum capacity allowed by the standard",
+      "scope": "SD Association capacity designations, using each standard’s published maximum",
+      "story": "The middle letters signal High, Extended, and Ultra Capacity.",
+      "caveat": "A capacity designation is unrelated to the card’s write speed and says nothing about its actual size within the range.",
+      "naming_quirks": [
+        "acronym",
+        "ceiling"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.sdcard.org/developers/sd-standard-overview/capacity-sd-sdhc-sdxc-sduc/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "sd-write-speed",
+      "category": "connectivity",
+      "brand": "SD Association",
+      "title": "SD write speed classes",
+      "low_to_high": [
+        {
+          "id": "sd-write-speed:0",
+          "label": "V10",
+          "tier": 0
+        },
+        {
+          "id": "sd-write-speed:1",
+          "label": "U3",
+          "tier": 1
+        },
+        {
+          "id": "sd-write-speed:2",
+          "label": "V60",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "minimum sustained sequential write speed",
+      "scope": "SD Association UHS and Video Speed Class logos under their specified conditions",
+      "story": "A 3 can outrank a 10 because U3 and V10 use different rules.",
+      "caveat": "Compare only the minimum write speeds represented by the logos. Other requirements and host compatibility differ.",
+      "naming_quirks": [
+        "inverted-number",
+        "different-scales"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.sdcard.org/developers/sd-standard-overview/speed-class/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "usb-32-rates",
+      "category": "connectivity",
+      "brand": "USB Implementers Forum",
+      "title": "USB 3.2 signaling modes",
+      "low_to_high": [
+        {
+          "id": "usb-32-rates:0",
+          "label": "USB 3.2 Gen 1",
+          "tier": 0
+        },
+        {
+          "id": "usb-32-rates:1",
+          "label": "USB 3.2 Gen 2",
+          "tier": 1
+        },
+        {
+          "id": "usb-32-rates:2",
+          "label": "USB 3.2 Gen 2×2",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "maximum signaling rate",
+      "scope": "Historical USB 3.2 specification labels, as documented by USB-IF",
+      "story": "The second 2 indicates two lanes.",
+      "caveat": "These are different signaling modes. The Gen 1 mode has also had other names for the same speed.",
+      "naming_quirks": [
+        "numeric-nesting",
+        "rebranding"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.usb.org/sites/default/files/USB_3_2_Language_Product_and_Packaging_Guidelines_FINAL.pdf"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "efl-divisions",
+      "category": "sports",
+      "brand": "English Football League",
+      "title": "English Football League divisions",
+      "low_to_high": [
+        {
+          "id": "efl-divisions:0",
+          "label": "League Two",
+          "tier": 0
+        },
+        {
+          "id": "efl-divisions:1",
+          "label": "League One",
+          "tier": 1
+        },
+        {
+          "id": "efl-divisions:2",
+          "label": "Championship",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "level in the English Football League",
+      "scope": "The three divisions operated by the English Football League",
+      "story": "League One is below the Championship, and the Championship feeds the Premier League.",
+      "caveat": "Divisions in the league pyramid, rather than cup competitions or the standings in any season.",
+      "naming_quirks": [
+        "numbering",
+        "opaque-order"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.efl.com/documents/efl-handbook.pdf",
+        "https://www.efl.com/competitions/sky-bet-play-offs/about-the-play-offs/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "milb-levels",
+      "category": "sports",
+      "brand": "Minor League Baseball",
+      "title": "Full-season affiliated baseball levels",
+      "low_to_high": [
+        {
+          "id": "milb-levels:0",
+          "label": "Single-A",
+          "tier": 0
+        },
+        {
+          "id": "milb-levels:1",
+          "label": "High-A",
+          "tier": 1
+        },
+        {
+          "id": "milb-levels:2",
+          "label": "Double-A",
+          "tier": 2
+        },
+        {
+          "id": "milb-levels:3",
+          "label": "Triple-A",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "level of affiliated full-season play",
+      "scope": "The four modern full-season affiliated Minor League Baseball classifications",
+      "story": "High-A still has two levels above it.",
+      "caveat": "The levels classify leagues. A player’s assignment does not measure talent independently of roster needs.",
+      "naming_quirks": [
+        "mixed-scale",
+        "letter-grade"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.milb.com/news/minor-league-baseball-s-historical-league-names-to-return-in-2022-x6627"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "fide-titles",
+      "category": "sports",
+      "brand": "FIDE",
+      "title": "Open titles in standard chess",
+      "low_to_high": [
+        {
+          "id": "fide-titles:0",
+          "label": "Candidate Master",
+          "tier": 0
+        },
+        {
+          "id": "fide-titles:1",
+          "label": "FIDE Master",
+          "tier": 1
+        },
+        {
+          "id": "fide-titles:2",
+          "label": "International Master",
+          "tier": 2
+        },
+        {
+          "id": "fide-titles:3",
+          "label": "Grandmaster",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "FIDE open chess title rank",
+      "scope": "FIDE open player titles for standard over-the-board chess",
+      "story": "FIDE Master sounds like the federation’s top title, but it is below International Master.",
+      "caveat": "Compares titles rather than current ratings. FIDE also awards a separate set of women’s titles.",
+      "naming_quirks": [
+        "near-synonyms",
+        "formal-rank"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://handbook.fide.com/chapter/B012024"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "fia-formula-ladder",
+      "category": "sports",
+      "brand": "FIA",
+      "title": "Formula 1, Formula 2, and Formula 3",
+      "low_to_high": [
+        {
+          "id": "fia-formula-ladder:0",
+          "label": "Formula 3",
+          "tier": 0
+        },
+        {
+          "id": "fia-formula-ladder:1",
+          "label": "Formula 2",
+          "tier": 1
+        },
+        {
+          "id": "fia-formula-ladder:2",
+          "label": "Formula 1",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "position in the FIA single-seater pyramid",
+      "scope": "FIA’s international single-seater championships",
+      "story": "The series number gets smaller as drivers move up.",
+      "caveat": "This is the FIA series hierarchy. Individual drivers can take many routes through motorsport.",
+      "naming_quirks": [
+        "inverted-number"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.fia.com/news/fia-formula-2-and-fia-formula-3-unveil-new-championship-logos"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "champagne-dosage",
+      "category": "food",
+      "brand": "Comité Champagne",
+      "title": "Champagne sugar designations",
+      "low_to_high": [
+        {
+          "id": "champagne-dosage:0",
+          "label": "Extra Brut",
+          "tier": 0
+        },
+        {
+          "id": "champagne-dosage:1",
+          "label": "Brut",
+          "tier": 1
+        },
+        {
+          "id": "champagne-dosage:2",
+          "label": "Extra Dry",
+          "tier": 2
+        },
+        {
+          "id": "champagne-dosage:3",
+          "label": "Sec",
+          "tier": 3
+        },
+        {
+          "id": "champagne-dosage:4",
+          "label": "Demi-Sec",
+          "tier": 4
+        }
+      ],
+      "ranking_metric": "upper end of the declared sugar range",
+      "scope": "Comité Champagne’s sugar categories in grams per litre",
+      "story": "Extra Dry Champagne can contain more sugar than Brut.",
+      "caveat": "The ranges are labeling thresholds. They do not guarantee how sweet a particular bottle will taste.",
+      "naming_quirks": [
+        "inverted-adjective",
+        "mixed-language"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.champagne.fr/en/about-champagne/how-champagne-is-made/dosage"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "usda-maple",
+      "category": "food",
+      "brand": "USDA",
+      "title": "Grade A maple syrup color and flavor",
+      "low_to_high": [
+        {
+          "id": "usda-maple:0",
+          "label": "Golden Delicate",
+          "tier": 0
+        },
+        {
+          "id": "usda-maple:1",
+          "label": "Amber Rich",
+          "tier": 1
+        },
+        {
+          "id": "usda-maple:2",
+          "label": "Dark Robust",
+          "tier": 2
+        },
+        {
+          "id": "usda-maple:3",
+          "label": "Very Dark Strong",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "depth of color in the USDA classification",
+      "scope": "U.S. Grade A maple syrup color and flavor designations",
+      "story": "All four colors can have the same A grade.",
+      "caveat": "Color grouping is based on light transmission. It does not measure whether a taster will prefer the syrup.",
+      "naming_quirks": [
+        "shared-grade",
+        "mixed-label"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.ams.usda.gov/sites/default/files/media/MapleSyrupStandards.pdf"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "usda-beef-quality",
+      "category": "food",
+      "brand": "USDA",
+      "title": "Beef quality grades",
+      "low_to_high": [
+        {
+          "id": "usda-beef-quality:0",
+          "label": "Select",
+          "tier": 0
+        },
+        {
+          "id": "usda-beef-quality:1",
+          "label": "Choice",
+          "tier": 1
+        },
+        {
+          "id": "usda-beef-quality:2",
+          "label": "Prime",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "USDA beef quality grade",
+      "scope": "USDA’s common retail beef quality grades",
+      "story": "Selection and choice sound alike, yet they indicate different grades.",
+      "caveat": "The grading system considers maturity and marbling. This comparison is about the labels rather than personal taste.",
+      "naming_quirks": [
+        "near-synonyms",
+        "formal-rank"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.ams.usda.gov/sites/default/files/media/AMS%20Product%20Label%20Factsheet.pdf"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "usda-egg-sizes",
+      "category": "food",
+      "brand": "USDA",
+      "title": "Shell egg size labels",
+      "low_to_high": [
+        {
+          "id": "usda-egg-sizes:0",
+          "label": "Large",
+          "tier": 0
+        },
+        {
+          "id": "usda-egg-sizes:1",
+          "label": "Extra Large",
+          "tier": 1
+        },
+        {
+          "id": "usda-egg-sizes:2",
+          "label": "Jumbo",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "minimum weight for a dozen eggs",
+      "scope": "U.S. shell egg size classes by minimum net weight per dozen",
+      "story": "Extra Large yields to Jumbo.",
+      "caveat": "Compares weight of a dozen shell eggs. The size class is separate from quality grades such as AA or A.",
+      "naming_quirks": [
+        "ceiling",
+        "size-metaphor"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.ams.usda.gov/market-news/livestock-poultry-and-grain-poultry-and-egg-terms"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "avalanche-danger",
+      "category": "outdoors",
+      "brand": "Avalanche.org",
+      "title": "North American avalanche danger scale",
+      "low_to_high": [
+        {
+          "id": "avalanche-danger:0",
+          "label": "Low",
+          "tier": 0
+        },
+        {
+          "id": "avalanche-danger:1",
+          "label": "Moderate",
+          "tier": 1
+        },
+        {
+          "id": "avalanche-danger:2",
+          "label": "Considerable",
+          "tier": 2
+        },
+        {
+          "id": "avalanche-danger:3",
+          "label": "High",
+          "tier": 3
+        },
+        {
+          "id": "avalanche-danger:4",
+          "label": "Extreme",
+          "tier": 4
+        }
+      ],
+      "ranking_metric": "published avalanche danger level",
+      "scope": "North American Public Avalanche Danger Scale",
+      "story": "Considerable occupies the middle slot on a five-level scale.",
+      "caveat": "These are the published names. Actual avalanche forecasts also depend on location, elevation, and time.",
+      "naming_quirks": [
+        "near-synonyms",
+        "formal-rank"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://avalanche.org/avalanche-encyclopedia/human/resources/north-american-public-avalanche-danger-scale/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "tropical-cyclones",
+      "category": "outdoors",
+      "brand": "U.S. National Weather Service",
+      "title": "Tropical cyclone wind classifications",
+      "low_to_high": [
+        {
+          "id": "tropical-cyclones:0",
+          "label": "Tropical Depression",
+          "tier": 0
+        },
+        {
+          "id": "tropical-cyclones:1",
+          "label": "Tropical Storm",
+          "tier": 1
+        },
+        {
+          "id": "tropical-cyclones:2",
+          "label": "Hurricane",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "minimum maximum sustained wind speed for the category",
+      "scope": "U.S. National Weather Service tropical cyclone wind categories in the Atlantic",
+      "story": "A depression becomes a named storm at the higher wind threshold.",
+      "caveat": "The category is determined by sustained wind. Rainfall and storm surge are separate hazards.",
+      "naming_quirks": [
+        "meaning-shift",
+        "formal-rank"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.weather.gov/tae/faq"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "yosemite-decimal",
+      "category": "outdoors",
+      "brand": "Yosemite Decimal System",
+      "title": "Yosemite Decimal System climbing grades",
+      "low_to_high": [
+        {
+          "id": "yosemite-decimal:0",
+          "label": "5.9",
+          "tier": 0
+        },
+        {
+          "id": "yosemite-decimal:1",
+          "label": "5.10a",
+          "tier": 1
+        },
+        {
+          "id": "yosemite-decimal:2",
+          "label": "5.10d",
+          "tier": 2
+        },
+        {
+          "id": "yosemite-decimal:3",
+          "label": "5.11a",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "technical difficulty of the climb",
+      "scope": "Technical grades for roped rock climbs on the Yosemite Decimal System",
+      "story": "The suffix after the point is a grade, so 5.10 comes after 5.9.",
+      "caveat": "Climbing grades are local judgments of technical difficulty and do not describe overall risk.",
+      "naming_quirks": [
+        "counterintuitive-number",
+        "compound-suffix"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.rei.com/media/5cdc18dd-e873-44f3-8a41-4995ee3004b1"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "astronomical-twilight",
+      "category": "outdoors",
+      "brand": "U.S. Naval Observatory",
+      "title": "Types of twilight",
+      "low_to_high": [
+        {
+          "id": "astronomical-twilight:0",
+          "label": "Civil Twilight",
+          "tier": 0
+        },
+        {
+          "id": "astronomical-twilight:1",
+          "label": "Nautical Twilight",
+          "tier": 1
+        },
+        {
+          "id": "astronomical-twilight:2",
+          "label": "Astronomical Twilight",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "angular depth of the Sun below the horizon at the boundary",
+      "scope": "U.S. Naval Observatory definitions at the outer boundary of twilight",
+      "story": "Nautical twilight sits between civil twilight and astronomical twilight.",
+      "caveat": "These are geometric definitions. Actual visibility depends on local weather, terrain, and lighting.",
+      "naming_quirks": [
+        "opaque-order",
+        "formal-rank"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://aa.usno.navy.mil/faq/RST_defs"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "ba-long-haul",
+      "category": "loyalty",
+      "brand": "British Airways",
+      "title": "Long-haul cabins",
+      "low_to_high": [
+        {
+          "id": "ba-long-haul:0",
+          "label": "World Traveller",
+          "tier": 0
+        },
+        {
+          "id": "ba-long-haul:1",
+          "label": "World Traveller Plus",
+          "tier": 1
+        },
+        {
+          "id": "ba-long-haul:2",
+          "label": "Club World",
+          "tier": 2
+        },
+        {
+          "id": "ba-long-haul:3",
+          "label": "First",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "long-haul cabin class",
+      "scope": "British Airways cabin names on routes with the compared long-haul classes",
+      "story": "The word World appears on both sides of the jump from premium economy to business.",
+      "caveat": "This compares cabin class, not seat hardware on particular aircraft or the price on any given itinerary.",
+      "naming_quirks": [
+        "opaque-order",
+        "shared-descriptor"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.britishairways.com/content/en/us/information/travel-classes"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "alaska-atmos-rewards",
+      "category": "loyalty",
+      "brand": "Alaska Airlines",
+      "title": "Atmos Rewards status tiers",
+      "low_to_high": [
+        {
+          "id": "alaska-atmos-rewards:0",
+          "label": "Atmos Silver",
+          "tier": 0
+        },
+        {
+          "id": "alaska-atmos-rewards:1",
+          "label": "Atmos Gold",
+          "tier": 1
+        },
+        {
+          "id": "alaska-atmos-rewards:2",
+          "label": "Atmos Platinum",
+          "tier": 2
+        },
+        {
+          "id": "alaska-atmos-rewards:3",
+          "label": "Atmos Titanium",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "Atmos status qualification threshold",
+      "scope": "Alaska and Hawaiian’s Atmos Rewards status thresholds for 2026",
+      "story": "The program puts Titanium above Platinum.",
+      "caveat": "Specific to Atmos Rewards. Platinum and Titanium both map to oneworld Emerald.",
+      "naming_quirks": [
+        "material-metaphor",
+        "ceiling"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://news.alaskaair.com/loyalty/atmos-rewards-2026-expanded-status-earning-bew-partnerships-and-exclusive-perks-announced/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "flying-blue-status",
+      "category": "loyalty",
+      "brand": "Flying Blue",
+      "title": "Flying Blue status tiers",
+      "low_to_high": [
+        {
+          "id": "flying-blue-status:0",
+          "label": "Explorer",
+          "tier": 0
+        },
+        {
+          "id": "flying-blue-status:1",
+          "label": "Silver",
+          "tier": 1
+        },
+        {
+          "id": "flying-blue-status:2",
+          "label": "Gold",
+          "tier": 2
+        },
+        {
+          "id": "flying-blue-status:3",
+          "label": "Platinum",
+          "tier": 3
+        },
+        {
+          "id": "flying-blue-status:4",
+          "label": "Ultimate",
+          "tier": 4
+        }
+      ],
+      "ranking_metric": "Flying Blue program status",
+      "scope": "Air France and KLM’s published Flying Blue loyalty tiers",
+      "story": "The ladder runs out of metals and ends with a superlative.",
+      "caveat": "Ranking within Flying Blue only. Ultimate has separate qualification criteria tied to eligible flights.",
+      "naming_quirks": [
+        "ceiling",
+        "meaning-shift"
+      ],
+      "editorial_priority": 4,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.klm.com/information/flying-blue/program/more-info-status"
+      ],
+      "verified_as_of": "2026-11-21"
+    }
+  ]
+}

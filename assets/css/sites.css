@@ -97,10 +97,15 @@
   aspect-ratio: 30 / 19;
 }
 
-.site-project-preview svg {
+.site-project-preview svg,
+.site-project-preview img {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.site-project-preview img {
+  object-fit: cover;
 }
 
 .site-project-body {

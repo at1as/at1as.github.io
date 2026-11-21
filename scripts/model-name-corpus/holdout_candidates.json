@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "schema_version": "1.0",
+    "compiled_on": "2026-11-21",
+    "playable": false
+  },
+  "candidates": [
+    {
+      "name": "Johnnie Walker Black / Gold / Blue Label",
+      "reason": "Price and perceived prestige are plausible, but expressions differ by style, age, price and market; a hard one-dimensional “better whisky” answer is not defensible."
+    },
+    {
+      "name": "Ralph Lauren RRL relative to Purple Label",
+      "reason": "RRL is heritage/workwear direction rather than a clean intermediate luxury tier."
+    },
+    {
+      "name": "HUGO > BOSS or BOSS > HUGO",
+      "reason": "Official corporate language contradicts a strict quality hierarchy."
+    },
+    {
+      "name": "Apple Pro Max > Apple Ultra",
+      "reason": "Mixes iPhone size/product nomenclature and Apple M-series chip nomenclature."
+    },
+    {
+      "name": "RTX 5070 versus RTX 4080",
+      "reason": "Cross-generation performance depends on benchmarks, game and rendering technology."
+    },
+    {
+      "name": "Nikon Z8 versus Z9 on image quality",
+      "reason": "Closely related sensors plus differentiated body/features; manufacturer flagship positioning is not universal photo quality."
+    },
+    {
+      "name": "US political offices",
+      "reason": "Different branches cannot be flattened into a universally ranked ladder of power."
+    },
+    {
+      "name": "Titles across FAANG companies",
+      "reason": "Staff/Principal/Senior levels and career tracks are employer-specific."
+    },
+    {
+      "name": "Microsoft Xbox Game Pass names across changes",
+      "reason": "Plan naming and catalogs are volatile in late 2026; reverify release cadence before creating a current comparison."
+    },
+    {
+      "name": "Sony WH headphone version numbers",
+      "reason": "Pure generation labels are usually straightforward, not a surprising naming puzzle."
+    },
+    {
+      "name": "All Mercedes C/E/S/Maybach cars as strictly superior",
+      "reason": "Class, form factor, performance variants and equipment intersect; rank only a specified dimension."
+    },
+    {
+      "name": "All Rolex watch collections by prestige",
+      "reason": "Market value, materials, complications, retail price and scarcity disagree."
+    },
+    {
+      "name": "Bourgogne Cru as objective blind-tasting quality",
+      "reason": "Appellation grade is not a deterministic taste ranking."
+    }
+  ]
+}
