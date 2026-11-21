@@ -1,0 +1,27 @@
+<section id="problem-grid" aria-labelledby="problem-grid-title">
+  <div class="problem-grid-heading">
+    <h2 id="problem-grid-title">Problems by number</h2>
+    <div class="problem-grid-date"><label for="problem-grid-date">View as of</label> <select id="problem-grid-date" disabled><option>$date</option></select></div>
+  </div>
+  <p id="problem-grid-unavailable" hidden>Problem-level records are unavailable for this snapshot.</p>
+  <div id="problem-grid-content" hidden>
+    <div class="problem-grid-key">
+      <span><i class="problem-swatch" data-resolved="true" aria-hidden="true"></i><b id="problem-grid-resolved"></b> resolved</span>
+      <span><i class="problem-swatch" data-resolved="false" aria-hidden="true"></i><b id="problem-grid-open"></b> open or unresolved</span>
+      <a href="#text-summary">Skip to status table</a>
+    </div>
+    <p id="problem-grid-duplicates" hidden>Repeated numbers reflect duplicate catalog entries in this snapshot.</p>
+    <div id="problem-grid-ranges" aria-label="Problem number ranges" role="navigation"></div>
+    <div id="problem-grid-panels"></div>
+  </div>
+  <template id="problem-grid-range-template">
+    <a class="problem-range-link">
+      <span class="problem-range-label"></span>
+      <span class="problem-range-track" aria-hidden="true"><span></span></span>
+    </a>
+    <section class="problem-range-panel" tabindex="-1">
+      <div class="problem-range-heading"><h3></h3><p></p></div>
+      <div class="problem-range-tiles" role="group" aria-label="Problem links in numeric order"></div>
+    </section>
+  </template>
+</section>

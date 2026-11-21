@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { JSDOM } = require('jsdom');
 const { layout } = require('./render.cjs');
+const T = require('../trends-data.js');
 
 const site = path.join(__dirname, '..');
 const history = JSON.parse(fs.readFileSync(path.join(site, 'history.json')));
@@ -28,7 +29,7 @@ async function boot({ fail = false, reduced = true, data = history, problemData 
   w.performance.now = () => now;
   w.URL.createObjectURL = blob => { blobs.push(blob); return 'blob:historical-svg'; };
   w.URL.revokeObjectURL = () => {};
-  if (problemData) for (const file of ['d3.min.js','d3-sankey.min.js','sankey.js','trends-data.js','source-picker.js']) {
+  for (const file of ['trends-data.js', 'problem-grid.js', ...(problemData ? ['d3.min.js','d3-sankey.min.js','sankey.js','source-picker.js'] : [])]) {
     w.eval(fs.readFileSync(path.join(site, file), 'utf8'));
   }
   w.eval(script);
@@ -61,7 +62,8 @@ test('all historical snapshots conserve flow on a shared scale', () => {
 
 test('slider and date selection synchronize all displayed data and source revision', async () => {
   const app = await boot();
-  assert.equal(app.q('figure').nextElementSibling, app.q('#text-summary'), 'Table follows the chart directly');
+  assert.equal(app.q('figure').nextElementSibling, app.q('#problem-grid'), 'Problem grid follows the chart directly');
+  assert.equal(app.q('#problem-grid').nextElementSibling, app.q('#text-summary'));
   assert.equal(app.q('#snapshot-picker').options.length, history.snapshots.length);
   assert.equal(app.q('#time-slider').value, String(history.snapshots.length - 1));
   for (const index of [0, 75, history.snapshots.length - 1]) {
@@ -229,6 +231,11 @@ test('Snapshot switches calendars, charts, and source citations from the problem
   try {
     const select = (id, value) => { app.q(id).value = value; app.event(id, 'change'); };
     const snapshot = id => app.q(`[data-label="${id}"] .node-number`).textContent;
+    const checkGrid = () => {
+      assert.equal(app.q('#problem-grid-content').hidden, false);
+      assert.equal(app.q('#problem-grid-resolved').textContent, snapshot('resolved'));
+      assert.equal(app.w.document.querySelectorAll('.problem-range-tiles a').length, Number(snapshot('all').replaceAll(',', '')));
+    };
     assert.equal(app.q('#snapshot-source-control').hidden,false);
     assert.equal(app.q('.source-info').hidden,false);
     const format = date => new Date(date).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:'UTC'});
@@ -238,6 +245,7 @@ test('Snapshot switches calendars, charts, and source citations from the problem
     }
     assert.deepEqual(Array.from(app.q('#snapshot-source').options, opt=>opt.value), ['bloom-tao','plasma','combined']);
     assert.equal(snapshot('resolved'),'576');
+    checkGrid();
     select('#snapshot-source','plasma');
     const plasma = catalog.sources.find(source => source.id === 'plasma');
     const covered = releases.filter(r => r.date >= plasma.history[0].date && r.date <= plasma.history.at(-1).date);
@@ -245,6 +253,8 @@ test('Snapshot switches calendars, charts, and source citations from the problem
     assert.equal(app.q('#snapshot-date').dateTime,'2026-11-16');
     assert.equal(app.q('#snapshot-picker').options.length,12);
     assert.equal(snapshot('resolved'),'618');
+    checkGrid();
+    assert.equal(app.q('[data-entry="108-0"]').href, 'https://erdosproblems.ai/problems/108');
     assert.equal(snapshot('resolved-lean'),'66');
     assert.equal(app.q('#catalog-statements').hidden,true);
     assert.match(app.q('#source-revision').href,/plasma-ai\/erdos\/commit/);
@@ -254,6 +264,7 @@ test('Snapshot switches calendars, charts, and source citations from the problem
     select('#snapshot-source','combined');
     assert.equal(app.q('#snapshot-date').dateTime,'2026-10-08');
     assert.equal(snapshot('resolved'),'613');
+    checkGrid();
     assert.equal(app.q('#catalog-statements').hidden,false);
     assert.match(app.q('#extra-source-revisions a').href,/plasma-ai\/erdos\/commit/);
     select('#snapshot-picker','0');
@@ -264,6 +275,103 @@ test('Snapshot switches calendars, charts, and source citations from the problem
     assert.equal(app.q('#snapshot-date').dateTime,'2025-09-03');
     assert.equal(app.q('#bloom-statuses').hidden,false);
     assert.ok(app.q('[data-label="proved-lean"]'));
+  } finally { app.dom.window.close(); }
+});
+
+test('every saved date has the same grid counts as its Sankey', () => {
+  const countRows = rows => {
+    const records = [...rows.values()].flat();
+    return [records.length, records.filter(flags => flags.includes('resolved')).length];
+  };
+  for (const snapshot of history.snapshots) {
+    const { proved, disproved, solved } = snapshot.statuses;
+    assert.deepEqual(countRows(T.problemRowsAt([catalog.sources[0]], snapshot.as_of)),
+      [snapshot.total, proved + disproved + solved], snapshot.as_of);
+  }
+  for (const selection of ['plasma', 'combined']) {
+    for (const point of T.rollup(catalog, selection).points) {
+      assert.deepEqual(countRows(T.problemRowsAt(T.catalogSources(catalog, selection), point.date)),
+        [point.total, point.resolved], `${selection} on ${point.date}`);
+    }
+  }
+});
+
+test('problem grid offers monthly snapshots and follows the timeline in both directions', async () => {
+  const app = await boot({problemData:catalog});
+  try {
+    const picker = app.q('#problem-grid-date');
+    const firstTile = app.q('[data-entry="1-0"]');
+    assert.equal(firstTile.dataset.resolved, 'true');
+    assert.equal(picker.disabled, false);
+    const dates = [...picker.options].map(option => history.snapshots[option.value].as_of);
+    assert.equal(dates[0], history.snapshots.at(-1).as_of);
+    for (const date of dates.slice(0, -1)) {
+      assert.equal(date, history.snapshots.findLast(s => s.as_of.slice(0, 7) === date.slice(0, 7)).as_of);
+    }
+    app.event('#play-timeline', 'click');
+    picker.value = picker.options[1].value;
+    app.event('#problem-grid-date', 'change');
+    assert.equal(app.timers.size, 0);
+    assert.equal(app.q('#snapshot-date').dateTime, dates[1]);
+    assert.equal(picker.value, app.q('#time-slider').value);
+
+    app.q('#time-slider').value = '1';
+    app.event('#time-slider', 'input');
+    assert.equal(picker.value, '1');
+    assert.equal(app.q('[data-entry="1-0"]').dataset.resolved, 'false');
+    assert.equal(app.q('[data-entry="1-0"]'), firstTile, 'Date changes reuse existing links');
+    firstTile.focus();
+    firstTile.dispatchEvent(new app.w.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }));
+    assert.equal(app.w.document.activeElement, firstTile.nextElementSibling);
+    assert.equal(firstTile.tabIndex, -1);
+    assert.equal(app.w.document.activeElement.tabIndex, 0);
+  } finally { app.dom.window.close(); }
+});
+
+test('problem ranges show one grid and keep the selection when the date changes', async () => {
+  const app = await boot({problemData:catalog});
+  try {
+    const visibleRange = () => {
+      const sections = app.w.document.querySelectorAll('.problem-range-panel:not([hidden])');
+      assert.equal(sections.length, 1);
+      return sections[0];
+    };
+    const checkRange = (start, end) => {
+      const section = visibleRange();
+      const tiles = [...section.querySelectorAll('.problem-range-tiles a')];
+      const resolved = tiles.filter(tile => tile.dataset.resolved === 'true').length;
+      const link = app.q(`#problem-range-link-${start}`);
+      assert.equal(section.id, `problem-range-${start}`);
+      assert.equal(tiles[0].textContent, String(start));
+      assert.equal(tiles.at(-1).textContent, String(end));
+      assert.equal(section.querySelector('p').textContent, `${resolved} of ${tiles.length} resolved`);
+      assert.equal(link.getAttribute('aria-selected'), 'true');
+      assert.equal(link.style.getPropertyValue('--resolved-share'), `${100 * resolved / tiles.length}%`);
+    };
+    assert.equal(app.q('#problem-grid-ranges').children.length, 13);
+    checkRange(1, 100);
+    app.event('#problem-range-link-101', 'click');
+    checkRange(101, 200);
+    const datePicker = app.q('#problem-grid-date');
+    const latest = datePicker.value;
+    datePicker.value = datePicker.options[1].value;
+    app.event('#problem-grid-date', 'change');
+    checkRange(101, 200);
+    const second = app.q('#problem-range-link-101');
+    second.focus();
+    second.dispatchEvent(new app.w.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }));
+    checkRange(201, 300);
+    assert.equal(app.w.document.activeElement.id, 'problem-range-link-201');
+    datePicker.value = latest;
+    app.event('#problem-grid-date', 'change');
+    app.event('#problem-range-link-1201', 'click');
+    checkRange(1201, 1221);
+    app.q('#problem-range-link-1201').focus();
+    app.q('#time-slider').value = '0';
+    app.event('#time-slider', 'input');
+    assert.equal(app.q('#problem-range-link-1201'), null);
+    checkRange(1, 100);
+    assert.equal(app.w.document.activeElement.id, 'problem-range-link-1');
   } finally { app.dom.window.close(); }
 });
 

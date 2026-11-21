@@ -233,20 +233,9 @@ def main():
             raise ValueError('Model releases require unique IDs and HTTPS sources.')
         release_ids.add(release['id'])
     date = datetime.strptime(data['as_of'], '%Y-%m-%d').strftime('%B %d, %Y').replace(' 0', ' ')
-    from _shared import chrome, version_assets
-    page = version_assets(Template((HERE / '_template.html').read_text(encoding='utf-8')).substitute(
-        **chrome(site_home, 'snapshot'),
-        total=f'{data["total"]:,}', date=date, iso_date=data['as_of'],
-        resolved=f'{sum(data["statuses"][key] for key in ("proved", "disproved", "solved")):,}',
-        solutions=f'{data["attributes"]["solutions"]:,}',
-        diagram=svg, cards=cards(data), rows=table(data),
-        releases=script_json(releases), structured_data=script_json(structured_data),
-        analytics_config=script_json(analytics_config), site_home=escape(site_home, quote=True),
-        canonical=escape(canonical, quote=True), page_title=escape(page_title, quote=True),
-        description=escape(description, quote=True),
-        source_url=escape(data['source'], quote=True)))
     # Parse and validate everything before replacing any generated output.
-    outputs = [('index.html', page), ('diagram.svg', svg + '\n'),
+    problems = {}
+    outputs = [('diagram.svg', svg + '\n'),
                ('snapshot.json', json.dumps(data, indent=2, ensure_ascii=False) + '\n')]
     if history:
         outputs.append(('history.json', json.dumps(history, separators=(',', ':'), ensure_ascii=False) + '\n'))
@@ -277,6 +266,24 @@ def main():
             ('d3-sankey.min.js', (HERE / '_chart/node_modules/d3-sankey/dist/d3-sankey.min.js').read_text()),
             ('D3-SANKEY-LICENSE.txt', (HERE / '_chart/node_modules/d3-sankey/LICENSE').read_text()),
         ])
+    grid_template = Template((HERE / '_problem_grid.html').read_text(encoding='utf-8')).substitute(date=date)
+    grid_sources = [source for source in problems.get('sources', []) if source['id'] == 'bloom-tao' and source.get('history')]
+    grid = subprocess.run(['node', str(HERE / '_chart' / 'render.cjs'), '--problem-grid'],
+                          input=json.dumps(dict(html=grid_template, snapshot=data, sources=grid_sources)),
+                          text=True, stdout=subprocess.PIPE, check=True).stdout
+    from _shared import chrome, version_assets
+    page = version_assets(Template((HERE / '_template.html').read_text(encoding='utf-8')).substitute(
+        **chrome(site_home, 'snapshot'),
+        total=f'{data["total"]:,}', date=date, iso_date=data['as_of'],
+        resolved=f'{sum(data["statuses"][key] for key in ("proved", "disproved", "solved")):,}',
+        solutions=f'{data["attributes"]["solutions"]:,}',
+        diagram=svg, problem_grid=grid, cards=cards(data), rows=table(data),
+        releases=script_json(releases), structured_data=script_json(structured_data),
+        analytics_config=script_json(analytics_config), site_home=escape(site_home, quote=True),
+        canonical=escape(canonical, quote=True), page_title=escape(page_title, quote=True),
+        description=escape(description, quote=True),
+        source_url=escape(data['source'], quote=True)))
+    outputs.append(('index.html', page))
     for filename, content in outputs:
         destination = HERE / filename
         destination.parent.mkdir(parents=True, exist_ok=True)

@@ -34,6 +34,7 @@
   <script src="d3-sankey.min.js" defer></script>
   <script src="sankey.js" defer></script>
   <script src="trends-data.js" defer></script>
+  <script src="problem-grid.js" defer></script>
   <script src="source-picker.js" defer></script>
   <script src="timeline.js" defer></script>
 </head>
@@ -95,6 +96,7 @@
         </div>
         <figcaption id="flow-caption">Band widths show the number of problems in each group.</figcaption>
       </figure>
+      $problem_grid
       <section id="text-summary" class="data-table" aria-labelledby="table-title">
         <h2 id="table-title">Problem status</h2>
         <p id="table-caption" class="table-caption">Snapshot: <span id="table-date">$date</span><span id="catalog-statements" hidden></span><span class="table-guide">“Problems”: % of all problems. Lean columns: % within each status. A dash means no data or an empty status.</span></p>

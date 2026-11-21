@@ -57,6 +57,26 @@
     return new Map([...merged].map(([id, flags]) => [id, [[...flags]]]));
   }
 
+  function applyObservation(state, observation) {
+    for (const [id, flags] of Object.entries(observation.changes)) {
+      if (flags === null) state.rows.delete(id);
+      else state.rows.set(id, flags);
+    }
+    state.previous = observation;
+  }
+
+  function problemRowsAt(sources, date) {
+    const states = sources.map(source => {
+      const state = { rows: new Map(), previous: null };
+      for (const observation of source.history) {
+        if (observation.date > date) break;
+        applyObservation(state, observation);
+      }
+      return state;
+    });
+    return mergeObservations(states);
+  }
+
   function compareObservations(before, after, a, b, ambiguous, revisions, afterImport = null) {
     const changes = Object.fromEntries(metrics.map(metric => [metric, {gained:[], lost:[], added:[], removed:[], unmatched:0}]));
     const ids = [...new Set([...before.keys(), ...after.keys()])].sort((x,y) => Number(x)-Number(y));
@@ -100,17 +120,12 @@
       const revisions = [];
       const imports = updates.filter(({state}) => !state.previous);
       const apply = ({state, snapshot}) => {
-        const {source, rows, previous} = state;
+        const {source, previous} = state;
         const numbers = Object.keys(snapshot.changes);
         revisions.push({source:source.id, label:source.label, repository:source.repository,
           start:previous?.date || date, end:date, before:previous?.commit, after:snapshot.commit,
           numbers, metrics:source.metrics, ...(previous ? {} : {baseline:snapshot.changes})});
-        for (const id of numbers) {
-          const flags = snapshot.changes[id];
-          if (flags === null) rows.delete(id);
-          else rows.set(id, flags);
-        }
-        state.previous = snapshot;
+        applyObservation(state, snapshot);
       };
       updates.filter(({state}) => state.previous).forEach(apply);
       const beforeImport = previousRows && imports.length ? mergeObservations(states) : null;
@@ -231,5 +246,5 @@
       kinds.flatMap(kind => (interval.changes[metric][kind] || []).map(number => ({number, kind, ...interval}))))
       .sort((a,b) => b.end.localeCompare(a.end) || Number(a.number) - Number(b.number));
   }
-  return {DAY, catalogVersion, time, iso, net, validate, catalogSources, rollup, evidence, defaultRelease, monthly, rolling, releaseWindow, events};
+  return {DAY, catalogVersion, time, iso, net, validate, catalogSources, problemRowsAt, rollup, evidence, defaultRelease, monthly, rolling, releaseWindow, events};
 });
