@@ -23,6 +23,10 @@
   const releaseRail = $('#release-markers');
   const releasePicker = $('#snapshot-release');
   const sourcePicker = $('#snapshot-source');
+  const gridDatePicker = $('#problem-grid-date');
+  const showProblemGrid = window.ErdosProblemGrid?.create(document);
+  const customGridDate = new Option();
+  let gridDateIndices = new Set();
   const T = window.ErdosTrends, S = window.ErdosSankey;
   const bloomAttribution = [...$('#snapshot-attribution').childNodes];
   const bloomCaption = $('#flow-caption').textContent;
@@ -318,6 +322,14 @@
     slider.style.setProperty('--progress', `${100 * index / Math.max(1, history.snapshots.length - 1)}%`);
     slider.setAttribute('aria-valuetext', date);
     picker.value = String(index);
+    customGridDate.remove();
+    if (!gridDateIndices.has(index)) {
+      customGridDate.textContent = date;
+      customGridDate.value = String(index);
+      gridDatePicker.prepend(customGridDate);
+    }
+    gridDatePicker.value = String(index);
+    showProblemGrid?.(snapshot, activeSources);
     $('#timeline-position').textContent = `Snapshot ${index + 1} of ${history.snapshots.length}`;
     $('#snapshot-date').textContent = date;
     $('#snapshot-date').dateTime = snapshot.as_of;
@@ -368,6 +380,7 @@
   dockPlay?.addEventListener('click', togglePlayback);
   slider.addEventListener('input', () => { stop(); select(Number(slider.value)); });
   picker.addEventListener('change', () => { stop(); select(Number(picker.value)); });
+  gridDatePicker.addEventListener('change', () => { stop(); select(Number(gridDatePicker.value), false); });
   function changeSpeed(control) {
     speed.value = control.value;
     if (dockSpeed) dockSpeed.value = control.value;
@@ -398,6 +411,11 @@
     history = payload;
     prepareReleases();
     picker.replaceChildren(...history.snapshots.map((snapshot, i) => new Option(formatDate(snapshot.as_of), String(i))));
+    gridDateIndices = new Set(history.snapshots.flatMap((snapshot, i, snapshots) =>
+      i === 0 || snapshot.as_of.slice(0, 7) !== snapshots[i + 1]?.as_of.slice(0, 7) ? [i] : []));
+    gridDatePicker.replaceChildren(...[...gridDateIndices].reverse().map(i => new Option(
+      formatDate(history.snapshots[i].as_of) + (i === history.snapshots.length - 1 ? ' (latest)' : ''), String(i))));
+    gridDatePicker.disabled = !activeSources.length || history.snapshots.length < 2;
     slider.max = String(history.snapshots.length - 1);
     [slider, play, speed, dockPlay, dockSpeed].forEach(control => { control.disabled = history.snapshots.length < 2; });
     picker.disabled = false;
@@ -462,6 +480,9 @@
       catalog = payload;
       window.populateErdosSourcePicker(sourcePicker, catalog.sources);
       sourcePicker.value = 'bloom-tao';
+      activeSources = T.catalogSources(catalog, 'bloom-tao');
+      showProblemGrid?.(history.snapshots[index], activeSources);
+      gridDatePicker.disabled = history.snapshots.length < 2;
       $('#snapshot-source-control').hidden = false;
     } catch (error) {
       // The saved Bloom–Tao snapshots are independently usable offline.

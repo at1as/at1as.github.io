@@ -4,13 +4,13 @@
     {
       "id": "bloom-tao",
       "label": "Bloom–Tao",
-      "date": "2026-11-12",
-      "revision": "6cd839c9bcefd6aaaf2d9f194816727ab75defd1",
-      "url": "https://github.com/teorth/erdosproblems/blob/6cd839c9bcefd6aaaf2d9f194816727ab75defd1/data/problems.yaml",
+      "date": "2026-11-19",
+      "revision": "bd23334a26c06d02dbfae2a7bcb47dcce3e09d33",
+      "url": "https://github.com/teorth/erdosproblems/blob/bd23334a26c06d02dbfae2a7bcb47dcce3e09d33/data/problems.yaml",
       "repository": "https://github.com/teorth/erdosproblems",
       "repository_created_at": "2025-08-31T16:20:38Z",
       "website_url": "https://www.erdosproblems.com/",
-      "policy_url": "https://github.com/teorth/erdosproblems/blob/6cd839c9bcefd6aaaf2d9f194816727ab75defd1/CONTRIBUTING.md",
+      "policy_url": "https://github.com/teorth/erdosproblems/blob/bd23334a26c06d02dbfae2a7bcb47dcce3e09d33/CONTRIBUTING.md",
       "resolved_statuses": [
         "disproved",
         "proved",
@@ -14179,9 +14179,31 @@
               ]
             ]
           }
+        },
+        {
+          "date": "2026-11-19",
+          "commit": "bd23334a26c06d02dbfae2a7bcb47dcce3e09d33",
+          "changes": {
+            "625": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "790": [
+              [
+                "statements"
+              ]
+            ],
+            "792": [
+              [
+                "statements"
+              ]
+            ]
+          }
         }
       ],
-      "license": "https://github.com/teorth/erdosproblems/blob/6cd839c9bcefd6aaaf2d9f194816727ab75defd1/LICENSE",
+      "license": "https://github.com/teorth/erdosproblems/blob/bd23334a26c06d02dbfae2a7bcb47dcce3e09d33/LICENSE",
       "license_id": "Apache-2.0",
       "license_label": "Apache 2.0"
     },
@@ -45680,7 +45702,7 @@
       "sources": {
         "bloom-tao": {
           "status": "solved",
-          "lean_statement": false,
+          "lean_statement": true,
           "lean_solution": false,
           "evidence": [],
           "terminal_on": "2026-09-05",
@@ -52118,7 +52140,7 @@
       "sources": {
         "bloom-tao": {
           "status": "open",
-          "lean_statement": false,
+          "lean_statement": true,
           "lean_solution": false,
           "evidence": []
         },
@@ -52227,7 +52249,7 @@
       "sources": {
         "bloom-tao": {
           "status": "open",
-          "lean_statement": false,
+          "lean_statement": true,
           "lean_solution": false,
           "evidence": []
         },

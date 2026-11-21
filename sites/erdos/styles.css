@@ -133,6 +133,53 @@ figure { margin: 0; }
 .chart-scroll svg { display:block; width:100%; max-width:1020px; min-width:960px; height:auto; margin-inline:auto; }
 figcaption { color: #59657d; font-size: .875rem; line-height: 1.5; margin-top: 12px; }
 .scroll-hint { display: none; color: #59657d; font-size: .875rem; }
+#problem-grid { --problem-resolved: #32634e; --problem-open: #ecf0f3; margin-top: 28px; padding: 16px; background: white; border: 1px solid #e0e6ee; border-radius: 9px; }
+.problem-grid-heading, .problem-grid-date, .problem-grid-key, .problem-grid-key > span { display: flex; align-items: center; }
+.problem-grid-heading, .problem-grid-key { flex-wrap: wrap; gap: 8px 16px; }
+.problem-grid-heading { justify-content: space-between; }
+#problem-grid-title { margin: 0; font: 400 1.4rem/1.2 Georgia, serif; color: #23392f; }
+.problem-grid-date, .problem-grid-key { color: #354560; font-size: .875rem; }
+.problem-grid-date, .problem-grid-key > span { gap: 6px; }
+.problem-grid-key { margin: 12px 0; }
+.problem-grid-key > a { margin-inline-start: auto; color: #24558e; }
+.problem-swatch { width: 12px; height: 12px; border-radius: 3px; }
+#problem-grid-ranges { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+.problem-range-link { display: grid; align-content: center; gap: 6px; min-height: 46px; padding: 6px; border: 1px solid #dee5e1; border-radius: 5px; color: #354560; text-align: center; text-decoration: none; font-size: .8125rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.problem-range-link:hover, .problem-range-link[aria-selected="true"], #problem-grid:not([data-interactive]):not(:has(.problem-range-panel:target)) .problem-range-link:first-child { background: #edf3ef; border-color: #5b7a6b; color: #23392f; }
+.problem-range-link:focus-visible { outline-offset: 1px; }
+.problem-range-track { height: 5px; overflow: hidden; border-radius: 3px; background: #e5ece8; }
+.problem-range-track span { display: block; width: var(--resolved-share); height: 100%; background: var(--problem-resolved); }
+#problem-grid:not([data-interactive]) .problem-range-panel { display: none; }
+#problem-grid:not([data-interactive]) .problem-range-panel:target, #problem-grid:not([data-interactive]) #problem-grid-panels:not(:has(:target)) .problem-range-panel:first-child { display: block; }
+.problem-range-panel { margin-top: 14px; padding-top: 12px; border-top: 1px solid #e0e6ee; }
+.problem-range-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin-bottom: 8px; }
+.problem-range-heading h3 { margin: 0; color: #23392f; font-size: 1rem; }
+.problem-range-heading p { margin: 0; color: #59657d; font-size: .875rem; font-variant-numeric: tabular-nums; }
+.problem-range-tiles { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 4px; }
+.problem-range-tiles a { display: grid; place-items: center; min-height: 30px; border-radius: 4px; text-decoration: none; font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.problem-range-tiles a:hover { text-decoration: underline; }
+.problem-range-tiles a:focus-visible { z-index: 1; outline-offset: 1px; }
+#problem-grid [data-resolved="true"] { background: var(--problem-resolved); color: white; font-weight: 700; }
+#problem-grid [data-resolved="false"] { background: var(--problem-open); color: #4a5769; }
+#problem-grid-duplicates, #problem-grid-unavailable { color: #59657d; font-size: .875rem; }
+@media (min-width: 1160px) {
+  #problem-grid-ranges { grid-template-columns: repeat(13, minmax(0, 1fr)); }
+}
+@media (max-width: 750px) {
+  #problem-grid { padding: 12px; }
+  #problem-grid-ranges { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .problem-range-tiles { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  .problem-grid-key > a { margin-inline-start: 0; }
+}
+@media (max-width: 480px) {
+  #problem-grid-ranges { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .problem-range-tiles { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+}
+@media (forced-colors: active) {
+  .problem-range-link[aria-selected="true"] { border: 2px solid Highlight; }
+  #problem-grid [data-resolved="true"] { forced-color-adjust: none; color: HighlightText; background: Highlight; }
+  #problem-grid [data-resolved="false"] { border: 1px solid GrayText; }
+}
 .attributes { margin:0; background:white; }
 h2 { font-size: clamp(1.25rem, 1.55vw, 1.8rem); line-height: 1.2; margin: 0 0 3px; letter-spacing: -.02em; }
 .aside-intro { color: #59657d; font-size: .9375rem; line-height: 1.5; margin: 20px; }
