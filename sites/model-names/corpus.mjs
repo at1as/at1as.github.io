@@ -93,12 +93,14 @@ export function selectRound(corpus, group, seen, roundNumber) {
   const candidates = corpus.all.filter(question => !seen.has(question.id) &&
     (!group || question.group === group) && (!initial || corpus.starterIds.has(question.id)));
   const seed = `model-names-v1:${group}:${roundNumber}`;
-  const priority = new Map(candidates.map(question => [question.id, seededRank(seed, question.id)]));
+  const priority = initial
+    ? new Map([...corpus.starterIds].map((id, position) => [id, position]))
+    : new Map(candidates.map(question => [question.id, seededRank(seed, question.id)]));
   const round = [];
   const usedLadders = new Set();
   const count = (field, question) => round.filter(picked => picked[field] === question[field]).length;
   const variety = (field, a, b) => count(field, a) - count(field, b);
-  const quality = question => Number(question.surprise >= 4) + Number(question.difficulty >= 3);
+  const quality = question => initial ? 0 : Number(question.surprise >= 4) + Number(question.difficulty >= 3);
 
   while (round.length < roundSize) {
     const available = candidates.filter(question => !usedLadders.has(question.ladderId));
@@ -110,5 +112,15 @@ export function selectRound(corpus, group, seen, roundNumber) {
     round.push(question);
     usedLadders.add(question.ladderId);
   }
-  return round;
+  // Shuffle which side wins independently of the order in which the editor wrote the pairs.
+  const byAnswerSide = [...round].sort((a, b) =>
+    seededRank(seed + ':side', a.id) - seededRank(seed + ':side', b.id));
+  const leftCount = Math.floor((round.length + roundNumber % 2) / 2);
+  const leftAnswers = new Set(byAnswerSide.slice(0, leftCount).map(question => question.id));
+  return round.map(question => {
+    const correctIsLeft = question.options[0] === question.answer;
+    const options = correctIsLeft === leftAnswers.has(question.id)
+      ? question.options : [...question.options].reverse();
+    return { ...question, options };
+  });
 }

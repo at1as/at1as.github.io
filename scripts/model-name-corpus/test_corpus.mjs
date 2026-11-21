@@ -13,6 +13,7 @@ const corpus = prepareCorpus(...readCorpus());
 test('the first round is a reproducible six-question sample across the starter groups', () => {
   const initial = selectRound(corpus, '', new Set(), 0);
   assert.equal(initial.length, roundSize);
+  assert.equal(initial[0].id, [...corpus.starterIds][0]);
   assert.deepEqual(initial, selectRound(corpus, '', new Set(), 0));
   assert.ok(initial.every(question => corpus.starterIds.has(question.id)));
   const starterGroups = new Set(corpus.all.filter(question => corpus.starterIds.has(question.id)).map(question => question.group));
@@ -37,6 +38,8 @@ test('every group can be exhausted without repeated questions or ladders within 
       const round = selectRound(corpus, group, seen, number);
       if (!round.length) break;
       assert.ok(round.length <= roundSize, group);
+      const correctOnLeft = round.filter(question => question.options[0] === question.answer).length;
+      assert.ok(Math.abs(correctOnLeft - (round.length - correctOnLeft)) <= 1, group);
       assert.equal(new Set(round.map(question => question.ladderId)).size, round.length, group);
       if (group === 'Institutions') assert.ok(round.length <= 3);
       for (const question of round) {

@@ -24,12 +24,13 @@ CATEGORIES=[
  {'id':'food','name':'Food & drink','group':'Food & Drink'},
  {'id':'connectivity','name':'Connectivity & storage standards','group':'Tech Standards'},
  {'id':'sports','name':'Sports & games','group':'Sports & Games'},
+ {'id':'arts','name':'Print & music','group':'Print & Music'},
  {'id':'outdoors','name':'Outdoors','group':'Outdoors'},
 ]
 
 L=[]
 def add(id, category, brand, title, names, metric, scope, story, caveat, sources, tags, pairs, priority=3, evidence='first_party', status='ready'):
-    # pairs: (lower_index, higher_index, why, difficulty, surprise, featured, optional ask)
+    # pairs: (lower_index, higher_index, why, difficulty, surprise, featured, ask)
     assert len(names)>=2
     item={'id':id,'category':category,'brand':brand,'title':title,
           'low_to_high':[{'id':f'{id}:{i}','label':name,'tier':i} for i,name in enumerate(names)],
@@ -53,8 +54,8 @@ add('google-gemini4','ai','Google','Gemini 4 elemental names',
  'The model positioning is vendor-defined. Atomic-mass comparison is an analogy, not Google’s declared naming rule.',
  ['https://support.google.com/gemini/answer/18648722?co=GENIE.Platform%3DDesktop'],
  ['scientific-metaphor','inverted-external-scale','opaque-order'],
- [(1,2,'Google calls Carbon its strongest model. Neon is heavier than carbon, so atomic mass gives the opposite answer.',5,5,True,'Which Gemini model does Google position as more capable?'),
-  (0,1,'Neon is the more capable reasoning tier; Hydrogen is the speed-oriented everyday model. Chemistry offers no coherent full ordering for these labels.',3,4,False)],5)
+ [(1,2,'Google puts Carbon above Neon. A periodic table would lead you to pick Neon by both mass and atomic number.',5,5,True,'Which Gemini 4 model does Google rank higher?'),
+  (0,1,'Neon is the reasoning model. Google offers Hydrogen for fast, everyday work.',3,4,False,'Which Gemini 4 model does Google recommend for harder reasoning tasks?')],5)
 add('anthropic-claude','ai','Anthropic','Claude literary tiers',
  ['Claude Haiku 5.5','Claude Sonnet 5.5','Claude Opus 5.5','Claude Fable 5.2'],
  'vendor recommended capability tier',
@@ -63,9 +64,9 @@ add('anthropic-claude','ai','Anthropic','Claude literary tiers',
  'Different version numbers and task specializations matter; this is Anthropic’s recommendation for demanding reasoning, not an all-benchmark ranking.',
  ['https://platform.claude.com/docs/en/models/overview'],
  ['literary-metaphor','meaning-shift','ceiling'],
- [(2,3,'Anthropic recommends Fable for demanding reasoning when Opus at higher effort falls short. “Fable” is not an intuitively bigger thing than “Opus.”',5,5,True,'Which of these Claude models does Anthropic recommend for harder reasoning tasks?'),
-  (1,2,'Opus is Anthropic’s general high-end agentic model, above speed-oriented Sonnet in its capability positioning. A sonnet at least has a more constrained form than an opus.',2,3,False),
-  (0,1,'Sonnet is positioned above Haiku for intelligence; Haiku is the high-volume, fastest tier. The poetic scale is memorable but hardly universal.',2,3,False)],5)
+ [(2,3,'Anthropic recommends Fable when Opus at higher effort falls short. A short story with a moral is quite a promotion from a magnum opus.',5,5,True,'Which Claude model does Anthropic recommend for the hardest reasoning tasks?'),
+  (1,2,'Opus sits above Sonnet. A sonnet has 14 lines. An opus can be a work of any length.',2,3,False,'Which Claude 5.5 model does Anthropic put higher for complex work?'),
+  (0,1,'Sonnet sits above Haiku. Of all the Claude names, these two at least give you lengths to compare.',2,3,False,'Which Claude 5.5 model does Anthropic rank higher for complex work?')],5)
 
 # GPUs and silicon: same generation / exact SKU family.
 add('apple-m2-chips','chips','Apple','M2 chips',
@@ -75,8 +76,8 @@ add('apple-m2-chips','chips','Apple','M2 chips',
  'Relative power/energy efficiency varies by workload and device. Do not compare chip generations as part of this ladder.',
  ['https://www.apple.com/newsroom/2023/06/apple-introduces-m2-ultra/','https://www.apple.com/mac/compare/'],
  ['ceiling','superlative'],
- [(2,3,'Apple built M2 Ultra using two M2 Max dies linked by UltraFusion. “Max” still had a tier above it.',3,5,True,'Which chip sits higher in Apple’s M2 lineup?'),
-  (1,2,'Within the M2 family, Max expands capability over Pro. Both names sound premium; only the product spec defines the order.',2,3,False)],5)
+ [(2,3,'M2 Ultra contains two M2 Max dies. Apple gave a fairly literal answer to what comes after Max.',3,5,True,'Which chip sits higher in Apple’s M2 lineup?'),
+  (1,2,'M2 Max sits between M2 Pro and M2 Ultra in Apple’s lineup.',2,3,False,'Which is the higher-end M2 chip?')],5)
 add('nvidia-4070','chips','NVIDIA','GeForce RTX 4070 variants',
  ['RTX 4070','RTX 4070 SUPER','RTX 4070 Ti','RTX 4070 Ti SUPER'],
  '4070 family gaming GPU performance/capability tier',
@@ -85,9 +86,9 @@ add('nvidia-4070','chips','NVIDIA','GeForce RTX 4070 variants',
  'Individual benchmarks, factory overclocks, prices, and VRAM-sensitive games can vary; use NVIDIA’s within-family positioning.',
  ['https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/'],
  ['two-dimensional-suffix','opaque-order'],
- [(1,2,'The plain Ti is above the plain SUPER in this 4070 family; adding “SUPER” does not always beat adding “Ti.”',5,5,True,'Which is the higher-tier desktop GPU?'),
-  (2,3,'RTX 4070 Ti SUPER goes above RTX 4070 Ti; combining suffixes makes yet another tier.',3,4,False),
-  (0,1,'RTX 4070 SUPER is above RTX 4070 in this family. On its own “SUPER” is the easy part of the grammar.',1,2,False)],5)
+ [(1,2,'The 4070 Ti sits above the 4070 SUPER. NVIDIA also made a 4070 Ti SUPER, which sits above both.',5,5,True,'Which desktop RTX 4070 does NVIDIA rank higher?'),
+  (2,3,'The Ti SUPER sits above the Ti. On this card NVIDIA kept both suffixes.',3,4,False,'Which is the higher-end desktop RTX 4070?'),
+  (0,1,'The SUPER sits one step above the original 4070 in the desktop lineup.',1,2,False,'Which is the higher-end desktop RTX 4070?')],5)
 add('intel-ultra','chips','Intel','Intel Core Ultra tiers',
  ['Core Ultra 5','Core Ultra 7','Core Ultra 9'],'Intel processor product tier',
  'Within a comparable Intel Core Ultra generation and class',
@@ -95,7 +96,7 @@ add('intel-ultra','chips','Intel','Intel Core Ultra tiers',
  'Higher series number is a product segment, not guaranteed superior performance across different generations or mobile/desktop power limits.',
  ['https://www.intel.com/content/www/us/en/support/articles/000097596/processors/intel-core-ultra-processors.html'],
  ['numbering','shared-superlative'],
- [(1,2,'Within a comparable Core Ultra family, the 9 tier sits above 7. Every chip is already “Ultra.”',1,2,False)],2)
+ [(1,2,'Core Ultra 9 sits above Core Ultra 7. Both are already called Ultra.',1,2,False,'Within one Core Ultra generation, which is Intel’s higher tier?')],2)
 add('amd-ryzen7000','chips','AMD','Ryzen 7000 (65W desktop)',
  ['Ryzen 5 7600','Ryzen 7 7700','Ryzen 9 7900'], 'core count in same 65W Zen 4 desktop cohort',
  '2023 65W, non-X Ryzen 7000 Zen 4 desktop CPUs',
@@ -103,16 +104,16 @@ add('amd-ryzen7000','chips','AMD','Ryzen 7000 (65W desktop)',
  'This ranks core counts: 6, 8 and 12. It does not guarantee higher performance in every game, especially versus X3D variants.',
  ['https://www.amd.com/en/newsroom/press-releases/2023-1-4-amd-extends-its-leadership-with-the-introduction-o.html'],
  ['numbering','numeric-nesting'],
- [(1,2,'In the specified 65W Zen 4 cohort, the 7900 has 12 cores to the 7700’s 8. Do not infer this from the last two digits alone.',1,2,False)],2)
+ [(1,2,'The Ryzen 9 7900 has 12 cores. The Ryzen 7 7700 has eight.',1,2,False,'Which of these 65-watt Ryzen desktop CPUs has more cores?')],2)
 add('aws-ec2-t2','software','Amazon Web Services','EC2 T2 instance sizes',
  ['t2.nano','t2.micro','t2.small','t2.medium','t2.large','t2.xlarge','t2.2xlarge'],
  'instance resource size', 'AWS EC2 T2 instance family',
  'An instance named “micro” is still larger than “nano”; the rest looks like clothing sizes.',
  'The order is for allocated vCPU/memory within one AWS instance family; not price/performance across generations or instance families.',
- ['https://aws.amazon.com/ec2/instance-types/general-purpose/'],
+ ['https://aws.amazon.com/ec2/instance-types/t2/'],
  ['size-metaphor','ceiling','mixed-size-conventions'],
- [(0,1,'Within EC2 T2, micro offers more resources than nano. Neither word has a precise real-world scale for virtual computers.',3,3,False),
-  (5,6,'The 2xlarge instance is larger than xlarge. AWS escaped the apparent “extra-large” ceiling by adding a multiplier.',1,4,True)],3)
+ [(0,1,'A t2.micro has 1 GiB of memory. A t2.nano has half a GiB.',3,3,False,'Which EC2 T2 instance comes with more memory?'),
+  (5,6,'A t2.2xlarge has 32 GiB of memory, double the 16 GiB in a t2.xlarge.',1,4,True,'Which EC2 T2 instance comes with more memory?')],3)
 
 # Devices and cameras.
 add('garmin-forerunner','devices','Garmin','Forerunner 165 / 265 / 965',
@@ -151,7 +152,7 @@ add('xbox-series','gaming','Microsoft','Xbox Series consoles',
  'The Series S is smaller and more affordable; this compares GPU/rendering capability, not the worth of owning either console.',
  ['https://www.xbox.com/en-US/consoles/xbox-series-x'],
  ['letter-suffix','opaque-order'],
- [(0,1,'Xbox Series X is designed for higher-resolution graphics than Series S. The letters alone do not teach you which is stronger.',3,4,True)],4)
+ [(0,1,'Series X is Microsoft’s higher-performance console. Series S is the smaller, lower-cost option.',3,4,True,'Which Xbox Series console has the more powerful graphics hardware?')],4)
 add('ps5-hardware','gaming','Sony','PlayStation 5 hardware tiers',
  ['PlayStation 5','PlayStation 5 Pro'], 'graphics/rendering capability tier',
  'Standard PS5 versus PS5 Pro; not disc vs digital editions',
@@ -159,7 +160,7 @@ add('ps5-hardware','gaming','Sony','PlayStation 5 hardware tiers',
  'PS5 Digital Edition and disc-drive edition have the same class of game performance; those are a separate, non-hierarchical comparison.',
  ['https://blog.playstation.com/2024/09/10/welcome-playstation-5-pro-the-most-visually-impressive-way-to-play-games-on-playstation/'],
  ['superlative','product-family'],
- [(0,1,'Sony launched PS5 Pro with higher GPU performance and enhanced ray tracing. “Pro” is meaningful here; “Digital Edition” is not a similar tier.',1,2,False)],2)
+ [(0,1,'Sony gave the PS5 Pro a faster GPU and improved ray tracing.',1,2,False,'Which PlayStation has the more powerful GPU?')],2)
 add('ps-plus','gaming','Sony','PlayStation Plus membership tiers',
  ['PlayStation Plus Essential','PlayStation Plus Extra','PlayStation Plus Premium'],
  'subscription benefit scope','US PlayStation Plus plan names',
@@ -167,7 +168,7 @@ add('ps-plus','gaming','Sony','PlayStation Plus membership tiers',
  'Premium features and cloud streaming availability vary by region; Deluxe replaces Premium in some markets.',
  ['https://www.playstation.com/en-us/ps-plus/'],
  ['marketing-adjective','ceiling'],
- [(1,2,'Premium adds benefits beyond Extra, including classic catalog features and selected game streaming where available.',1,2,False)],2)
+ [(1,2,'Premium includes the benefits of Extra and adds the classics catalog and cloud streaming.',1,2,False,'Which U.S. PlayStation Plus plan includes more benefits?')],2)
 add('m365-business','software','Microsoft','Microsoft 365 Business plans',
  ['Microsoft 365 Business Basic','Microsoft 365 Business Standard','Microsoft 365 Business Premium'],
  'bundle feature/security scope','US Microsoft 365 Business plans',
@@ -175,7 +176,7 @@ add('m365-business','software','Microsoft','Microsoft 365 Business plans',
  'Plan contents and seat limits may change; use the plan comparison, not a specific price.',
  ['https://www.microsoft.com/en-us/microsoft-365/business/compare-all-microsoft-365-business-products'],
  ['generic-adjective','ceiling'],
- [(1,2,'Business Premium adds advanced security and device-management capabilities beyond Business Standard. Here the naming hierarchy actually works.',1,1,False)],1)
+ [(1,2,'Business Premium adds device management and security features to the Standard bundle.',1,1,False,'Which Microsoft 365 business plan includes more security features?')],1)
 
 # Cards: never blend card issuers or debit/credit product ladders.
 add('chase-sapphire','cards','Chase','Sapphire credit cards',
@@ -193,8 +194,8 @@ add('capitalone-venture','cards','Capital One','Venture cards',
  'Ranks issuer product segment and annual-fee/benefit scope, not universal expected rewards for every spending pattern.',
  ['https://www.capitalone.com/credit-cards/compare/'],
  ['letter-suffix','opaque-order'],
- [(1,2,'Venture X is the premium tier above Venture. “X” has no inherent ordinal meaning.',3,4,True),
-  (0,1,'Venture is above the no-annual-fee VentureOne in premium travel-card positioning. In this family, “One” is the entry point.',2,3,False)],4)
+ [(1,2,'Venture X sits above Venture. A single letter marks the jump to the premium travel card.',3,4,True,'Which card sits higher in Capital One’s Venture lineup?'),
+  (0,1,'VentureOne is the entry card. Remove “One” and you move up a tier.',2,3,False,'Which card sits higher in Capital One’s Venture lineup?')],4)
 add('amex-consumer','cards','American Express','US consumer color cards',
  ['American Express Green','American Express Gold','American Express Platinum','American Express Centurion'],
  'issuer premium/exclusivity tier',
@@ -203,8 +204,8 @@ add('amex-consumer','cards','American Express','US consumer color cards',
  'Gold/Platinum are not universally best for all spending categories. Centurion is invitation-only; details and annual fees vary by market.',
  ['https://www.americanexpress.com/us/credit-cards/','https://www.americanexpress.com/en-us/travel/lounges/centurion-network/access/','https://www.cnbc.com/select/most-exclusive-credit-cards/'],
  ['material-metaphor','meaning-shift','ceiling'],
- [(1,2,'Platinum is the higher-positioned consumer card than Gold. The metal naming is clear, until it reaches Centurion.',1,3,False),
-  (2,3,'Centurion—commonly nicknamed the Black Card—sits above Platinum in exclusivity. “Platinum” was not the end of the hierarchy.',4,5,True)],4)
+ [(1,2,'Platinum sits above Gold. Both names still follow the precious-metal theme.',1,3,False,'Which U.S. personal card sits higher in the Amex lineup?'),
+  (2,3,'Centurion is the invitation-only card above Platinum. Its nickname is the Black Card.',4,5,True,'Which U.S. personal card does Amex reserve for invited applicants?')],4)
 add('mastercard-world','cards','Mastercard','Mastercard premium credit tiers',
  ['World Mastercard','World Elite Mastercard','World Legend Mastercard'],
  'Mastercard network premium benefit tier', 'Mastercard global premium CREDIT product portfolio, 2026',
@@ -212,8 +213,8 @@ add('mastercard-world','cards','Mastercard','Mastercard premium credit tiers',
  'Network tiers are separate from an issuing bank’s rewards program and card annual fee. Availability varies by market.',
  ['https://www.mastercard.com/global/en/business/payments/consumer-payments/card/affluent-credit.html','https://www.mastercard.com/global/en/personal/find-a-card/credit-card/the-mastercard-collection.html'],
  ['ceiling','superlative-stacking'],
- [(1,2,'World Legend is Mastercard’s most premium World credit-card tier, above World Elite. “Elite” needed a successor.',5,5,True,'Which is Mastercard’s higher network tier?'),
-  (0,1,'World Elite is above World in network-level premium benefits. “Elite” clearly signals an upgrade until “Legend” arrives.',1,2,False)],5)
+ [(1,2,'World Legend sits above World Elite. Apparently there was still room above Elite.',5,5,True,'Which is Mastercard’s higher network tier?'),
+  (0,1,'World Elite adds a tier above World. Mastercard later put World Legend above both.',1,2,False,'Which Mastercard network tier offers more benefits?')],5)
 add('visa-us-levels','cards','Visa','Visa benefit platforms',
  ['Visa Traditional','Visa Signature','Visa Infinite'],
  'card-network benefit platform tier',
@@ -222,7 +223,7 @@ add('visa-us-levels','cards','Visa','Visa benefit platforms',
  'Individual card benefits are set by issuers and are not guaranteed identical at each Visa network level. Not a bank-by-bank comparison.',
  ['https://www.visa.com/en-us/personal/cards/credit'],
  ['ceiling','abstract-superlative'],
- [(1,2,'Visa Infinite is the higher network-tier designation above Signature. The word “Infinite” is a hard act to follow.',3,4,True)],3)
+ [(1,2,'Visa puts Infinite above Signature. These are Visa network tiers shared by cards from different banks.',3,4,True,'Which is the higher U.S. Visa network tier?')],3)
 
 # Hotel and airline membership: program tier, not different-company status comparisons.
 add('marriott-bonvoy','loyalty','Marriott','Marriott Bonvoy statuses',
@@ -232,9 +233,9 @@ add('marriott-bonvoy','loyalty','Marriott','Marriott Bonvoy statuses',
  'Status eligibility involves nights and, for Ambassador, qualifying spend; actual benefits vary by property.',
  ['https://www.marriott.com/loyalty/member-benefits.mi'],
  ['material-metaphor','meaning-shift','ceiling'],
- [(3,4,'Titanium Elite ranks above Platinum Elite in Marriott Bonvoy. Metal prestige is not a universally agreed ordering.',4,5,True),
-  (4,5,'Ambassador Elite is the top published status above Titanium Elite. The ladder abandons the metals altogether.',4,5,True,'Which is the higher Marriott Bonvoy status?'),
-  (2,3,'Marriott Platinum Elite ranks above Gold Elite. This is the familiar part of an increasingly strange hierarchy.',1,2,False)],5)
+ [(3,4,'Marriott puts Titanium Elite one tier above Platinum Elite.',4,5,True,'Which is the higher Marriott Bonvoy status?'),
+  (4,5,'Ambassador Elite sits above Titanium Elite. At the top, Marriott switches from a metal to a job title.',4,5,True,'Which is the higher Marriott Bonvoy status?'),
+  (2,3,'Platinum Elite sits above Gold Elite and below Titanium Elite.',1,2,False,'Which is the higher Marriott Bonvoy status?')],5)
 add('hyatt-world','loyalty','Hyatt','World of Hyatt statuses',
  ['Member','Discoverist','Explorist','Globalist'],
  'loyalty status level','World of Hyatt member tiers, 2026',
@@ -242,8 +243,8 @@ add('hyatt-world','loyalty','Hyatt','World of Hyatt statuses',
  'Hyatt’s terms define status tiers; the words do not represent an objective hierarchy of people.',
  ['https://world.hyatt.com/content/gp/en/tiers-and-benefits.html'],
  ['invented-words','opaque-order'],
- [(2,3,'Globalist is World of Hyatt’s highest standard published tier; Explorist is immediately below it.',5,5,True,'Which is the higher World of Hyatt status?'),
-  (1,2,'Explorist comes above Discoverist. They read like made-up synonyms rather than ranked levels.',4,5,False)],5)
+ [(2,3,'Globalist is the highest standard World of Hyatt status. Explorist is one tier below.',5,5,True,'Which is the higher World of Hyatt status?'),
+  (1,2,'Hyatt puts Explorist above Discoverist. Apparently you discover first and explore later.',4,5,False,'Which is the higher World of Hyatt status?')],5)
 add('hilton-honors','loyalty','Hilton','Hilton Honors statuses',
  ['Member','Silver','Gold','Diamond','Diamond Reserve'],
  'loyalty status level','Hilton Honors as of November 2026',
@@ -251,8 +252,8 @@ add('hilton-honors','loyalty','Hilton','Hilton Honors statuses',
  'Hilton’s criteria/benefits are program-specific; Reserve is not a synonym for the unrelated Chase card.',
  ['https://www.hilton.com/en/hilton-honors/member-benefits/'],
  ['ceiling','reused-adjective'],
- [(3,4,'Hilton Diamond Reserve includes Diamond benefits and adds premium upgrades and guaranteed late checkout. Diamond did not stay the top tier.',4,5,True),
-  (2,3,'Diamond sits above Gold in Hilton Honors. Hilton skips Platinum, which appears in other programs.',1,3,False)],5)
+ [(3,4,'Diamond Reserve adds benefits above Diamond, including guaranteed late checkout.',4,5,True,'Which is the higher Hilton Honors status?'),
+  (2,3,'Diamond is the next Hilton Honors tier above Gold. Hilton skips Platinum entirely.',1,3,False,'Which is the higher Hilton Honors status?')],5)
 add('delta-medallion','loyalty','Delta Air Lines','Delta Medallion statuses',
  ['Silver Medallion','Gold Medallion','Platinum Medallion','Diamond Medallion'],
  'loyalty status level','Delta SkyMiles Medallion program, US',
@@ -260,7 +261,7 @@ add('delta-medallion','loyalty','Delta Air Lines','Delta Medallion statuses',
  'Delta status rules are revised periodically; applies to Medallion tiers, not co-branded Amex card colors.',
  ['https://www.delta.com/us/en/skymiles/medallion-program/how-to-qualify'],
  ['material-metaphor','mixed-scale'],
- [(2,3,'Delta Diamond Medallion ranks above Platinum Medallion. Gems beat metals in this airline’s hierarchy.',2,4,False)],3)
+ [(2,3,'Delta puts Diamond above Platinum. Its four Medallion tiers start with Silver and Gold.',2,4,False,'Which is the higher Delta Medallion status?')],3)
 add('united-cabins','loyalty','United Airlines','United long-haul seats',
  ['United Economy','United Economy Plus','United Premium Plus','United Polaris'],
  'cabin/service product tier',
@@ -269,8 +270,8 @@ add('united-cabins','loyalty','United Airlines','United long-haul seats',
  'Economy Plus is extra-legroom economy seating; Premium Plus is premium economy; Polaris is business-class on eligible routes. Not all flights offer all classes.',
  ['https://www.united.com/en/us/deals/flights/seat-options'],
  ['near-synonyms','opaque-order','meaning-shift'],
- [(1,2,'United Premium Plus is a separate premium-economy cabin, above Economy Plus seating in regular economy. Two words, same ingredients, different products.',5,5,True,'Which is United’s higher-tier seating option?'),
-  (2,3,'Polaris is United’s long-haul business-class product, above Premium Plus. The celestial name ends the descriptive ladder.',3,4,False)],4)
+ [(1,2,'Premium Plus is premium economy. Economy Plus is an economy seat with extra legroom.',5,5,True,'Which seating option is higher in United’s lineup?'),
+  (2,3,'Polaris is United’s long-haul business class. Premium Plus is premium economy.',3,4,False,'Which United cabin is higher on a long-haul flight?')],4)
 
 # Career and public institutions.
 add('gitlab-engineering','careers','GitLab','Engineering individual contributors',
@@ -281,8 +282,8 @@ add('gitlab-engineering','careers','GitLab','Engineering individual contributors
  'Job ladders vary by employer; this is specifically GitLab, not a universal global salary/status standard. Use Principal, not Principle.',
  ['https://handbook.gitlab.com/handbook/engineering/careers/matrix/development/'],
  ['industry-jargon','opaque-order'],
- [(1,2,'At GitLab, Staff Engineer is above Senior Engineer on the individual-contributor ladder. “Staff” does not mean junior staff.',5,5,True,'Which engineering title is more senior at GitLab?'),
-  (2,3,'Principal Engineer outranks Staff Engineer in GitLab’s IC career ladder. The word is “Principal,” not “Principle.”',3,3,False)],5)
+ [(1,2,'At GitLab, Staff Engineer is the level above Senior Engineer. Other employers set their own titles.',5,5,True,'Which engineering title is more senior at GitLab?'),
+  (2,3,'Principal Engineer sits above Staff Engineer on GitLab’s individual-contributor track.',3,3,False,'Which engineering title is more senior at GitLab?')],5)
 add('us-army-officer','careers','US Army','US Army commissioned officers',
  ['Major','Lieutenant Colonel','Colonel','Brigadier General','Major General','Lieutenant General','General'],
  'official Army officer rank', 'United States Army commissioned officer structure',
@@ -290,9 +291,9 @@ add('us-army-officer','careers','US Army','US Army commissioned officers',
  'Do not compare bare “Lieutenant” to “Major” and extrapolate to general-officer ranks. These are formal ranks, not titles of all militaries.',
  ['https://www.army.mil/ranks/index.html'],
  ['prefix-inversion','historical-title'],
- [(4,5,'Lieutenant General outranks Major General in the U.S. Army. The modifier reverses what many people expect from Lieutenant versus Major.',5,5,True,'Which is the higher U.S. Army rank?'),
-  (3,4,'Major General outranks Brigadier General. Neither first word makes the general-rank ordering immediately obvious.',3,4,False),
-  (1,2,'Colonel outranks Lieutenant Colonel. Here the “Lieutenant” modifier indicates the more junior rank.',2,3,False)],5)
+ [(4,5,'A lieutenant general wears three stars. A major general wears two. Compare plain lieutenant and major and the order reverses.',5,5,True,'Which is the higher U.S. Army rank?'),
+  (3,4,'A major general wears two stars. A brigadier general wears one.',3,4,False,'Which is the higher U.S. Army rank?'),
+  (1,2,'A lieutenant colonel ranks just below a colonel in the U.S. Army.',2,3,False,'Which is the higher U.S. Army rank?')],5)
 add('academic-harvard','careers','Harvard University','Academic faculty ranks',
  ['Assistant Professor','Associate Professor','Professor'],
  'tenure-track academic rank',
@@ -301,8 +302,8 @@ add('academic-harvard','careers','Harvard University','Academic faculty ranks',
  'In some universities “Professor of Practice,” research ranks, visiting titles, etc. are separate tracks. Compare conventional tenure-track ranks only.',
  ['https://academic-appointments.fas.harvard.edu/chapter-2a'],
  ['false-literal-meaning','industry-jargon'],
- [(0,1,'Associate Professor is a higher academic rank than Assistant Professor. “Assistant” does not mean a personal assistant.',2,4,False),
-  (1,2,'The unmodified Professor title denotes the full-professor rank, above Associate Professor on this ladder.',2,3,False)],3)
+ [(0,1,'Associate professor is the step above assistant professor.',2,4,False,'Which faculty rank is more senior at Harvard?'),
+  (1,2,'Professor is the full-professor rank, one step above associate professor.',2,3,False,'Which faculty rank is more senior at Harvard?')],3)
 
 # Fashion: broad positioning only. NEVER claim every garment is 'better'.
 add('ralph-lauren-menswear','fashion','Ralph Lauren','Ralph Lauren menswear',
@@ -313,7 +314,7 @@ add('ralph-lauren-menswear','fashion','Ralph Lauren','Ralph Lauren menswear',
  'Not a claim that every Purple Label item is more expensive or better than every Polo item. RRL is a parallel aesthetic, not an intermediate rung.',
  ['https://corporate.ralphlauren.com/ralph-lauren-luxury'],
  ['sub-brand','hidden-premium'],
- [(0,1,'Ralph Lauren calls Purple Label its ultimate expression of luxury menswear. Polo Ralph Lauren is the more accessible mainline.',4,4,True)],4)
+ [(0,1,'Purple Label is Ralph Lauren’s luxury menswear line. Polo is the more accessible label.',4,4,True,'Which is Ralph Lauren’s higher-end menswear label?')],4)
 add('armani-labels','fashion','Armani','Armani fashion houses',
  ['Armani Exchange','Emporio Armani','Giorgio Armani'],
  'mainline luxury / price positioning',
@@ -322,8 +323,8 @@ add('armani-labels','fashion','Armani','Armani fashion houses',
  'Positioning and average prices, not guaranteed garment-by-garment quality. Product categories and collaborations can differ.',
  ['https://armanivalues.com/overview/the-world-of-armani/'],
  ['sub-brand','opaque-order','mixed-language'],
- [(1,2,'The Giorgio Armani label is the house’s high-luxury main line above Emporio Armani. Italian wording does not offer a universal scale.',4,4,True),
-  (0,1,'Emporio Armani is positioned above the younger, more accessible Armani Exchange line.',3,3,False)],4)
+ [(1,2,'Giorgio Armani is the house’s luxury main line. Emporio Armani sits below it.',4,4,True,'Which menswear line does Armani position as more luxurious?'),
+  (0,1,'Emporio Armani sits above Armani Exchange, the house’s more accessible line.',3,3,False,'Which menswear line does Armani position as more luxurious?')],4)
 
 # Cars. Metric-defined ladders avoid 'best car' nonsense.
 add('audi-a3-family','cars','Audi','Audi A3 / S3 / RS 3',
@@ -333,8 +334,8 @@ add('audi-a3-family','cars','Audi','Audi A3 / S3 / RS 3',
  'This compares performance versions, not fuel economy, ride comfort, or price/insurance value.',
  ['https://www.audiusa.com/en/models/sedan-models/'],
  ['letter-prefix','opaque-order'],
- [(1,2,'RS 3 is the more extreme performance model above S3. “RS” is not just a longer version of “S.”',3,4,True),
-  (0,1,'S3 is the sportier performance variant above the everyday A3. Audi’s letters encode a model-family hierarchy.',2,2,False)],4)
+ [(1,2,'The RS 3 sits above the S3 at the performance end of Audi’s A3 family.',3,4,True,'Which is the higher-performance member of Audi’s A3 family?'),
+  (0,1,'The S3 is the performance step up from the A3. Audi also sells an RS 3 above it.',2,2,False,'Which is the higher-performance member of Audi’s A3 family?')],4)
 add('audi-trim','cars','Audi','Audi equipment trim names',
  ['Premium','Premium Plus','Prestige'],
  'vehicle equipment trim tier',
@@ -343,7 +344,7 @@ add('audi-trim','cars','Audi','Audi equipment trim names',
  'These trims and content depend on model year/vehicle; verify availability before applying to a specific car.',
  ['https://www.audiusa.com/en/inventory/'],
  ['superlative','near-synonyms','ceiling'],
- [(1,2,'Audi Prestige is above Premium Plus where both trims are offered. The adjective alone does not tell you which is top.',4,4,True)],4)
+ [(1,2,'Prestige sits above Premium Plus. Even Premium with a Plus leaves a tier to go.',4,4,True,'Which U.S. Audi trim includes more equipment when both are offered?')],4)
 add('bmw-m3','cars','BMW','M3 sedan variants',
  ['M3','M3 Competition','M3 Competition xDrive'],
  'manufacturer rated horsepower',
@@ -352,8 +353,8 @@ add('bmw-m3','cars','BMW','M3 sedan variants',
  'Strictly a horsepower ranking for these listed 2027 US sedans; not a promise the xDrive is lighter or superior for every driving purpose.',
  ['https://www.bmwusa.com/vehicles/m-series/m3-series/bmw-m3-sedan.html'],
  ['compound-suffix','hidden-performance'],
- [(1,2,'In BMW’s listed 2027 M3 sedan lineup, Competition xDrive is rated higher in horsepower than rear-drive Competition. xDrive itself describes all-wheel drive, not a universal power upgrade.',3,3,False),
-  (0,1,'BMW’s M3 Competition version has higher factory-rated output than the standard M3. One clear performance adjective for a change.',1,2,False)],3)
+ [(1,2,'BMW rates the Competition xDrive above the rear-drive Competition for this model year.',3,3,False,'Which 2027 BMW M3 sedan has more factory-rated horsepower?'),
+  (0,1,'The M3 Competition has a higher factory horsepower rating than the standard M3.',1,2,False,'Which 2027 BMW M3 sedan has more factory-rated horsepower?')],3)
 add('porsche-carrera','cars','Porsche','911 Carrera variants',
  ['911 Carrera','911 Carrera S','911 Carrera GTS'],
  'rated engine horsepower tier',
@@ -362,8 +363,8 @@ add('porsche-carrera','cars','Porsche','911 Carrera variants',
  'A ranking by factory horsepower only; Carrera T, Turbo and GT3 serve partly different roles, so exclude them from this simple ladder.',
  ['https://www.porsche.com/usa/models/911/carrera-models/911-carrera-s/'],
  ['suffix-letters','opaque-order'],
- [(1,2,'The 911 Carrera GTS has higher factory output than Carrera S. Porsche expects you to know what GTS means.',3,4,False),
-  (0,1,'Within the Carrera coupe family, S has more horsepower than the standard Carrera. The S suffix identifies the next tier.',2,2,False)],3)
+ [(1,2,'The Carrera GTS has more factory-rated horsepower than the Carrera S.',3,4,False,'Which current 911 Carrera coupé does Porsche rate for more horsepower?'),
+  (0,1,'The Carrera S is the more powerful of these two Carrera coupés.',2,2,False,'Which current 911 Carrera coupé does Porsche rate for more horsepower?')],3)
 add('lucid-air','cars','Lucid','Lucid Air trims',
  ['Air Pure','Air Touring','Air Grand Touring','Air Sapphire'],
  'premium performance and price/flagship positioning',
@@ -384,8 +385,8 @@ add('starbucks-iced','food','Starbucks','Iced coffee cup sizes',
  'Specific to the cited iced coffee product; hot venti is a different volume and Trenta is not offered for every beverage.',
  ['https://www.starbucks.com/menu/product/2123863/iced'],
  ['mixed-languages','misleading-adjective','opaque-order'],
- [(0,1,'A Grande iced coffee is 16 fl oz; Tall is 12. The apparently tall option is the smaller one.',3,5,True),
-  (2,3,'Trenta is 30 fl oz, bigger than iced Venti at 24. “Venti” suggests twenty, but iced Venti is not literally twenty ounces.',4,5,True,'Which Starbucks size holds more iced coffee?')],4)
+ [(0,1,'Grande holds 16 fluid ounces. Tall is the smaller cup at 12.',3,5,True,'Which U.S. Starbucks size holds more iced coffee?'),
+  (2,3,'Trenta holds 30 fluid ounces. Venti means twenty in Italian, but an iced Venti holds 24.',4,5,True,'Which U.S. Starbucks size holds more iced coffee?')],4)
 add('gia-clarity','other','GIA','Diamond clarity grades',
  ['I3','I2','I1','SI2','SI1','VS2','VS1','VVS2','VVS1','IF','FL'],
  'GIA clarity grade', 'GIA 4Cs diamond clarity scale',
@@ -393,9 +394,9 @@ add('gia-clarity','other','GIA','Diamond clarity grades',
  'Clarity only—not the overall beauty, rarity, value, color, or cut of a diamond.',
  ['https://4cs.gia.edu/en-us/diamond-clarity/'],
  ['counterintuitive-number','acronym','domain-expertise'],
- [(5,6,'VS1 is higher clarity than VS2. The smaller digit is the higher grade within the same clarity prefix.',4,5,True),
-  (9,10,'FL (Flawless) outranks IF (Internally Flawless): surface blemishes still count for the top grade.',4,5,True),
-  (7,8,'VVS1 is above VVS2, even though the latter has the larger number. Diamond clarity uses smaller numbers for finer grades.',3,4,False)],4)
+ [(5,6,'VS1 is a higher clarity grade than VS2. Within VS, the smaller number wins.',4,5,True,'Which GIA diamond grade has higher clarity?'),
+  (9,10,'An Internally Flawless diamond can have surface blemishes. Flawless is the higher grade.',4,5,True,'Which GIA diamond grade has higher clarity?'),
+  (7,8,'VVS1 sits above VVS2. Within this grade, the smaller number indicates higher clarity.',3,4,False,'Which GIA diamond grade has higher clarity?')],4)
 add('gia-color','other','GIA','Diamond color grades',
  ['Z','Y','X','W','V','U','T','S','R','Q','P','O','N','M','L','K','J','I','H','G','F','E','D'],
  'GIA diamond colorlessness grade', 'GIA D–Z diamond color scale (normal colorless-to-light-colored grading)',
@@ -403,8 +404,8 @@ add('gia-color','other','GIA','Diamond color grades',
  'This ranks absence of visible color for diamonds assessed on the D–Z scale, not beauty or market price for fancy-colored stones.',
  ['https://myapps.gia.edu/ReportCheckPortal/resources/HTML_Pages/About-4Cs-Color.html'],
  ['inverted-alphabet','domain-expertise'],
- [(21,22,'On GIA’s D–Z color scale, D is the most colorless grade and E is below it. The scale starts at D, not A.',5,5,True),
-  (16,17,'I is a higher color grade than J. In this scale, earlier letters are better.',2,2,False)],3)
+ [(21,22,'D is the most colorless grade on GIA’s D–Z scale. E comes next.',5,5,True,'Which GIA grade denotes a more colorless diamond?'),
+  (16,17,'I is closer to the colorless end of the scale than J. GIA grades run from D through Z.',2,2,False,'Which GIA grade denotes a more colorless diamond?')],3)
 add('burgundy-cru','food','Bourgogne Wines','Burgundy appellation levels',
  ['Bourgogne regional AOC','Village AOC','Premier Cru','Grand Cru'],
  'Burgundy appellation classification level',
@@ -413,8 +414,8 @@ add('burgundy-cru','food','Bourgogne Wines','Burgundy appellation levels',
  'Ranks legal appellation classification, not a blind-tasting guarantee or a universal claim about every individual bottle.',
  ['https://www.bourgogne-wines.com/wine-and-terroir/decoding-the-aocs/bourgogne-wines-decoding-the-aocs,2467,9263.html'],
  ['non-English-rank','ceiling'],
- [(2,3,'Grand Cru is the higher Burgundy appellation classification, above Premier Cru. “Premier” did not mean the top rank.',4,4,True),
-  (1,2,'Premier Cru is above Village AOC in the Burgundy classification. These are regulated origin/designation tiers, not tasting scores.',3,3,False)],3)
+ [(2,3,'Grand Cru sits above Premier Cru. Knowing that premier means first in French may have cost you a point.',4,4,True,'Which is the higher Burgundy wine appellation?'),
+  (1,2,'Premier Cru sits above Village in Burgundy’s appellation system. The classification applies to the wine’s origin.',3,3,False,'Which is the higher Burgundy wine appellation?')],3)
 
 # Additional families. Historical product questions use a release or generation
 # so a retired model or renamed plan still has a well-defined answer.
@@ -707,6 +708,79 @@ add('flying-blue-status', 'loyalty', 'Flying Blue', 'Flying Blue status tiers',
      (0, 1, 'Explorer is the entry tier. Silver is the first status level you can earn above it.',
       3, 4, False, 'Which Flying Blue status is higher in the program’s ladder?')], 4)
 
+add('whisper-parameters', 'ai', 'OpenAI', 'Whisper speech recognition models',
+    ['Whisper medium', 'Whisper turbo', 'Whisper large'], 'parameter count',
+    'Multilingual Whisper checkpoints in the OpenAI model table',
+    'Tiny, base, small, medium, large. Then a name about speed turns up.',
+    'Parameter counts compare size alone. Speed also depends on the hardware and recording.',
+    ['https://github.com/openai/whisper#available-models-and-languages'], ['different-metric'],
+    [(0, 1, 'Turbo has 809 million parameters. Medium has 769 million. A name about speed landed between two names about size.',
+      4, 5, True, 'Which Whisper speech model has more parameters?'),
+     (1, 2, 'Large has 1.55 billion parameters. Turbo is a streamlined version of large-v3 with 809 million.',
+      3, 4, False, 'Which Whisper speech model has more parameters?')])
+add('syslog-severity', 'connectivity', 'IETF', 'Syslog severity levels',
+    ['Critical', 'Alert', 'Emergency'], 'message severity', 'Syslog severity names defined in RFC 5424',
+    'Critical still leaves two levels above it.', 'Higher urgency has a smaller numeric code.',
+    ['https://www.rfc-editor.org/info/rfc5424/'], ['inverted-number', 'near-synonyms'],
+    [(0, 1, 'Alert means someone must act immediately. It is level 1. Critical is level 2, one step less urgent.',
+      5, 5, True, 'Which syslog message is more urgent?'),
+     (1, 2, 'Emergency is level 0, reserved for an unusable system. Alert is level 1.',
+      4, 4, False, 'Which syslog message signals the more severe failure?')])
+add('github-repo-roles', 'software', 'GitHub', 'Organization repository roles',
+    ['Read', 'Triage', 'Write'], 'built-in repository permissions', 'Built-in roles for repositories owned by GitHub organizations',
+    'GitHub carved out a role between reader and writer for people managing issues.',
+    'Custom roles and branch protection can change what an individual can do.',
+    ['https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization'],
+    ['role-name'], [(0, 1, 'Triage lets a contributor label and close other people’s issues. Read lets them participate in the discussion.',
+      3, 4, True, 'Which built-in GitHub role can label someone else’s issue?'),
+     (1, 2, 'Write grants permission to push code. Triage grants tools for managing issues and pull requests.',
+      2, 3, False, 'Which built-in GitHub role grants permission to push code?')])
+add('usda-olive-size', 'food', 'USDA', 'Canned whole ripe olive sizes',
+    ['Extra Large', 'Jumbo', 'Colossal', 'Super Colossal'], 'size of an individual whole olive',
+    'USDA Table I for canned whole ripe olives', 'The USDA found three names bigger than Extra Large.',
+    'The count-per-pound ranges apply to whole ripe olives.',
+    ['https://www.ams.usda.gov/sites/default/files/media/Canned%20Ripe%20Olives%20Standard.pdf'], ['ceiling', 'superlative'],
+    [(1, 2, 'Colossal olives run 41–50 to a pound. Jumbo takes 51–60. The USDA even has a Super Colossal.',
+      4, 5, True, 'Which USDA label goes on the bigger whole olives?'),
+     (0, 1, 'Jumbo sits one size above Extra Large. There are still two sizes above Jumbo.',
+      3, 4, False, 'Which USDA label means a larger whole olive?')])
+add('printed-sheets', 'arts', 'Folger Shakespeare Library', 'Early printed book formats',
+    ['Octavo', 'Quarto', 'Folio'], 'area per leaf from an equal sheet', 'Traditional book formats folded from identical sheets of paper',
+    'The number in the name counts leaves produced from a sheet.',
+    'The original sheet size matters when comparing actual books.',
+    ['https://www.folger.edu/explore/shakespeare-in-print/publishing-shakespeare/'], ['inverted-number'],
+    [(0, 1, 'One sheet makes four leaves in quarto or eight in octavo. Each quarto leaf has twice the area.',
+      4, 5, True, 'Start with the same sheet of paper. Which book format gives you larger pages?'),
+     (1, 2, 'A folio sheet folds once to make two leaves. A quarto folds twice, so each page is half as large.',
+      3, 4, False, 'With the same sheet size, which book format has larger pages?')])
+add('type-spaces', 'arts', 'Unicode', 'Typesetting spaces',
+    ['Hair space', 'Thin space', 'En space', 'Em space'], 'nominal width at the same type size',
+    'Conventional space widths in Unicode General Punctuation', 'One letter doubles the width from en to em.',
+    'Actual glyph widths can vary by font and justification.',
+    ['https://www.unicode.org/Public/18.0.0/charts/nameslist/2000/'], ['near-synonyms'],
+    [(2, 3, 'An em space spans one em. An en space is half that width. At 12-point type the nominal widths are 12 and 6 points.',
+      3, 4, True, 'At the same type size, which space is conventionally wider?'),
+     (0, 1, 'A thin space is typically a fifth or a sixth of an em. A hair space is thinner still.',
+      3, 4, False, 'In traditional typesetting, which space is wider?')])
+add('riaa-albums', 'arts', 'RIAA', 'U.S. album certifications',
+    ['Gold', 'Platinum', '9× Platinum', 'Diamond'], 'minimum certified album units',
+    'U.S. RIAA Album Awards under the standard album program', 'The RIAA changes materials again at ten million units.',
+    'Units include eligible streaming and downloads as well as album sales.',
+    ['https://www.riaa.com/wp-content/uploads/2022/03/ALBUM-AWARD-RIAA-AND-GRF-CERTIFICATION-AUDIT-REQUIREMENTS.pdf'],
+    ['material-metaphor'], [(2, 3, 'Diamond starts at ten million album units in the U.S. Nine-times Platinum requires nine million.',
+      4, 5, True, 'Which U.S. album award takes more certified units?')])
+add('geologic-time', 'outdoors', 'U.S. Geological Survey', 'Divisions of geologic time',
+    ['Epoch', 'Period', 'Era', 'Eon'], 'rank of a geologic time unit',
+    'Formal units on the USGS geologic time chart', 'Everyday English treats era and epoch almost interchangeably.',
+    'This compares ranks in the hierarchy. Individual units have different durations.',
+    ['https://pubs.usgs.gov/gip/141/gip141.pdf'], ['near-synonyms'],
+    [(0, 1, 'A period contains epochs. The Quaternary is a period. The Pleistocene and Holocene are its epochs.',
+      4, 5, True, 'Which unit contains the other on the geologic time scale?'),
+     (1, 2, 'An era contains periods. The Jurassic is a period within the Mesozoic Era.',
+      3, 4, False, 'Which is the broader division of geologic time?')])
+
+
+
 # Carefully audited non-ladders. Not playable as forced 2-option 'higher?' questions.
 BOUNDARY=[
  {
@@ -794,13 +868,12 @@ questions=[]
 for ladder in L:
     pairs=ladder.pop('_pairs')
     for pnum, entry in enumerate(pairs, start=1):
-        low_idx, high_idx, why, difficulty, surprise, featured, *rest = entry
+        low_idx, high_idx, why, difficulty, surprise, featured, ask = entry
         assert 0 <= low_idx < high_idx < len(ladder['low_to_high']), (ladder['id'], entry)
         low=ladder['low_to_high'][low_idx]['label']
         high=ladder['low_to_high'][high_idx]['label']
         # Alternate answer position, with separate immutable truth field.
         option_labels=[high,low] if len(questions) % 2 else [low,high]
-        ask=rest[0] if rest else f"Which ranks higher on {ladder['ranking_metric']}?"
         questions.append({
             'id':f"{ladder['id']}-q{pnum:02d}",
             'ladder_id':ladder['id'],
@@ -826,17 +899,17 @@ for ladder in L:
 # A single hand-picked starting round, no dynamically invented pairings.
 FEATURED_ORDER=[
  'google-gemini4-q01',
- 'nvidia-4070-q01',
- 'chase-sapphire-q01',
- 'gitlab-engineering-q01',
- 'hyatt-world-q01',
- 'mastercard-world-q01',
- 'apple-m2-chips-q01',
+ 'usda-olive-size-q01',
+ 'ba-long-haul-q01',
+ 'syslog-severity-q01',
  'us-army-officer-q01',
+ 'printed-sheets-q01',
+ 'nvidia-4070-q01',
+ 'mastercard-world-q01',
+ 'champagne-dosage-q01',
  'anthropic-claude-q01',
- 'united-cabins-q01',
- 'marriott-bonvoy-q02',
- 'starbucks-iced-q02',
+ 'yosemite-decimal-q01',
+ 'efl-divisions-q01',
 ]
 
 def dump(filename, obj):

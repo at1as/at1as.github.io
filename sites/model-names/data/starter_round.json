@@ -3,17 +3,17 @@
   "title": "A dozen great naming puzzles",
   "question_ids": [
     "google-gemini4-q01",
-    "nvidia-4070-q01",
-    "chase-sapphire-q01",
-    "gitlab-engineering-q01",
-    "hyatt-world-q01",
-    "mastercard-world-q01",
-    "apple-m2-chips-q01",
+    "usda-olive-size-q01",
+    "ba-long-haul-q01",
+    "syslog-severity-q01",
     "us-army-officer-q01",
+    "printed-sheets-q01",
+    "nvidia-4070-q01",
+    "mastercard-world-q01",
+    "champagne-dosage-q01",
     "anthropic-claude-q01",
-    "united-cabins-q01",
-    "marriott-bonvoy-q02",
-    "starbucks-iced-q02"
+    "yosemite-decimal-q01",
+    "efl-divisions-q01"
   ],
   "recommended_session_length": 6,
   "instructions": "Draw 6 without repeats for first play. The first 12 ids are editor-ranked candidates, not an enforced linear progression. Keep category variety."

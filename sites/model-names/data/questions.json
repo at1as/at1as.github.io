@@ -36,7 +36,7 @@
       "ladder_id": "google-gemini4",
       "category": "ai",
       "brand": "Google",
-      "question": "Which Gemini model does Google position as more capable?",
+      "question": "Which Gemini 4 model does Google rank higher?",
       "options": [
         "Gemini 4 Carbon",
         "Gemini 4 Neon"
@@ -44,7 +44,7 @@
       "answer": "Gemini 4 Carbon",
       "answer_node_id": "google-gemini4:2",
       "higher_than": "Gemini 4 Neon",
-      "explanation": "Google calls Carbon its strongest model. Neon is heavier than carbon, so atomic mass gives the opposite answer.",
+      "explanation": "Google puts Carbon above Neon. A periodic table would lead you to pick Neon by both mass and atomic number.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -62,7 +62,7 @@
       "ladder_id": "google-gemini4",
       "category": "ai",
       "brand": "Google",
-      "question": "Which ranks higher on vendor capability positioning?",
+      "question": "Which Gemini 4 model does Google recommend for harder reasoning tasks?",
       "options": [
         "Gemini 4 Hydrogen",
         "Gemini 4 Neon"
@@ -70,7 +70,7 @@
       "answer": "Gemini 4 Neon",
       "answer_node_id": "google-gemini4:1",
       "higher_than": "Gemini 4 Hydrogen",
-      "explanation": "Neon is the more capable reasoning tier; Hydrogen is the speed-oriented everyday model. Chemistry offers no coherent full ordering for these labels.",
+      "explanation": "Neon is the reasoning model. Google offers Hydrogen for fast, everyday work.",
       "difficulty": 3,
       "surprise": 4,
       "featured": false,
@@ -88,7 +88,7 @@
       "ladder_id": "anthropic-claude",
       "category": "ai",
       "brand": "Anthropic",
-      "question": "Which of these Claude models does Anthropic recommend for harder reasoning tasks?",
+      "question": "Which Claude model does Anthropic recommend for the hardest reasoning tasks?",
       "options": [
         "Claude Fable 5.2",
         "Claude Opus 5.5"
@@ -96,7 +96,7 @@
       "answer": "Claude Fable 5.2",
       "answer_node_id": "anthropic-claude:3",
       "higher_than": "Claude Opus 5.5",
-      "explanation": "Anthropic recommends Fable for demanding reasoning when Opus at higher effort falls short. “Fable” is not an intuitively bigger thing than “Opus.”",
+      "explanation": "Anthropic recommends Fable when Opus at higher effort falls short. A short story with a moral is quite a promotion from a magnum opus.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -114,7 +114,7 @@
       "ladder_id": "anthropic-claude",
       "category": "ai",
       "brand": "Anthropic",
-      "question": "Which ranks higher on vendor recommended capability tier?",
+      "question": "Which Claude 5.5 model does Anthropic put higher for complex work?",
       "options": [
         "Claude Sonnet 5.5",
         "Claude Opus 5.5"
@@ -122,7 +122,7 @@
       "answer": "Claude Opus 5.5",
       "answer_node_id": "anthropic-claude:2",
       "higher_than": "Claude Sonnet 5.5",
-      "explanation": "Opus is Anthropic’s general high-end agentic model, above speed-oriented Sonnet in its capability positioning. A sonnet at least has a more constrained form than an opus.",
+      "explanation": "Opus sits above Sonnet. A sonnet has 14 lines. An opus can be a work of any length.",
       "difficulty": 2,
       "surprise": 3,
       "featured": false,
@@ -140,7 +140,7 @@
       "ladder_id": "anthropic-claude",
       "category": "ai",
       "brand": "Anthropic",
-      "question": "Which ranks higher on vendor recommended capability tier?",
+      "question": "Which Claude 5.5 model does Anthropic rank higher for complex work?",
       "options": [
         "Claude Sonnet 5.5",
         "Claude Haiku 5.5"
@@ -148,7 +148,7 @@
       "answer": "Claude Sonnet 5.5",
       "answer_node_id": "anthropic-claude:1",
       "higher_than": "Claude Haiku 5.5",
-      "explanation": "Sonnet is positioned above Haiku for intelligence; Haiku is the high-volume, fastest tier. The poetic scale is memorable but hardly universal.",
+      "explanation": "Sonnet sits above Haiku. Of all the Claude names, these two at least give you lengths to compare.",
       "difficulty": 2,
       "surprise": 3,
       "featured": false,
@@ -174,7 +174,7 @@
       "answer": "Apple M2 Ultra",
       "answer_node_id": "apple-m2-chips:3",
       "higher_than": "Apple M2 Max",
-      "explanation": "Apple built M2 Ultra using two M2 Max dies linked by UltraFusion. “Max” still had a tier above it.",
+      "explanation": "M2 Ultra contains two M2 Max dies. Apple gave a fairly literal answer to what comes after Max.",
       "difficulty": 3,
       "surprise": 5,
       "featured": true,
@@ -193,7 +193,7 @@
       "ladder_id": "apple-m2-chips",
       "category": "chips",
       "brand": "Apple",
-      "question": "Which ranks higher on Apple chip performance/capability tier?",
+      "question": "Which is the higher-end M2 chip?",
       "options": [
         "Apple M2 Max",
         "Apple M2 Pro"
@@ -201,7 +201,7 @@
       "answer": "Apple M2 Max",
       "answer_node_id": "apple-m2-chips:2",
       "higher_than": "Apple M2 Pro",
-      "explanation": "Within the M2 family, Max expands capability over Pro. Both names sound premium; only the product spec defines the order.",
+      "explanation": "M2 Max sits between M2 Pro and M2 Ultra in Apple’s lineup.",
       "difficulty": 2,
       "surprise": 3,
       "featured": false,
@@ -220,7 +220,7 @@
       "ladder_id": "nvidia-4070",
       "category": "chips",
       "brand": "NVIDIA",
-      "question": "Which is the higher-tier desktop GPU?",
+      "question": "Which desktop RTX 4070 does NVIDIA rank higher?",
       "options": [
         "RTX 4070 SUPER",
         "RTX 4070 Ti"
@@ -228,7 +228,7 @@
       "answer": "RTX 4070 Ti",
       "answer_node_id": "nvidia-4070:2",
       "higher_than": "RTX 4070 SUPER",
-      "explanation": "The plain Ti is above the plain SUPER in this 4070 family; adding “SUPER” does not always beat adding “Ti.”",
+      "explanation": "The 4070 Ti sits above the 4070 SUPER. NVIDIA also made a 4070 Ti SUPER, which sits above both.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -246,7 +246,7 @@
       "ladder_id": "nvidia-4070",
       "category": "chips",
       "brand": "NVIDIA",
-      "question": "Which ranks higher on 4070 family gaming GPU performance/capability tier?",
+      "question": "Which is the higher-end desktop RTX 4070?",
       "options": [
         "RTX 4070 Ti SUPER",
         "RTX 4070 Ti"
@@ -254,7 +254,7 @@
       "answer": "RTX 4070 Ti SUPER",
       "answer_node_id": "nvidia-4070:3",
       "higher_than": "RTX 4070 Ti",
-      "explanation": "RTX 4070 Ti SUPER goes above RTX 4070 Ti; combining suffixes makes yet another tier.",
+      "explanation": "The Ti SUPER sits above the Ti. On this card NVIDIA kept both suffixes.",
       "difficulty": 3,
       "surprise": 4,
       "featured": false,
@@ -272,7 +272,7 @@
       "ladder_id": "nvidia-4070",
       "category": "chips",
       "brand": "NVIDIA",
-      "question": "Which ranks higher on 4070 family gaming GPU performance/capability tier?",
+      "question": "Which is the higher-end desktop RTX 4070?",
       "options": [
         "RTX 4070",
         "RTX 4070 SUPER"
@@ -280,7 +280,7 @@
       "answer": "RTX 4070 SUPER",
       "answer_node_id": "nvidia-4070:1",
       "higher_than": "RTX 4070",
-      "explanation": "RTX 4070 SUPER is above RTX 4070 in this family. On its own “SUPER” is the easy part of the grammar.",
+      "explanation": "The SUPER sits one step above the original 4070 in the desktop lineup.",
       "difficulty": 1,
       "surprise": 2,
       "featured": false,
@@ -298,7 +298,7 @@
       "ladder_id": "intel-ultra",
       "category": "chips",
       "brand": "Intel",
-      "question": "Which ranks higher on Intel processor product tier?",
+      "question": "Within one Core Ultra generation, which is Intel’s higher tier?",
       "options": [
         "Core Ultra 9",
         "Core Ultra 7"
@@ -306,7 +306,7 @@
       "answer": "Core Ultra 9",
       "answer_node_id": "intel-ultra:2",
       "higher_than": "Core Ultra 7",
-      "explanation": "Within a comparable Core Ultra family, the 9 tier sits above 7. Every chip is already “Ultra.”",
+      "explanation": "Core Ultra 9 sits above Core Ultra 7. Both are already called Ultra.",
       "difficulty": 1,
       "surprise": 2,
       "featured": false,
@@ -324,7 +324,7 @@
       "ladder_id": "amd-ryzen7000",
       "category": "chips",
       "brand": "AMD",
-      "question": "Which ranks higher on core count in same 65W Zen 4 desktop cohort?",
+      "question": "Which of these 65-watt Ryzen desktop CPUs has more cores?",
       "options": [
         "Ryzen 7 7700",
         "Ryzen 9 7900"
@@ -332,7 +332,7 @@
       "answer": "Ryzen 9 7900",
       "answer_node_id": "amd-ryzen7000:2",
       "higher_than": "Ryzen 7 7700",
-      "explanation": "In the specified 65W Zen 4 cohort, the 7900 has 12 cores to the 7700’s 8. Do not infer this from the last two digits alone.",
+      "explanation": "The Ryzen 9 7900 has 12 cores. The Ryzen 7 7700 has eight.",
       "difficulty": 1,
       "surprise": 2,
       "featured": false,
@@ -350,7 +350,7 @@
       "ladder_id": "aws-ec2-t2",
       "category": "software",
       "brand": "Amazon Web Services",
-      "question": "Which ranks higher on instance resource size?",
+      "question": "Which EC2 T2 instance comes with more memory?",
       "options": [
         "t2.micro",
         "t2.nano"
@@ -358,7 +358,7 @@
       "answer": "t2.micro",
       "answer_node_id": "aws-ec2-t2:1",
       "higher_than": "t2.nano",
-      "explanation": "Within EC2 T2, micro offers more resources than nano. Neither word has a precise real-world scale for virtual computers.",
+      "explanation": "A t2.micro has 1 GiB of memory. A t2.nano has half a GiB.",
       "difficulty": 3,
       "surprise": 3,
       "featured": false,
@@ -366,7 +366,7 @@
       "metric": "instance resource size",
       "caveat": "The order is for allocated vCPU/memory within one AWS instance family; not price/performance across generations or instance families.",
       "source_urls": [
-        "https://aws.amazon.com/ec2/instance-types/general-purpose/"
+        "https://aws.amazon.com/ec2/instance-types/t2/"
       ],
       "verified_as_of": "2026-11-21",
       "review_status": "editorially_curated"
@@ -376,7 +376,7 @@
       "ladder_id": "aws-ec2-t2",
       "category": "software",
       "brand": "Amazon Web Services",
-      "question": "Which ranks higher on instance resource size?",
+      "question": "Which EC2 T2 instance comes with more memory?",
       "options": [
         "t2.xlarge",
         "t2.2xlarge"
@@ -384,7 +384,7 @@
       "answer": "t2.2xlarge",
       "answer_node_id": "aws-ec2-t2:6",
       "higher_than": "t2.xlarge",
-      "explanation": "The 2xlarge instance is larger than xlarge. AWS escaped the apparent “extra-large” ceiling by adding a multiplier.",
+      "explanation": "A t2.2xlarge has 32 GiB of memory, double the 16 GiB in a t2.xlarge.",
       "difficulty": 1,
       "surprise": 4,
       "featured": true,
@@ -392,7 +392,7 @@
       "metric": "instance resource size",
       "caveat": "The order is for allocated vCPU/memory within one AWS instance family; not price/performance across generations or instance families.",
       "source_urls": [
-        "https://aws.amazon.com/ec2/instance-types/general-purpose/"
+        "https://aws.amazon.com/ec2/instance-types/t2/"
       ],
       "verified_as_of": "2026-11-21",
       "review_status": "editorially_curated"
@@ -507,7 +507,7 @@
       "ladder_id": "xbox-series",
       "category": "gaming",
       "brand": "Microsoft",
-      "question": "Which ranks higher on graphics hardware capability tier?",
+      "question": "Which Xbox Series console has the more powerful graphics hardware?",
       "options": [
         "Xbox Series X",
         "Xbox Series S"
@@ -515,7 +515,7 @@
       "answer": "Xbox Series X",
       "answer_node_id": "xbox-series:1",
       "higher_than": "Xbox Series S",
-      "explanation": "Xbox Series X is designed for higher-resolution graphics than Series S. The letters alone do not teach you which is stronger.",
+      "explanation": "Series X is Microsoft’s higher-performance console. Series S is the smaller, lower-cost option.",
       "difficulty": 3,
       "surprise": 4,
       "featured": true,
@@ -533,7 +533,7 @@
       "ladder_id": "ps5-hardware",
       "category": "gaming",
       "brand": "Sony",
-      "question": "Which ranks higher on graphics/rendering capability tier?",
+      "question": "Which PlayStation has the more powerful GPU?",
       "options": [
         "PlayStation 5",
         "PlayStation 5 Pro"
@@ -541,7 +541,7 @@
       "answer": "PlayStation 5 Pro",
       "answer_node_id": "ps5-hardware:1",
       "higher_than": "PlayStation 5",
-      "explanation": "Sony launched PS5 Pro with higher GPU performance and enhanced ray tracing. “Pro” is meaningful here; “Digital Edition” is not a similar tier.",
+      "explanation": "Sony gave the PS5 Pro a faster GPU and improved ray tracing.",
       "difficulty": 1,
       "surprise": 2,
       "featured": false,
@@ -559,7 +559,7 @@
       "ladder_id": "ps-plus",
       "category": "gaming",
       "brand": "Sony",
-      "question": "Which ranks higher on subscription benefit scope?",
+      "question": "Which U.S. PlayStation Plus plan includes more benefits?",
       "options": [
         "PlayStation Plus Premium",
         "PlayStation Plus Extra"
@@ -567,7 +567,7 @@
       "answer": "PlayStation Plus Premium",
       "answer_node_id": "ps-plus:2",
       "higher_than": "PlayStation Plus Extra",
-      "explanation": "Premium adds benefits beyond Extra, including classic catalog features and selected game streaming where available.",
+      "explanation": "Premium includes the benefits of Extra and adds the classics catalog and cloud streaming.",
       "difficulty": 1,
       "surprise": 2,
       "featured": false,
@@ -585,7 +585,7 @@
       "ladder_id": "m365-business",
       "category": "software",
       "brand": "Microsoft",
-      "question": "Which ranks higher on bundle feature/security scope?",
+      "question": "Which Microsoft 365 business plan includes more security features?",
       "options": [
         "Microsoft 365 Business Standard",
         "Microsoft 365 Business Premium"
@@ -593,7 +593,7 @@
       "answer": "Microsoft 365 Business Premium",
       "answer_node_id": "m365-business:2",
       "higher_than": "Microsoft 365 Business Standard",
-      "explanation": "Business Premium adds advanced security and device-management capabilities beyond Business Standard. Here the naming hierarchy actually works.",
+      "explanation": "Business Premium adds device management and security features to the Standard bundle.",
       "difficulty": 1,
       "surprise": 1,
       "featured": false,
@@ -639,7 +639,7 @@
       "ladder_id": "capitalone-venture",
       "category": "cards",
       "brand": "Capital One",
-      "question": "Which ranks higher on premium travel-card positioning?",
+      "question": "Which card sits higher in Capital One’s Venture lineup?",
       "options": [
         "Venture",
         "Venture X"
@@ -647,7 +647,7 @@
       "answer": "Venture X",
       "answer_node_id": "capitalone-venture:2",
       "higher_than": "Venture",
-      "explanation": "Venture X is the premium tier above Venture. “X” has no inherent ordinal meaning.",
+      "explanation": "Venture X sits above Venture. A single letter marks the jump to the premium travel card.",
       "difficulty": 3,
       "surprise": 4,
       "featured": true,
@@ -665,7 +665,7 @@
       "ladder_id": "capitalone-venture",
       "category": "cards",
       "brand": "Capital One",
-      "question": "Which ranks higher on premium travel-card positioning?",
+      "question": "Which card sits higher in Capital One’s Venture lineup?",
       "options": [
         "Venture",
         "VentureOne"
@@ -673,7 +673,7 @@
       "answer": "Venture",
       "answer_node_id": "capitalone-venture:1",
       "higher_than": "VentureOne",
-      "explanation": "Venture is above the no-annual-fee VentureOne in premium travel-card positioning. In this family, “One” is the entry point.",
+      "explanation": "VentureOne is the entry card. Remove “One” and you move up a tier.",
       "difficulty": 2,
       "surprise": 3,
       "featured": false,
@@ -691,7 +691,7 @@
       "ladder_id": "amex-consumer",
       "category": "cards",
       "brand": "American Express",
-      "question": "Which ranks higher on issuer premium/exclusivity tier?",
+      "question": "Which U.S. personal card sits higher in the Amex lineup?",
       "options": [
         "American Express Gold",
         "American Express Platinum"
@@ -699,7 +699,7 @@
       "answer": "American Express Platinum",
       "answer_node_id": "amex-consumer:2",
       "higher_than": "American Express Gold",
-      "explanation": "Platinum is the higher-positioned consumer card than Gold. The metal naming is clear, until it reaches Centurion.",
+      "explanation": "Platinum sits above Gold. Both names still follow the precious-metal theme.",
       "difficulty": 1,
       "surprise": 3,
       "featured": false,
@@ -719,7 +719,7 @@
       "ladder_id": "amex-consumer",
       "category": "cards",
       "brand": "American Express",
-      "question": "Which ranks higher on issuer premium/exclusivity tier?",
+      "question": "Which U.S. personal card does Amex reserve for invited applicants?",
       "options": [
         "American Express Centurion",
         "American Express Platinum"
@@ -727,7 +727,7 @@
       "answer": "American Express Centurion",
       "answer_node_id": "amex-consumer:3",
       "higher_than": "American Express Platinum",
-      "explanation": "Centurion—commonly nicknamed the Black Card—sits above Platinum in exclusivity. “Platinum” was not the end of the hierarchy.",
+      "explanation": "Centurion is the invitation-only card above Platinum. Its nickname is the Black Card.",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,
@@ -755,7 +755,7 @@
       "answer": "World Legend Mastercard",
       "answer_node_id": "mastercard-world:2",
       "higher_than": "World Elite Mastercard",
-      "explanation": "World Legend is Mastercard’s most premium World credit-card tier, above World Elite. “Elite” needed a successor.",
+      "explanation": "World Legend sits above World Elite. Apparently there was still room above Elite.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -774,7 +774,7 @@
       "ladder_id": "mastercard-world",
       "category": "cards",
       "brand": "Mastercard",
-      "question": "Which ranks higher on Mastercard network premium benefit tier?",
+      "question": "Which Mastercard network tier offers more benefits?",
       "options": [
         "World Elite Mastercard",
         "World Mastercard"
@@ -782,7 +782,7 @@
       "answer": "World Elite Mastercard",
       "answer_node_id": "mastercard-world:1",
       "higher_than": "World Mastercard",
-      "explanation": "World Elite is above World in network-level premium benefits. “Elite” clearly signals an upgrade until “Legend” arrives.",
+      "explanation": "World Elite adds a tier above World. Mastercard later put World Legend above both.",
       "difficulty": 1,
       "surprise": 2,
       "featured": false,
@@ -801,7 +801,7 @@
       "ladder_id": "visa-us-levels",
       "category": "cards",
       "brand": "Visa",
-      "question": "Which ranks higher on card-network benefit platform tier?",
+      "question": "Which is the higher U.S. Visa network tier?",
       "options": [
         "Visa Signature",
         "Visa Infinite"
@@ -809,7 +809,7 @@
       "answer": "Visa Infinite",
       "answer_node_id": "visa-us-levels:2",
       "higher_than": "Visa Signature",
-      "explanation": "Visa Infinite is the higher network-tier designation above Signature. The word “Infinite” is a hard act to follow.",
+      "explanation": "Visa puts Infinite above Signature. These are Visa network tiers shared by cards from different banks.",
       "difficulty": 3,
       "surprise": 4,
       "featured": true,
@@ -827,7 +827,7 @@
       "ladder_id": "marriott-bonvoy",
       "category": "loyalty",
       "brand": "Marriott",
-      "question": "Which ranks higher on loyalty status level?",
+      "question": "Which is the higher Marriott Bonvoy status?",
       "options": [
         "Titanium Elite",
         "Platinum Elite"
@@ -835,7 +835,7 @@
       "answer": "Titanium Elite",
       "answer_node_id": "marriott-bonvoy:4",
       "higher_than": "Platinum Elite",
-      "explanation": "Titanium Elite ranks above Platinum Elite in Marriott Bonvoy. Metal prestige is not a universally agreed ordering.",
+      "explanation": "Marriott puts Titanium Elite one tier above Platinum Elite.",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,
@@ -861,7 +861,7 @@
       "answer": "Ambassador Elite",
       "answer_node_id": "marriott-bonvoy:5",
       "higher_than": "Titanium Elite",
-      "explanation": "Ambassador Elite is the top published status above Titanium Elite. The ladder abandons the metals altogether.",
+      "explanation": "Ambassador Elite sits above Titanium Elite. At the top, Marriott switches from a metal to a job title.",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,
@@ -879,7 +879,7 @@
       "ladder_id": "marriott-bonvoy",
       "category": "loyalty",
       "brand": "Marriott",
-      "question": "Which ranks higher on loyalty status level?",
+      "question": "Which is the higher Marriott Bonvoy status?",
       "options": [
         "Platinum Elite",
         "Gold Elite"
@@ -887,7 +887,7 @@
       "answer": "Platinum Elite",
       "answer_node_id": "marriott-bonvoy:3",
       "higher_than": "Gold Elite",
-      "explanation": "Marriott Platinum Elite ranks above Gold Elite. This is the familiar part of an increasingly strange hierarchy.",
+      "explanation": "Platinum Elite sits above Gold Elite and below Titanium Elite.",
       "difficulty": 1,
       "surprise": 2,
       "featured": false,
@@ -913,7 +913,7 @@
       "answer": "Globalist",
       "answer_node_id": "hyatt-world:3",
       "higher_than": "Explorist",
-      "explanation": "Globalist is World of Hyatt’s highest standard published tier; Explorist is immediately below it.",
+      "explanation": "Globalist is the highest standard World of Hyatt status. Explorist is one tier below.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -931,7 +931,7 @@
       "ladder_id": "hyatt-world",
       "category": "loyalty",
       "brand": "Hyatt",
-      "question": "Which ranks higher on loyalty status level?",
+      "question": "Which is the higher World of Hyatt status?",
       "options": [
         "Explorist",
         "Discoverist"
@@ -939,7 +939,7 @@
       "answer": "Explorist",
       "answer_node_id": "hyatt-world:2",
       "higher_than": "Discoverist",
-      "explanation": "Explorist comes above Discoverist. They read like made-up synonyms rather than ranked levels.",
+      "explanation": "Hyatt puts Explorist above Discoverist. Apparently you discover first and explore later.",
       "difficulty": 4,
       "surprise": 5,
       "featured": false,
@@ -957,7 +957,7 @@
       "ladder_id": "hilton-honors",
       "category": "loyalty",
       "brand": "Hilton",
-      "question": "Which ranks higher on loyalty status level?",
+      "question": "Which is the higher Hilton Honors status?",
       "options": [
         "Diamond",
         "Diamond Reserve"
@@ -965,7 +965,7 @@
       "answer": "Diamond Reserve",
       "answer_node_id": "hilton-honors:4",
       "higher_than": "Diamond",
-      "explanation": "Hilton Diamond Reserve includes Diamond benefits and adds premium upgrades and guaranteed late checkout. Diamond did not stay the top tier.",
+      "explanation": "Diamond Reserve adds benefits above Diamond, including guaranteed late checkout.",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,
@@ -983,7 +983,7 @@
       "ladder_id": "hilton-honors",
       "category": "loyalty",
       "brand": "Hilton",
-      "question": "Which ranks higher on loyalty status level?",
+      "question": "Which is the higher Hilton Honors status?",
       "options": [
         "Diamond",
         "Gold"
@@ -991,7 +991,7 @@
       "answer": "Diamond",
       "answer_node_id": "hilton-honors:3",
       "higher_than": "Gold",
-      "explanation": "Diamond sits above Gold in Hilton Honors. Hilton skips Platinum, which appears in other programs.",
+      "explanation": "Diamond is the next Hilton Honors tier above Gold. Hilton skips Platinum entirely.",
       "difficulty": 1,
       "surprise": 3,
       "featured": false,
@@ -1009,7 +1009,7 @@
       "ladder_id": "delta-medallion",
       "category": "loyalty",
       "brand": "Delta Air Lines",
-      "question": "Which ranks higher on loyalty status level?",
+      "question": "Which is the higher Delta Medallion status?",
       "options": [
         "Platinum Medallion",
         "Diamond Medallion"
@@ -1017,7 +1017,7 @@
       "answer": "Diamond Medallion",
       "answer_node_id": "delta-medallion:3",
       "higher_than": "Platinum Medallion",
-      "explanation": "Delta Diamond Medallion ranks above Platinum Medallion. Gems beat metals in this airline’s hierarchy.",
+      "explanation": "Delta puts Diamond above Platinum. Its four Medallion tiers start with Silver and Gold.",
       "difficulty": 2,
       "surprise": 4,
       "featured": false,
@@ -1035,7 +1035,7 @@
       "ladder_id": "united-cabins",
       "category": "loyalty",
       "brand": "United Airlines",
-      "question": "Which is United’s higher-tier seating option?",
+      "question": "Which seating option is higher in United’s lineup?",
       "options": [
         "United Premium Plus",
         "United Economy Plus"
@@ -1043,7 +1043,7 @@
       "answer": "United Premium Plus",
       "answer_node_id": "united-cabins:2",
       "higher_than": "United Economy Plus",
-      "explanation": "United Premium Plus is a separate premium-economy cabin, above Economy Plus seating in regular economy. Two words, same ingredients, different products.",
+      "explanation": "Premium Plus is premium economy. Economy Plus is an economy seat with extra legroom.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -1061,7 +1061,7 @@
       "ladder_id": "united-cabins",
       "category": "loyalty",
       "brand": "United Airlines",
-      "question": "Which ranks higher on cabin/service product tier?",
+      "question": "Which United cabin is higher on a long-haul flight?",
       "options": [
         "United Premium Plus",
         "United Polaris"
@@ -1069,7 +1069,7 @@
       "answer": "United Polaris",
       "answer_node_id": "united-cabins:3",
       "higher_than": "United Premium Plus",
-      "explanation": "Polaris is United’s long-haul business-class product, above Premium Plus. The celestial name ends the descriptive ladder.",
+      "explanation": "Polaris is United’s long-haul business class. Premium Plus is premium economy.",
       "difficulty": 3,
       "surprise": 4,
       "featured": false,
@@ -1095,7 +1095,7 @@
       "answer": "Staff Engineer",
       "answer_node_id": "gitlab-engineering:2",
       "higher_than": "Senior Engineer",
-      "explanation": "At GitLab, Staff Engineer is above Senior Engineer on the individual-contributor ladder. “Staff” does not mean junior staff.",
+      "explanation": "At GitLab, Staff Engineer is the level above Senior Engineer. Other employers set their own titles.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -1113,7 +1113,7 @@
       "ladder_id": "gitlab-engineering",
       "category": "careers",
       "brand": "GitLab",
-      "question": "Which ranks higher on individual-contributor seniority?",
+      "question": "Which engineering title is more senior at GitLab?",
       "options": [
         "Staff Engineer",
         "Principal Engineer"
@@ -1121,7 +1121,7 @@
       "answer": "Principal Engineer",
       "answer_node_id": "gitlab-engineering:3",
       "higher_than": "Staff Engineer",
-      "explanation": "Principal Engineer outranks Staff Engineer in GitLab’s IC career ladder. The word is “Principal,” not “Principle.”",
+      "explanation": "Principal Engineer sits above Staff Engineer on GitLab’s individual-contributor track.",
       "difficulty": 3,
       "surprise": 3,
       "featured": false,
@@ -1147,7 +1147,7 @@
       "answer": "Lieutenant General",
       "answer_node_id": "us-army-officer:5",
       "higher_than": "Major General",
-      "explanation": "Lieutenant General outranks Major General in the U.S. Army. The modifier reverses what many people expect from Lieutenant versus Major.",
+      "explanation": "A lieutenant general wears three stars. A major general wears two. Compare plain lieutenant and major and the order reverses.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -1165,7 +1165,7 @@
       "ladder_id": "us-army-officer",
       "category": "careers",
       "brand": "US Army",
-      "question": "Which ranks higher on official Army officer rank?",
+      "question": "Which is the higher U.S. Army rank?",
       "options": [
         "Brigadier General",
         "Major General"
@@ -1173,7 +1173,7 @@
       "answer": "Major General",
       "answer_node_id": "us-army-officer:4",
       "higher_than": "Brigadier General",
-      "explanation": "Major General outranks Brigadier General. Neither first word makes the general-rank ordering immediately obvious.",
+      "explanation": "A major general wears two stars. A brigadier general wears one.",
       "difficulty": 3,
       "surprise": 4,
       "featured": false,
@@ -1191,7 +1191,7 @@
       "ladder_id": "us-army-officer",
       "category": "careers",
       "brand": "US Army",
-      "question": "Which ranks higher on official Army officer rank?",
+      "question": "Which is the higher U.S. Army rank?",
       "options": [
         "Colonel",
         "Lieutenant Colonel"
@@ -1199,7 +1199,7 @@
       "answer": "Colonel",
       "answer_node_id": "us-army-officer:2",
       "higher_than": "Lieutenant Colonel",
-      "explanation": "Colonel outranks Lieutenant Colonel. Here the “Lieutenant” modifier indicates the more junior rank.",
+      "explanation": "A lieutenant colonel ranks just below a colonel in the U.S. Army.",
       "difficulty": 2,
       "surprise": 3,
       "featured": false,
@@ -1217,7 +1217,7 @@
       "ladder_id": "academic-harvard",
       "category": "careers",
       "brand": "Harvard University",
-      "question": "Which ranks higher on tenure-track academic rank?",
+      "question": "Which faculty rank is more senior at Harvard?",
       "options": [
         "Assistant Professor",
         "Associate Professor"
@@ -1225,7 +1225,7 @@
       "answer": "Associate Professor",
       "answer_node_id": "academic-harvard:1",
       "higher_than": "Assistant Professor",
-      "explanation": "Associate Professor is a higher academic rank than Assistant Professor. “Assistant” does not mean a personal assistant.",
+      "explanation": "Associate professor is the step above assistant professor.",
       "difficulty": 2,
       "surprise": 4,
       "featured": false,
@@ -1243,7 +1243,7 @@
       "ladder_id": "academic-harvard",
       "category": "careers",
       "brand": "Harvard University",
-      "question": "Which ranks higher on tenure-track academic rank?",
+      "question": "Which faculty rank is more senior at Harvard?",
       "options": [
         "Professor",
         "Associate Professor"
@@ -1251,7 +1251,7 @@
       "answer": "Professor",
       "answer_node_id": "academic-harvard:2",
       "higher_than": "Associate Professor",
-      "explanation": "The unmodified Professor title denotes the full-professor rank, above Associate Professor on this ladder.",
+      "explanation": "Professor is the full-professor rank, one step above associate professor.",
       "difficulty": 2,
       "surprise": 3,
       "featured": false,
@@ -1269,7 +1269,7 @@
       "ladder_id": "ralph-lauren-menswear",
       "category": "fashion",
       "brand": "Ralph Lauren",
-      "question": "Which ranks higher on brand luxury/craft positioning?",
+      "question": "Which is Ralph Lauren’s higher-end menswear label?",
       "options": [
         "Polo Ralph Lauren",
         "Ralph Lauren Purple Label"
@@ -1277,7 +1277,7 @@
       "answer": "Ralph Lauren Purple Label",
       "answer_node_id": "ralph-lauren-menswear:1",
       "higher_than": "Polo Ralph Lauren",
-      "explanation": "Ralph Lauren calls Purple Label its ultimate expression of luxury menswear. Polo Ralph Lauren is the more accessible mainline.",
+      "explanation": "Purple Label is Ralph Lauren’s luxury menswear line. Polo is the more accessible label.",
       "difficulty": 4,
       "surprise": 4,
       "featured": true,
@@ -1295,7 +1295,7 @@
       "ladder_id": "armani-labels",
       "category": "fashion",
       "brand": "Armani",
-      "question": "Which ranks higher on mainline luxury / price positioning?",
+      "question": "Which menswear line does Armani position as more luxurious?",
       "options": [
         "Giorgio Armani",
         "Emporio Armani"
@@ -1303,7 +1303,7 @@
       "answer": "Giorgio Armani",
       "answer_node_id": "armani-labels:2",
       "higher_than": "Emporio Armani",
-      "explanation": "The Giorgio Armani label is the house’s high-luxury main line above Emporio Armani. Italian wording does not offer a universal scale.",
+      "explanation": "Giorgio Armani is the house’s luxury main line. Emporio Armani sits below it.",
       "difficulty": 4,
       "surprise": 4,
       "featured": true,
@@ -1321,7 +1321,7 @@
       "ladder_id": "armani-labels",
       "category": "fashion",
       "brand": "Armani",
-      "question": "Which ranks higher on mainline luxury / price positioning?",
+      "question": "Which menswear line does Armani position as more luxurious?",
       "options": [
         "Armani Exchange",
         "Emporio Armani"
@@ -1329,7 +1329,7 @@
       "answer": "Emporio Armani",
       "answer_node_id": "armani-labels:1",
       "higher_than": "Armani Exchange",
-      "explanation": "Emporio Armani is positioned above the younger, more accessible Armani Exchange line.",
+      "explanation": "Emporio Armani sits above Armani Exchange, the house’s more accessible line.",
       "difficulty": 3,
       "surprise": 3,
       "featured": false,
@@ -1347,7 +1347,7 @@
       "ladder_id": "audi-a3-family",
       "category": "cars",
       "brand": "Audi",
-      "question": "Which ranks higher on factory performance version?",
+      "question": "Which is the higher-performance member of Audi’s A3 family?",
       "options": [
         "Audi RS 3",
         "Audi S3"
@@ -1355,7 +1355,7 @@
       "answer": "Audi RS 3",
       "answer_node_id": "audi-a3-family:2",
       "higher_than": "Audi S3",
-      "explanation": "RS 3 is the more extreme performance model above S3. “RS” is not just a longer version of “S.”",
+      "explanation": "The RS 3 sits above the S3 at the performance end of Audi’s A3 family.",
       "difficulty": 3,
       "surprise": 4,
       "featured": true,
@@ -1373,7 +1373,7 @@
       "ladder_id": "audi-a3-family",
       "category": "cars",
       "brand": "Audi",
-      "question": "Which ranks higher on factory performance version?",
+      "question": "Which is the higher-performance member of Audi’s A3 family?",
       "options": [
         "Audi A3",
         "Audi S3"
@@ -1381,7 +1381,7 @@
       "answer": "Audi S3",
       "answer_node_id": "audi-a3-family:1",
       "higher_than": "Audi A3",
-      "explanation": "S3 is the sportier performance variant above the everyday A3. Audi’s letters encode a model-family hierarchy.",
+      "explanation": "The S3 is the performance step up from the A3. Audi also sells an RS 3 above it.",
       "difficulty": 2,
       "surprise": 2,
       "featured": false,
@@ -1399,7 +1399,7 @@
       "ladder_id": "audi-trim",
       "category": "cars",
       "brand": "Audi",
-      "question": "Which ranks higher on vehicle equipment trim tier?",
+      "question": "Which U.S. Audi trim includes more equipment when both are offered?",
       "options": [
         "Prestige",
         "Premium Plus"
@@ -1407,7 +1407,7 @@
       "answer": "Prestige",
       "answer_node_id": "audi-trim:2",
       "higher_than": "Premium Plus",
-      "explanation": "Audi Prestige is above Premium Plus where both trims are offered. The adjective alone does not tell you which is top.",
+      "explanation": "Prestige sits above Premium Plus. Even Premium with a Plus leaves a tier to go.",
       "difficulty": 4,
       "surprise": 4,
       "featured": true,
@@ -1425,7 +1425,7 @@
       "ladder_id": "bmw-m3",
       "category": "cars",
       "brand": "BMW",
-      "question": "Which ranks higher on manufacturer rated horsepower?",
+      "question": "Which 2027 BMW M3 sedan has more factory-rated horsepower?",
       "options": [
         "M3 Competition",
         "M3 Competition xDrive"
@@ -1433,7 +1433,7 @@
       "answer": "M3 Competition xDrive",
       "answer_node_id": "bmw-m3:2",
       "higher_than": "M3 Competition",
-      "explanation": "In BMW’s listed 2027 M3 sedan lineup, Competition xDrive is rated higher in horsepower than rear-drive Competition. xDrive itself describes all-wheel drive, not a universal power upgrade.",
+      "explanation": "BMW rates the Competition xDrive above the rear-drive Competition for this model year.",
       "difficulty": 3,
       "surprise": 3,
       "featured": false,
@@ -1451,7 +1451,7 @@
       "ladder_id": "bmw-m3",
       "category": "cars",
       "brand": "BMW",
-      "question": "Which ranks higher on manufacturer rated horsepower?",
+      "question": "Which 2027 BMW M3 sedan has more factory-rated horsepower?",
       "options": [
         "M3 Competition",
         "M3"
@@ -1459,7 +1459,7 @@
       "answer": "M3 Competition",
       "answer_node_id": "bmw-m3:1",
       "higher_than": "M3",
-      "explanation": "BMW’s M3 Competition version has higher factory-rated output than the standard M3. One clear performance adjective for a change.",
+      "explanation": "The M3 Competition has a higher factory horsepower rating than the standard M3.",
       "difficulty": 1,
       "surprise": 2,
       "featured": false,
@@ -1477,7 +1477,7 @@
       "ladder_id": "porsche-carrera",
       "category": "cars",
       "brand": "Porsche",
-      "question": "Which ranks higher on rated engine horsepower tier?",
+      "question": "Which current 911 Carrera coupé does Porsche rate for more horsepower?",
       "options": [
         "911 Carrera S",
         "911 Carrera GTS"
@@ -1485,7 +1485,7 @@
       "answer": "911 Carrera GTS",
       "answer_node_id": "porsche-carrera:2",
       "higher_than": "911 Carrera S",
-      "explanation": "The 911 Carrera GTS has higher factory output than Carrera S. Porsche expects you to know what GTS means.",
+      "explanation": "The Carrera GTS has more factory-rated horsepower than the Carrera S.",
       "difficulty": 3,
       "surprise": 4,
       "featured": false,
@@ -1503,7 +1503,7 @@
       "ladder_id": "porsche-carrera",
       "category": "cars",
       "brand": "Porsche",
-      "question": "Which ranks higher on rated engine horsepower tier?",
+      "question": "Which current 911 Carrera coupé does Porsche rate for more horsepower?",
       "options": [
         "911 Carrera S",
         "911 Carrera"
@@ -1511,7 +1511,7 @@
       "answer": "911 Carrera S",
       "answer_node_id": "porsche-carrera:1",
       "higher_than": "911 Carrera",
-      "explanation": "Within the Carrera coupe family, S has more horsepower than the standard Carrera. The S suffix identifies the next tier.",
+      "explanation": "The Carrera S is the more powerful of these two Carrera coupés.",
       "difficulty": 2,
       "surprise": 2,
       "featured": false,
@@ -1583,7 +1583,7 @@
       "ladder_id": "starbucks-iced",
       "category": "food",
       "brand": "Starbucks",
-      "question": "Which ranks higher on fluid ounces per iced coffee serving?",
+      "question": "Which U.S. Starbucks size holds more iced coffee?",
       "options": [
         "Tall",
         "Grande"
@@ -1591,7 +1591,7 @@
       "answer": "Grande",
       "answer_node_id": "starbucks-iced:1",
       "higher_than": "Tall",
-      "explanation": "A Grande iced coffee is 16 fl oz; Tall is 12. The apparently tall option is the smaller one.",
+      "explanation": "Grande holds 16 fluid ounces. Tall is the smaller cup at 12.",
       "difficulty": 3,
       "surprise": 5,
       "featured": true,
@@ -1609,7 +1609,7 @@
       "ladder_id": "starbucks-iced",
       "category": "food",
       "brand": "Starbucks",
-      "question": "Which Starbucks size holds more iced coffee?",
+      "question": "Which U.S. Starbucks size holds more iced coffee?",
       "options": [
         "Trenta",
         "Venti"
@@ -1617,7 +1617,7 @@
       "answer": "Trenta",
       "answer_node_id": "starbucks-iced:3",
       "higher_than": "Venti",
-      "explanation": "Trenta is 30 fl oz, bigger than iced Venti at 24. “Venti” suggests twenty, but iced Venti is not literally twenty ounces.",
+      "explanation": "Trenta holds 30 fluid ounces. Venti means twenty in Italian, but an iced Venti holds 24.",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,
@@ -1635,7 +1635,7 @@
       "ladder_id": "gia-clarity",
       "category": "other",
       "brand": "GIA",
-      "question": "Which ranks higher on GIA clarity grade?",
+      "question": "Which GIA diamond grade has higher clarity?",
       "options": [
         "VS2",
         "VS1"
@@ -1643,7 +1643,7 @@
       "answer": "VS1",
       "answer_node_id": "gia-clarity:6",
       "higher_than": "VS2",
-      "explanation": "VS1 is higher clarity than VS2. The smaller digit is the higher grade within the same clarity prefix.",
+      "explanation": "VS1 is a higher clarity grade than VS2. Within VS, the smaller number wins.",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,
@@ -1661,7 +1661,7 @@
       "ladder_id": "gia-clarity",
       "category": "other",
       "brand": "GIA",
-      "question": "Which ranks higher on GIA clarity grade?",
+      "question": "Which GIA diamond grade has higher clarity?",
       "options": [
         "FL",
         "IF"
@@ -1669,7 +1669,7 @@
       "answer": "FL",
       "answer_node_id": "gia-clarity:10",
       "higher_than": "IF",
-      "explanation": "FL (Flawless) outranks IF (Internally Flawless): surface blemishes still count for the top grade.",
+      "explanation": "An Internally Flawless diamond can have surface blemishes. Flawless is the higher grade.",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,
@@ -1687,7 +1687,7 @@
       "ladder_id": "gia-clarity",
       "category": "other",
       "brand": "GIA",
-      "question": "Which ranks higher on GIA clarity grade?",
+      "question": "Which GIA diamond grade has higher clarity?",
       "options": [
         "VVS2",
         "VVS1"
@@ -1695,7 +1695,7 @@
       "answer": "VVS1",
       "answer_node_id": "gia-clarity:8",
       "higher_than": "VVS2",
-      "explanation": "VVS1 is above VVS2, even though the latter has the larger number. Diamond clarity uses smaller numbers for finer grades.",
+      "explanation": "VVS1 sits above VVS2. Within this grade, the smaller number indicates higher clarity.",
       "difficulty": 3,
       "surprise": 4,
       "featured": false,
@@ -1713,7 +1713,7 @@
       "ladder_id": "gia-color",
       "category": "other",
       "brand": "GIA",
-      "question": "Which ranks higher on GIA diamond colorlessness grade?",
+      "question": "Which GIA grade denotes a more colorless diamond?",
       "options": [
         "D",
         "E"
@@ -1721,7 +1721,7 @@
       "answer": "D",
       "answer_node_id": "gia-color:22",
       "higher_than": "E",
-      "explanation": "On GIA’s D–Z color scale, D is the most colorless grade and E is below it. The scale starts at D, not A.",
+      "explanation": "D is the most colorless grade on GIA’s D–Z scale. E comes next.",
       "difficulty": 5,
       "surprise": 5,
       "featured": true,
@@ -1739,7 +1739,7 @@
       "ladder_id": "gia-color",
       "category": "other",
       "brand": "GIA",
-      "question": "Which ranks higher on GIA diamond colorlessness grade?",
+      "question": "Which GIA grade denotes a more colorless diamond?",
       "options": [
         "J",
         "I"
@@ -1747,7 +1747,7 @@
       "answer": "I",
       "answer_node_id": "gia-color:17",
       "higher_than": "J",
-      "explanation": "I is a higher color grade than J. In this scale, earlier letters are better.",
+      "explanation": "I is closer to the colorless end of the scale than J. GIA grades run from D through Z.",
       "difficulty": 2,
       "surprise": 2,
       "featured": false,
@@ -1765,7 +1765,7 @@
       "ladder_id": "burgundy-cru",
       "category": "food",
       "brand": "Bourgogne Wines",
-      "question": "Which ranks higher on Burgundy appellation classification level?",
+      "question": "Which is the higher Burgundy wine appellation?",
       "options": [
         "Grand Cru",
         "Premier Cru"
@@ -1773,7 +1773,7 @@
       "answer": "Grand Cru",
       "answer_node_id": "burgundy-cru:3",
       "higher_than": "Premier Cru",
-      "explanation": "Grand Cru is the higher Burgundy appellation classification, above Premier Cru. “Premier” did not mean the top rank.",
+      "explanation": "Grand Cru sits above Premier Cru. Knowing that premier means first in French may have cost you a point.",
       "difficulty": 4,
       "surprise": 4,
       "featured": true,
@@ -1791,7 +1791,7 @@
       "ladder_id": "burgundy-cru",
       "category": "food",
       "brand": "Bourgogne Wines",
-      "question": "Which ranks higher on Burgundy appellation classification level?",
+      "question": "Which is the higher Burgundy wine appellation?",
       "options": [
         "Village AOC",
         "Premier Cru"
@@ -1799,7 +1799,7 @@
       "answer": "Premier Cru",
       "answer_node_id": "burgundy-cru:2",
       "higher_than": "Village AOC",
-      "explanation": "Premier Cru is above Village AOC in the Burgundy classification. These are regulated origin/designation tiers, not tasting scores.",
+      "explanation": "Premier Cru sits above Village in Burgundy’s appellation system. The classification applies to the wine’s origin.",
       "difficulty": 3,
       "surprise": 3,
       "featured": false,
@@ -3059,6 +3059,396 @@
       "caveat": "Ranking within Flying Blue only. Ultimate has separate qualification criteria tied to eligible flights.",
       "source_urls": [
         "https://www.klm.com/information/flying-blue/program/more-info-status"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "whisper-parameters-q01",
+      "ladder_id": "whisper-parameters",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which Whisper speech model has more parameters?",
+      "options": [
+        "Whisper turbo",
+        "Whisper medium"
+      ],
+      "answer": "Whisper turbo",
+      "answer_node_id": "whisper-parameters:1",
+      "higher_than": "Whisper medium",
+      "explanation": "Turbo has 809 million parameters. Medium has 769 million. A name about speed landed between two names about size.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Multilingual Whisper checkpoints in the OpenAI model table",
+      "metric": "parameter count",
+      "caveat": "Parameter counts compare size alone. Speed also depends on the hardware and recording.",
+      "source_urls": [
+        "https://github.com/openai/whisper#available-models-and-languages"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "whisper-parameters-q02",
+      "ladder_id": "whisper-parameters",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which Whisper speech model has more parameters?",
+      "options": [
+        "Whisper turbo",
+        "Whisper large"
+      ],
+      "answer": "Whisper large",
+      "answer_node_id": "whisper-parameters:2",
+      "higher_than": "Whisper turbo",
+      "explanation": "Large has 1.55 billion parameters. Turbo is a streamlined version of large-v3 with 809 million.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": false,
+      "scope": "Multilingual Whisper checkpoints in the OpenAI model table",
+      "metric": "parameter count",
+      "caveat": "Parameter counts compare size alone. Speed also depends on the hardware and recording.",
+      "source_urls": [
+        "https://github.com/openai/whisper#available-models-and-languages"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "syslog-severity-q01",
+      "ladder_id": "syslog-severity",
+      "category": "connectivity",
+      "brand": "IETF",
+      "question": "Which syslog message is more urgent?",
+      "options": [
+        "Alert",
+        "Critical"
+      ],
+      "answer": "Alert",
+      "answer_node_id": "syslog-severity:1",
+      "higher_than": "Critical",
+      "explanation": "Alert means someone must act immediately. It is level 1. Critical is level 2, one step less urgent.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Syslog severity names defined in RFC 5424",
+      "metric": "message severity",
+      "caveat": "Higher urgency has a smaller numeric code.",
+      "source_urls": [
+        "https://www.rfc-editor.org/info/rfc5424/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "syslog-severity-q02",
+      "ladder_id": "syslog-severity",
+      "category": "connectivity",
+      "brand": "IETF",
+      "question": "Which syslog message signals the more severe failure?",
+      "options": [
+        "Alert",
+        "Emergency"
+      ],
+      "answer": "Emergency",
+      "answer_node_id": "syslog-severity:2",
+      "higher_than": "Alert",
+      "explanation": "Emergency is level 0, reserved for an unusable system. Alert is level 1.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": false,
+      "scope": "Syslog severity names defined in RFC 5424",
+      "metric": "message severity",
+      "caveat": "Higher urgency has a smaller numeric code.",
+      "source_urls": [
+        "https://www.rfc-editor.org/info/rfc5424/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "github-repo-roles-q01",
+      "ladder_id": "github-repo-roles",
+      "category": "software",
+      "brand": "GitHub",
+      "question": "Which built-in GitHub role can label someone else’s issue?",
+      "options": [
+        "Triage",
+        "Read"
+      ],
+      "answer": "Triage",
+      "answer_node_id": "github-repo-roles:1",
+      "higher_than": "Read",
+      "explanation": "Triage lets a contributor label and close other people’s issues. Read lets them participate in the discussion.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Built-in roles for repositories owned by GitHub organizations",
+      "metric": "built-in repository permissions",
+      "caveat": "Custom roles and branch protection can change what an individual can do.",
+      "source_urls": [
+        "https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "github-repo-roles-q02",
+      "ladder_id": "github-repo-roles",
+      "category": "software",
+      "brand": "GitHub",
+      "question": "Which built-in GitHub role grants permission to push code?",
+      "options": [
+        "Triage",
+        "Write"
+      ],
+      "answer": "Write",
+      "answer_node_id": "github-repo-roles:2",
+      "higher_than": "Triage",
+      "explanation": "Write grants permission to push code. Triage grants tools for managing issues and pull requests.",
+      "difficulty": 2,
+      "surprise": 3,
+      "featured": false,
+      "scope": "Built-in roles for repositories owned by GitHub organizations",
+      "metric": "built-in repository permissions",
+      "caveat": "Custom roles and branch protection can change what an individual can do.",
+      "source_urls": [
+        "https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "usda-olive-size-q01",
+      "ladder_id": "usda-olive-size",
+      "category": "food",
+      "brand": "USDA",
+      "question": "Which USDA label goes on the bigger whole olives?",
+      "options": [
+        "Colossal",
+        "Jumbo"
+      ],
+      "answer": "Colossal",
+      "answer_node_id": "usda-olive-size:2",
+      "higher_than": "Jumbo",
+      "explanation": "Colossal olives run 41–50 to a pound. Jumbo takes 51–60. The USDA even has a Super Colossal.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "USDA Table I for canned whole ripe olives",
+      "metric": "size of an individual whole olive",
+      "caveat": "The count-per-pound ranges apply to whole ripe olives.",
+      "source_urls": [
+        "https://www.ams.usda.gov/sites/default/files/media/Canned%20Ripe%20Olives%20Standard.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "usda-olive-size-q02",
+      "ladder_id": "usda-olive-size",
+      "category": "food",
+      "brand": "USDA",
+      "question": "Which USDA label means a larger whole olive?",
+      "options": [
+        "Extra Large",
+        "Jumbo"
+      ],
+      "answer": "Jumbo",
+      "answer_node_id": "usda-olive-size:1",
+      "higher_than": "Extra Large",
+      "explanation": "Jumbo sits one size above Extra Large. There are still two sizes above Jumbo.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": false,
+      "scope": "USDA Table I for canned whole ripe olives",
+      "metric": "size of an individual whole olive",
+      "caveat": "The count-per-pound ranges apply to whole ripe olives.",
+      "source_urls": [
+        "https://www.ams.usda.gov/sites/default/files/media/Canned%20Ripe%20Olives%20Standard.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "printed-sheets-q01",
+      "ladder_id": "printed-sheets",
+      "category": "arts",
+      "brand": "Folger Shakespeare Library",
+      "question": "Start with the same sheet of paper. Which book format gives you larger pages?",
+      "options": [
+        "Quarto",
+        "Octavo"
+      ],
+      "answer": "Quarto",
+      "answer_node_id": "printed-sheets:1",
+      "higher_than": "Octavo",
+      "explanation": "One sheet makes four leaves in quarto or eight in octavo. Each quarto leaf has twice the area.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Traditional book formats folded from identical sheets of paper",
+      "metric": "area per leaf from an equal sheet",
+      "caveat": "The original sheet size matters when comparing actual books.",
+      "source_urls": [
+        "https://www.folger.edu/explore/shakespeare-in-print/publishing-shakespeare/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "printed-sheets-q02",
+      "ladder_id": "printed-sheets",
+      "category": "arts",
+      "brand": "Folger Shakespeare Library",
+      "question": "With the same sheet size, which book format has larger pages?",
+      "options": [
+        "Quarto",
+        "Folio"
+      ],
+      "answer": "Folio",
+      "answer_node_id": "printed-sheets:2",
+      "higher_than": "Quarto",
+      "explanation": "A folio sheet folds once to make two leaves. A quarto folds twice, so each page is half as large.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": false,
+      "scope": "Traditional book formats folded from identical sheets of paper",
+      "metric": "area per leaf from an equal sheet",
+      "caveat": "The original sheet size matters when comparing actual books.",
+      "source_urls": [
+        "https://www.folger.edu/explore/shakespeare-in-print/publishing-shakespeare/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "type-spaces-q01",
+      "ladder_id": "type-spaces",
+      "category": "arts",
+      "brand": "Unicode",
+      "question": "At the same type size, which space is conventionally wider?",
+      "options": [
+        "Em space",
+        "En space"
+      ],
+      "answer": "Em space",
+      "answer_node_id": "type-spaces:3",
+      "higher_than": "En space",
+      "explanation": "An em space spans one em. An en space is half that width. At 12-point type the nominal widths are 12 and 6 points.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Conventional space widths in Unicode General Punctuation",
+      "metric": "nominal width at the same type size",
+      "caveat": "Actual glyph widths can vary by font and justification.",
+      "source_urls": [
+        "https://www.unicode.org/Public/18.0.0/charts/nameslist/2000/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "type-spaces-q02",
+      "ladder_id": "type-spaces",
+      "category": "arts",
+      "brand": "Unicode",
+      "question": "In traditional typesetting, which space is wider?",
+      "options": [
+        "Hair space",
+        "Thin space"
+      ],
+      "answer": "Thin space",
+      "answer_node_id": "type-spaces:1",
+      "higher_than": "Hair space",
+      "explanation": "A thin space is typically a fifth or a sixth of an em. A hair space is thinner still.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": false,
+      "scope": "Conventional space widths in Unicode General Punctuation",
+      "metric": "nominal width at the same type size",
+      "caveat": "Actual glyph widths can vary by font and justification.",
+      "source_urls": [
+        "https://www.unicode.org/Public/18.0.0/charts/nameslist/2000/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "riaa-albums-q01",
+      "ladder_id": "riaa-albums",
+      "category": "arts",
+      "brand": "RIAA",
+      "question": "Which U.S. album award takes more certified units?",
+      "options": [
+        "Diamond",
+        "9× Platinum"
+      ],
+      "answer": "Diamond",
+      "answer_node_id": "riaa-albums:3",
+      "higher_than": "9× Platinum",
+      "explanation": "Diamond starts at ten million album units in the U.S. Nine-times Platinum requires nine million.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "U.S. RIAA Album Awards under the standard album program",
+      "metric": "minimum certified album units",
+      "caveat": "Units include eligible streaming and downloads as well as album sales.",
+      "source_urls": [
+        "https://www.riaa.com/wp-content/uploads/2022/03/ALBUM-AWARD-RIAA-AND-GRF-CERTIFICATION-AUDIT-REQUIREMENTS.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "geologic-time-q01",
+      "ladder_id": "geologic-time",
+      "category": "outdoors",
+      "brand": "U.S. Geological Survey",
+      "question": "Which unit contains the other on the geologic time scale?",
+      "options": [
+        "Epoch",
+        "Period"
+      ],
+      "answer": "Period",
+      "answer_node_id": "geologic-time:1",
+      "higher_than": "Epoch",
+      "explanation": "A period contains epochs. The Quaternary is a period. The Pleistocene and Holocene are its epochs.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Formal units on the USGS geologic time chart",
+      "metric": "rank of a geologic time unit",
+      "caveat": "This compares ranks in the hierarchy. Individual units have different durations.",
+      "source_urls": [
+        "https://pubs.usgs.gov/gip/141/gip141.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "geologic-time-q02",
+      "ladder_id": "geologic-time",
+      "category": "outdoors",
+      "brand": "U.S. Geological Survey",
+      "question": "Which is the broader division of geologic time?",
+      "options": [
+        "Era",
+        "Period"
+      ],
+      "answer": "Era",
+      "answer_node_id": "geologic-time:2",
+      "higher_than": "Period",
+      "explanation": "An era contains periods. The Jurassic is a period within the Mesozoic Era.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": false,
+      "scope": "Formal units on the USGS geologic time chart",
+      "metric": "rank of a geologic time unit",
+      "caveat": "This compares ranks in the hierarchy. Individual units have different durations.",
+      "source_urls": [
+        "https://pubs.usgs.gov/gip/141/gip141.pdf"
       ],
       "verified_as_of": "2026-11-21",
       "review_status": "editorially_curated"

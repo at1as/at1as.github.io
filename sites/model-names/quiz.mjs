@@ -15,6 +15,8 @@ const summary = document.getElementById('quiz-summary');
 const scoreHeading = document.getElementById('quiz-score-heading');
 const scoreValue = document.getElementById('quiz-score');
 const scoreTotal = document.getElementById('quiz-total');
+const copyScore = document.getElementById('quiz-copy');
+const shareText = document.getElementById('quiz-share-text');
 const message = document.getElementById('quiz-message');
 const announcement = document.getElementById('quiz-announcement');
 const back = document.getElementById('quiz-prev');
@@ -29,20 +31,23 @@ let index = 0;
 let score = 0;
 let advance;
 
-function setNext(label, action, disabled = false) {
+function setNext(label, action, ready = true) {
   next.textContent = label;
-  next.disabled = disabled;
-  next.hidden = !action;
+  next.hidden = !action || !ready;
   next.parentElement.hidden = back.hidden && next.hidden;
   advance = action;
 }
 
-function showProgress(label, completed) {
+function showProgress(label) {
   progress.hidden = false;
   count.textContent = label;
-  track.replaceChildren(...activeQuestions.map((_, position) => {
+  track.replaceChildren(...activeQuestions.map((question, position) => {
     const tick = document.createElement('span');
-    tick.classList.toggle('active', position < completed);
+    if (answers[position] !== undefined) {
+      tick.className = question.options[answers[position]] === question.answer ? 'right' : 'wrong';
+    } else if (position === index) {
+      tick.className = 'current';
+    }
     return tick;
   }));
 }
@@ -53,16 +58,17 @@ function showQuestion(moveFocus = false) {
   seen.add(question.id);
   card.dataset.questionId = question.id;
   message.textContent = '';
+  announcement.textContent = '';
   summary.hidden = true;
   main.hidden = false;
   runningScore.hidden = false;
   runningValue.textContent = `${score} / ${activeQuestions.length}`;
-  showProgress(`${index + 1} / ${activeQuestions.length} · ${question.company}`, index + 1);
+  showProgress(`Question ${index + 1} of ${activeQuestions.length} · ${question.brand}`);
   heading.textContent = question.ask;
   result.classList.remove('incorrect');
   result.replaceChildren();
   choices.forEach((button, position) => {
-    button.querySelector('.choice-label').textContent = position === 0 ? 'OPTION A' : 'OPTION B';
+    button.querySelector('.choice-label').textContent = '';
     button.querySelector('strong').textContent = question.options[position];
     button.classList.remove('chosen', 'correct');
     button.removeAttribute('aria-disabled');
@@ -78,7 +84,7 @@ function showQuestion(moveFocus = false) {
       index++;
       showQuestion(true);
     }
-  }, !answered);
+  }, answered);
   if (moveFocus) heading.focus();
 }
 
@@ -96,7 +102,7 @@ function showAnswer(question, position) {
     }
   });
   const verdict = document.createElement('strong');
-  verdict.textContent = correct ? 'Correct.' : `Incorrect. The correct answer is ${question.answer}.`;
+  verdict.textContent = correct ? 'Correct.' : 'Incorrect.';
   result.classList.toggle('incorrect', !correct);
   const source = document.createElement('a');
   source.href = question.source;
@@ -105,7 +111,8 @@ function showAnswer(question, position) {
   source.textContent = 'Source';
   const scoreUpdate = document.createElement('span');
   scoreUpdate.className = 'sr-only';
-  scoreUpdate.textContent = ` Score ${score} of ${activeQuestions.length}. `;
+  const answerReadout = correct ? '' : ` The correct answer is ${question.answer}.`;
+  scoreUpdate.textContent = `${answerReadout} Score ${score} of ${activeQuestions.length}. `;
   result.replaceChildren(verdict, ` ${question.why} `, scoreUpdate, source);
 }
 
@@ -114,9 +121,7 @@ function selectAnswer(position) {
   answers[index] = position;
   const question = activeQuestions[index];
   if (question.options[position] === question.answer) score++;
-  runningValue.textContent = `${score} / ${activeQuestions.length}`;
-  showAnswer(question, position);
-  next.disabled = false;
+  showQuestion();
 }
 
 function setReplay() {
@@ -142,9 +147,11 @@ function done() {
   delete card.dataset.questionId;
   main.hidden = true;
   runningScore.hidden = true;
-  showProgress('Round complete', activeQuestions.length);
+  showProgress('Round complete');
   scoreValue.textContent = score;
   scoreTotal.textContent = ` / ${activeQuestions.length}`;
+  copyScore.textContent = 'Copy score';
+  shareText.hidden = true;
   summary.hidden = false;
   back.hidden = false;
   setReplay();
@@ -190,6 +197,22 @@ async function initialize(moveFocus = false) {
 }
 
 choices.forEach((button, i) => button.addEventListener('click', () => selectAnswer(i)));
+copyScore.addEventListener('click', async () => {
+  const marks = activeQuestions.map((question, i) =>
+    question.options[answers[i]] === question.answer ? '✓' : '×');
+  const category = group.value ? ` (${group.value})` : '';
+  const url = document.querySelector('link[rel="canonical"]').href;
+  const text = `${score}/${activeQuestions.length} on What’s Bigger Than Max?${category}\n${marks.join(' ')}\n${url}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    copyScore.textContent = 'Score copied';
+  } catch {
+    shareText.value = text;
+    shareText.hidden = false;
+    shareText.focus();
+    shareText.select();
+  }
+});
 back.addEventListener('click', () => {
   if (summary.hidden) index--;
   showQuestion(true);

@@ -78,6 +78,11 @@
         "group": "Sports & Games"
       },
       {
+        "id": "arts",
+        "name": "Print & music",
+        "group": "Print & Music"
+      },
+      {
         "id": "outdoors",
         "name": "Outdoors",
         "group": "Outdoors"
@@ -419,7 +424,7 @@
       "verification": "first_party",
       "status": "ready",
       "source_urls": [
-        "https://aws.amazon.com/ec2/instance-types/general-purpose/"
+        "https://aws.amazon.com/ec2/instance-types/t2/"
       ],
       "verified_as_of": "2026-11-21"
     },
@@ -2877,6 +2882,324 @@
       "status": "ready",
       "source_urls": [
         "https://www.klm.com/information/flying-blue/program/more-info-status"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "whisper-parameters",
+      "category": "ai",
+      "brand": "OpenAI",
+      "title": "Whisper speech recognition models",
+      "low_to_high": [
+        {
+          "id": "whisper-parameters:0",
+          "label": "Whisper medium",
+          "tier": 0
+        },
+        {
+          "id": "whisper-parameters:1",
+          "label": "Whisper turbo",
+          "tier": 1
+        },
+        {
+          "id": "whisper-parameters:2",
+          "label": "Whisper large",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "parameter count",
+      "scope": "Multilingual Whisper checkpoints in the OpenAI model table",
+      "story": "Tiny, base, small, medium, large. Then a name about speed turns up.",
+      "caveat": "Parameter counts compare size alone. Speed also depends on the hardware and recording.",
+      "naming_quirks": [
+        "different-metric"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://github.com/openai/whisper#available-models-and-languages"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "syslog-severity",
+      "category": "connectivity",
+      "brand": "IETF",
+      "title": "Syslog severity levels",
+      "low_to_high": [
+        {
+          "id": "syslog-severity:0",
+          "label": "Critical",
+          "tier": 0
+        },
+        {
+          "id": "syslog-severity:1",
+          "label": "Alert",
+          "tier": 1
+        },
+        {
+          "id": "syslog-severity:2",
+          "label": "Emergency",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "message severity",
+      "scope": "Syslog severity names defined in RFC 5424",
+      "story": "Critical still leaves two levels above it.",
+      "caveat": "Higher urgency has a smaller numeric code.",
+      "naming_quirks": [
+        "inverted-number",
+        "near-synonyms"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.rfc-editor.org/info/rfc5424/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "github-repo-roles",
+      "category": "software",
+      "brand": "GitHub",
+      "title": "Organization repository roles",
+      "low_to_high": [
+        {
+          "id": "github-repo-roles:0",
+          "label": "Read",
+          "tier": 0
+        },
+        {
+          "id": "github-repo-roles:1",
+          "label": "Triage",
+          "tier": 1
+        },
+        {
+          "id": "github-repo-roles:2",
+          "label": "Write",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "built-in repository permissions",
+      "scope": "Built-in roles for repositories owned by GitHub organizations",
+      "story": "GitHub carved out a role between reader and writer for people managing issues.",
+      "caveat": "Custom roles and branch protection can change what an individual can do.",
+      "naming_quirks": [
+        "role-name"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "usda-olive-size",
+      "category": "food",
+      "brand": "USDA",
+      "title": "Canned whole ripe olive sizes",
+      "low_to_high": [
+        {
+          "id": "usda-olive-size:0",
+          "label": "Extra Large",
+          "tier": 0
+        },
+        {
+          "id": "usda-olive-size:1",
+          "label": "Jumbo",
+          "tier": 1
+        },
+        {
+          "id": "usda-olive-size:2",
+          "label": "Colossal",
+          "tier": 2
+        },
+        {
+          "id": "usda-olive-size:3",
+          "label": "Super Colossal",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "size of an individual whole olive",
+      "scope": "USDA Table I for canned whole ripe olives",
+      "story": "The USDA found three names bigger than Extra Large.",
+      "caveat": "The count-per-pound ranges apply to whole ripe olives.",
+      "naming_quirks": [
+        "ceiling",
+        "superlative"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.ams.usda.gov/sites/default/files/media/Canned%20Ripe%20Olives%20Standard.pdf"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "printed-sheets",
+      "category": "arts",
+      "brand": "Folger Shakespeare Library",
+      "title": "Early printed book formats",
+      "low_to_high": [
+        {
+          "id": "printed-sheets:0",
+          "label": "Octavo",
+          "tier": 0
+        },
+        {
+          "id": "printed-sheets:1",
+          "label": "Quarto",
+          "tier": 1
+        },
+        {
+          "id": "printed-sheets:2",
+          "label": "Folio",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "area per leaf from an equal sheet",
+      "scope": "Traditional book formats folded from identical sheets of paper",
+      "story": "The number in the name counts leaves produced from a sheet.",
+      "caveat": "The original sheet size matters when comparing actual books.",
+      "naming_quirks": [
+        "inverted-number"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.folger.edu/explore/shakespeare-in-print/publishing-shakespeare/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "type-spaces",
+      "category": "arts",
+      "brand": "Unicode",
+      "title": "Typesetting spaces",
+      "low_to_high": [
+        {
+          "id": "type-spaces:0",
+          "label": "Hair space",
+          "tier": 0
+        },
+        {
+          "id": "type-spaces:1",
+          "label": "Thin space",
+          "tier": 1
+        },
+        {
+          "id": "type-spaces:2",
+          "label": "En space",
+          "tier": 2
+        },
+        {
+          "id": "type-spaces:3",
+          "label": "Em space",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "nominal width at the same type size",
+      "scope": "Conventional space widths in Unicode General Punctuation",
+      "story": "One letter doubles the width from en to em.",
+      "caveat": "Actual glyph widths can vary by font and justification.",
+      "naming_quirks": [
+        "near-synonyms"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.unicode.org/Public/18.0.0/charts/nameslist/2000/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "riaa-albums",
+      "category": "arts",
+      "brand": "RIAA",
+      "title": "U.S. album certifications",
+      "low_to_high": [
+        {
+          "id": "riaa-albums:0",
+          "label": "Gold",
+          "tier": 0
+        },
+        {
+          "id": "riaa-albums:1",
+          "label": "Platinum",
+          "tier": 1
+        },
+        {
+          "id": "riaa-albums:2",
+          "label": "9× Platinum",
+          "tier": 2
+        },
+        {
+          "id": "riaa-albums:3",
+          "label": "Diamond",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "minimum certified album units",
+      "scope": "U.S. RIAA Album Awards under the standard album program",
+      "story": "The RIAA changes materials again at ten million units.",
+      "caveat": "Units include eligible streaming and downloads as well as album sales.",
+      "naming_quirks": [
+        "material-metaphor"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.riaa.com/wp-content/uploads/2022/03/ALBUM-AWARD-RIAA-AND-GRF-CERTIFICATION-AUDIT-REQUIREMENTS.pdf"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "geologic-time",
+      "category": "outdoors",
+      "brand": "U.S. Geological Survey",
+      "title": "Divisions of geologic time",
+      "low_to_high": [
+        {
+          "id": "geologic-time:0",
+          "label": "Epoch",
+          "tier": 0
+        },
+        {
+          "id": "geologic-time:1",
+          "label": "Period",
+          "tier": 1
+        },
+        {
+          "id": "geologic-time:2",
+          "label": "Era",
+          "tier": 2
+        },
+        {
+          "id": "geologic-time:3",
+          "label": "Eon",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "rank of a geologic time unit",
+      "scope": "Formal units on the USGS geologic time chart",
+      "story": "Everyday English treats era and epoch almost interchangeably.",
+      "caveat": "This compares ranks in the hierarchy. Individual units have different durations.",
+      "naming_quirks": [
+        "near-synonyms"
+      ],
+      "editorial_priority": 3,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://pubs.usgs.gov/gip/141/gip141.pdf"
       ],
       "verified_as_of": "2026-11-21"
     }
