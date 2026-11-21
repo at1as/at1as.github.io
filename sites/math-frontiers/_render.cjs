@@ -8,7 +8,7 @@ const list = M.milestones(problem, true);
 const index = list.length - 1;
 const current = list[index];
 const chart = V.progressChart(problem, list, index, 'full', true, 680);
-const status = {published:'Published result', construction:'Published construction', preprint:'Preprint', report:'Author report'}[current.status];
+const status = M.statusText[current.status];
 const slots = {
   NAV: V.navigation(data, true, problem.id),
   CATEGORY: escape(problem.category), TITLE: escape(problem.name),

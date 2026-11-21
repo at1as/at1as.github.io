@@ -4,7 +4,7 @@
   else root.FrontiersView = factory(root.Frontiers);
 })(typeof window === "object" ? window : globalThis, function(M) {
   const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
-  const statusText = { published: 'Published result', preprint: 'Preprint', report: 'Author report', construction: 'Published construction', conjecture: 'Conjecture · unproved' };
+  const { statusText } = M;
   const metric = (p, m) => p.kind === 'range' ? `${m.lower}–${m.value}` : p.kind === 'floor' ? `> 10<sup>${m.value.toLocaleString('en-US')}</sup>` : escape(m.display || M.format(p, m.value));
   const shortMetric = (p, m) => p.kind === 'grid' ? `${m.value} gaps` : p.kind === 'range' ? `${m.lower}–${m.value}` : p.kind === 'floor' ? `> 10^${m.value}` : M.format(p, m.value);
 
@@ -19,9 +19,15 @@
   function navigation(data, includeReports, selectedId) {
     return data.problems.map((p,i) => {
       const list = M.milestones(p, includeReports);
-      const bound = M.regions(p, includeReports).filter(r=>r.status!=='conjecture').sort((a,b)=>M.regionBounds(a).upper-M.regionBounds(b).upper)[0];
-      const values = p.id === 'riemann' ? `<span class="riemann-metrics"><span data-tooltip="${escape(M.milestoneText(p,list.at(-1)))}"><strong>${escape(shortMetric(p,list.at(-1)))}</strong><small>on the line</small></span><span${bound?` data-tooltip="${escape(M.regionRange(bound)+' · preprint')}">`:'>'}<strong>${bound?escape(bound.label):'RH'}</strong><small>${bound?'strip bound':'unproved'}</small></span></span>` : `<span class="mini-value">${escape(shortMetric(p,list.at(-1)))}</span>${mini(p,list)}`;
-      return `<button type="button" class="problem-button${p.id==='riemann'?' riemann-card':''}" data-problem="${p.id}" aria-pressed="${p.id === selectedId}" aria-controls="explorer"><span class="number">0${i+1}${M.reported(list.at(-1))?' <span class="nav-evidence">Reported</span>':''}</span><span class="name">${escape(p.name)}</span>${values}</button>`;
+      const regions = M.regions(p, includeReports);
+      const proof = regions.find(region => region.status === 'verified');
+      const earlierBound = regions.findLast(M.reported);
+      const region = earlierBound || proof || regions.at(-1);
+      const values = p.id === 'riemann' ? `<span class="riemann-metrics"><span data-tooltip="${escape(M.milestoneText(p,list.at(-1)))}"><strong>${escape(shortMetric(p,list.at(-1)))}</strong><small>on the line</small></span><span data-tooltip="${escape(M.regionRange(region)+' · '+M.regionEvidence(region))}"><strong>${escape(earlierBound ? earlierBound.label : M.regionRange(region))}</strong><small>${earlierBound ? 'preprint bound' : 'full RH'}</small></span></span>` : `<span class="mini-value">${escape(shortMetric(p,list.at(-1)))}</span>${mini(p,list)}`;
+      const evidence = !proof && M.reported(list.at(-1)) ? ' <span class="nav-evidence">Reported</span>' : '';
+      const proofStatus = proof ? `<span class="proof-status">${escape(statusText[proof.status])}</span>` : '';
+      const classes = p.id === 'riemann' ? 'problem-button riemann-card' : 'problem-button';
+      return `<button type="button" class="${classes}" data-problem="${p.id}" aria-pressed="${p.id === selectedId}" aria-controls="explorer"><span class="number">0${i+1}${evidence}</span><span class="name">${escape(p.name)}</span>${proofStatus}${values}</button>`;
     }).join('');
   }
 
@@ -34,6 +40,10 @@
     const isLog = problem.id === 'primes' && mode !== 'linear';
     const isDetail = problem.id === 'matrix' && mode === 'detail';
     const [min,max] = M.bounds(problem,list,mode);
+    const belowZoom = isDetail ? list.findLast(m => m.value < min) : null;
+    const zoomNote = isDetail ? `Zoomed to ${min}–${max} from 2014 onward. ` +
+      (belowZoom ? `Use the full range to see the reported ${M.format(problem,belowZoom.value)} bound and the target of 2. ` :
+        'Use the full range to see earlier bounds and the target of 2. ') : '';
     const transform = value => isLog ? Math.log10(value) : value;
     const y = value => top + (transform(max)-transform(value))/(transform(max)-transform(min))*plotH;
     const xStart = isDetail ? 2014 : problem.start;
@@ -41,7 +51,7 @@
     const x = date => left+(M.year(date)-xStart)/(xEnd-xStart)*plotW;
     const yTicks = isDetail ? [2.371,2.3715,2.372,2.3725,2.373] : (problem.id === 'primes' && mode === 'linear' ? [0,20000000,40000000,60000000,80000000] : problem.ticks);
     const yLabel = n => problem.kind === 'floor' ? `10^${n}` : problem.id === 'primes' && n>=1000000 ? `${n/1000000}m` : problem.id === 'primes' && n>=1000 ? `${n/1000}k` : problem.kind === 'proportion' ? `${n}%` : String(n);
-    let svg = `<svg viewBox="0 0 ${width} ${height}" role="group" aria-labelledby="chart-title chart-desc"><title id="chart-title">${escape(problem.name)}: selected milestones</title><desc id="chart-desc">${escape(problem.chartDescription)} Selected: ${escape(current.label)}, ${escape(shortMetric(problem,current))}. Full data and sources are below.</desc><defs><clipPath id="plot-clip"><rect x="${left-8}" y="${top-8}" width="${plotW+16}" height="${plotH+16}"/></clipPath></defs>`;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" role="group" aria-labelledby="chart-title chart-desc"><title id="chart-title">${escape(problem.name)}: selected milestones</title><desc id="chart-desc">${escape(problem.chartDescription)} Selected: ${escape(current.label)}, ${escape(shortMetric(problem,current))}. ${escape(zoomNote)}Full data and sources are below.</desc><defs><clipPath id="plot-clip"><rect x="${left-8}" y="${top-8}" width="${plotW+16}" height="${plotH+16}"/></clipPath></defs>`;
     for (const tick of yTicks) svg += `<line class="grid-line" x1="${left}" y1="${y(tick)}" x2="${width-right}" y2="${y(tick)}"/><text x="${left-12}" y="${y(tick)+3}" text-anchor="end">${yLabel(tick)}</text>`;
     const xticks = isDetail ? [2014,2018,2022,2026] : problem.yearTicks;
     for (const tick of xticks) svg+=`<text class="axis-label" x="${x(String(tick))}" y="${height-17}" text-anchor="middle">${tick}</text>`;
@@ -55,25 +65,32 @@
       svg += `<path d="${M.stepPath([...lower,[endX,lower.at(-1)[1]]])}" stroke="#758dba" stroke-width="2" fill="none"/>`;
     }
     svg += '<g clip-path="url(#plot-clip)">';
+    const lineClass = milestone => 'data-line' + (M.reported(milestone) ? ' reported-line' :
+      milestone.status === 'verified' ? ' verified-line' : '');
     for (let i=1;i<past.length;i++) {
       const a=past[i-1],b=past[i];
-      svg+=`<path d="M${x(a.date)},${y(a.value)}H${x(b.date)}" class="data-line${M.reported(a)?' reported-line':''}"/><path d="M${x(b.date)},${y(a.value)}V${y(b.value)}" class="data-line${M.reported(b)?' reported-line':''}"/>`;
+      svg+=`<path d="M${x(a.date)},${y(a.value)}H${x(b.date)}" class="${lineClass(a)}"/><path d="M${x(b.date)},${y(a.value)}V${y(b.value)}" class="${lineClass(b)}"/>`;
     }
     if(past.length) {
       const last=past.at(-1);
-      svg+=`<path d="M${x(last.date)},${y(last.value)}H${x(String(xEnd))}" class="data-line${M.reported(last)?' reported-line':''}" opacity=".35"/>`;
+      svg+=`<path d="M${x(last.date)},${y(last.value)}H${x(String(xEnd))}" class="${lineClass(last)}" opacity=".35"/>`;
     }
     list.forEach((m,i) => {
       if(M.year(m.date)<xStart || m.value>max || m.value<min) return;
       const cx=x(m.date),cy=y(m.value),future=i>index;
       const tip=escape(M.milestoneText(problem,m));
-      svg+=`<g opacity="${future?.28:1}" data-index="${i}" data-tooltip="${tip}" tabindex="0" role="button" aria-label="${tip}" aria-pressed="${i===index}"><circle class="hit-area" cx="${cx}" cy="${cy}" r="12"/><circle class="point-halo" cx="${cx}" cy="${cy}" r="10"/><circle class="point${i===index?' selected':''}${M.reported(m)?' report':''}${showAI&&m.ai?' ai':''}" cx="${cx}" cy="${cy}" r="${i===index?6:4}"/></g>`;
+      const evidence = M.reported(m) ? ' report' : m.status === 'verified' ? ' verified' : '';
+      svg+=`<g opacity="${future?.28:1}" data-index="${i}" data-tooltip="${tip}" tabindex="0" role="button" aria-label="${tip}" aria-pressed="${i===index}"><circle class="hit-area" cx="${cx}" cy="${cy}" r="12"/><circle class="point-halo" cx="${cx}" cy="${cy}" r="10"/><circle class="point${i===index?' selected':''}${evidence}${showAI&&m.ai?' ai':''}" cx="${cx}" cy="${cy}" r="${i===index?6:4}"/></g>`;
     });
     svg+='</g></svg>';
 
-    const legend='<span class="legend-item"><i class="legend-line"></i> Published</span>'+(list.some(M.reported)?'<span class="legend-item"><i class="legend-line report"></i> Reported</span>':'')+(problem.kind==='range'?'<span class="legend-item"><i class="legend-line lower"></i> Lower bound</span>':'')+(problem.target!=null&&!isDetail?'<span class="legend-item"><i class="legend-line target"></i> Target</span>':'');
-    const unit = isDetail ? 'Exponent ω · detail view (target 2 is outside the plot)' : problem.id==='primes' ? `Prime gap H₁ · ${isLog?'logarithmic':'linear'} scale` : problem.unit;
-    const note = (isDetail ? 'The detail view shows 2014 onward and magnifies a very narrow range. Earlier values and the target are outside this view. ' : '') + problem.chartNote;
+    const legend = '<span class="legend-item"><i class="legend-line"></i> Published</span>' +
+      (list.some(M.reported) ? '<span class="legend-item"><i class="legend-line report"></i> Reported</span>' : '') +
+      (list.some(m => m.status === 'verified') ? '<span class="legend-item"><i class="legend-line verified"></i> Lean verified</span>' : '') +
+      (problem.kind==='range' ? '<span class="legend-item"><i class="legend-line lower"></i> Lower bound</span>' : '') +
+      (problem.target!=null&&!isDetail ? '<span class="legend-item"><i class="legend-line target"></i> Target</span>' : '');
+    const unit = isDetail ? 'Exponent ω · detail view' : problem.id==='primes' ? `Prime gap H₁ · ${isLog?'logarithmic':'linear'} scale` : problem.unit;
+    const note = zoomNote + problem.chartNote;
     return {svg, legend, unit, note};
   }
 

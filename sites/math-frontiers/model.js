@@ -2,6 +2,8 @@
 (function (root) {
   'use strict';
   const reported = m => m.status === 'preprint' || m.status === 'report';
+  const statusText = { published: 'Published result', construction: 'Published construction',
+    preprint: 'Preprint', report: 'Author report', conjecture: 'Conjecture · unproved', verified: 'Lean-verified proof' };
   function milestones(problem, includeReports) {
     return problem.milestones.filter(m => includeReports || !reported(m));
   }
@@ -31,8 +33,7 @@
     const value = problem.kind === 'range' ? `${milestone.lower}–${milestone.value}` :
       problem.kind === 'floor' ? `> 10^${milestone.value}` :
       milestone.display || format(problem, milestone.value);
-    const status = {published:'Published result',construction:'Published construction',preprint:'Preprint',report:'Author report'}[milestone.status];
-    return `${problem.name} · ${milestone.label}\n${value}\n${status}`;
+    return `${problem.name} · ${milestone.label}\n${value}\n${statusText[milestone.status]}`;
   }
   function orderText(milestone, order) {
     const status = milestone.unknown.includes(order) ? 'Unresolved' :
@@ -41,6 +42,10 @@
   }
   function regions(problem, includeReports) {
     return (problem.zeroFreeRegions || []).filter(r => includeReports || !reported(r));
+  }
+  function regionEvidence(region) {
+    const status = statusText[region.status];
+    return region.leanEvidence ? `${status} · ${region.leanEvidence.label}` : status;
   }
   function regionBounds(region) {
     const { numerator: n, denominator: d } = region;
@@ -51,7 +56,7 @@
     const b = regionBounds(region);
     return b.lower === b.upper ? `β = ${b.upperLabel}` : `${b.lowerLabel} ≤ β ≤ ${b.upperLabel}`;
   }
-  const api = { reported, milestones, year, stepPath, bounds, format, milestoneText, orderText, regions, regionBounds, regionRange };
+  const api = { reported, statusText, milestones, year, stepPath, bounds, format, milestoneText, orderText, regions, regionEvidence, regionBounds, regionRange };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Frontiers = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

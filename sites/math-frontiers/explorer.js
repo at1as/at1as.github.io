@@ -12,10 +12,10 @@
     $('show-ai').checked = true;
   }
   const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
-  const statusText = { published: 'Published result', preprint: 'Preprint', report: 'Author report', construction: 'Published construction', conjecture: 'Conjecture · unproved' };
+  const { statusText } = M;
   let problem = data.problems.find(p => p.id === location.hash.slice(1)) || data.problems[0];
   let index = -1, mode = 'full', timer = null;
-  let riemannView = 'proportion', regionId = 'seven-eighths';
+  let riemannView = 'proportion', regionId = 'rh';
   let tooltipTarget = null;
   let tooltipHighlights = [];
   const rows = () => M.milestones(problem, $('include-reports').checked);
@@ -49,41 +49,59 @@
     const available = M.regions(problem, $('include-reports').checked);
     const region = available.find(r=>r.id===regionId) || available.at(-1);
     regionId = region.id;
-    const b = M.regionBounds(region), conjecture = region.status === 'conjecture';
+    const b = M.regionBounds(region);
+    const conjecture = region.status === 'conjecture';
+    const verified = region.status === 'verified';
+    const onLine = b.lower === b.upper;
     const range = M.regionRange(region);
+    const evidence = M.regionEvidence(region);
     $('region-controls').querySelectorAll('[data-region]').forEach(button=>{
-      button.disabled = !available.some(r=>r.id===button.dataset.region);
-      button.setAttribute('aria-pressed',String(button.dataset.region===regionId));
+      const comparison = problem.zeroFreeRegions.find(r=>r.id===button.dataset.region);
+      button.disabled = !available.includes(comparison);
+      button.setAttribute('aria-pressed',String(comparison===region));
+      button.querySelector('small').textContent = M.regionEvidence(comparison);
     });
     $('region-filter-note').hidden = $('include-reports').checked;
-    $('region-metric-label').textContent = conjecture ? 'Conjectured location of every nontrivial zero' : 'Reported location bound for every nontrivial zero';
+    $('region-metric-label').textContent = verified ? 'Location of every nontrivial zero' :
+      conjecture ? 'Conjectured location of every nontrivial zero' : 'Location bound for every nontrivial zero';
     $('region-value').textContent = range;
-    $('region-status').textContent = statusText[region.status];
-    $('region-status').className = 'status '+(conjecture?'conjecture':'report');
+    $('region-status').textContent = evidence;
+    $('region-status').className = 'status' + (conjecture ? ' conjecture' : M.reported(region) ? ' report' : '');
     $('region-date').textContent = region.dateLabel;
-    $('region-evidence').textContent = `${region.dateLabel} / ${statusText[region.status]}`;
+    $('region-evidence').textContent = `${region.dateLabel} / ${evidence}`;
     $('region-title').textContent = region.title;
     $('region-detail').textContent = region.detail;
     $('region-who').textContent = region.who;
     $('region-source').href = region.url;
-    $('region-source').textContent = conjecture ? 'Read about the conjecture ↗' : 'Read the preprint ↗';
+    $('region-source').textContent = verified ? 'Read Alpöge’s announcement ↗' :
+      conjecture ? 'Read about the conjecture ↗' : 'Read the preprint ↗';
+    const leanSource = $('region-lean-source');
+    const leanUrl = region.leanEvidence?.url;
+    leanSource.hidden = !leanUrl;
+    if (leanUrl) leanSource.href = leanUrl;
     $('region-ai-note').hidden = !$('show-ai').checked;
     $('region-ai-note').textContent = region.ai ? 'AI contribution · '+region.ai : 'The Riemann hypothesis was formulated in 1859; this comparison does not represent an AI result.';
-    $('permitted-legend').hidden = conjecture;
+    $('permitted-legend').hidden = onLine;
     const latest = rows().at(-1);
-    $('region-proportion-comparison').textContent = `${latest.display} of zeros lie exactly at β = ½, asymptotically (${statusText[latest.status].toLowerCase()}). This bound does not locate the remaining zeros.`;
-    $('region-proportion-source').href = latest.url;
-    $('region-location-comparison').textContent = conjecture ? 'Full RH would put every zero at β = ½. Even a 100% asymptotic proportion could leave a sparse set of exceptions; RH allows none.' : `The ${region.label} statement confines every nontrivial zero to ${range}. ${region.label} is a horizontal coordinate, not a percentage of zeros or a percentage solved.`;
+    $('region-proportion-comparison').textContent = latest.status === 'verified'
+      ? `Full RH places ${latest.display} of nontrivial zeros on the critical line.`
+      : `${latest.display} of zeros lie at β = ½, asymptotically (${statusText[latest.status].toLowerCase()}).`;
+    $('region-proportion-source').href = latest.supportUrl || latest.url;
+    $('region-location-comparison').textContent = verified ? 'Every nontrivial zero lies on β = ½. The permitted strip has width zero.' :
+      conjecture ? 'Full RH would place every nontrivial zero on β = ½, with no exceptions.' :
+      `The ${region.label} preprint reports that every nontrivial zero lies in ${range}.`;
 
     const width = Math.max(240, $('region-diagram').clientWidth), height = 320;
     const left = 38, right = 18, top = 42, bottom = 240, plotW = width-left-right;
     const x = value => left+value*plotW;
-    const description = `${statusText[region.status]}. ${range}. ${conjecture?'Under full RH, every nontrivial zero would lie on the critical line.':'The outer bands are excluded by the reported statement; zeros may lie anywhere in the remaining strip, including on its boundaries.'} The restriction extends to every height. No individual zeros are plotted.`;
-    const excludedTip = conjecture ? 'Excluded if RH is true · conjecture' : `Excluded by the ${region.label} statement · preprint`;
+    const description = `${evidence}. ${range}. ${$('region-location-comparison').textContent} The restriction extends to every height.`;
+    const excludedTip = verified ? 'Excluded by full RH · Lean-verified proof' :
+      conjecture ? 'Excluded if RH is true · conjecture' : `Excluded by the ${region.label} preprint`;
     const permittedTip = `${range}\nPermitted locations; not a distribution of zeros`;
+    const lineTip = verified ? '\nEvery nontrivial zero lies here' : conjecture ? '\nEvery nontrivial zero would lie here under RH' : '';
     const boundary = (value,label,side) => {
       const exactDecimal = Number(value.toFixed(6));
-      const tip = `${side} boundary · β = ${label}\n${value===exactDecimal?'=':'≈'} ${exactDecimal}\n${statusText[region.status]}`;
+      const tip = `${side} boundary · β = ${label}\n${value===exactDecimal?'=':'≈'} ${exactDecimal}\n${evidence}`;
       return `<g data-tooltip="${escape(tip)}" tabindex="0" role="img" aria-label="${escape(tip)}"><line x1="${x(value)}" x2="${x(value)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line class="region-boundary" x1="${x(value)}" x2="${x(value)}" y1="${top}" y2="${bottom}"/><circle cx="${x(value)}" cy="${bottom}" r="4" class="region-boundary-dot"/><text class="boundary-label" x="${x(value)}" y="${bottom+44}" text-anchor="middle">${label}</text></g>`;
     };
     $('region-diagram').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="group" aria-labelledby="region-svg-title region-svg-desc">
@@ -91,16 +109,16 @@
       <defs><pattern id="excluded-hatch" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M-1,1L1,-1M0,7L7,0M6,8L8,6" stroke="#9eB7a1" stroke-width=".6"/></pattern></defs>
       <rect x="${left}" y="${top}" width="${plotW}" height="${bottom-top}" fill="#e8efe6"/>
       <rect x="${left}" y="${top}" width="${plotW}" height="${bottom-top}" fill="url(#excluded-hatch)" data-tooltip="${escape(excludedTip)}"/>
-      ${conjecture?'':`<rect class="permitted-strip" x="${x(b.lower)}" y="${top}" width="${x(b.upper)-x(b.lower)}" height="${bottom-top}" fill="#fcf3e6" data-tooltip="${escape(permittedTip)}"/>`}
+      ${onLine?'':`<rect class="permitted-strip" x="${x(b.lower)}" y="${top}" width="${x(b.upper)-x(b.lower)}" height="${bottom-top}" fill="#fcf3e6" data-tooltip="${escape(permittedTip)}"/>`}
       <path d="M${left},${top}H${width-right}M${left},${bottom}H${width-right}" stroke="#aab9ad" stroke-dasharray="3 4"/>
       <text x="${x(.5)}" y="20" text-anchor="middle" class="critical-label">Critical line β = ½</text>
       <path d="M${x(.5)-4},${top+5}L${x(.5)},${top}L${x(.5)+4},${top+5}M${x(.5)-4},${bottom-5}L${x(.5)},${bottom}L${x(.5)+4},${bottom-5}" class="critical-line"/>
-      <g tabindex="0" role="img" aria-label="Critical line: real part β = ½" data-tooltip="Critical line · β = ½ = 0.5${conjecture?'\nEvery nontrivial zero would lie here under RH':''}"><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" class="critical-line${conjecture?' rh-line':''}"/></g>
-      ${conjecture?'':boundary(b.lower,b.lowerLabel,'Left')+boundary(b.upper,b.upperLabel,'Right')}
+      <g tabindex="0" role="img" aria-label="Critical line: real part β = ½" data-tooltip="${escape('Critical line · β = ½ = 0.5'+lineTip)}"><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" class="critical-line${onLine?' rh-line':''}"/></g>
+      ${onLine?'':boundary(b.lower,b.lowerLabel,'Left')+boundary(b.upper,b.upperLabel,'Right')}
       <text x="${left}" y="${bottom+23}" text-anchor="middle">0</text><text x="${x(.5)}" y="${bottom+23}" text-anchor="middle">½</text><text x="${width-right}" y="${bottom+23}" text-anchor="middle">1</text>
       <text x="${x(.5)}" y="${height-8}" text-anchor="middle">Real part β →</text>
       <text transform="translate(15 ${(top+bottom)/2}) rotate(-90)" text-anchor="middle">Height γ · all heights</text>
-      ${conjecture?`<text class="region-caption" x="${x(.5)+12}" y="${(top+bottom)/2}">All zeros</text><text class="region-caption" x="${x(.5)+12}" y="${(top+bottom)/2+18}">on this line</text>`:''}
+      ${onLine?`<text class="region-caption" x="${x(.5)+12}" y="${(top+bottom)/2}">All nontrivial</text><text class="region-caption" x="${x(.5)+12}" y="${(top+bottom)/2+18}">zeros lie here</text>`:''}
     </svg>`;
   }
 
@@ -138,7 +156,7 @@
     $('metric-label').textContent=problem.metric;
     $('metric-value').innerHTML=metric(problem,m);
     $('metric-status').textContent=statusText[m.status];
-    $('metric-status').className='status'+(M.reported(m)?' report':'');
+    $('metric-status').className='status'+(M.reported(m)?' report':m.status==='verified'?' verified':'');
     $('metric-date').textContent=m.label;
     $('question').textContent=problem.question;
     $('explanation').textContent=problem.explanation;
@@ -147,6 +165,12 @@
     $('event-detail').textContent=m.detail;
     $('event-who').textContent=m.who;
     $('event-source').href=m.url;
+    const support = $('event-support');
+    if (support) {
+      support.hidden = !m.supportUrl;
+      if (m.supportUrl) support.href = m.supportUrl;
+      else support.removeAttribute('href');
+    }
     $('interpretation').textContent=problem.interpretation;
     $('ai-note').hidden=!$('show-ai').checked;
     $('ai-note').textContent=m.ai ? 'AI contribution · '+m.ai : 'No AI contribution is documented for this milestone in this collection.';
@@ -159,7 +183,7 @@
     $('previous').disabled=index===0;
     $('next').disabled=index===list.length-1;
     $('scale-toggle').hidden=!['primes','matrix'].includes(problem.id);
-    $('scale-toggle').textContent=problem.id==='primes' ? (mode==='linear'?'Use log scale':'Use linear scale') : (mode==='detail'?'Show full range':'Zoom to recent progress');
+    $('scale-toggle').textContent=problem.id==='primes' ? (mode==='linear'?'Use log scale':'Use linear scale') : (mode==='detail'?'Show full range':'Zoom near 2.372');
     $('scale-toggle').setAttribute('aria-pressed',String(mode!=='full'));
     if (!$('progress-view').hidden) renderChart(list);
     if (!$('region-view').hidden) renderRegion();

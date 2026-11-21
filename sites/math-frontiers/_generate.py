@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Render the static, searchable source tables and embed curated data. No network."""
 from html import escape
+from hashlib import sha256
 import json
 import subprocess
 from pathlib import Path
@@ -8,7 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 data = json.loads((ROOT / 'data.json').read_text())
 labels = {'published': 'Published result', 'construction': 'Published construction',
-          'preprint': 'Preprint', 'report': 'Author report', 'conjecture': 'Conjecture · unproved'}
+          'preprint': 'Preprint', 'report': 'Author report', 'conjecture': 'Conjecture · unproved',
+          'verified': 'Lean-verified proof'}
 
 
 def value(problem, milestone):
@@ -36,8 +38,15 @@ for problem in data['problems']:
             n, d = region['numerator'], region['denominator']
             bound = 'β = ½' if n * 2 == d else f'{d-n}/{d} ≤ β ≤ {n}/{d}'
             ai = ('<span class="table-note">AI contribution: ' + escape(region['ai']) + '</span>') if region.get('ai') else ''
-            region_rows.append(f'<tr><td><time datetime="{region["date"]}">{escape(region["dateLabel"])}</time></td><td>{escape(bound)}</td><td>{labels[region["status"]]}<span class="table-note">{escape(region["who"])}</span></td><td>{escape(region["detail"])}<br><a href="{escape(region["url"])}" target="_blank" rel="noopener">Source ↗</a>{ai}</td></tr>')
-        region_table = f'<h3 class="source-subtitle">Zero-free region comparisons</h3><p class="source-comparison-note">Ordered by strength, not publication date. These bounds describe horizontal position, not a proportion of zeros. Full RH is an unproved reference.</p><div class="source-table-wrap" tabindex="0" role="region" aria-label="Zero-free regions source table"><table><caption class="visually-hidden">Riemann zero-free regions: reported bounds and the conjectured limit</caption><thead><tr><th scope="col">Date</th><th scope="col">Permitted location</th><th scope="col">Evidence &amp; attribution</th><th scope="col">Context &amp; source</th></tr></thead><tbody>{"".join(region_rows)}</tbody></table></div>'
+            evidence = labels[region['status']]
+            links = f'<a href="{escape(region["url"])}" target="_blank" rel="noopener">Source ↗</a>'
+            if lean := region.get('leanEvidence'):
+                evidence += f' · {lean["label"]}'
+                links += f' · <a href="{escape(lean["url"])}" target="_blank" rel="noopener">Lean evidence ↗</a>'
+            elif region.get('verificationUrl'):
+                links += f' · <a href="{escape(region["verificationUrl"])}" target="_blank" rel="noopener">Verification statement ↗</a>'
+            region_rows.append(f'<tr><td><time datetime="{region["date"]}">{escape(region["dateLabel"])}</time></td><td>{escape(bound)}</td><td>{escape(evidence)}<span class="table-note">{escape(region["who"])}</span></td><td>{escape(region["detail"])}<br>{links}{ai}</td></tr>')
+        region_table = f'<h3 class="source-subtitle">Zero-free region comparisons</h3><p class="source-comparison-note">Ordered by strength. The bounds give the permitted real parts of nontrivial zeros.</p><div class="source-table-wrap" tabindex="0" role="region" aria-label="Zero-free regions source table"><table><caption class="visually-hidden">Riemann zero-free regions, from preprint bounds to the Lean-verified proof</caption><thead><tr><th scope="col">Date</th><th scope="col">Permitted location</th><th scope="col">Evidence &amp; attribution</th><th scope="col">Context &amp; source</th></tr></thead><tbody>{"".join(region_rows)}</tbody></table></div>'
     qualifier = f' · {len(regions)} region comparisons' if regions else ''
     tables.append(f'<details id="sources-{problem["id"]}"><summary>{escape(problem["name"])} · {len(rows)} milestones{qualifier}</summary><div class="source-table-wrap" tabindex="0" role="region" aria-label="{escape(problem["name"])} source table"><table><caption class="visually-hidden">{escape(problem["name"])}: all included milestones and sources</caption><thead><tr><th scope="col">Date</th><th scope="col">Value</th><th scope="col">Evidence &amp; attribution</th><th scope="col">Context &amp; source</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>{region_table}</details>')
 
@@ -45,6 +54,18 @@ html = (ROOT / '_template.html').read_text()
 html = html.replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('<', '\\u003c'))
 html = html.replace('__TABLES__', '\n'.join(tables))
 html = html.replace('__UPDATED__', escape(data['updated']))
+riemann = next(problem for problem in data['problems'] if problem['id'] == 'riemann')
+proof = next((region for region in riemann['zeroFreeRegions'] if region['status'] == 'verified'), None)
+notice = (f'<aside class="riemann-proof" aria-label="Riemann Hypothesis proof">'
+          f'<strong>{labels[proof["status"]]}</strong> '
+          f'<span>{escape(proof["who"])}, released a proof on '
+          f'<time datetime="{proof["date"]}">{escape(proof["dateLabel"])}</time>.</span> '
+          f'<a href="{escape(proof["verificationUrl"])}" target="_blank" rel="noopener">Lean and Mathlib verification ↗</a></aside>'
+          if proof else '')
+html = html.replace('__RIEMANN_PROOF__', notice)
+for filename in ('styles.css', 'model.js', 'view.js', 'explorer.js'):
+    digest = sha256((ROOT / filename).read_bytes()).hexdigest()[:12]
+    html = html.replace(f'="{filename}"', f'="{filename}?v={digest}"')
 initial = json.loads(subprocess.check_output(['node', str(ROOT / '_render.cjs')], text=True))
 for key, value in initial.items():
     html = html.replace(f'__{key}__', value)
