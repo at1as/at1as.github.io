@@ -2,13 +2,13 @@ export const roundSize = 6;
 export const defaultGroup = 'AI Model Naming';
 
 export async function loadCorpus() {
-  const files = ['questions', 'featured_questions', 'starter_round', 'ladders'];
-  const [questions, featured, starter, ladders] = await Promise.all(files.map(async file => {
+  const files = ['questions', 'featured_questions', 'starter_round', 'ladders', 'rankings'];
+  const data = await Promise.all(files.map(async file => {
     const response = await fetch(new URL(`data/${file}.json`, import.meta.url));
     if (!response.ok) throw new Error(`Could not load ${file}`);
     return response.json();
   }));
-  return prepareCorpus(questions, featured, starter, ladders);
+  return prepareCorpus(...data);
 }
 
 function requireData(valid, message) {
@@ -17,7 +17,7 @@ function requireData(valid, message) {
 
 const hasText = value => typeof value === 'string' && value.trim().length > 0;
 
-export function prepareCorpus(questions, featured, starter, ladders) {
+export function prepareCorpus(questions, featured, starter, ladders, rankingPrompts) {
   const categories = ladders.meta.categories;
   const categoryById = new Map(categories.map(category => [category.id, category]));
   const ladderById = new Map(ladders.ladders.map(ladder => [ladder.id, ladder]));
@@ -83,7 +83,23 @@ export function prepareCorpus(questions, featured, starter, ladders) {
   requireData(aiStarterIds.size === roundSize && starter.ai_question_ids?.length === roundSize &&
     [...aiStarterIds].every(id => featuredIds.has(id) && byId.get(id).group === defaultGroup) &&
     new Set([...aiStarterIds].map(id => byId.get(id).ladderId)).size === roundSize, 'AI starter round');
-  return { all, featuredIds, starterIds, aiStarterIds, groups: [...new Set(categories.map(category => category.group))] };
+  const reviewed = new Map(all.map(question => [question.ladderId, question]));
+  requireData(Array.isArray(rankingPrompts) && rankingPrompts.length > 0 &&
+    new Set(rankingPrompts.map(prompt => prompt.ladder)).size === rankingPrompts.length, 'ranking prompts');
+  const rankings = rankingPrompts.map(({ ladder: id, ask, names }) => {
+    const ladder = ladderById.get(id);
+    const pair = reviewed.get(id);
+    requireData(pair && hasText(ask) && hasText(ladder.story), id);
+    const tiers = ladder.low_to_high.map(node => node.label);
+    const chosen = names ?? tiers;
+    requireData(Array.isArray(chosen) && chosen.length === 3 && new Set(chosen).size === 3 &&
+      chosen.every(name => hasText(name) && tiers.includes(name)), id);
+    const order = tiers.filter(name => chosen.includes(name)).reverse();
+    requireData(order.length === 3, id);
+    return { id: `rank-${id}`, ladderId: id, brand: pair.brand, group: pair.group,
+      ask, order, why: ladder.story, source: pair.source };
+  });
+  return { all, rankings, featuredIds, starterIds, aiStarterIds, groups: [...new Set(categories.map(category => category.group))] };
 }
 
 // Stable tie-breaker so the same sequence of rounds can be reproduced.
@@ -133,4 +149,25 @@ export function selectRound(corpus, group, seen, roundNumber) {
       ? question.options : [...question.options].reverse();
     return { ...question, options };
   });
+}
+
+export function selectRankingRound(corpus, group, shownLadders, roundNumber) {
+  const seed = `ranking:${roundNumber}:${group}`;
+  const pool = corpus.rankings.filter(q => !shownLadders.has(q.ladderId) && (!group || q.group === group));
+  const usedBrands = new Set();
+  const round = [];
+  const useEditorialOrder = roundNumber === 0 && group === defaultGroup;
+  const priority = new Map(pool.map((question, index) => [question.id,
+    useEditorialOrder ? index : seededRank(seed, question.id)]));
+  const permutations = [[0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
+  while (pool.length && round.length < roundSize) {
+    pool.sort((a, b) => Number(usedBrands.has(a.brand)) - Number(usedBrands.has(b.brand)) ||
+      priority.get(a.id) - priority.get(b.id));
+    const q = pool.shift();
+    usedBrands.add(q.brand);
+    // Sample one of the five arrangements that actually need a move.
+    const permutation = permutations[seededRank(seed + ':order', q.id) % permutations.length];
+    round.push({ ...q, options: permutation.map(position => q.order[position]) });
+  }
+  return round;
 }

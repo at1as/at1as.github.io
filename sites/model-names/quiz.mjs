@@ -1,4 +1,5 @@
-import { defaultGroup, loadCorpus, roundSize, selectRound } from './corpus.mjs';
+import { defaultGroup, loadCorpus, roundSize, selectRound, selectRankingRound } from './corpus.mjs?v=2';
+import { createRankList } from './rank-list.mjs?v=2';
 
 const card = document.getElementById('the-test');
 const categoryList = document.getElementById('category-list');
@@ -14,6 +15,12 @@ const main = document.getElementById('quiz-main');
 const heading = document.getElementById('quiz-question');
 const context = document.getElementById('quiz-context');
 const choices = [...card.querySelectorAll('.quiz-choice')];
+const pairChoices = card.querySelector('.quiz-choices');
+const modes = document.getElementById('quiz-modes');
+const rankingPanel = document.getElementById('quiz-ranking');
+const checkOrder = document.getElementById('rank-check');
+const rankOffer = document.getElementById('rank-offer');
+const rankOfferButton = document.getElementById('rank-offer-button');
 const result = document.getElementById('quiz-result');
 const summary = document.getElementById('quiz-summary');
 const scoreHeading = document.getElementById('quiz-score-heading');
@@ -27,14 +34,30 @@ const back = document.getElementById('quiz-prev');
 const next = document.getElementById('quiz-next');
 
 const seen = new Set();
+const historyKey = 'model-names:shown-ladders:v1';
+let shownLadders = new Set();
+try {
+  const saved = JSON.parse(sessionStorage.getItem(historyKey));
+  if (Array.isArray(saved)) shownLadders = new Set(saved.filter(id => typeof id === 'string'));
+} catch { /* Keep history in memory when browser storage is unavailable. */ }
 let corpus;
 let group = defaultGroup;
-let roundNumber = 0;
+let mode = new URLSearchParams(location.search).get('mode') === 'ranking' ? 'ranking' : 'pairs';
+const roundNumbers = { pairs: 0, ranking: 0 };
 let activeQuestions = [];
 let answers = [];
+let drafts = [];
 let index = 0;
 let score = 0;
 let advance;
+const renderRanking = createRankList(document.getElementById('rank-list'), document.getElementById('rank-row'), (order, update) => {
+  drafts[index] = order;
+  announcement.textContent = update;
+});
+
+function saveLadders() {
+  try { sessionStorage.setItem(historyKey, JSON.stringify([...shownLadders])); } catch { /* In-memory fallback. */ }
+}
 
 function setNext(label, action, ready = true) {
   next.textContent = label;
@@ -46,10 +69,10 @@ function setNext(label, action, ready = true) {
 function showProgress(label) {
   progress.hidden = false;
   count.textContent = label;
-  track.replaceChildren(...activeQuestions.map((question, position) => {
+  track.replaceChildren(...activeQuestions.map((_, position) => {
     const tick = document.createElement('span');
     if (answers[position] !== undefined) {
-      tick.className = question.options[answers[position]] === question.answer ? 'right' : 'wrong';
+      tick.className = answers[position].correct ? 'right' : 'wrong';
     } else if (position === index) {
       tick.className = 'current';
     }
@@ -60,7 +83,11 @@ function showProgress(label) {
 function showQuestion(moveFocus = false) {
   const question = activeQuestions[index];
   const answered = answers[index] !== undefined;
-  seen.add(question.id);
+  if (mode === 'pairs') seen.add(question.id);
+  if (!shownLadders.has(question.ladderId)) {
+    shownLadders.add(question.ladderId);
+    saveLadders();
+  }
   card.dataset.questionId = question.id;
   message.textContent = '';
   announcement.textContent = '';
@@ -70,19 +97,27 @@ function showQuestion(moveFocus = false) {
   runningValue.textContent = `${score} / ${activeQuestions.length}`;
   showProgress(`Question ${index + 1} of ${activeQuestions.length} · ${question.brand}`);
   heading.textContent = question.ask;
-  context.textContent = question.namingContext;
-  context.hidden = !question.namingContext;
-  if (question.namingContext) heading.setAttribute('aria-describedby', context.id);
+  const ranking = mode === 'ranking';
+  context.textContent = ranking ? 'Drag the grips or use the arrows. One point for all three in order.' : question.namingContext;
+  context.hidden = !context.textContent || (ranking && answered);
+  if (!context.hidden) heading.setAttribute('aria-describedby', context.id);
   else heading.removeAttribute('aria-describedby');
   result.classList.remove('incorrect');
   result.replaceChildren();
-  choices.forEach((button, position) => {
-    button.querySelector('.choice-label').textContent = '';
-    button.querySelector('strong').textContent = question.options[position];
-    button.classList.remove('chosen', 'correct');
-    button.removeAttribute('aria-disabled');
-    button.removeAttribute('tabindex');
-  });
+  pairChoices.hidden = ranking;
+  rankingPanel.hidden = !ranking;
+  if (ranking) {
+    renderRanking(drafts[index], answered ? question.order : undefined);
+    checkOrder.hidden = answered;
+  } else {
+    choices.forEach((button, position) => {
+      button.querySelector('.choice-label').textContent = '';
+      button.querySelector('strong').textContent = question.options[position];
+      button.classList.remove('chosen', 'correct');
+      button.removeAttribute('aria-disabled');
+      button.removeAttribute('tabindex');
+    });
+  }
   if (answered) showAnswer(question, answers[index]);
 
   back.hidden = index === 0;
@@ -97,8 +132,7 @@ function showQuestion(moveFocus = false) {
   if (moveFocus) heading.focus();
 }
 
-function showAnswer(question, position) {
-  const correct = question.options[position] === question.answer;
+function markPair(question, position) {
   choices.forEach((button, i) => {
     const chosen = i === position;
     const isCorrect = question.options[i] === question.answer;
@@ -110,6 +144,16 @@ function showAnswer(question, position) {
       button.querySelector('.choice-label').textContent = isCorrect ? '✓ Correct' : '× Incorrect';
     }
   });
+}
+
+function showAnswer(question, { selection, correct }) {
+  let correction = '';
+  if (mode === 'pairs') {
+    markPair(question, selection);
+  } else if (!correct) {
+    const matches = selection.filter((name, i) => name === question.order[i]).length;
+    correction = ` ${matches} of 3 in place. The order is ${question.order.join(' → ')}.`;
+  }
   const verdict = document.createElement('strong');
   verdict.textContent = correct ? 'Correct.' : 'Incorrect.';
   result.classList.toggle('incorrect', !correct);
@@ -120,29 +164,55 @@ function showAnswer(question, position) {
   source.textContent = 'Source';
   const scoreUpdate = document.createElement('span');
   scoreUpdate.className = 'sr-only';
-  const answerReadout = correct ? '' : ` The correct answer is ${question.answer}.`;
+  const answerReadout = !correct && mode === 'pairs' ? ` The correct answer is ${question.answer}.` : '';
   scoreUpdate.textContent = `${answerReadout} Score ${score} of ${activeQuestions.length}. `;
-  result.replaceChildren(verdict, ` ${question.why} `, scoreUpdate, source);
+  result.replaceChildren(verdict, `${correction} ${question.why} `, scoreUpdate, source);
 }
 
-function selectAnswer(position) {
+function selectAnswer(selection) {
   if (answers[index] !== undefined || main.hidden) return;
-  answers[index] = position;
   const question = activeQuestions[index];
-  if (question.options[position] === question.answer) score++;
+  const correct = mode === 'ranking'
+    ? question.order.every((name, i) => name === selection[i])
+    : question.options[selection] === question.answer;
+  answers[index] = { selection, correct };
+  if (correct) score++;
   showQuestion();
+  if (mode === 'ranking') next.focus();
+}
+
+function pickRound(category, gameMode) {
+  return gameMode === 'ranking'
+    ? selectRankingRound(corpus, category, shownLadders, roundNumbers.ranking)
+    : selectRound(corpus, category, seen, roundNumbers.pairs);
+}
+
+function hasFreshRanking(category) {
+  return corpus.rankings.some(q => (!category || q.group === category) && !shownLadders.has(q.ladderId));
 }
 
 function setReplay() {
-  const upcoming = selectRound(corpus, group, seen, roundNumber);
+  const upcoming = pickRound(group, mode);
   if (upcoming.length) {
-    const label = upcoming.length === roundSize ? 'Play another six' : `Play ${upcoming.length} more`;
+    const label = mode === 'ranking' ? `Rank ${upcoming.length} more` :
+      upcoming.length === roundSize ? 'Play another six' : `Play ${upcoming.length} more`;
     setNext(label, () => startRound(true));
+  } else if (mode === 'ranking') {
+    if (hasFreshRanking('')) {
+      message.textContent = 'You’ve seen all the ranking lineups in this category.';
+      setNext('Rank across categories', () => startRound(true, '', 'ranking'));
+    } else {
+      message.textContent = 'You’ve seen every lineup available for ranking.';
+      setNext('Return to Pick one', () => startRound(true, group, 'pairs'));
+    }
   } else if (seen.size === corpus.all.length) {
     message.textContent = 'You’ve seen every question.';
     setNext('Start a new session', () => {
       seen.clear();
-      roundNumber = 0;
+      shownLadders.clear();
+      saveLadders();
+      roundNumbers.pairs = 0;
+      roundNumbers.ranking = 0;
       startRound(true, defaultGroup);
     });
   } else {
@@ -162,10 +232,17 @@ function done() {
   shareText.hidden = true;
   summary.hidden = false;
   back.hidden = false;
+  rankOffer.hidden = mode !== 'pairs' || !hasFreshRanking('');
+  if (!rankOffer.hidden) {
+    const offerGroup = hasFreshRanking(group) ? group : '';
+    rankOfferButton.value = offerGroup;
+    rankOffer.querySelector('p').textContent = !offerGroup && group
+      ? 'Rank three names from a fresh lineup in another category.' : 'Rank three names from a lineup you haven’t seen yet.';
+  }
   const nextGroupIndex = corpus.groups.indexOf(group) + 1;
   const orderedGroups = corpus.groups.slice(nextGroupIndex).concat(corpus.groups.slice(0, nextGroupIndex));
-  const other = orderedGroups.find(name => name !== group &&
-    corpus.all.some(question => question.group === name && !seen.has(question.id)));
+  const other = orderedGroups.find(name => name !== group && (mode === 'ranking'
+    ? hasFreshRanking(name) : corpus.all.some(question => question.group === name && !seen.has(question.id))));
   otherCategory.hidden = !other;
   if (other) {
     suggested.value = other;
@@ -175,14 +252,18 @@ function done() {
   scoreHeading.focus();
 }
 
-function startRound(moveFocus = false, category = group) {
+function startRound(moveFocus = false, category = group, gameMode = mode) {
   group = category;
+  mode = gameMode;
+  for (const button of modes.children) button.setAttribute('aria-pressed', String(button.value === mode));
   groupName.textContent = group || 'All categories';
   for (const button of categoryList.children) {
     button.setAttribute('aria-pressed', String(button.value === group));
   }
-  activeQuestions = selectRound(corpus, group, seen, roundNumber++);
+  activeQuestions = pickRound(group, mode);
+  if (activeQuestions.length) roundNumbers[mode]++;
   answers = [];
+  drafts = mode === 'ranking' ? activeQuestions.map(q => [...q.options]) : [];
   index = 0;
   score = 0;
   message.textContent = '';
@@ -228,16 +309,25 @@ async function initialize(moveFocus = false) {
     categoryList.append(button);
   }
   document.getElementById('quiz-categories').hidden = false;
+  modes.hidden = false;
   startRound(moveFocus);
 }
 
+for (const button of modes.children) {
+  button.addEventListener('click', () => {
+    if (mode !== button.value) startRound(true, group, button.value);
+  });
+}
 choices.forEach((button, i) => button.addEventListener('click', () => selectAnswer(i)));
+checkOrder.addEventListener('click', () => selectAnswer([...drafts[index]]));
+rankOfferButton.addEventListener('click', () => startRound(true, rankOfferButton.value, 'ranking'));
 copyScore.addEventListener('click', async () => {
-  const marks = activeQuestions.map((question, i) =>
-    question.options[answers[i]] === question.answer ? '✓' : '×');
+  const marks = answers.map(answer => answer.correct ? '✓' : '×');
   const category = group ? ` (${group})` : '';
-  const url = document.querySelector('link[rel="canonical"]').href;
-  const text = `${score}/${activeQuestions.length} on What’s Bigger Than Max?${category}\n${marks.join(' ')}\n${url}`;
+  const url = new URL(document.querySelector('link[rel="canonical"]').href);
+  if (mode === 'ranking') url.searchParams.set('mode', 'ranking');
+  const game = mode === 'ranking' ? ' · Put them in order' : '';
+  const text = `${score}/${activeQuestions.length} on What’s Bigger Than Max?${game}${category}\n${marks.join(' ')}\n${url}`;
   try {
     await navigator.clipboard.writeText(text);
     copyScore.textContent = 'Score copied';

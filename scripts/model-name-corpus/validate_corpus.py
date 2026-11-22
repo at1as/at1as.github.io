@@ -14,6 +14,7 @@ def read(name):
 
 ladders=read('ladders.json')['ladders']
 questions=read('questions.json')['questions']
+rankings=read('rankings.json')
 boundary_export=read('boundary_cases.json')
 boundary=boundary_export['cases']
 holdouts=read('holdout_candidates.json')
@@ -59,6 +60,16 @@ for q in questions:
     assert pairkey not in pairs,('duplicate exact pairing',q['id'])
     pairs.append(pairkey)
 
+ranking_ids = [prompt['ladder'] for prompt in rankings]
+assert len(set(ranking_ids)) == len(rankings), 'duplicate ranking lineup'
+reviewed_ladders = {q['ladder_id'] for q in questions if q['review_status'] == 'editorially_curated'}
+for prompt in rankings:
+    lineup = prompt['ladder']
+    assert lineup in reviewed_ladders and prompt['ask'].strip(), lineup
+    labels = [node['label'] for node in ladder_map[lineup]['low_to_high']]
+    names = prompt.get('names', labels)
+    assert len(names) == len(set(names)) == 3 and set(names).issubset(labels), lineup
+
 assert len(set(round_ids))==len(round_ids)
 ai_ids=read('starter_round.json')['ai_question_ids']
 ai_openers=[q for q in questions if q['id'] in ai_ids]
@@ -75,7 +86,7 @@ assert all(x['source_urls'] for x in boundary)
 assert not any(x['id'] in ladder_ids for x in boundary)
 
 print('VALID:')
-print(f"{len(ladders)} ladders, {len(questions)} curated binary questions, {len(featured)} featured, {len(boundary)} quarantined non-ladders, {len(holdouts['candidates'])} holdouts")
+print(f"{len(ladders)} ladders, {len(questions)} curated binary questions, {len(rankings)} three-name rankings, {len(featured)} featured, {len(boundary)} quarantined non-ladders, {len(holdouts['candidates'])} holdouts")
 for k,v in Counter(x['category'] for x in ladders).items():
     print(f'  {k}: {v} ladders')
 print('Starter round:',', '.join(round_ids))
