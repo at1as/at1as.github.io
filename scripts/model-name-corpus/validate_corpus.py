@@ -60,6 +60,10 @@ for q in questions:
     pairs.append(pairkey)
 
 assert len(set(round_ids))==len(round_ids)
+ai_ids=read('starter_round.json')['ai_question_ids']
+ai_openers=[q for q in questions if q['id'] in ai_ids]
+assert len(ai_ids)==len({q['ladder_id'] for q in ai_openers})==6, 'six distinct AI families for the opening round'
+assert all(q['featured'] and q['category']=='ai' for q in ai_openers), 'AI opening round category and curation'
 assert all(x in set(qids) for x in round_ids)
 assert all(q['featured'] for q in questions if q['id'] in round_ids)
 assert featured == [q for q in questions if q['featured']], 'featured export differs from questions'

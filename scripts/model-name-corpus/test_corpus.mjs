@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
-import { prepareCorpus, roundSize, selectRound } from '../../sites/model-names/corpus.mjs';
+import { defaultGroup, prepareCorpus, roundSize, selectRound } from '../../sites/model-names/corpus.mjs';
 
 function readCorpus() {
   return ['questions', 'featured_questions', 'starter_round', 'ladders'].map(name =>
@@ -21,13 +21,17 @@ test('the first round is a reproducible six-question sample across the starter g
   assert.equal(new Set(initial.map(question => question.brand)).size, roundSize);
 });
 
-test('AI Model Naming has enough distinct families for a full round', () => {
-  const ai = corpus.all.filter(question => question.category === 'ai');
-  assert.ok(ai.length > 6);
-  assert.ok(ai.every(question => question.group === 'AI Model Naming'));
-  const round = selectRound(corpus, 'AI Model Naming', new Set(), 0);
+test('AI Model Naming opens with the curated six and has fresh questions on replay', () => {
+  assert.equal(defaultGroup, 'AI Model Naming');
+  assert.ok(corpus.all.every(q => q.category === 'ai' ? q.namingContext.trim() : q.namingContext === ''));
+  const round = selectRound(corpus, defaultGroup, new Set(), 0);
   assert.equal(round.length, roundSize);
+  assert.deepEqual(round.map(question => question.id), [...corpus.aiStarterIds]);
   assert.ok(round.every(question => question.category === 'ai'));
+  const seen = new Set(round.map(question => question.id));
+  const replay = selectRound(corpus, defaultGroup, seen, 1);
+  assert.equal(replay.length, roundSize);
+  assert.ok(replay.every(question => !seen.has(question.id)));
 });
 
 test('every group can be exhausted without repeated questions or ladders within a round', () => {

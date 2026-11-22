@@ -1,4 +1,5 @@
 export const roundSize = 6;
+export const defaultGroup = 'AI Model Naming';
 
 export async function loadCorpus() {
   const files = ['questions', 'featured_questions', 'starter_round', 'ladders'];
@@ -44,6 +45,8 @@ export function prepareCorpus(questions, featured, starter, ladders) {
     requireData(hasText(source) && source === ladder.source_urls?.[0], question.id);
     const url = new URL(source);
     requireData(url.protocol === 'https:' && !url.username && !url.password, question.id);
+    const namingContext = category.id === 'ai' ? ladder.story : '';
+    requireData(category.id !== 'ai' || hasText(namingContext), question.id);
     requireData(typeof question.featured === 'boolean' && [question.difficulty, question.surprise]
       .every(value => Number.isInteger(value) && value >= 1 && value <= 5), question.id);
 
@@ -55,6 +58,7 @@ export function prepareCorpus(questions, featured, starter, ladders) {
       group: category.group,
       company: `${question.brand} · ${category.name}`,
       ask: question.question,
+      namingContext,
       options,
       answer,
       why: question.explanation,
@@ -75,7 +79,11 @@ export function prepareCorpus(questions, featured, starter, ladders) {
   const starterLadders = new Set([...starterIds].map(id => byId.get(id)?.ladderId));
   requireData(starterIds.size === starter.question_ids.length &&
     [...starterIds].every(id => featuredIds.has(id)) && starterLadders.size >= roundSize, 'starter IDs');
-  return { all, featuredIds, starterIds, groups: [...new Set(categories.map(category => category.group))] };
+  const aiStarterIds = new Set(starter.ai_question_ids);
+  requireData(aiStarterIds.size === roundSize && starter.ai_question_ids?.length === roundSize &&
+    [...aiStarterIds].every(id => featuredIds.has(id) && byId.get(id).group === defaultGroup) &&
+    new Set([...aiStarterIds].map(id => byId.get(id).ladderId)).size === roundSize, 'AI starter round');
+  return { all, featuredIds, starterIds, aiStarterIds, groups: [...new Set(categories.map(category => category.group))] };
 }
 
 // Stable tie-breaker so the same sequence of rounds can be reproduced.
@@ -88,19 +96,21 @@ function seededRank(seed, id) {
 }
 
 export function selectRound(corpus, group, seen, roundNumber) {
-  const initial = !group && roundNumber === 0;
+  let openingPool;
+  if (roundNumber === 0 && group === defaultGroup) openingPool = corpus.aiStarterIds;
+  if (roundNumber === 0 && !group) openingPool = corpus.starterIds;
   const preferred = roundNumber % 2 === 1 ? corpus.featuredIds : null;
   const candidates = corpus.all.filter(question => !seen.has(question.id) &&
-    (!group || question.group === group) && (!initial || corpus.starterIds.has(question.id)));
+    (!group || question.group === group) && (!openingPool || openingPool.has(question.id)));
   const seed = `model-names-v1:${group}:${roundNumber}`;
-  const priority = initial
-    ? new Map([...corpus.starterIds].map((id, position) => [id, position]))
+  const priority = openingPool
+    ? new Map([...openingPool].map((id, position) => [id, position]))
     : new Map(candidates.map(question => [question.id, seededRank(seed, question.id)]));
   const round = [];
   const usedLadders = new Set();
   const count = (field, question) => round.filter(picked => picked[field] === question[field]).length;
   const variety = (field, a, b) => count(field, a) - count(field, b);
-  const quality = question => initial ? 0 : Number(question.surprise >= 4) + Number(question.difficulty >= 3);
+  const quality = question => openingPool ? 0 : Number(question.surprise >= 4) + Number(question.difficulty >= 3);
 
   while (round.length < roundSize) {
     const available = candidates.filter(question => !usedLadders.has(question.ladderId));

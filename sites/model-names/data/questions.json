@@ -18,7 +18,7 @@
       "answer": "GPT-6.2 Astra",
       "answer_node_id": "openai-gpt62:1",
       "higher_than": "GPT-6.2 Sol",
-      "explanation": "OpenAI calls Astra its frontier model for its hardest projects and Sol its efficient everyday model. The celestial naming gives you no obvious numerical order.",
+      "explanation": "OpenAI puts Astra above Sol. Its first three names followed the masses of the Sun, Earth, and Moon. Astra means stars, which can be heavier or lighter than the Sun.",
       "difficulty": 4,
       "surprise": 4,
       "featured": true,
@@ -1825,7 +1825,7 @@
       "answer": "GPT-5.6 Terra",
       "answer_node_id": "openai-gpt56-preview:1",
       "higher_than": "GPT-5.6 Luna",
-      "explanation": "Terra was the everyday model, while Luna was the faster, lower-cost option. The Moon is farther from us than Earth is, so distance would put them the other way around.",
+      "explanation": "Terra ranked above Luna. Earth is more massive than the Moon, and mass gives you the order of all three original names.",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,
@@ -1851,7 +1851,7 @@
       "answer": "GPT-5.6 Sol",
       "answer_node_id": "openai-gpt56-preview:2",
       "higher_than": "GPT-5.6 Terra",
-      "explanation": "Sol was the flagship in the GPT-5.6 preview. Terra was the everyday model. Sol later took the everyday slot in GPT-6.2.",
+      "explanation": "Sol was the flagship and Terra was the everyday model. The original order followed their namesakes by mass, from Sun to Earth to Moon.",
       "difficulty": 3,
       "surprise": 4,
       "featured": true,
@@ -3449,6 +3449,188 @@
       "caveat": "This compares ranks in the hierarchy. Individual units have different durations.",
       "source_urls": [
         "https://pubs.usgs.gov/gip/141/gip141.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "jurassic2-original-q01",
+      "ladder_id": "jurassic2-original",
+      "category": "ai",
+      "brand": "AI21 Labs",
+      "question": "Which was the larger Jurassic-2 model before AI21 renamed them?",
+      "options": [
+        "J2-Large",
+        "J2-Grande"
+      ],
+      "answer": "J2-Grande",
+      "answer_node_id": "jurassic2-original:1",
+      "higher_than": "J2-Large",
+      "explanation": "Grande was bigger. AI21 eventually renamed the three sizes Light, Mid, and Ultra. The model formerly known as Large was the small one.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "The original Jurassic-2 names, before the 2023 renaming",
+      "metric": "AI21 model size",
+      "caveat": "These comparisons use the original names within the Jurassic-2 family.",
+      "source_urls": [
+        "https://www.ai21.com/blog/simplifying-our-jurassic-2-offering/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "jurassic2-original-q02",
+      "ladder_id": "jurassic2-original",
+      "category": "ai",
+      "brand": "AI21 Labs",
+      "question": "Which Jurassic-2 model did AI21 rename Ultra?",
+      "options": [
+        "J2-Jumbo",
+        "J2-Grande"
+      ],
+      "answer": "J2-Jumbo",
+      "answer_node_id": "jurassic2-original:2",
+      "higher_than": "J2-Grande",
+      "explanation": "Jumbo was the largest Jurassic-2 model. When AI21 changed the names, Grande became Mid and Jumbo became Ultra.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "The original Jurassic-2 names, before the 2023 renaming",
+      "metric": "AI21 model size",
+      "caveat": "These comparisons use the original names within the Jurassic-2 family.",
+      "source_urls": [
+        "https://www.ai21.com/blog/simplifying-our-jurassic-2-offering/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "palm2-animals-q01",
+      "ladder_id": "palm2-animals",
+      "category": "ai",
+      "brand": "Google",
+      "question": "Which was the larger model in Google’s PaLM 2 lineup?",
+      "options": [
+        "Bison",
+        "Unicorn"
+      ],
+      "answer": "Unicorn",
+      "answer_node_id": "palm2-animals:3",
+      "higher_than": "Bison",
+      "explanation": "Google’s sizes went Gecko, Otter, Bison, Unicorn. I could have ranked the first three at a zoo. How much does a unicorn weigh?",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "The four PaLM 2 sizes Google announced in 2023",
+      "metric": "announced model size",
+      "caveat": "Google published the size order without giving parameter counts in its launch announcement.",
+      "source_urls": [
+        "https://blog.google/innovation-and-ai/products/google-palm-2-ai-large-language-model/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "palm2-animals-q02",
+      "ladder_id": "palm2-animals",
+      "category": "ai",
+      "brand": "Google",
+      "question": "Which PaLM 2 model did Google list as larger?",
+      "options": [
+        "Otter",
+        "Gecko"
+      ],
+      "answer": "Otter",
+      "answer_node_id": "palm2-animals:1",
+      "higher_than": "Gecko",
+      "explanation": "Otter was one size above Gecko. Google said Gecko was small enough to run on a phone, even offline.",
+      "difficulty": 2,
+      "surprise": 3,
+      "featured": false,
+      "scope": "The four PaLM 2 sizes Google announced in 2023",
+      "metric": "announced model size",
+      "caveat": "Google published the size order without giving parameter counts in its launch announcement.",
+      "source_urls": [
+        "https://blog.google/innovation-and-ai/products/google-palm-2-ai-large-language-model/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "deepmind-rodents-q01",
+      "ladder_id": "deepmind-rodents",
+      "category": "ai",
+      "brand": "DeepMind",
+      "question": "Which DeepMind model had more parameters?",
+      "options": [
+        "Chinchilla",
+        "Gopher"
+      ],
+      "answer": "Gopher",
+      "answer_node_id": "deepmind-rodents:1",
+      "higher_than": "Chinchilla",
+      "explanation": "Gopher had 280 billion parameters to Chinchilla’s 70 billion. DeepMind trained Chinchilla on four times as much data, and it beat Gopher on most tests.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "The two language models compared in DeepMind’s 2022 Chinchilla study",
+      "metric": "parameter count",
+      "caveat": "These were research models. Parameter count and benchmark results give different answers.",
+      "source_urls": [
+        "https://deepmind.google/blog/an-empirical-analysis-of-compute-optimal-large-language-model-training/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "gpt3-base-price-q01",
+      "ladder_id": "gpt3-base-price",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which original GPT-3 base model cost more per token?",
+      "options": [
+        "davinci",
+        "curie"
+      ],
+      "answer": "davinci",
+      "answer_node_id": "gpt3-base-price:3",
+      "higher_than": "curie",
+      "explanation": "Davinci cost $20 per million tokens and Curie cost $2. Ada, Babbage, Curie, Davinci. The prices went up in alphabetical order.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Base GPT-3 completion models at their published prices before retirement",
+      "metric": "historical price per million tokens",
+      "caveat": "These are historical rates for the base models, distinct from the text-prefixed models.",
+      "source_urls": [
+        "https://developers.openai.com/api/docs/deprecations"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "gpt3-base-price-q02",
+      "ladder_id": "gpt3-base-price",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which original GPT-3 base model cost more per token?",
+      "options": [
+        "ada",
+        "babbage"
+      ],
+      "answer": "babbage",
+      "answer_node_id": "gpt3-base-price:1",
+      "higher_than": "ada",
+      "explanation": "Babbage cost 50 cents per million tokens. Ada cost 40 cents. They were the A and B of the original four base models.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": false,
+      "scope": "Base GPT-3 completion models at their published prices before retirement",
+      "metric": "historical price per million tokens",
+      "caveat": "These are historical rates for the base models, distinct from the text-prefixed models.",
+      "source_urls": [
+        "https://developers.openai.com/api/docs/deprecations"
       ],
       "verified_as_of": "2026-11-21",
       "review_status": "editorially_curated"

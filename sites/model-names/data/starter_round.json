@@ -16,5 +16,13 @@
     "efl-divisions-q01"
   ],
   "recommended_session_length": 6,
+  "ai_question_ids": [
+    "google-gemini4-q01",
+    "jurassic2-original-q01",
+    "anthropic-claude-q01",
+    "deepmind-rodents-q01",
+    "openai-gpt62-q01",
+    "palm2-animals-q01"
+  ],
   "instructions": "Draw 6 without repeats for first play. The first 12 ids are editor-ranked candidates, not an enforced linear progression. Keep category variety."
 }

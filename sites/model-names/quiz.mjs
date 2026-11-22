@@ -1,7 +1,10 @@
-import { loadCorpus, roundSize, selectRound } from './corpus.mjs';
+import { defaultGroup, loadCorpus, roundSize, selectRound } from './corpus.mjs';
 
 const card = document.getElementById('the-test');
-const group = document.getElementById('quiz-category');
+const categoryList = document.getElementById('category-list');
+const groupName = document.getElementById('quiz-group');
+const otherCategory = document.getElementById('quiz-other');
+const suggested = document.getElementById('quiz-suggested');
 const progress = document.getElementById('quiz-progress');
 const count = document.getElementById('quiz-count');
 const track = document.getElementById('quiz-track');
@@ -9,6 +12,7 @@ const runningScore = document.getElementById('quiz-running-score');
 const runningValue = document.getElementById('quiz-running-value');
 const main = document.getElementById('quiz-main');
 const heading = document.getElementById('quiz-question');
+const context = document.getElementById('quiz-context');
 const choices = [...card.querySelectorAll('.quiz-choice')];
 const result = document.getElementById('quiz-result');
 const summary = document.getElementById('quiz-summary');
@@ -24,6 +28,7 @@ const next = document.getElementById('quiz-next');
 
 const seen = new Set();
 let corpus;
+let group = defaultGroup;
 let roundNumber = 0;
 let activeQuestions = [];
 let answers = [];
@@ -65,6 +70,10 @@ function showQuestion(moveFocus = false) {
   runningValue.textContent = `${score} / ${activeQuestions.length}`;
   showProgress(`Question ${index + 1} of ${activeQuestions.length} · ${question.brand}`);
   heading.textContent = question.ask;
+  context.textContent = question.namingContext;
+  context.hidden = !question.namingContext;
+  if (question.namingContext) heading.setAttribute('aria-describedby', context.id);
+  else heading.removeAttribute('aria-describedby');
   result.classList.remove('incorrect');
   result.replaceChildren();
   choices.forEach((button, position) => {
@@ -125,7 +134,7 @@ function selectAnswer(position) {
 }
 
 function setReplay() {
-  const upcoming = selectRound(corpus, group.value, seen, roundNumber);
+  const upcoming = selectRound(corpus, group, seen, roundNumber);
   if (upcoming.length) {
     const label = upcoming.length === roundSize ? 'Play another six' : `Play ${upcoming.length} more`;
     setNext(label, () => startRound(true));
@@ -134,11 +143,10 @@ function setReplay() {
     setNext('Start a new session', () => {
       seen.clear();
       roundNumber = 0;
-      group.value = '';
-      startRound(true);
+      startRound(true, defaultGroup);
     });
   } else {
-    message.textContent = 'You’ve seen every question in this category. Choose another category to keep playing.';
+    message.textContent = 'You’ve seen every question in this category.';
     setNext('', null);
   }
 }
@@ -154,12 +162,26 @@ function done() {
   shareText.hidden = true;
   summary.hidden = false;
   back.hidden = false;
+  const nextGroupIndex = corpus.groups.indexOf(group) + 1;
+  const orderedGroups = corpus.groups.slice(nextGroupIndex).concat(corpus.groups.slice(0, nextGroupIndex));
+  const other = orderedGroups.find(name => name !== group &&
+    corpus.all.some(question => question.group === name && !seen.has(question.id)));
+  otherCategory.hidden = !other;
+  if (other) {
+    suggested.value = other;
+    suggested.textContent = `Play ${other}`;
+  }
   setReplay();
   scoreHeading.focus();
 }
 
-function startRound(moveFocus = false) {
-  activeQuestions = selectRound(corpus, group.value, seen, roundNumber++);
+function startRound(moveFocus = false, category = group) {
+  group = category;
+  groupName.textContent = group || 'All categories';
+  for (const button of categoryList.children) {
+    button.setAttribute('aria-pressed', String(button.value === group));
+  }
+  activeQuestions = selectRound(corpus, group, seen, roundNumber++);
   answers = [];
   index = 0;
   score = 0;
@@ -176,6 +198,10 @@ function startRound(moveFocus = false) {
     progress.hidden = true;
     back.hidden = true;
     setReplay();
+    if (moveFocus) {
+      const target = next.hidden ? categoryList.querySelector('[aria-pressed="true"]') : next;
+      target.focus();
+    }
   }
 }
 
@@ -191,8 +217,17 @@ async function initialize(moveFocus = false) {
     if (moveFocus) next.focus();
     return;
   }
-  for (const name of corpus.groups) group.add(new Option(name, name));
-  group.disabled = false;
+  for (const name of [...corpus.groups, '']) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.value = name;
+    button.textContent = name || 'All categories';
+    button.addEventListener('click', () => {
+      if (group !== name) startRound(true, name);
+    });
+    categoryList.append(button);
+  }
+  document.getElementById('quiz-categories').hidden = false;
   startRound(moveFocus);
 }
 
@@ -200,7 +235,7 @@ choices.forEach((button, i) => button.addEventListener('click', () => selectAnsw
 copyScore.addEventListener('click', async () => {
   const marks = activeQuestions.map((question, i) =>
     question.options[answers[i]] === question.answer ? '✓' : '×');
-  const category = group.value ? ` (${group.value})` : '';
+  const category = group ? ` (${group})` : '';
   const url = document.querySelector('link[rel="canonical"]').href;
   const text = `${score}/${activeQuestions.length} on What’s Bigger Than Max?${category}\n${marks.join(' ')}\n${url}`;
   try {
@@ -218,5 +253,5 @@ back.addEventListener('click', () => {
   showQuestion(true);
 });
 next.addEventListener('click', () => advance?.());
-group.addEventListener('change', () => startRound());
+suggested.addEventListener('click', () => startRound(true, suggested.value));
 initialize();

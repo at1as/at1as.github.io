@@ -109,7 +109,7 @@
       ],
       "ranking_metric": "vendor capability positioning",
       "scope": "GPT-6.2 models, OpenAI positioning in November 2026",
-      "story": "A solar name sounds impressive, but Astra is the frontier model.",
+      "story": "Sol means the Sun and Astra means stars. OpenAI uses those names to distinguish everyday work from its most demanding projects.",
       "caveat": "This is OpenAI’s intended role/capability positioning, not a claim that Astra always wins on speed or cost.",
       "naming_quirks": [
         "metaphor",
@@ -147,7 +147,7 @@
       ],
       "ranking_metric": "vendor capability positioning",
       "scope": "Gemini 4 model choices in Gemini Apps, as documented November 2026",
-      "story": "The actual model hierarchy disagrees with the order of atomic masses.",
+      "story": "Google borrowed element names for tiers that run from quick everyday answers to harder reasoning tasks.",
       "caveat": "The model positioning is vendor-defined. Atomic-mass comparison is an analogy, not Google’s declared naming rule.",
       "naming_quirks": [
         "scientific-metaphor",
@@ -191,7 +191,7 @@
       ],
       "ranking_metric": "vendor recommended capability tier",
       "scope": "Anthropic November 2026 lineup; Fable is version 5.2 while other listed families are 5.5",
-      "story": "After Haiku, Sonnet and Opus, the company chose a short story genre for its most demanding-reasoning model.",
+      "story": "Anthropic uses literary names to distinguish the models it recommends for routine work from those it recommends for harder reasoning.",
       "caveat": "Different version numbers and task specializations matter; this is Anthropic’s recommendation for demanding reasoning, not an all-benchmark ranking.",
       "naming_quirks": [
         "literary-metaphor",
@@ -1840,7 +1840,7 @@
       ],
       "ranking_metric": "position in OpenAI’s preview lineup",
       "scope": "GPT-5.6 preview lineup as announced by OpenAI",
-      "story": "Mass and distance from Earth give different interpretations of these names.",
+      "story": "OpenAI named a flagship, an everyday model, and a lower-cost model after three bodies in the solar system.",
       "caveat": "These are the GPT-5.6 preview roles. Sol has a different role in the GPT-6.2 lineup.",
       "naming_quirks": [
         "metaphor",
@@ -1873,7 +1873,7 @@
       ],
       "ranking_metric": "listed launch API input prices",
       "scope": "GPT-5.4 small models at launch, per million uncached API input tokens",
-      "story": "Both names signal smallness, but only one is the cheapest.",
+      "story": "Both suffixes mean small. The price here is what OpenAI charged to send each model a million uncached input tokens.",
       "caveat": "Compares launch input prices only. Total task cost depends on token use, pricing, and caching.",
       "naming_quirks": [
         "size-metaphor"
@@ -1905,7 +1905,7 @@
       ],
       "ranking_metric": "vendor-designated inference speed",
       "scope": "Google’s June 2025 announcement for the Gemini 2.5 family",
-      "story": "Lite makes Flash faster.",
+      "story": "Flash already sounds fast. Google added a second name to distinguish two models built for quick responses.",
       "caveat": "Google’s stated speed positioning. Actual latency varies with prompt, settings, and deployment.",
       "naming_quirks": [
         "compound-suffix",
@@ -1948,7 +1948,7 @@
       ],
       "ranking_metric": "vendor product tier",
       "scope": "First-generation Amazon Nova understanding models in AWS documentation",
-      "story": "Premier claims the top slot above Pro, just as Lite sits above Micro.",
+      "story": "Amazon’s first Nova lineup mixed size labels with professional titles as it moved from text-only models to ones that could also handle images and video.",
       "caveat": "Product roles within Nova version 1. These names do not rank newer Nova models or every benchmark.",
       "naming_quirks": [
         "ceiling",
@@ -1981,7 +1981,7 @@
       ],
       "ranking_metric": "total parameter count",
       "scope": "Total parameters of Meta’s released Llama 4 Scout and Maverick models",
-      "story": "Both activate 17 billion parameters, but they have different total sizes.",
+      "story": "Both models use only part of their network for each token, so the total parameter count can differ even when the active count is the same.",
       "caveat": "Total parameters count the entire model, including experts that are not active for a given token.",
       "naming_quirks": [
         "opaque-order",
@@ -2014,7 +2014,7 @@
       ],
       "ranking_metric": "vendor capability positioning",
       "scope": "Cohere’s matched August 2024 versions of Command R and Command R+",
-      "story": "The plus sign is the only visible tier marker.",
+      "story": "Cohere kept the letter R on both models and used a single punctuation mark to distinguish the sizes.",
       "caveat": "Both models support retrieval and tools. The question is about Cohere’s positioning within this release.",
       "naming_quirks": [
         "single-character-suffix"
@@ -2046,7 +2046,7 @@
       ],
       "ranking_metric": "vendor-designated speech generation speed",
       "scope": "ElevenLabs text-to-speech Turbo v2.5 and Flash v2.5 models",
-      "story": "Turbo sounds fast, but Flash was built to respond sooner.",
+      "story": "Both names promise speed. For a speech model, latency is how long you wait for it to start speaking.",
       "caveat": "Compares model latency. Network delays and audio quality are separate considerations.",
       "naming_quirks": [
         "near-synonyms",
@@ -2080,7 +2080,7 @@
       ],
       "ranking_metric": "vendor positioning for complex image generation",
       "scope": "Adobe’s launch positioning for its two Firefly Image Model 4 variants",
-      "story": "Ultra is positioned for more intricate images.",
+      "story": "Adobe used one suffix to distinguish an everyday image generator from the one it recommended for complex scenes and fine detail.",
       "caveat": "This compares Adobe’s recommended use at launch. Prompts and output preferences still matter.",
       "naming_quirks": [
         "superlative"
@@ -2909,7 +2909,7 @@
       ],
       "ranking_metric": "parameter count",
       "scope": "Multilingual Whisper checkpoints in the OpenAI model table",
-      "story": "Tiny, base, small, medium, large. Then a name about speed turns up.",
+      "story": "Most Whisper names describe size. OpenAI also named one for speed, which leaves you to guess where it fits by parameter count.",
       "caveat": "Parameter counts compare size alone. Speed also depends on the hardware and recording.",
       "naming_quirks": [
         "different-metric"
@@ -3200,6 +3200,162 @@
       "status": "ready",
       "source_urls": [
         "https://pubs.usgs.gov/gip/141/gip141.pdf"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "jurassic2-original",
+      "category": "ai",
+      "brand": "AI21 Labs",
+      "title": "Original Jurassic-2 sizes",
+      "low_to_high": [
+        {
+          "id": "jurassic2-original:0",
+          "label": "J2-Large",
+          "tier": 0
+        },
+        {
+          "id": "jurassic2-original:1",
+          "label": "J2-Grande",
+          "tier": 1
+        },
+        {
+          "id": "jurassic2-original:2",
+          "label": "J2-Jumbo",
+          "tier": 2
+        }
+      ],
+      "ranking_metric": "AI21 model size",
+      "scope": "The original Jurassic-2 names, before the 2023 renaming",
+      "story": "AI21 gave each of its three Jurassic-2 sizes a different word for “big.”",
+      "caveat": "These comparisons use the original names within the Jurassic-2 family.",
+      "naming_quirks": [
+        "near-synonyms",
+        "renaming"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://www.ai21.com/blog/simplifying-our-jurassic-2-offering/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "palm2-animals",
+      "category": "ai",
+      "brand": "Google",
+      "title": "PaLM 2 model sizes",
+      "low_to_high": [
+        {
+          "id": "palm2-animals:0",
+          "label": "Gecko",
+          "tier": 0
+        },
+        {
+          "id": "palm2-animals:1",
+          "label": "Otter",
+          "tier": 1
+        },
+        {
+          "id": "palm2-animals:2",
+          "label": "Bison",
+          "tier": 2
+        },
+        {
+          "id": "palm2-animals:3",
+          "label": "Unicorn",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "announced model size",
+      "scope": "The four PaLM 2 sizes Google announced in 2023",
+      "story": "Google gave each of four model sizes an animal name. The smallest could run offline on a phone.",
+      "caveat": "Google published the size order without giving parameter counts in its launch announcement.",
+      "naming_quirks": [
+        "animal-metaphor"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://blog.google/innovation-and-ai/products/google-palm-2-ai-large-language-model/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "deepmind-rodents",
+      "category": "ai",
+      "brand": "DeepMind",
+      "title": "Gopher and Chinchilla",
+      "low_to_high": [
+        {
+          "id": "deepmind-rodents:0",
+          "label": "Chinchilla",
+          "tier": 0
+        },
+        {
+          "id": "deepmind-rodents:1",
+          "label": "Gopher",
+          "tier": 1
+        }
+      ],
+      "ranking_metric": "parameter count",
+      "scope": "The two language models compared in DeepMind’s 2022 Chinchilla study",
+      "story": "DeepMind named both models after rodents and split the same training budget differently between parameters and training data.",
+      "caveat": "These were research models. Parameter count and benchmark results give different answers.",
+      "naming_quirks": [
+        "animal-metaphor",
+        "different-metric"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://deepmind.google/blog/an-empirical-analysis-of-compute-optimal-large-language-model-training/"
+      ],
+      "verified_as_of": "2026-11-21"
+    },
+    {
+      "id": "gpt3-base-price",
+      "category": "ai",
+      "brand": "OpenAI",
+      "title": "Original GPT-3 base model prices",
+      "low_to_high": [
+        {
+          "id": "gpt3-base-price:0",
+          "label": "ada",
+          "tier": 0
+        },
+        {
+          "id": "gpt3-base-price:1",
+          "label": "babbage",
+          "tier": 1
+        },
+        {
+          "id": "gpt3-base-price:2",
+          "label": "curie",
+          "tier": 2
+        },
+        {
+          "id": "gpt3-base-price:3",
+          "label": "davinci",
+          "tier": 3
+        }
+      ],
+      "ranking_metric": "historical price per million tokens",
+      "scope": "Base GPT-3 completion models at their published prices before retirement",
+      "story": "OpenAI named its original GPT-3 models after people. The API charged a different rate per token for each name.",
+      "caveat": "These are historical rates for the base models, distinct from the text-prefixed models.",
+      "naming_quirks": [
+        "people",
+        "hidden-order"
+      ],
+      "editorial_priority": 5,
+      "verification": "first_party",
+      "status": "ready",
+      "source_urls": [
+        "https://developers.openai.com/api/docs/deprecations"
       ],
       "verified_as_of": "2026-11-21"
     }
