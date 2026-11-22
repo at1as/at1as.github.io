@@ -3518,7 +3518,7 @@
       "answer": "Unicorn",
       "answer_node_id": "palm2-animals:3",
       "higher_than": "Bison",
-      "explanation": "Google’s sizes went Gecko, Otter, Bison, Unicorn. I could have ranked the first three at a zoo. How much does a unicorn weigh?",
+      "explanation": "Google’s sizes went Gecko, Otter, Bison, Unicorn. The order makes sense up to Bison. How much is a unicorn supposed to weigh?",
       "difficulty": 4,
       "surprise": 5,
       "featured": true,

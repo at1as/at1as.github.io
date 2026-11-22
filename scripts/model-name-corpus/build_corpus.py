@@ -797,7 +797,7 @@ add('palm2-animals', 'ai', 'Google', 'PaLM 2 model sizes',
     'Google gave each of four model sizes an animal name. The smallest could run offline on a phone.',
     'Google published the size order without giving parameter counts in its launch announcement.',
     ['https://blog.google/innovation-and-ai/products/google-palm-2-ai-large-language-model/'],
-    ['animal-metaphor'], [(2, 3, 'Google’s sizes went Gecko, Otter, Bison, Unicorn. I could have ranked the first three at a zoo. How much does a unicorn weigh?',
+    ['animal-metaphor'], [(2, 3, 'Google’s sizes went Gecko, Otter, Bison, Unicorn. The order makes sense up to Bison. How much is a unicorn supposed to weigh?',
       4, 5, True, 'Which was the larger model in Google’s PaLM 2 lineup?'),
      (0, 1, 'Otter was one size above Gecko. Google said Gecko was small enough to run on a phone, even offline.',
       2, 3, False, 'Which PaLM 2 model did Google list as larger?')], 5)
