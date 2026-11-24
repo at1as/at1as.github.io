@@ -11,8 +11,8 @@ import {
   atlasFamilies, atlasFamilyId, atlasFamilyLabel, matchesApproach,
   readApproachFilters, claimSourceLabels, sourceTypeLabel,
 } from "./atlas-metadata.js?v=20261123";
-import { engineeringDiagram } from "./engineering-diagrams.js?v=20261123";
-import { engineeringPanels } from "./engineering-content.js?v=20261123";
+import { engineeringDiagram } from "./engineering-diagrams.js?v=20261123c";
+import { engineeringPanels } from "./engineering-content.js?v=20261123b";
 import { approaches, renderMachine } from "./diagrams.js?v=20261123";
 import { balance, defaults, readScenario, targetCost } from "./model.js?v=58eee71b";
 import { recordCopy, glossaryCopy } from "./reader-content.js?v=20261123";
@@ -321,7 +321,7 @@ function nucleus(x, y, count, name, numbers = []) {
 }
 function reaction() {
   const s = reactionStage;
-  $("#reaction-scale-note").hidden = s > 2;
+  $("#reaction-scale-note").hidden = s > 0;
   let content = "";
   if (s < 2) {
     content = `${s === 1 ? '<rect x="100" y="48" width="430" height="185" rx="90" fill="#eee1d0" stroke="#b78d6d" stroke-dasharray="6 6"/>' : ""}${nucleus(225, 130, 2, "Deuterium")}${nucleus(405, 130, 3, "Tritium")}<text x="315" y="138" text-anchor="middle" fill="#63776a" font-size="30">+</text><text x="315" y="265" text-anchor="middle" fill="#47634f" font-size="20">${s === 0 ? "Orange: proton · blue: neutron" : "Heat and confine the fuel"}</text>`;
@@ -497,37 +497,37 @@ const boundaryData = [
   {
     title: "Fuel gain",
     formula: "Fusion energy ÷ energy absorbed by the fuel",
-    text: "In laser fusion, energy reaches a target and then the fuel inside it. Fuel gain counts only the energy the fuel absorbs: absorbing 1 MJ and releasing 2 MJ through fusion gives a fuel gain of 2.",
+    text: "Counts only the energy absorbed directly by the fuel capsule: 1 MJ absorbed producing 2 MJ of fusion gives a fuel gain of 2.",
     caveatLabel: "Leaves out",
-    caveat: "Losses in producing the laser pulse, transferring its energy to the fuel, and converting fusion energy into electricity, plus the rest of the plant’s electricity use. Fuel gain above 1 can still mean a net electrical loss.",
+    caveat: "Laser-driver losses, energy lost before reaching the fuel, thermal conversion losses, and all other plant power.",
   },
   {
     title: "Plasma Q",
-    formula: "Fusion power ÷ external heating power delivered to the plasma",
-    text: "Q compares the fusion power a plasma produces with the heat supplied to it from outside. Heating from the fusion reactions themselves does not count as external input.",
+    formula: "Fusion power ÷ external heating delivered to the plasma",
+    text: "Compares fusion power with the external heat injected into the plasma, excluding self-heating from fusion products.",
     caveatLabel: "Leaves out",
-    caveat: "Electricity lost in producing that heating, power for magnets and other plant systems, and losses when fusion heat is converted into electricity.",
+    caveat: "Electricity lost generating that heat, magnet and auxiliary loads, and turbine conversion losses.",
   },
   {
     title: "Target gain",
     formula: "Fusion energy ÷ driver energy delivered to the target",
-    text: "A target is the complete object struck by a laser or another driver, including the fuel inside it. Target gain counts energy delivered to that whole target, including the energy that never reaches the fuel.",
+    text: "Counts all laser or driver energy hitting the complete target assembly, including energy that never reaches the fuel inside.",
     caveatLabel: "Leaves out",
-    caveat: "Electricity used to produce the pulse and run the facility, and losses in converting fusion energy into electricity. Target gain above 1 does not establish net electricity.",
+    caveat: "Electricity used to power the lasers and facility, plus heat-to-electricity conversion losses.",
   },
   {
     title: "Electrical recovery",
     formula: "Electricity returned after a pulse",
-    text: "Some pulsed machines recover energy from their magnets or plasma to help drive the next pulse. The returned electricity can include energy supplied earlier; it is not all new energy from fusion.",
-    caveatLabel: "Count the complete cycle",
-    caveat: "Subtract every electrical input, including pumps and cooling. Stored energy must be the same at the start and end: discharging a battery or magnet is not new energy from fusion. A useful plant must repeat this reliably over the long term.",
+    text: "Pulsed designs can inductively recover energy from expanding plasma or magnets—meaning returned electricity mixes original input with any new fusion energy.",
+    caveatLabel: "Count the full cycle",
+    caveat: "Subtract pulse input, pumps, and cooling with stored energy returned to its starting level.",
   },
   {
     title: "Whole plant",
     formula: "Electricity generated − all electricity consumed by the plant",
-    text: "Subtract all the electricity used to start and sustain fusion and run the plant from its electrical output. A positive balance is a surplus for the grid; a negative one means the plant needs electricity from elsewhere.",
-    caveatLabel: "For a useful power plant",
-    caveat: "Net output must be positive over sustained or reliably repeated operation. Count startup, operation, and shutdown over a complete cycle, with no net withdrawal of stored energy. Reliable, economical operation is also essential.",
+    text: "The only metric that decides whether a plant exports to the grid or draws power from it.",
+    caveatLabel: "For a real plant",
+    caveat: "Output must stay positive across startup, sustained or repeated operation, and shutdown with no net drain on energy storage.",
   },
 ];
 function boundaries() {
@@ -1057,7 +1057,7 @@ function sites(entities) {
     .join("");
   }
   $("#atlas-content").innerHTML =
-    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Positions are approximate city or area centers.${mapSites.length > visible.length ? ` ${mapSites.length - visible.length} unmapped.` : ""}</p><div class="world-map">${mapLegend(visible)}<div class="map-toolbar"><p id="map-help">Drag to pan · select a cluster to zoom<span>Pinch or Ctrl/⌘ + scroll to zoom · double-click to zoom in</span><span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path id="map-outline" d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">${visible.length ? "Sites that share a map position stay grouped when you zoom in." : "No mapped sites match these filters."}</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div>`;
+    `<p class="site-note">${mapSites.length} site records for ${entities.length} organizations. Positions are approximate city or area centers.${mapSites.length > visible.length ? ` ${mapSites.length - visible.length} unmapped.` : ""}</p><div class="world-map">${mapLegend(visible)}<div class="map-toolbar"><p id="map-help">Drag to pan · select a cluster to zoom<span>Pinch or Ctrl/⌘ + scroll to zoom · double-click to zoom in</span><span>Arrow keys to pan; Home to reset</span></p><div class="map-controls" role="group" aria-label="Map navigation"><button type="button" data-map-zoom="out" aria-label="Zoom out on map" aria-controls="site-map">−</button><output class="map-zoom-level" aria-label="Map zoom level" aria-live="polite">1×</output><button type="button" data-map-zoom="in" aria-label="Zoom in on map" aria-controls="site-map">+</button><button type="button" data-map-reset aria-controls="site-map">Reset view</button></div></div><svg class="map-canvas" id="site-map" viewBox="0 25 900 390" tabindex="0" role="group" aria-describedby="map-help" aria-label="Fusion sites, interactive world map. An equivalent site list follows.">${grid}<path id="map-outline" d="${world?.path || ""}" fill="#344b56" stroke="#506772" stroke-width=".4" vector-effect="non-scaling-stroke"/><g id="map-markers"></g></svg><div class="map-popup" id="map-popup" aria-live="polite">${visible.length ? "Select a pin or cluster to inspect sites" : "No mapped sites match these filters"}</div><p class="quiet">Map outline: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public domain</a>. Site positions: research snapshot.</p></div><details class="site-list-disclosure"><summary>Browse all ${mapSites.length} site records as a list</summary><div class="site-list" id="site-list">${mapSites.map(siteRow).join("")}</div></details>`;
   mapController = mountMapViewport($(".world-map"), mapView, renderMarkers, visible);
   const selectionKey = visible.map(s => s.id).join(",");
   if (selectionKey !== mapSelectionKey) {
@@ -1087,7 +1087,9 @@ function selectCluster(i) {
     ),
   );
   const first = $(`[data-site-row="${sites[0].id}"]`);
-  $("#site-list").scrollTop = first.offsetTop - $("#site-list").offsetTop;
+  const list = $("#site-list");
+  if (first && list?.closest("details")?.open)
+    list.scrollTop = first.offsetTop - list.offsetTop;
 }
 function tray() {
   const list = [...comparison].map((id) => entityMap.get(id)).filter(Boolean);

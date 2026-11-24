@@ -1,21 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" role="img" aria-labelledby="title desc">
-  <title id="title">Fusion joins two light nuclei</title>
-  <desc id="desc">Deuterium and tritium join, producing a helium-4 nucleus, a neutron and energy. Schematic, not to scale.</desc>
-  <g fill="none" stroke="#80968a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M190 76h52m-7-5 7 5-7 5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 124" role="img" aria-labelledby="title desc">
+  <title id="title">Fusion joins two light hydrogen nuclei</title>
+  <desc id="desc">Deuterium and tritium fuse into a helium-4 nucleus and a fast neutron, releasing energy. Schematic, not to scale.</desc>
+  <defs>
+    <radialGradient id="fusion-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e38b59" stop-opacity=".36"/>
+      <stop offset="100%" stop-color="#e38b59" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="he-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f2aa79" stop-opacity=".35"/>
+      <stop offset="100%" stop-color="#f2aa79" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="440" height="124" rx="6" fill="#12222d"/>
+  <ellipse cx="222" cy="64" rx="115" ry="54" fill="url(#fusion-glow)"/>
+
+  <!-- Deuterium (1p + 1n) -->
+  <g transform="translate(56 58)">
+    <circle cx="-7" cy="0" r="10.5" fill="#d46c44" stroke="#f7f2e8" stroke-width="1.5"/>
+    <circle cx="7" cy="0" r="10.5" fill="#78a6ba" stroke="#f7f2e8" stroke-width="1.5"/>
+    <text x="0" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="650" fill="#e7efe9">D</text>
   </g>
-  <g fill="#d4ded4" stroke="#52715f" stroke-width="2">
-    <circle cx="63" cy="76" r="21"/>
-    <circle cx="143" cy="76" r="25"/>
-    <circle cx="289" cy="76" r="30"/>
+
+  <text x="95" y="64" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="500" fill="#7c9db0">+</text>
+
+  <!-- Tritium (1p + 2n) -->
+  <g transform="translate(136 58)">
+    <circle cx="0" cy="-8" r="10.5" fill="#d46c44" stroke="#f7f2e8" stroke-width="1.5"/>
+    <circle cx="-8" cy="6" r="10.5" fill="#78a6ba" stroke="#f7f2e8" stroke-width="1.5"/>
+    <circle cx="8" cy="6" r="10.5" fill="#78a6ba" stroke="#f7f2e8" stroke-width="1.5"/>
+    <text x="0" y="34" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="650" fill="#e7efe9">T</text>
   </g>
-  <circle cx="377" cy="76" r="8" fill="#647e8c"/>
-  <g font-family="Inter, Arial, sans-serif" text-anchor="middle" fill="#304f3d">
-    <text x="63" y="83" font-size="20">D</text>
-    <text x="143" y="83" font-size="20">T</text>
-    <text x="289" y="83" font-size="20">He</text>
-    <text x="103" y="82" font-size="20" fill="#80968a">+</text>
-    <text x="345" y="82" font-size="20" fill="#80968a">+</text>
-    <text x="216" y="49" font-size="16" fill="#a14e2c">+ energy</text>
+
+  <!-- Reaction arrow + energy pill -->
+  <path d="M174 60h62m-7-5 7 5-7 5" fill="none" stroke="#d9875b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="172" y="21" width="66" height="22" rx="11" fill="#42291f" stroke="#e38b59" stroke-width="1"/>
+  <text x="205" y="36" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11.5" font-weight="650" fill="#f7bc92">+ energy</text>
+
+  <!-- Helium-4 (2p + 2n) -->
+  <g transform="translate(284 58)">
+    <circle cx="0" cy="0" r="32" fill="url(#he-halo)"/>
+    <circle cx="-7.5" cy="-7.5" r="10.5" fill="#d46c44" stroke="#f7f2e8" stroke-width="1.5"/>
+    <circle cx="7.5" cy="7.5" r="10.5" fill="#d46c44" stroke="#f7f2e8" stroke-width="1.5"/>
+    <circle cx="7.5" cy="-7.5" r="10.5" fill="#78a6ba" stroke="#f7f2e8" stroke-width="1.5"/>
+    <circle cx="-7.5" cy="7.5" r="10.5" fill="#78a6ba" stroke="#f7f2e8" stroke-width="1.5"/>
+    <text x="0" y="36" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="650" fill="#f7bc92">He-4</text>
   </g>
+
+  <text x="331" y="64" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="500" fill="#7c9db0">+</text>
+
+  <!-- Fast neutron with streak -->
+  <line x1="349" y1="58" x2="386" y2="58" stroke="#9ac6db" stroke-width="2" stroke-dasharray="3 3" opacity=".85"/>
+  <circle cx="388" cy="58" r="9.5" fill="#78a6ba" stroke="#f7f2e8" stroke-width="1.5"/>
+  <text x="388" y="92" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="650" fill="#a8c9d9">n</text>
 </svg>

@@ -3717,6 +3717,583 @@ dialog:has(.comparison) { width: min(1280px, 96vw); }
   .comparison-answer:last-child { padding: 18px 0; border-left: 0; border-top: 1px solid #d5ded2; }
   .comparison-answer:first-child { border-top: 0; padding-top: 0; }
   .comparison .segmented { flex-wrap: wrap; gap: 8px; }
-  .calculator-guide { padding: 16px; }
+  .calculator-guide { padding: 14px; }
   .calculator-guide .learning-actions { align-items: stretch; flex-direction: column; }
+}
+
+/* Curated visual scale: keep interactive modules near one viewport while
+   leaving #machines (Machine explorer) untouched at full size. */
+.hero {
+  min-height: 0;
+  padding-top: 38px;
+  padding-bottom: 42px;
+  gap: 28px;
+}
+.hero h1 {
+  font-size: clamp(46px, 5.4vw, 76px);
+}
+.hero-deck {
+  font-size: 18px;
+  margin-top: 16px;
+}
+.hero-actions {
+  margin-top: 18px;
+}
+.hero-actions a {
+  padding: 11px 15px;
+  font-size: 13.5px;
+}
+.hero-text .snapshot {
+  margin-top: 20px;
+}
+.hero-figure {
+  padding: 18px 20px 20px;
+}
+.hero-figure #hero-machine {
+  margin: 14px -10px 4px;
+  min-height: 230px;
+}
+.hero-figure figcaption {
+  padding-top: 12px;
+}
+
+main > .section:not(.machines-section):not(.sources-section) {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+main > .section:not(.machines-section) .section-heading {
+  margin-bottom: 24px;
+}
+main > .section:not(.machines-section) .section-heading .eyebrow {
+  margin-bottom: 10px;
+}
+main > .section:not(.machines-section) .section-heading h2 {
+  font-size: clamp(30px, 3.1vw, 44px);
+}
+main > .section:not(.machines-section) .section-heading > p:not(.eyebrow) {
+  font-size: 15px;
+  margin-top: 12px;
+  max-width: none;
+}
+
+/* Chapter 01: reaction walkthrough, slim fuels bar, compact disclosures */
+.reaction-navigation {
+  padding: 10px 18px;
+}
+.reaction-visual {
+  padding: 16px 20px;
+}
+#reaction-scene svg {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 240px;
+  margin: 4px auto;
+}
+.reaction-step {
+  min-height: 48px;
+  padding: 10px 16px;
+}
+.reaction-step .step-title {
+  font-size: 13px;
+}
+.reaction-caption {
+  min-height: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+.fusion-fuels-bar {
+  margin-top: 18px;
+  padding: 13px 18px;
+  border: 1px solid #c6d0c1;
+  border-radius: 6px;
+  background: #eef1e7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+.fusion-fuels-bar > p {
+  flex: 1 1 360px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #364c42;
+}
+.fusion-fuels-bar .learning-actions {
+  margin-top: 0;
+  gap: 8px;
+}
+.fusion-fuels-bar .learning-actions button {
+  min-height: 36px;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-color: #29473b;
+  background: #29473b;
+  color: #fffef9;
+}
+.fusion-fuels-bar .learning-actions button:hover {
+  border-color: #162e25;
+  background: #162e25;
+}
+
+.section-disclosure > summary {
+  min-height: 36px;
+}
+.section-disclosure > summary h3,
+.calculator > summary h3,
+.experimental-results > summary h3,
+.approach-overview h3 {
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.25;
+}
+.section-disclosure[open] > summary {
+  margin-bottom: 14px;
+}
+.summary-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 3px 14px;
+}
+.disclosure-teaser {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #566b60;
+}
+.energy-context,
+.history-teaser.section-disclosure {
+  margin-top: 18px;
+  padding: 16px 22px;
+}
+#history-milestones article {
+  padding: 14px 14px 0 0;
+}
+#history-milestones time {
+  font-size: 21px;
+}
+.history-teaser .learning-actions {
+  margin-top: 14px;
+}
+.learning-actions .timeline-cta {
+  min-height: 38px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+}
+
+/* Chapter 03: gain boundaries, calculator, and experimental results */
+.boundaries > summary {
+  padding: 16px 22px;
+}
+.boundary-tabs button {
+  min-height: 42px;
+  padding: 8px 8px;
+  font-size: 12px;
+}
+.boundary-tab-number {
+  width: 19px;
+  height: 19px;
+  flex-basis: 19px;
+}
+#boundary-panel {
+  padding: 16px 22px 20px;
+}
+#boundary-visual {
+  margin-bottom: 14px;
+}
+.energy-overview {
+  padding: 12px 16px;
+}
+#boundary-visual .energy-scene-wide {
+  width: 100%;
+  max-height: 365px;
+  height: auto;
+  margin: 4px auto;
+}
+.energy-measurement > span {
+  padding: 7px 10px;
+  font-size: 12px;
+}
+.boundary-caption {
+  grid-template-columns: 185px 1fr;
+  gap: 20px;
+  padding-top: 14px;
+  font-size: 12.5px;
+}
+.boundary-caption h3 {
+  font-size: 21px;
+}
+.boundary-caption p {
+  margin-top: 8px;
+  line-height: 1.6;
+}
+.boundary-example {
+  grid-template-columns: 185px minmax(0, 1fr);
+  gap: 20px;
+  margin-top: 14px;
+  padding-top: 14px;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.boundary-example h4 {
+  margin-top: 8px;
+  font-size: 22px;
+}
+.boundary-example p {
+  margin-top: 6px;
+}
+.boundary-example .example-equation {
+  font-size: 15px;
+}
+.boundaries + .calculator,
+.experimental-results {
+  margin-top: 20px;
+}
+.calculator,
+.experimental-results {
+  padding: 18px 22px;
+}
+.calculator-heading {
+  padding-bottom: 12px;
+}
+#calc-context {
+  padding: 10px 0;
+}
+.published-scenario {
+  margin-top: 12px;
+}
+.calculator-guide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 10px 14px;
+  margin-bottom: 6px;
+}
+.calculator-guide p {
+  margin: 0;
+  font-size: 12.5px;
+}
+.calculator-guide .learning-actions button {
+  min-height: 34px;
+  padding: 6px 11px;
+  font-size: 11.5px;
+}
+.calculator-grid {
+  column-gap: 44px;
+  padding: 12px 0 14px;
+}
+.calc-controls {
+  gap: 11px;
+}
+#net-number {
+  font-size: 46px;
+  padding: 16px 20px 0;
+}
+.calc-result {
+  padding: 16px 20px;
+}
+.power-row {
+  margin-bottom: 8px;
+}
+.signed-axis {
+  margin-top: 16px;
+  height: 32px;
+}
+.calc-footer {
+  padding-top: 12px;
+}
+.model-notes {
+  margin-top: 10px;
+}
+.records-intro {
+  margin-bottom: 16px;
+}
+.record-layout {
+  gap: 32px;
+}
+#record-chart svg {
+  display: block;
+  width: 100%;
+  max-height: 270px;
+}
+
+/* Chapter 04: Atlas chrome, cards, and compact Sites view */
+.approach-overview {
+  margin-bottom: 18px;
+  padding: 16px 20px;
+}
+.atlas-topline {
+  margin-bottom: 14px;
+}
+#atlas-stats b {
+  font-size: 24px;
+}
+.atlas-views {
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.atlas-views button {
+  min-height: 52px;
+  padding: 10px 14px;
+}
+.atlas-views strong {
+  font-size: 14px;
+}
+.atlas-views span {
+  margin-top: 2px;
+  font-size: 11px;
+}
+.entity-card {
+  padding: 18px;
+}
+.entity-card h3 {
+  font-size: 21px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+.entity-card > p {
+  min-height: 34px;
+}
+.card-evidence {
+  margin-top: 12px;
+  padding-top: 12px;
+}
+.card-bottom {
+  margin-top: 12px;
+  padding-top: 10px;
+}
+.world-map {
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.map-key {
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+.map-key-items {
+  gap: 8px 18px;
+}
+.map-key-note {
+  margin-top: 6px;
+}
+.map-toolbar {
+  margin: 8px 0;
+}
+.map-controls button {
+  min-width: 34px;
+  min-height: 34px;
+  padding: 4px 10px;
+  font-size: 17px;
+}
+.map-canvas {
+  max-height: 360px;
+  width: 100%;
+  margin: auto;
+}
+.site-list-disclosure {
+  margin-top: 10px;
+  padding: 10px 16px;
+  border: 1px solid #c7d1c5;
+  border-radius: 5px;
+  background: #f8f9f3;
+}
+.site-list-disclosure > summary {
+  font-size: 13px;
+  font-weight: 600;
+  color: #29473b;
+}
+.site-list-disclosure[open] > summary {
+  margin-bottom: 12px;
+}
+
+/* Chapter 05: compact engineering rows & single-viewport panels */
+.risk-toggle {
+  min-height: 54px;
+  padding: 12px 0;
+  font-size: 19px;
+}
+.risk-toggle[aria-expanded="true"] {
+  padding-inline: 12px;
+}
+.risk-panel {
+  margin: 0 0 18px;
+  padding: 20px 24px;
+}
+.engineering-story {
+  gap: 22px;
+}
+.engineering-copy h4 {
+  font-size: clamp(21px, 2.1vw, 26px);
+  margin: 0 0 10px;
+}
+.engineering-copy .engineering-lead {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.engineering-copy p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  margin-top: 10px;
+}
+.engineering-art svg,
+.fuel-inventory svg {
+  display: block;
+  width: 100%;
+  max-height: 265px;
+  height: auto;
+  margin-inline: auto;
+}
+.engineering-example {
+  padding: 16px 18px;
+}
+.engineering-example > figcaption {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.efficiency-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.efficiency-case h5 {
+  margin: 0;
+  font-size: 14px;
+}
+.efficiency-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #d8e8dc;
+  color: #24573e;
+  font-size: 11px;
+  font-weight: 650;
+}
+.efficiency-pill.negative {
+  background: #f2dfd7;
+  color: #9b4326;
+}
+.nuclear-comparison {
+  gap: 16px;
+}
+.nuclear-comparison article {
+  padding: 16px 18px;
+  background: #f5f6f0;
+  border-top-width: 3px;
+}
+.nuclear-card-fission {
+  border-top-color: #5b7fa6;
+}
+.nuclear-card-fusion {
+  border-top-color: #b94e2b;
+}
+.nuclear-status {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #e1ebf3;
+  color: #2c4e70;
+  margin-bottom: 10px;
+}
+.nuclear-status-future {
+  background: #f5e2d8;
+  color: #964021;
+}
+.nuclear-reaction {
+  margin: 10px 0 6px;
+  border-radius: 6px;
+}
+.nuclear-reaction-labels {
+  margin-bottom: 12px;
+  font-size: 11.5px;
+}
+.energy-context .nuclear-caveat {
+  margin-top: 12px;
+  padding-top: 10px;
+}
+.energy-context .nuclear-comparison-intro {
+  margin-bottom: 16px;
+}
+.fusion-benefits {
+  margin-top: 20px;
+}
+.engineering-meter {
+  margin-top: 10px;
+}
+.efficiency-result {
+  margin: 14px 0 0;
+}
+.efficiency-result strong {
+  font-size: 28px;
+}
+.engineering-proof {
+  margin-top: 16px;
+  padding-top: 12px;
+}
+.risk-references {
+  margin-top: 10px;
+}
+
+/* Closing synthesis and understated Sources colophon */
+.section.takeaway-section {
+  padding-top: 44px;
+  padding-bottom: 48px;
+}
+.takeaway-body h2 {
+  font-size: clamp(24px, 2.6vw, 32px);
+}
+.takeaway-body p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 14px;
+}
+.section.sources-section {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+.sources-disclosure > summary {
+  min-height: 40px;
+}
+.sources-disclosure > summary h2 {
+  font-size: clamp(18px, 1.9vw, 21px);
+}
+.sources-content {
+  padding-top: 16px;
+}
+.sources-content h3 {
+  font-size: 19px;
+  margin: 22px 0 10px;
+}
+
+@media (max-width: 700px) {
+  .hero h1 {
+    font-size: clamp(40px, 12vw, 56px);
+  }
+  main > .section:not(.machines-section):not(.sources-section) {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+  .boundary-caption,
+  .boundary-example {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  #net-number {
+    font-size: 44px;
+  }
+  .risk-toggle {
+    min-height: 52px;
+    font-size: 18px;
+  }
+  .calculator-guide {
+    align-items: stretch;
+  }
+  .map-controls button {
+    min-width: 40px;
+    min-height: 40px;
+  }
 }

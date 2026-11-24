@@ -94,9 +94,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261123" />
+    <link rel="stylesheet" href="./styles.css?v=20261123c" />
     <link rel="stylesheet" href="./reactor-explorer.css?v=bafbffcf" />
-    <script type="module" src="./app.js?v=20261123"></script>
+    <script type="module" src="./app.js?v=20261123c"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -150,18 +150,12 @@
           <p class="eyebrow">01 / FROM NUCLEI TO A POWER PLANT</p>
           <h2>From fusion reactions to electricity</h2>
           <p>
-            Fusion joins light atomic nuclei to form heavier ones, releasing
-            energy. This example follows <strong>deuterium</strong> and
-            <strong>tritium</strong> (D–T), two forms of hydrogen, from the reaction to
-            electricity exported by a power plant.
-          </p>
-          <p>
-            Fully fusing one gram of D–T releases roughly as much energy as
-            burning eight tonnes of oil. A fusion plant has yet to supply net
-            electricity to the grid. Building one remains a major scientific and
-            engineering challenge. Researchers and companies are pursuing it
-            because it could help meet the world's growing energy needs with
-            electricity day and night, helping replace our use of fossil fuels.
+            Fusion joins light atomic nuclei into heavier ones, releasing energy.
+            Fully fusing one gram of <strong>deuterium</strong> and
+            <strong>tritium</strong> (D–T)—two forms of hydrogen—releases roughly
+            as much energy as burning eight tonnes of oil. No plant has delivered
+            net fusion electricity to the grid yet, but researchers and private
+            teams are pursuing it as a steady, low-carbon power source.
           </p>
         </div>
         <div class="reaction-layout">
@@ -191,90 +185,83 @@
           </div>
           <div class="reaction-steps" id="reaction-steps"></div>
         </div>
-        <details class="fusion-fuels section-disclosure" open>
-          <summary>
-            <h3 id="fusion-fuels-title">Fusion fuels</h3>
-          </summary>
+        <div class="fusion-fuels-bar">
           <p>
-            Deuterium–tritium (D–T) needs less demanding plasma conditions than
-            other candidate fuels, making it a leading choice for proposed
-            fusion power plants. However, its energetic neutrons damage
-            materials, and a plant must produce fresh tritium from lithium.
+            <strong>Why D–T?</strong> It ignites at lower temperatures than
+            other fuels, though its energetic neutrons damage materials and
+            require breeding tritium from lithium.
           </p>
           <div class="learning-actions">
-            <button data-open="fuels">Compare the fuels ↗</button>
-            <button data-open="glossary">Fusion glossary ↗</button>
+            <button data-open="fuels">Compare all 4 fuels ↗</button>
+            <button data-open="glossary">Glossary ↗</button>
           </div>
-        </details>
-        <details class="energy-context section-disclosure" open>
+        </div>
+        <details class="energy-context section-disclosure">
           <summary>
-            <h3 id="energy-context-title">Fusion in the energy system</h3>
+            <div class="summary-heading">
+              <h3 id="energy-context-title">Fusion in the energy system</h3>
+              <span class="disclosure-teaser">Fission vs. fusion, today’s global electricity mix, and rising AI demand</span>
+            </div>
           </summary>
-          <p class="nuclear-comparison-intro">Today's nuclear power stations use <strong>fission</strong>. <strong>Fusion</strong> power is still in development. Both reactions release energy from atomic nuclei, the centers of atoms.</p>
+          <p class="nuclear-comparison-intro">Today’s nuclear plants run on <strong>fission</strong>; <strong>fusion</strong> power is still experimental. Both tap energy stored in atomic nuclei.</p>
           <div class="nuclear-comparison">
-            <article>
+            <article class="nuclear-card nuclear-card-fission">
               <span class="nuclear-status">Supplies electricity today</span>
               <h4>Fission splits heavy nuclei</h4>
               <img
                 class="nuclear-reaction"
-                src="./assets/fission-reaction.svg"
-                width="440" height="140"
-                alt="A neutron strikes a uranium nucleus, splitting it into smaller nuclei and releasing neutrons and energy"
+                src="./assets/fission-reaction.svg?v=20261123"
+                width="440" height="124"
+                alt="A neutron strikes a uranium-235 nucleus, splitting it into smaller fission products and releasing three neutrons and energy"
               />
-              <div class="nuclear-reaction-labels" aria-hidden="true"><span>Neutron + uranium</span><span>Smaller nuclei + neutrons</span></div>
+              <div class="nuclear-reaction-labels" aria-hidden="true"><span>Neutron + uranium-235</span><span>Smaller nuclei + 3 neutrons</span></div>
               <p>
-                A neutron can split a heavy nucleus such as uranium, releasing
-                energy and more neutrons. Those neutrons can split other nuclei,
-                sustaining a chain reaction that a power station controls.
+                A neutron splits a heavy nucleus like uranium, releasing energy
+                and additional neutrons that sustain a controlled chain reaction
               </p>
               <p class="nuclear-caveat">
                 Spent fuel remains radioactive and needs long-term management
               </p>
             </article>
-            <article>
+            <article class="nuclear-card nuclear-card-fusion">
               <span class="nuclear-status nuclear-status-future">No grid electricity yet</span>
               <h4>Fusion joins light nuclei</h4>
               <img
                 class="nuclear-reaction"
-                src="./assets/fusion-reaction.svg"
-                width="440" height="140"
-                alt="Deuterium and tritium nuclei join, producing a helium-4 nucleus, a neutron, and energy"
+                src="./assets/fusion-reaction.svg?v=20261123"
+                width="440" height="124"
+                alt="Deuterium and tritium nuclei join, producing a helium-4 nucleus, a fast neutron, and energy"
               />
-              <div class="nuclear-reaction-labels" aria-hidden="true"><span>Deuterium + tritium</span><span>Helium-4 + neutron</span></div>
+              <div class="nuclear-reaction-labels" aria-hidden="true"><span>Deuterium + tritium</span><span>Helium-4 + fast neutron</span></div>
               <p>
-                In D–T fusion, deuterium and tritium combine into helium and a
-                neutron, releasing energy. Keeping the fuel hot and confined
-                enough to sustain fusion is one of the central challenges.
+                Deuterium and tritium fuse into helium-4 and a fast neutron.
+                Holding the plasma hot and dense enough for fusion to pay back
+                its energy input is the hard part.
               </p>
               <p class="nuclear-caveat">
-                Tritium is radioactive, and fusion neutrons can make reactor
-                materials radioactive too
+                Tritium is radioactive, and fusion neutrons activate reactor walls too
               </p>
             </article>
           </div>
           <p class="nuclear-shared-route">
-            <strong>Different reactions, a familiar route to electricity:</strong>
-            fission plants and most proposed fusion plants use the released
-            energy as heat to drive a turbine and generator. Reaction sketches
-            above are schematic, not to scale.
+            <strong>Familiar turbines:</strong> fission plants and most proposed
+            fusion plants turn reaction heat into steam to spin a generator
+            (sketches schematic, not to scale)
           </p>
           <div class="fusion-benefits">
             <h4>What fusion could offer</h4>
             <div>
               <p>
-                <strong>More energy from each gram.</strong> Fully reacting D–T
-                fuel releases about four times as much energy per gram as
-                fissioning uranium-235, and millions of times more than burning
-                fossil fuels. These are fuel-level comparisons; electricity
-                output would be lower after conversion losses and plant power use.
+                <strong>Extreme energy density.</strong> Gram for gram, fully
+                reacted D–T releases about four times the energy of uranium-235
+                fission and millions of times that of fossil fuels, before
+                conversion and plant losses.
               </p>
               <p>
-                <strong>Potentially shorter-lived waste.</strong> D–T
-                fusion needs no uranium or plutonium fuel and produces no spent
-                fission fuel. Choosing suitable reactor materials could make its
-                radioactive waste shorter-lived and easier to manage. It is not
-                waste-free: radioactive tritium and reactor components made
-                radioactive by neutrons still need careful handling and disposal.
+                <strong>Shorter-lived waste.</strong> D–T produces no spent
+                uranium or plutonium fuel, and suitable alloys can keep
+                neutron-activated waste shorter-lived—though tritium and
+                irradiated components still require careful handling.
               </p>
             </div>
           </div>
@@ -764,14 +751,12 @@
               </header>
               <div>
                 <p>
-                  ITER is an international experimental fusion reactor being
-                  built in southern France by seven partners, including the
-                  European Union. It aims for 500 megawatts (MW) of fusion power
-                  from 50 MW of heating delivered to the plasma.
+                  ITER, under construction in southern France by seven
+                  international partners, aims for 500 megawatts (MW) of fusion
+                  power from 50 MW of external plasma heating.
                 </p>
                 <p class="example-equation">500 MW ÷ 50 MW = Q of 10</p>
-                <p>MW measures power: the rate of energy production or use</p>
-                <p class="example-caveat"><strong>Q = 10 is a research goal. ITER has no system for generating electricity.</strong></p>
+                <p class="example-caveat"><strong>Research goal only—ITER has no turbines or electricity generation</strong></p>
                 <p class="citation" data-cites="PHY_019 PHY_020"></p>
               </div>
             </article>
@@ -782,15 +767,13 @@
               </header>
               <div>
                 <p>
-                  The National Ignition Facility (NIF) is a laser research
-                  facility at Lawrence Livermore National Laboratory in
-                  California. On 7 April 2025, it released 8.6 ± 0.45
-                  megajoules (MJ) of fusion energy from 2.08 MJ of laser light
-                  delivered to a target.
+                  On 7 April 2025, the National Ignition Facility (NIF) at
+                  Lawrence Livermore National Laboratory released 8.6 ± 0.45 MJ
+                  of fusion energy from 2.08 MJ of laser light on target—the
+                  highest target gain in this snapshot.
                 </p>
                 <p class="example-equation">8.6 MJ ÷ 2.08 MJ ≈ 4.13 target gain</p>
-                <p>This is the highest target gain in this snapshot. MJ measures an amount of energy.</p>
-                <p class="example-caveat"><strong>NIF does not generate electricity. Its lasers and other systems consume electricity outside this ratio.</strong></p>
+                <p class="example-caveat"><strong>NIF does not generate electricity; laser and facility power sit outside this ratio</strong></p>
                 <p class="citation" data-cites="PHY_009 PHY_012"></p>
               </div>
             </article>
@@ -798,16 +781,16 @@
               <header>
                 <span class="badge model">○ CURRENT STATUS</span>
                 <h4>Not yet</h4>
-                <p>No experiment has demonstrated net electricity from fusion over a complete plant cycle</p>
+                <p>No experiment has delivered net electricity over a complete plant cycle</p>
               </header>
               <div>
                 <p>
-                  In this illustrative example, a pulse uses 100 MJ of electricity
-                  and the recovery system returns 102 MJ. Pumps, cooling, and
-                  other systems consume another 3 MJ, leaving a net loss of 1 MJ.
+                  In this illustration, a pulse draws 100 MJ of electricity and
+                  returns 102 MJ, while pumps and cooling consume 3 MJ—leaving a
+                  1 MJ net loss.
                 </p>
                 <p class="example-equation">102 − 100 − 3 = −1 MJ</p>
-                <p class="example-caveat"><strong>The whole plant must finish with a surplus to supply the grid, even when the pulse recovers more than its own input</strong></p>
+                <p class="example-caveat"><strong>The whole plant must finish ahead, even if the pulse recovers more than its own input</strong></p>
               </div>
             </article>
           </div>
@@ -957,12 +940,12 @@
             role="group"
             aria-label="Explore the atlas"
           >
-            <button data-view="sites" class="active" aria-pressed="true">
-              <strong>Sites</strong><span>Facilities around the world</span>
-            </button>
-            <button data-view="cards" aria-pressed="false">
+            <button data-view="cards" class="active" aria-pressed="true">
               <strong>Organizations</strong
               ><span>Projects and field notes</span>
+            </button>
+            <button data-view="sites" aria-pressed="false">
+              <strong>Sites</strong><span>Facilities around the world</span>
             </button>
             <button data-view="funding" aria-pressed="false">
               <strong>Financing</strong
