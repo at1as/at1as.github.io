@@ -235,7 +235,7 @@
       ],
       "ranking_metric": "Apple chip performance/capability tier",
       "scope": "M2 generation only, not an assertion about newer-generation chips",
-      "story": "Ultra sits above Max. Maximum was not actually maximum.",
+      "story": "Ultra sits above Max, which started out as the top tier of the M-series lineup.",
       "caveat": "Relative power/energy efficiency varies by workload and device. Do not compare chip generations as part of this ladder.",
       "naming_quirks": [
         "ceiling",
@@ -279,7 +279,7 @@
       ],
       "ranking_metric": "4070 family gaming GPU performance/capability tier",
       "scope": "Ada Lovelace GeForce RTX 4070 desktop cards, not laptop GPUs",
-      "story": "Ti beats SUPER, but Ti SUPER beats both. The suffixes form a small grammar.",
+      "story": "Ti ranks above SUPER, and combining both suffixes into Ti SUPER ranks above both.",
       "caveat": "Individual benchmarks, factory overclocks, prices, and VRAM-sensitive games can vary; use NVIDIA’s within-family positioning.",
       "naming_quirks": [
         "two-dimensional-suffix",
@@ -355,7 +355,7 @@
       ],
       "ranking_metric": "core count in same 65W Zen 4 desktop cohort",
       "scope": "2023 65W, non-X Ryzen 7000 Zen 4 desktop CPUs",
-      "story": "Ryzen tier labels use 5, 7 and 9; the model number also changes.",
+      "story": "Ryzen tier labels use 5, 7, and 9, and the four-digit model number changes alongside them.",
       "caveat": "This ranks core counts: 6, 8 and 12. It does not guarantee higher performance in every game, especially versus X3D variants.",
       "naming_quirks": [
         "numbering",
@@ -694,7 +694,7 @@
       ],
       "ranking_metric": "premium travel-card positioning",
       "scope": "US consumer Sapphire cards, November 2026",
-      "story": "A preferred guest sounds important. A reserved seat is apparently higher.",
+      "story": "Both names sound premium, with Reserve positioned above Preferred in Chase’s travel-card lineup.",
       "caveat": "This is Chase’s positioning/annual-fee and travel benefit tier, not a claim Reserve produces greater value for every customer.",
       "naming_quirks": [
         "near-synonyms",
@@ -734,7 +734,7 @@
       ],
       "ranking_metric": "premium travel-card positioning",
       "scope": "US consumer Capital One Venture lineup",
-      "story": "One appears to be the starter tier; X is the top, although X could mean anything.",
+      "story": "VentureOne is the entry card, standard Venture sits in the middle, and Venture X is the top tier.",
       "caveat": "Ranks issuer product segment and annual-fee/benefit scope, not universal expected rewards for every spending pattern.",
       "naming_quirks": [
         "letter-suffix",
@@ -818,7 +818,7 @@
       ],
       "ranking_metric": "Mastercard network premium benefit tier",
       "scope": "Mastercard global premium CREDIT product portfolio, 2026",
-      "story": "World Elite had to make room for World Legend. What comes after Legend?",
+      "story": "Mastercard added World Legend above World Elite, extending a lineup that already ended in a superlative.",
       "caveat": "Network tiers are separate from an issuing bank’s rewards program and card annual fee. Availability varies by market.",
       "naming_quirks": [
         "ceiling",
@@ -910,7 +910,7 @@
       ],
       "ranking_metric": "loyalty status level",
       "scope": "Marriott Bonvoy, November 2026",
-      "story": "After the precious metals, Marriott invents Titanium, then changes dimensions completely to Ambassador.",
+      "story": "After Silver, Gold, and Platinum, Marriott adds Titanium and then switches from metals to a title with Ambassador.",
       "caveat": "Status eligibility involves nights and, for Ambassador, qualifying spend; actual benefits vary by property.",
       "naming_quirks": [
         "material-metaphor",
@@ -954,7 +954,7 @@
       ],
       "ranking_metric": "loyalty status level",
       "scope": "World of Hyatt member tiers, 2026",
-      "story": "Is a Globalist bigger than an Explorist? Hyatt thinks so.",
+      "story": "World of Hyatt uses three coined titles—Discoverist, Explorist, and Globalist—whose order has to be memorized.",
       "caveat": "Hyatt’s terms define status tiers; the words do not represent an objective hierarchy of people.",
       "naming_quirks": [
         "invented-words",
@@ -1299,7 +1299,7 @@
       ],
       "ranking_metric": "mainline luxury / price positioning",
       "scope": "Fashion labels in Armani’s brand architecture",
-      "story": "“Exchange” sounds like a verb, “Emporio” like a place, and the founder’s name is the most luxurious tier.",
+      "story": "Armani’s three labels give no explicit tier cues; the founder’s full name marks the flagship luxury line.",
       "caveat": "Positioning and average prices, not guaranteed garment-by-garment quality. Product categories and collaborations can differ.",
       "naming_quirks": [
         "sub-brand",
@@ -2450,7 +2450,7 @@
         }
       ],
       "ranking_metric": "upper end of the declared sugar range",
-      "scope": "Comité Champagne’s sugar categories in grams per litre",
+      "scope": "Comité Champagne’s sugar categories in grams per liter",
       "story": "Extra Dry Champagne can contain more sugar than Brut.",
       "caveat": "The ranges are labeling thresholds. They do not guarantee how sweet a particular bottle will taste.",
       "naming_quirks": [

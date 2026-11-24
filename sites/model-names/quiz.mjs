@@ -203,7 +203,7 @@ function setReplay() {
       setNext('Rank across categories', () => startRound(true, '', 'ranking'));
     } else {
       message.textContent = 'You’ve seen every lineup available for ranking.';
-      setNext('Return to Pick one', () => startRound(true, group, 'pairs'));
+      setNext('Return to Pick One', () => startRound(true, group, 'pairs'));
     }
   } else if (seen.size === corpus.all.length) {
     message.textContent = 'You’ve seen every question.';
@@ -326,7 +326,7 @@ copyScore.addEventListener('click', async () => {
   const category = group ? ` (${group})` : '';
   const url = new URL(document.querySelector('link[rel="canonical"]').href);
   if (mode === 'ranking') url.searchParams.set('mode', 'ranking');
-  const game = mode === 'ranking' ? ' · Put them in order' : '';
+  const game = mode === 'ranking' ? ' · Put Them in Order' : '';
   const text = `${score}/${activeQuestions.length} on What’s Bigger Than Max?${game}${category}\n${marks.join(' ')}\n${url}`;
   try {
     await navigator.clipboard.writeText(text);

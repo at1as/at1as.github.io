@@ -1,6 +1,6 @@
 ---
 title: "What’s Bigger Than Max?"
-description: "Gemini Neon or Carbon? Claude Fable or Opus? Guess which name ranks higher in a six-question quiz about AI models, product tiers, and titles."
+description: "Gemini Neon or Carbon? Claude Fable or Opus? Test your intuition on AI models, product tiers, and titles—then see why product naming breaks down."
 permalink: /sites/model-names/
 image:
   path: /sites/model-names/share-card.png
@@ -92,11 +92,12 @@ paper_series:
     h1 em::after{content:"";position:absolute;height:22%;bottom:5%;left:-1%;right:-2%;background:var(--lime);z-index:-1;transform:rotate(-1.2deg)}
     .hero-copy{font-size:19px;line-height:1.67;color:var(--ink2);margin:0}
     .quiz-card [hidden]{display:none}
-    .quiz-controls{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:22px}
+    .quiz-controls{display:flex;align-items:flex-start;justify-content:space-between;gap:16px 20px;margin-bottom:22px}
     .quiz-group{margin:0;font-size:18px;font-weight:620;color:#d8e8d6}
-    .quiz-modes{display:flex;flex-wrap:wrap;column-gap:14px;margin-top:4px}
-    .quiz-modes button{border:0;border-bottom:2px solid transparent;padding:5px 0;color:#c4d2c6;background:none;font-size:13px}
-    .quiz-modes button[aria-pressed="true"]{color:white;font-weight:700;border-color:var(--lime)}
+    .quiz-modes{display:inline-flex;flex-wrap:wrap;gap:4px;margin-top:10px;padding:4px;background:#152a20;border:1px solid #496356;border-radius:6px}
+    .quiz-modes button{min-height:36px;border:1px solid transparent;border-radius:4px;padding:6px 14px;color:#d8e8d6;background:transparent;font-size:13px;font-weight:650;transition:background .18s,color .18s,border-color .18s}
+    .quiz-modes button:hover:not([aria-pressed="true"]){background:#244234;color:white;border-color:#5b7768}
+    .quiz-modes button[aria-pressed="true"]{background:var(--lime);color:var(--ink);font-weight:750;border-color:var(--lime)}
     .quiz-running-score .micro{display:block;color:#d8e8d6;margin-bottom:6px}
     .quiz-running-score{flex-shrink:0;text-align:right;margin:0;color:var(--lime)}
     .quiz-running-score strong{display:block;font:500 clamp(34px,4vw,48px)/.95 var(--serif);letter-spacing:-.05em;white-space:nowrap}
@@ -160,8 +161,13 @@ paper_series:
     .quiz-card:has(.quiz-done:not([hidden]) .quiz-other:not([hidden])) .quiz-next{background:transparent;color:#f6f5ee;border:1px solid #789182}
     .quiz-copy{background:none;border:0;padding:8px 0;color:var(--lime);text-decoration:underline;text-underline-offset:3px}
     .quiz-share-text{display:block;width:100%;margin-top:8px;font:inherit}
-    .case-studies-title{margin-block:0;padding:24px 0 0;border-top:1px solid var(--edge);font:650 clamp(21px,2.3vw,28px)/1.2 var(--sans);letter-spacing:-.035em}
-    .case-studies-title + .case{padding-top:25px;border-top:0}
+    .case-group-band{background:#eae7dc;border-top:1px solid #cfcec6;border-bottom:1px solid #cfcec6;padding:28px 0}
+    .case-group-grid{--label-width:6rem;--label-gap:24px;display:grid;grid-template-columns:var(--label-width) minmax(0,1fr);gap:8px var(--label-gap);align-items:baseline}
+    .case-group-label{margin:0;font-size:14px;font-weight:650;line-height:1.35;color:var(--ink2)}
+    .case-group-label span{display:block;margin-top:2px;font-size:12px;font-weight:500;color:var(--muted)}
+    .case-group-body h2{margin:0;font:500 clamp(24px,2.7vw,34px)/1.15 var(--serif);letter-spacing:-.045em;color:var(--ink)}
+    .case-group-body p{margin:8px 0 0;font-size:16px;line-height:1.65;color:var(--ink2)}
+    .case-group-band + .case{padding-top:46px;border-top:0}
     .case{padding:61px 0 82px;border-top:1px solid #cfcec6}
     .case{--label-width:6rem;--label-gap:24px}
     .case-head{display:grid;grid-template-columns:var(--label-width) minmax(0,1fr);grid-template-areas:"label title" ". summary";gap:15px var(--label-gap);margin-bottom:33px}
@@ -321,7 +327,6 @@ paper_series:
     .tv-products .tv-hardware{mix-blend-mode:multiply;filter:brightness(1.05)}
     .tv-products figcaption{font-size:13px;font-weight:700;line-height:1.35}
     .tv-products small{display:block;margin-top:2px;font-size:11px;font-weight:500;color:var(--ink2)}
-    #dyson .case-kicker span{display:block;color:#85483e;font-size:12px}
     .dyson-models{width:min(100%,48rem);table-layout:fixed;border-collapse:collapse;margin:0 0 18px;text-align:left}
     .dyson-models caption{text-align:left;padding-bottom:8px;font-size:13px;color:var(--ink2)}
     .dyson-models th,.dyson-models td{padding:7px 12px 7px 0;border-bottom:1px solid var(--edge);vertical-align:baseline}
@@ -331,9 +336,6 @@ paper_series:
     .dyson-models .absent{color:var(--muted)}
     #dyson .case-summary + .case-summary{margin-top:1em}
     #usb .case-visual{container:usb / inline-size}
-    .usb-intro{grid-area:summary}
-    .usb-subheading{margin:0 0 10px;font:500 clamp(20px,2vw,25px)/1.35 var(--serif)}
-    .usb-subheading strong{padding-inline:.1em;background:var(--lime);color:var(--ink);font-weight:800;-webkit-box-decoration-break:clone;box-decoration-break:clone}
     .usb-map{margin:0}
     .usb-map + .case-summary{padding-top:16px}
     .usb-families{display:grid;grid-template-columns:3fr 2fr;column-gap:10px}
@@ -384,7 +386,7 @@ paper_series:
     .release-date:hover time{background:#e9e2e6;box-shadow:inset 0 0 0 1px #b3a7af}
     .release-date input:checked + time{background:#553f50;color:white}
     .release-date input:focus-visible + time{outline:2px solid #397354;outline-offset:2px}
-    .camera-selectors + .case-summary{padding-top:16px}
+    .family-selectors + .case-summary{padding-top:16px}
     #paper-sizes .case-visual{container:paper-sizes / inline-size}
     .paper-pair{display:grid;grid-template-columns:minmax(0,594fr) minmax(0,707fr);align-items:end;gap:clamp(16px,3cqi,32px);max-width:50rem;margin-bottom:18px}
     .paper-pair figure{margin:0;min-width:0}
@@ -422,12 +424,12 @@ paper_series:
     .name-intro{margin:0 0 32px;max-width:78ch;color:var(--ink2);font-size:18px;line-height:1.65}
     .name-intro p{margin:0}
     .name-intro p + p{margin-top:.9em}
-    .naming-takeaways{margin-top:32px;max-width:78ch}
-    .naming-takeaways .name-intro{margin-bottom:20px}
-    .naming-takeaways h3{margin:0 0 12px;font:500 clamp(24px,3vw,32px)/1.15 var(--serif);letter-spacing:-.035em}
-    .naming-takeaways ul{margin:0;padding-inline-start:1.2em;color:var(--ink2)}
-    .naming-takeaways li + li{margin-top:10px}
+    .naming-takeaways{margin-top:36px;max-width:78ch}
+    .naming-takeaways h3{margin:0 0 14px;font:500 clamp(24px,3vw,32px)/1.15 var(--serif);letter-spacing:-.035em}
+    .naming-takeaways ul{margin:0;padding-inline-start:1.2em;color:var(--ink2);font-size:17px;line-height:1.65}
+    .naming-takeaways li + li{margin-top:12px}
     .naming-takeaways strong{color:var(--ink)}
+    .name-closing{margin:24px 0 0;color:var(--ink2);font-size:17px;line-height:1.68}
     .buyer-guide{width:100%;border-collapse:collapse;table-layout:fixed;text-align:left;font-size:15px;line-height:1.45}
     .buyer-guide col:first-child{width:27%}
     .buyer-guide col:nth-child(2){width:35%}
@@ -464,6 +466,7 @@ paper_series:
     .buyer-guide .mobile-key{display:none}
     @media(max-width:680px){
       .name-intro{font-size:16px;margin-bottom:22px}
+      .naming-takeaways ul,.name-closing{font-size:16px}
       .buyer-guide,.buyer-guide tbody{display:block}
       .buyer-guide colgroup{display:none}
       .buyer-guide thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
@@ -479,7 +482,9 @@ paper_series:
     .sources{padding:62px 0 72px}
     .sources-grid{display:grid;grid-template-columns:230px 1fr;gap:52px}
     .sources h2{font-family:var(--serif);font-size:35px;font-weight:500;letter-spacing:-.05em;margin:0}
-    .sources p{font-size:13px;line-height:1.75;color:#67766c;margin-bottom:21px;max-width:690px}
+    .sources p{font-size:14px;line-height:1.75;color:#5a695f;margin-bottom:18px;max-width:690px}
+    .sources .essay-link{color:var(--ink);font-weight:700;text-decoration-color:#52754b;text-decoration-thickness:2px;text-underline-offset:3px;transition:background .18s}
+    .sources .essay-link:hover{background:var(--lime-soft)}
     .footer{border-top:1px solid #d0d5cc;padding:28px 0;font-size:12px;color:#69786d}
     .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
     .footer a{text-decoration:none;color:var(--ink)}
@@ -525,6 +530,11 @@ paper_series:
       .quiz-question{font-size:21px;margin:18px 0;min-height:0}
       .quiz-choice{min-height:82px;padding:11px}
       .quiz-choice strong{font-size:clamp(18px,5vw,23px)}
+      .case-group-band{padding:24px 0}
+      .case-group-grid{grid-template-columns:1fr;gap:8px}
+      .case-group-label span{display:inline;margin-left:8px}
+      .case-group-body p{font-size:15px}
+      .case-group-band + .case{padding-top:36px}
       .case{padding:52px 0 69px}
       .case-head{grid-template-columns:1fr;grid-template-areas:"label" "title" "summary";row-gap:10px;margin-bottom:28px}
       .case-kicker{margin-bottom:13px;padding:0}
@@ -551,6 +561,7 @@ paper_series:
     @media(max-width:460px){
       .toggle-group{display:grid;grid-template-columns:repeat(2,1fr);width:100%}
       .nav-links a[href="#whats-in-a-name"]{display:none}
+      .quiz-modes button{padding:6px 10px;font-size:12px}
       .quiz-track{display:none}
       .space-visual dd{gap:clamp(2px,.85vw,4px);font-size:clamp(18px,5vw,22px)}
       .space-model .model-rank{font-size:10px;padding:2px 4px}
@@ -581,16 +592,16 @@ paper_series:
     <section class="hero" id="top" aria-labelledby="page-title">
       <div class="container hero-grid">
         <div class="hero-intro">
-          <h1 id="page-title">What's bigger than <em>Max?</em></h1>
-          <p class="hero-copy">Which name ranks higher? Start with six AI model pairs, or try putting three names in order.</p>
+          <h1 id="page-title">What’s bigger than <em>Max?</em></h1>
+          <p class="hero-copy">Product names are supposed to help us tell tiers apart, yet increasingly they aren’t clear and leave us guessing. How well can you do? Start with six AI model pairs, or try putting three names in order.</p>
         </div>
         <section class="quiz-card" id="the-test" aria-label="The naming quiz">
           <div class="quiz-controls">
             <div>
               <p class="quiz-group" id="quiz-group"></p>
               <div class="quiz-modes" id="quiz-modes" role="group" aria-label="Game mode" hidden>
-                <button type="button" value="pairs" aria-pressed="true">Pick one</button>
-                <button type="button" value="ranking" aria-pressed="false">Put them in order</button>
+                <button type="button" value="pairs" aria-pressed="true">Pick One</button>
+                <button type="button" value="ranking" aria-pressed="false">Put Them in Order</button>
               </div>
             </div>
             <p class="quiz-running-score" id="quiz-running-score" hidden><span class="micro">Score</span><strong id="quiz-running-value"></strong></p>
@@ -626,7 +637,7 @@ paper_series:
             <button type="button" class="quiz-copy" id="quiz-copy">Copy score</button>
             <div class="quiz-other" id="rank-offer" hidden>
               <p>Rank three names from a lineup you haven’t seen yet.</p>
-              <button type="button" id="rank-offer-button">Put them in order</button>
+              <button type="button" id="rank-offer-button">Put Them in Order</button>
             </div>
             <div class="quiz-other" id="quiz-other" hidden>
               <p>Try another category</p>
@@ -648,13 +659,21 @@ paper_series:
         </aside>
       </div>
     </section>
-    <h2 class="container case-studies-title" id="the-names">Case Studies</h2>
+    <div class="case-group-band" id="the-names">
+      <div class="container case-group-grid">
+        <div class="case-group-label">Case studies<span>Part 1 of 2</span></div>
+        <div class="case-group-body">
+          <h2>Where naming breaks down</h2>
+          <p>AI labs have made naming ceilings hard to miss, alongside hardware and technical standards where modifiers collide or shared labels hide incompatible specs.</p>
+        </div>
+      </div>
+    </div>
     <section class="case" id="anthropic">
       <div class="container">
         <div class="case-head">
           <div class="case-kicker">Anthropic</div>
           <h3>What comes after Opus?</h3>
-          <p class="case-summary">A haiku in English usually has three lines and a sonnet has fourteen, so length gets you from Haiku to Sonnet. That analogy runs out at Opus, a work of any length. Reading it as <em>magnum opus</em> shifts the measure to importance. By Fable, the name describes the content of a story. A fable earns its name by teaching a moral and can easily be shorter than the sonnet it outranks.</p>
+          <p class="case-summary">In English, a haiku usually has <strong>three lines</strong> and a sonnet has <strong>fourteen</strong>, so length orders <strong>Haiku</strong> and <strong>Sonnet</strong>. That rule breaks down at <strong>Opus</strong>, which can be a work of any length; reading it as <em>magnum opus</em> shifts the scale to importance. By <strong>Fable</strong>, the metaphor has shifted again to the nature of the story itself—a short moral tale now sitting a tier above a defining work.</p>
         </div>
         <div class="case-visual">
           <div class="literary-row" role="list" aria-label="Claude model tiers, lowest to highest">
@@ -680,9 +699,9 @@ paper_series:
           </div>
           <div class="lit-side">
             <div class="mythos-tile"><strong>Mythos</strong><small>Anthropic’s top tier</small></div>
-            <p>A mythos is a body of stories, which sounds like a step up from a single fable. Anthropic puts the two at the same level. Mythos 5.2 offers the same capabilities as Fable 5.2, with access limited to verified organizations.</p>
+            <p>A mythos is a body of stories, which sounds broader than a single fable. Anthropic instead places them at the same capability level: Mythos 5.2 shares Fable 5.2’s capabilities, with access limited to verified organizations.</p>
           </div>
-          <p class="case-summary claude-versions" id="claude-versions">Each Claude model family has its own version numbers. The jump from Opus 5 to 5.5 can hint at how much Opus improved over its previous release, but it tells you little about how Opus compares with Fable. <strong>Fable 5.2</strong> came out after <strong>Opus 5.5</strong> and sits a tier above it.</p>
+          <p class="case-summary claude-versions" id="claude-versions">Each Claude model family also advances its version numbers independently. The jump from Opus 5 to 5.5 indicates progress within Opus, but says nothing about how it ranks against another family. <strong>Fable 5.2</strong> launched after <strong>Opus 5.5</strong> and sits a tier above it.</p>
           <table class="claude-history">
             <caption>Three most recent numbered API releases per family as of November 2026. <a href="https://platform.claude.com/docs/en/release-notes/overview">Release notes</a></caption>
             <thead>
@@ -711,7 +730,7 @@ paper_series:
               {% endfor %}
             </tbody>
           </table>
-          <p class="case-source">Sources · <a href="https://platform.claude.com/docs/en/models/overview" target="_blank" rel="noopener noreferrer">Claude model overview</a> · <a href="https://platform.claude.com/docs/en/about-claude/model-deprecations">Public release history</a> · <a href="https://www.anthropic.com/claude-opus-5-5">Opus 5.5 release</a> · <a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Fable 5.2 release</a> · <a href="https://platform.claude.com/docs/en/models/fable-5-2/overview" target="_blank" rel="noopener noreferrer">Fable and Mythos</a> · <a href="https://thehaikufoundation.org/contemporary-haiku/" target="_blank" rel="noopener noreferrer">Haiku Foundation</a> · <a href="{% post_url 2026-07-09-The-Naming-Ceiling %}">Earlier essay on naming</a></p>
+          <p class="case-source">Sources · <a href="https://platform.claude.com/docs/en/models/overview" target="_blank" rel="noopener noreferrer">Claude model overview</a> · <a href="https://platform.claude.com/docs/en/about-claude/model-deprecations">Public release history</a> · <a href="https://www.anthropic.com/claude-opus-5-5">Opus 5.5 release</a> · <a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Fable 5.2 release</a> · <a href="https://platform.claude.com/docs/en/models/fable-5-2/overview" target="_blank" rel="noopener noreferrer">Fable and Mythos</a> · <a href="https://thehaikufoundation.org/contemporary-haiku/" target="_blank" rel="noopener noreferrer">Haiku Foundation</a> · <a href="{% post_url 2026-07-09-The-Naming-Ceiling %}">My earlier essay on naming</a></p>
         </div>
       </div>
     </section>
@@ -720,7 +739,7 @@ paper_series:
         <div class="case-head">
           <div class="case-kicker">Google</div>
           <h3>Neon is heavier than carbon</h3>
-          <p class="case-summary">Google puts <strong>Carbon</strong> above <strong>Neon</strong> and <strong>Hydrogen</strong> in its Gemini lineup. If you tried to work that out from a periodic table, you’d pick Neon on the grounds that it’s heavier, has a higher atomic number, and sits farther to the right. Going by row would leave you with a tie between Carbon and Neon. There’s no obvious relationship between a model’s tier and its element’s position on the periodic table.</p>
+          <p class="case-summary">Google ranks <strong>Carbon</strong> above <strong>Neon</strong> and <strong>Hydrogen</strong> in its Gemini 4 lineup. Consulting the periodic table points to Neon first: it is heavier, has a higher atomic number, and sits farther to the right, while row number ties Carbon and Neon. Borrowing scientific terms does more than leave the order opaque—knowing the underlying scale actively points to the wrong model.</p>
         </div>
         <div class="case-visual">
           <div class="chemical-ui">
@@ -793,7 +812,7 @@ paper_series:
         <div class="case-head">
           <div class="case-kicker">OpenAI</div>
           <h3>Sol, Terra, Luna, and Astra</h3>
-          <p class="case-summary">With three models named for the Sun, Earth, and Moon, you could be forgiven for thinking they were ranked by distance from Earth. That would put Luna ahead of Terra, whereas ranking them by mass gives the order OpenAI chose for its original lineup.</p>
+          <p class="case-summary"><strong>Sol</strong>, <strong>Terra</strong>, and <strong>Luna</strong> refer to the Sun, Earth, and Moon. Read by distance from Earth, Luna comes ahead of Terra; read by mass, the order matches OpenAI’s original lineup. Because the names do not specify which property matters, two intuitive readings produce different rankings.</p>
         </div>
         <div class="case-visual">
           {% capture astra %}Astra <small class="model-rank rank-gold">Tier 1</small>{% endcapture %}
@@ -830,8 +849,8 @@ paper_series:
               </dd>
             </div>
           </dl>
-          <p class="cosmic-note">By the time Astra was added, OpenAI had already used the Sun for its most capable model. Alpha Centauri might have worked as a successor, provided you knew it was the nearest star system beyond the Sun and guessed that distance now mattered. The trouble with Astra (“stars”) is that the Sun itself qualifies, and while every other star is farther away, some are heavier than the Sun and some are lighter.</p>
-          <p class="cosmic-note">OpenAI says it used an internal model more capable than the original Astra for its Navier–Stokes research. <strong>Bel</strong> has circulated as a possible codename, and OpenAI has yet to link the name to that model.</p>
+          <p class="cosmic-note">Putting the Sun at the top also left no obvious next tier. Naming the model above Sol after a specific star (such as Alpha Centauri) would require buyers to know astronomy and guess that the scale had shifted from mass to distance. OpenAI instead chose <strong>Astra</strong> (“stars”)—a category that includes the Sun itself, along with stars both heavier and lighter than it. Today, the analogy only makes sense if you recognize the terms—and don’t think too hard about them.</p>
+          <p class="cosmic-note">OpenAI has already described an internal model beyond Astra for its Navier–Stokes research, with <strong>Bel</strong> circulating as an unconfirmed codename.</p>
           <p class="case-source">Sources · <a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank" rel="noopener noreferrer">Sol, Terra, and Luna</a> · <a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener noreferrer">Astra launch</a> · <a href="https://openai.com/index/introducing-gpt-6-2-astra-sol/" target="_blank" rel="noopener noreferrer">Astra and Sol</a> · <a href="https://science.nasa.gov/sun/facts/" target="_blank" rel="noopener noreferrer">The Sun and Alpha Centauri</a> · <a href="https://science.nasa.gov/universe/stars/types/" target="_blank" rel="noopener noreferrer">Star types and masses</a> · <a href="https://openai.com/index/navier-stokes-solution/" target="_blank" rel="noopener noreferrer">OpenAI’s internal research model</a> · <a href="https://cellcog.ai/blog/openai-bel/" target="_blank" rel="noopener noreferrer">Bel rumor</a></p>
         </div>
       </div>
@@ -840,8 +859,8 @@ paper_series:
       <div class="container">
         <div class="case-head">
           <div class="case-kicker">Apple</div>
-          <h3>Max <em>wasn't</em> the maximum.</h3>
-          <p class="case-summary">Apple’s <strong>Pro</strong> makes sense as a label for a chip aimed at power users, but <strong>Max</strong> is a harder name to explain once there’s an <strong>Ultra</strong> above it. On an iPhone the same word does a different job, since <strong>Pro Max</strong> tells you which <strong>Pro</strong> has the bigger screen.</p>
+          <h3>When <em>Max</em> isn’t the ceiling</h3>
+          <p class="case-summary">Apple is clearest when an ordinary word signals a real tradeoff—<strong>Air</strong> for portability and <strong>Pro</strong> for capability. As the lineup expanded, modifiers began colliding. <strong>Max</strong> became a chip tier sitting below <strong>Ultra</strong>, while on the iPhone <strong>Pro Max</strong> marks the larger screen.</p>
         </div>
         <div class="case-visual">
           <div class="apple-diagram">
@@ -874,7 +893,7 @@ paper_series:
                     <div class="phone large"><span>14 <strong>Pro Max</strong></span></div>
                   </div>
                 </div>
-                <p class="apple-note">Both versions of the iPhone 14 came with a choice of a 6.1- or 6.7-inch screen. Choosing the larger screen gave you a 14 <strong>Plus</strong> if you bought the standard phone and a <strong>Pro Max</strong> if you bought the <strong>Pro</strong>. A few years earlier, Apple had simply called the larger iPhone XS the XS <strong>Max</strong>.</p>
+                <p class="apple-note">Both iPhone 14 tiers came in 6.1- and 6.7-inch sizes. The larger standard phone was called <strong>Plus</strong>, while the larger <strong>Pro</strong> was called <strong>Pro Max</strong>. A few years earlier, Apple had simply called the larger iPhone XS the XS <strong>Max</strong>.</p>
               </div>
             </div>
             <div class="apple-line">
@@ -887,7 +906,7 @@ paper_series:
                   <span class="device-arrow" aria-hidden="true">→</span>
                   <span class="device-model watch-model"><span class="watch watch-ultra" aria-hidden="true"><span class="watch-face"></span></span>Ultra 3</span>
                 </div>
-                <p class="apple-note">The $249 SE and the $799 <strong>Ultra</strong> were both on their third generation, with the $399 Series 11 in between. If you want to know which watch is a step up, the useful part of the name is the bit before the number.</p>
+                <p class="apple-note">The $249 SE and the $799 <strong>Ultra</strong> were both on their third generation, with the $399 Series 11 in between. Generation numbers advance independently across tiers, so the model prefix—not the number—indicates rank.</p>
               </div>
             </div>
             <div class="apple-line">
@@ -900,7 +919,7 @@ paper_series:
                   <span class="device-arrow" aria-hidden="true">→</span>
                   <span class="device-model mac-model"><span class="macbook mac-pro" aria-hidden="true"></span><strong>Pro</strong></span>
                 </div>
-                <p class="apple-note">You’d expect the <strong>Air</strong> to be the lightest MacBook to carry, but the 13-inch Air and the $599 <strong>Neo</strong> each weigh 2.7 pounds. The Air is thinner, while the Neo has the smaller footprint. “Neo” means “new,” which makes sense on launch day and gets a little stranger with every year you own it.</p>
+                <p class="apple-note"><strong>Air</strong> historically signaled the lightest MacBook, yet the 13-inch Air and the $599 <strong>Neo</strong> both weigh 2.7 pounds—the Air is thinner, while the Neo has a smaller footprint. Naming an entry-level laptop “Neo” (“new”) also dates quickly once later generations arrive.</p>
               </div>
             </div>
             <div class="apple-line">
@@ -933,7 +952,7 @@ paper_series:
                     <figcaption>Apple TV 4K<small>Box and remote</small></figcaption>
                   </figure>
                 </div>
-                <p class="apple-note">The subscription used to be called <strong>Apple TV+</strong>. Once Apple dropped the plus sign, you could subscribe to Apple TV through the Apple TV app on an Apple TV 4K.</p>
+                <p class="apple-note">The streaming service used to be called <strong>Apple TV+</strong>. Once Apple dropped the plus sign, subscribers ended up watching Apple TV inside the Apple TV app on an Apple TV 4K.</p>
               </div>
             </div>
           </div>
@@ -945,11 +964,8 @@ paper_series:
       <div class="container">
         <div class="case-head">
           <div class="case-kicker">USB</div>
-          <h3 id="usb-title">Which USB-C <em>cable</em> did you mean?</h3>
-          <div class="usb-intro">
-            <p class="usb-subheading">A common plug <strong>pushed the complexity one level deeper</strong>. What works depends on the cable and the ports at both ends.</p>
-            <p class="case-summary">A <strong>60 W</strong> cable and a <strong>240 W</strong> cable can have identical USB-C plugs. The three below can each carry up to 240 W in either direction. The devices negotiate how much to use. If your monitor offers 65 W and your laptop requests 45 W, they can settle on 45 W. Swap the Thunderbolt cable for Apple’s Charge Cable and the laptop keeps charging, but the screen goes dark.</p>
-          </div>
+          <h3 id="usb-title">Everything is called <em>USB-C</em></h3>
+          <p class="case-summary"><strong>A common plug pushed the complexity one level deeper.</strong> Converging on one oval connector solved the old mismatch of cable ends, but it hid vastly different capabilities under a single familiar name. “USB-C” identifies only the plug shape, not what the cable or port supports. A <strong>60 W</strong> charging cable and an <strong>80 Gbps</strong> Thunderbolt cable share the same ends—all three cables below handle up to 240 W—yet swapping one for another can leave an external display dark while the laptop keeps charging.</p>
         </div>
         <div class="case-visual">
           <figure class="usb-map" aria-label="Five older USB connector shapes converge on the USB-C port used in newer devices. Three cables fit this port and have different capabilities.">
@@ -992,9 +1008,9 @@ paper_series:
               </ul>
             </div>
           </figure>
-          <p class="case-summary">On the M5 <strong>MacBook Air</strong>, you can plug a charger, monitor or Thunderbolt dock into whichever USB-C port is free. On the cheaper <strong>MacBook Neo</strong>, both ports charge the laptop, but only one can run that same monitor. On <strong>Windows laptops</strong>, identical-looking ports caused real customer confusion. When a monitor stayed dark, how could you tell whether to swap the cable or move it one port over? Microsoft addressed that confusion by requiring every USB-C port on newly certified Windows 11 laptops to support charging, data transfers and an external display.</p>
+          <p class="case-summary">The same ambiguity applies to the ports themselves. On the M5 <strong>MacBook Air</strong>, any USB-C port handles power, data, or an external display. On the cheaper <strong>MacBook Neo</strong>, both ports charge the laptop, but only one can drive a monitor. Identical-looking ports caused enough confusion on <strong>Windows laptops</strong>—where a dark screen leaves buyers unsure whether to swap the cable or move it one port over—that Microsoft required every USB-C port on newly certified Windows 11 laptops to support charging, data transfers, and an external display.</p>
           <div class="usb-devices">
-            <p>USB 3.2 alone has 5, 10 and 20&nbsp;Gbps modes, and a transfer can only use a mode the cable and both devices support. Plug these two iPhones into the same 10&nbsp;Gbps Mac port with the same Thunderbolt cable and the Pro can copy photos much faster. Both phones can also drive a USB-C display, a feature Apple left off the iPhone 16e.</p>
+            <p>Transfer speeds are no simpler: USB 3.2 alone spans 5, 10, and 20&nbsp;Gbps modes, and a connection runs only as fast as the cable and both devices allow. Plug an iPhone 16 and an iPhone 16 Pro into the same 10&nbsp;Gbps Mac port with the same Thunderbolt cable, and the Pro transfers photos roughly twenty times faster. Both phones also drive an external USB-C display—a capability Apple omitted from the iPhone 16e without changing the port name.</p>
             <dl aria-label="Maximum USB link speed with each phone">
               <div><dt>iPhone 16 · USB 2</dt><dd>Up to 480 Mbps</dd></div>
               <div><dt>iPhone 16 Pro · USB 3</dt><dd>Up to 10 Gbps</dd></div>
@@ -1007,9 +1023,9 @@ paper_series:
     <section class="case" id="dyson" aria-labelledby="dyson-title">
       <div class="container">
         <div class="case-head">
-          <div class="case-kicker">Dyson <span>Hall of shame</span></div>
-          <h3 id="dyson-title">Is <em>Advanced</em> better than <em>Absolute?</em></h3>
-          <p class="case-summary">In November 2024, Dyson was selling a <strong>V7 Advanced</strong>, a <strong>V8 Absolute</strong> and a <strong>V11 Extra</strong>. You could put the numbers in order, but what made the seven “Advanced,” and what did the eleven give you extra? If you wanted a lighter vacuum, you had to compare the <strong>V12 Detect Slim</strong> with a <strong>Digital Slim</strong> that had no number at all. On the <strong>Gen5detect</strong> and <strong>Gen5outsize</strong>, the five referred to the generation of the motor.</p>
+          <div class="case-kicker">Dyson</div>
+          <h3 id="dyson-title">Advanced, Extra, and <em>Absolute</em></h3>
+          <p class="case-summary">In November 2024, Dyson’s catalog included a <strong>V7 Advanced</strong>, a <strong>V8 Absolute</strong>, and a <strong>V11 Extra</strong>. The numbers establish a rough order, but the suffixes give no clue what separates “Advanced” from “Extra.” Shoppers looking for a lighter model had to compare a <strong>V12 Detect Slim</strong> against an unnumbered <strong>Digital Slim</strong>, while the “5” in <strong>Gen5detect</strong> and <strong>Gen5outsize</strong> switched to counting motor generations instead.</p>
         </div>
         <div class="case-visual">
           <table class="dyson-models">
@@ -1027,20 +1043,28 @@ paper_series:
               <tr><td>Digital Slim</td><td class="absent">—</td></tr>
             </tbody>
           </table>
-          <p class="case-summary">Five of those vacuums were <strong>Absolute</strong>. Suppose you wanted one that could wash the kitchen floor. The word to look for was <strong>Submarine</strong>, Dyson’s name for its wet roller. Both Submarines came with it. If you took home the <strong>V15 Detect Absolute</strong>, you couldn’t add the roller later, because the regular V15 lacked the software to run it.</p>
-          <p class="case-summary"><strong>Making products hard to compare can be a deliberate sales strategy.</strong> Take a vacuum maker that wants a model on the shelf at $300, $500 and $800. Leaving the generation out of the name lets it keep selling last year’s vacuum at $300 without advertising its age. Someone who already owns one has a harder time figuring out when it was superseded, which model replaced it and whether it’s worth upgrading.</p>
-          <p class="case-summary">At the other end of that hypothetical lineup, a name like “Absolute” can make the $800 vacuum sound worth the premium before the buyer has checked what comes in the box. Keep that name at $800 across releases and shoppers get used to the price. It also makes the $500 model look reasonable to someone who came in planning to spend $300.</p>
-          <p class="case-summary">Dyson’s US store lists the cordless <strong>V16 Piston Animal</strong> and the upright <strong>Ball Animal 3 Extra</strong> on the same page. Its cordless comparison tool lets you put the V16 beside a V12 Detect Slim, but you can’t put the two Animals side by side there. If you’re buying a vacuum to get dog hair out of a rug, that’s a perfectly reasonable comparison to want. When even the comparison tool leaves that work to the buyer, it’s fair to wonder whether some of the confusion suits Dyson.</p>
-          <p class="case-source">Sources · <a href="./images/dyson-lineup-2024.png">Jason Willems’s November 25, 2024 post with all thirteen names</a> · <a href="https://www.dyson.com/discover/innovation/new-machines/gen5detect-gen5outsize-launch">Dyson on its Gen5 motor</a> · <a href="https://www.dyson.com/vacuum-cleaners/wet-dry/v15s-detect-submarine">Dyson’s Submarine models and roller compatibility</a> · <a href="https://www.dyson.com/vacuum-cleaners/shop-all">US floorcare catalog</a> · <a href="https://www.dyson.com/vacuum-cleaners/cordless">Compare cordless vacuums</a></p>
+          <p class="case-summary">Five of those thirteen vacuums were labeled <strong>Absolute</strong>, yet the suffixes obscured basic hardware compatibility. Washing hard floors required a <strong>Submarine</strong> model with Dyson’s wet roller; buyers who chose the <strong>V15 Detect Absolute</strong> could not add the roller later because the standard V15 lacked the software to run it.</p>
+          <p class="case-summary"><strong>Opaque naming is not always an accident—it can serve a pricing strategy.</strong> When an appliance maker wants models on the shelf at $300, $500, and $800, omitting clear generation numbers lets older hardware stay at $300 without advertising its age, and makes it harder for current owners to see when their model was superseded. At the top end, keeping a prestige label like “Absolute” at $800 across releases anchors the premium price and makes the $500 tier look more reasonable by comparison.</p>
+          <p class="case-summary">Dyson’s US catalog lists the cordless <strong>V16 Piston Animal</strong> and the upright <strong>Ball Animal 3 Extra</strong> on the same page, yet its cordless comparison tool compares the V16 against a V12 Detect Slim while excluding the upright Animal altogether. When even the company’s own comparison tool leaves cross-lineup comparisons to the shopper, the friction aligns neatly with keeping price tiers insulated from one another.</p>
+          <p class="case-source">Sources · <a href="./images/dyson-lineup-2024.png">My November 25, 2024 post with all thirteen names</a> · <a href="https://www.dyson.com/discover/innovation/new-machines/gen5detect-gen5outsize-launch">Dyson on its Gen5 motor</a> · <a href="https://www.dyson.com/vacuum-cleaners/wet-dry/v15s-detect-submarine">Dyson’s Submarine models and roller compatibility</a> · <a href="https://www.dyson.com/vacuum-cleaners/shop-all">US floorcare catalog</a> · <a href="https://www.dyson.com/vacuum-cleaners/cordless">Compare cordless vacuums</a></p>
         </div>
       </div>
     </section>
+    <div class="case-group-band" id="what-holds-up">
+      <div class="container case-group-grid">
+        <div class="case-group-label">Case studies<span>Part 2 of 2</span></div>
+        <div class="case-group-body">
+          <h2>Systems that hold up</h2>
+          <p>Durable naming schemes are rarely clever. They rely on clear sequence, separated dimensions, or fixed rules that stay legible as a catalog ages.</p>
+        </div>
+      </div>
+    </div>
     <section class="case" id="sony" aria-labelledby="sony-canon-title">
       <div class="container" id="sony-canon">
         <div class="case-head">
           <div class="case-kicker">Sony</div>
-          <h3 id="sony-canon-title">What comes after PlayStation 4?</h3>
-          <p class="case-summary">Numbering the PlayStation generations makes their order easy to read. A <strong>Slim</strong> usually comes a few years into a generation, once the hardware can fit in a smaller case. The PS3 launched in 2006. By 2009, Sony had redesigned its chips, power supply and cooling system to make the PS3 Slim. <strong>Pro</strong> means more graphics power within the same generation.</p>
+          <h3 id="sony-canon-title">PlayStation 1 through 5</h3>
+          <p class="case-summary">Numbering PlayStation generations makes their order obvious without any brand lore. Within a generation, Sony limits modifiers to concrete hardware changes: <strong>Slim</strong> arrives a few years later once redesigned chips, power supplies, and cooling fit in a smaller enclosure (as with the 2009 PS3 Slim), while <strong>Pro</strong> marks faster graphics hardware in the same generation.</p>
         </div>
         <div class="case-visual">
           <div class="family-selectors console-selectors">
@@ -1082,7 +1106,8 @@ paper_series:
               </div>
             </fieldset>
           </div>
-          <p class="case-source">Sources · <a href="https://www.playstation.com/en-us/30th-anniversary/">PlayStation hardware history</a> · <a href="https://www.playstation.com/en-us/playstation-history/1994-ps-one/">The original PlayStation and PS one</a> · <a href="https://sonyinteractive.com/en/press-releases/2009/new-slimmer-and-lighter-playstation3-to-hit-worldwide-market-this-september/">How Sony slimmed down the PS3</a> · <a href="https://sonyinteractive.com/en/our-company/expanded-company-timeline/">Sony’s hardware timeline</a></p>
+          <p class="case-summary">Sequential numbering is often avoided because it feels plain and carries little brand voice. Yet PlayStation’s main rival, Xbox, moved through <strong>Xbox 360</strong>, <strong>Xbox One</strong>, and <strong>Xbox Series X</strong> and <strong>S</strong>—names that added little brand personality of their own while making generations and tiers far harder to tell apart.</p>
+          <p class="case-source">Sources · <a href="https://www.playstation.com/en-us/30th-anniversary/">PlayStation hardware history</a> · <a href="https://www.playstation.com/en-us/playstation-history/1994-ps-one/">The original PlayStation and PS one</a> · <a href="https://sonyinteractive.com/en/press-releases/2009/new-slimmer-and-lighter-playstation3-to-hit-worldwide-market-this-september/">How Sony slimmed down the PS3</a> · <a href="https://sonyinteractive.com/en/our-company/expanded-company-timeline/">Sony’s hardware timeline</a> · <a href="https://www.xbox.com/en-US/consoles">Xbox consoles</a></p>
         </div>
       </div>
     </section>
@@ -1090,8 +1115,8 @@ paper_series:
       <div class="container">
         <div class="case-head">
           <div class="case-kicker">Canon</div>
-          <h3 id="canon-title">Canon counts twice</h3>
-          <p class="case-summary">The number before the D identifies the camera family. The <strong>1D</strong> was Canon’s professional flagship, while the <strong>7D</strong> paired a smaller APS-C sensor with fast continuous shooting. The Roman numeral counts generations within each family, so a <strong>5D Mark III</strong> is the third 5D. The jump from the <strong>5D</strong> in 2005 to the <strong>7D</strong> in 2009 left room for another family. Canon filled that gap in 2012 with the <strong>6D</strong>, a more affordable way into full-frame photography.</p>
+          <h3 id="canon-title">Two numbers, two jobs</h3>
+          <p class="case-summary">Canon’s DSLR lineup separated product tier from generation. The number before the D identified the camera’s place in the range—<strong>1D</strong> as the professional flagship, <strong>5D</strong> for advanced full-frame, and <strong>7D</strong> for high-speed shooting with a smaller APS-C sensor—while Roman numerals tracked generations within each line (<strong>5D Mark III</strong> is the third 5D). Leaving an unused number between 5D and 7D also built in headroom: in 2012, Canon slotted in the <strong>6D</strong> as an entry full-frame body without renaming anything around it.</p>
         </div>
         <div class="case-visual">
           <div class="family-selectors camera-selectors">
@@ -1121,14 +1146,14 @@ paper_series:
               </div>
             </fieldset>
             <fieldset class="variant-stack">
-              <legend>High-speed APS-C</legend>
+              <legend>Fast smaller sensor</legend>
               <div class="variant-options">
                 <label class="variant-option base"><input class="sr-only" type="radio" name="canon-7d" aria-label="EOS 7D, 2009" checked><span>EOS 7D<time datetime="2009">2009</time></span></label>
                 <label class="variant-option"><input class="sr-only" type="radio" name="canon-7d" aria-label="EOS 7D Mark II, 2014"><span>Mark II<time datetime="2014">2014</time></span></label>
               </div>
             </fieldset>
           </div>
-          <p class="case-summary">Seven years after Canon’s flagship <strong>1D Mark III</strong> came out, the less expensive <strong>7D Mark II</strong> could match its 10 frames per second at twice the resolution. As that performance trickled down, Canon gave photographers a reason to keep buying premium bodies by reserving features like heavier weather sealing and dual card slots for the higher tiers. If you shot weddings in 2017 and wanted a backup of every photo as you took it, Canon’s controversial decision to give the new <strong>6D Mark II</strong> just one slot steered you toward the more expensive <strong>5D Mark IV</strong>, even though it was a year older.</p>
+          <p class="case-summary">Keeping tier numbers meaningful over decades still requires product discipline. Seven years after the flagship <strong>1D Mark III</strong> came out, the less expensive <strong>7D Mark II</strong> matched its 10 frames per second at twice the resolution. As raw specs trickled down, Canon preserved the meaning of its higher tiers by reserving features like heavier weather sealing and dual card slots for them—a boundary photographers noticed in 2017 when the newer <strong>6D Mark II</strong> shipped with a single card slot, keeping wedding shooters pointed toward the older <strong>5D Mark IV</strong>.</p>
           <p class="case-source">Sources · <a href="https://global.canon/en/c-museum/camera-series.html">Canon Camera Museum</a> · <a href="https://global.canon/en/c-museum/product/dslr794.html">EOS-1D Mark III</a> · <a href="https://global.canon/en/news/2025/20250728.html">Canon’s 5D history</a> · <a href="https://www.usa.canon.com/support/p/eos-5d-mark-iv">EOS 5D Mark IV specifications</a> · <a href="https://global.canon/en/c-museum/product/dslr813.html">EOS 6D</a> · <a href="https://global.canon/en/c-museum/product/dslr866.html">EOS 6D Mark II</a> · <a href="https://www.photographynews.co.uk/reviews/canon-eos-6d-mark-ii-full-test/">Photography News on Canon’s single slot</a> · <a href="https://global.canon/en/c-museum/product/dslr802.html">EOS 7D</a> · <a href="https://global.canon/en/c-museum/product/dslr819.html">EOS 7D Mark II</a></p>
         </div>
       </div>
@@ -1138,7 +1163,7 @@ paper_series:
         <div class="case-head">
           <div class="case-kicker">Paper sizes</div>
           <h3 id="paper-title">Fold A3 in half and you get A4</h3>
-          <p class="case-summary">Bring the short edges of an A3 sheet together and each half is A4. Fold it again and you get A5, with the same proportions and half the area of A4. The number counts folds from A0, which starts at one square metre. B0 starts one metre wide, so the same folds give you a slightly larger sheet at every number.</p>
+          <p class="case-summary">Bring the short edges of an A3 sheet together and each half is A4. Fold it again and you get A5, with the same proportions and half the area. Each number counts folds from A0, which starts at one square meter; B0 starts one meter wide, giving a slightly larger sheet at every matching step.</p>
         </div>
         <div class="case-visual">
           <div class="paper-pair">
@@ -1156,8 +1181,8 @@ paper_series:
             </figure>
             {% endfor %}
           </div>
-          <p class="case-summary"><strong>The names are simple because the product range is fixed.</strong> A3 gives you twice the drawing area of A4, and B4 gives you one standard size in between. A supplier can sell a sheet just 5% wider than A4, but there’s no A or B number for it. A more flexible range needs a different way to label sizes, such as printing the width and height on the pack.</p>
-          <p class="case-source">Sources · <a href="https://www.iso.org/standard/36631.html">ISO 216 A and B series</a> · <a href="https://preview.sist.si/sist-preview/36631/c0883203ea25445c9992bb09343620c5/ISO-216-2007.pdf">Sheet dimensions in millimetres</a></p>
+          <p class="case-summary"><strong>The names stay simple because the product range is fixed.</strong> A3 gives twice the area of A4, and B4 provides a single standard step in between. A paper mill can cut a sheet 5% wider than A4, but there is no A or B label for it. A flexible catalog has to accept messier names—or print the raw width and height directly on the pack.</p>
+          <p class="case-source">Sources · <a href="https://www.iso.org/standard/36631.html">ISO 216 A and B series</a> · <a href="https://preview.sist.si/sist-preview/36631/c0883203ea25445c9992bb09343620c5/ISO-216-2007.pdf">Sheet dimensions in millimeters</a></p>
         </div>
       </div>
     </section>
@@ -1165,8 +1190,8 @@ paper_series:
       <div class="container">
         <div class="case-head">
           <div class="case-kicker">Venture funding</div>
-          <h3 id="funding-title">Series A, B, C and counting</h3>
-          <p class="case-summary">Once a startup moves on from seed funding, you can usually name its next three rounds in advance. Series A comes first, followed by B and C. The letters tell you where a round falls in that company’s history, even as investors’ expectations for revenue and growth change with the market.</p>
+          <h3 id="funding-title">Series A, B, C, and counting</h3>
+          <p class="case-summary">Once a startup moves past seed funding, its next rounds name themselves: Series A, Series B, Series C, and so on. The letters make no claim about what a company has become; they record only sequence, even as market expectations for revenue and valuation shift over time.</p>
         </div>
         <div class="case-visual">
           <ol class="funding-sequence" aria-label="An example progression of funding stages">
@@ -1174,46 +1199,47 @@ paper_series:
             <li><strong>Pre-seed</strong><small>Usually a small first raise</small></li>
             <li><strong>Seed</strong><small>Money to build and test the product</small></li>
             <li><strong class="lettered-rounds">Series A → B → C</strong><small>One letter per new series</small></li>
-            <li><strong>… Series N</strong><small>Exec Sum’s label for a proposed Databricks round</small></li>
+            <li><strong>… Series N</strong><small>Late-stage label for a proposed Databricks round</small></li>
           </ol>
-          <p class="case-summary">The convention is familiar enough that when Databricks was in funding talks in November 2026, Exec Sum could call the proposed round a <strong>Series N</strong> and count on readers to know how late that was. A company following the alphabet would have 26 letters to work with. Some companies have used the letters out of order. Invoca went <strong>E → Z → F</strong>, according to Forge. Its $25 million Series Z in 2021 came between its Series E in 2019 and its Series F in 2022.</p>
-          <p class="case-source">Sources · <a href="https://www.wsj.com/tech/ai/databricks-in-early-talks-to-raise-funds-at-225-billion-valuation-e593b1de">Databricks funding talks</a> · <a href="https://x.com/exec_sum/status/2124611734321373473">Exec Sum’s “Series N” description</a> · <a href="https://carta.com/data/series-a-fundraising-q2-2025/">Carta on the changing Series A bar</a> · <a href="https://forgeglobal.com/invoca_ipo/">Invoca’s funding history</a></p>
+          <p class="case-summary">The convention is familiar enough that when Databricks entered funding talks in November 2026, finance coverage could casually call the proposed round a <strong>Series N</strong> and count on readers to recognize how late-stage it was. Strict alphabetical naming gives a company 26 letters—and if a startup ever stays private long enough to reach Series Z, spreadsheets already suggest an obvious next label: <strong>Series AA</strong>.</p>
+          <p class="case-source">Sources · <a href="https://www.wsj.com/tech/ai/databricks-in-early-talks-to-raise-funds-at-225-billion-valuation-e593b1de">Databricks funding talks</a> · <a href="https://x.com/exec_sum/status/2124611734321373473">Exec Sum’s “Series N” post</a> · <a href="https://carta.com/data/series-a-fundraising-q2-2025/">Carta on the changing Series A bar</a></p>
         </div>
       </div>
     </section>
     <section class="name-essay" id="whats-in-a-name" aria-labelledby="name-essay-title">
       <div class="container">
-        <h2 id="name-essay-title">What’s in a <em>name?</em></h2>
+        <h2 id="name-essay-title">Naming is <em>product strategy</em></h2>
         <div class="name-intro">
-          <p>Apple once made its Macs easier to name by simplifying the lineup. In the late 1990s, its plan was to give consumers a choice of one desktop or one laptop and offer professionals the same two choices. If you wanted a consumer laptop, “iBook” settled it. As Apple added screen sizes and chip options, the names had to do more work. In a 14-inch MacBook <strong>Pro</strong> with an M4 <strong>Pro</strong>, the first “Pro” names the laptop and the second names the chip.</p>
-          <p>How a company names its products depends partly on how far ahead it’s planning. Canon left room for another camera between the 5D and 7D. It also depends on how much of the company’s personality belongs in the name. “Haiku” gives Claude a voice that a model number never could. Sometimes the number itself matters to the buyer, whether it’s the wattage printed on a cable or a version change big enough to break an app.</p>
+          <p>Product names are often treated as a layer of branding added right before launch. In practice, naming and product strategy are the same problem. A name is part of the interface: it tells a buyer which product is newer, which is more capable, and how a lineup fits together. When names become tangled, they usually expose a tangled product line underneath. Apple’s late-1990s Macs were easy to name because the catalog had only four products—desktop or laptop, consumer or pro. Once screen sizes and chip tiers multiplied, the same modifiers started colliding inside a single product name, like a 14-inch MacBook <strong>Pro</strong> with an M4 <strong>Pro</strong>.</p>
+          <p>That also means there is no single best naming scheme. Different businesses ask names to do very different jobs. Some products benefit from plain chronological clarity so buyers can tell at a glance what comes next. Complex, evolving catalogs need room to add tiers without renaming existing products. Sometimes one familiar umbrella name—like <strong>iPad</strong> or <strong>USB-C</strong>—keeps the storefront simple, even though it creates real headaches later when a buyer needs to match a case or figure out which cable drives a monitor. And sometimes clarity is not the goal at all: obscuring generation numbers keeps older hardware from looking dated on the shelf, while spinning up a separate brand like Lexus lets Toyota sell a luxury sedan without inviting a direct comparison to a Camry.</p>
+          <p>The frustration with modern product naming rarely comes from deliberate tradeoffs. It comes from treating naming as an afterthought—picking a clever metaphor for a launch announcement without leaving room for the next tier, piling suffixes onto an unplanned catalog, or borrowing a real-world scale that actively points buyers to the wrong product.</p>
         </div>
 
-        <table class="buyer-guide" role="table" aria-label="What each naming scheme tells a buyer and what they still have to check">
+        <table class="buyer-guide" role="table" aria-label="Tradeoffs of different product naming approaches">
           <colgroup><col><col><col></colgroup>
           <thead role="rowgroup">
-            <tr role="row"><th scope="col">Naming approach</th><th scope="col">What the name tells you</th><th scope="col">What you still have to check</th></tr>
+            <tr role="row"><th scope="col">Naming approach</th><th scope="col">What it gives you</th><th scope="col">What it trades away</th></tr>
           </thead>
           <tbody role="rowgroup">
             <tr role="row">
-              <th scope="row" role="rowheader"><span class="sample"><i>Haiku</i></span><span class="scheme">Borrow a metaphor</span></th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>A sense of scale.</strong> A three-line poem suggests a small model for quick jobs.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>Which model is stronger?</strong> Knowing what a fable is won’t tell you whether it outranks Opus.</td>
+              <th scope="row" role="rowheader"><span class="sample"><i>Haiku</i> <span class="arrow">/</span> <i>Sol</i></span><span class="scheme">Borrow a metaphor</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Personality and brand voice.</strong> With a small, stable lineup, a metaphor feels ownable and signals rough scale without sounding clinical.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Headroom and precision.</strong> Once the roadmap outgrows the analogy, buyers have to memorize internal logic—or get steered wrong by the real-world reference.</td>
             </tr>
             <tr role="row">
               <th scope="row" role="rowheader"><span class="sample">PS4 <span class="arrow">→</span> PS5</span><span class="scheme">Number each generation</span></th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>Which came later.</strong> The 5 puts this console one generation past the PS4.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>How big is the jump?</strong> Every generation adds one to the name, however much the hardware improves.</td>
-            </tr>
-            <tr role="row" id="paper-size-tradeoff">
-              <th scope="row" role="rowheader"><span class="sample">A4 <span class="arrow">→</span> A3</span><span class="scheme">Count the folds</span></th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>Twice the area.</strong> Two A4 sheets side by side make one A3.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>Need a size in between?</strong> The A series has no number to spare between A4 and A3. B4 fills that gap using a separate series.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Obvious sequence.</strong> Anyone can tell which release is newer, and integers never run out of room.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Magnitude and flair.</strong> Every generation adds one whether the upgrade is major or incremental, and the name carries little personality on its own.</td>
             </tr>
             <tr role="row">
-              <th scope="row" role="rowheader"><span class="sample">Y <span class="arrow">→</span> Z <span class="arrow">↷</span> A</span><span class="scheme">Alphabetize the releases</span></th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>The next initial.</strong> After Yakkety Yak you could predict Ubuntu’s next release would start with Z. The animal was anyone’s guess.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>Which came first, A or Z?</strong> Ubuntu ran out of letters at Zesty Zapus (17.04) and wrapped back to Artful Aardvark (17.10). The version number settles it by giving the year and month of release.</td>
+              <th scope="row" role="rowheader"><span class="sample">5D · <span class="inserted">6D</span> · 7D</span><span class="scheme">Separate tiers and leave gaps</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Flexibility for a complex catalog.</strong> Separating tier from generation—with unused numbers between tiers—lets a company insert new models later without resetting existing names.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Instant legibility.</strong> Buyers have to learn which number marks tier, which marks generation, and whether higher or lower numbers sit at the top.</td>
+            </tr>
+            <tr role="row" id="paper-size-tradeoff">
+              <th scope="row" role="rowheader"><span class="sample">A4 <span class="arrow">→</span> A3</span><span class="scheme">Tie names to a fixed rule</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Self-explanatory math.</strong> Two A4 sheets make an A3; once the rule is known, every size in the range follows from it.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Catalog flexibility.</strong> Fixed rules leave no label for an in-between size, forcing a separate series (like B4) or raw dimensions printed on the pack.</td>
             </tr>
             <tr role="row">
               <th scope="row" role="rowheader">
@@ -1221,60 +1247,49 @@ paper_series:
                 <span class="sample semver-example" aria-hidden="true"><span>2<small>Major</small></span>.<span>4<small>Minor</small></span>.<span>1<small>Patch</small></span></span>
                 <span class="scheme">Semantic versioning (SemVer)</span>
               </th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>What kind of update it is.</strong> Once a public API reaches 1.0, a major bump signals a breaking change. A minor release can add compatible features, and a patch delivers compatible bug fixes.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>Does my code use the part that changed?</strong> Going from 2.4.1 to 3.0.0 might take an afternoon of edits or none at all. The release notes tell you which calls to check.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>A compatibility signal.</strong> After 1.0, a major bump warns developers of breaking changes, a minor bump adds compatible features, and a patch delivers fixes.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Marketing freedom and nuance.</strong> It demands strict release discipline, clashes with milestone version numbers, and still leaves developers reading release notes to see what changed.</td>
             </tr>
             <tr role="row">
-              <th scope="row" role="rowheader"><span class="sample">iPad <span class="arrow">/</span> USB-C</span><span class="scheme">Use one familiar name</span></th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>What to ask for.</strong> “iPad” gets you to the right shelf. “USB-C” tells you which plug fits.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span>
-                <p class="lookup-note"><strong>Which one do I own?</strong> Buying a case can take two lookups. In Settings, tap the part number to reveal the iPad’s model number, then match it to a generation. <a href="https://support.apple.com/en-us/106343">Find the model number</a> · <a href="https://support.apple.com/en-us/108043">Identify the iPad</a></p>
-                <details><summary>Which case fits my iPad?</summary><p>A2602 takes a case for the 9th-generation iPad. A2696 takes one for the 10th.</p></details>
-                <details><summary>Will this cable drive my monitor?</summary><p>Apple’s USB-C Charge Cable fits but carries no video. Its Thunderbolt 5 Pro Cable can drive the monitor if the laptop’s port also supports video. <a href="https://support.apple.com/en-us/118204">Compare Apple’s cables</a></p></details>
+              <th scope="row" role="rowheader"><span class="sample">iPad <span class="arrow">/</span> USB-C</span><span class="scheme">Unify under one familiar name</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>A simple storefront.</strong> “iPad” gets a buyer to the right aisle, and “USB-C” guarantees the plug physically fits.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span>
+                <p class="lookup-note"><strong>Clarity once hardware diverges.</strong> Matching an accessory or cable turns into a lookup problem when different generations or capabilities share the same name. <a href="https://support.apple.com/en-us/106343">Find the model number</a> · <a href="https://support.apple.com/en-us/108043">Identify the iPad</a></p>
+                <details><summary>Which case fits my iPad?</summary><p>In Settings, tapping the part number reveals the model code: A2602 takes a 9th-generation case, while A2696 takes a 10th-generation case.</p></details>
+                <details><summary>Will this USB-C cable drive my monitor?</summary><p>Apple’s USB-C Charge Cable fits the port but carries no video. Its Thunderbolt 5 Pro Cable drives a monitor, provided the laptop’s port also supports video. <a href="https://support.apple.com/en-us/118204">Compare Apple’s cables</a></p></details>
               </td>
             </tr>
             <tr role="row">
-              <th scope="row" role="rowheader"><span class="sample"><span class="no-break">40 Gbps</span> <span class="arrow">·</span> <span class="no-break">240 W</span></span><span class="scheme">Print the ratings</span></th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>How much it can carry.</strong> Now you can compare the cable’s data speed and power rating separately.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>What will my setup deliver?</strong> A 240 W cable plugged into a 65 W charger still tops out at 65 W.</td>
+              <th scope="row" role="rowheader"><span class="sample">V15 <i>Absolute</i></span><span class="scheme">Keep the hierarchy opaque</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Pricing and shelf-life flexibility.</strong> Omitting clear generation numbers lets older models stay on sale without looking dated, while prestige suffixes anchor higher price tiers.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Easy comparison and trust.</strong> Shoppers who have to decode overlapping SKUs—or discover incompatible attachments after buying—carry the friction.</td>
             </tr>
             <tr role="row">
-              <th scope="row" role="rowheader"><span class="sample">5D · <span class="inserted">6D</span> · 7D</span><span class="scheme">Leave gaps between tiers</span></th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>Where a new model fits.</strong> Canon could slot the 6D between two cameras you already knew by name.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>Which one is newest?</strong> You’d need the release dates to know the 6D came out after both its neighbors.</td>
-            </tr>
-            <tr role="row">
-              <th scope="row" role="rowheader"><span class="sample"><span class="no-break">Lexus ES 250</span> <span class="arrow">/</span> <span class="no-break">Toyota Camry</span></span><span class="scheme">Give the premium line its own brand</span></th>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>Which market it’s meant for.</strong> The Lexus badge puts the ES 250 in the company of other luxury sedans.</td>
-              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>What does the premium buy?</strong> The original ES 250 shared a platform with the Camry. The names give you little clue which features the two cars share or where they differ.</td>
+              <th scope="row" role="rowheader"><span class="sample"><span class="no-break">Lexus ES 250</span> <span class="arrow">/</span> <span class="no-break">Toyota Camry</span></span><span class="scheme">Split into a separate brand</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Clean market separation.</strong> A distinct luxury badge keeps buyers from anchoring a premium car’s price directly against a mass-market sibling.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Shared equity and transparency.</strong> Building a separate brand takes years of investment, and the names obscure which platforms or parts are shared underneath.</td>
             </tr>
           </tbody>
         </table>
         <section class="naming-takeaways" id="naming-takeaways" aria-labelledby="takeaways-title">
-          <div class="name-intro">
-            <p>Imagine Toyota had called the car a “Camry Plus.” A buyer’s first question would probably be how much more the Plus offered over a Camry. Giving it a luxury badge invites a different comparison. An AI company can make the same choice with a premium model, though anyone looking at two prices in a model picker has good reason to ask that first question.</p>
-            <p>The trouble starts when the buyer thinks the name has already answered it. In the Hacker News discussion when Gemini Neon launched, readers who could follow Claude’s lineup were still trying to place Google’s new model. By the time Anthropic got to Fable, the length of a poem had stopped explaining the tiers, but literature leaves it open whether a fable outranks an opus. Chemistry offers a much more convincing answer. Neon really is heavier than carbon, and following that clue leads straight to the wrong model.</p>
-          </div>
-          <h3 id="takeaways-title">Before naming the next product</h3>
+          <h3 id="takeaways-title">What to decide before naming</h3>
           <ul>
-            <li><strong>Start with the choice the buyer has to make.</strong> If it takes a paragraph to explain why two products both exist, consider simplifying the lineup before inventing another suffix.</li>
-            <li><strong>Keep family, tier and generation separate.</strong> A buyer should be able to tell whether a model is newer, more capable or especially good at coding. If version numbers restart in each family, make their scope clear.</li>
-            <li><strong>Decide what a step in the sequence means.</strong> PS4 to PS5 tells you which came later and leaves the size of the improvement open. With semantic versioning, moving from 4 to 5 signals a breaking change. If the sequence wraps around, keep a date or version buyers can sort by.</li>
-            <li><strong>Try naming the products on either side.</strong> Before settling on “Max,” name its successor, a cheaper entry model and one that fits between two existing tiers.</li>
-            <li><strong>Keep hidden details easy to find.</strong> “iPad” works until someone needs the exact model to buy a case. If a cable’s speed, power rating or video support could change a purchase, put that information where the buyer chooses the cable.</li>
-            <li><strong>Choose which family ties to show.</strong> A shared name helps buyers compare an upgrade with the base model. A separate luxury brand can play down that relationship, at the cost of making the premium harder to judge.</li>
-            <li><strong>Test the metaphor on someone new to the lineup.</strong> Let them rank the names and explain their reasoning. A distinctive name earns its place when the association helps. If understanding the reference makes the wrong tier look obvious, use a plainer name.</li>
+            <li><strong>Fix the lineup before inventing another suffix.</strong> When it takes a paragraph—or three stacked modifiers—to explain why two products both exist, the underlying problem is usually product sprawl rather than copywriting.</li>
+            <li><strong>Choose what the name should expose and what it can hide.</strong> Keep product family, capability tier, and generation separate unless there is a deliberate reason to blur them. If simplicity calls for one umbrella name like “iPad” or “USB-C,” keep the exact model code or cable rating easy to find when compatibility matters.</li>
+            <li><strong>Name the products that do not exist yet.</strong> Before committing to “Max,” “Opus,” or “Sol,” name the tier above it, the cheaper entry tier below it, and a mid-tier release slotted in between.</li>
+            <li><strong>Test metaphors on someone outside the company.</strong> Distinctive names are worth using when brand identity matters, and boring systems are not always the right fit. Ask a newcomer to rank the names without hints: an opaque label merely forces a lookup, whereas a metaphor whose real-world logic points to the wrong tier works actively against the product.</li>
           </ul>
+          <p class="name-closing">Naming is hard because it compresses product strategy, positioning, and future roadmap choices into a few words. No single scheme fits every catalog—some products need plain legibility, some need room to branch, and some companies have deliberate commercial reasons to keep tiers separate or opaque. What rarely holds up is treating the name as an afterthought, then letting years of unplanned suffixes and stretched metaphors pile up on top of it.</p>
         </section>
-        <p class="case-source">Sources · <a href="https://book.stevejobsarchive.com/#:~:text=What%20this%20told%20us">Steve Jobs on Apple’s four-product strategy</a> · <a href="https://pressroom.lexus.com/celebrating-luxury-a-look-at-lexus-35-year-legacy/">Lexus on the ES 250’s Camry platform</a> · <a href="https://support.apple.com/en-us/121553">MacBook Pro chip options</a> · <a href="https://ubuntu.com/project/docs/release-team/list-of-releases/">Ubuntu release history</a> · <a href="https://semver.org/">Semantic Versioning 2.0.0 specification</a> · <a href="https://www.usb.org/sites/default/files/usb_type-c_cable_power_rating_logo_usage_guidelines_020222.pdf">USB-IF cable ratings</a> · <a href="https://news.ycombinator.com/item?id=50552424">Gemini Neon launch discussion</a> · <a href="https://discuss.ai.google.dev/t/idea-for-gemini-4-naming-pairing-tier-anchors-with-element-codenames-e-g-gemini-4-pro-carbon/203489">A developer’s proposal for clearer Gemini tiers</a></p>
+        <p class="case-source">Sources · <a href="https://book.stevejobsarchive.com/#:~:text=What%20this%20told%20us">Steve Jobs on Apple’s four-product strategy</a> · <a href="https://support.apple.com/en-us/121553">MacBook Pro chip options</a> · <a href="https://pressroom.lexus.com/celebrating-luxury-a-look-at-lexus-35-year-legacy/">Lexus on the ES 250’s Camry platform</a> · <a href="https://semver.org/">Semantic Versioning 2.0.0 specification</a> · <a href="https://support.apple.com/en-us/108043">Apple iPad model identification</a> · <a href="https://support.apple.com/en-us/118204">Apple USB-C and Thunderbolt cables</a></p>
       </div>
     </section>
     <section class="sources" id="sources">
       <div class="container sources-grid">
-        <h2>About the quiz</h2>
+        <h2>About the Quiz</h2>
         <div id="the-complication">
-          <p>Each question asks about one specific comparison, whether that’s the number of cores in a chip, the size of an olive, or the cabin you’ll sit in on a flight. After each guess you can see where the ranking comes from.</p>
-          <p>The earlier essay, <a href="{% post_url 2026-07-09-The-Naming-Ceiling %}">A Magnum Opus Leaves Nowhere to Go</a>, was written when Sol was still the top model.</p>
+          <p>Each question tests one specific, documented comparison—whether that is the core count of a chip, the size grade of an olive, or the cabin class on a long-haul flight. Every answer links to the primary source behind the ranking.</p>
+          <p>I wrote an earlier essay on this subject—<a class="essay-link" href="{% post_url 2026-07-09-The-Naming-Ceiling %}">A Magnum Opus Leaves Nowhere to Go <span aria-hidden="true">↗</span></a>—back when Sol was still OpenAI’s top model.</p>
         </div>
       </div>
     </section>
