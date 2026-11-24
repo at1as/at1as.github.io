@@ -1,5 +1,5 @@
 import { torusPoint, torusPointVisible } from "./schematic-torus.js";
-import { renderTokamakOverview } from "./tokamak-overview.js";
+import { renderTokamakOverview } from "./tokamak-overview.js?v=20261123f";
 /** Original editable fusion mechanism drawings. Schematic geometry, never to scale. */
 export const approaches = [
   {

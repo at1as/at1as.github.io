@@ -13,7 +13,7 @@ import {
 } from "./atlas-metadata.js?v=20261123";
 import { engineeringDiagram } from "./engineering-diagrams.js?v=20261123c";
 import { engineeringPanels } from "./engineering-content.js?v=20261123b";
-import { approaches, renderMachine } from "./diagrams.js?v=20261123";
+import { approaches, renderMachine } from "./diagrams.js?v=20261123f";
 import { balance, defaults, readScenario, targetCost } from "./model.js?v=58eee71b";
 import { recordCopy, glossaryCopy } from "./reader-content.js?v=20261123";
 import { comparisonClaims, comparisonAssessment } from "./comparison-content.js?v=20261123";
