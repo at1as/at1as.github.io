@@ -95,8 +95,8 @@
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css?v=20261123d" />
-    <link rel="stylesheet" href="./reactor-explorer.css?v=bafbffcf" />
-    <script type="module" src="./app.js?v=20261123d"></script>
+    <link rel="stylesheet" href="./reactor-explorer.css?v=20261123e" />
+    <script type="module" src="./app.js?v=20261123e"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -626,24 +626,50 @@
           </div>
           <div class="machine-workspace">
             <div class="machine-picker">
-              <label for="approach-select">Configuration</label>
-              <div class="machine-choice">
+              <div class="machine-picker-group">
+                <label for="approach-select">Configuration</label>
+                <div class="machine-choice">
+                  <button
+                    data-config-step="-1"
+                    data-select="approach-select"
+                    aria-label="Previous configuration"
+                    title="Previous configuration"
+                  >
+                    ←
+                  </button>
+                  <select id="approach-select"></select>
+                  <button
+                    data-config-step="1"
+                    data-select="approach-select"
+                    aria-label="Next configuration"
+                    title="Next configuration"
+                  >
+                    →
+                  </button>
+                </div>
+              </div>
+              <div class="machine-mode-tabs" role="tablist" aria-label="Machine explorer view">
                 <button
-                  data-config-step="-1"
-                  data-select="approach-select"
-                  aria-label="Previous configuration"
-                  title="Previous configuration"
+                  type="button"
+                  role="tab"
+                  id="machine-tab-cutaway"
+                  data-machine-mode="cutaway"
+                  aria-selected="true"
+                  aria-controls="machine-panel-cutaway"
+                  class="active"
                 >
-                  ←
+                  3D cutaway
                 </button>
-                <select id="approach-select"></select>
                 <button
-                  data-config-step="1"
-                  data-select="approach-select"
-                  aria-label="Next configuration"
-                  title="Next configuration"
+                  type="button"
+                  role="tab"
+                  id="machine-tab-cycle"
+                  data-machine-mode="cycle"
+                  aria-selected="false"
+                  aria-controls="machine-panel-cycle"
+                  tabindex="-1"
                 >
-                  →
+                  Operating cycle
                 </button>
               </div>
             </div>
@@ -653,61 +679,63 @@
                 <label><input id="fast-ignition" type="checkbox" /> Separate fast-ignition stage</label>
               </div>
             </div>
-            <div class="reactor-slot" id="reactor-explorer"></div>
-          </div>
-          <details class="operating-cycle">
-            <summary>Read the operating sequence</summary>
-            <div class="cycle-layout">
-              <div class="cycle-visual">
-                <div class="cycle-picker">
-                  <label for="cycle-approach-select">Configuration</label>
-                  <div class="cycle-choice">
-                    <button data-config-step="-1" data-select="cycle-approach-select"
-                      aria-label="Previous operating sequence configuration">←</button>
-                    <select id="cycle-approach-select"></select>
-                    <button data-config-step="1" data-select="cycle-approach-select"
-                      aria-label="Next operating sequence configuration">→</button>
-                  </div>
-                </div>
-                <div id="machine-diagram"></div>
-                <div class="step-controls dark-controls">
-                  <button id="machine-back" aria-label="Previous machine stage">
-                    ←
-                  </button>
-                  <div id="machine-stage-buttons"></div>
-                  <button id="machine-next" aria-label="Next machine stage">
-                    →</button
-                  ><button id="machine-play" class="play">Play ▷</button
-                  ><button
-                    data-open="diagram"
-                    aria-label="Enlarge the current operating stage"
-                  >
-                    ⤢
-                  </button>
-                </div>
-              </div>
-              <div class="stage-explainer" aria-live="polite">
-                <p class="eyebrow" id="machine-stage-title"></p>
-                <p id="machine-stage-text"></p>
-              </div>
+            <div id="machine-panel-cutaway" role="tabpanel" aria-labelledby="machine-tab-cutaway">
+              <div class="reactor-slot" id="reactor-explorer"></div>
             </div>
-            <p class="quiet">
-              Timing is slowed for illustration
-            </p>
-          </details>
-          <details class="machine-notes">
-            <summary>Engineering and related projects</summary>
-            <div class="machine-notes-body">
-              <div class="machine-context-row">
-                <div class="constraint">
-                  <span>ENGINEERING CHALLENGE</span>
-                  <p id="machine-constraint"></p>
-                </div>
-                <div>
-                  <div id="machine-entities"></div>
-                  <div id="machine-sources"></div>
+            <div
+              id="machine-panel-cycle"
+              class="machine-cycle-panel"
+              role="tabpanel"
+              aria-labelledby="machine-tab-cycle"
+              hidden
+            >
+              <div class="cycle-visual">
+                <div id="machine-diagram"></div>
+                <div class="cycle-footer-controls">
+                  <div class="step-controls dark-controls">
+                    <button id="machine-back" aria-label="Previous machine stage">
+                      ←
+                    </button>
+                    <div id="machine-stage-buttons"></div>
+                    <button id="machine-next" aria-label="Next machine stage">
+                      →</button
+                    ><button id="machine-play" class="play">Play ▷</button
+                    ><button
+                      data-open="diagram"
+                      aria-label="Enlarge the current operating stage"
+                      title="Enlarge diagram"
+                    >
+                      ⤢
+                    </button>
+                  </div>
+                  <p class="cycle-caption">Timing is slowed for illustration</p>
                 </div>
               </div>
+              <aside class="cycle-inspector" aria-label="Operating cycle stages">
+                <div class="reactor-inspector-heading">
+                  <span class="reactor-eyebrow">OPERATING STAGES</span>
+                  <span class="cycle-step-count" id="machine-stage-count"></span>
+                </div>
+                <div class="cycle-stage-list" id="machine-stage-list" role="group" aria-label="Operating stages"></div>
+                <div class="cycle-stage-detail" aria-live="polite">
+                  <p class="reactor-part-role" id="machine-stage-title"></p>
+                  <h4 id="machine-stage-heading"></h4>
+                  <p id="machine-stage-text"></p>
+                </div>
+              </aside>
+            </div>
+            <div class="machine-footer">
+              <div id="machine-entities"></div>
+            </div>
+          </div>
+          <details class="machine-notes">
+            <summary>Engineering challenge and sources</summary>
+            <div class="machine-notes-body">
+              <div class="constraint">
+                <span>ENGINEERING CHALLENGE</span>
+                <p id="machine-constraint"></p>
+              </div>
+              <div id="machine-sources"></div>
             </div>
           </details>
         </div>

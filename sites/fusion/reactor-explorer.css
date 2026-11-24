@@ -949,21 +949,32 @@ dialog:has(.company-reactor) {
   background: #101c29;
   border: 1px solid #354854;
   border-radius: 7px;
+  overflow: hidden;
   scroll-margin-top: 84px;
-  --model-height: clamp(260px, calc(100svh - 430px), 470px);
+  --model-height: clamp(260px, calc(100svh - 455px), 460px);
 }
 .machine-picker {
   display: flex;
   align-items: center;
-  gap: 14px;
-  min-height: 64px;
-  padding: 8px 350px 8px 18px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  min-height: 60px;
+  padding: 10px 18px;
   border-bottom: 1px solid #314450;
+}
+.machine-picker-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 320px;
+  min-width: 0;
 }
 .machine-picker label {
   color: #b9cbd4;
   font-size: 12px;
   font-weight: 400;
+  white-space: nowrap;
 }
 .machine-picker select {
   background: #1c3342;
@@ -989,14 +1000,49 @@ dialog:has(.company-reactor) {
   color: #c5d7e1;
   font-size: 18px;
 }
-.machine-choice button:not(:disabled):hover,
-.cycle-choice button:not(:disabled):hover {
+.machine-choice button:not(:disabled):hover {
   background: #294352;
   color: #fff;
 }
-.machine-choice button:disabled,
-.cycle-choice button:disabled {
+.machine-choice button:disabled {
   background: transparent;
+}
+.machine-mode-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  background: #0a141e;
+  border: 1px solid #354c5a;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.machine-mode-tabs button {
+  min-height: 34px;
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #a6c0cd;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.machine-mode-tabs button:hover {
+  background: #192d3b;
+  color: #eef5f8;
+}
+.machine-mode-tabs button.active {
+  background: #254050;
+  border-color: #56798b;
+  color: #f5f7f2;
+  box-shadow: 0 1px 4px #0004;
+}
+.machine-mode-tabs button:focus-visible {
+  outline: 2px solid #ffae7a;
+  outline-offset: 2px;
 }
 .machine-workspace .reactor-loading {
   min-height: calc(var(--model-height) + 192px);
@@ -1010,14 +1056,201 @@ dialog:has(.company-reactor) {
   border-radius: 0;
 }
 .machine-workspace .reactor-explorer .reactor-toolbar {
-  position: absolute;
-  top: 13px;
-  right: 18px;
-  padding: 0;
-  border: 0;
+  position: static;
+  padding: 7px 18px;
+  border-bottom: 1px solid #263a47;
+  background: #0d1824;
+  gap: 12px;
 }
 .machine-workspace .reactor-explorer .reactor-toolbar > div:first-child {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 10px;
+}
+.machine-workspace .reactor-explorer .reactor-toolbar strong {
+  font-size: 12px;
+  color: #b7cad4;
+  font-weight: 500;
+}
+.machine-cycle-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: stretch;
+  background: #101c29;
+  color: #dbe5e8;
+}
+.machine-cycle-panel[hidden],
+#machine-panel-cutaway[hidden] {
   display: none;
+}
+.machine-cycle-panel .cycle-visual {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  background: #101c29;
+  color: #bcd0da;
+  min-height: calc(var(--model-height) + 120px);
+}
+#machine-diagram {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+#machine-diagram svg {
+  width: 100%;
+  max-width: 760px;
+  max-height: var(--model-height);
+  height: auto;
+  display: block;
+}
+.cycle-footer-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  border-top: 1px solid #304350;
+  padding-top: 12px;
+  margin-top: 14px;
+}
+.cycle-footer-controls .dark-controls {
+  border-top: 0;
+  padding-top: 0;
+}
+.cycle-caption {
+  font-size: 10px;
+  color: #87a1ae;
+  margin: 0;
+}
+.cycle-inspector {
+  background: #132532;
+  border-left: 1px solid #304957;
+  padding: 16px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.cycle-step-count {
+  font-size: 10px;
+  color: #8babb9;
+}
+.cycle-stage-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+.cycle-stage-list button {
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 11px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #2f4958;
+  border-radius: 4px;
+  background: transparent;
+  color: #a4beca;
+  line-height: 1.35;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.cycle-stage-list button:hover {
+  background: #233a49;
+  color: #f3fbff;
+}
+.cycle-stage-list button > span {
+  font-size: 9px;
+  font-weight: 600;
+  color: #7da4b7;
+  flex-shrink: 0;
+}
+.cycle-stage-list button.active {
+  background: #33444a;
+  border-color: #b19070;
+  color: #ffe0bd;
+}
+.cycle-stage-list button.active > span {
+  color: #edb17f;
+}
+.cycle-stage-list button:focus-visible {
+  outline: 2px solid #ffae7a;
+  outline-offset: 2px;
+}
+.cycle-stage-detail {
+  border-top: 1px solid #35505e;
+  padding-top: 18px;
+  margin-top: 18px;
+}
+.cycle-stage-detail .reactor-part-role {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #dcaa80;
+  margin: 0;
+}
+.cycle-stage-detail h4 {
+  font-family: Newsreader, Georgia, serif;
+  font-size: 25px;
+  font-weight: 450;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #f0eee4;
+  margin: 8px 0 12px;
+}
+.cycle-stage-detail > p:last-child {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #bfd0d9;
+  margin: 0;
+}
+.machine-footer {
+  border-top: 1px solid #314450;
+  background: #0d1824;
+  padding: 11px 18px;
+}
+.machine-footer #machine-entities {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.machine-footer #machine-entities:empty {
+  display: none;
+}
+.machine-footer-label {
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  color: #8babb9;
+  white-space: nowrap;
+}
+.machine-footer .entity-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+}
+.machine-footer .entity-chips button {
+  min-height: 28px;
+  padding: 4px 10px;
+  font-size: 11px;
+  line-height: 1.3;
+  border-radius: 4px;
+  background: #192d3b;
+  border: 1px solid #3e5868;
+  color: #dbe7ed;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.machine-footer .entity-chips button:hover {
+  background: #274354;
+  border-color: #7ea7ba;
+  color: #fff;
+}
+.machine-footer .entity-chips button:focus-visible {
+  outline: 2px solid #ffae7a;
+  outline-offset: 2px;
 }
 .reactor-explorer .reactor-body {
   align-items: start;
@@ -1093,8 +1326,7 @@ dialog:has(.company-reactor) {
 }
 @media (max-width: 1000px) {
   .machine-picker {
-    padding-right: 310px;
-    gap: 10px;
+    gap: 10px 12px;
   }
   .machine-picker label {
     display: none;
@@ -1106,11 +1338,17 @@ dialog:has(.company-reactor) {
     font-size: 12px;
   }
   .machine-picker {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .machine-picker-group {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 40px 40px;
-    min-height: 70px;
-    padding: 10px 12px;
     gap: 6px;
+    flex: none;
   }
   .machine-choice {
     display: contents;
@@ -1124,6 +1362,16 @@ dialog:has(.company-reactor) {
   }
   .machine-choice button:last-child {
     grid-column: 3;
+  }
+  .machine-mode-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+  .machine-mode-tabs button {
+    min-height: 40px;
+    padding: 8px 10px;
+    text-align: center;
   }
   .reactor-explorer .reactor-explode input {
     min-height: 32px;
@@ -1150,6 +1398,9 @@ dialog:has(.company-reactor) {
     padding: 10px 12px;
     border-bottom: 1px solid #314450;
   }
+  .machine-workspace .reactor-explorer .reactor-toolbar > div:first-child {
+    display: none;
+  }
   .machine-workspace .reactor-explorer .reactor-stage {
     height: 330px;
   }
@@ -1159,6 +1410,26 @@ dialog:has(.company-reactor) {
     max-height: none;
     overflow: visible;
     padding: 20px;
+  }
+  .machine-cycle-panel {
+    grid-template-columns: 1fr;
+  }
+  .machine-cycle-panel .cycle-visual {
+    min-height: 0;
+    padding: 14px 12px 12px;
+  }
+  .cycle-inspector {
+    border-left: 0;
+    border-top: 1px solid #304957;
+    padding: 18px 14px;
+  }
+  .machine-footer {
+    padding: 12px;
+  }
+  .machine-footer .entity-chips button {
+    min-height: 38px;
+    padding: 6px 11px;
+    font-size: 12px;
   }
   .reactor-explorer .reactor-legend {
     padding: 0 16px 8px;
@@ -1170,20 +1441,18 @@ dialog:has(.company-reactor) {
   }
 }
 
-.machine-notes,
-.operating-cycle {
+.machine-notes {
   margin: 0;
   padding: 0;
   border-top: 1px solid #bfcdc0;
 }
-.machine-workspace + .operating-cycle {
-  margin-top: 22px;
+.machine-workspace + .machine-notes {
+  margin-top: 18px;
 }
-.machine-notes > summary,
-.operating-cycle > summary {
+.machine-notes > summary {
   cursor: pointer;
-  min-height: 62px;
-  padding: 20px 0;
+  min-height: 54px;
+  padding: 16px 0;
   font-family: Inter, sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -1192,60 +1461,16 @@ dialog:has(.company-reactor) {
   color: #2c4940;
 }
 .machine-notes-body {
+  display: grid;
+  gap: 14px;
   padding: 18px 22px;
   margin-bottom: 22px;
   background: #f7f9f3;
   border: 1px solid #c7d2c7;
   border-radius: 6px;
 }
-.machine-notes .machine-context-row {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 18px;
-  margin-top: 0;
-}
 .machine-notes .constraint {
   margin: 0;
-}
-.operating-cycle .cycle-layout {
-  margin-top: 0;
-}
-.cycle-picker {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 14px;
-  margin: -16px -16px 16px;
-  padding: 12px 16px;
-  border-bottom: 1px solid #314450;
-}
-.cycle-picker label {
-  color: #b9cbd4;
-  font-size: 12px;
-  font-weight: 400;
-}
-.cycle-choice {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 310px) 44px;
-  gap: 6px;
-  width: min(100%, 410px);
-}
-.cycle-choice select {
-  width: 100%;
-  min-width: 0;
-  background: #1c3342;
-  border-color: #587180;
-  color: #f2f4ef;
-  font-size: 14px;
-}
-.cycle-choice button {
-  min-height: 44px;
-  padding: 6px;
-  border-color: #47616c;
-  color: #c5d7e1;
-  font-size: 18px;
-}
-.operating-cycle > .quiet {
-  margin: 18px 0 24px;
 }
 .reactor-legend .electric::before {
   background: #c7a2ed;
@@ -1299,7 +1524,7 @@ dialog:has(.company-reactor) {
 }
 
 @media (max-width: 380px) {
-  .operating-cycle .step-controls {
+  .machine-cycle-panel .step-controls {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
   }

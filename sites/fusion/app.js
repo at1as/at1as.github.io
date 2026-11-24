@@ -62,6 +62,7 @@ const featuredOrganizationIds = [
   "proxima-fusion", "focused-energy", "general-fusion",
 ];
 let approach = params.get("approach") || "tokamak",
+  machineMode = "cutaway",
   machineStage = 0,
   reactionStage = 0,
   boundary = 0,
@@ -404,6 +405,22 @@ function machineId(e) {
     }[e.approachId] || null
   );
 }
+function setMachineMode(mode, { focus = false } = {}) {
+  machineMode = mode === "cycle" ? "cycle" : "cutaway";
+  if (machineMode !== "cycle") stopMachine();
+  $("#machine-panel-cutaway").hidden = machineMode !== "cutaway";
+  $("#machine-panel-cycle").hidden = machineMode !== "cycle";
+  $$("[data-machine-mode]").forEach((btn) => {
+    const active = btn.dataset.machineMode === machineMode;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-selected", String(active));
+    btn.tabIndex = active ? 0 : -1;
+    if (focus && active) btn.focus({ preventScroll: true });
+  });
+  if (machineMode === "cutaway") {
+    mountReactor($("#reactor-explorer"), approach, { fastIgnition });
+  }
+}
 function machine() {
   if (!approaches.some((a) => a.id === approach)) approach = "tokamak";
   const a = approaches.find((a) => a.id === approach);
@@ -413,37 +430,49 @@ function machine() {
   $("#machine-diagram").innerHTML = renderMachine(a.id, machineStage, {
     fastIgnition,
   });
-  mountReactor($("#reactor-explorer"), a.id, { fastIgnition });
+  if (machineMode === "cutaway") {
+    mountReactor($("#reactor-explorer"), a.id, { fastIgnition });
+  }
   $("#machine-description").textContent = a.description;
-  $("#machine-stage-title").textContent =
-    `0${machineStage + 1} / ${a.stages[machineStage].title}`;
+  $("#machine-stage-count").textContent =
+    `Stage ${machineStage + 1} of ${a.stages.length}`;
+  $("#machine-stage-title").textContent = `STAGE 0${machineStage + 1}`;
+  $("#machine-stage-heading").textContent = a.stages[machineStage].title;
   $("#machine-stage-text").textContent = a.stages[machineStage].text;
   $("#machine-constraint").textContent = a.constraint;
-  const stageFocus = document.activeElement?.dataset.machineStage;
+  const focusedStageButton = document.activeElement?.closest?.("[data-machine-stage]");
+  const stageFocus = focusedStageButton?.dataset.machineStage;
+  const stageFocusHost = focusedStageButton?.closest?.("#machine-stage-list, #machine-stage-buttons")?.id;
   $("#machine-stage-buttons").innerHTML = a.stages
     .map(
       (s, i) =>
         `<button class="${i === machineStage ? "active" : ""}" data-machine-stage="${i}" aria-label="Stage ${i + 1}: ${esc(s.title)}" aria-pressed="${i === machineStage}">${i + 1}</button>`,
     )
     .join("");
-  if (stageFocus !== undefined)
-    $(`[data-machine-stage="${stageFocus}"]`)?.focus({ preventScroll: true });
+  $("#machine-stage-list").innerHTML = a.stages
+    .map(
+      (s, i) =>
+        `<button type="button" class="${i === machineStage ? "active" : ""}" data-machine-stage="${i}" aria-pressed="${i === machineStage}"><span>0${i + 1}</span>${esc(s.title)}</button>`,
+    )
+    .join("");
+  if (stageFocus !== undefined && stageFocusHost)
+    $(`#${stageFocusHost} [data-machine-stage="${stageFocus}"]`)?.focus({ preventScroll: true });
   $("#machine-back").disabled = machineStage === 0;
   $("#machine-next").disabled = machineStage === a.stages.length - 1;
   $("#approach-select").value = approach;
-  $("#cycle-approach-select").value = approach;
   $$("[data-config-step]").forEach(button => {
     const select = document.getElementById(button.dataset.select);
+    if (!select) return;
     const nextIndex = select.selectedIndex + Number(button.dataset.configStep);
     button.disabled = nextIndex < 0 || nextIndex >= select.options.length;
   });
   if (data) {
     const entities = data.entities.filter((e) => machineId(e) === approach);
-    $("#machine-entities").innerHTML =
-      `<p class="eyebrow">EXPLORE THIS APPROACH</p><div class="entity-chips">${entities
-        .slice(0, 8)
-        .map((e) => `<button data-entity="${e.id}">${esc(e.name)}</button>`)
-        .join("")}</div>`;
+    $("#machine-entities").innerHTML = entities.length
+      ? `<span class="machine-footer-label">PURSUED BY</span><div class="entity-chips">${entities
+          .map((e) => `<button type="button" data-entity="${e.id}">${esc(e.name)}</button>`)
+          .join("")}</div>`
+      : "";
     $("#machine-sources").innerHTML = citations(
       getReactorContent(a.id, { fastIgnition }).sourceIds,
     );
@@ -467,7 +496,6 @@ $("#fast-ignition").onchange = (e) => {
   updateURL({ variant: fastIgnition ? "fast-ignition" : "" });
 };
 $("#approach-select").onchange = (e) => selectMachine(e.target.value);
-$("#cycle-approach-select").onchange = (e) => selectMachine(e.target.value);
 $("#machine-back").onclick = () => {
   stopMachine();
   machineStage--;
@@ -1340,6 +1368,9 @@ document.addEventListener("click", (e) => {
     reactionStage = +b.dataset.reaction;
     reaction();
   }
+  if (b.dataset.machineMode) {
+    setMachineMode(b.dataset.machineMode);
+  }
   if (b.dataset.machineStage !== undefined) {
     stopMachine();
     machineStage = +b.dataset.machineStage;
@@ -1508,7 +1539,6 @@ async function init() {
   boundaries();
   const options = groupedDesignOptions(approaches);
   $("#approach-select").innerHTML = options;
-  $("#cycle-approach-select").innerHTML = options;
   $("#hero-machine").innerHTML = renderMachine("tokamak", 3, { fieldOverview: true });
   machine();
   calcControls();
@@ -1693,9 +1723,19 @@ document.addEventListener("visibilitychange", () => {
     stopMachine();
   }
 });
-const cycle = $(".operating-cycle");
-cycle.addEventListener("toggle", () => {
-  if (!cycle.open) stopMachine();
+$(".machine-mode-tabs")?.addEventListener("keydown", (event) => {
+  const tabs = $$("[data-machine-mode]");
+  const index = tabs.indexOf(event.target);
+  if (index < 0) return;
+  let next = -1;
+  if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
+  else if (event.key === "ArrowLeft") next = (index + tabs.length - 1) % tabs.length;
+  else if (event.key === "Home") next = 0;
+  else if (event.key === "End") next = tabs.length - 1;
+  if (next >= 0) {
+    event.preventDefault();
+    setMachineMode(tabs[next].dataset.machineMode, { focus: true });
+  }
 });
 const chapterMotionObserver = new IntersectionObserver((entries) => {
   for (const e of entries)
