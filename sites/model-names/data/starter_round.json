@@ -1,0 +1,28 @@
+{
+  "round_id": "start-here",
+  "title": "A dozen great naming puzzles",
+  "question_ids": [
+    "google-gemini4-q01",
+    "usda-olive-size-q01",
+    "ba-long-haul-q01",
+    "syslog-severity-q01",
+    "us-army-officer-q01",
+    "printed-sheets-q01",
+    "nvidia-4070-q01",
+    "mastercard-world-q01",
+    "champagne-dosage-q01",
+    "anthropic-claude-q01",
+    "yosemite-decimal-q01",
+    "efl-divisions-q01"
+  ],
+  "recommended_session_length": 6,
+  "ai_question_ids": [
+    "google-gemini4-q01",
+    "jurassic2-original-q01",
+    "anthropic-claude-q01",
+    "deepmind-rodents-q01",
+    "openai-gpt62-q01",
+    "palm2-animals-q01"
+  ],
+  "instructions": "Draw 6 without repeats for first play. The first 12 ids are editor-ranked candidates, not an enforced linear progression. Keep category variety."
+}

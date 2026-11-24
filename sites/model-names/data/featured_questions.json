@@ -1,0 +1,1892 @@
+{
+  "meta": {
+    "schema_version": "1.0",
+    "compiled_on": "2026-11-21",
+    "purpose": "higher-surprise, editorially hand-picked playable pool",
+    "count": 72
+  },
+  "questions": [
+    {
+      "id": "openai-gpt62-q01",
+      "ladder_id": "openai-gpt62",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which GPT-6.2 model does OpenAI position as more capable?",
+      "options": [
+        "GPT-6.2 Sol",
+        "GPT-6.2 Astra"
+      ],
+      "answer": "GPT-6.2 Astra",
+      "answer_node_id": "openai-gpt62:1",
+      "higher_than": "GPT-6.2 Sol",
+      "explanation": "OpenAI puts Astra above Sol. Its first three names followed the masses of the Sun, Earth, and Moon. Astra means stars, which can be heavier or lighter than the Sun.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "GPT-6.2 models, OpenAI positioning in November 2026",
+      "metric": "vendor capability positioning",
+      "caveat": "This is OpenAI’s intended role/capability positioning, not a claim that Astra always wins on speed or cost.",
+      "source_urls": [
+        "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "google-gemini4-q01",
+      "ladder_id": "google-gemini4",
+      "category": "ai",
+      "brand": "Google",
+      "question": "Which Gemini 4 model does Google rank higher?",
+      "options": [
+        "Gemini 4 Carbon",
+        "Gemini 4 Neon"
+      ],
+      "answer": "Gemini 4 Carbon",
+      "answer_node_id": "google-gemini4:2",
+      "higher_than": "Gemini 4 Neon",
+      "explanation": "Google puts Carbon above Neon. A periodic table would lead you to pick Neon by both mass and atomic number.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Gemini 4 model choices in Gemini Apps, as documented November 2026",
+      "metric": "vendor capability positioning",
+      "caveat": "The model positioning is vendor-defined. Atomic-mass comparison is an analogy, not Google’s declared naming rule.",
+      "source_urls": [
+        "https://support.google.com/gemini/answer/18648722?co=GENIE.Platform%3DDesktop"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "anthropic-claude-q01",
+      "ladder_id": "anthropic-claude",
+      "category": "ai",
+      "brand": "Anthropic",
+      "question": "Which Claude model does Anthropic recommend for the hardest reasoning tasks?",
+      "options": [
+        "Claude Fable 5.2",
+        "Claude Opus 5.5"
+      ],
+      "answer": "Claude Fable 5.2",
+      "answer_node_id": "anthropic-claude:3",
+      "higher_than": "Claude Opus 5.5",
+      "explanation": "Anthropic recommends Fable when Opus at high effort falls short, placing a short moral story a tier above a magnum opus.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Anthropic November 2026 lineup; Fable is version 5.2 while other listed families are 5.5",
+      "metric": "vendor recommended capability tier",
+      "caveat": "Different version numbers and task specializations matter; this is Anthropic’s recommendation for demanding reasoning, not an all-benchmark ranking.",
+      "source_urls": [
+        "https://platform.claude.com/docs/en/models/overview"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "apple-m2-chips-q01",
+      "ladder_id": "apple-m2-chips",
+      "category": "chips",
+      "brand": "Apple",
+      "question": "Which chip sits higher in Apple’s M2 lineup?",
+      "options": [
+        "Apple M2 Max",
+        "Apple M2 Ultra"
+      ],
+      "answer": "Apple M2 Ultra",
+      "answer_node_id": "apple-m2-chips:3",
+      "higher_than": "Apple M2 Max",
+      "explanation": "M2 Ultra joins two M2 Max dies into one package, placing Ultra one tier above Max.",
+      "difficulty": 3,
+      "surprise": 5,
+      "featured": true,
+      "scope": "M2 generation only, not an assertion about newer-generation chips",
+      "metric": "Apple chip performance/capability tier",
+      "caveat": "Relative power/energy efficiency varies by workload and device. Do not compare chip generations as part of this ladder.",
+      "source_urls": [
+        "https://www.apple.com/newsroom/2023/06/apple-introduces-m2-ultra/",
+        "https://www.apple.com/mac/compare/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "nvidia-4070-q01",
+      "ladder_id": "nvidia-4070",
+      "category": "chips",
+      "brand": "NVIDIA",
+      "question": "Which desktop RTX 4070 does NVIDIA rank higher?",
+      "options": [
+        "RTX 4070 SUPER",
+        "RTX 4070 Ti"
+      ],
+      "answer": "RTX 4070 Ti",
+      "answer_node_id": "nvidia-4070:2",
+      "higher_than": "RTX 4070 SUPER",
+      "explanation": "The 4070 Ti sits above the 4070 SUPER. NVIDIA also made a 4070 Ti SUPER, which sits above both.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Ada Lovelace GeForce RTX 4070 desktop cards, not laptop GPUs",
+      "metric": "4070 family gaming GPU performance/capability tier",
+      "caveat": "Individual benchmarks, factory overclocks, prices, and VRAM-sensitive games can vary; use NVIDIA’s within-family positioning.",
+      "source_urls": [
+        "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "aws-ec2-t2-q02",
+      "ladder_id": "aws-ec2-t2",
+      "category": "software",
+      "brand": "Amazon Web Services",
+      "question": "Which EC2 T2 instance comes with more memory?",
+      "options": [
+        "t2.xlarge",
+        "t2.2xlarge"
+      ],
+      "answer": "t2.2xlarge",
+      "answer_node_id": "aws-ec2-t2:6",
+      "higher_than": "t2.xlarge",
+      "explanation": "A t2.2xlarge has 32 GiB of memory, double the 16 GiB in a t2.xlarge.",
+      "difficulty": 1,
+      "surprise": 4,
+      "featured": true,
+      "scope": "AWS EC2 T2 instance family",
+      "metric": "instance resource size",
+      "caveat": "The order is for allocated vCPU/memory within one AWS instance family; not price/performance across generations or instance families.",
+      "source_urls": [
+        "https://aws.amazon.com/ec2/instance-types/t2/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "meta-quest3-q01",
+      "ladder_id": "meta-quest3",
+      "category": "devices",
+      "brand": "Meta",
+      "question": "Which Quest has the higher-tier display and optics?",
+      "options": [
+        "Meta Quest 3",
+        "Meta Quest 3S"
+      ],
+      "answer": "Meta Quest 3",
+      "answer_node_id": "meta-quest3:1",
+      "higher_than": "Meta Quest 3S",
+      "explanation": "Quest 3 has pancake lenses and a higher-resolution display. Quest 3S shares its processor but uses lower-tier optics.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Quest 3 generation, Meta’s compared 2026 US products",
+      "metric": "headset display/optics tier",
+      "caveat": "The two models share a processor; Quest 3S has longer stated battery runtime. Rank specifically by display/optics, not total performance.",
+      "source_urls": [
+        "https://www.meta.com/quest/compare/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "canon-dslr-q01",
+      "ladder_id": "canon-dslr",
+      "category": "devices",
+      "brand": "Canon",
+      "question": "Which Canon DSLR sits higher in the company’s professional lineup?",
+      "options": [
+        "Canon EOS 5D Mark IV",
+        "Canon EOS-1D X Mark III"
+      ],
+      "answer": "Canon EOS-1D X Mark III",
+      "answer_node_id": "canon-dslr:1",
+      "higher_than": "Canon EOS 5D Mark IV",
+      "explanation": "Canon positions the EOS-1 series as its flagship professional DSLR line. In this numbering scheme, lower series numbers sit higher in the range.",
+      "difficulty": 5,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Canon EOS DSLR era; camera models released in different years",
+      "metric": "flagship professional body positioning",
+      "caveat": "Not a claim of higher megapixels or superior image quality in every use; the 1D line is the rugged professional flagship.",
+      "source_urls": [
+        "https://global.canon/en/news/2014/jun10e.html",
+        "https://global.canon/en/news/2022/20220224.html"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "xbox-series-q01",
+      "ladder_id": "xbox-series",
+      "category": "gaming",
+      "brand": "Microsoft",
+      "question": "Which Xbox Series console has the more powerful graphics hardware?",
+      "options": [
+        "Xbox Series X",
+        "Xbox Series S"
+      ],
+      "answer": "Xbox Series X",
+      "answer_node_id": "xbox-series:1",
+      "higher_than": "Xbox Series S",
+      "explanation": "Series X is Microsoft’s higher-performance console. Series S is the smaller, lower-cost option.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Xbox Series console family",
+      "metric": "graphics hardware capability tier",
+      "caveat": "The Series S is smaller and more affordable; this compares GPU/rendering capability, not the worth of owning either console.",
+      "source_urls": [
+        "https://www.xbox.com/en-US/consoles/xbox-series-x"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "chase-sapphire-q01",
+      "ladder_id": "chase-sapphire",
+      "category": "cards",
+      "brand": "Chase",
+      "question": "Which is Chase’s higher-tier Sapphire travel card?",
+      "options": [
+        "Chase Sapphire Reserve",
+        "Chase Sapphire Preferred"
+      ],
+      "answer": "Chase Sapphire Reserve",
+      "answer_node_id": "chase-sapphire:1",
+      "higher_than": "Chase Sapphire Preferred",
+      "explanation": "Sapphire Reserve sits above Sapphire Preferred in Chase’s travel-card lineup, carrying a higher annual fee and broader travel benefits.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "US consumer Sapphire cards, November 2026",
+      "metric": "premium travel-card positioning",
+      "caveat": "This is Chase’s positioning/annual-fee and travel benefit tier, not a claim Reserve produces greater value for every customer.",
+      "source_urls": [
+        "https://www.chase.com/personal/credit-cards/education/rewards-benefits/how-are-sapphire-preferred-and-reserve-different",
+        "https://creditcards.chase.com/rewards-credit-cards/sapphire/preferred",
+        "https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "capitalone-venture-q01",
+      "ladder_id": "capitalone-venture",
+      "category": "cards",
+      "brand": "Capital One",
+      "question": "Which card sits higher in Capital One’s Venture lineup?",
+      "options": [
+        "Venture",
+        "Venture X"
+      ],
+      "answer": "Venture X",
+      "answer_node_id": "capitalone-venture:2",
+      "higher_than": "Venture",
+      "explanation": "Venture X sits above Venture. A single letter marks the jump to the premium travel card.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "US consumer Capital One Venture lineup",
+      "metric": "premium travel-card positioning",
+      "caveat": "Ranks issuer product segment and annual-fee/benefit scope, not universal expected rewards for every spending pattern.",
+      "source_urls": [
+        "https://www.capitalone.com/credit-cards/compare/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "amex-consumer-q02",
+      "ladder_id": "amex-consumer",
+      "category": "cards",
+      "brand": "American Express",
+      "question": "Which U.S. personal card does Amex reserve for invited applicants?",
+      "options": [
+        "American Express Centurion",
+        "American Express Platinum"
+      ],
+      "answer": "American Express Centurion",
+      "answer_node_id": "amex-consumer:3",
+      "higher_than": "American Express Platinum",
+      "explanation": "Centurion is the invitation-only card above Platinum. Its nickname is the Black Card.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "US personal Green, Gold, Platinum; invitation-based Centurion at the top",
+      "metric": "issuer premium/exclusivity tier",
+      "caveat": "Gold/Platinum are not universally best for all spending categories. Centurion is invitation-only; details and annual fees vary by market.",
+      "source_urls": [
+        "https://www.americanexpress.com/us/credit-cards/",
+        "https://www.americanexpress.com/en-us/travel/lounges/centurion-network/access/",
+        "https://www.cnbc.com/select/most-exclusive-credit-cards/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "mastercard-world-q01",
+      "ladder_id": "mastercard-world",
+      "category": "cards",
+      "brand": "Mastercard",
+      "question": "Which is Mastercard’s higher network tier?",
+      "options": [
+        "World Elite Mastercard",
+        "World Legend Mastercard"
+      ],
+      "answer": "World Legend Mastercard",
+      "answer_node_id": "mastercard-world:2",
+      "higher_than": "World Elite Mastercard",
+      "explanation": "World Legend is Mastercard’s top network tier, introduced one level above World Elite.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Mastercard global premium CREDIT product portfolio, 2026",
+      "metric": "Mastercard network premium benefit tier",
+      "caveat": "Network tiers are separate from an issuing bank’s rewards program and card annual fee. Availability varies by market.",
+      "source_urls": [
+        "https://www.mastercard.com/global/en/business/payments/consumer-payments/card/affluent-credit.html",
+        "https://www.mastercard.com/global/en/personal/find-a-card/credit-card/the-mastercard-collection.html"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "visa-us-levels-q01",
+      "ladder_id": "visa-us-levels",
+      "category": "cards",
+      "brand": "Visa",
+      "question": "Which is the higher U.S. Visa network tier?",
+      "options": [
+        "Visa Signature",
+        "Visa Infinite"
+      ],
+      "answer": "Visa Infinite",
+      "answer_node_id": "visa-us-levels:2",
+      "higher_than": "Visa Signature",
+      "explanation": "Visa puts Infinite above Signature. These are Visa network tiers shared by cards from different banks.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "US Visa network brand tiers; issuer implementation varies",
+      "metric": "card-network benefit platform tier",
+      "caveat": "Individual card benefits are set by issuers and are not guaranteed identical at each Visa network level. Not a bank-by-bank comparison.",
+      "source_urls": [
+        "https://www.visa.com/en-us/personal/cards/credit"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "marriott-bonvoy-q01",
+      "ladder_id": "marriott-bonvoy",
+      "category": "loyalty",
+      "brand": "Marriott",
+      "question": "Which is the higher Marriott Bonvoy status?",
+      "options": [
+        "Titanium Elite",
+        "Platinum Elite"
+      ],
+      "answer": "Titanium Elite",
+      "answer_node_id": "marriott-bonvoy:4",
+      "higher_than": "Platinum Elite",
+      "explanation": "Marriott puts Titanium Elite one tier above Platinum Elite.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Marriott Bonvoy, November 2026",
+      "metric": "loyalty status level",
+      "caveat": "Status eligibility involves nights and, for Ambassador, qualifying spend; actual benefits vary by property.",
+      "source_urls": [
+        "https://www.marriott.com/loyalty/member-benefits.mi"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "marriott-bonvoy-q02",
+      "ladder_id": "marriott-bonvoy",
+      "category": "loyalty",
+      "brand": "Marriott",
+      "question": "Which is the higher Marriott Bonvoy status?",
+      "options": [
+        "Titanium Elite",
+        "Ambassador Elite"
+      ],
+      "answer": "Ambassador Elite",
+      "answer_node_id": "marriott-bonvoy:5",
+      "higher_than": "Titanium Elite",
+      "explanation": "Ambassador Elite sits above Titanium Elite, switching from metals to a title at the top of the program.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Marriott Bonvoy, November 2026",
+      "metric": "loyalty status level",
+      "caveat": "Status eligibility involves nights and, for Ambassador, qualifying spend; actual benefits vary by property.",
+      "source_urls": [
+        "https://www.marriott.com/loyalty/member-benefits.mi"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "hyatt-world-q01",
+      "ladder_id": "hyatt-world",
+      "category": "loyalty",
+      "brand": "Hyatt",
+      "question": "Which is the higher World of Hyatt status?",
+      "options": [
+        "Explorist",
+        "Globalist"
+      ],
+      "answer": "Globalist",
+      "answer_node_id": "hyatt-world:3",
+      "higher_than": "Explorist",
+      "explanation": "Globalist is the highest standard World of Hyatt status. Explorist is one tier below.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "World of Hyatt member tiers, 2026",
+      "metric": "loyalty status level",
+      "caveat": "Hyatt’s terms define status tiers; the words do not represent an objective hierarchy of people.",
+      "source_urls": [
+        "https://world.hyatt.com/content/gp/en/tiers-and-benefits.html"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "hilton-honors-q01",
+      "ladder_id": "hilton-honors",
+      "category": "loyalty",
+      "brand": "Hilton",
+      "question": "Which is the higher Hilton Honors status?",
+      "options": [
+        "Diamond",
+        "Diamond Reserve"
+      ],
+      "answer": "Diamond Reserve",
+      "answer_node_id": "hilton-honors:4",
+      "higher_than": "Diamond",
+      "explanation": "Diamond Reserve adds benefits above Diamond, including guaranteed late checkout.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Hilton Honors as of November 2026",
+      "metric": "loyalty status level",
+      "caveat": "Hilton’s criteria/benefits are program-specific; Reserve is not a synonym for the unrelated Chase card.",
+      "source_urls": [
+        "https://www.hilton.com/en/hilton-honors/member-benefits/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "united-cabins-q01",
+      "ladder_id": "united-cabins",
+      "category": "loyalty",
+      "brand": "United Airlines",
+      "question": "Which seating option is higher in United’s lineup?",
+      "options": [
+        "United Premium Plus",
+        "United Economy Plus"
+      ],
+      "answer": "United Premium Plus",
+      "answer_node_id": "united-cabins:2",
+      "higher_than": "United Economy Plus",
+      "explanation": "Premium Plus is premium economy. Economy Plus is an economy seat with extra legroom.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Routes/aircraft offering all four seat products; Polaris business-class long-haul service",
+      "metric": "cabin/service product tier",
+      "caveat": "Economy Plus is extra-legroom economy seating; Premium Plus is premium economy; Polaris is business-class on eligible routes. Not all flights offer all classes.",
+      "source_urls": [
+        "https://www.united.com/en/us/deals/flights/seat-options"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "gitlab-engineering-q01",
+      "ladder_id": "gitlab-engineering",
+      "category": "careers",
+      "brand": "GitLab",
+      "question": "Which engineering title is more senior at GitLab?",
+      "options": [
+        "Staff Engineer",
+        "Senior Engineer"
+      ],
+      "answer": "Staff Engineer",
+      "answer_node_id": "gitlab-engineering:2",
+      "higher_than": "Senior Engineer",
+      "explanation": "At GitLab, Staff Engineer is the level above Senior Engineer. Other employers set their own titles.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "GitLab Development Department career framework; titles generalized to Engineer",
+      "metric": "individual-contributor seniority",
+      "caveat": "Job ladders vary by employer; this is specifically GitLab, not a universal global salary/status standard. Use Principal, not Principle.",
+      "source_urls": [
+        "https://handbook.gitlab.com/handbook/engineering/careers/matrix/development/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "us-army-officer-q01",
+      "ladder_id": "us-army-officer",
+      "category": "careers",
+      "brand": "US Army",
+      "question": "Which is the higher U.S. Army rank?",
+      "options": [
+        "Lieutenant General",
+        "Major General"
+      ],
+      "answer": "Lieutenant General",
+      "answer_node_id": "us-army-officer:5",
+      "higher_than": "Major General",
+      "explanation": "A lieutenant general wears three stars. A major general wears two. Compare plain lieutenant and major and the order reverses.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "United States Army commissioned officer structure",
+      "metric": "official Army officer rank",
+      "caveat": "Do not compare bare “Lieutenant” to “Major” and extrapolate to general-officer ranks. These are formal ranks, not titles of all militaries.",
+      "source_urls": [
+        "https://www.army.mil/ranks/index.html"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "ralph-lauren-menswear-q01",
+      "ladder_id": "ralph-lauren-menswear",
+      "category": "fashion",
+      "brand": "Ralph Lauren",
+      "question": "Which is Ralph Lauren’s higher-end menswear label?",
+      "options": [
+        "Polo Ralph Lauren",
+        "Ralph Lauren Purple Label"
+      ],
+      "answer": "Ralph Lauren Purple Label",
+      "answer_node_id": "ralph-lauren-menswear:1",
+      "higher_than": "Polo Ralph Lauren",
+      "explanation": "Purple Label is Ralph Lauren’s luxury menswear line. Polo is the more accessible label.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Ralph Lauren menswear labels, not women’s Collection or RRL workwear",
+      "metric": "brand luxury/craft positioning",
+      "caveat": "Not a claim that every Purple Label item is more expensive or better than every Polo item. RRL is a parallel aesthetic, not an intermediate rung.",
+      "source_urls": [
+        "https://corporate.ralphlauren.com/ralph-lauren-luxury"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "armani-labels-q01",
+      "ladder_id": "armani-labels",
+      "category": "fashion",
+      "brand": "Armani",
+      "question": "Which menswear line does Armani position as more luxurious?",
+      "options": [
+        "Giorgio Armani",
+        "Emporio Armani"
+      ],
+      "answer": "Giorgio Armani",
+      "answer_node_id": "armani-labels:2",
+      "higher_than": "Emporio Armani",
+      "explanation": "Giorgio Armani is the house’s luxury main line. Emporio Armani sits below it.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Fashion labels in Armani’s brand architecture",
+      "metric": "mainline luxury / price positioning",
+      "caveat": "Positioning and average prices, not guaranteed garment-by-garment quality. Product categories and collaborations can differ.",
+      "source_urls": [
+        "https://armanivalues.com/overview/the-world-of-armani/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "audi-a3-family-q01",
+      "ladder_id": "audi-a3-family",
+      "category": "cars",
+      "brand": "Audi",
+      "question": "Which is the higher-performance member of Audi’s A3 family?",
+      "options": [
+        "Audi RS 3",
+        "Audi S3"
+      ],
+      "answer": "Audi RS 3",
+      "answer_node_id": "audi-a3-family:2",
+      "higher_than": "Audi S3",
+      "explanation": "The RS 3 sits above the S3 at the performance end of Audi’s A3 family.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "A3-family US cars, comparable 2026 production generation",
+      "metric": "factory performance version",
+      "caveat": "This compares performance versions, not fuel economy, ride comfort, or price/insurance value.",
+      "source_urls": [
+        "https://www.audiusa.com/en/models/sedan-models/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "audi-trim-q01",
+      "ladder_id": "audi-trim",
+      "category": "cars",
+      "brand": "Audi",
+      "question": "Which U.S. Audi trim includes more equipment when both are offered?",
+      "options": [
+        "Prestige",
+        "Premium Plus"
+      ],
+      "answer": "Prestige",
+      "answer_node_id": "audi-trim:2",
+      "higher_than": "Premium Plus",
+      "explanation": "Prestige is Audi’s top trim level, sitting above both Premium and Premium Plus.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Audi US trim nomenclature for cars offered with all three trims",
+      "metric": "vehicle equipment trim tier",
+      "caveat": "These trims and content depend on model year/vehicle; verify availability before applying to a specific car.",
+      "source_urls": [
+        "https://www.audiusa.com/en/inventory/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "lucid-air-q01",
+      "ladder_id": "lucid-air",
+      "category": "cars",
+      "brand": "Lucid",
+      "question": "Which of these trims sits higher in Lucid’s Air lineup?",
+      "options": [
+        "Air Grand Touring",
+        "Air Sapphire"
+      ],
+      "answer": "Air Sapphire",
+      "answer_node_id": "lucid-air:3",
+      "higher_than": "Air Grand Touring",
+      "explanation": "Air Sapphire is the ultra-high-performance flagship above Grand Touring. The latter can still be the better choice for range.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Lucid Air sedan trim lineup, as presented in 2026",
+      "metric": "premium performance and price/flagship positioning",
+      "caveat": "Do not say Sapphire has the best range: Grand Touring may prioritize range. The ladder is price/performance positioning.",
+      "source_urls": [
+        "https://lucidmotors.com/compare",
+        "https://lucidmotors.com/air-pure"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "starbucks-iced-q01",
+      "ladder_id": "starbucks-iced",
+      "category": "food",
+      "brand": "Starbucks",
+      "question": "Which U.S. Starbucks size holds more iced coffee?",
+      "options": [
+        "Tall",
+        "Grande"
+      ],
+      "answer": "Grande",
+      "answer_node_id": "starbucks-iced:1",
+      "higher_than": "Tall",
+      "explanation": "Grande holds 16 fluid ounces. Tall is the smaller cup at 12.",
+      "difficulty": 3,
+      "surprise": 5,
+      "featured": true,
+      "scope": "US Starbucks iced coffee sizes (Tall 12, Grande 16, Venti 24, Trenta 30 fl oz)",
+      "metric": "fluid ounces per iced coffee serving",
+      "caveat": "Specific to the cited iced coffee product; hot venti is a different volume and Trenta is not offered for every beverage.",
+      "source_urls": [
+        "https://www.starbucks.com/menu/product/2123863/iced"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "starbucks-iced-q02",
+      "ladder_id": "starbucks-iced",
+      "category": "food",
+      "brand": "Starbucks",
+      "question": "Which U.S. Starbucks size holds more iced coffee?",
+      "options": [
+        "Trenta",
+        "Venti"
+      ],
+      "answer": "Trenta",
+      "answer_node_id": "starbucks-iced:3",
+      "higher_than": "Venti",
+      "explanation": "Trenta holds 30 fluid ounces. Venti means twenty in Italian, but an iced Venti holds 24.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "US Starbucks iced coffee sizes (Tall 12, Grande 16, Venti 24, Trenta 30 fl oz)",
+      "metric": "fluid ounces per iced coffee serving",
+      "caveat": "Specific to the cited iced coffee product; hot venti is a different volume and Trenta is not offered for every beverage.",
+      "source_urls": [
+        "https://www.starbucks.com/menu/product/2123863/iced"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "gia-clarity-q01",
+      "ladder_id": "gia-clarity",
+      "category": "other",
+      "brand": "GIA",
+      "question": "Which GIA diamond grade has higher clarity?",
+      "options": [
+        "VS2",
+        "VS1"
+      ],
+      "answer": "VS1",
+      "answer_node_id": "gia-clarity:6",
+      "higher_than": "VS2",
+      "explanation": "VS1 is a higher clarity grade than VS2. Within VS, the smaller number wins.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "GIA 4Cs diamond clarity scale",
+      "metric": "GIA clarity grade",
+      "caveat": "Clarity only—not the overall beauty, rarity, value, color, or cut of a diamond.",
+      "source_urls": [
+        "https://4cs.gia.edu/en-us/diamond-clarity/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "gia-clarity-q02",
+      "ladder_id": "gia-clarity",
+      "category": "other",
+      "brand": "GIA",
+      "question": "Which GIA diamond grade has higher clarity?",
+      "options": [
+        "FL",
+        "IF"
+      ],
+      "answer": "FL",
+      "answer_node_id": "gia-clarity:10",
+      "higher_than": "IF",
+      "explanation": "An Internally Flawless diamond can have surface blemishes. Flawless is the higher grade.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "GIA 4Cs diamond clarity scale",
+      "metric": "GIA clarity grade",
+      "caveat": "Clarity only—not the overall beauty, rarity, value, color, or cut of a diamond.",
+      "source_urls": [
+        "https://4cs.gia.edu/en-us/diamond-clarity/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "gia-color-q01",
+      "ladder_id": "gia-color",
+      "category": "other",
+      "brand": "GIA",
+      "question": "Which GIA grade denotes a more colorless diamond?",
+      "options": [
+        "D",
+        "E"
+      ],
+      "answer": "D",
+      "answer_node_id": "gia-color:22",
+      "higher_than": "E",
+      "explanation": "D is the most colorless grade on GIA’s D–Z scale. E comes next.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "GIA D–Z diamond color scale (normal colorless-to-light-colored grading)",
+      "metric": "GIA diamond colorlessness grade",
+      "caveat": "This ranks absence of visible color for diamonds assessed on the D–Z scale, not beauty or market price for fancy-colored stones.",
+      "source_urls": [
+        "https://myapps.gia.edu/ReportCheckPortal/resources/HTML_Pages/About-4Cs-Color.html"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "burgundy-cru-q01",
+      "ladder_id": "burgundy-cru",
+      "category": "food",
+      "brand": "Bourgogne Wines",
+      "question": "Which is the higher Burgundy wine appellation?",
+      "options": [
+        "Grand Cru",
+        "Premier Cru"
+      ],
+      "answer": "Grand Cru",
+      "answer_node_id": "burgundy-cru:3",
+      "higher_than": "Premier Cru",
+      "explanation": "Grand Cru sits above Premier Cru in Burgundy’s appellation hierarchy, even though “premier” translates to “first.”",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Traditional Bourgogne wine appellation designations",
+      "metric": "Burgundy appellation classification level",
+      "caveat": "Ranks legal appellation classification, not a blind-tasting guarantee or a universal claim about every individual bottle.",
+      "source_urls": [
+        "https://www.bourgogne-wines.com/wine-and-terroir/decoding-the-aocs/bourgogne-wines-decoding-the-aocs,2467,9263.html"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "openai-gpt56-preview-q01",
+      "ladder_id": "openai-gpt56-preview",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which of these two models ranked higher in OpenAI’s GPT-5.6 preview lineup?",
+      "options": [
+        "GPT-5.6 Terra",
+        "GPT-5.6 Luna"
+      ],
+      "answer": "GPT-5.6 Terra",
+      "answer_node_id": "openai-gpt56-preview:1",
+      "higher_than": "GPT-5.6 Luna",
+      "explanation": "Terra ranked above Luna. Earth is more massive than the Moon, and mass gives you the order of all three original names.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "GPT-5.6 preview lineup as announced by OpenAI",
+      "metric": "position in OpenAI’s preview lineup",
+      "caveat": "These are the GPT-5.6 preview roles. Sol has a different role in the GPT-6.2 lineup.",
+      "source_urls": [
+        "https://openai.com/index/previewing-gpt-5-6-sol/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "openai-gpt56-preview-q02",
+      "ladder_id": "openai-gpt56-preview",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which of these two models ranked higher in OpenAI’s GPT-5.6 preview lineup?",
+      "options": [
+        "GPT-5.6 Terra",
+        "GPT-5.6 Sol"
+      ],
+      "answer": "GPT-5.6 Sol",
+      "answer_node_id": "openai-gpt56-preview:2",
+      "higher_than": "GPT-5.6 Terra",
+      "explanation": "Sol was the flagship and Terra was the everyday model. The original order followed their namesakes by mass, from Sun to Earth to Moon.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "GPT-5.6 preview lineup as announced by OpenAI",
+      "metric": "position in OpenAI’s preview lineup",
+      "caveat": "These are the GPT-5.6 preview roles. Sol has a different role in the GPT-6.2 lineup.",
+      "source_urls": [
+        "https://openai.com/index/previewing-gpt-5-6-sol/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "google-gemini25-speed-q01",
+      "ladder_id": "google-gemini25-speed",
+      "category": "ai",
+      "brand": "Google",
+      "question": "Which did Google describe as the faster Gemini 2.5 model?",
+      "options": [
+        "Gemini 2.5 Flash",
+        "Gemini 2.5 Flash-Lite"
+      ],
+      "answer": "Gemini 2.5 Flash-Lite",
+      "answer_node_id": "google-gemini25-speed:1",
+      "higher_than": "Gemini 2.5 Flash",
+      "explanation": "Google introduced Flash-Lite as the fastest Gemini 2.5 model. The Lite suffix signaled lower cost and faster responses.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Google’s June 2025 announcement for the Gemini 2.5 family",
+      "metric": "vendor-designated inference speed",
+      "caveat": "Google’s stated speed positioning. Actual latency varies with prompt, settings, and deployment.",
+      "source_urls": [
+        "https://blog.google/products-and-platforms/products/gemini/gemini-2-5-model-family-expands/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "amazon-nova-v1-q01",
+      "ladder_id": "amazon-nova-v1",
+      "category": "ai",
+      "brand": "Amazon",
+      "question": "Which first-generation Nova model sits above the other in Amazon’s lineup?",
+      "options": [
+        "Nova Premier",
+        "Nova Pro"
+      ],
+      "answer": "Nova Premier",
+      "answer_node_id": "amazon-nova-v1:3",
+      "higher_than": "Nova Pro",
+      "explanation": "Amazon put Premier at the top for complex multimodal tasks. Pro was the general-purpose model balancing accuracy, speed, and cost.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "First-generation Amazon Nova understanding models in AWS documentation",
+      "metric": "vendor product tier",
+      "caveat": "Product roles within Nova version 1. These names do not rank newer Nova models or every benchmark.",
+      "source_urls": [
+        "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "amazon-nova-v1-q02",
+      "ladder_id": "amazon-nova-v1",
+      "category": "ai",
+      "brand": "Amazon",
+      "question": "Which first-generation Nova model handles more kinds of input?",
+      "options": [
+        "Nova Micro",
+        "Nova Lite"
+      ],
+      "answer": "Nova Lite",
+      "answer_node_id": "amazon-nova-v1:1",
+      "higher_than": "Nova Micro",
+      "explanation": "Lite can take images and video as well as text. Micro is text-only, with a focus on low latency.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "First-generation Amazon Nova understanding models in AWS documentation",
+      "metric": "vendor product tier",
+      "caveat": "Product roles within Nova version 1. These names do not rank newer Nova models or every benchmark.",
+      "source_urls": [
+        "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "meta-llama4-size-q01",
+      "ladder_id": "meta-llama4-size",
+      "category": "ai",
+      "brand": "Meta",
+      "question": "Which Llama 4 model has more total parameters?",
+      "options": [
+        "Llama 4 Scout",
+        "Llama 4 Maverick"
+      ],
+      "answer": "Llama 4 Maverick",
+      "answer_node_id": "meta-llama4-size:1",
+      "higher_than": "Llama 4 Scout",
+      "explanation": "Maverick has about 400 billion total parameters to Scout’s 109 billion. Both activate about 17 billion per token.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Total parameters of Meta’s released Llama 4 Scout and Maverick models",
+      "metric": "total parameter count",
+      "caveat": "Total parameters count the entire model, including experts that are not active for a given token.",
+      "source_urls": [
+        "https://ai.meta.com/resources/models-and-libraries/llama-downloads/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "elevenlabs-v25-speed-q01",
+      "ladder_id": "elevenlabs-v25-speed",
+      "category": "ai",
+      "brand": "ElevenLabs",
+      "question": "Which ElevenLabs v2.5 speech model is built for lower latency?",
+      "options": [
+        "Eleven Turbo v2.5",
+        "Eleven Flash v2.5"
+      ],
+      "answer": "Eleven Flash v2.5",
+      "answer_node_id": "elevenlabs-v25-speed:1",
+      "higher_than": "Eleven Turbo v2.5",
+      "explanation": "Flash v2.5 is the lower-latency speech model. ElevenLabs describes it as faster than its earlier Turbo line.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "ElevenLabs text-to-speech Turbo v2.5 and Flash v2.5 models",
+      "metric": "vendor-designated speech generation speed",
+      "caveat": "Compares model latency. Network delays and audio quality are separate considerations.",
+      "source_urls": [
+        "https://elevenlabs.io/docs/overview/models",
+        "https://elevenlabs.io/blog/meet-flash"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "hdmi-cables-q01",
+      "ladder_id": "hdmi-cables",
+      "category": "connectivity",
+      "brand": "HDMI Licensing Administrator",
+      "question": "Which HDMI cable designation supports more bandwidth?",
+      "options": [
+        "Ultra High Speed HDMI",
+        "Ultra96 HDMI"
+      ],
+      "answer": "Ultra96 HDMI",
+      "answer_node_id": "hdmi-cables:3",
+      "higher_than": "Ultra High Speed HDMI",
+      "explanation": "Ultra96 is rated for up to 96 Gbps. Ultra High Speed stops at 48 Gbps. The number in Ultra96 is the bandwidth.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Official HDMI cable designations and their published bandwidth limits",
+      "metric": "bandwidth of the cable designation",
+      "caveat": "Cable certification indicates supported bandwidth. Actual throughput depends on the full setup.",
+      "source_urls": [
+        "https://www.hdmi.org/resource/cables"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "hdmi-cables-q02",
+      "ladder_id": "hdmi-cables",
+      "category": "connectivity",
+      "brand": "HDMI Licensing Administrator",
+      "question": "Which HDMI cable designation is rated for more bandwidth?",
+      "options": [
+        "Ultra High Speed HDMI",
+        "Premium High Speed HDMI"
+      ],
+      "answer": "Ultra High Speed HDMI",
+      "answer_node_id": "hdmi-cables:2",
+      "higher_than": "Premium High Speed HDMI",
+      "explanation": "Premium High Speed is certified for up to 18 Gbps. Ultra High Speed supports up to 48 Gbps.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Official HDMI cable designations and their published bandwidth limits",
+      "metric": "bandwidth of the cable designation",
+      "caveat": "Cable certification indicates supported bandwidth. Actual throughput depends on the full setup.",
+      "source_urls": [
+        "https://www.hdmi.org/resource/cables"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "sd-card-capacity-q01",
+      "ladder_id": "sd-card-capacity",
+      "category": "connectivity",
+      "brand": "SD Association",
+      "question": "Which SD standard allows the larger card capacity?",
+      "options": [
+        "SDXC",
+        "SDHC"
+      ],
+      "answer": "SDXC",
+      "answer_node_id": "sd-card-capacity:2",
+      "higher_than": "SDHC",
+      "explanation": "SDXC stands for Extended Capacity and goes up to 2 TB. SDHC is High Capacity and tops out at 32 GB.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "SD Association capacity designations, using each standard’s published maximum",
+      "metric": "maximum capacity allowed by the standard",
+      "caveat": "A capacity designation is unrelated to the card’s write speed and says nothing about its actual size within the range.",
+      "source_urls": [
+        "https://www.sdcard.org/developers/sd-standard-overview/capacity-sd-sdhc-sdxc-sduc/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "sd-card-capacity-q02",
+      "ladder_id": "sd-card-capacity",
+      "category": "connectivity",
+      "brand": "SD Association",
+      "question": "Which SD card designation has the higher capacity ceiling?",
+      "options": [
+        "SDXC",
+        "SDUC"
+      ],
+      "answer": "SDUC",
+      "answer_node_id": "sd-card-capacity:3",
+      "higher_than": "SDXC",
+      "explanation": "SDUC is Ultra Capacity, up to 128 TB. SDXC is Extended Capacity, up to 2 TB. Those are limits of the standards.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "SD Association capacity designations, using each standard’s published maximum",
+      "metric": "maximum capacity allowed by the standard",
+      "caveat": "A capacity designation is unrelated to the card’s write speed and says nothing about its actual size within the range.",
+      "source_urls": [
+        "https://www.sdcard.org/developers/sd-standard-overview/capacity-sd-sdhc-sdxc-sduc/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "sd-write-speed-q01",
+      "ladder_id": "sd-write-speed",
+      "category": "connectivity",
+      "brand": "SD Association",
+      "question": "Which SD card speed label specifies faster sustained writes?",
+      "options": [
+        "U3",
+        "V10"
+      ],
+      "answer": "U3",
+      "answer_node_id": "sd-write-speed:1",
+      "higher_than": "V10",
+      "explanation": "U3 specifies 30 MB/s of minimum sustained writes. V10 specifies 10 MB/s. The number in U3 uses a different scale.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "SD Association UHS and Video Speed Class logos under their specified conditions",
+      "metric": "minimum sustained sequential write speed",
+      "caveat": "Compare only the minimum write speeds represented by the logos. Other requirements and host compatibility differ.",
+      "source_urls": [
+        "https://www.sdcard.org/developers/sd-standard-overview/speed-class/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "usb-32-rates-q01",
+      "ladder_id": "usb-32-rates",
+      "category": "connectivity",
+      "brand": "USB Implementers Forum",
+      "question": "Which USB 3.2 label specifies a higher signaling rate?",
+      "options": [
+        "USB 3.2 Gen 2×2",
+        "USB 3.2 Gen 2"
+      ],
+      "answer": "USB 3.2 Gen 2×2",
+      "answer_node_id": "usb-32-rates:2",
+      "higher_than": "USB 3.2 Gen 2",
+      "explanation": "Gen 2×2 uses two 10 Gbps lanes for 20 Gbps. The original Gen 2 label describes the 10 Gbps mode.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Historical USB 3.2 specification labels, as documented by USB-IF",
+      "metric": "maximum signaling rate",
+      "caveat": "These are different signaling modes. The Gen 1 mode has also had other names for the same speed.",
+      "source_urls": [
+        "https://www.usb.org/sites/default/files/USB_3_2_Language_Product_and_Packaging_Guidelines_FINAL.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "efl-divisions-q01",
+      "ladder_id": "efl-divisions",
+      "category": "sports",
+      "brand": "English Football League",
+      "question": "Which is the higher English football division?",
+      "options": [
+        "Championship",
+        "League One"
+      ],
+      "answer": "Championship",
+      "answer_node_id": "efl-divisions:2",
+      "higher_than": "League One",
+      "explanation": "Clubs can go up from League One to the Championship. The Championship sits one level below the Premier League.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "The three divisions operated by the English Football League",
+      "metric": "level in the English Football League",
+      "caveat": "Divisions in the league pyramid, rather than cup competitions or the standings in any season.",
+      "source_urls": [
+        "https://www.efl.com/documents/efl-handbook.pdf",
+        "https://www.efl.com/competitions/sky-bet-play-offs/about-the-play-offs/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "milb-levels-q01",
+      "ladder_id": "milb-levels",
+      "category": "sports",
+      "brand": "Minor League Baseball",
+      "question": "Which is the higher Minor League Baseball level?",
+      "options": [
+        "Double-A",
+        "High-A"
+      ],
+      "answer": "Double-A",
+      "answer_node_id": "milb-levels:2",
+      "higher_than": "High-A",
+      "explanation": "Double-A sits above High-A. High-A is the higher of the two single-A levels.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "The four modern full-season affiliated Minor League Baseball classifications",
+      "metric": "level of affiliated full-season play",
+      "caveat": "The levels classify leagues. A player’s assignment does not measure talent independently of roster needs.",
+      "source_urls": [
+        "https://www.milb.com/news/minor-league-baseball-s-historical-league-names-to-return-in-2022-x6627"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "fide-titles-q01",
+      "ladder_id": "fide-titles",
+      "category": "sports",
+      "brand": "FIDE",
+      "question": "Which of these is the higher FIDE chess title?",
+      "options": [
+        "International Master",
+        "FIDE Master"
+      ],
+      "answer": "International Master",
+      "answer_node_id": "fide-titles:2",
+      "higher_than": "FIDE Master",
+      "explanation": "International Master sits above FIDE Master. The standard title route for IM requires a higher rating and tournament norms.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "FIDE open player titles for standard over-the-board chess",
+      "metric": "FIDE open chess title rank",
+      "caveat": "Compares titles rather than current ratings. FIDE also awards a separate set of women’s titles.",
+      "source_urls": [
+        "https://handbook.fide.com/chapter/B012024"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "champagne-dosage-q01",
+      "ladder_id": "champagne-dosage",
+      "category": "food",
+      "brand": "Comité Champagne",
+      "question": "Which Champagne label allows more sugar per liter?",
+      "options": [
+        "Brut",
+        "Extra Dry"
+      ],
+      "answer": "Extra Dry",
+      "answer_node_id": "champagne-dosage:2",
+      "higher_than": "Brut",
+      "explanation": "Extra Dry is 12–17 g/L of sugar. Brut is below 12 g/L. Extra Dry is the sweeter category despite the name.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Comité Champagne’s sugar categories in grams per liter",
+      "metric": "upper end of the declared sugar range",
+      "caveat": "The ranges are labeling thresholds. They do not guarantee how sweet a particular bottle will taste.",
+      "source_urls": [
+        "https://www.champagne.fr/en/about-champagne/how-champagne-is-made/dosage"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "champagne-dosage-q02",
+      "ladder_id": "champagne-dosage",
+      "category": "food",
+      "brand": "Comité Champagne",
+      "question": "Which Champagne designation has the higher sugar limit?",
+      "options": [
+        "Sec",
+        "Extra Dry"
+      ],
+      "answer": "Sec",
+      "answer_node_id": "champagne-dosage:3",
+      "higher_than": "Extra Dry",
+      "explanation": "Sec runs from 17 to 32 g/L. Extra Dry tops out at 17 g/L. The French word sec translates to dry.",
+      "difficulty": 4,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Comité Champagne’s sugar categories in grams per liter",
+      "metric": "upper end of the declared sugar range",
+      "caveat": "The ranges are labeling thresholds. They do not guarantee how sweet a particular bottle will taste.",
+      "source_urls": [
+        "https://www.champagne.fr/en/about-champagne/how-champagne-is-made/dosage"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "usda-maple-q02",
+      "ladder_id": "usda-maple",
+      "category": "food",
+      "brand": "USDA",
+      "question": "Which Grade A maple syrup designation passes less light?",
+      "options": [
+        "Amber Rich",
+        "Golden Delicate"
+      ],
+      "answer": "Amber Rich",
+      "answer_node_id": "usda-maple:1",
+      "higher_than": "Golden Delicate",
+      "explanation": "Amber Rich is darker than Golden Delicate. Less light passes through syrup in the amber category.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "U.S. Grade A maple syrup color and flavor designations",
+      "metric": "depth of color in the USDA classification",
+      "caveat": "Color grouping is based on light transmission. It does not measure whether a taster will prefer the syrup.",
+      "source_urls": [
+        "https://www.ams.usda.gov/sites/default/files/media/MapleSyrupStandards.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "usda-beef-quality-q01",
+      "ladder_id": "usda-beef-quality",
+      "category": "food",
+      "brand": "USDA",
+      "question": "Which is the higher USDA beef quality grade?",
+      "options": [
+        "Select",
+        "Choice"
+      ],
+      "answer": "Choice",
+      "answer_node_id": "usda-beef-quality:1",
+      "higher_than": "Select",
+      "explanation": "Choice is above Select in the USDA grades. Choice generally has more marbling than Select.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "USDA’s common retail beef quality grades",
+      "metric": "USDA beef quality grade",
+      "caveat": "The grading system considers maturity and marbling. This comparison is about the labels rather than personal taste.",
+      "source_urls": [
+        "https://www.ams.usda.gov/sites/default/files/media/AMS%20Product%20Label%20Factsheet.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "usda-egg-sizes-q01",
+      "ladder_id": "usda-egg-sizes",
+      "category": "food",
+      "brand": "USDA",
+      "question": "Which U.S. egg size has the higher minimum weight per dozen?",
+      "options": [
+        "Extra Large",
+        "Jumbo"
+      ],
+      "answer": "Jumbo",
+      "answer_node_id": "usda-egg-sizes:2",
+      "higher_than": "Extra Large",
+      "explanation": "A dozen Jumbo eggs must weigh at least 30 ounces. Extra Large starts at 27 ounces.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "U.S. shell egg size classes by minimum net weight per dozen",
+      "metric": "minimum weight for a dozen eggs",
+      "caveat": "Compares weight of a dozen shell eggs. The size class is separate from quality grades such as AA or A.",
+      "source_urls": [
+        "https://www.ams.usda.gov/market-news/livestock-poultry-and-grain-poultry-and-egg-terms"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "avalanche-danger-q01",
+      "ladder_id": "avalanche-danger",
+      "category": "outdoors",
+      "brand": "Avalanche.org",
+      "question": "Which label is higher on the North American avalanche danger scale?",
+      "options": [
+        "Considerable",
+        "Moderate"
+      ],
+      "answer": "Considerable",
+      "answer_node_id": "avalanche-danger:2",
+      "higher_than": "Moderate",
+      "explanation": "Considerable is level 3. Moderate is level 2 on the North American scale.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "North American Public Avalanche Danger Scale",
+      "metric": "published avalanche danger level",
+      "caveat": "These are the published names. Actual avalanche forecasts also depend on location, elevation, and time.",
+      "source_urls": [
+        "https://avalanche.org/avalanche-encyclopedia/human/resources/north-american-public-avalanche-danger-scale/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "yosemite-decimal-q01",
+      "ladder_id": "yosemite-decimal",
+      "category": "outdoors",
+      "brand": "Yosemite Decimal System",
+      "question": "Which Yosemite Decimal System grade is harder to climb?",
+      "options": [
+        "5.10a",
+        "5.9"
+      ],
+      "answer": "5.10a",
+      "answer_node_id": "yosemite-decimal:1",
+      "higher_than": "5.9",
+      "explanation": "5.10a is harder than 5.9. The part after the point is an ordinal grade, rather than a decimal fraction.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Technical grades for roped rock climbs on the Yosemite Decimal System",
+      "metric": "technical difficulty of the climb",
+      "caveat": "Climbing grades are local judgments of technical difficulty and do not describe overall risk.",
+      "source_urls": [
+        "https://www.rei.com/media/5cdc18dd-e873-44f3-8a41-4995ee3004b1"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "astronomical-twilight-q01",
+      "ladder_id": "astronomical-twilight",
+      "category": "outdoors",
+      "brand": "U.S. Naval Observatory",
+      "question": "At the outer edge of which kind of twilight is the Sun farther below the horizon?",
+      "options": [
+        "Nautical Twilight",
+        "Civil Twilight"
+      ],
+      "answer": "Nautical Twilight",
+      "answer_node_id": "astronomical-twilight:1",
+      "higher_than": "Civil Twilight",
+      "explanation": "The outer limit of nautical twilight is 12° below the horizon. For civil twilight it is 6°.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "U.S. Naval Observatory definitions at the outer boundary of twilight",
+      "metric": "angular depth of the Sun below the horizon at the boundary",
+      "caveat": "These are geometric definitions. Actual visibility depends on local weather, terrain, and lighting.",
+      "source_urls": [
+        "https://aa.usno.navy.mil/faq/RST_defs"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "ba-long-haul-q01",
+      "ladder_id": "ba-long-haul",
+      "category": "loyalty",
+      "brand": "British Airways",
+      "question": "Which is the higher British Airways cabin on long-haul flights?",
+      "options": [
+        "Club World",
+        "World Traveller Plus"
+      ],
+      "answer": "Club World",
+      "answer_node_id": "ba-long-haul:2",
+      "higher_than": "World Traveller Plus",
+      "explanation": "Club World is business class. World Traveller Plus is premium economy.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "British Airways cabin names on routes with the compared long-haul classes",
+      "metric": "long-haul cabin class",
+      "caveat": "This compares cabin class, not seat hardware on particular aircraft or the price on any given itinerary.",
+      "source_urls": [
+        "https://www.britishairways.com/content/en/us/information/travel-classes"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "alaska-atmos-rewards-q01",
+      "ladder_id": "alaska-atmos-rewards",
+      "category": "loyalty",
+      "brand": "Alaska Airlines",
+      "question": "Which Atmos Rewards tier requires more status points?",
+      "options": [
+        "Atmos Titanium",
+        "Atmos Platinum"
+      ],
+      "answer": "Atmos Titanium",
+      "answer_node_id": "alaska-atmos-rewards:3",
+      "higher_than": "Atmos Platinum",
+      "explanation": "Atmos Titanium requires 135,000 status points in the 2026 program. Atmos Platinum requires 80,000.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Alaska and Hawaiian’s Atmos Rewards status thresholds for 2026",
+      "metric": "Atmos status qualification threshold",
+      "caveat": "Specific to Atmos Rewards. Platinum and Titanium both map to oneworld Emerald.",
+      "source_urls": [
+        "https://news.alaskaair.com/loyalty/atmos-rewards-2026-expanded-status-earning-bew-partnerships-and-exclusive-perks-announced/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "flying-blue-status-q01",
+      "ladder_id": "flying-blue-status",
+      "category": "loyalty",
+      "brand": "Flying Blue",
+      "question": "Which is the higher Flying Blue status?",
+      "options": [
+        "Ultimate",
+        "Platinum"
+      ],
+      "answer": "Ultimate",
+      "answer_node_id": "flying-blue-status:4",
+      "higher_than": "Platinum",
+      "explanation": "Ultimate is the top Flying Blue status, one tier above Platinum. It has its own qualifying points requirement.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Air France and KLM’s published Flying Blue loyalty tiers",
+      "metric": "Flying Blue program status",
+      "caveat": "Ranking within Flying Blue only. Ultimate has separate qualification criteria tied to eligible flights.",
+      "source_urls": [
+        "https://www.klm.com/information/flying-blue/program/more-info-status"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "whisper-parameters-q01",
+      "ladder_id": "whisper-parameters",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which Whisper speech model has more parameters?",
+      "options": [
+        "Whisper turbo",
+        "Whisper medium"
+      ],
+      "answer": "Whisper turbo",
+      "answer_node_id": "whisper-parameters:1",
+      "higher_than": "Whisper medium",
+      "explanation": "Turbo has 809 million parameters. Medium has 769 million. A name about speed landed between two names about size.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Multilingual Whisper checkpoints in the OpenAI model table",
+      "metric": "parameter count",
+      "caveat": "Parameter counts compare size alone. Speed also depends on the hardware and recording.",
+      "source_urls": [
+        "https://github.com/openai/whisper#available-models-and-languages"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "syslog-severity-q01",
+      "ladder_id": "syslog-severity",
+      "category": "connectivity",
+      "brand": "IETF",
+      "question": "Which syslog message is more urgent?",
+      "options": [
+        "Alert",
+        "Critical"
+      ],
+      "answer": "Alert",
+      "answer_node_id": "syslog-severity:1",
+      "higher_than": "Critical",
+      "explanation": "Alert means someone must act immediately. It is level 1. Critical is level 2, one step less urgent.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Syslog severity names defined in RFC 5424",
+      "metric": "message severity",
+      "caveat": "Higher urgency has a smaller numeric code.",
+      "source_urls": [
+        "https://www.rfc-editor.org/info/rfc5424/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "github-repo-roles-q01",
+      "ladder_id": "github-repo-roles",
+      "category": "software",
+      "brand": "GitHub",
+      "question": "Which built-in GitHub role can label someone else’s issue?",
+      "options": [
+        "Triage",
+        "Read"
+      ],
+      "answer": "Triage",
+      "answer_node_id": "github-repo-roles:1",
+      "higher_than": "Read",
+      "explanation": "Triage lets a contributor label and close other people’s issues. Read lets them participate in the discussion.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Built-in roles for repositories owned by GitHub organizations",
+      "metric": "built-in repository permissions",
+      "caveat": "Custom roles and branch protection can change what an individual can do.",
+      "source_urls": [
+        "https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "usda-olive-size-q01",
+      "ladder_id": "usda-olive-size",
+      "category": "food",
+      "brand": "USDA",
+      "question": "Which USDA label goes on the bigger whole olives?",
+      "options": [
+        "Colossal",
+        "Jumbo"
+      ],
+      "answer": "Colossal",
+      "answer_node_id": "usda-olive-size:2",
+      "higher_than": "Jumbo",
+      "explanation": "Colossal olives run 41–50 to a pound. Jumbo takes 51–60. The USDA even has a Super Colossal.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "USDA Table I for canned whole ripe olives",
+      "metric": "size of an individual whole olive",
+      "caveat": "The count-per-pound ranges apply to whole ripe olives.",
+      "source_urls": [
+        "https://www.ams.usda.gov/sites/default/files/media/Canned%20Ripe%20Olives%20Standard.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "printed-sheets-q01",
+      "ladder_id": "printed-sheets",
+      "category": "arts",
+      "brand": "Folger Shakespeare Library",
+      "question": "Start with the same sheet of paper. Which book format gives you larger pages?",
+      "options": [
+        "Quarto",
+        "Octavo"
+      ],
+      "answer": "Quarto",
+      "answer_node_id": "printed-sheets:1",
+      "higher_than": "Octavo",
+      "explanation": "One sheet makes four leaves in quarto or eight in octavo. Each quarto leaf has twice the area.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Traditional book formats folded from identical sheets of paper",
+      "metric": "area per leaf from an equal sheet",
+      "caveat": "The original sheet size matters when comparing actual books.",
+      "source_urls": [
+        "https://www.folger.edu/explore/shakespeare-in-print/publishing-shakespeare/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "type-spaces-q01",
+      "ladder_id": "type-spaces",
+      "category": "arts",
+      "brand": "Unicode",
+      "question": "At the same type size, which space is conventionally wider?",
+      "options": [
+        "Em space",
+        "En space"
+      ],
+      "answer": "Em space",
+      "answer_node_id": "type-spaces:3",
+      "higher_than": "En space",
+      "explanation": "An em space spans one em. An en space is half that width. At 12-point type the nominal widths are 12 and 6 points.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "Conventional space widths in Unicode General Punctuation",
+      "metric": "nominal width at the same type size",
+      "caveat": "Actual glyph widths can vary by font and justification.",
+      "source_urls": [
+        "https://www.unicode.org/Public/18.0.0/charts/nameslist/2000/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "riaa-albums-q01",
+      "ladder_id": "riaa-albums",
+      "category": "arts",
+      "brand": "RIAA",
+      "question": "Which U.S. album award takes more certified units?",
+      "options": [
+        "Diamond",
+        "9× Platinum"
+      ],
+      "answer": "Diamond",
+      "answer_node_id": "riaa-albums:3",
+      "higher_than": "9× Platinum",
+      "explanation": "Diamond starts at ten million album units in the U.S. Nine-times Platinum requires nine million.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "U.S. RIAA Album Awards under the standard album program",
+      "metric": "minimum certified album units",
+      "caveat": "Units include eligible streaming and downloads as well as album sales.",
+      "source_urls": [
+        "https://www.riaa.com/wp-content/uploads/2022/03/ALBUM-AWARD-RIAA-AND-GRF-CERTIFICATION-AUDIT-REQUIREMENTS.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "geologic-time-q01",
+      "ladder_id": "geologic-time",
+      "category": "outdoors",
+      "brand": "U.S. Geological Survey",
+      "question": "Which unit contains the other on the geologic time scale?",
+      "options": [
+        "Epoch",
+        "Period"
+      ],
+      "answer": "Period",
+      "answer_node_id": "geologic-time:1",
+      "higher_than": "Epoch",
+      "explanation": "A period contains epochs. The Quaternary is a period. The Pleistocene and Holocene are its epochs.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Formal units on the USGS geologic time chart",
+      "metric": "rank of a geologic time unit",
+      "caveat": "This compares ranks in the hierarchy. Individual units have different durations.",
+      "source_urls": [
+        "https://pubs.usgs.gov/gip/141/gip141.pdf"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "jurassic2-original-q01",
+      "ladder_id": "jurassic2-original",
+      "category": "ai",
+      "brand": "AI21 Labs",
+      "question": "Which was the larger Jurassic-2 model before AI21 renamed them?",
+      "options": [
+        "J2-Large",
+        "J2-Grande"
+      ],
+      "answer": "J2-Grande",
+      "answer_node_id": "jurassic2-original:1",
+      "higher_than": "J2-Large",
+      "explanation": "Grande sat above Large, and Jumbo sat above both. AI21 later renamed the three tiers Light, Mid, and Ultra.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "The original Jurassic-2 names, before the 2023 renaming",
+      "metric": "AI21 model size",
+      "caveat": "These comparisons use the original names within the Jurassic-2 family.",
+      "source_urls": [
+        "https://www.ai21.com/blog/simplifying-our-jurassic-2-offering/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "jurassic2-original-q02",
+      "ladder_id": "jurassic2-original",
+      "category": "ai",
+      "brand": "AI21 Labs",
+      "question": "Which Jurassic-2 model did AI21 rename Ultra?",
+      "options": [
+        "J2-Jumbo",
+        "J2-Grande"
+      ],
+      "answer": "J2-Jumbo",
+      "answer_node_id": "jurassic2-original:2",
+      "higher_than": "J2-Grande",
+      "explanation": "Jumbo was the largest Jurassic-2 model. When AI21 changed the names, Grande became Mid and Jumbo became Ultra.",
+      "difficulty": 3,
+      "surprise": 4,
+      "featured": true,
+      "scope": "The original Jurassic-2 names, before the 2023 renaming",
+      "metric": "AI21 model size",
+      "caveat": "These comparisons use the original names within the Jurassic-2 family.",
+      "source_urls": [
+        "https://www.ai21.com/blog/simplifying-our-jurassic-2-offering/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "palm2-animals-q01",
+      "ladder_id": "palm2-animals",
+      "category": "ai",
+      "brand": "Google",
+      "question": "Which was the larger model in Google’s PaLM 2 lineup?",
+      "options": [
+        "Bison",
+        "Unicorn"
+      ],
+      "answer": "Unicorn",
+      "answer_node_id": "palm2-animals:3",
+      "higher_than": "Bison",
+      "explanation": "Google ordered PaLM 2 as Gecko, Otter, Bison, and Unicorn—increasing by animal size until the largest tier switched to a mythical creature.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "The four PaLM 2 sizes Google announced in 2023",
+      "metric": "announced model size",
+      "caveat": "Google published the size order without giving parameter counts in its launch announcement.",
+      "source_urls": [
+        "https://blog.google/innovation-and-ai/products/google-palm-2-ai-large-language-model/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "deepmind-rodents-q01",
+      "ladder_id": "deepmind-rodents",
+      "category": "ai",
+      "brand": "DeepMind",
+      "question": "Which DeepMind model had more parameters?",
+      "options": [
+        "Chinchilla",
+        "Gopher"
+      ],
+      "answer": "Gopher",
+      "answer_node_id": "deepmind-rodents:1",
+      "higher_than": "Chinchilla",
+      "explanation": "Gopher had 280 billion parameters to Chinchilla’s 70 billion. DeepMind trained Chinchilla on four times as much data, and it beat Gopher on most tests.",
+      "difficulty": 5,
+      "surprise": 5,
+      "featured": true,
+      "scope": "The two language models compared in DeepMind’s 2022 Chinchilla study",
+      "metric": "parameter count",
+      "caveat": "These were research models. Parameter count and benchmark results give different answers.",
+      "source_urls": [
+        "https://deepmind.google/blog/an-empirical-analysis-of-compute-optimal-large-language-model-training/"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    },
+    {
+      "id": "gpt3-base-price-q01",
+      "ladder_id": "gpt3-base-price",
+      "category": "ai",
+      "brand": "OpenAI",
+      "question": "Which original GPT-3 base model cost more per token?",
+      "options": [
+        "davinci",
+        "curie"
+      ],
+      "answer": "davinci",
+      "answer_node_id": "gpt3-base-price:3",
+      "higher_than": "curie",
+      "explanation": "Davinci cost $20 per million tokens and Curie cost $2. Ada, Babbage, Curie, Davinci. The prices went up in alphabetical order.",
+      "difficulty": 4,
+      "surprise": 5,
+      "featured": true,
+      "scope": "Base GPT-3 completion models at their published prices before retirement",
+      "metric": "historical price per million tokens",
+      "caveat": "These are historical rates for the base models, distinct from the text-prefixed models.",
+      "source_urls": [
+        "https://developers.openai.com/api/docs/deprecations"
+      ],
+      "verified_as_of": "2026-11-21",
+      "review_status": "editorially_curated"
+    }
+  ]
+}

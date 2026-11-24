@@ -1,0 +1,1361 @@
+---
+title: "What’s Bigger Than Max?"
+description: "Gemini Neon or Carbon? Claude Fable or Opus? Test your intuition on AI models, product tiers, and titles—then see why product naming breaks down."
+permalink: /sites/model-names/
+image:
+  path: /sites/model-names/share-card.png
+  alt: "What’s Bigger Than Max? Which ranks higher, Gemini 4 Neon or Carbon, and Claude Fable 5.2 or Opus 5.5?"
+  width: 1200
+  height: 630
+claude_families: [Haiku, Sonnet, Opus, Fable, Mythos]
+claude_releases:
+  - version: "5.5"
+    dates: {Haiku: "2026-10-07", Sonnet: "2026-09-28", Opus: "2026-09-22"}
+  - version: "5.2"
+    dates: {Fable: "2026-11-09", Mythos: "2026-11-09"}
+  - version: "5.1"
+    dates: {Fable: "2026-09-01", Mythos: "2026-09-01"}
+  - version: "5"
+    dates: {Sonnet: "2026-06-30", Opus: "2026-07-24", Fable: "2026-06-09", Mythos: "2026-06-09"}
+  - version: "4.8"
+    dates: {Opus: "2026-05-28"}
+  - version: "4.6"
+    dates: {Sonnet: "2026-02-17"}
+  - version: "4.5"
+    dates: {Haiku: "2025-10-15"}
+  - version: "3.5"
+    dates: {Haiku: "2024-11-04"}
+periodic_rows:
+  - "H  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  He"
+  - "Li Be .  .  .  .  .  .  .  .  .  .  B  C  N  O  F  Ne"
+  - "Na Mg .  .  .  .  .  .  .  .  .  .  Al Si P  S  Cl Ar"
+  - "K  Ca Sc Ti V  Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr"
+  - "Rb Sr Y  Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I  Xe"
+  - "Cs Ba *  Hf Ta W  Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn"
+  - "Fr Ra †  Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og"
+  - ".  *  La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu"
+  - ".  †  Ac Th Pa U  Np Pu Am Cm Bk Cf Es Fm Md No Lr"
+paper_series:
+  A: ["420 × 594", "297 × 420", "210 × 297", "148 × 210"]
+  B: ["500 × 707", "353 × 500", "250 × 353", "176 × 250"]
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  {% seo %}
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+  <script type="module" src="./quiz.mjs?v=3"></script>
+  <style>
+    :root{
+      --paper:#f5f3ed; --ink:#18221f; --ink2:#47544d; --muted:#69766e; --edge:#dcdcd2;
+      --lime:#d8f36d; --lime-soft:#e9f6c4; --cream:#fcfaf6; --navy:#132922;
+      --purple:#dcd9ef; --violet:#6659a2; --orange:#ebaa7b; --sky:#c6e5ee;
+      --serif:Georgia,'Iowan Old Style','Palatino Linotype',Palatino,serif;
+      --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    }
+    *, *::before, *::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    ::selection{background:var(--lime);color:var(--ink)}
+    a{color:inherit;text-underline-offset:3px}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #5e9d7b;outline-offset:4px}
+    .container{width:min(1160px,calc(100% - 64px));margin:0 auto}
+    .site-header{position:sticky;top:0;z-index:100;background:rgba(245,243,237,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--edge)}
+    .nav{height:68px;display:flex;align-items:center;gap:28px;justify-content:space-between}
+    .brand{text-decoration:none;display:inline-flex;align-items:center;gap:10px;white-space:nowrap}
+    .brand-mark{display:grid;place-items:center;width:36px;height:36px;background:var(--ink);color:var(--paper);border-radius:50%;font-size:14px;letter-spacing:-.09em}
+    .brand-sub{font-size:13px;font-weight:700;color:var(--ink2)}
+    .nav-links{display:flex;align-items:center;gap:31px;font-size:13px;font-weight:650}
+    .nav-links a{text-decoration:none;transition:opacity .2s}
+    .nav-links a:hover{opacity:.55}
+    .nav-links .nav-back{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 16px;border:1px solid #20352e;border-radius:5px;background:#20352e;color:white;font-size:14px;font-weight:700;white-space:nowrap;transition:background .2s,border-color .2s}
+    .nav-links .nav-back:hover{opacity:1;background:#324e41;border-color:#324e41}
+    .case-kicker,.micro{font-size:11px;line-height:1.5;letter-spacing:.13em;text-transform:uppercase;font-weight:800}
+    .hero{padding:clamp(38px,5vw,70px) 0}
+    .hero-grid{display:grid;grid-template-columns:12rem minmax(0,1fr);grid-template-areas:"intro intro" "categories game";align-items:start;gap:28px 32px}
+    .hero-intro{grid-area:intro}
+    .quiz-categories{grid-area:categories}
+    .quiz-categories h2{margin:0 0 8px;font-size:16px}
+    .category-list{display:grid;gap:1px}
+    .category-list button{min-height:32px;padding:5px 10px;text-align:left;background:transparent;border:none;border-inline-start:3px solid transparent;color:var(--ink2);font-size:15px;line-height:1.4}
+    .category-list button:hover{background:#e9ebdf}
+    .category-list button[aria-pressed="true"]{background:var(--lime-soft);border-color:#52754b;color:var(--ink);font-weight:750}
+    .quiz-card{grid-area:game}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-family:var(--serif);font-weight:500;line-height:.99;letter-spacing:-.073em;font-size:clamp(48px,6vw,85px);margin:0 0 20px}
+    h1 em{font-style:normal;display:inline-block;position:relative;isolation:isolate}
+    h1 em::after{content:"";position:absolute;height:22%;bottom:5%;left:-1%;right:-2%;background:var(--lime);z-index:-1;transform:rotate(-1.2deg)}
+    .hero-copy{font-size:19px;line-height:1.67;color:var(--ink2);margin:0}
+    .quiz-card [hidden]{display:none}
+    .quiz-controls{display:flex;align-items:flex-start;justify-content:space-between;gap:16px 20px;margin-bottom:22px}
+    .quiz-group{margin:0;font-size:18px;font-weight:620;color:#d8e8d6}
+    .quiz-modes{display:inline-flex;flex-wrap:wrap;gap:4px;margin-top:10px;padding:4px;background:#152a20;border:1px solid #496356;border-radius:6px}
+    .quiz-modes button{min-height:36px;border:1px solid transparent;border-radius:4px;padding:6px 14px;color:#d8e8d6;background:transparent;font-size:13px;font-weight:650;transition:background .18s,color .18s,border-color .18s}
+    .quiz-modes button:hover:not([aria-pressed="true"]){background:#244234;color:white;border-color:#5b7768}
+    .quiz-modes button[aria-pressed="true"]{background:var(--lime);color:var(--ink);font-weight:750;border-color:var(--lime)}
+    .quiz-running-score .micro{display:block;color:#d8e8d6;margin-bottom:6px}
+    .quiz-running-score{flex-shrink:0;text-align:right;margin:0;color:var(--lime)}
+    .quiz-running-score strong{display:block;font:500 clamp(34px,4vw,48px)/.95 var(--serif);letter-spacing:-.05em;white-space:nowrap}
+    .quiz-card :is(button,a,select):focus-visible{outline:3px solid var(--lime);outline-offset:4px}
+    .quiz-message{color:#d8e8d6;font-size:14px;margin:0}
+    .quiz-message:not(:empty){margin:18px 0 0}
+    .quiz-card{--incorrect-text:#ffd0c9;--incorrect-border:#ffa79b;border:1px solid #536a5d;background:#1e382c;color:#f6f5ee;padding:clamp(24px,3vw,38px);display:flex;flex-direction:column}
+    .quiz-card-top{display:flex;justify-content:space-between;align-items:center;color:#c4d2c6;text-transform:uppercase;font-size:11px;letter-spacing:.12em;font-weight:800;gap:12px}
+    .quiz-track{display:flex;gap:5px}
+    .quiz-track span{width:clamp(10px,1.65vw,25px);height:4px;background:#557063;border-radius:3px;display:block;transition:background .2s}
+    .quiz-track span.current{outline:1px solid #d8e8d6;outline-offset:1px}
+    .quiz-track span.right{background:var(--lime)}
+    .quiz-track span.wrong{background:var(--incorrect-border)}
+    .quiz-question{font-size:clamp(24px,2.5vw,32px);line-height:1.3;letter-spacing:-.035em;margin:22px 0 18px;font-weight:620}
+    .quiz-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .rank-list{display:grid;gap:5px;margin:0;padding:0;list-style:none}
+    .rank-item{display:flex;align-items:center;gap:10px;border:1px solid #6c8275;background:#294538;padding:3px 6px 3px 12px;min-height:52px}
+    .rank-item:not([data-locked]){cursor:grab;touch-action:pan-y;user-select:none}
+    .rank-grip{display:grid;place-items:center;align-self:stretch;min-width:26px;color:#c4d2c6;touch-action:none;font-size:19px}
+    .rank-position{font-size:13px;color:#d8e8d6;min-width:1ch}
+    .rank-name{flex:1;min-width:0;overflow-wrap:anywhere;font:500 clamp(17px,2vw,23px)/1.2 var(--serif)}
+    .rank-actions{display:flex}
+    .rank-actions button{width:36px;min-height:44px;border:0;background:none;color:white;font-size:19px}
+    .rank-actions button:disabled{opacity:.25;cursor:default}
+    .rank-item.dragging{position:fixed;top:0;left:0;z-index:101;pointer-events:none;border-color:var(--lime);background:#365442;box-shadow:0 6px 18px #0c1c1866}
+    .rank-placeholder{border:1px dashed #b1c79a;background:#243e31}
+    .rank-list:has(.dragging),.rank-list:has(.dragging) *{cursor:grabbing}
+    .rank-list:has(.dragging) .rank-actions{visibility:hidden}
+    .rank-item[data-locked="right"]{border-color:var(--lime)}
+    .rank-item[data-locked="wrong"]{border-color:var(--incorrect-border);background:#552f31}
+    .rank-check{margin-top:12px;min-height:44px;border:0;padding:8px 16px;background:var(--lime);color:var(--ink);font-weight:700}
+    .quiz-context{margin:-6px 0 20px;color:#d8e8d6;font-size:15px;line-height:1.5}
+    .quiz-choice{min-height:90px;border:1px solid #6c8275;padding:15px;background:#294538;color:white;text-align:left;transition:border-color .18s,background .18s,transform .18s}
+    .quiz-choice:hover:not([aria-disabled="true"]){border-color:var(--lime);transform:translateY(-2px)}
+    .quiz-choice .choice-label{display:block;font-size:10px;letter-spacing:.09em;margin-bottom:6px}
+    .quiz-choice .choice-label:empty{display:none}
+    .quiz-choice strong{display:block;font-family:var(--serif);font-size:clamp(18px,2.3vw,27px);font-weight:500;letter-spacing:-.04em;overflow-wrap:anywhere}
+    .quiz-choice.correct{border-color:var(--lime);background:#365b43;box-shadow:inset 0 -4px 0 var(--lime)}
+    .quiz-choice.chosen:not(.correct){border-color:var(--incorrect-border);background:#552f31;box-shadow:inset 0 -4px 0 var(--incorrect-border)}
+    .quiz-choice.chosen:not(.correct):focus-visible{outline-color:var(--incorrect-border)}
+    .quiz-choice:is(.correct,.chosen) .choice-label{font-size:12px;font-weight:760;letter-spacing:.02em;opacity:1}
+    .quiz-choice.correct .choice-label{color:var(--lime)}
+    .quiz-choice.chosen:not(.correct) .choice-label,.quiz-result.incorrect strong{color:var(--incorrect-text)}
+    .quiz-choice[aria-disabled="true"]{cursor:default}
+    .quiz-result{margin:20px 0 0;color:#d8e8d6;font-size:14px;line-height:1.65}
+    .quiz-result:empty{margin:0}
+    .quiz-result strong{color:var(--lime)}
+    .quiz-result.incorrect strong{font-size:16px}
+    .quiz-result a{color:var(--lime)}
+    .quiz-bottom{margin-top:auto;padding-top:20px;display:flex;align-items:center;gap:15px}
+    .quiz-prev,.quiz-next{min-height:44px;padding:10px 16px;font-size:13px;font-weight:760}
+    .quiz-prev{border:1px solid #789182;background:transparent;color:#f6f5ee}
+    .quiz-next{margin-left:auto;border:0;color:var(--ink);background:var(--lime);min-width:130px}
+    .quiz-done{padding:25px 0 12px}
+    .quiz-done .micro{color:#a5caad;margin:0}
+    .quiz-score{font-family:var(--serif);font-size:79px;letter-spacing:-.07em;line-height:1.1;margin:22px 0}
+    .quiz-total{color:#a5caad;font-size:38px}
+    .quiz-other{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;margin-top:18px}
+    .quiz-other p{color:#e0ecdf;margin:0}
+    .quiz-other button{min-height:44px;background:var(--lime);color:var(--ink);border:0;padding:8px 16px;font-weight:700}
+    .quiz-card:has(.quiz-done:not([hidden]) .quiz-other:not([hidden])) .quiz-next{background:transparent;color:#f6f5ee;border:1px solid #789182}
+    .quiz-copy{background:none;border:0;padding:8px 0;color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+    .quiz-share-text{display:block;width:100%;margin-top:8px;font:inherit}
+    .case-group-band{background:#eae7dc;border-top:1px solid #cfcec6;border-bottom:1px solid #cfcec6;padding:28px 0}
+    .case-group-grid{--label-width:6rem;--label-gap:24px;display:grid;grid-template-columns:var(--label-width) minmax(0,1fr);gap:8px var(--label-gap);align-items:baseline}
+    .case-group-label{margin:0;font-size:14px;font-weight:650;line-height:1.35;color:var(--ink2)}
+    .case-group-label span{display:block;margin-top:2px;font-size:12px;font-weight:500;color:var(--muted)}
+    .case-group-body h2{margin:0;font:500 clamp(24px,2.7vw,34px)/1.15 var(--serif);letter-spacing:-.045em;color:var(--ink)}
+    .case-group-body p{margin:8px 0 0;font-size:16px;line-height:1.65;color:var(--ink2)}
+    .case-group-band + .case{padding-top:46px;border-top:0}
+    .case{padding:61px 0 82px;border-top:1px solid #cfcec6}
+    .case{--label-width:6rem;--label-gap:24px}
+    .case-head{display:grid;grid-template-columns:var(--label-width) minmax(0,1fr);grid-template-areas:"label title" ". summary";gap:15px var(--label-gap);margin-bottom:33px}
+    .case-kicker{color:#5b6c61;padding-top:10px}
+    .case-head .case-kicker{grid-area:label;align-self:center;padding:0;font-size:14px;font-weight:650;letter-spacing:normal;text-transform:none}
+    .case-head > h3{grid-area:title;font-family:var(--serif);font-size:clamp(36px,4vw,58px);letter-spacing:-.065em;line-height:1.12;font-weight:500;margin:0}
+    .case .case-summary{grid-area:summary;font-size:17px;line-height:1.77;color:var(--ink2);margin:0}
+    .case-visual{margin-inline-start:calc(var(--label-width) + var(--label-gap))}
+    #anthropic .case-visual{container:literature / inline-size}
+    .literary-row{--cover-height:clamp(159px,22cqi,224px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr) auto) minmax(0,1fr);gap:clamp(5px,1cqi,12px)}
+    .literary-comparison{display:grid;place-items:center;height:var(--cover-height);font:700 24px/1 var(--sans);color:#70695d;-webkit-text-stroke:1.25px currentColor}
+    .book-cover{height:var(--cover-height);display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:5px;padding:14px 13px 12px clamp(13px,1.7cqi,20px);border-left:5px solid #0002;box-shadow:inset 1px 0 #fff4;border-radius:1px 4px 4px 1px;background:#dde6d8;color:#263e33}
+    .book-cover.fable{background:#713e46;color:#fff6e8}
+    .book-cover.opus{background:#e8caaa;color:#442d22}
+    .book-cover.haiku{background:#dce8e7;color:#274744}
+    .cover-art{display:block;min-height:0;width:100%;height:100%;object-fit:contain}
+    .tile-word{font:clamp(28px,4.4cqi,50px)/1.05 var(--serif);letter-spacing:-.055em}
+    .tile-type{font-size:10px;line-height:1.3;text-transform:uppercase;letter-spacing:.09em;font-weight:700}
+    .book-cover .tile-type{border-top:1px solid currentColor;padding-top:7px}
+    .tile-desc{margin:10px 0 0;font-size:13px;color:var(--ink2);line-height:1.55}
+    .lit-side{margin-top:24px;padding:15px 0 0;border-top:1px solid #c9c3b9;display:grid;grid-template-columns:clamp(116px,17cqi,164px) minmax(0,1fr);align-items:center;gap:clamp(14px,2cqi,22px)}
+    .mythos-tile{display:grid;align-content:center;justify-items:center;gap:3px;min-height:75px;padding:9px 6px;text-align:center;background:#eee3e4;color:#663b41;border-left:4px solid #b5989b;border-radius:1px 4px 4px 1px}
+    .mythos-tile small{font-size:11px;font-weight:650;line-height:1.3}
+    .mythos-tile strong{font:italic 26px/1.2 var(--serif);letter-spacing:-.035em;color:#663b41}
+    .lit-side p{margin:0;font-size:14px;color:var(--ink2);line-height:1.6}
+    .case-source{margin-top:17px;font-size:11px;color:#748076}
+    .case-source a{text-decoration:underline;text-decoration-color:#b3bdb2}
+    .space-visual{margin:0 0 20px;border:1px solid #273b3c;background:radial-gradient(circle at 72% 49%,#25433c 0%,#1d3432 35%,#122c2a 85%);color:#f6f5ee;padding:8px 25px}
+    .space-visual div{display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr);align-items:baseline;gap:14px;padding:16px 0}
+    .space-visual div+div{border-top:1px solid #536a5d}
+    .space-visual dt{font-size:14px;font-weight:650;color:#c4d2c6}
+    .space-visual dd{margin:0;display:flex;align-items:baseline;gap:clamp(4px,.9vw,13px);font:clamp(21px,2.6vw,34px)/1.2 var(--serif);letter-spacing:-.04em}
+    .space-visual .space-order{color:var(--lime)}
+    .space-model{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+    .space-model .model-rank{padding:2px 6px;font:700 11px/1.2 var(--sans);letter-spacing:normal}
+    .space-note{color:#d4ded6;font:500 12px/1.3 var(--sans);letter-spacing:normal}
+    .cosmic-note{font-size:16px;color:var(--ink2);line-height:1.7;margin:0}
+    .cosmic-note + .cosmic-note{margin-top:12px}
+    .chemical-ui{container:chemistry / inline-size;background:#fbfaf5;border:1px solid #d5d6cd;padding:23px}
+    .chem-head{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:28px}
+    .chem-read{font-size:12px;color:#66746a;font-weight:650}
+    .toggle-group{display:inline-flex;align-items:center;padding:3px;gap:3px;background:#e8ebe4;border:1px solid #d5dbcf}
+    .toggle-group button{border:0;background:transparent;font-size:12px;color:#617066;padding:8px 11px;font-weight:700;transition:background .2s}
+    .toggle-group button[aria-pressed="true"]{color:var(--ink);background:white;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+    .chem-cards{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:clamp(3px,1vw,13px)}
+    .chem-greater{align-self:center;color:#526359;font-size:clamp(15px,2.4vw,26px);font-weight:650}
+    .element{--inset:clamp(12px,2.2cqi,20px);position:relative;min-height:182px;background:#e7f0ea;border:1px solid #a9c9b6;border-radius:3px;padding:var(--inset);display:flex;flex-direction:column}
+    .element[data-element="neon"]{background:#e4e8f5;border-color:#bac5de}
+    .element[data-element="carbon"]{background:#f1e8e1;border-color:#e0c5b6}
+    .element-symbol{display:flex;align-items:flex-start;justify-content:space-between;gap:2px;margin-top:14px}
+    .element .symbol{font-family:var(--serif);font-size:clamp(44px,8cqi,68px);line-height:1;letter-spacing:-.07em}
+    .element .elt-name{font-size:14px;font-weight:700;margin:3px 0 14px}
+    .element [data-metric]:not([hidden]){display:flex;align-items:center;gap:3px;border-top:1px solid #17271f33;padding-top:8px;margin-top:auto;font-size:12px;color:#46554b}
+    .element [data-metric] strong{margin-left:auto;font-size:clamp(16px,3.1cqi,25px);line-height:1.2;font-weight:650;color:var(--ink);font-variant-numeric:tabular-nums}
+    .model-rank{align-self:flex-start;display:inline-flex;align-items:baseline;gap:.3em;padding:3px 9px;border:1px solid;border-radius:99px;font-size:13px;font-weight:650;line-height:1.2;white-space:nowrap}
+    .model-rank strong{font-size:1.18em;font-weight:800}
+    .rank-gold{background:#f4d273;color:#4b3408;border-color:#ae8127}
+    .rank-silver{background:#d7dde4;color:#283541;border-color:#8996a4}
+    .rank-bronze{background:#e6b38d;color:#492c18;border-color:#aa7954}
+    .rank-fourth{background:#dce9d6;color:#314536;border-color:#99ac96}
+    .atomic-number{position:absolute;right:var(--inset);top:var(--inset);color:var(--ink2);font:600 13px/1.4 ui-monospace,monospace}
+    .mass-marker{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#b42318;color:#fff;font-size:15px;font-weight:800;line-height:1;vertical-align:middle}
+    .chem-cards:not([data-order="model"]) [data-metric] strong{color:#234c37}
+    .chem-reference{display:grid;grid-template-columns:minmax(13rem,1fr) minmax(0,1.6fr);align-items:center;gap:clamp(18px,4cqi,42px);margin:20px 0 0;padding-top:20px;border-top:1px solid var(--edge)}
+    .chem-reference h4{margin:0;font:500 clamp(21px,3cqi,28px)/1.15 var(--serif);letter-spacing:-.035em}
+    .chem-explainer{margin:8px 0 0;font-size:14px;color:var(--ink2);line-height:1.55}
+    .periodic-map{container-type:inline-size;padding-right:29px}
+    .periodic-row{display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:1px;margin-top:1px}
+    .periodic-row:nth-child(8){margin-top:5px}
+    .periodic-cell{position:relative;display:grid;place-items:center;height:clamp(14px,3.4cqi,21px);background:#edede6;color:#646a62;font:500 clamp(9px,2cqi,12px)/1 var(--sans)}
+    .periodic-row:nth-child(n+8) .periodic-cell:nth-child(2){background:none;justify-items:end;padding-right:3px}
+    .periodic-cell.ranked{font-weight:750;background:#f4d273;color:#4b3408;box-shadow:inset 0 0 0 1px #ae8127}
+    .periodic-cell.neon{background:#d7dde4;color:#283541;box-shadow:inset 0 0 0 1px #8996a4}
+    .periodic-cell.hydrogen{background:#e6b38d;color:#492c18;box-shadow:inset 0 0 0 1px #aa7954}
+    .periodic-rank{position:absolute;left:calc(100% + 5px);top:50%;transform:translateY(-50%);display:grid;place-items:center;min-width:23px;height:17px;border:1px solid;border-radius:9px;font:750 11px/1 var(--sans)}
+    .periodic-rank::before{content:"";position:absolute;width:5px;right:100%;top:50%;border-top:1px solid}
+    .carbon .periodic-rank{left:50%;top:auto;bottom:calc(100% + 3px);transform:translateX(-50%)}
+    .carbon .periodic-rank::before{width:0;height:3px;right:50%;top:100%;border:0;border-right:1px solid}
+    @container chemistry (max-width:600px){
+      .chem-reference{grid-template-columns:minmax(0,1fr);gap:14px}
+      .chem-explainer{margin-top:4px}
+    }
+    @container (max-width:340px){
+      .periodic-cell:not(.ranked){color:transparent}
+      .periodic-cell.ranked{font-size:10px}
+    }
+    .apple-diagram{border:1px solid #d3d5ce;background:#fefcf8;padding:28px 30px}
+    .apple-line{display:grid;grid-template-columns:154px minmax(0,1fr);gap:20px;align-items:center}
+    .apple-line + .apple-line{border-top:1px solid #e0e3dc;margin-top:29px;padding-top:29px}
+    .apple-lab{font-size:12px;font-weight:800;letter-spacing:.035em;line-height:1.5;color:#56685e}
+    .apple-lab span{font-size:10px;display:block;letter-spacing:.04em;font-weight:500;color:#8b958d;margin-top:4px}
+    .apple-chips{container:chip-row / inline-size}
+    .chip-seq{
+      --die-width:clamp(46px,15cqi,76px);
+      --die-height:clamp(35px,10cqi,48px);
+      display:flex;align-items:flex-start;flex-wrap:wrap;gap:clamp(2px,1cqi,10px);
+      font-size:clamp(11px,3cqi,14px);font-weight:760;letter-spacing:-.02em;white-space:nowrap
+    }
+    .chip-die,.chip-chevron{display:grid;place-items:center;height:var(--die-height)}
+    .chip-chevron{color:#84968a}
+    .chip-die{
+      position:relative;padding-inline:clamp(4px,2cqi,14px);background:#31463b;color:#fffdf3;
+      border:1px solid #21362b;box-shadow:inset 0 0 0 2px #526b59
+    }
+    .max-die{width:var(--die-width);padding-inline:0}
+    .chip-die::before,.chip-die::after{
+      content:"";position:absolute;inset:4px 5px auto;height:clamp(3px,1cqi,6px);
+      background:repeating-linear-gradient(90deg,#849a84 0 5px,transparent 5px 7px)
+    }
+    .chip-die::after{top:auto;bottom:4px}
+    .ultra-package{display:inline-grid;text-align:center}
+    .ultra-dies{display:flex;align-items:center}
+    .die-join{width:clamp(3px,.8cqi,6px);height:65%;background:repeating-linear-gradient(0deg,#4d6b51 0 2px,#bccbab 2px 3px)}
+    .ultra-label{padding:2px 4px;border:1px solid #acc872;background:var(--lime)}
+    @container chip-row (max-width:270px){
+      .chip-seq{gap:1px}
+      .chip-die:not(.max-die){padding-inline:3px}
+      .chip-chevron{font-size:10px}
+    }
+    .phone-pairs{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 24px}
+    .phone-seq{display:flex;align-items:flex-end;gap:8px}
+    .phone{flex-shrink:0;border:2px solid #73827a;border-radius:13px 13px 9px 9px;background:linear-gradient(#e4ece5,#f2f3ec);display:flex;align-items:flex-end;justify-content:center;padding:13px 4px 8px;position:relative;color:#405048;font-size:11px;font-weight:760;line-height:1.25;text-align:center;white-space:nowrap}
+    .phone::before{content:"";height:5px;width:26px;background:#728078;position:absolute;top:7px;left:50%;transform:translateX(-50%);border-radius:0 0 7px 7px}
+    .phone.regular{height:93px;width:63px}
+    .phone.large{height:115px;width:74px}
+    .device-line{display:flex;align-items:flex-start;gap:clamp(4px,1vw,12px)}
+    .device-model{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:0;font-size:13px;font-weight:700;line-height:1.3;text-align:center}
+    .device-arrow{align-self:center;color:#78887d;line-height:1;transform:translateY(-.55rem)}
+    .watch-model{flex:0 1 70px}
+    .watch{position:relative;display:grid;place-items:center;height:70px;width:37px;color:#6d7971;--band:#c4cfc5}
+    .watch::before{content:"";position:absolute;height:100%;width:64%;border:1px solid currentColor;border-radius:7px;background:var(--band)}
+    .watch::after{content:"";position:absolute;top:35%;right:-3px;width:4px;height:9px;border:1px solid currentColor;border-radius:2px;background:#a7b1a9}
+    .watch-face{position:relative;width:100%;height:60%;border:2px solid currentColor;border-radius:28%;background:linear-gradient(#95a196,#95a196) center 3px / 1px 3px no-repeat,linear-gradient(#95a196,#95a196) center calc(100% - 3px) / 1px 3px no-repeat,#eef1e9;box-shadow:inset 0 0 0 1px #b8c3ba}
+    .watch-face::before,.watch-face::after{content:"";position:absolute;left:49%;bottom:48%;width:2px;height:21%;border-radius:2px;background:#48594d;transform-origin:bottom;transform:rotate(-55deg)}
+    .watch-face::after{height:32%;transform:rotate(45deg)}
+    .watch-series{width:40px;--band:#aabbb8}
+    .watch-ultra{width:44px;--band:#dfa774;color:#807363}
+    .watch-ultra .watch-face{height:65%;border-width:3px;border-radius:23%}
+    .mac-model{flex:0 1 100px}
+    .display-model{flex:0 1 125px}
+    .macbook,.monitor{position:relative;display:block;width:100%;color:#738078;--screen-top:#e1e8df;--screen-bottom:#eff2ec}
+    .macbook{aspect-ratio:1.68}
+    .macbook::before,.monitor::before{content:"";position:absolute;inset:0 6% 7px;border:2px solid currentColor;border-radius:5px 5px 2px 2px;background:linear-gradient(145deg,var(--screen-top),var(--screen-bottom));box-shadow:inset 0 0 0 1px #fff8}
+    .macbook::before{background:radial-gradient(circle at 50% 3px,#708079 1px,transparent 1.5px),linear-gradient(145deg,var(--screen-top),var(--screen-bottom))}
+    .macbook::after{content:"";position:absolute;inset:auto 0 0;height:7px;border:1px solid currentColor;border-radius:1px 1px 8px 8px;background:linear-gradient(to right,transparent 37%,#859189 37% 63%,transparent 63%) center top / 100% 2px no-repeat,#c8d0ca}
+    .mac-neo{--screen-top:#e8cfc9;--screen-bottom:#f6e9df}
+    .mac-air{--screen-top:#c9dce3;--screen-bottom:#edf2f1}
+    .mac-pro{--screen-top:#abb8b8;--screen-bottom:#e1e6df}
+    .monitor{aspect-ratio:1.42;background:linear-gradient(#aab4ad,#d5dcd6) center bottom / 13% 27% no-repeat}
+    .monitor::before{inset:0 0 24%;border-radius:4px}
+    .monitor::after{content:"";position:absolute;inset:auto 35% 0;height:4px;border:1px solid currentColor;border-radius:3px 3px 1px 1px;background:#c5cec7}
+    .monitor-xdr{--screen-top:#c6d6dd;--screen-bottom:#f7f6ea}
+    .apple-note{margin:10px 0 0;font-size:13px;color:#5c6c61;line-height:1.6}
+    .tv-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(6px,2vw,24px);max-width:360px}
+    .tv-products figure{margin:0;display:grid;grid-template-rows:78px auto;gap:5px;justify-items:center;align-items:center;text-align:center}
+    .tv-products img{display:block;max-width:100%;height:auto}
+    .tv-products .tv-hardware{mix-blend-mode:multiply;filter:brightness(1.05)}
+    .tv-products figcaption{font-size:13px;font-weight:700;line-height:1.35}
+    .tv-products small{display:block;margin-top:2px;font-size:11px;font-weight:500;color:var(--ink2)}
+    .dyson-models{width:min(100%,48rem);table-layout:fixed;border-collapse:collapse;margin:0 0 18px;text-align:left}
+    .dyson-models caption{text-align:left;padding-bottom:8px;font-size:13px;color:var(--ink2)}
+    .dyson-models th,.dyson-models td{padding:7px 12px 7px 0;border-bottom:1px solid var(--edge);vertical-align:baseline}
+    .dyson-models thead th{font-size:13px;color:var(--ink2);border-bottom-color:#a7aaa1}
+    .dyson-models td{font:500 clamp(16px,2vw,21px)/1.35 var(--serif)}
+    .dyson-models td strong{color:#68465f}
+    .dyson-models .absent{color:var(--muted)}
+    #dyson .case-summary + .case-summary{margin-top:1em}
+    #usb .case-visual{container:usb / inline-size}
+    .usb-map{margin:0}
+    .usb-map + .case-summary{padding-top:16px}
+    .usb-families{display:grid;grid-template-columns:3fr 2fr;column-gap:10px}
+    .usb-family{display:grid;grid-row:span 2;grid-template-rows:subgrid;border-top:2px solid #768a7e;background:#e9ede6;padding:12px 0}
+    .usb-family-ended{border-color:#a16b41;background:#f3e9de}
+    .usb-family h4{align-self:center;margin:0 5px 10px;text-align:center;font-size:14px;color:#42574a}
+    .usb-family-ended h4{color:#704725}
+    .usb-plugs{display:flex;list-style:none;margin:0;padding:0}
+    .usb-plugs li{flex:1;min-width:0;display:grid;grid-template-rows:43px auto;align-items:start;justify-items:center;gap:5px;text-align:center;font-size:14px;font-weight:700}
+    .usb-plugs img{align-self:center;height:auto;max-width:90%}
+    .usb-plugs small{display:block;color:var(--ink2);font-size:12px;font-weight:400}
+    .usb-flow{display:block;width:100%;height:clamp(40px,6cqi,58px);color:#78887c}
+    .usb-cables{max-width:760px;margin:0 auto;text-align:center}
+    .usb-port{position:relative}
+    .usb-port h4{position:absolute;left:64%;top:11%;transform:translateY(-50%);margin:0;font:600 clamp(13px,2cqi,19px)/1.15 var(--sans)}
+    .usb-cables img{display:block;width:100%;height:auto}
+    .usb-branches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));row-gap:4px;list-style:none;margin:2px 0 0;padding:0}
+    .usb-branches li{display:grid;grid-row:span 3;grid-template-rows:subgrid;align-items:start;border-top:1px solid var(--edge);margin-inline:clamp(2px,1cqi,10px);padding:8px 2px}
+    .usb-branches h5{margin:0;font-size:clamp(12px,2cqi,14px);line-height:1.35}
+    .usb-branches strong{font:500 clamp(18px,3.6cqi,32px)/1.15 var(--serif);letter-spacing:-.035em}
+    .usb-branches small{font-size:12px;line-height:1.4;color:var(--ink2)}
+    .usb-devices{display:flex;align-items:center;flex-wrap:wrap;gap:10px 26px;margin-top:12px;padding:14px 0;border-block:1px solid var(--edge)}
+    .usb-devices p{flex:1 1 18rem;margin:0;color:var(--ink2);font-size:15px}
+    .usb-devices dl{display:flex;gap:8px 24px;flex-wrap:wrap;margin:0;font-variant-numeric:tabular-nums}
+    .usb-devices dt{color:var(--ink2);font-size:13px}
+    .usb-devices dd{margin:0;font-weight:650;font-size:16px}
+    @container usb (max-width:590px){
+      .usb-families{column-gap:6px}
+      .usb-family h4{font-size:12px;line-height:1.35}
+      .usb-plugs li{grid-template-rows:34px auto;padding-inline:2px;font-size:12px;line-height:1.35}
+      .usb-plugs small{margin-top:3px;font-size:11px}
+    }
+    .family-selectors{display:grid;gap:clamp(4px,1.2vw,15px);align-items:start}
+    .console-selectors{grid-template-columns:repeat(5,minmax(0,1fr));--selected:#344b5c}
+    .camera-selectors{grid-template-columns:repeat(4,minmax(0,1fr));--selected:#344c3c}
+    .claude-history{margin:20px 0 0;border-collapse:collapse;table-layout:fixed;width:100%;text-align:center}
+    .claude-history caption{caption-side:bottom;padding-top:8px;text-align:left;color:var(--ink2);font-size:12px}
+    .claude-history caption a{white-space:nowrap}
+    .claude-history th,.claude-history td{padding:0;border-bottom:1px solid var(--edge)}
+    .claude-history thead th{padding-bottom:6px;font:600 clamp(14px,2.3cqi,19px)/1.3 var(--serif);border-color:var(--ink2)}
+    .claude-history th:first-child{text-align:left;padding-left:8px;width:4.25rem}
+    .claude-history thead th:first-child{font:600 12px/1.3 var(--sans);color:var(--ink2)}
+    .claude-history tbody th{font-weight:650;font-size:14px;font-variant-numeric:tabular-nums}
+    .claude-history .version-five{background:#e9e2e6}
+    .claude-history .skipped-version{font-size:12px;font-style:italic;color:#665961}
+    .release-date{position:relative;display:inline-grid;place-items:center;max-width:100%;min-height:34px;cursor:pointer}
+    .release-date time{padding:3px 9px;border-radius:4px;color:var(--ink2);font:500 13px/1.25 var(--sans);font-variant-numeric:tabular-nums}
+    .release-date:hover time{background:#e9e2e6;box-shadow:inset 0 0 0 1px #b3a7af}
+    .release-date input:checked + time{background:#553f50;color:white}
+    .release-date input:focus-visible + time{outline:2px solid #397354;outline-offset:2px}
+    .family-selectors + .case-summary{padding-top:16px}
+    #paper-sizes .case-visual{container:paper-sizes / inline-size}
+    .paper-pair{display:grid;grid-template-columns:minmax(0,594fr) minmax(0,707fr);align-items:end;gap:clamp(16px,3cqi,32px);max-width:50rem;margin-bottom:18px}
+    .paper-pair figure{margin:0;min-width:0}
+    .paper-sheet{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;aspect-ratio:594/420;background:#ebefe5;border:1px solid #74836f;color:#344a3a}
+    .paper-b .paper-sheet{aspect-ratio:707/500;background:#e8edf2;color:#344b5b;border-color:#758695}
+    .paper-piece{display:grid;align-content:center;justify-items:center;font:500 clamp(19px,3.4cqi,31px)/1.15 var(--serif)}
+    .paper-piece small,.paper-pair figcaption small{font:500 clamp(10px,1.5cqi,13px)/1.4 var(--sans);font-variant-numeric:tabular-nums}
+    .paper-piece:first-child{grid-row:span 2;border-right:1px dashed currentColor}
+    .paper-piece:nth-child(2){grid-column:span 2;border-bottom:1px dashed currentColor}
+    .paper-piece:nth-child(3){border-right:1px dashed currentColor}
+    .paper-pair figcaption{margin-top:6px;font:600 18px/1.4 var(--serif)}
+    .paper-pair figcaption small{margin-left:4px;color:var(--ink2)}
+    @container paper-sizes (max-width:510px){
+      .paper-pair{grid-template-columns:minmax(0,1fr);max-width:22rem}
+      .paper-a{width:84.017%} /* Keep the same 594:707 scale when stacked. */
+    }
+    .variant-stack{min-width:0;padding:0;margin:0;border:0}
+    .variant-stack legend:not(.sr-only){width:100%;padding:0 1px 7px;text-align:center;font-size:12px;font-weight:600;color:var(--ink2)}
+    .variant-options{display:grid;border:1px solid #c1c7c0;border-radius:5px;background:var(--cream)}
+    .variant-option{position:relative;display:block;cursor:pointer;text-align:center}
+    .variant-option + .variant-option{border-top:1px solid var(--edge)}
+    .variant-option > span{display:grid;align-content:center;min-height:52px;padding:3px 1px;color:var(--ink2);font-size:clamp(12px,1.6vw,16px);font-weight:600;line-height:1.25}
+    .variant-option:first-child > span{border-radius:4px 4px 0 0}
+    .variant-option:last-child > span{border-radius:0 0 4px 4px}
+    .variant-option.base > span{min-height:62px;font:500 clamp(19px,3vw,32px)/1.1 var(--serif);letter-spacing:-.045em}
+    .variant-option time{display:block;margin-top:2px;font:500 12px/1.3 var(--sans);letter-spacing:0;font-variant-numeric:tabular-nums}
+    .variant-option:hover > span{background:#e7eae2}
+    .variant-option input:checked + span{background:var(--selected);color:white}
+    .variant-option input:focus-visible + span{outline:3px solid #5e9d7b;outline-offset:2px;position:relative;z-index:1}
+    @media(max-width:540px){
+      .camera-selectors legend:not(.sr-only){min-height:35px;font-size:11px;line-height:1.25}
+    }
+    .name-essay{padding:clamp(44px,6vw,80px) 0;background:var(--cream);border-top:1px solid var(--edge)}
+    .name-essay h2{margin:0 0 16px;font:500 clamp(42px,5.3vw,74px)/1.05 var(--serif);letter-spacing:-.06em}
+    .name-intro{margin:0 0 32px;max-width:78ch;color:var(--ink2);font-size:18px;line-height:1.65}
+    .name-intro p{margin:0}
+    .name-intro p + p{margin-top:.9em}
+    .naming-takeaways{margin-top:36px;max-width:78ch}
+    .naming-takeaways h3{margin:0 0 14px;font:500 clamp(24px,3vw,32px)/1.15 var(--serif);letter-spacing:-.035em}
+    .naming-takeaways ul{margin:0;padding-inline-start:1.2em;color:var(--ink2);font-size:17px;line-height:1.65}
+    .naming-takeaways li + li{margin-top:12px}
+    .naming-takeaways strong{color:var(--ink)}
+    .name-closing{margin:24px 0 0;color:var(--ink2);font-size:17px;line-height:1.68}
+    .buyer-guide{width:100%;border-collapse:collapse;table-layout:fixed;text-align:left;font-size:15px;line-height:1.45}
+    .buyer-guide col:first-child{width:27%}
+    .buyer-guide col:nth-child(2){width:35%}
+    .buyer-guide :is(th,td){padding:14px clamp(12px,2vw,25px);vertical-align:middle;border-bottom:1px solid #d8d9ce}
+    .buyer-guide th:first-child{padding-left:0}
+    .buyer-guide thead th{font-size:14px;font-weight:700;border-top:2px solid var(--ink2)}
+    .buyer-guide :is(td,th):nth-child(2){background:#edf3e4}
+    .buyer-guide thead th:nth-child(2){color:#355334;border-color:#567648}
+    .buyer-guide thead th:nth-child(3){background:#f5ece0;color:#69482c;border-color:#96704b}
+    .buyer-guide tbody th{font-weight:500}
+    .buyer-guide td{color:var(--ink2)}
+    .buyer-guide td strong{color:var(--ink);font-weight:650}
+    .buyer-guide .sample{display:block;font:500 clamp(23px,2.4vw,32px)/1.15 var(--serif);letter-spacing:-.04em}
+    .buyer-guide .scheme{display:block;margin-top:4px;font-size:13px;color:var(--ink2)}
+    .buyer-guide .sample i{color:#5b4f85}
+    .buyer-guide .sample .arrow{color:#68786b;font:500 .76em var(--sans)}
+    .buyer-guide .inserted{background:var(--lime-soft);padding:0 .1em;border-bottom:2px solid #6e8b49}
+    .buyer-guide .no-break{white-space:nowrap}
+    .buyer-guide .semver-example{display:inline-flex;gap:3px;align-items:baseline;font-variant-numeric:tabular-nums}
+    .semver-example span{text-align:center}
+    .semver-example small{display:block;font:600 11px/1.4 var(--sans);letter-spacing:normal;color:var(--ink2)}
+    #anthropic .claude-versions{margin-top:22px}
+    .funding-sequence{display:flex;flex-wrap:wrap;gap:14px 0;list-style:none;padding:0;margin:0 0 22px}
+    .funding-sequence li{flex:1 1 130px;border-inline-start:2px solid #a9b98d;padding:2px 12px}
+    .funding-sequence strong{font:500 clamp(20px,2.2vw,29px)/1.2 var(--serif);letter-spacing:-.04em}
+    .funding-sequence .lettered-rounds{white-space:nowrap}
+    .funding-sequence small{display:block;margin-top:4px;color:var(--ink2);font-size:13px}
+    .buyer-guide .lookup-note{margin:0 0 8px}
+    .buyer-guide details+details{margin-top:5px}
+    .buyer-guide summary{width:fit-content;cursor:pointer;color:var(--ink);text-decoration:underline;text-decoration-color:#abb4a8;text-underline-offset:3px}
+    .buyer-guide summary::marker{color:#647563;font-size:.8em}
+    .buyer-guide summary:focus-visible{outline:3px solid #5e9d7b;outline-offset:3px}
+    .buyer-guide details p{margin:5px 0 7px}
+    .buyer-guide .mobile-key{display:none}
+    @media(max-width:680px){
+      .name-intro{font-size:16px;margin-bottom:22px}
+      .naming-takeaways ul,.name-closing{font-size:16px}
+      .buyer-guide,.buyer-guide tbody{display:block}
+      .buyer-guide colgroup{display:none}
+      .buyer-guide thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+      .buyer-guide tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid #bcc3b6;padding:14px 0}
+      .buyer-guide tbody :is(th,td){border:0}
+      .buyer-guide tbody th{grid-column:1/-1;display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 12px;padding:0 0 9px}
+      .buyer-guide .scheme{margin:0}
+      .buyer-guide td{padding:10px;font-size:14px}
+      .buyer-guide td:last-child{background:#f8f3eb}
+      .buyer-guide .mobile-key{display:block;margin-bottom:5px;font-size:12px;font-weight:750;color:#385734}
+      .buyer-guide td:last-child .mobile-key{color:#69482c}
+    }
+    .sources{padding:62px 0 72px}
+    .sources-grid{display:grid;grid-template-columns:230px 1fr;gap:52px}
+    .sources h2{font-family:var(--serif);font-size:35px;font-weight:500;letter-spacing:-.05em;margin:0}
+    .sources p{font-size:14px;line-height:1.75;color:#5a695f;margin-bottom:18px;max-width:690px}
+    .sources .essay-link{color:var(--ink);font-weight:700;text-decoration-color:#52754b;text-decoration-thickness:2px;text-underline-offset:3px;transition:background .18s}
+    .sources .essay-link:hover{background:var(--lime-soft)}
+    .footer{border-top:1px solid #d0d5cc;padding:28px 0;font-size:12px;color:#69786d}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .footer a{text-decoration:none;color:var(--ink)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media (max-width:950px){
+      .hero-grid{grid-template-columns:11rem minmax(0,1fr);column-gap:22px}
+      .sources-grid{grid-template-columns:150px 1fr;gap:35px}
+    }
+    @media(max-width:820px){
+      .space-visual div{grid-template-columns:1fr;gap:8px}
+    }
+    @container literature (max-width:530px){
+      .literary-row{--cover-width:clamp(116px,32cqi,143px);grid-template-columns:minmax(0,1fr);gap:3px}
+      .word-tile{display:grid;grid-template-columns:var(--cover-width) minmax(0,1fr);gap:16px;align-items:center}
+      .book-cover{height:128px;padding:8px 9px 7px 10px;gap:3px}
+      .tile-word{font-size:28px}
+      .book-cover .tile-type{font-size:9px;padding-top:4px}
+      .tile-desc{margin:0}
+      .literary-comparison{height:20px;width:20px;margin-left:calc(var(--cover-width) / 2 - 10px);transform:rotate(90deg);font-size:18px}
+      .lit-side{margin-top:18px}
+      .claude-history th:first-child{width:2.8rem;padding-left:2px}
+      .claude-history thead th{font-size:clamp(13px,3.5cqi,17px);letter-spacing:-.035em}
+      .release-date time{padding:2px;font-size:12px}
+    }
+    @container chemistry (max-width:480px){
+      .atomic-number{position:static;font-size:11px}
+      .element [data-metric]:not([hidden]){display:grid;grid-template-columns:max-content 1fr;grid-template-rows:20px auto;font-size:11px}
+      .element [data-metric] strong{grid-column:1 / -1;margin:0}
+    }
+    @media(max-width:700px){
+      .container{width:min(100% - 36px,570px)}
+      .nav{height:62px;gap:16px}
+      .nav-links{gap:17px;font-size:11px}
+      .nav-links a[href="#the-names"]{display:none}
+      .nav-links .nav-back{padding:8px 12px;font-size:13px}
+      .hero{padding:26px 0 40px}
+      .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "game" "categories";gap:20px}
+      .category-list{grid-template-columns:repeat(auto-fit,minmax(min(100%,8.6rem),1fr));gap:2px 8px}
+      .category-list button{min-height:40px}
+      h1{font-size:clamp(44px,10vw,70px);margin:0 0 15px}
+      .hero-copy{font-size:16px;margin:0}
+      .quiz-card{padding:23px}
+      .quiz-question{font-size:21px;margin:18px 0;min-height:0}
+      .quiz-choice{min-height:82px;padding:11px}
+      .quiz-choice strong{font-size:clamp(18px,5vw,23px)}
+      .case-group-band{padding:24px 0}
+      .case-group-grid{grid-template-columns:1fr;gap:8px}
+      .case-group-label span{display:inline;margin-left:8px}
+      .case-group-body p{font-size:15px}
+      .case-group-band + .case{padding-top:36px}
+      .case{padding:52px 0 69px}
+      .case-head{grid-template-columns:1fr;grid-template-areas:"label" "title" "summary";row-gap:10px;margin-bottom:28px}
+      .case-kicker{margin-bottom:13px;padding:0}
+      .case-head .case-kicker{margin:0}
+      .case-head > h3{font-size:clamp(34px,7vw,43px)}
+      .case .case-summary{font-size:16px}
+      .case-visual{margin-left:0}
+      .space-visual{padding:4px 16px}
+      .space-visual div{padding:12px 0}
+      .chemical-ui{padding:16px}
+      .chem-head{margin-bottom:18px}
+      .element{padding:10px 6px;min-height:153px}
+      .element .symbol{font-size:clamp(30px,9vw,47px)}
+      .element .elt-name{font-size:12px}
+      .model-rank{font-size:11px;padding:3px 5px}
+      .apple-diagram{padding:18px}
+      .apple-line{grid-template-columns:1fr;gap:14px}
+      .apple-note{font-size:12px}
+      .sources-grid{display:block}
+      .sources{padding:50px 0}
+      .sources h2{margin-bottom:18px}
+      .footer-inner{justify-content:center;text-align:center}
+    }
+    @media(max-width:460px){
+      .toggle-group{display:grid;grid-template-columns:repeat(2,1fr);width:100%}
+      .nav-links a[href="#whats-in-a-name"]{display:none}
+      .quiz-modes button{padding:6px 10px;font-size:12px}
+      .quiz-track{display:none}
+      .space-visual dd{gap:clamp(2px,.85vw,4px);font-size:clamp(18px,5vw,22px)}
+      .space-model .model-rank{font-size:10px;padding:2px 4px}
+      .space-note{font-size:10px}
+    }
+    @media(max-width:370px){
+      .model-rank{font-size:10px;padding:3px;gap:.2em}
+      .nav-links a:first-child{display:none}
+      .quiz-card{padding:18px}
+      .quiz-controls{gap:12px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark" aria-hidden="true">JW</span><span class="brand-sub">JasonWillems.com</span></a>
+      <div class="nav-links">
+        <a href="#the-test">The Quiz</a>
+        <a href="#the-names">Case Studies</a>
+        <a href="#whats-in-a-name">Naming Tradeoffs</a>
+        <a class="nav-back" href="{{ '/sites/' | relative_url }}">All Projects <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="top" aria-labelledby="page-title">
+      <div class="container hero-grid">
+        <div class="hero-intro">
+          <h1 id="page-title">What’s bigger than <em>Max?</em></h1>
+          <p class="hero-copy">Product names are supposed to help us tell tiers apart, yet increasingly they aren’t clear and leave us guessing. How well can you do? Start with six AI model pairs, or try putting three names in order.</p>
+        </div>
+        <section class="quiz-card" id="the-test" aria-label="The naming quiz">
+          <div class="quiz-controls">
+            <div>
+              <p class="quiz-group" id="quiz-group"></p>
+              <div class="quiz-modes" id="quiz-modes" role="group" aria-label="Game mode" hidden>
+                <button type="button" value="pairs" aria-pressed="true">Pick One</button>
+                <button type="button" value="ranking" aria-pressed="false">Put Them in Order</button>
+              </div>
+            </div>
+            <p class="quiz-running-score" id="quiz-running-score" hidden><span class="micro">Score</span><strong id="quiz-running-value"></strong></p>
+          </div>
+          <div class="quiz-card-top" id="quiz-progress" hidden>
+            <span id="quiz-count"></span>
+            <div class="quiz-track" id="quiz-track" aria-hidden="true"></div>
+          </div>
+          <div id="quiz-main" hidden>
+            <h2 class="quiz-question" id="quiz-question" tabindex="-1"></h2>
+            <p class="quiz-context" id="quiz-context" hidden></p>
+            <div class="quiz-choices">
+              <button type="button" class="quiz-choice"><span class="choice-label" aria-hidden="true"></span><strong></strong></button>
+              <button type="button" class="quiz-choice"><span class="choice-label" aria-hidden="true"></span><strong></strong></button>
+            </div>
+            <div id="quiz-ranking" hidden>
+              <ol class="rank-list" id="rank-list" aria-label="Your order, highest first" role="list"></ol>
+              <button class="rank-check" id="rank-check" type="button">Check order</button>
+              <template id="rank-row">
+                <li class="rank-item">
+                  <span class="rank-position" aria-hidden="true"></span>
+                  <span class="rank-grip" aria-hidden="true">⠿</span>
+                  <span class="rank-name"></span>
+                  <span class="rank-actions"><button type="button" value="-1">↑</button><button type="button" value="1">↓</button></span>
+                </li>
+              </template>
+            </div>
+            <p class="quiz-result" id="quiz-result" aria-live="polite" aria-atomic="true"></p>
+          </div>
+          <div class="quiz-done" id="quiz-summary" hidden>
+            <h2 class="micro" id="quiz-score-heading" tabindex="-1" aria-describedby="quiz-readout">Your score</h2>
+            <p class="quiz-score" id="quiz-readout"><span id="quiz-score"></span><span class="quiz-total" id="quiz-total"></span></p>
+            <button type="button" class="quiz-copy" id="quiz-copy">Copy score</button>
+            <div class="quiz-other" id="rank-offer" hidden>
+              <p>Rank three names from a lineup you haven’t seen yet.</p>
+              <button type="button" id="rank-offer-button">Put Them in Order</button>
+            </div>
+            <div class="quiz-other" id="quiz-other" hidden>
+              <p>Try another category</p>
+              <button type="button" id="quiz-suggested"></button>
+            </div>
+            <textarea class="quiz-share-text" id="quiz-share-text" aria-label="Copy your score and the quiz link" rows="3" readonly hidden></textarea>
+          </div>
+          <p class="quiz-message" id="quiz-message" role="status"></p>
+          <div class="sr-only" id="quiz-announcement" role="status"></div>
+          <div class="quiz-bottom" hidden>
+            <button type="button" class="quiz-prev" id="quiz-prev" hidden>Back</button>
+            <button type="button" class="quiz-next" id="quiz-next"></button>
+          </div>
+          <noscript><p class="quiz-message">Enable JavaScript to play the quiz.</p></noscript>
+        </section>
+        <aside class="quiz-categories" id="quiz-categories" aria-labelledby="categories-heading" hidden>
+          <h2 id="categories-heading">Categories</h2>
+          <div class="category-list" id="category-list" role="group" aria-labelledby="categories-heading"></div>
+        </aside>
+      </div>
+    </section>
+    <div class="case-group-band" id="the-names">
+      <div class="container case-group-grid">
+        <div class="case-group-label">Case studies<span>Part 1 of 2</span></div>
+        <div class="case-group-body">
+          <h2>Where naming breaks down</h2>
+          <p>AI labs have made naming ceilings hard to miss, alongside hardware and technical standards where modifiers collide or shared labels hide incompatible specs.</p>
+        </div>
+      </div>
+    </div>
+    <section class="case" id="anthropic">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Anthropic</div>
+          <h3>What comes after Opus?</h3>
+          <p class="case-summary">In English, a haiku usually has <strong>three lines</strong> and a sonnet has <strong>fourteen</strong>, so length orders <strong>Haiku</strong> and <strong>Sonnet</strong>. That rule breaks down at <strong>Opus</strong>, which can be a work of any length; reading it as <em>magnum opus</em> shifts the scale to importance. By <strong>Fable</strong>, the metaphor has shifted again to the nature of the story itself—a short moral tale now sitting a tier above a defining work.</p>
+        </div>
+        <div class="case-visual">
+          <div class="literary-row" role="list" aria-label="Claude model tiers, lowest to highest">
+            <div class="word-tile" role="listitem">
+              <div class="book-cover haiku"><span class="tile-word">Haiku</span><img class="cover-art" src="./images/claude-haiku.webp" alt="A frog leaping over pond ripples" loading="lazy"><span class="tile-type">Poetic form</span></div>
+              <p class="tile-desc">Often <strong>3 lines</strong> in English. Traditionally 17 sound units (5–7–5) in Japanese.</p>
+            </div>
+            <span class="literary-comparison" aria-hidden="true">→</span>
+            <div class="word-tile" role="listitem">
+              <div class="book-cover"><span class="tile-word">Sonnet</span><img class="cover-art" src="./images/claude-sonnet.webp" alt="A quill on a manuscript" loading="lazy"><span class="tile-type">Poetic form</span></div>
+              <p class="tile-desc">A poem of <strong>14 lines.</strong></p>
+            </div>
+            <span class="literary-comparison" aria-hidden="true">→</span>
+            <div class="word-tile" role="listitem">
+              <div class="book-cover opus"><span class="tile-word">Opus</span><img class="cover-art" src="./images/claude-opus.webp" alt="An open musical score" loading="lazy"><span class="tile-type">Creative work</span></div>
+              <p class="tile-desc">A work of art. A <em>magnum opus</em> is its creator’s defining work.</p>
+            </div>
+            <span class="literary-comparison" aria-hidden="true">→</span>
+            <div class="word-tile" role="listitem">
+              <div class="book-cover fable"><span class="tile-word">Fable</span><img class="cover-art" src="./images/claude-fable.webp" alt="A fox reaching for grapes" loading="lazy"><span class="tile-type">Story type</span></div>
+              <p class="tile-desc">A story, <strong>usually short,</strong> that teaches a moral.</p>
+            </div>
+          </div>
+          <div class="lit-side">
+            <div class="mythos-tile"><strong>Mythos</strong><small>Anthropic’s top tier</small></div>
+            <p>A mythos is a body of stories, which sounds broader than a single fable. Anthropic instead places them at the same capability level: Mythos 5.2 shares Fable 5.2’s capabilities, with access limited to verified organizations.</p>
+          </div>
+          <p class="case-summary claude-versions" id="claude-versions">Each Claude model family also advances its version numbers independently. The jump from Opus 5 to 5.5 indicates progress within Opus, but says nothing about how it ranks against another family. <strong>Fable 5.2</strong> launched after <strong>Opus 5.5</strong> and sits a tier above it.</p>
+          <table class="claude-history">
+            <caption>Three most recent numbered API releases per family as of November 2026. <a href="https://platform.claude.com/docs/en/release-notes/overview">Release notes</a></caption>
+            <thead>
+              <tr><th scope="col">Version</th>{% for family in page.claude_families %}<th scope="col">{{ family }}</th>{% endfor %}</tr>
+            </thead>
+            <tbody>
+              {% assign seen_families = '' | split: ',' %}
+              {% for release in page.claude_releases %}
+              <tr{% if release.version == '5' %} class="version-five"{% endif %}>
+                <th scope="row">{{ release.version }}</th>
+                {% for family in page.claude_families %}
+                {% assign released_on = release.dates[family] %}
+                <td>
+                  {% if released_on %}
+                  <label class="release-date">
+                    <input class="sr-only" type="radio" name="claude-{{ family | downcase }}" aria-label="{{ family }} {{ release.version }}, {{ released_on | date: '%B %Y' }}"{% unless seen_families contains family %} checked{% endunless %}>
+                    <time datetime="{{ released_on }}">{{ released_on | date: '%b %Y' }}</time>
+                  </label>
+                  {% unless seen_families contains family %}{% assign seen_families = seen_families | push: family %}{% endunless %}
+                  {% elsif family == 'Haiku' and release.version == '5' %}
+                  <span class="skipped-version">Skipped</span>
+                  {% endif %}
+                </td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <p class="case-source">Sources · <a href="https://platform.claude.com/docs/en/models/overview" target="_blank" rel="noopener noreferrer">Claude model overview</a> · <a href="https://platform.claude.com/docs/en/about-claude/model-deprecations">Public release history</a> · <a href="https://www.anthropic.com/claude-opus-5-5">Opus 5.5 release</a> · <a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Fable 5.2 release</a> · <a href="https://platform.claude.com/docs/en/models/fable-5-2/overview" target="_blank" rel="noopener noreferrer">Fable and Mythos</a> · <a href="https://thehaikufoundation.org/contemporary-haiku/" target="_blank" rel="noopener noreferrer">Haiku Foundation</a> · <a href="{% post_url 2026-07-09-The-Naming-Ceiling %}">My earlier essay on naming</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="google">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Google</div>
+          <h3>Neon is heavier than carbon</h3>
+          <p class="case-summary">Google ranks <strong>Carbon</strong> above <strong>Neon</strong> and <strong>Hydrogen</strong> in its Gemini 4 lineup. Consulting the periodic table points to Neon first: it is heavier, has a higher atomic number, and sits farther to the right, while row number ties Carbon and Neon. Borrowing scientific terms does more than leave the order opaque—knowing the underlying scale actively points to the wrong model.</p>
+        </div>
+        <div class="case-visual">
+          <div class="chemical-ui">
+            <div class="chem-head">
+              <div class="toggle-group" role="group" aria-label="Sort the elements">
+                <button data-order="model" id="chem-model" type="button" aria-pressed="true">Model tiers</button>
+                <button data-order="mass" id="chem-mass" type="button" aria-pressed="false">Atomic mass</button>
+                <button data-order="group" type="button" aria-pressed="false">Table column</button>
+                <button data-order="period" type="button" aria-pressed="false">Table row</button>
+              </div>
+              <div class="chem-read" id="chem-caption">Highest tier first</div>
+            </div>
+            <div class="chem-cards" id="chem-cards" data-order="model">
+              <div class="element" data-element="carbon">
+                <span class="model-rank rank-gold">Gemini <strong>#1</strong></span>
+                <div class="element-symbol"><span class="symbol">C</span><span class="atomic-number" title="Atomic number"><span class="sr-only">Atomic number </span>6</span></div>
+                <span class="elt-name">Carbon</span>
+                <span data-metric="mass">Mass<strong>12.011</strong></span>
+                <span data-metric="group" hidden>Group<strong>14</strong></span>
+                <span data-metric="period" hidden>Period<strong>2</strong></span>
+              </div>
+              <span class="chem-greater" aria-hidden="true">&gt;</span>
+              <div class="element" data-element="neon">
+                <span class="model-rank rank-silver">Gemini <strong>#2</strong></span>
+                <div class="element-symbol"><span class="symbol">Ne</span><span class="atomic-number" title="Atomic number"><span class="sr-only">Atomic number </span>10</span></div>
+                <span class="elt-name">Neon</span>
+                <span data-metric="mass">Mass <span class="mass-marker" title="Heavier than carbon" aria-hidden="true">!</span><strong>20.180</strong></span>
+                <span data-metric="group" hidden>Group<strong>18</strong></span>
+                <span data-metric="period" hidden>Period<strong>2</strong></span>
+              </div>
+              <span class="chem-greater" aria-hidden="true">&gt;</span>
+              <div class="element" data-element="hydrogen">
+                <span class="model-rank rank-bronze">Gemini <strong>#3</strong></span>
+                <div class="element-symbol"><span class="symbol">H</span><span class="atomic-number" title="Atomic number"><span class="sr-only">Atomic number </span>1</span></div>
+                <span class="elt-name">Hydrogen</span>
+                <span data-metric="mass">Mass<strong>1.008</strong></span>
+                <span data-metric="group" hidden>Group<strong>1</strong></span>
+                <span data-metric="period" hidden>Period<strong>1</strong></span>
+              </div>
+            </div>
+            <figure class="chem-reference">
+              <figcaption>
+                <h4>Gemini on the periodic table</h4>
+                <p class="chem-explainer" id="chem-explainer" role="status">From Carbon (#1), you go right to Neon (#2), then all the way back to Hydrogen (#3).</p>
+              </figcaption>
+              <div class="periodic-map" role="img" aria-label="Periodic table with Gemini tiers marked. Carbon is tier 1, row 2, column 14. Neon is tier 2, row 2, column 18. Hydrogen is tier 3, row 1, column 1.">
+                {% for period in page.periodic_rows %}
+                <div class="periodic-row" aria-hidden="true">
+                  {% assign symbols = period | split: ' ' %}
+                  {% for symbol in symbols %}
+                  {% case symbol %}
+                  {% when '.' %}<span></span>
+                  {% when 'C' %}<span class="periodic-cell ranked carbon">C<b class="periodic-rank rank-gold">#1</b></span>
+                  {% when 'Ne' %}<span class="periodic-cell ranked neon">Ne<b class="periodic-rank rank-silver">#2</b></span>
+                  {% when 'H' %}<span class="periodic-cell ranked hydrogen">H<b class="periodic-rank rank-bronze">#3</b></span>
+                  {% else %}<span class="periodic-cell">{{ symbol }}</span>
+                  {% endcase %}
+                  {% endfor %}
+                </div>
+                {% endfor %}
+              </div>
+            </figure>
+          </div>
+          <p class="case-source">Sources · <a href="https://support.google.com/gemini/answer/18648722" target="_blank" rel="noopener noreferrer">Gemini 4 model tiers</a> · <a href="https://iupac.org/what-we-do/periodic-table-of-elements/" target="_blank" rel="noopener noreferrer">IUPAC periodic table and atomic weights</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="openai">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">OpenAI</div>
+          <h3>Sol, Terra, Luna, and Astra</h3>
+          <p class="case-summary"><strong>Sol</strong>, <strong>Terra</strong>, and <strong>Luna</strong> refer to the Sun, Earth, and Moon. Read by distance from Earth, Luna comes ahead of Terra; read by mass, the order matches OpenAI’s original lineup. Because the names do not specify which property matters, two intuitive readings produce different rankings.</p>
+        </div>
+        <div class="case-visual">
+          {% capture astra %}Astra <small class="model-rank rank-gold">Tier 1</small>{% endcapture %}
+          {% capture sol %}Sol <small class="model-rank rank-silver">Tier 2</small>{% endcapture %}
+          {% capture terra %}Terra <small class="model-rank rank-bronze">Tier 3</small>{% endcapture %}
+          {% capture luna %}Luna <small class="model-rank rank-fourth">Tier 4</small>{% endcapture %}
+          <dl class="space-visual">
+            <div>
+              <dt>Model hierarchy</dt>
+              <dd class="space-order">
+                <span class="space-model">{{ astra }}</span> &gt;
+                <span class="space-model">{{ sol }}</span> &gt;
+                <span class="space-model">{{ terra }}</span> &gt;
+                <span class="space-model">{{ luna }}</span>
+              </dd>
+            </div>
+            <div>
+              <dt>By mass</dt>
+              <dd>
+                <span class="space-model">{{ astra }} <small class="space-note">heavier stars</small></span> &gt;
+                <span class="space-model">{{ sol }}</span> &gt;
+                <span class="space-model">{{ astra }} <small class="space-note">lighter stars</small></span> &gt;
+                <span class="space-model">{{ terra }}</span> &gt;
+                <span class="space-model">{{ luna }}</span>
+              </dd>
+            </div>
+            <div>
+              <dt>By distance from Earth</dt>
+              <dd>
+                <span class="space-model">{{ astra }}</span> ≥
+                <span class="space-model">{{ sol }}</span> &gt;
+                <span class="space-model">{{ luna }}</span> &gt;
+                <span class="space-model">{{ terra }}</span>
+              </dd>
+            </div>
+          </dl>
+          <p class="cosmic-note">Putting the Sun at the top also left no obvious next tier. Naming the model above Sol after a specific star (such as Alpha Centauri) would require buyers to know astronomy and guess that the scale had shifted from mass to distance. OpenAI instead chose <strong>Astra</strong> (“stars”)—a category that includes the Sun itself, along with stars both heavier and lighter than it. Today, the analogy only makes sense if you recognize the terms—and don’t think too hard about them.</p>
+          <p class="cosmic-note">OpenAI has already described an internal model beyond Astra for its Navier–Stokes research, with <strong>Bel</strong> circulating as an unconfirmed codename.</p>
+          <p class="case-source">Sources · <a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank" rel="noopener noreferrer">Sol, Terra, and Luna</a> · <a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener noreferrer">Astra launch</a> · <a href="https://openai.com/index/introducing-gpt-6-2-astra-sol/" target="_blank" rel="noopener noreferrer">Astra and Sol</a> · <a href="https://science.nasa.gov/sun/facts/" target="_blank" rel="noopener noreferrer">The Sun and Alpha Centauri</a> · <a href="https://science.nasa.gov/universe/stars/types/" target="_blank" rel="noopener noreferrer">Star types and masses</a> · <a href="https://openai.com/index/navier-stokes-solution/" target="_blank" rel="noopener noreferrer">OpenAI’s internal research model</a> · <a href="https://cellcog.ai/blog/openai-bel/" target="_blank" rel="noopener noreferrer">Bel rumor</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="apple">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Apple</div>
+          <h3>When <em>Max</em> isn’t the ceiling</h3>
+          <p class="case-summary">Apple is clearest when an ordinary word signals a real tradeoff—<strong>Air</strong> for portability and <strong>Pro</strong> for capability. As the lineup expanded, modifiers began colliding. <strong>Max</strong> became a chip tier sitting below <strong>Ultra</strong>, while on the iPhone <strong>Pro Max</strong> marks the larger screen.</p>
+        </div>
+        <div class="case-visual">
+          <div class="apple-diagram">
+            <div class="apple-line" id="the-ceiling">
+              <div class="apple-lab">Apple silicon<span>M1 family by chip tier</span></div>
+              <div class="apple-chips">
+                <div class="chip-seq" role="group" aria-label="M1 chips in ascending tier order">
+                  <span class="chip-die">M1</span><span class="chip-chevron" aria-hidden="true">→</span>
+                  <span class="chip-die">M1 Pro</span><span class="chip-chevron" aria-hidden="true">→</span>
+                  <span class="chip-die max-die">M1 Max</span><span class="chip-chevron" aria-hidden="true">→</span>
+                  <span class="ultra-package">
+                    <span class="ultra-dies" aria-hidden="true">
+                      <span class="chip-die max-die">M1 Max</span><span class="die-join"></span><span class="chip-die max-die">M1 Max</span>
+                    </span>
+                    <span class="ultra-label">M1 Ultra</span>
+                  </span>
+                </div>
+                <p class="apple-note">In October 2021, the <strong>M1 Max</strong> was the most powerful chip in the family. By March 2022, Max was the entry-level chip in the new Mac Studio. The upgrade was an <strong>M1 Ultra</strong>, made by joining two Max dies.</p>
+              </div>
+            </div>
+            <div class="apple-line">
+              <div class="apple-lab">iPhone 14 family<span>Display sizes</span></div>
+              <div>
+                <div class="phone-pairs">
+                  <div class="phone-seq" role="group" aria-label="Standard iPhone 14 models">
+                    <div class="phone regular">14</div><div class="phone large">14 Plus</div>
+                  </div>
+                  <div class="phone-seq" role="group" aria-label="iPhone 14 Pro models">
+                    <div class="phone regular"><span>14 <strong>Pro</strong></span></div>
+                    <div class="phone large"><span>14 <strong>Pro Max</strong></span></div>
+                  </div>
+                </div>
+                <p class="apple-note">Both iPhone 14 tiers came in 6.1- and 6.7-inch sizes. The larger standard phone was called <strong>Plus</strong>, while the larger <strong>Pro</strong> was called <strong>Pro Max</strong>. A few years earlier, Apple had simply called the larger iPhone XS the XS <strong>Max</strong>.</p>
+              </div>
+            </div>
+            <div class="apple-line">
+              <div class="apple-lab">Apple Watch<span>2025 lineup by starting price</span></div>
+              <div>
+                <div class="device-line" role="group" aria-label="Apple Watch models in ascending order of starting price">
+                  <span class="device-model watch-model"><span class="watch" aria-hidden="true"><span class="watch-face"></span></span>SE 3</span>
+                  <span class="device-arrow" aria-hidden="true">→</span>
+                  <span class="device-model watch-model"><span class="watch watch-series" aria-hidden="true"><span class="watch-face"></span></span>Series 11</span>
+                  <span class="device-arrow" aria-hidden="true">→</span>
+                  <span class="device-model watch-model"><span class="watch watch-ultra" aria-hidden="true"><span class="watch-face"></span></span>Ultra 3</span>
+                </div>
+                <p class="apple-note">The $249 SE and the $799 <strong>Ultra</strong> were both on their third generation, with the $399 Series 11 in between. Generation numbers advance independently across tiers, so the model prefix—not the number—indicates rank.</p>
+              </div>
+            </div>
+            <div class="apple-line">
+              <div class="apple-lab">MacBook<span>March 2026 lineup by starting price</span></div>
+              <div>
+                <div class="device-line" role="group" aria-label="MacBook models in ascending order of starting price">
+                  <span class="device-model mac-model"><span class="macbook mac-neo" aria-hidden="true"></span>Neo</span>
+                  <span class="device-arrow" aria-hidden="true">→</span>
+                  <span class="device-model mac-model"><span class="macbook mac-air" aria-hidden="true"></span>Air</span>
+                  <span class="device-arrow" aria-hidden="true">→</span>
+                  <span class="device-model mac-model"><span class="macbook mac-pro" aria-hidden="true"></span><strong>Pro</strong></span>
+                </div>
+                <p class="apple-note"><strong>Air</strong> historically signaled the lightest MacBook, yet the 13-inch Air and the $599 <strong>Neo</strong> both weigh 2.7 pounds—the Air is thinner, while the Neo has a smaller footprint. Naming an entry-level laptop “Neo” (“new”) also dates quickly once later generations arrive.</p>
+              </div>
+            </div>
+            <div class="apple-line">
+              <div class="apple-lab">Displays<span>March 2026 lineup by starting price</span></div>
+              <div>
+                <div class="device-line" role="group" aria-label="Studio displays in ascending order of starting price">
+                  <span class="device-model display-model"><span class="monitor" aria-hidden="true"></span>Studio Display</span>
+                  <span class="device-arrow" aria-hidden="true">→</span>
+                  <span class="device-model display-model"><span class="monitor monitor-xdr" aria-hidden="true"></span>Studio Display XDR</span>
+                </div>
+                <p class="apple-note">When Studio Display XDR replaced <strong>Pro</strong> Display XDR, the higher-end monitor lost the word <strong>Pro</strong>. Both new displays had 27-inch 5K screens, with XDR marking the upgrade to a brighter mini-LED panel.</p>
+              </div>
+            </div>
+            <div class="apple-line" id="apple-tv">
+              <div class="apple-lab">Apple TV</div>
+              <div>
+                <div class="tv-products">
+                  <!-- Apple's former wordmark is archived at commons.wikimedia.org/wiki/File:Apple_TV_Plus_Logo.svg.
+                       The app icon and product photo are from apple.com/apple-tv-app/. -->
+                  <figure>
+                    <img src="./images/apple-tv-plus.svg" width="72" height="27" alt="Former Apple TV+ wordmark">
+                    <figcaption>Apple TV<small>Subscription</small></figcaption>
+                  </figure>
+                  <figure>
+                    <img src="./images/apple-tv-app.png" width="54" height="54" alt="">
+                    <figcaption>Apple TV<small>App</small></figcaption>
+                  </figure>
+                  <figure>
+                    <img class="tv-hardware" src="./images/apple-tv-4k-remote.jpg" width="84" height="77" alt="">
+                    <figcaption>Apple TV 4K<small>Box and remote</small></figcaption>
+                  </figure>
+                </div>
+                <p class="apple-note">The streaming service used to be called <strong>Apple TV+</strong>. Once Apple dropped the plus sign, subscribers ended up watching Apple TV inside the Apple TV app on an Apple TV 4K.</p>
+              </div>
+            </div>
+          </div>
+          <p class="case-source">Sources · <a href="https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/" target="_blank" rel="noopener noreferrer">M1 Pro and M1 Max</a> · <a href="https://www.apple.com/newsroom/2022/03/apple-unveils-m1-ultra-the-worlds-most-powerful-chip-for-a-personal-computer/" target="_blank" rel="noopener noreferrer">M1 Ultra</a> · <a href="https://www.apple.com/newsroom/2022/09/apple-introduces-iphone-14-and-iphone-14-plus/" target="_blank" rel="noopener noreferrer">iPhone 14 and 14 Plus</a> · <a href="https://www.apple.com/newsroom/2022/09/apple-debuts-iphone-14-pro-and-iphone-14-pro-max/" target="_blank" rel="noopener noreferrer">iPhone 14 Pro and Pro Max</a> · <a href="https://www.apple.com/newsroom/2018/09/iphone-xs-and-iphone-xs-max-bring-the-best-and-biggest-displays-to-iphone/" target="_blank" rel="noopener noreferrer">iPhone XS Max</a> · <a href="https://www.apple.com/newsroom/2026/01/stay-active-in-the-new-year-with-apple-watch/" target="_blank" rel="noopener noreferrer">Watch lineup</a> · <a href="https://www.apple.com/newsroom/2026/03/say-hello-to-macbook-neo/" target="_blank" rel="noopener noreferrer">MacBook Neo</a> · <a href="https://support.apple.com/en-us/126322" target="_blank" rel="noopener noreferrer">Neo specs</a> · <a href="https://support.apple.com/en-us/126320" target="_blank" rel="noopener noreferrer">13-inch Air specs</a> · <a href="https://www.apple.com/newsroom/2026/03/apple-unveils-new-studio-display-and-all-new-studio-display-xdr/" target="_blank" rel="noopener noreferrer">Studio displays</a> · <a href="https://support.apple.com/en-us/118404" target="_blank" rel="noopener noreferrer">Apple TV subscription</a> · <a href="https://www.apple.com/apple-tv/" target="_blank" rel="noopener noreferrer">Apple TV app and hardware</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="usb" aria-labelledby="usb-title">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">USB</div>
+          <h3 id="usb-title">Everything is called <em>USB-C</em></h3>
+          <p class="case-summary"><strong>A common plug pushed the complexity one level deeper.</strong> Converging on one oval connector solved the old mismatch of cable ends, but it hid vastly different capabilities under a single familiar name. “USB-C” identifies only the plug shape, not what the cable or port supports. A <strong>60 W</strong> charging cable and an <strong>80 Gbps</strong> Thunderbolt cable share the same ends—all three cables below handle up to 240 W—yet swapping one for another can leave an external display dark while the laptop keeps charging.</p>
+        </div>
+        <div class="case-visual">
+          <figure class="usb-map" aria-label="Five older USB connector shapes converge on the USB-C port used in newer devices. Three cables fit this port and have different capabilities.">
+            <div class="usb-families">
+              <div class="usb-family">
+                <h4>Legacy connectors still specified</h4>
+                <ul class="usb-plugs">
+                  <li><img src="./images/usb-standard-a.png" width="72" height="27" loading="lazy" alt="Rectangular plug"><span>USB-A<small>Computer ports</small></span></li>
+                  <li><img src="./images/usb-standard-b.png" width="50" height="43" loading="lazy" alt="Square plug with beveled top corners"><span>Standard-B<small>Printers</small></span></li>
+                  <li><img src="./images/usb-micro-b.png" width="40" height="13" loading="lazy" alt="Shallow plug with angled corners"><span>USB 2 Micro-B<small>Older phones</small></span></li>
+                </ul>
+              </div>
+              <div class="usb-family usb-family-ended">
+                <h4>New connector certification ended in 2021</h4>
+                <ul class="usb-plugs">
+                  <li><img src="./images/usb-mini-b.png" width="40" height="18" loading="lazy" alt="Narrow plug with stepped sides"><span>Mini-B<small>Older cameras</small></span></li>
+                  <li><img src="./images/usb-micro-b-3.png" width="73" height="14" loading="lazy" alt="Wide plug with two joined sections"><span>USB 3 Micro-B<small>Portable drives</small></span></li>
+                </ul>
+              </div>
+            </div>
+            <svg class="usb-flow" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="currentColor" stroke-width="1.5">
+                <path vector-effect="non-scaling-stroke" d="M100 0 C100 28 500 12 500 45"/>
+                <path vector-effect="non-scaling-stroke" d="M300 0 C300 20 500 18 500 45"/>
+                <path vector-effect="non-scaling-stroke" d="M500 0 V53"/>
+                <path vector-effect="non-scaling-stroke" d="M700 0 C700 20 500 18 500 45"/>
+                <path vector-effect="non-scaling-stroke" d="M900 0 C900 28 500 12 500 45"/>
+              </g>
+              <path fill="currentColor" d="M492 49h16l-8 11z"/>
+            </svg>
+            <div class="usb-cables">
+              <div class="usb-port">
+                <img src="./images/usb-c-cables.svg" width="600" height="181" loading="lazy" alt="Three separate cables point toward the same oval socket. Each has identical USB-C ends.">
+                <h4>USB-C port</h4>
+              </div>
+              <ul class="usb-branches">
+                <li><h5>Plugable Charge-Only</h5><strong>Power only</strong><small>No file transfer or video</small></li>
+                <li><h5>Apple USB-C Charge Cable</h5><strong>480 Mbps</strong><small>USB 2 maximum · no video</small></li>
+                <li><h5>Apple Thunderbolt 5 Pro Cable</h5><strong>80 Gbps</strong><small>USB4 maximum · DisplayPort 2.1 video</small></li>
+              </ul>
+            </div>
+          </figure>
+          <p class="case-summary">The same ambiguity applies to the ports themselves. On the M5 <strong>MacBook Air</strong>, any USB-C port handles power, data, or an external display. On the cheaper <strong>MacBook Neo</strong>, both ports charge the laptop, but only one can drive a monitor. Identical-looking ports caused enough confusion on <strong>Windows laptops</strong>—where a dark screen leaves buyers unsure whether to swap the cable or move it one port over—that Microsoft required every USB-C port on newly certified Windows 11 laptops to support charging, data transfers, and an external display.</p>
+          <div class="usb-devices">
+            <p>Transfer speeds are no simpler: USB 3.2 alone spans 5, 10, and 20&nbsp;Gbps modes, and a connection runs only as fast as the cable and both devices allow. Plug an iPhone 16 and an iPhone 16 Pro into the same 10&nbsp;Gbps Mac port with the same Thunderbolt cable, and the Pro transfers photos roughly twenty times faster. Both phones also drive an external USB-C display—a capability Apple omitted from the iPhone 16e without changing the port name.</p>
+            <dl aria-label="Maximum USB link speed with each phone">
+              <div><dt>iPhone 16 · USB 2</dt><dd>Up to 480 Mbps</dd></div>
+              <div><dt>iPhone 16 Pro · USB 3</dt><dd>Up to 10 Gbps</dd></div>
+            </dl>
+          </div>
+          <p class="case-source">Sources · <a href="https://www.usb.org/sites/default/files/usb_type-c_language_product_and_packaging_guidelines_20230320.pdf">USB-IF guide to USB-C names and capabilities</a> · <a href="https://www.usb.org/cable_connector">USB-C cable power ratings</a> · <a href="https://www.usb.org/usb-charger-pd">USB Power Delivery</a> · <a href="https://www.usb.org/usb-32-0">USB 3.2 speeds</a> · <a href="https://compliance.usb.org/index.asp?Format=Standard&amp;UpdateFile=Cables+and+Connectors">USB-IF connector notices (Mini-B use is still permitted)</a> · <a href="https://plugable.com/products/usbc-cc2m">Plugable charge-only cable</a> · <a href="https://www.apple.com/shop/product/myqt3am/a/240w-usb-c-charge-cable-2-m">Apple Charge Cable</a> · <a href="https://support.apple.com/en-us/118204">Apple Thunderbolt cables</a> · <a href="https://techcommunity.microsoft.com/blog/microsoftusbblog/ending-usb-c%C2%AE-port-confusion/4410479">Microsoft’s USB-C certification requirements</a> · <a href="https://support.apple.com/en-us/126320">MacBook Air ports</a> · <a href="https://www.apple.com/macbook-neo/specs/">MacBook Neo ports</a> · <a href="https://support.apple.com/en-us/105099">iPhone display support</a> · <a href="https://support.apple.com/en-us/121029">iPhone 16</a> · <a href="https://support.apple.com/en-us/121031">iPhone 16 Pro</a><br>Legacy plug illustrations cropped from <a href="https://commons.wikimedia.org/wiki/File:USB_connector_illustration,_to_scale,_grouping,_plugs.svg">Matthew Wynn’s USB connector diagram</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="dyson" aria-labelledby="dyson-title">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Dyson</div>
+          <h3 id="dyson-title">Advanced, Extra, and <em>Absolute</em></h3>
+          <p class="case-summary">In November 2024, Dyson’s catalog included a <strong>V7 Advanced</strong>, a <strong>V8 Absolute</strong>, and a <strong>V11 Extra</strong>. The numbers establish a rough order, but the suffixes give no clue what separates “Advanced” from “Extra.” Shoppers looking for a lighter model had to compare a <strong>V12 Detect Slim</strong> against an unnumbered <strong>Digital Slim</strong>, while the “5” in <strong>Gen5detect</strong> and <strong>Gen5outsize</strong> switched to counting motor generations instead.</p>
+        </div>
+        <div class="case-visual">
+          <table class="dyson-models">
+            <caption>The thirteen names in the November 2024 list. A dash means no matching name appeared in the list.</caption>
+            <thead><tr><th scope="col">Without “Absolute”</th><th scope="col">With “Absolute”</th></tr></thead>
+            <tbody>
+              <tr><td>V7 Advanced</td><td class="absent">—</td></tr>
+              <tr><td>V8</td><td>V8 <strong>Absolute</strong></td></tr>
+              <tr><td>V11 Extra</td><td class="absent">—</td></tr>
+              <tr><td>V12 Detect Slim</td><td class="absent">—</td></tr>
+              <tr><td class="absent">—</td><td>V15 Detect <strong>Absolute</strong></td></tr>
+              <tr><td>V15s Detect Submarine™</td><td>V15s Detect Submarine™ <strong>Absolute</strong></td></tr>
+              <tr><td>Gen5detect</td><td>Gen5detect <strong>Absolute</strong></td></tr>
+              <tr><td>Gen5outsize</td><td>Gen5outsize <strong>Absolute</strong></td></tr>
+              <tr><td>Digital Slim</td><td class="absent">—</td></tr>
+            </tbody>
+          </table>
+          <p class="case-summary">Five of those thirteen vacuums were labeled <strong>Absolute</strong>, yet the suffixes obscured basic hardware compatibility. Washing hard floors required a <strong>Submarine</strong> model with Dyson’s wet roller; buyers who chose the <strong>V15 Detect Absolute</strong> could not add the roller later because the standard V15 lacked the software to run it.</p>
+          <p class="case-summary"><strong>Opaque naming is not always an accident—it can serve a pricing strategy.</strong> When an appliance maker wants models on the shelf at $300, $500, and $800, omitting clear generation numbers lets older hardware stay at $300 without advertising its age, and makes it harder for current owners to see when their model was superseded. At the top end, keeping a prestige label like “Absolute” at $800 across releases anchors the premium price and makes the $500 tier look more reasonable by comparison.</p>
+          <p class="case-summary">Dyson’s US catalog lists the cordless <strong>V16 Piston Animal</strong> and the upright <strong>Ball Animal 3 Extra</strong> on the same page, yet its cordless comparison tool compares the V16 against a V12 Detect Slim while excluding the upright Animal altogether. When even the company’s own comparison tool leaves cross-lineup comparisons to the shopper, the friction aligns neatly with keeping price tiers insulated from one another.</p>
+          <p class="case-source">Sources · <a href="./images/dyson-lineup-2024.png">My November 25, 2024 post with all thirteen names</a> · <a href="https://www.dyson.com/discover/innovation/new-machines/gen5detect-gen5outsize-launch">Dyson on its Gen5 motor</a> · <a href="https://www.dyson.com/vacuum-cleaners/wet-dry/v15s-detect-submarine">Dyson’s Submarine models and roller compatibility</a> · <a href="https://www.dyson.com/vacuum-cleaners/shop-all">US floorcare catalog</a> · <a href="https://www.dyson.com/vacuum-cleaners/cordless">Compare cordless vacuums</a></p>
+        </div>
+      </div>
+    </section>
+    <div class="case-group-band" id="what-holds-up">
+      <div class="container case-group-grid">
+        <div class="case-group-label">Case studies<span>Part 2 of 2</span></div>
+        <div class="case-group-body">
+          <h2>Systems that hold up</h2>
+          <p>Durable naming schemes are rarely clever. They rely on clear sequence, separated dimensions, or fixed rules that stay legible as a catalog ages.</p>
+        </div>
+      </div>
+    </div>
+    <section class="case" id="sony" aria-labelledby="sony-canon-title">
+      <div class="container" id="sony-canon">
+        <div class="case-head">
+          <div class="case-kicker">Sony</div>
+          <h3 id="sony-canon-title">PlayStation 1 through 5</h3>
+          <p class="case-summary">Numbering PlayStation generations makes their order obvious without any brand lore. Within a generation, Sony limits modifiers to concrete hardware changes: <strong>Slim</strong> arrives a few years later once redesigned chips, power supplies, and cooling fit in a smaller enclosure (as with the 2009 PS3 Slim), while <strong>Pro</strong> marks faster graphics hardware in the same generation.</p>
+        </div>
+        <div class="case-visual">
+          <div class="family-selectors console-selectors">
+            <fieldset class="variant-stack">
+              <legend class="sr-only">PlayStation models</legend>
+              <div class="variant-options">
+                <label class="variant-option"><input class="sr-only" type="radio" name="sony-ps1" aria-label="PS one, 2000"><span>PS one<time datetime="2000">2000</time></span></label>
+                <label class="variant-option base"><input class="sr-only" type="radio" name="sony-ps1" aria-label="PlayStation, 1994" checked><span>PS1<time datetime="1994">1994</time></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="variant-stack">
+              <legend class="sr-only">PlayStation 2 models</legend>
+              <div class="variant-options">
+                <label class="variant-option"><input class="sr-only" type="radio" name="sony-ps2" aria-label="PlayStation 2 Slimline, 2004"><span>Slimline<time datetime="2004">2004</time></span></label>
+                <label class="variant-option base"><input class="sr-only" type="radio" name="sony-ps2" aria-label="PlayStation 2, 2000" checked><span>PS2<time datetime="2000">2000</time></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="variant-stack">
+              <legend class="sr-only">PlayStation 3 models</legend>
+              <div class="variant-options">
+                <label class="variant-option"><input class="sr-only" type="radio" name="sony-ps3" aria-label="PlayStation 3 Slim, 2009"><span>Slim<time datetime="2009">2009</time></span></label>
+                <label class="variant-option base"><input class="sr-only" type="radio" name="sony-ps3" aria-label="PlayStation 3, 2006" checked><span>PS3<time datetime="2006">2006</time></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="variant-stack">
+              <legend class="sr-only">PlayStation 4 models</legend>
+              <div class="variant-options">
+                <label class="variant-option"><input class="sr-only" type="radio" name="sony-ps4" aria-label="PlayStation 4 Slim, 2016"><span>Slim<time datetime="2016">2016</time></span></label>
+                <label class="variant-option base"><input class="sr-only" type="radio" name="sony-ps4" aria-label="PlayStation 4, 2013" checked><span>PS4<time datetime="2013">2013</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="sony-ps4" aria-label="PlayStation 4 Pro, 2016"><span>Pro<time datetime="2016">2016</time></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="variant-stack">
+              <legend class="sr-only">PlayStation 5 models</legend>
+              <div class="variant-options">
+                <label class="variant-option"><input class="sr-only" type="radio" name="sony-ps5" aria-label="PlayStation 5 Slim, 2023"><span>Slim<time datetime="2023">2023</time></span></label>
+                <label class="variant-option base"><input class="sr-only" type="radio" name="sony-ps5" aria-label="PlayStation 5, 2020" checked><span>PS5<time datetime="2020">2020</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="sony-ps5" aria-label="PlayStation 5 Pro, 2024"><span>Pro<time datetime="2024">2024</time></span></label>
+              </div>
+            </fieldset>
+          </div>
+          <p class="case-summary">Sequential numbering is often avoided because it feels plain and carries little brand voice. Yet PlayStation’s main rival, Xbox, moved through <strong>Xbox 360</strong>, <strong>Xbox One</strong>, and <strong>Xbox Series X</strong> and <strong>S</strong>—names that added little brand personality of their own while making generations and tiers far harder to tell apart.</p>
+          <p class="case-source">Sources · <a href="https://www.playstation.com/en-us/30th-anniversary/">PlayStation hardware history</a> · <a href="https://www.playstation.com/en-us/playstation-history/1994-ps-one/">The original PlayStation and PS one</a> · <a href="https://sonyinteractive.com/en/press-releases/2009/new-slimmer-and-lighter-playstation3-to-hit-worldwide-market-this-september/">How Sony slimmed down the PS3</a> · <a href="https://sonyinteractive.com/en/our-company/expanded-company-timeline/">Sony’s hardware timeline</a> · <a href="https://www.xbox.com/en-US/consoles">Xbox consoles</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="canon" aria-labelledby="canon-title">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Canon</div>
+          <h3 id="canon-title">Two numbers, two jobs</h3>
+          <p class="case-summary">Canon’s DSLR lineup separated product tier from generation. The number before the D identified the camera’s place in the range—<strong>1D</strong> as the professional flagship, <strong>5D</strong> for advanced full-frame, and <strong>7D</strong> for high-speed shooting with a smaller APS-C sensor—while Roman numerals tracked generations within each line (<strong>5D Mark III</strong> is the third 5D). Leaving an unused number between 5D and 7D also built in headroom: in 2012, Canon slotted in the <strong>6D</strong> as an entry full-frame body without renaming anything around it.</p>
+        </div>
+        <div class="case-visual">
+          <div class="family-selectors camera-selectors">
+            <fieldset class="variant-stack">
+              <legend>Pro flagship</legend>
+              <div class="variant-options">
+                <label class="variant-option base"><input class="sr-only" type="radio" name="canon-1d" aria-label="EOS-1D, 2001" checked><span>EOS-1D<time datetime="2001">2001</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="canon-1d" aria-label="EOS-1D Mark II, 2004"><span>Mark II<time datetime="2004">2004</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="canon-1d" aria-label="EOS-1D Mark III, 2007"><span>Mark III<time datetime="2007">2007</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="canon-1d" aria-label="EOS-1D Mark IV, 2009"><span>Mark IV<time datetime="2009">2009</time></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="variant-stack">
+              <legend>Advanced full frame</legend>
+              <div class="variant-options">
+                <label class="variant-option base"><input class="sr-only" type="radio" name="canon-5d" aria-label="EOS 5D, 2005" checked><span>EOS 5D<time datetime="2005">2005</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="canon-5d" aria-label="EOS 5D Mark II, 2008"><span>Mark II<time datetime="2008">2008</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="canon-5d" aria-label="EOS 5D Mark III, 2012"><span>Mark III<time datetime="2012">2012</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="canon-5d" aria-label="EOS 5D Mark IV, 2016"><span>Mark IV<time datetime="2016">2016</time></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="variant-stack">
+              <legend>Entry full frame</legend>
+              <div class="variant-options">
+                <label class="variant-option base"><input class="sr-only" type="radio" name="canon-6d" aria-label="EOS 6D, 2012" checked><span>EOS 6D<time datetime="2012">2012</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="canon-6d" aria-label="EOS 6D Mark II, 2017"><span>Mark II<time datetime="2017">2017</time></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="variant-stack">
+              <legend>Fast smaller sensor</legend>
+              <div class="variant-options">
+                <label class="variant-option base"><input class="sr-only" type="radio" name="canon-7d" aria-label="EOS 7D, 2009" checked><span>EOS 7D<time datetime="2009">2009</time></span></label>
+                <label class="variant-option"><input class="sr-only" type="radio" name="canon-7d" aria-label="EOS 7D Mark II, 2014"><span>Mark II<time datetime="2014">2014</time></span></label>
+              </div>
+            </fieldset>
+          </div>
+          <p class="case-summary">Keeping tier numbers meaningful over decades still requires product discipline. Seven years after the flagship <strong>1D Mark III</strong> came out, the less expensive <strong>7D Mark II</strong> matched its 10 frames per second at twice the resolution. As raw specs trickled down, Canon preserved the meaning of its higher tiers by reserving features like heavier weather sealing and dual card slots for them—a boundary photographers noticed in 2017 when the newer <strong>6D Mark II</strong> shipped with a single card slot, keeping wedding shooters pointed toward the older <strong>5D Mark IV</strong>.</p>
+          <p class="case-source">Sources · <a href="https://global.canon/en/c-museum/camera-series.html">Canon Camera Museum</a> · <a href="https://global.canon/en/c-museum/product/dslr794.html">EOS-1D Mark III</a> · <a href="https://global.canon/en/news/2025/20250728.html">Canon’s 5D history</a> · <a href="https://www.usa.canon.com/support/p/eos-5d-mark-iv">EOS 5D Mark IV specifications</a> · <a href="https://global.canon/en/c-museum/product/dslr813.html">EOS 6D</a> · <a href="https://global.canon/en/c-museum/product/dslr866.html">EOS 6D Mark II</a> · <a href="https://www.photographynews.co.uk/reviews/canon-eos-6d-mark-ii-full-test/">Photography News on Canon’s single slot</a> · <a href="https://global.canon/en/c-museum/product/dslr802.html">EOS 7D</a> · <a href="https://global.canon/en/c-museum/product/dslr819.html">EOS 7D Mark II</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="paper-sizes" aria-labelledby="paper-title">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Paper sizes</div>
+          <h3 id="paper-title">Fold A3 in half and you get A4</h3>
+          <p class="case-summary">Bring the short edges of an A3 sheet together and each half is A4. Fold it again and you get A5, with the same proportions and half the area. Each number counts folds from A0, which starts at one square meter; B0 starts one meter wide, giving a slightly larger sheet at every matching step.</p>
+        </div>
+        <div class="case-visual">
+          <div class="paper-pair">
+            {% for series in page.paper_series %}
+            {% assign letter = series[0] %}
+            {% assign sizes = series[1] %}
+            <figure class="paper-{{ letter | downcase }}">
+              <div class="paper-sheet">
+                {% for size in sizes offset:1 %}
+                <span class="paper-piece">{{ letter }}{{ forloop.index | plus: 2 }}<small>{{ size }}</small></span>
+                {% if forloop.last %}<span class="paper-piece" aria-hidden="true">{{ letter }}5<small>{{ size }}</small></span>{% endif %}
+                {% endfor %}
+              </div>
+              <figcaption>{{ letter }}2 <small>{{ sizes[0] }} mm</small></figcaption>
+            </figure>
+            {% endfor %}
+          </div>
+          <p class="case-summary"><strong>The names stay simple because the product range is fixed.</strong> A3 gives twice the area of A4, and B4 provides a single standard step in between. A paper mill can cut a sheet 5% wider than A4, but there is no A or B label for it. A flexible catalog has to accept messier names—or print the raw width and height directly on the pack.</p>
+          <p class="case-source">Sources · <a href="https://www.iso.org/standard/36631.html">ISO 216 A and B series</a> · <a href="https://preview.sist.si/sist-preview/36631/c0883203ea25445c9992bb09343620c5/ISO-216-2007.pdf">Sheet dimensions in millimeters</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="venture-funding" aria-labelledby="funding-title">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Venture funding</div>
+          <h3 id="funding-title">Series A, B, C, and counting</h3>
+          <p class="case-summary">Once a startup moves past seed funding, its next rounds name themselves: Series A, Series B, Series C, and so on. The letters make no claim about what a company has become; they record only sequence, even as market expectations for revenue and valuation shift over time.</p>
+        </div>
+        <div class="case-visual">
+          <ol class="funding-sequence" aria-label="An example progression of funding stages">
+            <li><strong>Bootstrapped</strong><small>Founders’ money or revenue</small></li>
+            <li><strong>Pre-seed</strong><small>Usually a small first raise</small></li>
+            <li><strong>Seed</strong><small>Money to build and test the product</small></li>
+            <li><strong class="lettered-rounds">Series A → B → C</strong><small>One letter per new series</small></li>
+            <li><strong>… Series N</strong><small>Late-stage label for a proposed Databricks round</small></li>
+          </ol>
+          <p class="case-summary">The convention is familiar enough that when Databricks entered funding talks in November 2026, finance coverage could casually call the proposed round a <strong>Series N</strong> and count on readers to recognize how late-stage it was. Strict alphabetical naming gives a company 26 letters—and if a startup ever stays private long enough to reach Series Z, spreadsheets already suggest an obvious next label: <strong>Series AA</strong>.</p>
+          <p class="case-source">Sources · <a href="https://www.wsj.com/tech/ai/databricks-in-early-talks-to-raise-funds-at-225-billion-valuation-e593b1de">Databricks funding talks</a> · <a href="https://x.com/exec_sum/status/2124611734321373473">Exec Sum’s “Series N” post</a> · <a href="https://carta.com/data/series-a-fundraising-q2-2025/">Carta on the changing Series A bar</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="name-essay" id="whats-in-a-name" aria-labelledby="name-essay-title">
+      <div class="container">
+        <h2 id="name-essay-title">Naming is <em>product strategy</em></h2>
+        <div class="name-intro">
+          <p>Product names are often treated as a layer of branding added right before launch. In practice, naming and product strategy are the same problem. A name is part of the interface: it tells a buyer which product is newer, which is more capable, and how a lineup fits together. When names become tangled, they usually expose a tangled product line underneath. Apple’s late-1990s Macs were easy to name because the catalog had only four products—desktop or laptop, consumer or pro. Once screen sizes and chip tiers multiplied, the same modifiers started colliding inside a single product name, like a 14-inch MacBook <strong>Pro</strong> with an M4 <strong>Pro</strong>.</p>
+          <p>That also means there is no single best naming scheme. Different businesses ask names to do very different jobs. Some products benefit from plain chronological clarity so buyers can tell at a glance what comes next. Complex, evolving catalogs need room to add tiers without renaming existing products. Sometimes one familiar umbrella name—like <strong>iPad</strong> or <strong>USB-C</strong>—keeps the storefront simple, even though it creates real headaches later when a buyer needs to match a case or figure out which cable drives a monitor. And sometimes clarity is not the goal at all: obscuring generation numbers keeps older hardware from looking dated on the shelf, while spinning up a separate brand like Lexus lets Toyota sell a luxury sedan without inviting a direct comparison to a Camry.</p>
+          <p>The frustration with modern product naming rarely comes from deliberate tradeoffs. It comes from treating naming as an afterthought—picking a clever metaphor for a launch announcement without leaving room for the next tier, piling suffixes onto an unplanned catalog, or borrowing a real-world scale that actively points buyers to the wrong product.</p>
+        </div>
+
+        <table class="buyer-guide" role="table" aria-label="Tradeoffs of different product naming approaches">
+          <colgroup><col><col><col></colgroup>
+          <thead role="rowgroup">
+            <tr role="row"><th scope="col">Naming approach</th><th scope="col">What it gives you</th><th scope="col">What it trades away</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <th scope="row" role="rowheader"><span class="sample"><i>Haiku</i> <span class="arrow">/</span> <i>Sol</i></span><span class="scheme">Borrow a metaphor</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Personality and brand voice.</strong> With a small, stable lineup, a metaphor feels ownable and signals rough scale without sounding clinical.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Headroom and precision.</strong> Once the roadmap outgrows the analogy, buyers have to memorize internal logic—or get steered wrong by the real-world reference.</td>
+            </tr>
+            <tr role="row">
+              <th scope="row" role="rowheader"><span class="sample">PS4 <span class="arrow">→</span> PS5</span><span class="scheme">Number each generation</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Obvious sequence.</strong> Anyone can tell which release is newer, and integers never run out of room.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Magnitude and flair.</strong> Every generation adds one whether the upgrade is major or incremental, and the name carries little personality on its own.</td>
+            </tr>
+            <tr role="row">
+              <th scope="row" role="rowheader"><span class="sample">5D · <span class="inserted">6D</span> · 7D</span><span class="scheme">Separate tiers and leave gaps</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Flexibility for a complex catalog.</strong> Separating tier from generation—with unused numbers between tiers—lets a company insert new models later without resetting existing names.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Instant legibility.</strong> Buyers have to learn which number marks tier, which marks generation, and whether higher or lower numbers sit at the top.</td>
+            </tr>
+            <tr role="row" id="paper-size-tradeoff">
+              <th scope="row" role="rowheader"><span class="sample">A4 <span class="arrow">→</span> A3</span><span class="scheme">Tie names to a fixed rule</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Self-explanatory math.</strong> Two A4 sheets make an A3; once the rule is known, every size in the range follows from it.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Catalog flexibility.</strong> Fixed rules leave no label for an in-between size, forcing a separate series (like B4) or raw dimensions printed on the pack.</td>
+            </tr>
+            <tr role="row">
+              <th scope="row" role="rowheader">
+                <span class="sr-only">Version 2.4.1, major 2, minor 4, patch 1</span>
+                <span class="sample semver-example" aria-hidden="true"><span>2<small>Major</small></span>.<span>4<small>Minor</small></span>.<span>1<small>Patch</small></span></span>
+                <span class="scheme">Semantic versioning (SemVer)</span>
+              </th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>A compatibility signal.</strong> After 1.0, a major bump warns developers of breaking changes, a minor bump adds compatible features, and a patch delivers fixes.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Marketing freedom and nuance.</strong> It demands strict release discipline, clashes with milestone version numbers, and still leaves developers reading release notes to see what changed.</td>
+            </tr>
+            <tr role="row">
+              <th scope="row" role="rowheader"><span class="sample">iPad <span class="arrow">/</span> USB-C</span><span class="scheme">Unify under one familiar name</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>A simple storefront.</strong> “iPad” gets a buyer to the right aisle, and “USB-C” guarantees the plug physically fits.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span>
+                <p class="lookup-note"><strong>Clarity once hardware diverges.</strong> Matching an accessory or cable turns into a lookup problem when different generations or capabilities share the same name. <a href="https://support.apple.com/en-us/106343">Find the model number</a> · <a href="https://support.apple.com/en-us/108043">Identify the iPad</a></p>
+                <details><summary>Which case fits my iPad?</summary><p>In Settings, tapping the part number reveals the model code: A2602 takes a 9th-generation case, while A2696 takes a 10th-generation case.</p></details>
+                <details><summary>Will this USB-C cable drive my monitor?</summary><p>Apple’s USB-C Charge Cable fits the port but carries no video. Its Thunderbolt 5 Pro Cable drives a monitor, provided the laptop’s port also supports video. <a href="https://support.apple.com/en-us/118204">Compare Apple’s cables</a></p></details>
+              </td>
+            </tr>
+            <tr role="row">
+              <th scope="row" role="rowheader"><span class="sample">V15 <i>Absolute</i></span><span class="scheme">Keep the hierarchy opaque</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Pricing and shelf-life flexibility.</strong> Omitting clear generation numbers lets older models stay on sale without looking dated, while prestige suffixes anchor higher price tiers.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Easy comparison and trust.</strong> Shoppers who have to decode overlapping SKUs—or discover incompatible attachments after buying—carry the friction.</td>
+            </tr>
+            <tr role="row">
+              <th scope="row" role="rowheader"><span class="sample"><span class="no-break">Lexus ES 250</span> <span class="arrow">/</span> <span class="no-break">Toyota Camry</span></span><span class="scheme">Split into a separate brand</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Gives you</span><strong>Clean market separation.</strong> A distinct luxury badge keeps buyers from anchoring a premium car’s price directly against a mass-market sibling.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Trades away</span><strong>Shared equity and transparency.</strong> Building a separate brand takes years of investment, and the names obscure which platforms or parts are shared underneath.</td>
+            </tr>
+          </tbody>
+        </table>
+        <section class="naming-takeaways" id="naming-takeaways" aria-labelledby="takeaways-title">
+          <h3 id="takeaways-title">What to decide before naming</h3>
+          <ul>
+            <li><strong>Fix the lineup before inventing another suffix.</strong> When it takes a paragraph—or three stacked modifiers—to explain why two products both exist, the underlying problem is usually product sprawl rather than copywriting.</li>
+            <li><strong>Choose what the name should expose and what it can hide.</strong> Keep product family, capability tier, and generation separate unless there is a deliberate reason to blur them. If simplicity calls for one umbrella name like “iPad” or “USB-C,” keep the exact model code or cable rating easy to find when compatibility matters.</li>
+            <li><strong>Name the products that do not exist yet.</strong> Before committing to “Max,” “Opus,” or “Sol,” name the tier above it, the cheaper entry tier below it, and a mid-tier release slotted in between.</li>
+            <li><strong>Test metaphors on someone outside the company.</strong> Distinctive names are worth using when brand identity matters, and boring systems are not always the right fit. Ask a newcomer to rank the names without hints: an opaque label merely forces a lookup, whereas a metaphor whose real-world logic points to the wrong tier works actively against the product.</li>
+          </ul>
+          <p class="name-closing">Naming is hard because it compresses product strategy, positioning, and future roadmap choices into a few words. No single scheme fits every catalog—some products need plain legibility, some need room to branch, and some companies have deliberate commercial reasons to keep tiers separate or opaque. What rarely holds up is treating the name as an afterthought, then letting years of unplanned suffixes and stretched metaphors pile up on top of it.</p>
+        </section>
+        <p class="case-source">Sources · <a href="https://book.stevejobsarchive.com/#:~:text=What%20this%20told%20us">Steve Jobs on Apple’s four-product strategy</a> · <a href="https://support.apple.com/en-us/121553">MacBook Pro chip options</a> · <a href="https://pressroom.lexus.com/celebrating-luxury-a-look-at-lexus-35-year-legacy/">Lexus on the ES 250’s Camry platform</a> · <a href="https://semver.org/">Semantic Versioning 2.0.0 specification</a> · <a href="https://support.apple.com/en-us/108043">Apple iPad model identification</a> · <a href="https://support.apple.com/en-us/118204">Apple USB-C and Thunderbolt cables</a></p>
+      </div>
+    </section>
+    <section class="sources" id="sources">
+      <div class="container sources-grid">
+        <h2>About the Quiz</h2>
+        <div id="the-complication">
+          <p>Each question tests one specific, documented comparison—whether that is the core count of a chip, the size grade of an olive, or the cabin class on a long-haul flight. Every answer links to the primary source behind the ranking.</p>
+          <p>I wrote an earlier essay on this subject—<a class="essay-link" href="{% post_url 2026-07-09-The-Naming-Ceiling %}">A Magnum Opus Leaves Nowhere to Go <span aria-hidden="true">↗</span></a>—back when Sol was still OpenAI’s top model.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><span>An independent interactive essay by <a href="{{ '/' | relative_url }}">Jason Willems</a>.</span><span><a href="#the-test">Back to the quiz ↑</a> &nbsp;·&nbsp; <a href="{{ '/sites/' | relative_url }}">All Projects ↗</a></span></div></footer>
+  <script>
+    (() => {
+      'use strict';
+      const chemCards = document.getElementById('chem-cards');
+      const chemCaption = document.getElementById('chem-caption');
+      const chemExplainer = document.getElementById('chem-explainer');
+      const orderButtons = document.querySelectorAll('.toggle-group button[data-order]');
+      const elements = [...chemCards.querySelectorAll('.element')];
+      const separators = chemCards.querySelectorAll('.chem-greater');
+      const views = {
+        model: { caption: chemCaption.textContent, explanation: chemExplainer.textContent },
+        mass: { caption: 'Heaviest first', explanation: 'Neon moves ahead of Carbon because 20.180 is greater than 12.011.' },
+        group: { caption: 'Rightmost column first', explanation: 'Neon sits four columns to the right of Carbon. Hydrogen is on the far left.' },
+        period: { caption: 'Largest row number first', explanation: 'Hydrogen is in the first row, while Carbon and Neon share the second, so row number gives them the same rank.' }
+      };
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+      function sortChem(mode) {
+        if (chemCards.dataset.order === mode) return;
+
+        const starts = elements.map(card => card.getBoundingClientRect().left);
+        elements.forEach(card => card.getAnimations().forEach(animation => animation.cancel()));
+        const metric = mode === 'model' ? 'mass' : mode;
+        const ranked = elements.map((card, index) => {
+          for (const field of card.querySelectorAll('[data-metric]')) {
+            field.hidden = field.dataset.metric !== metric;
+          }
+          const value = mode === 'model' ? elements.length - index : Number(card.querySelector('[data-metric]:not([hidden]) strong').textContent);
+          return { card, value };
+        }).sort((a, b) => b.value - a.value);
+
+        const row = [];
+        ranked.forEach(({ card, value }, index) => {
+          if (index > 0) {
+            const separator = separators[index - 1];
+            separator.textContent = ranked[index - 1].value === value ? '=' : '>';
+            row.push(separator);
+          }
+          row.push(card);
+        });
+        chemCards.replaceChildren(...row);
+        chemCards.dataset.order = mode;
+
+        if (!reducedMotion.matches) {
+          elements.forEach((card, index) => {
+            const offset = starts[index] - card.getBoundingClientRect().left;
+            if (!offset) return;
+            card.animate(
+              [{ transform: 'translateX(' + offset + 'px)' }, { transform: 'translateX(0)' }],
+              { duration: 340, easing: 'ease-in-out' }
+            );
+          });
+        }
+
+        orderButtons.forEach(button => button.setAttribute('aria-pressed', button.dataset.order === mode));
+        chemCaption.textContent = views[mode].caption;
+        chemExplainer.textContent = views[mode].explanation;
+      }
+
+      orderButtons.forEach(button => button.addEventListener('click', () => sortChem(button.dataset.order)));
+    })();
+  </script>
+</body>
+</html>

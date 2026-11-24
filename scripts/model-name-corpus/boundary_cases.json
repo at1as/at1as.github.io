@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "schema_version": "1.0",
+    "compiled_on": "2026-11-21",
+    "playable_as_binary": false
+  },
+  "cases": [
+    {
+      "id": "boss-v-hugo",
+      "category": "fashion",
+      "names": [
+        "BOSS",
+        "HUGO"
+      ],
+      "verdict": "not_linear",
+      "reason": "HUGO BOSS describes them as distinct brands with equally high quality standards and different audiences—not a single public premium ladder.",
+      "possible_use": "An occasional \"not comparable\" reveal only, never an arbitrary BOSS > HUGO answer.",
+      "source_urls": [
+        "https://annualreport.hugoboss.com/2025/management-report/group-profile/business-activities-and-group-structure.html"
+      ]
+    },
+    {
+      "id": "hugo-boss-lines",
+      "category": "fashion",
+      "names": [
+        "BOSS Black",
+        "BOSS Orange",
+        "BOSS Green",
+        "BOSS Camel"
+      ],
+      "verdict": "multiple-dimensions",
+      "reason": "These lines signal different dress, lifestyle and occasion uses. Some are positioned as more luxurious, but a universal four-rung ladder would be misleading.",
+      "possible_use": "Explain brand architecture without forcing a total order.",
+      "source_urls": [
+        "https://www.hugoboss.com/us/all-brands/boss-brandlines/"
+      ]
+    },
+    {
+      "id": "anthropic-mythos",
+      "category": "ai",
+      "names": [
+        "Claude Fable 5.2",
+        "Claude Mythos 5.2"
+      ],
+      "verdict": "same-spec-special-access",
+      "reason": "Anthropic describes Mythos 5.2 as restricted access, with the same capabilities and specs as Fable 5.2. Access restrictions are not an ascending intelligence tier.",
+      "possible_use": "Excellent one-time trick question if \"same capabilities\" is a real answer choice.",
+      "source_urls": [
+        "https://platform.claude.com/docs/en/models/fable-5-2/overview"
+      ]
+    },
+    {
+      "id": "ps5-disc",
+      "category": "gaming",
+      "names": [
+        "PlayStation 5 Digital Edition",
+        "PlayStation 5 disc-drive model"
+      ],
+      "verdict": "different-hardware-feature",
+      "reason": "The drive configuration changes disc handling, not the games’ graphics performance. These are not performance tiers.",
+      "possible_use": "Three-way answer only: A, B, \"same performance\".",
+      "source_urls": [
+        "https://www.playstation.com/en-us/ps5/"
+      ]
+    },
+    {
+      "id": "quest-3s-vs-3-all-metrics",
+      "category": "devices",
+      "names": [
+        "Meta Quest 3S",
+        "Meta Quest 3"
+      ],
+      "verdict": "metric-required",
+      "reason": "Quest 3 wins optics/resolution, but both use Snapdragon XR2 Gen 2 and Meta lists longer general-use battery for 3S.",
+      "possible_use": "Ask specifically for display resolution, optics or price tier; never generic \"Which is better?\".",
+      "source_urls": [
+        "https://www.meta.com/quest/compare/"
+      ]
+    },
+    {
+      "id": "switch-oled-v-standard",
+      "category": "gaming",
+      "names": [
+        "Nintendo Switch",
+        "Nintendo Switch – OLED Model"
+      ],
+      "verdict": "not-performance-tier",
+      "reason": "The OLED model improves display/storage/stand/dock features without a corresponding generational graphics-performance increase.",
+      "possible_use": "Same-GPU-performance trick question, not a general ranking.",
+      "source_urls": [
+        "https://www.nintendo.com/us/switch/compare/"
+      ]
+    },
+    {
+      "id": "iphone-pro-v-promax",
+      "category": "devices",
+      "names": [
+        "iPhone Pro",
+        "iPhone Pro Max"
+      ],
+      "verdict": "size-v-capability",
+      "reason": "Pro Max often signifies larger size/battery, not simply a faster chip than the same-generation Pro.",
+      "possible_use": "Keep separate from Apple M-chip Max/Ultra. If used, specify a model year and metric.",
+      "source_urls": [
+        "https://www.apple.com/iphone/compare/"
+      ]
+    },
+    {
+      "id": "macbook-air-v-pro",
+      "category": "devices",
+      "names": [
+        "MacBook Air",
+        "MacBook Pro"
+      ],
+      "verdict": "multi-attribute",
+      "reason": "Pro generally targets sustained performance and higher-end configurations while Air favors portability; specific years/chips can invert simple benchmark comparisons.",
+      "possible_use": "Discuss naming rather than a universal CPU-score question.",
+      "source_urls": [
+        "https://www.apple.com/mac/compare/"
+      ]
+    },
+    {
+      "id": "canon-r1-v-r5",
+      "category": "devices",
+      "names": [
+        "Canon EOS R1",
+        "Canon EOS R5 Mark II"
+      ],
+      "verdict": "specialization",
+      "reason": "R1 is a flagship focused on professional action/speed; R5 Mark II emphasizes a different balance including higher resolution.",
+      "possible_use": "Ask \"which is flagship 1-series?\" only; avoid \"better photo quality\".",
+      "source_urls": [
+        "https://global.canon/en/news/2022/20220224.html"
+      ]
+    },
+    {
+      "id": "porsche-911-family",
+      "category": "cars",
+      "names": [
+        "911 Carrera T",
+        "911 Carrera S",
+        "911 GT3",
+        "911 Turbo S"
+      ],
+      "verdict": "multiple-dimensions",
+      "reason": "The 911 families emphasize different driving experiences (manual engagement, power, track performance, comfort) rather than one universally better car.",
+      "possible_use": "Use narrow engine-output pairs within a defined family only.",
+      "source_urls": [
+        "https://www.porsche.com/usa/models/911/"
+      ]
+    },
+    {
+      "id": "cross-issuer-premium",
+      "category": "cards",
+      "names": [
+        "Chase Sapphire Reserve",
+        "American Express Platinum",
+        "Visa Infinite"
+      ],
+      "verdict": "different-layers",
+      "reason": "These mix a bank-issued consumer card product with a payment-network benefit platform; issuer tiers cannot be merged into one ordinal scale.",
+      "possible_use": "Separate ladder families by issuer and network.",
+      "source_urls": [
+        "https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve",
+        "https://www.visa.com/en-us/personal/cards/credit"
+      ]
+    },
+    {
+      "id": "mastercard-vs-visa",
+      "category": "cards",
+      "names": [
+        "Mastercard World Legend",
+        "Visa Infinite"
+      ],
+      "verdict": "different-networks",
+      "reason": "Separate network programs, issuer benefits and country implementations make a cross-brand absolute order arbitrary.",
+      "possible_use": "Do not compare without fixing a concrete benefit and country.",
+      "source_urls": [
+        "https://www.mastercard.com/global/en/business/payments/consumer-payments/card/affluent-credit.html",
+        "https://www.visa.com/en-us/personal/cards/credit"
+      ]
+    },
+    {
+      "id": "starbucks-hot-v-iced",
+      "category": "food",
+      "names": [
+        "Hot Venti",
+        "Iced Venti"
+      ],
+      "verdict": "same-name-different-size",
+      "reason": "Hot and iced beverage size volumes can differ even when the printed size word is identical.",
+      "possible_use": "Use only as an explanatory footnote with each beverage size sourced.",
+      "source_urls": [
+        "https://www.starbucks.com/menu/product/2123863/iced"
+      ]
+    },
+    {
+      "id": "core-ultra-cross-generation",
+      "category": "chips",
+      "names": [
+        "Core Ultra 9 (older mobile)",
+        "Core Ultra 7 (new desktop)"
+      ],
+      "verdict": "cross-generation",
+      "reason": "A high marketing tier does not necessarily beat a lower number across different generations and power limits.",
+      "possible_use": "Only compare product tiers within a generation/form factor.",
+      "source_urls": [
+        "https://www.intel.com/content/www/us/en/support/articles/000097596/processors/intel-core-ultra-processors.html"
+      ]
+    },
+    {
+      "id": "usb-renaming",
+      "category": "software",
+      "names": [
+        "USB 3.0",
+        "USB 3.1 Gen 1",
+        "USB 3.2 Gen 1"
+      ],
+      "verdict": "same-speed-rebrands",
+      "reason": "These names all designate the 5 Gbps signaling tier, rather than a series of ascending transfer speeds.",
+      "possible_use": "Excellent \"they’re equal\" intermission, if multi-answer game support is added.",
+      "source_urls": [
+        "https://www.usb.org/usb-32-0"
+      ]
+    }
+  ]
+}

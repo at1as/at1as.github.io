@@ -42,3 +42,7 @@ The systems that age best are usually a little boring. They have an obvious dire
 Naming is hard because it compresses positioning, capability, and brand into a few words. Future-proof naming is harder because it also has to account for products that do not exist yet.
 
 Successful companies can bet that their best product today will not be their best product forever. It helps not to name it as though it is.
+
+---
+
+*Follow-up:* I expanded on these ideas with an interactive quiz and more case studies in [What’s Bigger Than Max?](/sites/model-names/).

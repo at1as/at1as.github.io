@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="181" viewBox="0 0 600 181">
+  <title>Three cables that fit one USB-C port</title>
+  <defs>
+    <!-- Origin at the metal tip. The cable jacket meets the strain relief at y=42. -->
+    <g id="plug" stroke="#33443e" stroke-linejoin="round">
+      <rect x="-8" y="0" width="16" height="13" rx="2.5" fill="#d8deda" stroke-width="1.6"/>
+      <path d="M-5 3h10" fill="none" stroke="#f9faf6" stroke-width="2"/>
+      <rect x="-5" y="30" width="10" height="12" rx="3" fill="#b3bfb6" stroke-width="1.6"/>
+      <rect x="-11" y="11" width="22" height="23" rx="5" fill="#e6ebe3" stroke-width="1.8"/>
+      <path d="M-7 16v11" fill="none" stroke="#fafbf7" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <path id="charge-only" d="M239 80 C218 112 181 99 153 101 S100 104 100 136"/>
+    <path id="charge-data" d="M300 86 C300 103 307 109 304 119 S300 131 300 136"/>
+    <path id="thunderbolt" d="M361 80 C381 109 408 108 442 101 S500 105 500 136"/>
+  </defs>
+
+  <!-- The receptacle is shown face-on. The three loose tips are alternatives. -->
+  <rect x="230" y="4" width="140" height="32" rx="6" fill="#d6dcd6" stroke="#75837a" stroke-width="1.7"/>
+  <path d="M233 30h134" fill="none" stroke="#acb7af" stroke-width="1.6"/>
+  <rect x="272" y="8" width="56" height="21" rx="10.5" fill="#8a968e" stroke="#f5f6ef" stroke-width="1.8"/>
+  <rect x="275" y="10" width="50" height="17" rx="8.5" fill="#25312c"/>
+  <rect x="281" y="16" width="38" height="5" rx="2.5" fill="#a5b2a7"/>
+  <path d="M287 18h26" fill="none" stroke="#ddd0a9" stroke-width="2" stroke-dasharray="1 2"/>
+
+  <g fill="none" stroke-linecap="round">
+    <g stroke="#33443e" stroke-width="8">
+      <use href="#charge-only"/><use href="#charge-data"/><use href="#thunderbolt"/>
+    </g>
+    <use href="#charge-only" stroke="#889b90" stroke-width="4"/>
+    <use href="#charge-data" stroke="#e2e6dc" stroke-width="5"/>
+    <use href="#thunderbolt" stroke="#a8b5a9" stroke-width="4" stroke-dasharray="1 4"/>
+  </g>
+  <use href="#plug" transform="translate(264 46) rotate(36)"/>
+  <use href="#plug" transform="translate(300 44)"/>
+  <use href="#plug" transform="translate(336 46) rotate(-36)"/>
+  <use href="#plug" transform="translate(100 178) rotate(180)"/>
+  <use href="#plug" transform="translate(300 178) rotate(180)"/>
+  <use href="#plug" transform="translate(500 178) rotate(180)"/>
+</svg>
