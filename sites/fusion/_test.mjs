@@ -63,11 +63,12 @@ const gainRoutes = [
   [["delivered"], ["fusion"]],
   [["delivered"], ["fusion"]],
   [["electricity"], ["returned"]],
-  [["aux", "electricity"], ["gross"]],
+  [["aux", "electricity"], ["export", "gross"]],
 ];
 for (const [index, [inputs, outputs]] of gainRoutes.entries()) {
   const diagram = renderGainDiagram(index);
   assert.ok(!/NaN|undefined/.test(diagram));
+  assert.ok(diagram.includes(`data-boundary-box="${index}"`), "render an explicit measurement boundary box");
   const ids = [...diagram.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
   assert.equal(ids.length, new Set(ids).size, "responsive diagrams must have unique SVG references");
   for (const match of diagram.matchAll(/url\(#([^)]*)\)/g)) assert.ok(ids.includes(match[1]));

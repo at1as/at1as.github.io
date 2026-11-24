@@ -94,9 +94,9 @@
     <script id="analytics-config" type="application/json">{"measurementId":"G-Q5N6H3PVG2","hostname":"www.jasonwillems.com"}</script>
     <script src="./analytics.js?v=1" defer></script>
     <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261123c" />
+    <link rel="stylesheet" href="./styles.css?v=20261123d" />
     <link rel="stylesheet" href="./reactor-explorer.css?v=bafbffcf" />
-    <script type="module" src="./app.js?v=20261123c"></script>
+    <script type="module" src="./app.js?v=20261123d"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -744,23 +744,23 @@
               id="boundary-caption"
               aria-live="polite"
             ></div>
-            <article class="boundary-example" data-boundary-example="1" hidden>
+            <article class="boundary-example" data-boundary-example="0" hidden>
               <header>
-                <span class="badge target">◇ DESIGN TARGET</span>
-                <h4>ITER</h4>
+                <span class="badge experiment">● EXPERIMENT</span>
+                <h4>OMEGA</h4>
               </header>
               <div>
                 <p>
-                  ITER, under construction in southern France by seven
-                  international partners, aims for 500 megawatts (MW) of fusion
-                  power from 50 MW of external plasma heating.
+                  In February 2024, the University of Rochester’s OMEGA laser
+                  reported hot-spot fuel gain above 1 in direct-drive D–T
+                  implosions using ~28 kJ of laser light.
                 </p>
-                <p class="example-equation">500 MW ÷ 50 MW = Q of 10</p>
-                <p class="example-caveat"><strong>Research goal only—ITER has no turbines or electricity generation</strong></p>
-                <p class="citation" data-cites="PHY_019 PHY_020"></p>
+                <p class="example-equation">Fusion energy ÷ hot-spot internal energy &gt; 1</p>
+                <p class="example-caveat"><strong>Fuel-boundary milestone only—target gain and facility electricity remained far below break-even</strong></p>
+                <p class="citation" data-cites="COR_OMEGA_FUEL_GAIN"></p>
               </div>
             </article>
-            <article class="boundary-example" data-boundary-example="2" hidden>
+            <article class="boundary-example" data-boundary-example="1" hidden>
               <header>
                 <span class="badge experiment">● EXPERIMENT</span>
                 <h4>NIF</h4>
@@ -777,6 +777,22 @@
                 <p class="citation" data-cites="PHY_009 PHY_012"></p>
               </div>
             </article>
+            <article class="boundary-example" data-boundary-example="2" hidden>
+              <header>
+                <span class="badge target">◇ DESIGN TARGET</span>
+                <h4>ITER</h4>
+              </header>
+              <div>
+                <p>
+                  ITER, under construction in southern France by seven
+                  international partners, aims for 500 megawatts (MW) of fusion
+                  power from 50 MW of external plasma heating.
+                </p>
+                <p class="example-equation">500 MW ÷ 50 MW = Q of 10</p>
+                <p class="example-caveat"><strong>Research goal only—ITER has no turbines or electricity generation</strong></p>
+                <p class="citation" data-cites="PHY_019 PHY_020"></p>
+              </div>
+            </article>
             <article class="boundary-example" data-boundary-example="3" hidden>
               <header>
                 <span class="badge model">○ CURRENT STATUS</span>
@@ -791,6 +807,22 @@
                 </p>
                 <p class="example-equation">102 − 100 − 3 = −1 MJ</p>
                 <p class="example-caveat"><strong>The whole plant must finish ahead, even if the pulse recovers more than its own input</strong></p>
+              </div>
+            </article>
+            <article class="boundary-example" data-boundary-example="4" hidden>
+              <header>
+                <span class="badge model">○ CURRENT STATUS</span>
+                <h4>Not yet</h4>
+                <p>No fusion plant has supplied net electricity to the grid</p>
+              </header>
+              <div>
+                <p>
+                  In the worked model below, 500 MW of fusion generates 200 MW
+                  of gross electricity, while heating draws 100 MW and other
+                  plant systems draw 50 MW.
+                </p>
+                <p class="example-equation">200 MW − 100 MW − 50 MW = +50 MW to the grid</p>
+                <p class="example-caveat"><strong>Test how easily this surplus turns negative in the power-balance model directly below</strong></p>
               </div>
             </article>
           </div>

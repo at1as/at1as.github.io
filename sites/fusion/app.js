@@ -6,7 +6,7 @@ import {
   reactionEnergyMeV,
 } from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
-import { renderGainDiagram } from "./gain-diagram.js?v=20261123";
+import { renderGainDiagram } from "./gain-diagram.js?v=20261123d";
 import {
   atlasFamilies, atlasFamilyId, atlasFamilyLabel, matchesApproach,
   readApproachFilters, claimSourceLabels, sourceTypeLabel,
@@ -497,37 +497,37 @@ const boundaryData = [
   {
     title: "Fuel gain",
     formula: "Fusion energy ÷ energy absorbed by the fuel",
-    text: "Counts only the energy absorbed directly by the fuel capsule: 1 MJ absorbed producing 2 MJ of fusion gives a fuel gain of 2.",
-    caveatLabel: "Leaves out",
-    caveat: "Laser-driver losses, energy lost before reaching the fuel, thermal conversion losses, and all other plant power.",
-  },
-  {
-    title: "Plasma Q",
-    formula: "Fusion power ÷ external heating delivered to the plasma",
-    text: "Compares fusion power with the external heat injected into the plasma, excluding self-heating from fusion products.",
-    caveatLabel: "Leaves out",
-    caveat: "Electricity lost generating that heat, magnet and auxiliary loads, and turbine conversion losses.",
+    text: "Draws the tightest box—around just the fuel capsule itself. Absorbing 1 MJ and releasing 2 MJ gives a fuel gain of 2.",
+    caveatLabel: "Outside this box",
+    caveat: "Laser-driver electricity, energy lost hitting the target shell, turbine conversion losses, and all other plant power.",
   },
   {
     title: "Target gain",
     formula: "Fusion energy ÷ driver energy delivered to the target",
-    text: "Counts all laser or driver energy hitting the complete target assembly, including energy that never reaches the fuel inside.",
-    caveatLabel: "Leaves out",
-    caveat: "Electricity used to power the lasers and facility, plus heat-to-electricity conversion losses.",
+    text: "Widens the box on the same laser machine to wrap the whole target assembly, including energy lost before reaching the fuel.",
+    caveatLabel: "Outside this box",
+    caveat: "Electricity powering the lasers and facility, plus heat-to-electricity conversion losses.",
+  },
+  {
+    title: "Plasma Q",
+    formula: "Fusion power ÷ external heating delivered to the plasma",
+    text: "The magnetic-confinement equivalent: wraps the plasma itself, comparing fusion power against external heating (excluding self-heating).",
+    caveatLabel: "Outside this box",
+    caveat: "Electricity lost generating that heat, magnet and cooling loads, and turbine conversion losses.",
   },
   {
     title: "Electrical recovery",
-    formula: "Electricity returned after a pulse",
-    text: "Pulsed designs can inductively recover energy from expanding plasma or magnets—meaning returned electricity mixes original input with any new fusion energy.",
-    caveatLabel: "Count the full cycle",
-    caveat: "Subtract pulse input, pumps, and cooling with stored energy returned to its starting level.",
+    formula: "Electricity returned − pulse input − other plant loads",
+    text: "Wraps a pulsed machine’s drive and inductive recovery circuit—where returned electricity mixes recycled pulse input with any new fusion energy.",
+    caveatLabel: "Still outside the pulse",
+    caveat: "Cooling, pumps, and fuel processing sit outside the pulse circuit and must be subtracted with energy storage restored to its starting level.",
   },
   {
     title: "Whole plant",
-    formula: "Electricity generated − all electricity consumed by the plant",
-    text: "The only metric that decides whether a plant exports to the grid or draws power from it.",
+    formula: "Gross electricity − driver demand − other plant loads",
+    text: "Wraps the entire power station. This is the only boundary that decides whether the plant exports electricity or draws power from the grid.",
     caveatLabel: "For a real plant",
-    caveat: "Output must stay positive across startup, sustained or repeated operation, and shutdown with no net drain on energy storage.",
+    caveat: "Net export must stay positive across startup, sustained or repeated operation, and shutdown with no net drain on stored energy.",
   },
 ];
 function boundaries() {

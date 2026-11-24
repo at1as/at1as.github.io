@@ -3912,6 +3912,70 @@ main > .section:not(.machines-section) .section-heading > p:not(.eyebrow) {
   height: auto;
   margin: 4px auto;
 }
+.energy-boundary-rect {
+  fill: #e9f0e7;
+  fill-opacity: 0.42;
+  stroke: #2c5244;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.energy-boundary-pill {
+  fill: #24453a;
+}
+.energy-boundary-label {
+  fill: #f6f8f2;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.energy-excluded {
+  opacity: 0.32;
+}
+.energy-key .gain-boundary {
+  color: #24453a;
+}
+.energy-key .gain-boundary i {
+  border-top: 2px dashed #24453a;
+}
+.energy-measurement.energy-measurement-equation {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.energy-measurement-equation > span {
+  flex: 1 1 170px;
+  padding: 7px 11px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+.energy-measurement-equation .energy-op {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 700;
+  color: #465d50;
+  padding: 0 2px;
+}
+.energy-measurement-equation .gain-result {
+  background: #e6ebe6;
+  color: #233c34;
+  border-left-color: #233c34;
+}
+.energy-measurement-equation .gain-result-net {
+  background: #dcebe1;
+  color: #15593d;
+  border-left-color: #15593d;
+}
+.energy-measurement-equation .gain-outside {
+  background: #eff1ec;
+  color: #5b6a63;
+  border-left-color: #8b9992;
+  border-left-style: dashed;
+}
 .energy-measurement > span {
   padding: 7px 10px;
   font-size: 12px;
