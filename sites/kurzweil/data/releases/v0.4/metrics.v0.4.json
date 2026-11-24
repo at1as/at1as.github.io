@@ -1,0 +1,1885 @@
+{
+  "as_of": "2026-10-15",
+  "population": "Selected source-matched distinct forecast versions; not a representative or lifetime accuracy estimate.",
+  "total_canonical": 81,
+  "new_canonical": 33,
+  "consolidated_from_v03": [
+    "K015",
+    "K025",
+    "K077"
+  ],
+  "original_ids_reconciled": 88,
+  "all_record_verdicts": {
+    "CORRECT": 23,
+    "LATE": 11,
+    "WRONG": 15,
+    "PARTIAL": 17,
+    "PENDING": 15
+  },
+  "views": {
+    "reference": {
+      "n": 64,
+      "counts": {
+        "CORRECT": 22,
+        "LATE": 11,
+        "PARTIAL": 16,
+        "WRONG": 15,
+        "PENDING": 0
+      },
+      "on_time": 22,
+      "fully_realized_by_review": 33,
+      "on_time_rate": 0.34375,
+      "realization_rate": 0.515625,
+      "eligible_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "K007",
+        "K008",
+        "K009",
+        "K010",
+        "K011",
+        "K012",
+        "K013",
+        "K014",
+        "K016",
+        "K017",
+        "K018",
+        "K019",
+        "K020",
+        "K026",
+        "K027",
+        "K029",
+        "K030",
+        "K031",
+        "K033",
+        "K034",
+        "K041",
+        "K046",
+        "K047",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K056",
+        "K057",
+        "K058",
+        "K059",
+        "K060",
+        "K061",
+        "K062",
+        "K063",
+        "K064",
+        "K065",
+        "K066",
+        "K067",
+        "K068",
+        "K069",
+        "K070",
+        "K071",
+        "K072",
+        "K073",
+        "K074",
+        "K075",
+        "K076",
+        "K078",
+        "K079",
+        "K080",
+        "K081",
+        "K082",
+        "K083",
+        "K084"
+      ],
+      "on_time_ids": [
+        "K001",
+        "K002",
+        "K005",
+        "K008",
+        "K009",
+        "K010",
+        "K013",
+        "K018",
+        "K041",
+        "K046",
+        "K050",
+        "K052",
+        "K054",
+        "K057",
+        "K060",
+        "K061",
+        "K063",
+        "K066",
+        "K073",
+        "K076",
+        "K082",
+        "K083"
+      ],
+      "fully_realized_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K005",
+        "K006",
+        "K008",
+        "K009",
+        "K010",
+        "K013",
+        "K016",
+        "K017",
+        "K018",
+        "K033",
+        "K041",
+        "K046",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K057",
+        "K060",
+        "K061",
+        "K063",
+        "K064",
+        "K066",
+        "K069",
+        "K073",
+        "K076",
+        "K082",
+        "K083"
+      ]
+    },
+    "strict": {
+      "n": 64,
+      "counts": {
+        "CORRECT": 6,
+        "LATE": 8,
+        "PARTIAL": 27,
+        "WRONG": 23,
+        "PENDING": 0
+      },
+      "on_time": 6,
+      "fully_realized_by_review": 14,
+      "on_time_rate": 0.09375,
+      "realization_rate": 0.21875,
+      "eligible_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "K007",
+        "K008",
+        "K009",
+        "K010",
+        "K011",
+        "K012",
+        "K013",
+        "K014",
+        "K016",
+        "K017",
+        "K018",
+        "K019",
+        "K020",
+        "K026",
+        "K027",
+        "K029",
+        "K030",
+        "K031",
+        "K033",
+        "K034",
+        "K041",
+        "K046",
+        "K047",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K056",
+        "K057",
+        "K058",
+        "K059",
+        "K060",
+        "K061",
+        "K062",
+        "K063",
+        "K064",
+        "K065",
+        "K066",
+        "K067",
+        "K068",
+        "K069",
+        "K070",
+        "K071",
+        "K072",
+        "K073",
+        "K074",
+        "K075",
+        "K076",
+        "K078",
+        "K079",
+        "K080",
+        "K081",
+        "K082",
+        "K083",
+        "K084"
+      ],
+      "on_time_ids": [
+        "K001",
+        "K002",
+        "K054",
+        "K061",
+        "K063",
+        "K066"
+      ],
+      "fully_realized_ids": [
+        "K001",
+        "K002",
+        "K008",
+        "K033",
+        "K052",
+        "K054",
+        "K055",
+        "K057",
+        "K060",
+        "K061",
+        "K063",
+        "K066",
+        "K069",
+        "K082"
+      ]
+    },
+    "broader": {
+      "n": 64,
+      "counts": {
+        "CORRECT": 26,
+        "LATE": 19,
+        "PARTIAL": 14,
+        "WRONG": 5,
+        "PENDING": 0
+      },
+      "on_time": 26,
+      "fully_realized_by_review": 45,
+      "on_time_rate": 0.40625,
+      "realization_rate": 0.703125,
+      "eligible_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "K007",
+        "K008",
+        "K009",
+        "K010",
+        "K011",
+        "K012",
+        "K013",
+        "K014",
+        "K016",
+        "K017",
+        "K018",
+        "K019",
+        "K020",
+        "K026",
+        "K027",
+        "K029",
+        "K030",
+        "K031",
+        "K033",
+        "K034",
+        "K041",
+        "K046",
+        "K047",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K056",
+        "K057",
+        "K058",
+        "K059",
+        "K060",
+        "K061",
+        "K062",
+        "K063",
+        "K064",
+        "K065",
+        "K066",
+        "K067",
+        "K068",
+        "K069",
+        "K070",
+        "K071",
+        "K072",
+        "K073",
+        "K074",
+        "K075",
+        "K076",
+        "K078",
+        "K079",
+        "K080",
+        "K081",
+        "K082",
+        "K083",
+        "K084"
+      ],
+      "on_time_ids": [
+        "K001",
+        "K002",
+        "K005",
+        "K008",
+        "K009",
+        "K010",
+        "K013",
+        "K014",
+        "K018",
+        "K041",
+        "K046",
+        "K050",
+        "K052",
+        "K053",
+        "K054",
+        "K057",
+        "K060",
+        "K061",
+        "K063",
+        "K066",
+        "K067",
+        "K073",
+        "K076",
+        "K080",
+        "K082",
+        "K083"
+      ],
+      "fully_realized_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K005",
+        "K006",
+        "K007",
+        "K008",
+        "K009",
+        "K010",
+        "K012",
+        "K013",
+        "K014",
+        "K016",
+        "K017",
+        "K018",
+        "K020",
+        "K026",
+        "K033",
+        "K041",
+        "K046",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K056",
+        "K057",
+        "K060",
+        "K061",
+        "K062",
+        "K063",
+        "K064",
+        "K065",
+        "K066",
+        "K067",
+        "K069",
+        "K070",
+        "K072",
+        "K073",
+        "K076",
+        "K080",
+        "K082",
+        "K083"
+      ]
+    }
+  },
+  "common_cohort_excluding_deadline_boundary": {
+    "reference": {
+      "n": 64,
+      "counts": {
+        "CORRECT": 22,
+        "LATE": 11,
+        "PARTIAL": 16,
+        "WRONG": 15,
+        "PENDING": 0
+      },
+      "on_time": 22,
+      "fully_realized_by_review": 33,
+      "on_time_rate": 0.34375,
+      "realization_rate": 0.515625,
+      "eligible_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "K007",
+        "K008",
+        "K009",
+        "K010",
+        "K011",
+        "K012",
+        "K013",
+        "K014",
+        "K016",
+        "K017",
+        "K018",
+        "K019",
+        "K020",
+        "K026",
+        "K027",
+        "K029",
+        "K030",
+        "K031",
+        "K033",
+        "K034",
+        "K041",
+        "K046",
+        "K047",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K056",
+        "K057",
+        "K058",
+        "K059",
+        "K060",
+        "K061",
+        "K062",
+        "K063",
+        "K064",
+        "K065",
+        "K066",
+        "K067",
+        "K068",
+        "K069",
+        "K070",
+        "K071",
+        "K072",
+        "K073",
+        "K074",
+        "K075",
+        "K076",
+        "K078",
+        "K079",
+        "K080",
+        "K081",
+        "K082",
+        "K083",
+        "K084"
+      ],
+      "on_time_ids": [
+        "K001",
+        "K002",
+        "K005",
+        "K008",
+        "K009",
+        "K010",
+        "K013",
+        "K018",
+        "K041",
+        "K046",
+        "K050",
+        "K052",
+        "K054",
+        "K057",
+        "K060",
+        "K061",
+        "K063",
+        "K066",
+        "K073",
+        "K076",
+        "K082",
+        "K083"
+      ],
+      "fully_realized_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K005",
+        "K006",
+        "K008",
+        "K009",
+        "K010",
+        "K013",
+        "K016",
+        "K017",
+        "K018",
+        "K033",
+        "K041",
+        "K046",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K057",
+        "K060",
+        "K061",
+        "K063",
+        "K064",
+        "K066",
+        "K069",
+        "K073",
+        "K076",
+        "K082",
+        "K083"
+      ]
+    },
+    "strict": {
+      "n": 64,
+      "counts": {
+        "CORRECT": 6,
+        "LATE": 8,
+        "PARTIAL": 27,
+        "WRONG": 23,
+        "PENDING": 0
+      },
+      "on_time": 6,
+      "fully_realized_by_review": 14,
+      "on_time_rate": 0.09375,
+      "realization_rate": 0.21875,
+      "eligible_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "K007",
+        "K008",
+        "K009",
+        "K010",
+        "K011",
+        "K012",
+        "K013",
+        "K014",
+        "K016",
+        "K017",
+        "K018",
+        "K019",
+        "K020",
+        "K026",
+        "K027",
+        "K029",
+        "K030",
+        "K031",
+        "K033",
+        "K034",
+        "K041",
+        "K046",
+        "K047",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K056",
+        "K057",
+        "K058",
+        "K059",
+        "K060",
+        "K061",
+        "K062",
+        "K063",
+        "K064",
+        "K065",
+        "K066",
+        "K067",
+        "K068",
+        "K069",
+        "K070",
+        "K071",
+        "K072",
+        "K073",
+        "K074",
+        "K075",
+        "K076",
+        "K078",
+        "K079",
+        "K080",
+        "K081",
+        "K082",
+        "K083",
+        "K084"
+      ],
+      "on_time_ids": [
+        "K001",
+        "K002",
+        "K054",
+        "K061",
+        "K063",
+        "K066"
+      ],
+      "fully_realized_ids": [
+        "K001",
+        "K002",
+        "K008",
+        "K033",
+        "K052",
+        "K054",
+        "K055",
+        "K057",
+        "K060",
+        "K061",
+        "K063",
+        "K066",
+        "K069",
+        "K082"
+      ]
+    },
+    "broader": {
+      "n": 64,
+      "counts": {
+        "CORRECT": 26,
+        "LATE": 19,
+        "PARTIAL": 14,
+        "WRONG": 5,
+        "PENDING": 0
+      },
+      "on_time": 26,
+      "fully_realized_by_review": 45,
+      "on_time_rate": 0.40625,
+      "realization_rate": 0.703125,
+      "eligible_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "K007",
+        "K008",
+        "K009",
+        "K010",
+        "K011",
+        "K012",
+        "K013",
+        "K014",
+        "K016",
+        "K017",
+        "K018",
+        "K019",
+        "K020",
+        "K026",
+        "K027",
+        "K029",
+        "K030",
+        "K031",
+        "K033",
+        "K034",
+        "K041",
+        "K046",
+        "K047",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K056",
+        "K057",
+        "K058",
+        "K059",
+        "K060",
+        "K061",
+        "K062",
+        "K063",
+        "K064",
+        "K065",
+        "K066",
+        "K067",
+        "K068",
+        "K069",
+        "K070",
+        "K071",
+        "K072",
+        "K073",
+        "K074",
+        "K075",
+        "K076",
+        "K078",
+        "K079",
+        "K080",
+        "K081",
+        "K082",
+        "K083",
+        "K084"
+      ],
+      "on_time_ids": [
+        "K001",
+        "K002",
+        "K005",
+        "K008",
+        "K009",
+        "K010",
+        "K013",
+        "K014",
+        "K018",
+        "K041",
+        "K046",
+        "K050",
+        "K052",
+        "K053",
+        "K054",
+        "K057",
+        "K060",
+        "K061",
+        "K063",
+        "K066",
+        "K067",
+        "K073",
+        "K076",
+        "K080",
+        "K082",
+        "K083"
+      ],
+      "fully_realized_ids": [
+        "K001",
+        "K002",
+        "K003",
+        "K005",
+        "K006",
+        "K007",
+        "K008",
+        "K009",
+        "K010",
+        "K012",
+        "K013",
+        "K014",
+        "K016",
+        "K017",
+        "K018",
+        "K020",
+        "K026",
+        "K033",
+        "K041",
+        "K046",
+        "K048",
+        "K050",
+        "K051",
+        "K052",
+        "K053",
+        "K054",
+        "K055",
+        "K056",
+        "K057",
+        "K060",
+        "K061",
+        "K062",
+        "K063",
+        "K064",
+        "K065",
+        "K066",
+        "K067",
+        "K069",
+        "K070",
+        "K072",
+        "K073",
+        "K076",
+        "K080",
+        "K082",
+        "K083"
+      ]
+    }
+  },
+  "by_category": {
+    "AI & software": {
+      "reference": {
+        "n": 8,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 2,
+          "PARTIAL": 3,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 4,
+        "on_time_rate": 0.25,
+        "realization_rate": 0.5,
+        "eligible_ids": [
+          "K001",
+          "K011",
+          "K012",
+          "K029",
+          "K048",
+          "K054",
+          "K055",
+          "K072"
+        ],
+        "on_time_ids": [
+          "K001",
+          "K054"
+        ],
+        "fully_realized_ids": [
+          "K001",
+          "K048",
+          "K054",
+          "K055"
+        ]
+      },
+      "strict": {
+        "n": 8,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 1,
+          "PARTIAL": 4,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 3,
+        "on_time_rate": 0.25,
+        "realization_rate": 0.375,
+        "eligible_ids": [
+          "K001",
+          "K011",
+          "K012",
+          "K029",
+          "K048",
+          "K054",
+          "K055",
+          "K072"
+        ],
+        "on_time_ids": [
+          "K001",
+          "K054"
+        ],
+        "fully_realized_ids": [
+          "K001",
+          "K054",
+          "K055"
+        ]
+      },
+      "broader": {
+        "n": 8,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 4,
+          "PARTIAL": 2,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 6,
+        "on_time_rate": 0.25,
+        "realization_rate": 0.75,
+        "eligible_ids": [
+          "K001",
+          "K011",
+          "K012",
+          "K029",
+          "K048",
+          "K054",
+          "K055",
+          "K072"
+        ],
+        "on_time_ids": [
+          "K001",
+          "K054"
+        ],
+        "fully_realized_ids": [
+          "K001",
+          "K012",
+          "K048",
+          "K054",
+          "K055",
+          "K072"
+        ]
+      }
+    },
+    "Biology & medicine": {
+      "reference": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 3,
+          "LATE": 1,
+          "PARTIAL": 1,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 3,
+        "fully_realized_by_review": 4,
+        "on_time_rate": 0.6,
+        "realization_rate": 0.8,
+        "eligible_ids": [
+          "K041",
+          "K062",
+          "K063",
+          "K064",
+          "K083"
+        ],
+        "on_time_ids": [
+          "K041",
+          "K063",
+          "K083"
+        ],
+        "fully_realized_ids": [
+          "K041",
+          "K063",
+          "K064",
+          "K083"
+        ]
+      },
+      "strict": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 1,
+          "LATE": 0,
+          "PARTIAL": 3,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 1,
+        "fully_realized_by_review": 1,
+        "on_time_rate": 0.2,
+        "realization_rate": 0.2,
+        "eligible_ids": [
+          "K041",
+          "K062",
+          "K063",
+          "K064",
+          "K083"
+        ],
+        "on_time_ids": [
+          "K063"
+        ],
+        "fully_realized_ids": [
+          "K063"
+        ]
+      },
+      "broader": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 3,
+          "LATE": 2,
+          "PARTIAL": 0,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 3,
+        "fully_realized_by_review": 5,
+        "on_time_rate": 0.6,
+        "realization_rate": 1.0,
+        "eligible_ids": [
+          "K041",
+          "K062",
+          "K063",
+          "K064",
+          "K083"
+        ],
+        "on_time_ids": [
+          "K041",
+          "K063",
+          "K083"
+        ],
+        "fully_realized_ids": [
+          "K041",
+          "K062",
+          "K063",
+          "K064",
+          "K083"
+        ]
+      }
+    },
+    "Computing hardware": {
+      "reference": {
+        "n": 15,
+        "counts": {
+          "CORRECT": 5,
+          "LATE": 5,
+          "PARTIAL": 0,
+          "WRONG": 5,
+          "PENDING": 0
+        },
+        "on_time": 5,
+        "fully_realized_by_review": 10,
+        "on_time_rate": 0.3333333333333333,
+        "realization_rate": 0.6666666666666666,
+        "eligible_ids": [
+          "K002",
+          "K003",
+          "K004",
+          "K005",
+          "K006",
+          "K033",
+          "K034",
+          "K046",
+          "K050",
+          "K051",
+          "K052",
+          "K053",
+          "K070",
+          "K071",
+          "K074"
+        ],
+        "on_time_ids": [
+          "K002",
+          "K005",
+          "K046",
+          "K050",
+          "K052"
+        ],
+        "fully_realized_ids": [
+          "K002",
+          "K003",
+          "K005",
+          "K006",
+          "K033",
+          "K046",
+          "K050",
+          "K051",
+          "K052",
+          "K053"
+        ]
+      },
+      "strict": {
+        "n": 15,
+        "counts": {
+          "CORRECT": 1,
+          "LATE": 2,
+          "PARTIAL": 6,
+          "WRONG": 6,
+          "PENDING": 0
+        },
+        "on_time": 1,
+        "fully_realized_by_review": 3,
+        "on_time_rate": 0.06666666666666667,
+        "realization_rate": 0.2,
+        "eligible_ids": [
+          "K002",
+          "K003",
+          "K004",
+          "K005",
+          "K006",
+          "K033",
+          "K034",
+          "K046",
+          "K050",
+          "K051",
+          "K052",
+          "K053",
+          "K070",
+          "K071",
+          "K074"
+        ],
+        "on_time_ids": [
+          "K002"
+        ],
+        "fully_realized_ids": [
+          "K002",
+          "K033",
+          "K052"
+        ]
+      },
+      "broader": {
+        "n": 15,
+        "counts": {
+          "CORRECT": 6,
+          "LATE": 5,
+          "PARTIAL": 1,
+          "WRONG": 3,
+          "PENDING": 0
+        },
+        "on_time": 6,
+        "fully_realized_by_review": 11,
+        "on_time_rate": 0.4,
+        "realization_rate": 0.7333333333333333,
+        "eligible_ids": [
+          "K002",
+          "K003",
+          "K004",
+          "K005",
+          "K006",
+          "K033",
+          "K034",
+          "K046",
+          "K050",
+          "K051",
+          "K052",
+          "K053",
+          "K070",
+          "K071",
+          "K074"
+        ],
+        "on_time_ids": [
+          "K002",
+          "K005",
+          "K046",
+          "K050",
+          "K052",
+          "K053"
+        ],
+        "fully_realized_ids": [
+          "K002",
+          "K003",
+          "K005",
+          "K006",
+          "K033",
+          "K046",
+          "K050",
+          "K051",
+          "K052",
+          "K053",
+          "K070"
+        ]
+      }
+    },
+    "Economy & society": {
+      "reference": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 0,
+          "PARTIAL": 1,
+          "WRONG": 2,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 2,
+        "on_time_rate": 0.4,
+        "realization_rate": 0.4,
+        "eligible_ids": [
+          "K059",
+          "K060",
+          "K076",
+          "K079",
+          "K084"
+        ],
+        "on_time_ids": [
+          "K060",
+          "K076"
+        ],
+        "fully_realized_ids": [
+          "K060",
+          "K076"
+        ]
+      },
+      "strict": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 1,
+          "PARTIAL": 1,
+          "WRONG": 3,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 1,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.2,
+        "eligible_ids": [
+          "K059",
+          "K060",
+          "K076",
+          "K079",
+          "K084"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": [
+          "K060"
+        ]
+      },
+      "broader": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 0,
+          "PARTIAL": 2,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 2,
+        "on_time_rate": 0.4,
+        "realization_rate": 0.4,
+        "eligible_ids": [
+          "K059",
+          "K060",
+          "K076",
+          "K079",
+          "K084"
+        ],
+        "on_time_ids": [
+          "K060",
+          "K076"
+        ],
+        "fully_realized_ids": [
+          "K060",
+          "K076"
+        ]
+      }
+    },
+    "Energy & environment": {
+      "reference": {
+        "n": 0,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 0,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": null,
+        "realization_rate": null,
+        "eligible_ids": [],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      },
+      "strict": {
+        "n": 0,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 0,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": null,
+        "realization_rate": null,
+        "eligible_ids": [],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      },
+      "broader": {
+        "n": 0,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 0,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": null,
+        "realization_rate": null,
+        "eligible_ids": [],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      }
+    },
+    "Interfaces & virtual worlds": {
+      "reference": {
+        "n": 10,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 2,
+          "PARTIAL": 4,
+          "WRONG": 2,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 4,
+        "on_time_rate": 0.2,
+        "realization_rate": 0.4,
+        "eligible_ids": [
+          "K013",
+          "K014",
+          "K016",
+          "K017",
+          "K018",
+          "K030",
+          "K031",
+          "K067",
+          "K068",
+          "K075"
+        ],
+        "on_time_ids": [
+          "K013",
+          "K018"
+        ],
+        "fully_realized_ids": [
+          "K013",
+          "K016",
+          "K017",
+          "K018"
+        ]
+      },
+      "strict": {
+        "n": 10,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 4,
+          "WRONG": 6,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.0,
+        "eligible_ids": [
+          "K013",
+          "K014",
+          "K016",
+          "K017",
+          "K018",
+          "K030",
+          "K031",
+          "K067",
+          "K068",
+          "K075"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      },
+      "broader": {
+        "n": 10,
+        "counts": {
+          "CORRECT": 4,
+          "LATE": 2,
+          "PARTIAL": 4,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 4,
+        "fully_realized_by_review": 6,
+        "on_time_rate": 0.4,
+        "realization_rate": 0.6,
+        "eligible_ids": [
+          "K013",
+          "K014",
+          "K016",
+          "K017",
+          "K018",
+          "K030",
+          "K031",
+          "K067",
+          "K068",
+          "K075"
+        ],
+        "on_time_ids": [
+          "K013",
+          "K014",
+          "K018",
+          "K067"
+        ],
+        "fully_realized_ids": [
+          "K013",
+          "K014",
+          "K016",
+          "K017",
+          "K018",
+          "K067"
+        ]
+      }
+    },
+    "Longevity": {
+      "reference": {
+        "n": 1,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 0,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.0,
+        "eligible_ids": [
+          "K027"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      },
+      "strict": {
+        "n": 1,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 0,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.0,
+        "eligible_ids": [
+          "K027"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      },
+      "broader": {
+        "n": 1,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 0,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.0,
+        "eligible_ids": [
+          "K027"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      }
+    },
+    "Media, education & culture": {
+      "reference": {
+        "n": 8,
+        "counts": {
+          "CORRECT": 4,
+          "LATE": 0,
+          "PARTIAL": 3,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 4,
+        "fully_realized_by_review": 4,
+        "on_time_rate": 0.5,
+        "realization_rate": 0.5,
+        "eligible_ids": [
+          "K008",
+          "K056",
+          "K057",
+          "K058",
+          "K065",
+          "K066",
+          "K078",
+          "K082"
+        ],
+        "on_time_ids": [
+          "K008",
+          "K057",
+          "K066",
+          "K082"
+        ],
+        "fully_realized_ids": [
+          "K008",
+          "K057",
+          "K066",
+          "K082"
+        ]
+      },
+      "strict": {
+        "n": 8,
+        "counts": {
+          "CORRECT": 1,
+          "LATE": 3,
+          "PARTIAL": 3,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 1,
+        "fully_realized_by_review": 4,
+        "on_time_rate": 0.125,
+        "realization_rate": 0.5,
+        "eligible_ids": [
+          "K008",
+          "K056",
+          "K057",
+          "K058",
+          "K065",
+          "K066",
+          "K078",
+          "K082"
+        ],
+        "on_time_ids": [
+          "K066"
+        ],
+        "fully_realized_ids": [
+          "K008",
+          "K057",
+          "K066",
+          "K082"
+        ]
+      },
+      "broader": {
+        "n": 8,
+        "counts": {
+          "CORRECT": 4,
+          "LATE": 2,
+          "PARTIAL": 2,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 4,
+        "fully_realized_by_review": 6,
+        "on_time_rate": 0.5,
+        "realization_rate": 0.75,
+        "eligible_ids": [
+          "K008",
+          "K056",
+          "K057",
+          "K058",
+          "K065",
+          "K066",
+          "K078",
+          "K082"
+        ],
+        "on_time_ids": [
+          "K008",
+          "K057",
+          "K066",
+          "K082"
+        ],
+        "fully_realized_ids": [
+          "K008",
+          "K056",
+          "K057",
+          "K065",
+          "K066",
+          "K082"
+        ]
+      }
+    },
+    "Networks & communications": {
+      "reference": {
+        "n": 4,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 1,
+          "PARTIAL": 1,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 3,
+        "on_time_rate": 0.5,
+        "realization_rate": 0.75,
+        "eligible_ids": [
+          "K007",
+          "K009",
+          "K010",
+          "K069"
+        ],
+        "on_time_ids": [
+          "K009",
+          "K010"
+        ],
+        "fully_realized_ids": [
+          "K009",
+          "K010",
+          "K069"
+        ]
+      },
+      "strict": {
+        "n": 4,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 1,
+          "PARTIAL": 3,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 1,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.25,
+        "eligible_ids": [
+          "K007",
+          "K009",
+          "K010",
+          "K069"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": [
+          "K069"
+        ]
+      },
+      "broader": {
+        "n": 4,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 2,
+          "PARTIAL": 0,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 4,
+        "on_time_rate": 0.5,
+        "realization_rate": 1.0,
+        "eligible_ids": [
+          "K007",
+          "K009",
+          "K010",
+          "K069"
+        ],
+        "on_time_ids": [
+          "K009",
+          "K010"
+        ],
+        "fully_realized_ids": [
+          "K007",
+          "K009",
+          "K010",
+          "K069"
+        ]
+      }
+    },
+    "Neuroscience & human augmentation": {
+      "reference": {
+        "n": 1,
+        "counts": {
+          "CORRECT": 1,
+          "LATE": 0,
+          "PARTIAL": 0,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 1,
+        "fully_realized_by_review": 1,
+        "on_time_rate": 1.0,
+        "realization_rate": 1.0,
+        "eligible_ids": [
+          "K073"
+        ],
+        "on_time_ids": [
+          "K073"
+        ],
+        "fully_realized_ids": [
+          "K073"
+        ]
+      },
+      "strict": {
+        "n": 1,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 1,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.0,
+        "eligible_ids": [
+          "K073"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      },
+      "broader": {
+        "n": 1,
+        "counts": {
+          "CORRECT": 1,
+          "LATE": 0,
+          "PARTIAL": 0,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 1,
+        "fully_realized_by_review": 1,
+        "on_time_rate": 1.0,
+        "realization_rate": 1.0,
+        "eligible_ids": [
+          "K073"
+        ],
+        "on_time_ids": [
+          "K073"
+        ],
+        "fully_realized_ids": [
+          "K073"
+        ]
+      }
+    },
+    "Robotics & transportation": {
+      "reference": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 1,
+          "LATE": 0,
+          "PARTIAL": 2,
+          "WRONG": 2,
+          "PENDING": 0
+        },
+        "on_time": 1,
+        "fully_realized_by_review": 1,
+        "on_time_rate": 0.2,
+        "realization_rate": 0.2,
+        "eligible_ids": [
+          "K026",
+          "K047",
+          "K061",
+          "K080",
+          "K081"
+        ],
+        "on_time_ids": [
+          "K061"
+        ],
+        "fully_realized_ids": [
+          "K061"
+        ]
+      },
+      "strict": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 1,
+          "LATE": 0,
+          "PARTIAL": 1,
+          "WRONG": 3,
+          "PENDING": 0
+        },
+        "on_time": 1,
+        "fully_realized_by_review": 1,
+        "on_time_rate": 0.2,
+        "realization_rate": 0.2,
+        "eligible_ids": [
+          "K026",
+          "K047",
+          "K061",
+          "K080",
+          "K081"
+        ],
+        "on_time_ids": [
+          "K061"
+        ],
+        "fully_realized_ids": [
+          "K061"
+        ]
+      },
+      "broader": {
+        "n": 5,
+        "counts": {
+          "CORRECT": 2,
+          "LATE": 1,
+          "PARTIAL": 2,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 2,
+        "fully_realized_by_review": 3,
+        "on_time_rate": 0.4,
+        "realization_rate": 0.6,
+        "eligible_ids": [
+          "K026",
+          "K047",
+          "K061",
+          "K080",
+          "K081"
+        ],
+        "on_time_ids": [
+          "K061",
+          "K080"
+        ],
+        "fully_realized_ids": [
+          "K026",
+          "K061",
+          "K080"
+        ]
+      }
+    },
+    "Security & warfare": {
+      "reference": {
+        "n": 2,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 1,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.0,
+        "eligible_ids": [
+          "K019",
+          "K020"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      },
+      "strict": {
+        "n": 2,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 0,
+          "PARTIAL": 1,
+          "WRONG": 1,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 0,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.0,
+        "eligible_ids": [
+          "K019",
+          "K020"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": []
+      },
+      "broader": {
+        "n": 2,
+        "counts": {
+          "CORRECT": 0,
+          "LATE": 1,
+          "PARTIAL": 1,
+          "WRONG": 0,
+          "PENDING": 0
+        },
+        "on_time": 0,
+        "fully_realized_by_review": 1,
+        "on_time_rate": 0.0,
+        "realization_rate": 0.5,
+        "eligible_ids": [
+          "K019",
+          "K020"
+        ],
+        "on_time_ids": [],
+        "fully_realized_ids": [
+          "K020"
+        ]
+      }
+    }
+  },
+  "due_outcome_unknown_count": 0,
+  "attribution_guarantee": "Author-attributed adapted/retrospective wording for many rows; original edition not collated. Conditional legacy leads never contribute to these counts.",
+  "comparability_notes": [
+    "All three readings (Literal, Balanced, Charitable) evaluate the exact same 64 due predictions. K036 ('mid-2020s') uses the 2026 window endpoint across all three readings, matching K037/K043.",
+    "Duplicate repetitions K015 (-> K014), K025 (-> K034), and K077 (-> K048) were consolidated in v0.4; true decade-over-decade progressions remain separate records.",
+    "Charitable verdicts allow reasonable functional substitutes or scope relaxations where documented, without rewriting failed mechanisms into unrelated technologies or marking future 2029 claims realized early.",
+    "Undated current successes remain displayed in the ledger but stay excluded from mature deadline rates."
+  ]
+}

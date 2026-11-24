@@ -1,4 +1,4 @@
-:HL["/sites/kurzweil/_next/static/chunks/3069d95d6j3nl.css","style"]
+:HL["/sites/kurzweil/_next/static/chunks/35xlzuop_xmsk.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"18498c6b9e55fd3a35e16a75","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"9180da3f85f1d3196e92164d","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
