@@ -1,0 +1,48 @@
+{
+  "release": "0.4",
+  "as_of": "2026-10-15",
+  "canonical_records": 81,
+  "consolidated_from_v03": [
+    "K015",
+    "K025",
+    "K077"
+  ],
+  "legacy_ids_reconciled": 88,
+  "files": [
+    {
+      "name": "changes.v0.4.csv",
+      "bytes": 11746,
+      "sha256": "87f3b82dbf2d1f2d9c6d3f41d3410192367e32281d7681ccb4d7f62ca3e76e47"
+    },
+    {
+      "name": "legacy-reconciliation.v0.4.json",
+      "bytes": 179944,
+      "sha256": "bbf0cac2f1f33d4ff0abcc6e20f26f8190ea1d49e53b057dacd1c218daba5ceb"
+    },
+    {
+      "name": "metrics.v0.4.json",
+      "bytes": 36343,
+      "sha256": "71f8f01aa0ac70df65d8b10c06d7d7b855310332b9f9150c6e3bce722260f38c"
+    },
+    {
+      "name": "predictions.canonical.v0.4.json",
+      "bytes": 907614,
+      "sha256": "dde30c490b026c8b71f61b5ecb17bd5c79bd147bce8afd1f9d1fcb2bf7f49a0b"
+    },
+    {
+      "name": "source-coverage.v0.4.json",
+      "bytes": 1054,
+      "sha256": "c3fd163596292dd1bbbed28f4ec0f77ff907c55ea1c1e9d420f80dd8c2bc08ba"
+    },
+    {
+      "name": "sources.v0.4.json",
+      "bytes": 67772,
+      "sha256": "e4c43a3a2c0255bf81d2f22425cdbd29eb04063de8be05ef31667ae8887a767f"
+    },
+    {
+      "name": "validate_v04.py",
+      "bytes": 2768,
+      "sha256": "d56fdcac06e8f2f8e567b6e9e97e8d3df9252abc9a37e315204caf3cd5cde913"
+    }
+  ]
+}
