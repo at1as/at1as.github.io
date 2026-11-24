@@ -63,28 +63,42 @@ export function renderTokamakOverview({ overviewLabels = true, overviewLegend = 
   // the central solenoid. The actual target plates and X-point are simplified.
   for (let i = 0; i < 120; i++) {
     const t = i * TAU / 120, next = (i + 1) * TAU / 120;
-    const opacity = Math.sin(t) > 0 ? 0.9 : 0.35;
+    const opacity = 0.4 + 0.5 * ((Math.sin(t) + 1) / 2);
     face([ringPoint(t, 122, -81), ringPoint(next, 122, -81),
       ringPoint(next, 170, -81), ringPoint(t, 170, -81)], mutedColor("#3f625d", opacity));
     face([ringPoint(t, 170, -81), ringPoint(next, 170, -81),
       ringPoint(next, 170, -91), ringPoint(t, 170, -91)], mutedColor("#29433f", opacity));
     for (const radius of [122, 170])
-      segment(ringPoint(t, radius, -81), ringPoint(next, radius, -81), colors.energy, 1, opacity * 0.75);
+      segment(ringPoint(t, radius, -81), ringPoint(next, radius, -81), colors.energy, 1.1, opacity * 0.78);
     if (i % 8 === 0)
-      segment(ringPoint(t, 122, -80.8), ringPoint(t, 170, -80.8), "#89b6a6", 0.7, opacity * 0.6);
+      segment(ringPoint(t, 122, -80.8), ringPoint(t, 170, -80.8), "#89b6a6", 0.75, opacity * 0.62);
   }
 
-  // A translucent plasma volume, with no wireframe grid masquerading as fields.
+  // A translucent plasma volume with a smooth luminous core along the magnetic axis.
   for (let i = 0; i < 96; i++) {
     const t = i * TAU / 96, next = (i + 1) * TAU / 96;
     for (let j = 0; j < 24; j++) {
       const p = j * TAU / 24, q = (j + 1) * TAU / 24;
       face([plasmaPoint(t, p), plasmaPoint(next, p), plasmaPoint(next, q), plasmaPoint(t, q)],
-        colors.plasma, 0.075 + 0.05 * Math.max(0, Math.sin(p)));
+        colors.plasma, 0.095 + 0.055 * Math.max(0, Math.sin(p)));
     }
-    // The magnetic axis helps the eye read the complete plasma ring.
-    segment(plasmaPoint(t, 0, 0), plasmaPoint(next, 0, 0), colors.plasma, 2.8,
-      Math.sin(t) > 0 ? 0.9 : 0.5);
+    const frontFactor = (Math.sin(t) + 1) / 2;
+    segment(plasmaPoint(t, 0, 0), plasmaPoint(next, 0, 0), "#ff9c63", 2.4,
+      0.48 + 0.44 * frontFactor);
+  }
+  // Smooth continuous back/front plasma core halo (no per-segment overlap dots).
+  for (const [start, end, depthBias, haloScale] of [
+    [Math.PI, TAU, -20, 0.6],
+    [0, Math.PI, 20, 1],
+  ]) {
+    const pts = [];
+    for (let i = 0; i <= 48; i++) {
+      const t = start + (end - start) * (i / 48);
+      pts.push(plasmaPoint(t, 0, 0));
+    }
+    const pathD = d(pts.map(project));
+    add(pts, `<path d="${pathD}" fill="none" stroke="#ff8d4d" stroke-width="26" stroke-linecap="butt" opacity="${round(0.11 * haloScale)}"/>` +
+      `<path d="${pathD}" fill="none" stroke="#ffa56b" stroke-width="11" stroke-linecap="butt" opacity="${round(0.18 * haloScale)}"/>`, depthBias);
   }
 
   // Two illustrative field lines on one flux surface: q = 3/2 (three toroidal
@@ -127,17 +141,17 @@ export function renderTokamakOverview({ overviewLabels = true, overviewLegend = 
     drawing += leader(ringPoint(0.98, 170, -81), [575, 376], [704, 376], "Divertor / exhaust", 399, colors.energy, "end");
     const [hx, hy] = project(plasmaPoint(2.8, 0, 0.7));
     drawing += `<path d="M90 279L${round(hx)} ${round(hy)}m-7-3 7 3-4 6" fill="none" stroke="${colors.energy}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>`;
-    drawing += text(56, 306, "External heating", colors.energy);
+    drawing += text(52, 306, "External heating", colors.energy);
     drawing += text(372, 426, "Cutaway · vessel and some coils omitted", colors.muted,
-      'text-anchor="middle" font-size="10.5"');
+      'text-anchor="middle" font-size="12"');
   }
   if (overviewLegend) {
     drawing += '<path d="M28 441H732" stroke="#344b59" stroke-width="1"/>';
-    for (const [x, color, label] of [[32, colors.field, "Magnetic field"], [216, colors.plasma, "Plasma"],
-      [350, colors.energy, "Heating / exhaust"], [570, colors.hardware, "Magnets"]]) {
-      drawing += `<path d="M${x} 457h20" stroke="${color}" stroke-width="2"/>` +
-        text(x + 28, 461, label, colors.muted, 'font-size="12"');
+    for (const [x, color, label] of [[32, colors.field, "Magnetic field"], [224, colors.plasma, "Plasma"],
+      [350, colors.energy, "Heating / exhaust"], [574, colors.hardware, "Magnets"]]) {
+      drawing += `<path d="M${x} 458h20" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>` +
+        text(x + 28, 462, label, colors.muted, 'font-size="13.5"');
     }
   }
-  return `<svg xmlns="http://www.w3.org/2000/svg" class="tokamak-overview" viewBox="0 0 760 480" role="img" aria-label="Tokamak cutaway: helical magnetic fields confine the plasma, external systems heat it, and a divertor below the plasma handles exhaust."><title>Magnetic confinement in a tokamak</title><desc>Blue field lines wind around the orange plasma ring. Grey toroidal-field coils surround it, and the central solenoid passes through its central hole. Mint identifies external heating and the annular divertor below the plasma. The vacuum vessel and some coils are omitted to reveal the interior.</desc><g font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500">${drawing}</g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="tokamak-overview" viewBox="0 0 760 480" role="img" aria-label="Tokamak cutaway: helical magnetic fields confine the plasma, external systems heat it, and a divertor below the plasma handles exhaust."><title>Magnetic confinement in a tokamak</title><desc>Blue field lines wind around the orange plasma ring. Grey toroidal-field coils surround it, and the central solenoid passes through its central hole. Mint identifies external heating and the annular divertor below the plasma. The vacuum vessel and some coils are omitted to reveal the interior.</desc><g font-family="Arial,Helvetica,sans-serif" font-size="15.5" font-weight="500">${drawing}</g></svg>`;
 }

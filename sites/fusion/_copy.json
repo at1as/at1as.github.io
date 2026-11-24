@@ -3,31 +3,31 @@
     "id": "tae",
     "field": "experimentalFuel",
     "sourceText": "Experimental light-ion plasmas; no commercial p-B11 burning plasma established in the reviewed evidence. Exact current mixture not independently verified here.",
-    "displayText": "Experimental light-ion plasmas. The exact current mixture is not established in the reviewed sources; no commercial proton–boron burning plasma is demonstrated."
+    "displayText": "Experimental light-ion plasmas (exact current mixture not reported); no commercial proton–boron burning plasma has been demonstrated."
   },
   {
     "id": "tae_target_01",
     "field": "text",
     "sourceText": "August release targets Da Vinci 50 MWe operations in 2031. Later filing sequencing could not be fully reconciled; do not label this a confirmed grid date.",
-    "displayText": "An August 2026 release targets 50 MWe Da Vinci operations in 2031. Later filing language leaves the sequence of milestones uncertain; 2031 is a company target, not a confirmed grid date."
+    "displayText": "An August 2026 release targets 50 MWe Da Vinci operations in 2031. Later filings leave the milestone sequence uncertain, so 2031 remains a company target rather than a confirmed grid date."
   },
   {
     "id": "tae_risk_03",
     "field": "text",
     "sourceText": "Proposed merger and debt differ from equity. The filed merger is not verified closed; the supplied convertible note and additional available facility must remain separate from historic equity totals.",
-    "displayText": "Proposed merger and debt differ from equity. The merger is not verified closed. The convertible note and additional available facility are separate from historical equity financing."
+    "displayText": "Proposed merger and debt differ from equity. The merger is not verified closed, and the convertible note and credit facility are separate from historical equity financing."
   },
   {
     "id": "tokamak_energy",
     "field": "experimentalFuel",
     "sourceText": "ST40 experimental hydrogen-isotope plasma; exact current campaign mixture not established in the reviewed sources.",
-    "displayText": "ST40 uses experimental hydrogen-isotope plasma. The exact mixture in the current campaign is not established in the reviewed sources."
+    "displayText": "ST40 runs experimental hydrogen-isotope plasmas (exact current campaign mixture not reported)."
   },
   {
     "id": "renaissance_target_01",
     "field": "text",
     "sourceText": "Integrate patterned magnets and liquid-metal walls into a stellarator power system; no verified current first-electricity date adopted here.",
-    "displayText": "Integrate patterned magnets and liquid-metal walls into a stellarator power system. No verified current date for first electricity is included in this snapshot."
+    "displayText": "Integrate patterned magnets and liquid-metal walls into a stellarator power system. No current target date for first electricity is published."
   },
   {
     "id": "realta",
@@ -39,79 +39,79 @@
     "id": "energy_singularity",
     "field": "experimentalFuel",
     "sourceText": "Experimental HH70 plasma; campaign fuel details not verified in the reviewed primary releases.",
-    "displayText": "Experimental HH70 plasma. The reviewed primary releases do not establish the campaign’s fuel mixture."
+    "displayText": "Experimental HH70 plasma (campaign fuel mixture not specified in public releases)."
   },
   {
     "id": "kyoto_fusioneering_evidence_01",
     "field": "text",
     "sourceText": "UNITY engineering programme develops integrated heat-transfer and fuel-cycle testing; do not label externally heated tests as net fusion electricity.",
-    "displayText": "The UNITY engineering programme develops integrated heat-transfer and fuel-cycle testing. These externally heated tests do not produce net fusion electricity."
+    "displayText": "The UNITY engineering program develops integrated heat-transfer and fuel-cycle testing. These externally heated tests do not produce fusion electricity."
   },
   {
     "id": "zap_energy_risk_03",
     "field": "text",
     "sourceText": "Business scope. Any future fission electricity must not be counted as demonstrated fusion electricity.",
-    "displayText": "Business scope. A fission–fusion hybrid would draw energy from both processes. Any future electrical output would need separate accounting for the fusion contribution."
+    "displayText": "Business scope. A fission–fusion hybrid draws energy from both processes, so any future electrical output would need separate accounting for the fusion share."
   },
   {
     "id": "marvel_fusion_target_04",
     "field": "text",
     "sourceText": "Engineering gain; preserve the company definition when available.",
-    "displayText": "Engineering gain above one is a company target for 2035. The public roadmap does not supply a complete accounting boundary for this metric."
+    "displayText": "Engineering gain above one is targeted for 2035, though the public roadmap does not specify the full accounting boundary."
   },
   {
     "id": "marvel_fusion_risk_03",
     "field": "text",
     "sourceText": "Fuel. Current near-term design uses DT and retains breeding/neutron challenges; older proton-boron descriptions should not be copied forward.",
-    "displayText": "Fuel. The current near-term design uses D–T and retains tritium-breeding and neutron-management challenges. Earlier descriptions centered on proton–boron no longer represent this roadmap."
+    "displayText": "Fuel. The current near-term design uses D–T and retains tritium-breeding and neutron-management challenges; earlier proton–boron descriptions no longer reflect this roadmap."
   },
   {
     "id": "ex_fusion_risk_03",
     "field": "text",
     "sourceText": "Funding comparability. JPY 6 billion includes debt; do not label it equity or convert with an undocumented exchange rate.",
-    "displayText": "Funding comparability. The JPY 6 billion financing figure includes debt as well as equity. It is reported here in its original currency."
+    "displayText": "Funding comparability. The JPY 6 billion figure includes debt as well as equity and is kept in its original currency."
   },
   {
     "id": "fuse_risk_03",
     "field": "text",
     "sourceText": "Business metrics. Radiation-testing contracts, contract-vehicle ceilings and revenue must not be charted as fusion electricity or equity funding.",
-    "displayText": "Business metrics. Radiation-testing contracts, contract-vehicle ceilings and revenue measure a testing business; they establish neither fusion electricity nor equity raised."
+    "displayText": "Business metrics. Radiation-testing contracts, contract-vehicle ceilings, and revenue reflect a testing business rather than fusion electricity or equity raised."
   },
   {
     "id": "startorus",
     "field": "experimentalFuel",
     "sourceText": "Experimental fuel is not specified consistently in the reviewed company releases; do not infer a D-T burn.",
-    "displayText": "The reviewed company releases do not consistently specify the experimental fuel. They do not establish a D–T burn."
+    "displayText": "Company releases do not consistently specify the experimental fuel and do not report a D–T burn."
   },
   {
     "id": "startorus",
     "field": "fundingSummary",
     "sourceText": "RMB880m A++ round announced August 2026; earlier cumulative financing exceeded RMB2bn in May 2026. Do not display their sum as a company-reported latest total.",
-    "displayText": "An RMB 880 million A++ round was announced in August 2026. An earlier cumulative figure exceeded RMB 2 billion in May. The company has not confirmed a new cumulative total combining those figures."
+    "displayText": "RMB 880 million A++ round announced in August 2026; earlier cumulative financing exceeded RMB 2 billion in May. The company has not published a combined total."
   },
   {
     "id": "openstar",
     "field": "experimentalFuel",
     "sourceText": "Prototype plasma; exact experimental fuel not carried from reviewed partner release.",
-    "displayText": "Prototype plasma. The cited partner release does not specify the experimental fuel."
+    "displayText": "Prototype plasma (exact experimental fuel not specified)."
   },
   {
     "id": "openstar_target_01",
     "field": "text",
     "sourceText": "Tama Nui grid-scale plant exists as a published D-T design, not demonstrated output. No precisely dated electricity target is adopted from an undated five-year website claim.",
-    "displayText": "Tama Nui is a published D–T plant design, not demonstrated output. The website’s five-year ambition is undated and cannot establish a calendar year for first electricity."
+    "displayText": "Tama Nui is a published D–T plant design, not demonstrated output. Its five-year target on the company website is undated."
   },
   {
     "id": "kstar_evidence_02",
     "field": "text",
     "sourceText": "H-mode 102 s in the same 2023–2024 campaign; do not merge metrics",
-    "displayText": "H-mode sustained for 102 seconds during the 2023–2024 campaign. This is a separate result from the 48 seconds at 100 million °C ion temperature."
+    "displayText": "H-mode sustained for 102 seconds during the 2023–2024 campaign, separate from the 48-second run at 100 million °C ion temperature."
   },
   {
     "id": "jt60sa",
     "field": "summary",
     "sourceText": "Japan-Europe research tokamak supporting ITER and future power-plant plasma scenarios. Current campaign state not independently refreshed here.",
-    "displayText": "Japan–Europe research tokamak supporting ITER and future power-plant plasma scenarios. This snapshot does not establish the status of its latest operating campaign."
+    "displayText": "Japan–Europe research tokamak supporting ITER and future power-plant plasma scenarios (latest campaign status not refreshed for this snapshot)."
   },
   {
     "id": "wham",
@@ -297,7 +297,7 @@
     "id": "risk-dimension:licensing_siting",
     "field": "evidenceNeeded",
     "sourceText": "Applicable license, environmental/site approvals, cooling and grid agreements, not merely a national policy statement.",
-    "displayText": "The applicable licences, environmental and site approvals, and cooling and grid agreements, with their status and remaining conditions stated."
+    "displayText": "The applicable licenses, environmental and site approvals, and cooling and grid agreements, with their status and remaining conditions stated."
   },
   {
     "id": "risk-dimension:evidence_quality",

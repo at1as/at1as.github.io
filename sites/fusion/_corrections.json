@@ -1,7 +1,7 @@
 {
   "base_sha256": "0336bbffd134620d3e18798ed3df641647fb4c46e449c02dc14a4fff2b02eff6",
-  "reviewed_at": "2026-11-12",
-  "scope": "Targeted fuel metadata and financing-citation corrections. The research cutoff remains 2026-10-22; this is not a full evidence refresh.",
+  "reviewed_at": "2026-11-23",
+  "scope": "Targeted fuel metadata, financing-citation, CFS CHIPS LOI, OMEGA direct-drive claims, spacing, and US spelling corrections. The research cutoff remains 2026-10-22; this is not a full evidence refresh.",
   "sources": [
     {
       "id": "COR_W7X_FUELS",
@@ -79,7 +79,7 @@
       "source_type": "institution_primary",
       "access_quality": "search_retrieval",
       "claims": [
-        "The research programme uses hydrogen initially and deuterium later, rather than a deuterium–tritium fuel mix."
+        "The research program uses hydrogen initially and deuterium later, rather than a deuterium–tritium fuel mix."
       ],
       "aliases": []
     },
@@ -146,6 +146,54 @@
         "STEP is a planned prototype power plant using deuterium and tritium."
       ],
       "aliases": []
+    },
+    {
+      "id": "COR_CFS_CHIPS",
+      "url": "https://www.nist.gov/news-events/news/2026/10/department-commerce-announces-letters-intent-4-companies-389-million-rd",
+      "title": "Department of Commerce Announces Letters of Intent with 4 Companies for  Million in R&D Awards",
+      "publisher": "National Institute of Standards and Technology",
+      "published_date": "2026-10-22",
+      "accessed_at": "2026-11-23",
+      "last_reviewed_at": "2026-11-23",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "government_funding_announcement",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "Proposed up to  million CHIPS and Science Act R&D letter of intent with Commonwealth Fusion Systems for fusion power electronics, RF plasma heating, diagnostics, and radiation-hardened controls; federal government takes a minority non-voting equity stake upon award."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_OMEGA_FUEL_GAIN",
+      "url": "https://www.nature.com/articles/s41567-023-02363-2",
+      "title": "Demonstration of hot-spot fuel gain exceeding unity in direct-drive inertial confinement fusion implosions",
+      "publisher": "Nature Physics",
+      "published_date": "2024-02-05",
+      "accessed_at": "2026-11-23",
+      "last_reviewed_at": "2026-11-23",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "peer_reviewed_experiment",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "Cryogenic direct-drive D-T implosions on the ~28 kJ OMEGA laser achieved hot-spot fuel gain exceeding unity (fusion energy greater than the internal energy of the central hot spot), distinct from target gain or net electricity."
+      ],
+      "aliases": []
+    },
+    {
+      "id": "COR_OMEGA_BURNING",
+      "url": "https://www.nature.com/articles/s41567-023-02361-4",
+      "title": "Demonstration of a hydrodynamically equivalent burning plasma in direct-drive inertial confinement fusion",
+      "publisher": "Nature Physics",
+      "published_date": "2024-02-05",
+      "accessed_at": "2026-11-23",
+      "last_reviewed_at": "2026-11-23",
+      "access_timezone": "America/Los_Angeles",
+      "source_type": "peer_reviewed_experiment",
+      "access_quality": "search_retrieval",
+      "claims": [
+        "OMEGA direct-drive cryogenic D-T implosions reached core conditions hydrodynamically equivalent to a burning plasma when scaled to megajoule-class laser energy (~1.7-2.15 MJ)."
+      ],
+      "aliases": []
     }
   ],
   "entities": {
@@ -170,20 +218,20 @@
             "status": "reported"
           },
           "planned_research": {
-            "text": "No separate future fuel programme is included in the reviewed record.",
+            "text": "No separate future fuel program listed.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_established"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Deuterium–tritium (D–T) targets in the reported ignition experiments.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -208,20 +256,20 @@
             "status": "reported"
           },
           "planned_research": {
-            "text": "No separate future fuel programme is included in the reviewed record.",
+            "text": "No separate future fuel program listed.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_established"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Deuterium–tritium (D–T), including the final 2023 campaign. Scientific operations have ended.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -257,14 +305,14 @@
             "status": "planned"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Hydrogen plasmas; these are confinement experiments, not a D–T burn.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -288,20 +336,20 @@
             "status": "reported"
           },
           "planned_research": {
-            "text": "No separate future fuel programme is included in the reviewed record.",
+            "text": "No separate future fuel program listed.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_established"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Deuterium plasmas with controlled hydrogen content are documented in the cited experiments. This does not establish the mixture in every later campaign.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -325,20 +373,20 @@
             "status": "reported"
           },
           "planned_research": {
-            "text": "No separate future fuel programme is included in the reviewed record.",
+            "text": "No separate future fuel program listed.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_established"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Deuterium plasmas in the cited experiments. A plasma-temperature or duration result is not a D–T burning-plasma result.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -362,20 +410,20 @@
             "status": "reported"
           },
           "planned_research": {
-            "text": "No separate future fuel programme is included in the reviewed record.",
+            "text": "No separate future fuel program listed.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_established"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Hydrogen plasma for the 1,337-second result reported in February 2025. The duration is not a sustained D–T burn.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -409,14 +457,14 @@
             "status": "planned"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "No operating plasma in the reviewed record; ITER is under construction.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -451,14 +499,14 @@
             "status": "planned"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Initial hydrogen-plasma research. The reviewed record does not establish a later deuterium campaign.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -522,20 +570,20 @@
             "status": "reported"
           },
           "planned_research": {
-            "text": "No separate future fuel programme is included in the reviewed record.",
+            "text": "No separate future fuel program listed.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_established"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Deuterium (D–D) in the reported MagLIF experiments on Z. Other Z experiments have different targets.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -544,36 +592,51 @@
         "fuel_contexts": null,
         "operating_fuel": null,
         "intended_fuel": null,
-        "intended_fuel_ids": null
+        "intended_fuel_ids": null,
+        "evidence_claim_ids": [],
+        "source_ids": [
+          "PHY_034"
+        ]
       },
       "replace": {
         "fuel_contexts": {
           "experimental": {
-            "text": "Deuterium–tritium (D–T) cryogenic targets in the cited OMEGA implosion programme.",
+            "text": "Deuterium–tritium (D–T) cryogenic targets in the cited OMEGA implosion program.",
             "fuel_ids": [
               "D-T"
             ],
             "source_ids": [
-              "PHY_034"
+              "PHY_034",
+              "COR_OMEGA_FUEL_GAIN",
+              "COR_OMEGA_BURNING"
             ],
             "status": "reported"
           },
           "planned_research": {
-            "text": "No separate future fuel programme is included in the reviewed record.",
+            "text": "No separate future fuel program listed.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_established"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
-        "operating_fuel": "Deuterium–tritium (D–T) cryogenic targets in the cited OMEGA implosion programme.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
-        "intended_fuel_ids": []
+        "operating_fuel": "Deuterium–tritium (D–T) cryogenic targets in the cited OMEGA implosion program.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
+        "intended_fuel_ids": [],
+        "evidence_claim_ids": [
+          "omega_evidence_01",
+          "omega_evidence_02"
+        ],
+        "source_ids": [
+          "PHY_034",
+          "COR_OMEGA_FUEL_GAIN",
+          "COR_OMEGA_BURNING"
+        ]
       }
     },
     "wham": {
@@ -596,20 +659,20 @@
             "status": "reported"
           },
           "planned_research": {
-            "text": "No separate future fuel programme is included in the reviewed record.",
+            "text": "No separate future fuel program listed.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_established"
           },
           "commercial": {
-            "text": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+            "text": "Research facility; no commercial power plant planned.",
             "fuel_ids": [],
             "source_ids": [],
             "status": "not_applicable"
           }
         },
         "operating_fuel": "Deuterium (D–D) in the June 2026 direct-energy-conversion experiment, as reported by Realta. Most recovered energy came from external plasma heating.",
-        "intended_fuel": "Not applicable: this facility is a research experiment, not a commercial power plant.",
+        "intended_fuel": "Research facility; no commercial power plant planned.",
         "intended_fuel_ids": []
       }
     },
@@ -697,7 +760,7 @@
             "status": "planned"
           },
           "commercial": {
-            "text": "A commercial fuel programme is not established in the reviewed record; BEST is an experimental device.",
+            "text": "Experimental device; no commercial fuel program planned.",
             "fuel_ids": [],
             "source_ids": [
               "COR_BEST_FUEL"
@@ -706,7 +769,7 @@
           }
         },
         "operating_fuel": "No operating plasma in the reviewed record; BEST is under construction.",
-        "intended_fuel": "A commercial fuel programme is not established in the reviewed record; BEST is an experimental device.",
+        "intended_fuel": "Experimental device; no commercial fuel program planned.",
         "intended_fuel_ids": []
       }
     },
@@ -1008,18 +1071,31 @@
           "latest_cumulative_event_id": "cfs_2026_total",
           "latest_round_event_id": "cfs_2026_round",
           "caveat": "Financing is not evidence of electricity production; exclude PPAs from capital totals."
-        }
+        },
+        "source_ids": [
+          "MAG_CFS_FUND_2026",
+          "MAG_CFS_SPARC",
+          "MAG_CFS_ARC",
+          "MAG_CFS_MAGNET"
+        ]
       },
       "replace": {
         "funding_summary": {
           "display": "$4.0B capital raised, July 2026",
           "latest_cumulative_event_id": "cfs_2026_total",
           "latest_round_event_id": "cfs_2026_round",
-          "caveat": "Financing is not evidence of electricity production; exclude PPAs from capital totals.",
+          "caveat": "Financing is not evidence of electricity production; exclude PPAs from capital totals. October 2026 CHIPS LOI up to M is conditional, not closed equity.",
           "source_ids": [
             "MAG_CFS_FUND_2026"
           ]
-        }
+        },
+        "source_ids": [
+          "MAG_CFS_FUND_2026",
+          "MAG_CFS_SPARC",
+          "MAG_CFS_ARC",
+          "MAG_CFS_MAGNET",
+          "COR_CFS_CHIPS"
+        ]
       }
     },
     "tae": {
@@ -1523,6 +1599,138 @@
             "PAR_OPENSTAR_LOAN"
           ]
         }
+      }
+    }
+  },
+  "claims_add": [
+    {
+      "id": "omega_evidence_01",
+      "entity_id": "omega",
+      "category": "experimental_result",
+      "claim": "Direct-drive cryogenic D–T implosions on the ~28 kJ OMEGA laser achieved hot-spot fuel gain above 1, releasing more fusion energy than the internal energy of the central hot spot. This measures the hot-spot fuel boundary, not target gain or net electricity.",
+      "timing": {
+        "role": "publication_date",
+        "date": "2024-02-05",
+        "precision": "day",
+        "display": "2024-02-05"
+      },
+      "details": {
+        "is_experimental_measurement": true,
+        "boundary": "hot_spot_fuel_gain"
+      },
+      "independent_verification": "peer_reviewed_not_independently_replicated",
+      "evidence_type": "peer_reviewed_experiment",
+      "source_ids": [
+        "COR_OMEGA_FUEL_GAIN"
+      ],
+      "as_of": "2026-10-22"
+    },
+    {
+      "id": "omega_evidence_02",
+      "entity_id": "omega",
+      "category": "experimental_result",
+      "claim": "OMEGA cryogenic D–T implosions reached core conditions hydrodynamically equivalent to a burning plasma when scaled to megajoule-class laser energy (~1.7–2.15 MJ). Hydro-equivalent scaling informs future megajoule designs rather than demonstrating ignition on OMEGA.",
+      "timing": {
+        "role": "publication_date",
+        "date": "2024-02-05",
+        "precision": "day",
+        "display": "2024-02-05"
+      },
+      "details": {
+        "is_experimental_measurement": true,
+        "boundary": "hydro_equivalent_burning_plasma"
+      },
+      "independent_verification": "peer_reviewed_not_independently_replicated",
+      "evidence_type": "peer_reviewed_experiment",
+      "source_ids": [
+        "COR_OMEGA_BURNING"
+      ],
+      "as_of": "2026-10-22"
+    }
+  ],
+  "funding_events_add": [
+    {
+      "id": "cfs_chips_loi",
+      "entity_id": "cfs",
+      "announcement_date": "2026-10-22",
+      "amount": 85000000,
+      "currency": "USD",
+      "amount_usd": 85000000,
+      "event_type": "government_equity_award",
+      "qualifier": "Up to  million proposed in a non-binding CHIPS Act R&D letter of intent for fusion power electronics, RF heating, and diagnostics; definitive award pending, with a minority non-voting government equity stake.",
+      "includes_prior": false,
+      "source_ids": [
+        "COR_CFS_CHIPS"
+      ],
+      "status": "conditional_loi",
+      "exclude_from_private_equity_total": true,
+      "as_of": "2026-10-22",
+      "amount_operator": "<=",
+      "cash_received_status": "not_assessed_as_cash_balance",
+      "aggregation_policy": "do_not_sum_without_explicit_nonoverlap_review",
+      "date_precision": "day",
+      "usd_conversion_basis": "same_currency"
+    }
+  ],
+  "claims_replace": {
+    "pacific_fusion_evidence_01": {
+      "expected": {
+        "claim": "Scaled pulser prototype achieved approximately 440 GW peak electrical power with 80 ns pulse duration;>1000 qualification shots."
+      },
+      "replace": {
+        "claim": "Scaled pulser prototype achieved approximately 440 GW peak electrical power with 80 ns pulse duration; >1,000 qualification shots."
+      }
+    }
+  },
+  "funding_events_replace": {
+    "ALT_FIN_EXFUSION_A": {
+      "expected": {
+        "qualifier": "JPY 2.3 billion equity plusJPY 0.3 billion loans; mixed financing."
+      },
+      "replace": {
+        "qualifier": "JPY 2.3 billion equity plus JPY 0.3 billion loans; mixed financing."
+      }
+    },
+    "ALT_FIN_EXFUSION_EXT": {
+      "expected": {
+        "qualifier": "Series A extension; included in cumulativeJPY 6 billion."
+      },
+      "replace": {
+        "qualifier": "Series A extension; included in cumulative JPY 6 billion."
+      }
+    },
+    "ALT_FIN_HB11_PROJECT": {
+      "expected": {
+        "qualifier": "Consortium laser project: AUD 6 million grant+AUD 16 million partner contributions; not company equity."
+      },
+      "replace": {
+        "qualifier": "Consortium laser project: AUD 6 million grant + AUD 16 million partner contributions; not company equity."
+      }
+    }
+  },
+  "sources_replace": {
+    "ALT_EXFUSION_A": {
+      "expected": {
+        "claims": [
+          "JPY 2.3 billion equity+JPY 0.3 billion loans; cumulativeJPY 5.6 billion then; FY2027 neutron-operation target."
+        ]
+      },
+      "replace": {
+        "claims": [
+          "JPY 2.3 billion equity + JPY 0.3 billion loans; cumulative JPY 5.6 billion then; FY2027 neutron-operation target."
+        ]
+      }
+    },
+    "ALT_EXFUSION_EXT": {
+      "expected": {
+        "claims": [
+          "JPY 0.4 billion extension; Series A cumulativeJPY 3 billion; all funding cumulativeJPY 6 billion including earlier loans."
+        ]
+      },
+      "replace": {
+        "claims": [
+          "JPY 0.4 billion extension; Series A cumulative JPY 3 billion; all funding cumulative JPY 6 billion including earlier loans."
+        ]
       }
     }
   }

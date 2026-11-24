@@ -63,6 +63,9 @@ exclude:
   - lead-migration-docs
   - scripts
   - Makefile
+  - sites/fusion/README.md
+  - sites/fusion/package.json
+  - sites/fusion/share-card.svg
 
 # Preserve the static Next.js files used by sites/what-if-i-joined/.
 include:

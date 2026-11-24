@@ -6,7 +6,7 @@ export const recordCopy = {
   },
   "high triple product duration": {
     label: "Time at a high triple product",
-    explanation: "The triple product combines fuel density, temperature and how long the plasma retains its heat. This duration measures how long a high combination of those three was maintained.",
+    explanation: "The triple product combines fuel density, temperature, and how long the plasma retains its heat. This duration measures how long a high combination of those three was maintained.",
   },
   "ion temperature duration": {
     label: "Time at the reported ion temperature",
@@ -103,13 +103,13 @@ export const glossaryCopy = {
     note: "A brief burst of pulses at low power. A plant needs to repeat its full cycle at the required energy and output.",
   },
   blanket: {
-    definition: "Material around a fusion chamber that can absorb neutron energy as heat, protect equipment and, when it contains lithium, produce tritium.",
+    definition: "Material around a fusion chamber that absorbs neutron energy as heat, shields surrounding equipment, and—when it contains lithium—breeds tritium.",
     noteLabel: "Keep in mind:",
     note: "A proposed blanket still needs to demonstrate that it can supply enough recoverable tritium while doing its other jobs.",
   },
   tbr: {
     definition: "Tritium produced divided by tritium consumed. A ratio above one means more is made than burned, before accounting for all losses and other needs.",
-    note: "The amount actually available to refuel the plant. Processing losses, radioactive decay and stored reserves also matter.",
+    note: "The amount actually available to refuel the plant. Processing losses, radioactive decay, and stored reserves also matter.",
   },
   divertor: {
     definition: "An exhaust region in a magnetic-confinement machine that receives heat and particles escaping from the edge of the plasma.",

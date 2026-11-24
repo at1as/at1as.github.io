@@ -39,7 +39,7 @@ export const comparisonSelections = {
   jt60sa: [['jt60sa_evidence_01'], [], []],
   ifmif_dones: [[], ['ifmif_dones_target_01'], []],
   sandia_z: [['sandia_z_evidence_01'], [], []],
-  omega: [[], [], []],
+  omega: [['omega_evidence_01', 'omega_evidence_02'], [], []],
   wham: [['wham_evidence_01'], [], []],
   step: [['step_evidence_01'], [], ['step_target_01']],
   best: [['best_evidence_01'], ['best_target_01', 'best_target_02'], []],

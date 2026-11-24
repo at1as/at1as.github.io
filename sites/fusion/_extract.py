@@ -196,7 +196,126 @@ data = {'meta': {**C['meta'], 'subtitle': C['meta']['public_title'], 'snapshot':
         'qualityNotes': C['quality_notes'], 'sectorContext': C['sector_context'], 'metrics': C['metrics'],
         'amountOperatorLabels': C['amount_operator_labels'], 'sourceAliases': C['source_aliases'],
         'editorialSections': [{'title': title, 'rawMarkdown': body, 'sourceIds': refs(body)} for title, body in headings(report.split('# Appendix A')[0], 2)]}
-(ROOT / 'data.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+def pick(obj, keys):
+    return {k: obj[k] for k in keys if k in obj}
+
+
+US_SPELLING = (
+    (re.compile(r'\bProgrammes\b'), 'Programs'),
+    (re.compile(r'\bprogrammes\b'), 'programs'),
+    (re.compile(r'\bProgramme\b'), 'Program'),
+    (re.compile(r'\bprogramme\b'), 'program'),
+    (re.compile(r'\bLicences\b'), 'Licenses'),
+    (re.compile(r'\blicences\b'), 'licenses'),
+    (re.compile(r'\bLicence\b'), 'License'),
+    (re.compile(r'\blicence\b'), 'license'),
+)
+
+
+def us_prose(value):
+    if isinstance(value, str):
+        for pattern, replacement in US_SPELLING:
+            value = pattern.sub(replacement, value)
+        return value
+    if isinstance(value, list):
+        return [us_prose(v) for v in value]
+    if isinstance(value, dict):
+        return {k: (v if k in ('url', 'id', 'canonicalId', 'entityId', 'sourceIds') else us_prose(v)) for k, v in value.items()}
+    return value
+
+
+def runtime_bundle(full):
+    """Project the full lossless record into a lean runtime bundle for the browser.
+
+    All research notes, rawMarkdown, editorial sections, and full canonical
+    metadata remain preserved in _handoff/, fusion_atlas.json, and _data-full.json.
+    """
+    bundle = {
+        'meta': pick(full['meta'], ('as_of', 'snapshot', 'canonicalSha256', 'counts')),
+        'approaches': [pick(a, ('id', 'name', 'family')) for a in full['approaches']],
+        'entities': [
+            {
+                **pick(e, (
+                    'id', 'canonicalId', 'name', 'role', 'roles', 'entity_type',
+                    'family', 'approach', 'approachId', 'variant', 'approach_variant',
+                    'summary', 'displaySummary', 'mechanism',
+                    'experimentalFuel', 'displayExperimentalFuel', 'intendedFuel',
+                    'fuel_contexts', 'operating_fuel_ids', 'intended_fuel_ids',
+                    'fundingSummary', 'displayFundingSummary',
+                    'fundingSummaryNote', 'fundingSummarySourceIds', 'sourceIds',
+                )),
+                'locations': [
+                    pick(loc, ('id', 'name', 'role', 'status', 'place', 'country', 'sourceIds'))
+                    for loc in e['locations']
+                ],
+                'claims': [
+                    pick(c, ('id', 'canonicalId', 'category', 'text', 'displayText', 'date', 'dateRole', 'sourceIds'))
+                    for c in e['claims']
+                ],
+                'funding': [
+                    pick(f, (
+                        'id', 'canonicalId', 'date', 'amount', 'currency', 'amountLabel',
+                        'type', 'scope', 'displayScope', 'status', 'superseded_by', 'sourceIds',
+                    ))
+                    for f in e['funding']
+                ],
+                'assessment': [
+                    pick(a, ('id', 'text', 'displayText', 'theme_ids', 'sourceIds'))
+                    for a in e['assessment']
+                ],
+            }
+            for e in full['entities']
+        ],
+        'sites': [
+            pick(s, (
+                'id', 'canonicalId', 'entityId', 'name', 'role', 'status', 'place',
+                'country', 'latitude', 'longitude', 'marker_shape', 'relatedEntityIds', 'sourceIds',
+            ))
+            for s in full['sites']
+        ],
+        'sources': [
+            pick(s, ('id', 'url', 'title', 'publisher', 'published', 'reviewed', 'source_type', 'type', 'note'))
+            for s in full['sources']
+        ],
+        'history': [
+            pick(h, ('id', 'date', 'dateRole', 'category', 'title', 'text', 'displayText', 'timing', 'sourceIds'))
+            for h in full['history']
+        ],
+        'results': [
+            pick(r, (
+                'id', 'canonicalId', 'entity_id', 'facility', 'metric', 'value', 'unit',
+                'reported_display', 'date', 'date_role', 'boundary', 'ion_temperature_c',
+                'fuel', 'duration_s', 'fusion_power_mw', 'heating_power_mw',
+                'measurement_type', 'fusion_energy_mj', 'fusion_energy_uncertainty_mj',
+                'driver_energy_mj', 'sourceIds',
+            ))
+            for r in full['results']
+        ],
+        'risks': [
+            pick(r, ('id', 'name', 'evidenceNeeded', 'displayEvidenceNeeded', 'sourceIds'))
+            for r in full['risks']
+        ],
+        'riskThemes': [
+            pick(t, ('id', 'label', 'question', 'displayQuestion', 'dimension_ids'))
+            for t in full['riskThemes']
+        ],
+        'approachRiskProfiles': {'profiles': full['approachRiskProfiles']['profiles']},
+        'glossary': [
+            pick(g, ('id', 'term', 'definition', 'distinction', 'sourceIds'))
+            for g in full['glossary']
+        ],
+        'fuels': [
+            pick(f, ('name', 'label', 'benefits', 'challenges', 'sourceIds'))
+            for f in full['fuels']
+        ],
+    }
+    for key in ('entities', 'sites', 'history', 'risks', 'riskThemes', 'approachRiskProfiles', 'glossary', 'fuels'):
+        bundle[key] = us_prose(bundle[key])
+    return bundle
+
+
+(ROOT / '_data-full.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+(ROOT / 'data.json').write_text(json.dumps(runtime_bundle(data), ensure_ascii=False, separators=(',', ':')) + '\n')
 (ROOT / 'fusion_atlas.json').write_bytes(canonical_bytes)
 shutil.copyfile(report_path, ROOT / '_research.md')
 (ROOT / 'research-report.md').write_text(display_text(report))
