@@ -35,6 +35,9 @@ periodic_rows:
   - "Fr Ra †  Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og"
   - ".  *  La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu"
   - ".  †  Ac Th Pa U  Np Pu Am Cm Bk Cf Es Fm Md No Lr"
+paper_series:
+  A: ["420 × 594", "297 × 420", "210 × 297", "148 × 210"]
+  B: ["500 × 707", "353 × 500", "250 × 353", "176 × 250"]
 ---
 <!doctype html>
 <html lang="en">
@@ -250,11 +253,34 @@ periodic_rows:
     .apple-line + .apple-line{border-top:1px solid #e0e3dc;margin-top:29px;padding-top:29px}
     .apple-lab{font-size:12px;font-weight:800;letter-spacing:.035em;line-height:1.5;color:#56685e}
     .apple-lab span{font-size:10px;display:block;letter-spacing:.04em;font-weight:500;color:#8b958d;margin-top:4px}
-    .chip-seq{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .chip-pill{padding:11px 14px;background:#eeeee9;border:1px solid #d9dcd5;font-size:14px;font-weight:760;letter-spacing:-.02em;min-width:58px;text-align:center}
-    .chip-pill.peak{background:var(--lime);border-color:#acc872}
-    .chip-chevron{color:#9caba1}
-    .chip-pill.ghost{background:transparent;border-style:dashed;color:var(--ink2);text-decoration:none;overflow-wrap:anywhere;max-width:100%}
+    .apple-chips{container:chip-row / inline-size}
+    .chip-seq{
+      --die-width:clamp(46px,15cqi,76px);
+      --die-height:clamp(35px,10cqi,48px);
+      display:flex;align-items:flex-start;flex-wrap:wrap;gap:clamp(2px,1cqi,10px);
+      font-size:clamp(11px,3cqi,14px);font-weight:760;letter-spacing:-.02em;white-space:nowrap
+    }
+    .chip-die,.chip-chevron{display:grid;place-items:center;height:var(--die-height)}
+    .chip-chevron{color:#84968a}
+    .chip-die{
+      position:relative;padding-inline:clamp(4px,2cqi,14px);background:#31463b;color:#fffdf3;
+      border:1px solid #21362b;box-shadow:inset 0 0 0 2px #526b59
+    }
+    .max-die{width:var(--die-width);padding-inline:0}
+    .chip-die::before,.chip-die::after{
+      content:"";position:absolute;inset:4px 5px auto;height:clamp(3px,1cqi,6px);
+      background:repeating-linear-gradient(90deg,#849a84 0 5px,transparent 5px 7px)
+    }
+    .chip-die::after{top:auto;bottom:4px}
+    .ultra-package{display:inline-grid;text-align:center}
+    .ultra-dies{display:flex;align-items:center}
+    .die-join{width:clamp(3px,.8cqi,6px);height:65%;background:repeating-linear-gradient(0deg,#4d6b51 0 2px,#bccbab 2px 3px)}
+    .ultra-label{padding:2px 4px;border:1px solid #acc872;background:var(--lime)}
+    @container chip-row (max-width:270px){
+      .chip-seq{gap:1px}
+      .chip-die:not(.max-die){padding-inline:3px}
+      .chip-chevron{font-size:10px}
+    }
     .phone-pairs{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 24px}
     .phone-seq{display:flex;align-items:flex-end;gap:8px}
     .phone{flex-shrink:0;border:2px solid #73827a;border-radius:13px 13px 9px 9px;background:linear-gradient(#e4ece5,#f2f3ec);display:flex;align-items:flex-end;justify-content:center;padding:13px 4px 8px;position:relative;color:#405048;font-size:11px;font-weight:760;line-height:1.25;text-align:center;white-space:nowrap}
@@ -295,11 +321,21 @@ periodic_rows:
     .tv-products .tv-hardware{mix-blend-mode:multiply;filter:brightness(1.05)}
     .tv-products figcaption{font-size:13px;font-weight:700;line-height:1.35}
     .tv-products small{display:block;margin-top:2px;font-size:11px;font-weight:500;color:var(--ink2)}
+    #dyson .case-kicker span{display:block;color:#85483e;font-size:12px}
+    .dyson-models{width:min(100%,48rem);table-layout:fixed;border-collapse:collapse;margin:0 0 18px;text-align:left}
+    .dyson-models caption{text-align:left;padding-bottom:8px;font-size:13px;color:var(--ink2)}
+    .dyson-models th,.dyson-models td{padding:7px 12px 7px 0;border-bottom:1px solid var(--edge);vertical-align:baseline}
+    .dyson-models thead th{font-size:13px;color:var(--ink2);border-bottom-color:#a7aaa1}
+    .dyson-models td{font:500 clamp(16px,2vw,21px)/1.35 var(--serif)}
+    .dyson-models td strong{color:#68465f}
+    .dyson-models .absent{color:var(--muted)}
+    #dyson .case-summary + .case-summary{margin-top:1em}
     #usb .case-visual{container:usb / inline-size}
     .usb-intro{grid-area:summary}
     .usb-subheading{margin:0 0 10px;font:500 clamp(20px,2vw,25px)/1.35 var(--serif)}
     .usb-subheading strong{padding-inline:.1em;background:var(--lime);color:var(--ink);font-weight:800;-webkit-box-decoration-break:clone;box-decoration-break:clone}
     .usb-map{margin:0}
+    .usb-map + .case-summary{padding-top:16px}
     .usb-families{display:grid;grid-template-columns:3fr 2fr;column-gap:10px}
     .usb-family{display:grid;grid-row:span 2;grid-template-rows:subgrid;border-top:2px solid #768a7e;background:#e9ede6;padding:12px 0}
     .usb-family-ended{border-color:#a16b41;background:#f3e9de}
@@ -349,6 +385,22 @@ periodic_rows:
     .release-date input:checked + time{background:#553f50;color:white}
     .release-date input:focus-visible + time{outline:2px solid #397354;outline-offset:2px}
     .camera-selectors + .case-summary{padding-top:16px}
+    #paper-sizes .case-visual{container:paper-sizes / inline-size}
+    .paper-pair{display:grid;grid-template-columns:minmax(0,594fr) minmax(0,707fr);align-items:end;gap:clamp(16px,3cqi,32px);max-width:50rem;margin-bottom:18px}
+    .paper-pair figure{margin:0;min-width:0}
+    .paper-sheet{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;aspect-ratio:594/420;background:#ebefe5;border:1px solid #74836f;color:#344a3a}
+    .paper-b .paper-sheet{aspect-ratio:707/500;background:#e8edf2;color:#344b5b;border-color:#758695}
+    .paper-piece{display:grid;align-content:center;justify-items:center;font:500 clamp(19px,3.4cqi,31px)/1.15 var(--serif)}
+    .paper-piece small,.paper-pair figcaption small{font:500 clamp(10px,1.5cqi,13px)/1.4 var(--sans);font-variant-numeric:tabular-nums}
+    .paper-piece:first-child{grid-row:span 2;border-right:1px dashed currentColor}
+    .paper-piece:nth-child(2){grid-column:span 2;border-bottom:1px dashed currentColor}
+    .paper-piece:nth-child(3){border-right:1px dashed currentColor}
+    .paper-pair figcaption{margin-top:6px;font:600 18px/1.4 var(--serif)}
+    .paper-pair figcaption small{margin-left:4px;color:var(--ink2)}
+    @container paper-sizes (max-width:510px){
+      .paper-pair{grid-template-columns:minmax(0,1fr);max-width:22rem}
+      .paper-a{width:84.017%} /* Keep the same 594:707 scale when stacked. */
+    }
     .variant-stack{min-width:0;padding:0;margin:0;border:0}
     .variant-stack legend:not(.sr-only){width:100%;padding:0 1px 7px;text-align:center;font-size:12px;font-weight:600;color:var(--ink2)}
     .variant-options{display:grid;border:1px solid #c1c7c0;border-radius:5px;background:var(--cream)}
@@ -368,6 +420,14 @@ periodic_rows:
     .name-essay{padding:clamp(44px,6vw,80px) 0;background:var(--cream);border-top:1px solid var(--edge)}
     .name-essay h2{margin:0 0 16px;font:500 clamp(42px,5.3vw,74px)/1.05 var(--serif);letter-spacing:-.06em}
     .name-intro{margin:0 0 32px;max-width:78ch;color:var(--ink2);font-size:18px;line-height:1.65}
+    .name-intro p{margin:0}
+    .name-intro p + p{margin-top:.9em}
+    .naming-takeaways{margin-top:32px;max-width:78ch}
+    .naming-takeaways .name-intro{margin-bottom:20px}
+    .naming-takeaways h3{margin:0 0 12px;font:500 clamp(24px,3vw,32px)/1.15 var(--serif);letter-spacing:-.035em}
+    .naming-takeaways ul{margin:0;padding-inline-start:1.2em;color:var(--ink2)}
+    .naming-takeaways li + li{margin-top:10px}
+    .naming-takeaways strong{color:var(--ink)}
     .buyer-guide{width:100%;border-collapse:collapse;table-layout:fixed;text-align:left;font-size:15px;line-height:1.45}
     .buyer-guide col:first-child{width:27%}
     .buyer-guide col:nth-child(2){width:35%}
@@ -393,6 +453,7 @@ periodic_rows:
     .funding-sequence{display:flex;flex-wrap:wrap;gap:14px 0;list-style:none;padding:0;margin:0 0 22px}
     .funding-sequence li{flex:1 1 130px;border-inline-start:2px solid #a9b98d;padding:2px 12px}
     .funding-sequence strong{font:500 clamp(20px,2.2vw,29px)/1.2 var(--serif);letter-spacing:-.04em}
+    .funding-sequence .lettered-rounds{white-space:nowrap}
     .funding-sequence small{display:block;margin-top:4px;color:var(--ink2);font-size:13px}
     .buyer-guide .lookup-note{margin:0 0 8px}
     .buyer-guide details+details{margin-top:5px}
@@ -415,17 +476,6 @@ periodic_rows:
       .buyer-guide .mobile-key{display:block;margin-bottom:5px;font-size:12px;font-weight:750;color:#385734}
       .buyer-guide td:last-child .mobile-key{color:#69482c}
     }
-    .apple-workshop{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:18px 30px;margin-top:18px;padding:18px 20px;background:#edf1e5;border-block:1px solid #c9d2c3}
-    .tier-prompt h4{margin:0;font:500 clamp(24px,2.6vw,34px)/1.15 var(--serif);letter-spacing:-.045em}
-    .tier-prompt p{margin:6px 0 0;font-size:14px;color:var(--ink2)}
-    .tier-preview{margin-bottom:8px;font-size:14px;color:var(--ink2)}
-    .tier-preview strong{display:inline-block;max-width:100%;overflow-wrap:anywhere;color:var(--ink);background:var(--lime-soft);padding:0 5px}
-    .tier-opts{display:flex;flex-wrap:wrap;gap:7px}
-    .tier-opts button{padding:8px 13px;border:1px solid #cbd5c5;background:#fff;color:#425b47;font-size:12px;font-weight:680;transition:background .2s,border .2s}
-    .tier-opts button:hover,.tier-opts button[aria-pressed="true"]{background:var(--lime);border-color:#a2bb71}
-    .tier-custom{display:flex;gap:7px;margin-top:9px}
-    .tier-custom input{min-width:0;flex:1;border:1px solid #c9d5c5;background:white;padding:9px 12px;font-size:12px;outline-offset:2px}
-    .tier-custom button{padding:9px 13px;background:var(--ink);color:white;border:0;font-size:12px;font-weight:760}
     .sources{padding:62px 0 72px}
     .sources-grid{display:grid;grid-template-columns:230px 1fr;gap:52px}
     .sources h2{font-family:var(--serif);font-size:35px;font-weight:500;letter-spacing:-.05em;margin:0}
@@ -492,11 +542,7 @@ periodic_rows:
       .model-rank{font-size:11px;padding:3px 5px}
       .apple-diagram{padding:18px}
       .apple-line{grid-template-columns:1fr;gap:14px}
-      .chip-seq{gap:7px}
-      .chip-pill{padding:9px 10px;font-size:12px;min-width:0}
-      .chip-chevron{font-size:11px}
       .apple-note{font-size:12px}
-      .apple-workshop{grid-template-columns:minmax(0,1fr);padding:16px;gap:12px}
       .sources-grid{display:block}
       .sources{padding:50px 0}
       .sources h2{margin-bottom:18px}
@@ -515,7 +561,6 @@ periodic_rows:
       .nav-links a:first-child{display:none}
       .quiz-card{padding:18px}
       .quiz-controls{gap:12px}
-      .tier-opts button{padding:8px}
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
   </style>
@@ -800,7 +845,23 @@ periodic_rows:
         </div>
         <div class="case-visual">
           <div class="apple-diagram">
-            <div class="apple-line"><div class="apple-lab">Apple silicon<span>Chip capability tiers</span></div><div class="chip-seq" aria-label="Apple silicon chip tiers"><span class="chip-pill">Base</span><span class="chip-chevron">→</span><span class="chip-pill">Pro</span><span class="chip-chevron">→</span><span class="chip-pill">Max</span><span class="chip-chevron">→</span><span class="chip-pill peak">Ultra</span><span class="chip-chevron">→</span><a class="chip-pill ghost" href="#the-ceiling" aria-label="Name a hypothetical successor to Ultra">?</a></div></div>
+            <div class="apple-line" id="the-ceiling">
+              <div class="apple-lab">Apple silicon<span>M1 family by chip tier</span></div>
+              <div class="apple-chips">
+                <div class="chip-seq" role="group" aria-label="M1 chips in ascending tier order">
+                  <span class="chip-die">M1</span><span class="chip-chevron" aria-hidden="true">→</span>
+                  <span class="chip-die">M1 Pro</span><span class="chip-chevron" aria-hidden="true">→</span>
+                  <span class="chip-die max-die">M1 Max</span><span class="chip-chevron" aria-hidden="true">→</span>
+                  <span class="ultra-package">
+                    <span class="ultra-dies" aria-hidden="true">
+                      <span class="chip-die max-die">M1 Max</span><span class="die-join"></span><span class="chip-die max-die">M1 Max</span>
+                    </span>
+                    <span class="ultra-label">M1 Ultra</span>
+                  </span>
+                </div>
+                <p class="apple-note">In October 2021, the <strong>M1 Max</strong> was the most powerful chip in the family. By March 2022, Max was the entry-level chip in the new Mac Studio. The upgrade was an <strong>M1 Ultra</strong>, made by joining two Max dies.</p>
+              </div>
+            </div>
             <div class="apple-line">
               <div class="apple-lab">iPhone 14 family<span>Display sizes</span></div>
               <div>
@@ -876,19 +937,7 @@ periodic_rows:
               </div>
             </div>
           </div>
-          <section class="apple-workshop" id="the-ceiling" aria-labelledby="tier-heading">
-            <div class="tier-prompt">
-              <h4 id="tier-heading">What comes after <em>Ultra?</em></h4>
-              <p>Apple joined two M2 Max dies and called the result Ultra. What would you call the next chip?</p>
-            </div>
-            <div class="tier-controls">
-              <div class="tier-preview">Pro → Max → Ultra → <strong id="future-label">?</strong></div>
-              <div class="tier-opts" role="group" aria-label="Suggested hypothetical tier names"><button type="button" data-tier="Hyper" aria-pressed="false">Hyper</button><button type="button" data-tier="Ultra Max" aria-pressed="false">Ultra Max</button><button type="button" data-tier="Supermax" aria-pressed="false">Supermax</button><button type="button" data-tier="Infinity" aria-pressed="false">Infinity</button><button type="button" data-tier="Beyond" aria-pressed="false">Beyond</button></div>
-              <form class="tier-custom" id="tier-form"><label class="sr-only" for="tier-input">Invent a name for the tier above Ultra</label><input type="text" id="tier-input" autocomplete="off" maxlength="18" placeholder="Or invent your own…"><button type="submit">Add tier ↗</button></form>
-              <p class="sr-only" id="tier-output" aria-live="polite"></p>
-            </div>
-          </section>
-          <p class="case-source">Sources · <a href="https://www.apple.com/newsroom/2023/06/apple-introduces-m2-ultra/" target="_blank" rel="noopener noreferrer">M2 Ultra</a> · <a href="https://www.apple.com/newsroom/2022/09/apple-introduces-iphone-14-and-iphone-14-plus/" target="_blank" rel="noopener noreferrer">iPhone 14 and 14 Plus</a> · <a href="https://www.apple.com/newsroom/2022/09/apple-debuts-iphone-14-pro-and-iphone-14-pro-max/" target="_blank" rel="noopener noreferrer">iPhone 14 Pro and Pro Max</a> · <a href="https://www.apple.com/newsroom/2018/09/iphone-xs-and-iphone-xs-max-bring-the-best-and-biggest-displays-to-iphone/" target="_blank" rel="noopener noreferrer">iPhone XS Max</a> · <a href="https://www.apple.com/newsroom/2026/01/stay-active-in-the-new-year-with-apple-watch/" target="_blank" rel="noopener noreferrer">Watch lineup</a> · <a href="https://www.apple.com/newsroom/2026/03/say-hello-to-macbook-neo/" target="_blank" rel="noopener noreferrer">MacBook Neo</a> · <a href="https://support.apple.com/en-us/126322" target="_blank" rel="noopener noreferrer">Neo specs</a> · <a href="https://support.apple.com/en-us/126320" target="_blank" rel="noopener noreferrer">13-inch Air specs</a> · <a href="https://www.apple.com/newsroom/2026/03/apple-unveils-new-studio-display-and-all-new-studio-display-xdr/" target="_blank" rel="noopener noreferrer">Studio displays</a> · <a href="https://support.apple.com/en-us/118404" target="_blank" rel="noopener noreferrer">Apple TV subscription</a> · <a href="https://www.apple.com/apple-tv/" target="_blank" rel="noopener noreferrer">Apple TV app and hardware</a></p>
+          <p class="case-source">Sources · <a href="https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/" target="_blank" rel="noopener noreferrer">M1 Pro and M1 Max</a> · <a href="https://www.apple.com/newsroom/2022/03/apple-unveils-m1-ultra-the-worlds-most-powerful-chip-for-a-personal-computer/" target="_blank" rel="noopener noreferrer">M1 Ultra</a> · <a href="https://www.apple.com/newsroom/2022/09/apple-introduces-iphone-14-and-iphone-14-plus/" target="_blank" rel="noopener noreferrer">iPhone 14 and 14 Plus</a> · <a href="https://www.apple.com/newsroom/2022/09/apple-debuts-iphone-14-pro-and-iphone-14-pro-max/" target="_blank" rel="noopener noreferrer">iPhone 14 Pro and Pro Max</a> · <a href="https://www.apple.com/newsroom/2018/09/iphone-xs-and-iphone-xs-max-bring-the-best-and-biggest-displays-to-iphone/" target="_blank" rel="noopener noreferrer">iPhone XS Max</a> · <a href="https://www.apple.com/newsroom/2026/01/stay-active-in-the-new-year-with-apple-watch/" target="_blank" rel="noopener noreferrer">Watch lineup</a> · <a href="https://www.apple.com/newsroom/2026/03/say-hello-to-macbook-neo/" target="_blank" rel="noopener noreferrer">MacBook Neo</a> · <a href="https://support.apple.com/en-us/126322" target="_blank" rel="noopener noreferrer">Neo specs</a> · <a href="https://support.apple.com/en-us/126320" target="_blank" rel="noopener noreferrer">13-inch Air specs</a> · <a href="https://www.apple.com/newsroom/2026/03/apple-unveils-new-studio-display-and-all-new-studio-display-xdr/" target="_blank" rel="noopener noreferrer">Studio displays</a> · <a href="https://support.apple.com/en-us/118404" target="_blank" rel="noopener noreferrer">Apple TV subscription</a> · <a href="https://www.apple.com/apple-tv/" target="_blank" rel="noopener noreferrer">Apple TV app and hardware</a></p>
         </div>
       </div>
     </section>
@@ -898,7 +947,7 @@ periodic_rows:
           <div class="case-kicker">USB</div>
           <h3 id="usb-title">Which USB-C <em>cable</em> did you mean?</h3>
           <div class="usb-intro">
-            <p class="usb-subheading">A common port <strong>pushed the complexity one level deeper</strong>, into what each cable can carry.</p>
+            <p class="usb-subheading">A common plug <strong>pushed the complexity one level deeper</strong>. What works depends on the cable and the ports at both ends.</p>
             <p class="case-summary">A <strong>60 W</strong> cable and a <strong>240 W</strong> cable can have identical USB-C plugs. The three below can each carry up to 240 W in either direction. The devices negotiate how much to use. If your monitor offers 65 W and your laptop requests 45 W, they can settle on 45 W. Swap the Thunderbolt cable for Apple’s Charge Cable and the laptop keeps charging, but the screen goes dark.</p>
           </div>
         </div>
@@ -943,14 +992,46 @@ periodic_rows:
               </ul>
             </div>
           </figure>
+          <p class="case-summary">On the M5 <strong>MacBook Air</strong>, you can plug a charger, monitor or Thunderbolt dock into whichever USB-C port is free. On the cheaper <strong>MacBook Neo</strong>, both ports charge the laptop, but only one can run that same monitor. On <strong>Windows laptops</strong>, identical-looking ports caused real customer confusion. When a monitor stayed dark, how could you tell whether to swap the cable or move it one port over? Microsoft addressed that confusion by requiring every USB-C port on newly certified Windows 11 laptops to support charging, data transfers and an external display.</p>
           <div class="usb-devices">
-            <p>Even among data cables, the same plug can carry USB 2, USB 3 or USB4. USB 3.2 alone has 5, 10 and 20&nbsp;Gbps modes. To get a particular speed or carry video, the cable and the ports at both ends must support it. With the same 10&nbsp;Gbps Mac port and Thunderbolt cable, swapping the phone changes the speed limit.</p>
+            <p>USB 3.2 alone has 5, 10 and 20&nbsp;Gbps modes, and a transfer can only use a mode the cable and both devices support. Plug these two iPhones into the same 10&nbsp;Gbps Mac port with the same Thunderbolt cable and the Pro can copy photos much faster. Both phones can also drive a USB-C display, a feature Apple left off the iPhone 16e.</p>
             <dl aria-label="Maximum USB link speed with each phone">
               <div><dt>iPhone 16 · USB 2</dt><dd>Up to 480 Mbps</dd></div>
               <div><dt>iPhone 16 Pro · USB 3</dt><dd>Up to 10 Gbps</dd></div>
             </dl>
           </div>
-          <p class="case-source">Sources · <a href="https://www.usb.org/sites/default/files/usb_type-c_language_product_and_packaging_guidelines_20230320.pdf">USB-IF guide to USB-C names and capabilities</a> · <a href="https://www.usb.org/cable_connector">USB-C cable power ratings</a> · <a href="https://www.usb.org/usb-charger-pd">USB Power Delivery</a> · <a href="https://www.usb.org/usb-32-0">USB 3.2 speeds</a> · <a href="https://compliance.usb.org/index.asp?Format=Standard&amp;UpdateFile=Cables+and+Connectors">USB-IF connector notices (Mini-B use is still permitted)</a> · <a href="https://plugable.com/products/usbc-cc2m">Plugable charge-only cable</a> · <a href="https://www.apple.com/shop/product/myqt3am/a/240w-usb-c-charge-cable-2-m">Apple Charge Cable</a> · <a href="https://support.apple.com/en-us/118204">Apple Thunderbolt cables</a> · <a href="https://support.apple.com/en-us/121029">iPhone 16</a> · <a href="https://support.apple.com/en-us/121031">iPhone 16 Pro</a><br>Legacy plug illustrations cropped from <a href="https://commons.wikimedia.org/wiki/File:USB_connector_illustration,_to_scale,_grouping,_plugs.svg">Matthew Wynn’s USB connector diagram</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+          <p class="case-source">Sources · <a href="https://www.usb.org/sites/default/files/usb_type-c_language_product_and_packaging_guidelines_20230320.pdf">USB-IF guide to USB-C names and capabilities</a> · <a href="https://www.usb.org/cable_connector">USB-C cable power ratings</a> · <a href="https://www.usb.org/usb-charger-pd">USB Power Delivery</a> · <a href="https://www.usb.org/usb-32-0">USB 3.2 speeds</a> · <a href="https://compliance.usb.org/index.asp?Format=Standard&amp;UpdateFile=Cables+and+Connectors">USB-IF connector notices (Mini-B use is still permitted)</a> · <a href="https://plugable.com/products/usbc-cc2m">Plugable charge-only cable</a> · <a href="https://www.apple.com/shop/product/myqt3am/a/240w-usb-c-charge-cable-2-m">Apple Charge Cable</a> · <a href="https://support.apple.com/en-us/118204">Apple Thunderbolt cables</a> · <a href="https://techcommunity.microsoft.com/blog/microsoftusbblog/ending-usb-c%C2%AE-port-confusion/4410479">Microsoft’s USB-C certification requirements</a> · <a href="https://support.apple.com/en-us/126320">MacBook Air ports</a> · <a href="https://www.apple.com/macbook-neo/specs/">MacBook Neo ports</a> · <a href="https://support.apple.com/en-us/105099">iPhone display support</a> · <a href="https://support.apple.com/en-us/121029">iPhone 16</a> · <a href="https://support.apple.com/en-us/121031">iPhone 16 Pro</a><br>Legacy plug illustrations cropped from <a href="https://commons.wikimedia.org/wiki/File:USB_connector_illustration,_to_scale,_grouping,_plugs.svg">Matthew Wynn’s USB connector diagram</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="dyson" aria-labelledby="dyson-title">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Dyson <span>Hall of shame</span></div>
+          <h3 id="dyson-title">Is <em>Advanced</em> better than <em>Absolute?</em></h3>
+          <p class="case-summary">In November 2024, Dyson was selling a <strong>V7 Advanced</strong>, a <strong>V8 Absolute</strong> and a <strong>V11 Extra</strong>. You could put the numbers in order, but what made the seven “Advanced,” and what did the eleven give you extra? If you wanted a lighter vacuum, you had to compare the <strong>V12 Detect Slim</strong> with a <strong>Digital Slim</strong> that had no number at all. On the <strong>Gen5detect</strong> and <strong>Gen5outsize</strong>, the five referred to the generation of the motor.</p>
+        </div>
+        <div class="case-visual">
+          <table class="dyson-models">
+            <caption>The thirteen names in the November 2024 list. A dash means no matching name appeared in the list.</caption>
+            <thead><tr><th scope="col">Without “Absolute”</th><th scope="col">With “Absolute”</th></tr></thead>
+            <tbody>
+              <tr><td>V7 Advanced</td><td class="absent">—</td></tr>
+              <tr><td>V8</td><td>V8 <strong>Absolute</strong></td></tr>
+              <tr><td>V11 Extra</td><td class="absent">—</td></tr>
+              <tr><td>V12 Detect Slim</td><td class="absent">—</td></tr>
+              <tr><td class="absent">—</td><td>V15 Detect <strong>Absolute</strong></td></tr>
+              <tr><td>V15s Detect Submarine™</td><td>V15s Detect Submarine™ <strong>Absolute</strong></td></tr>
+              <tr><td>Gen5detect</td><td>Gen5detect <strong>Absolute</strong></td></tr>
+              <tr><td>Gen5outsize</td><td>Gen5outsize <strong>Absolute</strong></td></tr>
+              <tr><td>Digital Slim</td><td class="absent">—</td></tr>
+            </tbody>
+          </table>
+          <p class="case-summary">Five of those vacuums were <strong>Absolute</strong>. Suppose you wanted one that could wash the kitchen floor. The word to look for was <strong>Submarine</strong>, Dyson’s name for its wet roller. Both Submarines came with it. If you took home the <strong>V15 Detect Absolute</strong>, you couldn’t add the roller later, because the regular V15 lacked the software to run it.</p>
+          <p class="case-summary"><strong>Making products hard to compare can be a deliberate sales strategy.</strong> Take a vacuum maker that wants a model on the shelf at $300, $500 and $800. Leaving the generation out of the name lets it keep selling last year’s vacuum at $300 without advertising its age. Someone who already owns one has a harder time figuring out when it was superseded, which model replaced it and whether it’s worth upgrading.</p>
+          <p class="case-summary">At the other end of that hypothetical lineup, a name like “Absolute” can make the $800 vacuum sound worth the premium before the buyer has checked what comes in the box. Keep that name at $800 across releases and shoppers get used to the price. It also makes the $500 model look reasonable to someone who came in planning to spend $300.</p>
+          <p class="case-summary">Dyson’s US store lists the cordless <strong>V16 Piston Animal</strong> and the upright <strong>Ball Animal 3 Extra</strong> on the same page. Its cordless comparison tool lets you put the V16 beside a V12 Detect Slim, but you can’t put the two Animals side by side there. If you’re buying a vacuum to get dog hair out of a rug, that’s a perfectly reasonable comparison to want. When even the comparison tool leaves that work to the buyer, it’s fair to wonder whether some of the confusion suits Dyson.</p>
+          <p class="case-source">Sources · <a href="./images/dyson-lineup-2024.png">Jason Willems’s November 25, 2024 post with all thirteen names</a> · <a href="https://www.dyson.com/discover/innovation/new-machines/gen5detect-gen5outsize-launch">Dyson on its Gen5 motor</a> · <a href="https://www.dyson.com/vacuum-cleaners/wet-dry/v15s-detect-submarine">Dyson’s Submarine models and roller compatibility</a> · <a href="https://www.dyson.com/vacuum-cleaners/shop-all">US floorcare catalog</a> · <a href="https://www.dyson.com/vacuum-cleaners/cordless">Compare cordless vacuums</a></p>
         </div>
       </div>
     </section>
@@ -1047,8 +1128,36 @@ periodic_rows:
               </div>
             </fieldset>
           </div>
-          <p class="case-summary">Seven years after Canon’s flagship <strong>1D Mark III</strong> came out, the less expensive <strong>7D Mark II</strong> could match its 10 frames per second at twice the resolution. As that performance trickled down, Canon gave photographers a reason to keep buying premium bodies by reserving features like heavier weather sealing and dual card slots for the higher tiers. If you shot weddings in 2017 and wanted a backup of every photo as you took it, Canon’s decision to give the new <strong>6D Mark II</strong> just one slot steered you toward the more expensive <strong>5D Mark IV</strong>, even though it was a year older.</p>
-          <p class="case-source">Sources · <a href="https://global.canon/en/c-museum/camera-series.html">Canon Camera Museum</a> · <a href="https://global.canon/en/c-museum/product/dslr794.html">EOS-1D Mark III</a> · <a href="https://global.canon/en/news/2025/20250728.html">Canon’s 5D history</a> · <a href="https://www.usa.canon.com/support/p/eos-5d-mark-iv">EOS 5D Mark IV specifications</a> · <a href="https://global.canon/en/c-museum/product/dslr813.html">EOS 6D</a> · <a href="https://global.canon/en/c-museum/product/dslr866.html">EOS 6D Mark II</a> · <a href="https://global.canon/en/c-museum/product/dslr802.html">EOS 7D</a> · <a href="https://global.canon/en/c-museum/product/dslr819.html">EOS 7D Mark II</a></p>
+          <p class="case-summary">Seven years after Canon’s flagship <strong>1D Mark III</strong> came out, the less expensive <strong>7D Mark II</strong> could match its 10 frames per second at twice the resolution. As that performance trickled down, Canon gave photographers a reason to keep buying premium bodies by reserving features like heavier weather sealing and dual card slots for the higher tiers. If you shot weddings in 2017 and wanted a backup of every photo as you took it, Canon’s controversial decision to give the new <strong>6D Mark II</strong> just one slot steered you toward the more expensive <strong>5D Mark IV</strong>, even though it was a year older.</p>
+          <p class="case-source">Sources · <a href="https://global.canon/en/c-museum/camera-series.html">Canon Camera Museum</a> · <a href="https://global.canon/en/c-museum/product/dslr794.html">EOS-1D Mark III</a> · <a href="https://global.canon/en/news/2025/20250728.html">Canon’s 5D history</a> · <a href="https://www.usa.canon.com/support/p/eos-5d-mark-iv">EOS 5D Mark IV specifications</a> · <a href="https://global.canon/en/c-museum/product/dslr813.html">EOS 6D</a> · <a href="https://global.canon/en/c-museum/product/dslr866.html">EOS 6D Mark II</a> · <a href="https://www.photographynews.co.uk/reviews/canon-eos-6d-mark-ii-full-test/">Photography News on Canon’s single slot</a> · <a href="https://global.canon/en/c-museum/product/dslr802.html">EOS 7D</a> · <a href="https://global.canon/en/c-museum/product/dslr819.html">EOS 7D Mark II</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="case" id="paper-sizes" aria-labelledby="paper-title">
+      <div class="container">
+        <div class="case-head">
+          <div class="case-kicker">Paper sizes</div>
+          <h3 id="paper-title">Fold A3 in half and you get A4</h3>
+          <p class="case-summary">Bring the short edges of an A3 sheet together and each half is A4. Fold it again and you get A5, with the same proportions and half the area of A4. The number counts folds from A0, which starts at one square metre. B0 starts one metre wide, so the same folds give you a slightly larger sheet at every number.</p>
+        </div>
+        <div class="case-visual">
+          <div class="paper-pair">
+            {% for series in page.paper_series %}
+            {% assign letter = series[0] %}
+            {% assign sizes = series[1] %}
+            <figure class="paper-{{ letter | downcase }}">
+              <div class="paper-sheet">
+                {% for size in sizes offset:1 %}
+                <span class="paper-piece">{{ letter }}{{ forloop.index | plus: 2 }}<small>{{ size }}</small></span>
+                {% if forloop.last %}<span class="paper-piece" aria-hidden="true">{{ letter }}5<small>{{ size }}</small></span>{% endif %}
+                {% endfor %}
+              </div>
+              <figcaption>{{ letter }}2 <small>{{ sizes[0] }} mm</small></figcaption>
+            </figure>
+            {% endfor %}
+          </div>
+          <p class="case-summary"><strong>The names are simple because the product range is fixed.</strong> A3 gives you twice the drawing area of A4, and B4 gives you one standard size in between. A supplier can sell a sheet just 5% wider than A4, but there’s no A or B number for it. A more flexible range needs a different way to label sizes, such as printing the width and height on the pack.</p>
+          <p class="case-source">Sources · <a href="https://www.iso.org/standard/36631.html">ISO 216 A and B series</a> · <a href="https://preview.sist.si/sist-preview/36631/c0883203ea25445c9992bb09343620c5/ISO-216-2007.pdf">Sheet dimensions in millimetres</a></p>
         </div>
       </div>
     </section>
@@ -1056,18 +1165,18 @@ periodic_rows:
       <div class="container">
         <div class="case-head">
           <div class="case-kicker">Venture funding</div>
-          <h3 id="funding-title">What qualifies as a Series A?</h3>
-          <p class="case-summary">Series A comes before Series B, but what it takes to raise an A depends on when you ask. Early sales might persuade an investor in a boom. In a tighter market, the same investor might want to see those customers renew before writing the check.</p>
+          <h3 id="funding-title">Series A, B, C and counting</h3>
+          <p class="case-summary">Once a startup moves on from seed funding, you can usually name its next three rounds in advance. Series A comes first, followed by B and C. The letters tell you where a round falls in that company’s history, even as investors’ expectations for revenue and growth change with the market.</p>
         </div>
         <div class="case-visual">
           <ol class="funding-sequence" aria-label="An example progression of funding stages">
             <li><strong>Bootstrapped</strong><small>Founders’ money or revenue</small></li>
             <li><strong>Pre-seed</strong><small>Usually a small first raise</small></li>
             <li><strong>Seed</strong><small>Money to build and test the product</small></li>
-            <li><strong>Series A</strong><small>The lettered rounds begin</small></li>
-            <li><strong>… Series N</strong><small>Databricks’ proposed round</small></li>
+            <li><strong class="lettered-rounds">Series A → B → C</strong><small>One letter per new series</small></li>
+            <li><strong>… Series N</strong><small>Exec Sum’s label for a proposed Databricks round</small></li>
           </ol>
-          <p class="case-summary">When Databricks was in funding talks in November 2026, Exec Sum called the proposed round a <strong>Series N</strong>. Counting one letter at a time would give a company 26 rounds before it ran out of alphabet. Companies can skip letters, though. Forge records a $25 million <strong>Series Z</strong> for Invoca in 2021, between its Series E and Series F.</p>
+          <p class="case-summary">The convention is familiar enough that when Databricks was in funding talks in November 2026, Exec Sum could call the proposed round a <strong>Series N</strong> and count on readers to know how late that was. A company following the alphabet would have 26 letters to work with. Some companies have used the letters out of order. Invoca went <strong>E → Z → F</strong>, according to Forge. Its $25 million Series Z in 2021 came between its Series E in 2019 and its Series F in 2022.</p>
           <p class="case-source">Sources · <a href="https://www.wsj.com/tech/ai/databricks-in-early-talks-to-raise-funds-at-225-billion-valuation-e593b1de">Databricks funding talks</a> · <a href="https://x.com/exec_sum/status/2124611734321373473">Exec Sum’s “Series N” description</a> · <a href="https://carta.com/data/series-a-fundraising-q2-2025/">Carta on the changing Series A bar</a> · <a href="https://forgeglobal.com/invoca_ipo/">Invoca’s funding history</a></p>
         </div>
       </div>
@@ -1075,7 +1184,10 @@ periodic_rows:
     <section class="name-essay" id="whats-in-a-name" aria-labelledby="name-essay-title">
       <div class="container">
         <h2 id="name-essay-title">What’s in a <em>name?</em></h2>
-        <p class="name-intro">Apple once made its Macs easier to name by simplifying the lineup. In the late 1990s, its plan was to give consumers a choice of one desktop or one laptop and offer professionals the same two choices. If you wanted a consumer laptop, “iBook” settled it. As Apple added screen sizes and chip options, the names had to do more work. In a 14-inch MacBook <strong>Pro</strong> with an M4 <strong>Pro</strong>, the first “Pro” names the laptop and the second names the chip.</p>
+        <div class="name-intro">
+          <p>Apple once made its Macs easier to name by simplifying the lineup. In the late 1990s, its plan was to give consumers a choice of one desktop or one laptop and offer professionals the same two choices. If you wanted a consumer laptop, “iBook” settled it. As Apple added screen sizes and chip options, the names had to do more work. In a 14-inch MacBook <strong>Pro</strong> with an M4 <strong>Pro</strong>, the first “Pro” names the laptop and the second names the chip.</p>
+          <p>How a company names its products depends partly on how far ahead it’s planning. Canon left room for another camera between the 5D and 7D. It also depends on how much of the company’s personality belongs in the name. “Haiku” gives Claude a voice that a model number never could. Sometimes the number itself matters to the buyer, whether it’s the wattage printed on a cable or a version change big enough to break an app.</p>
+        </div>
 
         <table class="buyer-guide" role="table" aria-label="What each naming scheme tells a buyer and what they still have to check">
           <colgroup><col><col><col></colgroup>
@@ -1092,6 +1204,11 @@ periodic_rows:
               <th scope="row" role="rowheader"><span class="sample">PS4 <span class="arrow">→</span> PS5</span><span class="scheme">Number each generation</span></th>
               <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>Which came later.</strong> The 5 puts this console one generation past the PS4.</td>
               <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>How big is the jump?</strong> Every generation adds one to the name, however much the hardware improves.</td>
+            </tr>
+            <tr role="row" id="paper-size-tradeoff">
+              <th scope="row" role="rowheader"><span class="sample">A4 <span class="arrow">→</span> A3</span><span class="scheme">Count the folds</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>Twice the area.</strong> Two A4 sheets side by side make one A3.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>Need a size in between?</strong> The A series has no number to spare between A4 and A3. B4 fills that gap using a separate series.</td>
             </tr>
             <tr role="row">
               <th scope="row" role="rowheader"><span class="sample">Y <span class="arrow">→</span> Z <span class="arrow">↷</span> A</span><span class="scheme">Alphabetize the releases</span></th>
@@ -1113,7 +1230,7 @@ periodic_rows:
               <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span>
                 <p class="lookup-note"><strong>Which one do I own?</strong> Buying a case can take two lookups. In Settings, tap the part number to reveal the iPad’s model number, then match it to a generation. <a href="https://support.apple.com/en-us/106343">Find the model number</a> · <a href="https://support.apple.com/en-us/108043">Identify the iPad</a></p>
                 <details><summary>Which case fits my iPad?</summary><p>A2602 takes a case for the 9th-generation iPad. A2696 takes one for the 10th.</p></details>
-                <details><summary>Will this cable drive my monitor?</summary><p>Apple’s USB-C Charge Cable fits but carries no video. Its Thunderbolt 5 Pro Cable carries DisplayPort video through the same plug. <a href="https://support.apple.com/en-us/118204">Compare Apple’s cables</a></p></details>
+                <details><summary>Will this cable drive my monitor?</summary><p>Apple’s USB-C Charge Cable fits but carries no video. Its Thunderbolt 5 Pro Cable can drive the monitor if the laptop’s port also supports video. <a href="https://support.apple.com/en-us/118204">Compare Apple’s cables</a></p></details>
               </td>
             </tr>
             <tr role="row">
@@ -1126,9 +1243,30 @@ periodic_rows:
               <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>Where a new model fits.</strong> Canon could slot the 6D between two cameras you already knew by name.</td>
               <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>Which one is newest?</strong> You’d need the release dates to know the 6D came out after both its neighbors.</td>
             </tr>
+            <tr role="row">
+              <th scope="row" role="rowheader"><span class="sample"><span class="no-break">Lexus ES 250</span> <span class="arrow">/</span> <span class="no-break">Toyota Camry</span></span><span class="scheme">Give the premium line its own brand</span></th>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Tells you</span><strong>Which market it’s meant for.</strong> The Lexus badge puts the ES 250 in the company of other luxury sedans.</td>
+              <td role="cell"><span class="mobile-key" aria-hidden="true">Still to check</span><strong>What does the premium buy?</strong> The original ES 250 shared a platform with the Camry. The names give you little clue which features the two cars share or where they differ.</td>
+            </tr>
           </tbody>
         </table>
-        <p class="case-source">Sources · <a href="https://book.stevejobsarchive.com/#:~:text=What%20this%20told%20us">Steve Jobs on Apple’s four-product strategy</a> · <a href="https://support.apple.com/en-us/121553">MacBook Pro chip options</a> · <a href="https://ubuntu.com/project/docs/release-team/list-of-releases/">Ubuntu release history</a> · <a href="https://semver.org/">Semantic Versioning 2.0.0 specification</a> · <a href="https://www.usb.org/sites/default/files/usb_type-c_cable_power_rating_logo_usage_guidelines_020222.pdf">USB-IF cable ratings</a></p>
+        <section class="naming-takeaways" id="naming-takeaways" aria-labelledby="takeaways-title">
+          <div class="name-intro">
+            <p>Imagine Toyota had called the car a “Camry Plus.” A buyer’s first question would probably be how much more the Plus offered over a Camry. Giving it a luxury badge invites a different comparison. An AI company can make the same choice with a premium model, though anyone looking at two prices in a model picker has good reason to ask that first question.</p>
+            <p>The trouble starts when the buyer thinks the name has already answered it. In the Hacker News discussion when Gemini Neon launched, readers who could follow Claude’s lineup were still trying to place Google’s new model. By the time Anthropic got to Fable, the length of a poem had stopped explaining the tiers, but literature leaves it open whether a fable outranks an opus. Chemistry offers a much more convincing answer. Neon really is heavier than carbon, and following that clue leads straight to the wrong model.</p>
+          </div>
+          <h3 id="takeaways-title">Before naming the next product</h3>
+          <ul>
+            <li><strong>Start with the choice the buyer has to make.</strong> If it takes a paragraph to explain why two products both exist, consider simplifying the lineup before inventing another suffix.</li>
+            <li><strong>Keep family, tier and generation separate.</strong> A buyer should be able to tell whether a model is newer, more capable or especially good at coding. If version numbers restart in each family, make their scope clear.</li>
+            <li><strong>Decide what a step in the sequence means.</strong> PS4 to PS5 tells you which came later and leaves the size of the improvement open. With semantic versioning, moving from 4 to 5 signals a breaking change. If the sequence wraps around, keep a date or version buyers can sort by.</li>
+            <li><strong>Try naming the products on either side.</strong> Before settling on “Max,” name its successor, a cheaper entry model and one that fits between two existing tiers.</li>
+            <li><strong>Keep hidden details easy to find.</strong> “iPad” works until someone needs the exact model to buy a case. If a cable’s speed, power rating or video support could change a purchase, put that information where the buyer chooses the cable.</li>
+            <li><strong>Choose which family ties to show.</strong> A shared name helps buyers compare an upgrade with the base model. A separate luxury brand can play down that relationship, at the cost of making the premium harder to judge.</li>
+            <li><strong>Test the metaphor on someone new to the lineup.</strong> Let them rank the names and explain their reasoning. A distinctive name earns its place when the association helps. If understanding the reference makes the wrong tier look obvious, use a plainer name.</li>
+          </ul>
+        </section>
+        <p class="case-source">Sources · <a href="https://book.stevejobsarchive.com/#:~:text=What%20this%20told%20us">Steve Jobs on Apple’s four-product strategy</a> · <a href="https://pressroom.lexus.com/celebrating-luxury-a-look-at-lexus-35-year-legacy/">Lexus on the ES 250’s Camry platform</a> · <a href="https://support.apple.com/en-us/121553">MacBook Pro chip options</a> · <a href="https://ubuntu.com/project/docs/release-team/list-of-releases/">Ubuntu release history</a> · <a href="https://semver.org/">Semantic Versioning 2.0.0 specification</a> · <a href="https://www.usb.org/sites/default/files/usb_type-c_cable_power_rating_logo_usage_guidelines_020222.pdf">USB-IF cable ratings</a> · <a href="https://news.ycombinator.com/item?id=50552424">Gemini Neon launch discussion</a> · <a href="https://discuss.ai.google.dev/t/idea-for-gemini-4-naming-pairing-tier-anchors-with-element-codenames-e-g-gemini-4-pro-carbon/203489">A developer’s proposal for clearer Gemini tiers</a></p>
       </div>
     </section>
     <section class="sources" id="sources">
@@ -1202,23 +1340,6 @@ periodic_rows:
       }
 
       orderButtons.forEach(button => button.addEventListener('click', () => sortChem(button.dataset.order)));
-
-      const tierName=document.getElementById('future-label');
-      const tierLink=document.querySelector('.chip-pill.ghost');
-      const tierOutput=document.getElementById('tier-output');
-      const tierInput=document.getElementById('tier-input');
-      const tierBtns=[...document.querySelectorAll('[data-tier]')];
-      function setTier(name){
-        const val=String(name).trim().slice(0,18);
-        if(!val){tierInput.focus();return;}
-        tierName.textContent=val;
-        tierLink.textContent=val;
-        tierLink.setAttribute('aria-label',`Change the hypothetical tier ${val}`);
-        tierBtns.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tier === val)));
-        tierOutput.textContent=`Added ${val} above Ultra.`;
-      }
-      tierBtns.forEach(btn=>btn.addEventListener('click',()=>{setTier(btn.dataset.tier);tierInput.value=''}));
-      document.getElementById('tier-form').addEventListener('submit',e=>{e.preventDefault();setTier(tierInput.value)});
     })();
   </script>
 </body>
