@@ -30,7 +30,7 @@ const sourceLabels = {
   government_funding_announcement: "Government announcement",
   public_funding_announcement: "Public funding announcement",
   government_explainer: "Government explainer",
-  government_program: "Government programme",
+  government_program: "Government program",
   government_technical_roadmap: "Government roadmap",
   institution_primary: "Institutional source",
   institutional_news: "Institutional announcement",

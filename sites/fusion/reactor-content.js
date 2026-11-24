@@ -48,8 +48,8 @@ const vessel = (links) =>
     "vessel",
     "Vacuum chamber",
     "Keep the working volume isolated",
-    "The chamber provides a controlled environment around the fuel. Openings admit heating, fueling and diagnostic systems while the wall separates the working volume from the rest of the machine.",
-    "Ports, maintenance access and wall protection must fit around the confinement system.",
+    "The chamber provides a controlled environment around the fuel. Openings admit heating, fueling, and diagnostic systems while the wall separates the working volume from the rest of the machine.",
+    "Ports, maintenance access, and wall protection must fit around the confinement system.",
     links,
   );
 const blanket = (links) =>
@@ -58,7 +58,7 @@ const blanket = (links) =>
     "Future plant blanket",
     "Capture heat and breed fuel",
     "In a proposed D–T plant, a blanket absorbs neutron energy and uses lithium to produce tritium. Coolant carries the captured heat toward electricity-generating equipment outside this view.",
-    "The blanket must recover enough tritium, remove heat and protect surrounding hardware while leaving access for maintenance.",
+    "The blanket must recover enough tritium, remove heat, and protect surrounding hardware while leaving access for maintenance.",
     links,
   );
 const heat = (links) =>
@@ -86,7 +86,7 @@ const torusParts = (spherical = false) => [
     "Field coils",
     "Build the surrounding magnetic field",
     "External coils create the toroidal part of the field around the chamber. Combined with the field produced by plasma current, this gives the confining field its twist.",
-    "Magnets need space for structure, cooling and protection as magnetic forces grow.",
+    "Magnets need space for structure, cooling, and protection as magnetic forces grow.",
     ["plasma", "solenoid"],
   ),
   part(
@@ -94,7 +94,7 @@ const torusParts = (spherical = false) => [
     spherical ? "Central column & solenoid" : "Central solenoid",
     "Induce current through the plasma",
     spherical
-      ? "The narrow central column shares scarce space between magnets, structure and protection. Where a central solenoid is used, its changing magnetic field induces the plasma current."
+      ? "The narrow central column shares scarce space between magnets, structure, and protection. Where a central solenoid is used, its changing magnetic field induces the plasma current."
       : "A changing magnetic field in the central solenoid induces a current around the plasma ring. That plasma current contributes to the field that confines the fuel.",
     spherical
       ? "Compact geometry leaves especially little room at the center."
@@ -140,7 +140,7 @@ const MODELS = {
         "Shaped field coils",
         "Build a three-dimensional magnetic geometry",
         "Precisely arranged external coils create the twist needed for confinement. Their shape and placement determine the magnetic volume the plasma can occupy.",
-        "Manufacturing accuracy must coexist with room for heating, maintenance and a future blanket.",
+        "Manufacturing accuracy must coexist with room for heating, maintenance, and a future blanket.",
         ["field", "vessel"],
       ),
       part(
@@ -176,7 +176,7 @@ const MODELS = {
         "Mirror magnets",
         "Strengthen the field at both ends",
         "End magnets constrict the bundle of field lines. The stronger end regions reflect particles with suitable motion back toward the center.",
-        "Magnetic forces, coil protection and access through the narrow throats constrain the design.",
+        "Magnetic forces, coil protection, and access through the narrow throats constrain the design.",
         ["field", "plasma"],
       ),
       part(
@@ -226,7 +226,7 @@ const MODELS = {
         "Levitation system",
         "Hold the ring without internal supports",
         "An external levitation system supports the superconducting ring magnet. Its position matters because the plasma geometry is organized around that ring.",
-        "Stable support must operate alongside cooling, control and eventual reactor shielding.",
+        "Stable support must operate alongside cooling, control, and eventual reactor shielding.",
         ["ring", "vessel"],
       ),
       part(
@@ -275,7 +275,7 @@ const MODELS = {
         "plasma",
         "Field-reversed plasma",
         "Hold the beam-supported fuel population",
-        "Energetic beam particles help form, heat and sustain the compact plasma. This sustained-beam architecture has a different operating cycle from merging and compressing two FRCs.",
+        "Energetic beam particles help form, heat, and sustain the compact plasma. This sustained-beam architecture has a different operating cycle from merging and compressing two FRCs.",
         "Confinement and fuel requirements must justify the continuous beam demand.",
         ["field", "injector", "exhaust"],
       ),
@@ -302,7 +302,7 @@ const MODELS = {
         "Acceleration & compression coils",
         "Move and squeeze the plasmas",
         "Changing coil fields accelerate the two configurations toward the center. The central magnetic pulse then compresses the merged plasma.",
-        "Pulse timing, confinement and repeated mechanical loads must work together.",
+        "Pulse timing, confinement, and repeated mechanical loads must work together.",
         ["plasma", "capacitors", "collector"],
       ),
       part(
@@ -318,7 +318,7 @@ const MODELS = {
         "Reversed magnetic field",
         "Close the field inside the compact plasma",
         "Current in each plasma reverses the field near its axis. Closed field lines surround the central current region; the magnetic field outside the plasma continues along the machine.",
-        "The reversed-field region must survive acceleration, merging and compression.",
+        "The reversed-field region must survive acceleration, merging, and compression.",
         ["plasma", "coils"],
       ),
       part(
@@ -467,7 +467,7 @@ const MODELS = {
         "Compressed burning fuel",
         "Release fusion energy during a brief burn",
         "At suitable conditions, compressed D–T fuel can burn and release fusion energy. Target energy gain measures the target boundary rather than the electrical input to the entire facility.",
-        "A power plant also needs efficient drivers, repeated targets and net electricity.",
+        "A power plant also needs efficient drivers, repeated targets, and net electricity.",
         ["target", "blanket"],
       ),
       blanket(["plasma", "vessel"]),
@@ -485,7 +485,7 @@ const MODELS = {
         "Compression laser beams",
         "Drive the capsule surface with light",
         "Multiple laser beams illuminate the capsule directly. The illuminated material expands outward and drives an inward implosion.",
-        "Beam uniformity, coupling and wall-plug efficiency must work together.",
+        "Beam uniformity, coupling, and wall-plug efficiency must work together.",
         ["target", "vessel"],
       ),
       part(
@@ -509,7 +509,7 @@ const MODELS = {
         "Future target injection",
         "Deliver fresh fuel for each pulse",
         "A proposed plant supplies a new target after each shot. Tracking and aiming systems must place driver energy on that moving target.",
-        "Target supply, chamber clearing and precision aiming must all sustain repetition.",
+        "Target supply, chamber clearing, and precision aiming must all sustain repetition.",
         ["target", "vessel"],
       ),
       blanket(["plasma", "vessel"]),
@@ -699,7 +699,7 @@ const MODELS = {
         "Energetic ions & electrons",
         "Produce fusion through particle collisions",
         "The co-confined populations are intended to support fusion-producing collisions. Neutron production can support testing before an electricity-producing machine exists.",
-        "Fusion output must eventually exceed collision, radiation and electrical losses.",
+        "Fusion output must eventually exceed collision, radiation, and electrical losses.",
         ["field", "collector"],
       ),
       part(
@@ -840,7 +840,7 @@ const PATCHES = {
       blanket: {
         name: "Proposed flowing lithium wall",
         description:
-          "Flowing lithium is intended to absorb heat, shield surrounding hardware and breed tritium. A commercial system would need to maintain that flowing wall alongside plasma confinement.",
+          "Flowing lithium is intended to absorb heat, shield surrounding hardware, and breed tritium. A commercial system would need to maintain that flowing wall alongside plasma confinement.",
       },
     },
   },
@@ -1057,7 +1057,7 @@ export function getReactorContent(id, options = {}) {
         "Fuel magnetization",
         "Establish a field before compression",
         "The MagLIF architecture magnetizes the fuel before the liner implodes. This preconditioning is a feature of this architecture rather than every pulsed-power concept.",
-        "Magnetization, preheat and liner compression must operate together.",
+        "Magnetization, preheat, and liner compression must operate together.",
         ["target", "liner"],
       ),
       sourceIds: [...sourceIds],

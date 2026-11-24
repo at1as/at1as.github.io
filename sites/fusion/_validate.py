@@ -34,8 +34,10 @@ class CorrectedValidator(handoff.Validator):
 
 validation = CorrectedValidator(canonical).run()
 assert not validation.errors and not validation.warnings, '\n'.join(validation.errors + validation.warnings)
-data = json.loads((ROOT / 'data.json').read_text())
+data = json.loads((ROOT / '_data-full.json').read_text())
+runtime = json.loads((ROOT / 'data.json').read_text())
 assert data['meta']['canonicalSha256'] == hashlib.sha256(published).hexdigest()
+assert runtime['meta']['canonicalSha256'] == data['meta']['canonicalSha256']
 assert data['meta']['original_sha256'] == hashlib.sha256(original).hexdigest()
 assert data['meta']['snapshot'] == canonical['meta']['as_of']
 report = (ROOT / '_handoff/01_RESEARCH_REPORT.md').read_bytes()
@@ -145,4 +147,17 @@ nif = [r for r in data['results'] if r['entity_id'] == 'nif']
 assert max(nif, key=lambda r: r['value'])['date'] == '2025-04-07'
 assert max(nif, key=lambda r: r['date'])['value'] == 3.8
 assert results['nif_2026_latest']['driver_energy_mj'] is None
+# Verify the lean runtime bundle mirrors the full record without shipping internal notes.
+for key in ('rawMarkdown', 'research_notes', 'additionalContext'):
+    assert all(key not in e for e in runtime['entities']), f'runtime data.json must omit {key}'
+for key in ('editorialSections', 'storyContent', 'powerBalance', 'qualityNotes'):
+    assert key not in runtime, f'runtime data.json must omit {key}'
+assert len(runtime['entities']) == len(data['entities'])
+assert len(runtime['sites']) == len(data['sites'])
+assert len(runtime['sources']) == len(data['sources'])
+assert len(runtime['results']) == len(data['results'])
+assert sum(len(e['claims']) for e in runtime['entities']) == len(claims)
+assert sum(len(e['funding']) for e in runtime['entities']) == len(funding)
+check_refs(runtime)
+
 print(f"Adapter PASS: {len(entities)} entities, {len(sites)} site-role records, {len(claims)} claims, {len(funding)} funding observations, {len(sources)} sources; canonical values and qualifications retained.")

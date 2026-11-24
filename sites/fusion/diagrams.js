@@ -28,7 +28,7 @@ export const approaches = [
       },
     ],
     constraint:
-      "Current drive, disruptions, exhaust heat and neutron-resistant components must work together in a power plant.",
+      "Current drive, disruptions, exhaust heat, and neutron-resistant components must work together in a power plant.",
   },
   {
     id: "spherical",
@@ -36,7 +36,7 @@ export const approaches = [
     family: "magnetic",
     tagline: "The same idea, with a much tighter waist.",
     description:
-      "A tokamak variant with an elongated plasma and a small central hole. Its central column must fit magnets, support and protection into a particularly constrained space.",
+      "A tokamak variant with an elongated plasma and a small central hole. Its central column must fit magnets, support, and protection into a particularly constrained space.",
     stages: [
       {
         title: "Build a compact field",
@@ -52,7 +52,7 @@ export const approaches = [
       },
       {
         title: "Protect the center",
-        text: "The compact center column shares limited space between magnets, shielding and structural support. Exhaust and blanket engineering remain essential.",
+        text: "The compact center column shares limited space between magnets, shielding, and structural support. Exhaust and blanket engineering remain essential.",
       },
     ],
     constraint:
@@ -80,11 +80,11 @@ export const approaches = [
       },
       {
         title: "Extract heat continuously",
-        text: "A plant still needs exhaust, blankets, cooling and maintenance access around its intricate magnetic geometry.",
+        text: "A plant still needs exhaust, blankets, cooling, and maintenance access around its intricate magnetic geometry.",
       },
     ],
     constraint:
-      "Precision manufacturing and access must coexist with good confinement, exhaust handling and a viable blanket.",
+      "Precision manufacturing and access must coexist with good confinement, exhaust handling, and a viable blanket.",
   },
   {
     id: "mirror",
@@ -136,7 +136,7 @@ export const approaches = [
       },
       {
         title: "Protect the internal magnet",
-        text: "Cooling, shielding and ring protection become demanding in a D–T plant. OpenStar’s Junior prototype and proposed Tama Nui plant are distinct evidence stages.",
+        text: "Cooling, shielding, and ring protection become demanding in a D–T plant. OpenStar’s Junior prototype and proposed Tama Nui plant are distinct evidence stages.",
       },
     ],
     constraint:
@@ -164,11 +164,11 @@ export const approaches = [
       },
       {
         title: "Control the operating state",
-        text: "Useful performance requires sustained confinement, plasma stability and an adequate power balance including beam demand.",
+        text: "Useful performance requires sustained confinement, plasma stability, and an adequate power balance including beam demand.",
       },
     ],
     constraint:
-      "Beam power, confinement and the much harder p–B11 fuel-performance requirement must close an integrated energy balance.",
+      "Beam power, confinement, and the much harder p–B11 fuel-performance requirement must close an integrated energy balance.",
   },
   {
     id: "pulsed-frc",
@@ -216,11 +216,11 @@ export const approaches = [
       },
       {
         title: "Pinch the column",
-        text: "The self-generated magnetic field compresses the plasma. Flow, current and field are different quantities shown separately.",
+        text: "The self-generated magnetic field compresses the plasma. Flow, current, and field are different quantities shown separately.",
       },
       {
         title: "Exhaust and reset",
-        text: "The system must repeat while electrodes, chamber surfaces and heat-removal systems survive.",
+        text: "The system must repeat while electrodes, chamber surfaces, and heat-removal systems survive.",
       },
     ],
     constraint:
@@ -248,11 +248,11 @@ export const approaches = [
       },
       {
         title: "Capture heat and reset",
-        text: "A proposed plant captures heat, clears or resets the chamber and repeats the cycle. LM26 test geometry differs from a future commercial liquid-wall system.",
+        text: "A proposed plant captures heat, clears or resets the chamber, and repeats the cycle. LM26 test geometry differs from a future commercial liquid-wall system.",
       },
     ],
     constraint:
-      "Compression scaling, plasma behavior, repeatability, heat conversion and reset must be demonstrated together.",
+      "Compression scaling, plasma behavior, repeatability, heat conversion, and reset must be demonstrated together.",
   },
   {
     id: "indirect-laser",
@@ -275,12 +275,12 @@ export const approaches = [
         text: "X-rays from the heated walls ablate the capsule’s outer layer. The reaction force implodes the fuel.",
       },
       {
-        title: "Burn, clear and replace",
-        text: "A successful implosion can produce a brief fusion burn. A power plant must capture heat, clear the chamber and inject a new target at a high repetition rate.",
+        title: "Burn, clear, and replace",
+        text: "A successful implosion can produce a brief fusion burn. A power plant must capture heat, clear the chamber, and inject a new target at a high repetition rate.",
       },
     ],
     constraint:
-      "Target gain is only one boundary: driver efficiency, target production, repetition rate and plant loads also determine net power.",
+      "Target gain is only one boundary: driver efficiency, target production, repetition rate, and plant loads also determine net power.",
   },
   {
     id: "direct-laser",
@@ -304,11 +304,11 @@ export const approaches = [
       },
       {
         title: "Burn and replace",
-        text: "Fusion energy leaves the target. Proposed power systems must protect optics, clear the chamber and supply fresh targets repeatedly. EX-Fusion describes a separate fast-ignition laser.",
+        text: "Fusion energy leaves the target. Proposed power systems must protect optics, clear the chamber, and supply fresh targets repeatedly. EX-Fusion describes a separate fast-ignition laser.",
       },
     ],
     constraint:
-      "Compression, ignition, efficient drivers and repeated target operation must be proven at compatible operating conditions.",
+      "Compression, ignition, efficient drivers, and repeated target operation must be proven at compatible operating conditions.",
   },
   {
     id: "hybrid-laser",
@@ -336,7 +336,7 @@ export const approaches = [
       },
     ],
     constraint:
-      "Hybrid target behavior, optical coupling, efficient large drivers and repetition remain linked demonstrations.",
+      "Hybrid target behavior, optical coupling, efficient large drivers, and repetition remain linked demonstrations.",
   },
   {
     id: "hybrid-ignition",
@@ -364,7 +364,7 @@ export const approaches = [
       },
     ],
     constraint:
-      "A compression result must be followed by validated ignition, gain and integration with the complete driver and plant.",
+      "A compression result must be followed by validated ignition, gain, and integration with the complete driver and plant.",
   },
   {
     id: "pulsed-power",
@@ -392,7 +392,7 @@ export const approaches = [
       },
     ],
     constraint:
-      "Driver efficiency, target coupling, replaceable hardware and high repetition must produce a positive full-plant balance.",
+      "Driver efficiency, target coupling, replaceable hardware, and high repetition must produce a positive full-plant balance.",
   },
   {
     id: "electrostatic",
@@ -416,7 +416,7 @@ export const approaches = [
       },
       {
         title: "Account for every loss",
-        text: "Electrode, radiation, collision and electrical losses must fit the complete energy balance. Compact hardware alone does not demonstrate net gain.",
+        text: "Electrode, radiation, collision, and electrical losses must fit the complete energy balance. Compact hardware alone does not demonstrate net gain.",
       },
     ],
     constraint:

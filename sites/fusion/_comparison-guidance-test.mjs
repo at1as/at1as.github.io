@@ -57,7 +57,7 @@ const { loss, surplus } = learningScenarios;
 assert.deepEqual(Object.keys(loss).filter(key => loss[key] !== surplus[key]), ['driver']);
 assert.equal(balance(loss).fusion, 500);
 assert.equal(balance(surplus).fusion, 500);
-assert.equal(balance(loss).net, -100);
+assert.equal(balance(loss).net, -50);
 assert.equal(balance(surplus).net, 50);
 assert.equal(loss.gain, surplus.gain);
 assert.equal(matchingLesson(loss), 'loss');

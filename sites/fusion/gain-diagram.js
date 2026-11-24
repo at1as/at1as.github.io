@@ -1,10 +1,10 @@
-// Energy routes, not piping or a quantitative Sankey diagram. The coloured
+// Energy routes, not piping or a quantitative Sankey diagram. The colored
 // arrows identify measurement boundaries; all plant hardware is conceptual.
 const views = [
   {
     kind: "laser", title: "Laser-fusion plant concept", input: ["absorbed"], output: ["fusion"],
     inputLabel: "Energy absorbed by fuel", outputLabel: "Fusion energy released",
-    note: "Fuel gain counts the energy absorbed by the fuel. Laser electricity, target losses and the rest of the plant sit outside that ratio.",
+    note: "Fuel gain counts the energy absorbed by the fuel. Laser electricity, target losses, and the rest of the plant sit outside that ratio.",
   },
   {
     kind: "plasma", title: "Magnetic-fusion plant concept", input: ["delivered"], output: ["fusion"],
@@ -62,7 +62,7 @@ function grid() {
   return '<g fill="none" stroke="#698373" stroke-width="2.4" stroke-linejoin="round"><path d="M0-62-10-40-24 45M0-62 10-40 24 45M-24 45h48M-10-40h20M-15-13h30M-20 15h40M-10-40l25 27-35 28 44 30M10-40-15-13 20 15-24 45"/><path d="M-35-37h70L10-49h-20ZM-43-9h86L15-21h-30Z"/><path d="M-35-37v11m70-11v11M-43-9V2m86-11V2" stroke-width="4"/></g>';
 }
 function loads(width = 164) {
-  return `<rect x="${-width / 2}" y="-27" width="${width}" height="54" rx="7" fill="#edf0e8" stroke="#b0bcaf" stroke-width="1.5"/>${text(0, -4, "Cooling, pumps|and fuel processing", "energy-small")}`;
+  return `<rect x="${-width / 2}" y="-27" width="${width}" height="54" rx="7" fill="#edf0e8" stroke="#b0bcaf" stroke-width="1.5"/>${text(0, -4, "Cooling, pumps,|and fuel processing", "energy-small")}`;
 }
 
 function scene(view, index, mobile) {
@@ -138,7 +138,7 @@ function scene(view, index, mobile) {
       ${place(loads(150), 291, 661)}${flow("aux", "M204 793H291V694")}
       ${text(165, 825, "Electricity reused inside the plant", "energy-small")}`;
   }
-  return `<svg class="energy-scene energy-scene-${mobile ? "mobile" : "wide"}" viewBox="${mobile ? "0 0 390 846" : "0 44 1160 402"}" role="img" aria-labelledby="${prefix}-title ${prefix}-desc" xmlns="http://www.w3.org/2000/svg"><title id="${prefix}-title">${view.title}: ${["fuel gain", "plasma Q", "target gain", "electrical recovery", "whole-plant balance"][index]}</title><desc id="${prefix}-desc">Highlighted input: ${view.inputLabel}. Highlighted output: ${view.outputLabel}. ${view.note} The surrounding illustration shows losses, plant electricity use and the route to the grid.</desc>${defs}${art}</svg>`;
+  return `<svg class="energy-scene energy-scene-${mobile ? "mobile" : "wide"}" viewBox="${mobile ? "0 0 390 846" : "0 44 1160 402"}" role="img" aria-labelledby="${prefix}-title ${prefix}-desc" xmlns="http://www.w3.org/2000/svg"><title id="${prefix}-title">${view.title}: ${["fuel gain", "plasma Q", "target gain", "electrical recovery", "whole-plant balance"][index]}</title><desc id="${prefix}-desc">Highlighted input: ${view.inputLabel}. Highlighted output: ${view.outputLabel}. ${view.note} The surrounding illustration shows losses, plant electricity use, and the route to the grid.</desc>${defs}${art}</svg>`;
 }
 
 export function renderGainDiagram(index) {
@@ -148,6 +148,6 @@ export function renderGainDiagram(index) {
     <div class="energy-overview-heading"><strong>${view.title}</strong><div class="energy-key" aria-label="Diagram key"><span class="gain-input"><i aria-hidden="true"></i>${index === 3 ? "Pulse input" : index === 4 ? "Plant use" : "Counted input"}</span><span class="gain-output"><i aria-hidden="true"></i>${index === 3 ? "Recovered output" : index === 4 ? "Gross output" : "Counted output"}</span><span class="gain-context"><i aria-hidden="true"></i>Other energy paths</span></div></div>
     ${scene(view, index, false)}${scene(view, index, true)}
     <div class="energy-measurement"><span class="gain-input"><b>${index === 4 ? "SUBTRACT" : "IN"}</b>${view.inputLabel}</span><span class="gain-output"><b>${index === 4 ? "GENERATED" : "OUT"}</b>${view.outputLabel}</span></div>
-    <figcaption class="energy-schematic-note">Proposed plant context, not an operating facility. Arrows show energy routes, not amounts. Imported electricity supplies any shortfall.</figcaption>
+    <figcaption class="energy-schematic-note">Conceptual plant routes. Arrows show energy paths, not amounts; imported electricity covers any shortfall.</figcaption>
   </figure>`;
 }

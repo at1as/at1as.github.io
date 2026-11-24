@@ -1593,6 +1593,25 @@ summary {
 .risk-references .citation {
   margin-top: 8px;
 }
+.section.takeaway-section {
+  padding-top: 56px;
+  padding-bottom: 64px;
+  border-top: 1px solid #d5ddd2;
+}
+.takeaway-body {
+  max-width: 720px;
+}
+.takeaway-body h2 {
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1.15;
+  margin-top: 8px;
+}
+.takeaway-body p:not(.eyebrow) {
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #3a4f44;
+}
 .section.sources-section {
   padding-top: 36px;
   padding-bottom: 36px;

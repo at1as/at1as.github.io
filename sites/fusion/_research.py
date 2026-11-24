@@ -18,6 +18,27 @@ def research_data():
         for field, expected in edit['expected'].items():
             assert entity.get(field) == expected, f'Review stale correction: {entity_id}.{field}'
         entity.update(edit['replace'])
+    for section, key in (
+        ('claims', 'claims_replace'),
+        ('funding_events', 'funding_events_replace'),
+        ('sources', 'sources_replace'),
+    ):
+        if key not in corrections:
+            continue
+        by_id = {row['id']: row for row in data[section]}
+        for row_id, edit in corrections[key].items():
+            row = by_id[row_id]
+            assert edit['expected'].keys() == edit['replace'].keys()
+            for field, expected in edit['expected'].items():
+                assert row.get(field) == expected, f'Review stale correction: {section}.{row_id}.{field}'
+            row.update(edit['replace'])
+    for section, key in (
+        ('claims', 'claims_add'),
+        ('funding_events', 'funding_events_add'),
+    ):
+        if key in corrections:
+            data[section].extend(corrections[key])
+            data['meta']['counts'][section] = len(data[section])
     data['sources'].extend(corrections['sources'])
     data['meta']['counts']['sources'] = len(data['sources'])
     data['meta']['corrections_reviewed_at'] = corrections['reviewed_at']

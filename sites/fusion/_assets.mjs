@@ -15,7 +15,7 @@ const card = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" 
 <rect x="565" y="40" width="595" height="550" rx="8" fill="#101c29"/>
 <g font-family="Arial,sans-serif">
   <text x="55" y="82" fill="#384e45" font-size="15" letter-spacing="3">FUSION ATLAS</text>
-  <text x="55" y="398" fill="#354945" font-size="21">Reactor designs, experimental results</text>
+  <text x="55" y="398" fill="#354945" font-size="21">Reactor designs, experimental results,</text>
   <text x="55" y="430" fill="#354945" font-size="21">and the engineering of fusion power</text>
   <text x="55" y="554" fill="#65766b" font-size="13">JASONWILLEMS.COM / SITES / FUSION</text>
   <text x="600" y="82" fill="#a5b7c3" font-size="12" letter-spacing="1.5">TOKAMAK · MAGNETIC CONFINEMENT</text>

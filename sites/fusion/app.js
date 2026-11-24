@@ -6,18 +6,18 @@ import {
   reactionEnergyMeV,
 } from "./reaction-physics.js";
 import { renderPowerCycle } from "./reaction-power.js";
-import { renderGainDiagram } from "./gain-diagram.js?v=counted-path-contrast-1";
+import { renderGainDiagram } from "./gain-diagram.js?v=20261123";
 import {
   atlasFamilies, atlasFamilyId, atlasFamilyLabel, matchesApproach,
   readApproachFilters, claimSourceLabels, sourceTypeLabel,
-} from "./atlas-metadata.js";
-import { engineeringDiagram } from "./engineering-diagrams.js?v=4528c3a2";
-import { engineeringPanels } from "./engineering-content.js";
-import { approaches, renderMachine } from "./diagrams.js?v=92d87982";
+} from "./atlas-metadata.js?v=20261123";
+import { engineeringDiagram } from "./engineering-diagrams.js?v=20261123";
+import { engineeringPanels } from "./engineering-content.js?v=20261123";
+import { approaches, renderMachine } from "./diagrams.js?v=20261123";
 import { balance, defaults, readScenario, targetCost } from "./model.js?v=58eee71b";
-import { recordCopy, glossaryCopy } from "./reader-content.js";
-import { comparisonClaims, comparisonAssessment } from "./comparison-content.js";
-import { learningScenarios, matchingLesson, targetsPerDay } from "./learning-guide.js?v=0bf82395";
+import { recordCopy, glossaryCopy } from "./reader-content.js?v=20261123";
+import { comparisonClaims, comparisonAssessment } from "./comparison-content.js?v=20261123";
+import { learningScenarios, matchingLesson, targetsPerDay } from "./learning-guide.js?v=20261123";
 import {
   sortAtlasRows, fundingSortValues, evidenceSortValues,
   isMappedSite, isPlannedSite, mapSiteCounts, matchesFuel, selectedSites,
@@ -499,7 +499,7 @@ const boundaryData = [
     formula: "Fusion energy ÷ energy absorbed by the fuel",
     text: "In laser fusion, energy reaches a target and then the fuel inside it. Fuel gain counts only the energy the fuel absorbs: absorbing 1 MJ and releasing 2 MJ through fusion gives a fuel gain of 2.",
     caveatLabel: "Leaves out",
-    caveat: "Losses in producing the laser pulse, transferring its energy to the fuel and converting fusion energy into electricity, plus the rest of the plant’s electricity use. Fuel gain above 1 can still mean a net electrical loss.",
+    caveat: "Losses in producing the laser pulse, transferring its energy to the fuel, and converting fusion energy into electricity, plus the rest of the plant’s electricity use. Fuel gain above 1 can still mean a net electrical loss.",
   },
   {
     title: "Plasma Q",
@@ -527,7 +527,7 @@ const boundaryData = [
     formula: "Electricity generated − all electricity consumed by the plant",
     text: "Subtract all the electricity used to start and sustain fusion and run the plant from its electrical output. A positive balance is a surplus for the grid; a negative one means the plant needs electricity from elsewhere.",
     caveatLabel: "For a useful power plant",
-    caveat: "Net output must be positive over sustained or reliably repeated operation. Count startup, operation and shutdown over a complete cycle, with no net withdrawal of stored energy. Reliable, economical operation is also essential.",
+    caveat: "Net output must be positive over sustained or reliably repeated operation. Count startup, operation, and shutdown over a complete cycle, with no net withdrawal of stored energy. Reliable, economical operation is also essential.",
   },
 ];
 function boundaries() {
@@ -593,7 +593,7 @@ function calcControls() {
   });
   $("#calc-context").innerHTML =
     mode === "inertia"
-      ? `<strong>PUBLISHED EXAMPLE · Inertia Phase I roadmap</strong><p>The starting values come from Inertia’s proposed plant design.</p><details class="scenario-background"><summary>Published inputs and source</summary><p>Starting inputs: target gain 25, 10 MJ per shot, 10 shots per second, 12% laser efficiency, 45% heat-to-electric efficiency and 5 MJ of other electricity use per shot. They give 241.7 MW using unrounded arithmetic; the roadmap describes roughly 250 MW. Undated source in the 22 Oct 2026 snapshot.</p>${citations(["ALT_INERTIA_PHASE1"])}</details>`
+      ? `<strong>PUBLISHED EXAMPLE · Inertia Phase I roadmap</strong><p>Starting values from Inertia’s proposed Phase I plant design</p><details class="scenario-background"><summary>Published inputs and source</summary><p>Phase I roadmap inputs: target gain 25, 10 MJ per shot at 10 Hz, 12% laser efficiency, 45% heat-to-electric efficiency, and 5 MJ of other electricity use per shot (50 MW at 10 Hz). Unrounded arithmetic gives 241.7 MW versus the roadmap’s ~250 MW headline. Inertia’s separate Thunderwall unit target (10% wall-plug efficiency) and 1.5 GW commercial plant goal come from different development phases.</p>${citations(["ALT_INERTIA_PHASE1"])}</details>`
       : "Example inputs for a hypothetical plant";
   const keys = [
     "gain",
@@ -632,14 +632,14 @@ function calc() {
   }
   $("#net-number").classList.toggle("negative", r.net < 0);
   $("#net-number").innerHTML =
-    `${r.net > 0 ? "+" : ""}${fmt(r.net)}<small>MW</small><span>${r.net < 0 ? "Net consumption" : r.net > 0 ? "Net electricity to the grid" : r.gross === 0 && r.consumption === 0 ? "No electricity generated or consumed" : "Electrical break-even in this simplified model"}</span>`;
+    `${r.net > 0 ? "+" : ""}${fmt(r.net)}<small>MW</small><span>${r.net < 0 ? "Net consumption" : r.net > 0 ? "Net electricity to the grid" : r.gross === 0 && r.consumption === 0 ? "No electricity generated or consumed" : "Electrical break-even"}</span>`;
   const lesson = matchingLesson(p);
   $$("[data-lesson]").forEach(button => button.setAttribute("aria-pressed", button.dataset.lesson === lesson));
   $("#calc-lesson-note").hidden = !lesson;
   $("#calc-lesson-note").textContent = lesson === "loss"
-    ? "Q = 10, but the heating system consumes 250 MW to deliver 50 MW to the plasma. Gross generation is 200 MW; another 50 MW of plant demand leaves a 100 MW electrical deficit."
-    : lesson === "surplus" ? "The fusion power is still 500 MW and Q is still 10. At 50% heating efficiency, heating uses 100 MW of electricity instead of 250 MW. After other plant demand, 50 MW remains for the grid in this model." : "";
-  if ($("#target-throughput")) $("#target-throughput").textContent = `${fmt(targetsPerDay(p.rate))} targets per 24 hours of continuous firing at this rate.`;
+    ? "Q = 10, but at 25% heating efficiency the heating system draws 200 MW to deliver 50 MW to the plasma. Gross generation is 200 MW, so another 50 MW of plant demand leaves a 50 MW electrical deficit."
+    : lesson === "surplus" ? "The fusion power is still 500 MW and Q is still 10. At 50% heating efficiency, heating draws 100 MW instead of 200 MW, leaving 50 MW for the grid after other plant demand." : "";
+  if ($("#target-throughput")) $("#target-throughput").textContent = `${fmt(targetsPerDay(p.rate))} targets per 24 hours of continuous firing at this rate`;
   const max = Math.max(r.fusion, r.gross, r.driver, r.aux, 1);
   $("#power-flow").innerHTML = [
     ["Fusion power", r.fusion, "fusion"],
@@ -660,11 +660,11 @@ function calc() {
       ? "Break-even gain unavailable: no delivered or captured electrical energy"
       : `Electrical break-even gain ≈ ${fmt(r.threshold)} with these assumptions`;
   $("#equations").innerHTML =
-    `<code>Fusion = ${p.mode === "continuous" ? `${fmt(p.gain)} × ${fmt(p.heating)}` : `${fmt(p.energy)} × ${fmt(p.gain)} × ${fmt(p.rate)}`} = ${fmt(r.fusion)} MW<br>Gross = ${p.thermal} × ${p.capture} × ${fmt(r.fusion)} = ${fmt(r.gross)} MW<br>Driver = ${fmt(r.delivered)} / ${p.driver} = ${fmt(r.driver)} MW<br>Net = ${fmt(r.gross)} − ${fmt(r.driver)} − ${fmt(r.aux)} = ${fmt(r.net)} MW</code>`;
+    `<code>Fusion = ${p.mode === "continuous" ? `${fmt(p.gain)} × ${fmt(p.heating)}` : `${fmt(p.energy)} × ${fmt(p.gain)} × ${fmt(p.rate)}`} = ${fmt(r.fusion)} MW<br>Gross = ${p.thermal} × ${p.capture} × ${fmt(r.fusion)} = ${fmt(r.gross)} MW<br>Driver = ${fmt(r.delivered)} / ${p.driver} = ${fmt(r.driver)} MW<br>${p.mode === "inertia" ? `Other = ${fmt(p.aux)} MJ × ${fmt(p.rate)} Hz = ${fmt(r.aux)} MW<br>` : ""}Net = ${fmt(r.gross)} − ${fmt(r.driver)} − ${fmt(r.aux)} = ${fmt(r.net)} MW</code>`;
   $("#target-cost").textContent =
     p.mode === "continuous"
       ? "Select a pulsed mode to estimate the contribution of target manufacturing to electricity cost"
-      : `${fmt(targetsPerDay(p.rate))} targets per operating day. At a hypothetical $1 per target: ${r.net > 0 ? "$" + fmt(targetCost(p.rate, 1, r.net)) + "/MWh of delivered electricity" : "cost per delivered MWh unavailable with nonpositive net output"}. Target cost alone excludes every other plant cost and is not an electricity price.`;
+      : `${fmt(targetsPerDay(p.rate))} targets per operating day. At a hypothetical $1 per target: ${r.net > 0 ? "$" + fmt(targetCost(p.rate, 1, r.net)) + "/MWh of delivered electricity" : "cost per delivered MWh unavailable with nonpositive net output"}. This reflects target cost alone, not total electricity cost.`;
 }
 $("#calc-controls").oninput = (e) => {
   const k = e.target.dataset.input;
@@ -752,7 +752,7 @@ function records() {
     svg +=
       '<text x="60" y="23" font-size="11" fill="#5d7565">TARGET GAIN · SELECTED PUBLISHED SHOTS</text>';
     $("#record-chart").innerHTML =
-      `<p class="record-context">The National Ignition Facility (NIF) at Lawrence Livermore National Laboratory in California uses powerful lasers to compress tiny fuel targets in fusion experiments.</p><svg viewBox="0 0 650 270" role="img" aria-label="Selected NIF target gain shots from December 2022 to June 2026; all data in the table below">${svg}</svg><p class="quiet">Curated shots, not every attempt. No success rate can be inferred. The inconsistent October 2025 row is excluded from this series.</p>`;
+      `<p class="record-context">The National Ignition Facility (NIF) at Lawrence Livermore National Laboratory in California uses powerful lasers to compress tiny fuel targets in fusion experiments.</p><svg viewBox="0 0 650 270" role="img" aria-label="Selected NIF target gain shots from December 2022 to June 2026; all data in the table below">${svg}</svg><p class="quiet">Selected published shots, not every attempt. An inconsistent October 2025 LLNL entry is excluded from this series.</p>`;
   } else
     $("#record-chart").innerHTML =
       mode === "duration"
@@ -846,7 +846,7 @@ function entityCard(e) {
   const claim =
     e.claims.find((c) => !/target|agreement|organization/i.test(c.category)) ||
     e.claims[0];
-  return `<article class="entity-card"><div class="card-top"><span>${esc(atlasFamilyLabel(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not established")}</p><div class="card-evidence">${claim ? evidenceLabels(claim) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds)}</div>` : "<p>No result included</p>"}</div><div class="card-bottom"><span>${e.claims.length} records</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
+  return `<article class="entity-card"><div class="card-top"><span>${esc(atlasFamilyLabel(e.family))} · ${esc(e.role === "public" ? "public research" : e.role)}</span><label><input type="checkbox" data-compare="${e.id}" aria-label="Compare ${esc(e.name)}" ${comparison.has(e.id) ? "checked" : ""}> Compare</label></div><h3><button data-entity="${e.id}">${esc(e.name)}</button></h3><p>${esc(e.approach)}<br>${esc(e.locations[0]?.country || "Location not listed")}</p><div class="card-evidence">${claim ? evidenceLabels(claim) + `<p>${esc(claim.displayText || claim.text)}</p>${claim.date ? `<p class="detail-meta">${esc(claim.dateRole)}: ${esc(claim.date)}</p>` : ""}<div class="citation">${citations(claim.sourceIds)}</div>` : "<p>No result included</p>"}</div><div class="card-bottom"><span>${e.claims.length} records</span><button data-entity="${e.id}">Open field notes ↗</button></div></article>`;
 }
 function sortHeader(table, key, label, { disabled = false, sortLabel = label } = {}) {
   const state = tableSort[table], active = state.key === key;
@@ -856,8 +856,8 @@ function sortHeader(table, key, label, { disabled = false, sortLabel = label } =
 }
 function fuelContexts(e) {
   return e.fuel_contexts || {
-    experimental: { text: e.displayExperimentalFuel || e.experimentalFuel || "Not established in the reviewed record" },
-    commercial: { text: e.intendedFuel || "Not established in the reviewed record" },
+    experimental: { text: e.displayExperimentalFuel || e.experimentalFuel || "Not specified" },
+    commercial: { text: e.intendedFuel || "Not specified" },
   };
 }
 function fuelSummary(e) {
@@ -876,7 +876,7 @@ function financingType(row) {
   return row.status === "conditional_loi" ? `Proposed ${human(row.type)} (letter of intent)` : human(row.type);
 }
 function financingSummary(e) {
-  return `<p>${esc(e.displayFundingSummary || e.fundingSummary || "Not established in this record")}</p>${e.fundingSummaryNote ? `<p>${esc(e.fundingSummaryNote)}</p>` : ""}${citations(e.fundingSummarySourceIds)}`;
+  return `<p>${esc(e.displayFundingSummary || e.fundingSummary || "Not reported")}</p>${e.fundingSummaryNote ? `<p>${esc(e.fundingSummaryNote)}</p>` : ""}${citations(e.fundingSummarySourceIds)}`;
 }
 function evidenceTable(entities) {
   const state = tableSort.evidence;
@@ -885,8 +885,8 @@ function evidenceTable(entities) {
     `<div class="table-scroll" tabindex="0" role="region" aria-label="Evidence table"><table class="data-table"><thead><tr>${sortHeader("evidence", "organization", "Organization")}${sortHeader("evidence", "approach", "Approach / fuel", { sortLabel: "reactor approach" })}<th scope="col">Included evidence</th><th scope="col">Announced target</th><th scope="col">Financing snapshot</th></tr></thead><tbody>${rows
         .map((e) => {
           const c = e.claims.find((c) => !/target/i.test(c.category)),
-            t = e.targets[0];
-          return `<tr><td><button data-entity="${e.id}">${esc(e.name)}</button><p>${esc(e.locations[0]?.place || "Unknown")}</p></td><td>${esc(e.approach)}${fuelSummary(e)}</td><td>${c ? evidenceLabels(c) + `<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}` + citations(c.sourceIds) : "Not established in this record"}</td><td>${t ? evidenceLabels(t) + `<p>${esc(t.displayText || t.text)}</p>${t.date ? `<p class="detail-meta">${esc(t.dateRole)}: ${esc(t.date)}</p>` : ""}` + citations(t.sourceIds) : "No included target"}</td><td>${financingSummary(e)}</td></tr>`;
+            t = e.claims.find((c) => /target/i.test(c.category));
+          return `<tr><td><button data-entity="${e.id}">${esc(e.name)}</button><p>${esc(e.locations[0]?.place || "Unknown")}</p></td><td>${esc(e.approach)}${fuelSummary(e)}</td><td>${c ? evidenceLabels(c) + `<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}` + citations(c.sourceIds) : "None included"}</td><td>${t ? evidenceLabels(t) + `<p>${esc(t.displayText || t.text)}</p>${t.date ? `<p class="detail-meta">${esc(t.dateRole)}: ${esc(t.date)}</p>` : ""}` + citations(t.sourceIds) : "None listed"}</td><td>${financingSummary(e)}</td></tr>`;
         })
         .join("")}</tbody></table></div>`;
 }
@@ -932,7 +932,7 @@ function atlas() {
     toggle.textContent = showAllCards ? "Show fewer organizations" : `Explore all ${entities.length} organizations ↓`;
     toggle.setAttribute("aria-expanded", String(showAllCards));
   }
-  $("#result-count").textContent = `${count} · curated snapshot, 22 Oct 2026`;
+  $("#result-count").textContent = `${count} · 22 Oct 2026 snapshot`;
   if (view === "cards" && entities.length)
     $("#atlas-content").innerHTML = `<div class="entity-grid">${cards.map(entityCard).join("")}</div>`;
   if (view === "table") evidenceTable(entities);
@@ -968,15 +968,15 @@ function renderFundingRows(rows) {
   updateFilterIndicators();
   updateURL(fundingURLState(fundingFilters, state));
   $("#fund-sort-note").textContent = currency
-    ? "Amounts sort by their stated figures, including estimates and bounds. Qualifiers remain attached."
-    : "Choose an original currency to sort amounts.";
+    ? "Amounts sort by their stated figures, including estimates and bounds, with qualifiers attached"
+    : "Choose an original currency to sort amounts";
   const filtered = rows.filter(row => (!currency || row.currency === currency) && (!type || row.type === type));
   if (!filtered.length) {
-    $("#fund-table").innerHTML = '<p class="empty">No financing observations match these filters.</p>';
+    $("#fund-table").innerHTML = '<p class="empty">No financing observations match these filters</p>';
     return;
   }
   $("#fund-table").innerHTML =
-    `<table class="data-table funding-table"><thead><tr>${sortHeader("funding", "organization", "Organization")}${sortHeader("funding", "date", "Date")}${sortHeader("funding", "amount", "Amount as reported", { disabled: !currency })}${sortHeader("funding", "type", "Type")}<th scope="col">Scope, conditions and sources</th></tr></thead><tbody>${sortAtlasRows(filtered, fundingSortValues[state.key], state.direction)
+    `<table class="data-table funding-table"><thead><tr>${sortHeader("funding", "organization", "Organization")}${sortHeader("funding", "date", "Date")}${sortHeader("funding", "amount", "Amount as reported", { disabled: !currency })}${sortHeader("funding", "type", "Type")}<th scope="col">Scope, conditions, and sources</th></tr></thead><tbody>${sortAtlasRows(filtered, fundingSortValues[state.key], state.direction)
       .map(row => `<tr><td><button data-entity="${row.entity.id}">${esc(row.entity.name)}</button></td><td class="fund-date">${esc(row.date || "Undated")}</td><td>${esc(row.amountLabel || "Undisclosed")}</td><td>${esc(financingType(row))}${row.superseded_by ? "<br><b>Superseded amount</b>" : ""}</td><td>${esc(row.displayScope || row.scope)}<p>${citations(row.sourceIds)}</p></td></tr>`)
       .join("")}</tbody></table>`;
 }
@@ -986,7 +986,7 @@ function funding(entities) {
   const currencies = [...new Set(allRows.map(row => row.currency).filter(Boolean))].sort(),
     types = [...new Set(allRows.map(row => row.type))].sort();
   $("#atlas-content").innerHTML =
-    `<p class="funding-note">These observations distinguish funding rounds, cumulative totals and reported cash snapshots. Money raised is not the same as cash available. Cumulative totals include earlier rounds. Revised rounds, conditional commitments, debt, grants, public budgets and valuations remain distinct. No aggregate is calculated.</p><div class="funding-filters"><label>Original currency<select id="fund-currency"><option value="">All currencies</option>${currencies.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Accounting basis<select id="fund-type"><option value="">All types</option>${types.map(t => `<option>${esc(t)}</option>`).join("")}</select></label></div><p class="table-sort-note" id="fund-sort-note"></p><div class="table-scroll" id="fund-table" tabindex="0" role="region" aria-label="Financing observations"></div>`;
+    `<p class="funding-note">Figures distinguish individual rounds, cumulative totals, grants, conditional commitments, debt, and cash balances. Money raised is not cash on hand, and cumulative totals include earlier rounds, so no industry aggregate is calculated.</p><div class="funding-filters"><label>Original currency<select id="fund-currency"><option value="">All currencies</option>${currencies.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Accounting basis<select id="fund-type"><option value="">All types</option>${types.map(t => `<option>${esc(t)}</option>`).join("")}</select></label></div><p class="table-sort-note" id="fund-sort-note"></p><div class="table-scroll" id="fund-table" tabindex="0" role="region" aria-label="Financing observations"></div>`;
   $("#fund-currency").value = currencies.includes(fundingFilters.currency) ? fundingFilters.currency : "";
   $("#fund-type").value = types.includes(fundingFilters.type) ? fundingFilters.type : "";
   $("#fund-currency").onchange = () => renderFundingRows(rows);
@@ -1065,7 +1065,7 @@ function sites(entities) {
     mapController.focusSites(visible);
   }
   $("#result-count").textContent =
-    `${mapSites.length} site records · ${entities.length} organizations · funding is counted per organization, never per marker`;
+    `${mapSites.length} site records · ${entities.length} organizations`;
 }
 function siteRow(s) {
   return `<article class="site-row" data-site-row="${s.id}"><button data-site="${s.id}">${esc(s.name)}</button><p>${esc(human(s.role))} · ${esc(s.status)}</p><p>${esc(s.place || "Location not selected")}</p><p>${s.latitude === null ? "Coordinates not established" : `Approximate: ${s.latitude.toFixed(2)}°, ${s.longitude.toFixed(2)}°`}</p>${citations(s.sourceIds)}</article>`;
@@ -1104,7 +1104,7 @@ function entityDetail(id) {
   updateURL({ entity: e.id });
   modal(
     "ORGANIZATION FIELD NOTES",
-    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}${fuelDetails(e)}<h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3>${financingSummary(e)}${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(financingType(f))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Public evidence may be incomplete. Company announcements are attributed, and future targets remain separate from measured results.</p>`,
+    `<div class="detail-meta">${esc(human(e.role))} · snapshot 22 Oct 2026</div><h2>${esc(e.name)}</h2>${configuration ? `<p class="entity-reactor-type"><span>Reactor type</span><strong>${esc(configuration.name)}</strong></p>` : ""}<p>${esc(e.displaySummary || e.summary)}</p>${m ? '<section class="company-reactor"><div class="reactor-slot" id="entity-reactor"></div></section>' : infrastructure(e)}${configuration ? `<h3>Configuration: ${esc(configuration.name)}</h3><p>${esc(configuration.description)}</p>` : ""}<h3>How it works</h3><p>${esc(e.mechanism)}</p>${m ? `<button data-goto-machine="${m}" data-fast="${m === "direct-laser" && (/fast/.test(e.variant) || e.canonicalId === "hb11")}">Explore this mechanism ↗</button>` : ""}${fuelDetails(e)}<h3>Evidence ledger</h3>${e.claims.map((c) => `<div class="ledger">${evidenceLabels(c)}<p>${esc(c.displayText || c.text)}</p>${c.date ? `<p class="detail-meta">${esc(c.dateRole)}: ${esc(c.date)}</p>` : ""}${citations(c.sourceIds)}</div>`).join("")}<h3>Locations</h3>${e.locations.map((s) => `<div class="ledger"><h4>${esc(s.name)}</h4><p>${esc(human(s.role))} · ${esc(s.status)}<br>${esc(s.place || "Site not selected")}</p>${citations(s.sourceIds)}</div>`).join("")}<h3>Financing</h3>${financingSummary(e)}${e.funding.map((f) => `<div class="ledger"><b>${esc(f.amountLabel)} · ${esc(financingType(f))}</b><p>${esc(f.date || "Undated")} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("")}<h3>Assessment · what remains</h3>${e.assessment.map((a) => `<div class="ledger"><p>${esc(a.displayText || a.text)}</p>${citations(a.sourceIds)}</div>`).join("")}<p class="quiet">Company announcements are attributed, and future targets are listed separately from measured results</p>`,
   );
   if (m) {
     const options = getEntityReactorOptions(e);
@@ -1125,15 +1125,15 @@ function comparisonFuel(e) {
   const contexts = e.fuel_contexts;
   const fuel = contexts ? Object.entries(contexts).filter(([key, value]) => value.status !== "not_established")
     .map(([key, value]) => `<p><strong>${{experimental:"Experiment",planned_research:"Planned research",commercial:"Commercial use"}[key]}:</strong> ${esc(value.text)}</p>`).join("")
-    : `<p><strong>Experiment:</strong> ${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not established in the reviewed record")}</p><p><strong>Intended plant fuel:</strong> ${esc(e.intendedFuel || "Not established in the reviewed record")}</p>`;
+    : `<p><strong>Experiment:</strong> ${esc(e.displayExperimentalFuel || e.experimentalFuel || "Not specified")}</p><p><strong>Intended plant fuel:</strong> ${esc(e.intendedFuel || "Not specified")}</p>`;
   return `<p><strong>${esc(e.approach)}</strong></p>${fuel}<button data-entity="${e.id}">Full field notes ↗</button>`;
 }
 function comparisonTarget(e, column) {
   const claims = comparisonClaims(e, column);
   if (claims.length) return claims.map(comparisonRecord).join("");
   if (column === 2 && e.canonicalId === "best") return `<p>${esc(e.fuel_contexts.planned_research.text)} No dated electricity target is included.</p>${citations(e.fuel_contexts.planned_research.source_ids)}`;
-  if (column === 2 && (e.role === "public" || e.role === "supplier")) return '<p class="comparison-empty">Not a commercial power-plant programme.</p>';
-  return `<p class="comparison-empty">${column === 1 ? "No separate technical milestone specified in the reviewed record." : "No dated electricity or pilot-plant target established in the reviewed record."}</p>`;
+  if (column === 2 && (e.role === "public" || e.role === "supplier")) return '<p class="comparison-empty">Not a commercial power-plant program</p>';
+  return `<p class="comparison-empty">${column === 1 ? "No separate technical milestone listed" : "No dated electricity or pilot-plant target listed"}</p>`;
 }
 function compareDetail(fundingView = false) {
   const list = [...comparison].map((id) => entityMap.get(id)).filter(Boolean);
@@ -1145,19 +1145,19 @@ function compareDetail(fundingView = false) {
   const row = (title, answer, options) => comparisonRow(list, title, answer, options);
   const evidence = () =>
     row("Approach and fuel", comparisonFuel) +
-    row("Selected evidence", e => comparisonClaims(e, 0).map(comparisonRecord).join("") || '<p class="comparison-empty">No experimental result or engineering demonstration included in this ledger.</p>', { note: "Selected for relevance, not simply the newest update. A component test, design study and fusion result establish different things." }) +
+    row("Selected evidence", e => comparisonClaims(e, 0).map(comparisonRecord).join("") || '<p class="comparison-empty">No experimental result included</p>', { note: "Selected for relevance rather than recency: a component test, design study, and fusion result establish different things" }) +
     row("Next technical milestone", e => comparisonTarget(e, 1)) +
-    row("Electricity or pilot-plant target", e => comparisonTarget(e, 2), { note: "Announced plans, not achieved output. A pilot date does not establish a complete electrical balance or electricity delivered to the grid." }) +
-    (themes.length ? `<p class="comparison-context-note">The questions below separate organization-specific assessments from challenges common to an approach. Approach-level context is not a verdict on an individual project.</p>` : "") +
+    row("Electricity or pilot-plant target", e => comparisonTarget(e, 2), { note: "Announced plans, not achieved output or confirmed grid dates" }) +
+    (themes.length ? `<p class="comparison-context-note">Organization-specific notes appear alongside broader challenges shared by each approach</p>` : "") +
     themes.map(theme => row(theme.displayQuestion || theme.question, e => {
       const { notes, context } = comparisonAssessment(e, theme.id, data.approachRiskProfiles.profiles);
       const specific = notes.map(a => `<p class="comparison-scope">Organization-specific assessment</p><p>${esc(a.displayText || a.text)}</p><details class="comparison-sources"><summary>Sources</summary>${citations(a.sourceIds)}</details>`).join("");
       const general = context ? `<p class="comparison-scope">Approach-level context · ${esc(e.approach)}</p><p>${esc(context.interpretation)}</p><details class="comparison-sources"><summary>Sources</summary>${citations(context.source_ids)}</details>` : "";
-      return specific + (specific && general ? `<details class="comparison-more"><summary>Challenge shared by this approach</summary>${general}</details>` : general) || '<p class="comparison-empty">No assessment for this facility in the reviewed record.</p>';
+      return specific + (specific && general ? `<details class="comparison-more"><summary>Challenge shared by this approach</summary>${general}</details>` : general) || '<p class="comparison-empty">No facility-specific note</p>';
     }, { expandable: true, open: ["electrical_balance", "fuel_cycle"].includes(theme.id) })).join("") +
-    row("All included records", e => e.claims.map(comparisonRecord).join("") || '<p>No records included.</p>', { expandable: true });
-  const financing = () => row("Reported financing", financingSummary, { note: "Figures retain their original currencies and accounting scope. Cumulative funding, commitments and cash balances are not interchangeable." }) +
-    row("Financing ledger", e => e.funding.map(f => `<div class="comparison-record"><p><strong>${esc(f.amountLabel)} · ${esc(financingType(f))}</strong></p><p>${esc(f.date)} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("") || '<p>No financing observations included.</p>', { expandable: true });
+    row("All included records", e => e.claims.map(comparisonRecord).join("") || '<p>No records included</p>', { expandable: true });
+  const financing = () => row("Reported financing", financingSummary, { note: "Figures keep their original currencies and scope; cumulative totals, commitments, and cash balances are not interchangeable" }) +
+    row("Financing ledger", e => e.funding.map(f => `<div class="comparison-record"><p><strong>${esc(f.amountLabel)} · ${esc(financingType(f))}</strong></p><p>${esc(f.date)} · ${esc(f.displayScope || f.scope)}</p>${citations(f.sourceIds)}</div>`).join("") || '<p>No financing observations included</p>', { expandable: true });
   modal("COMPARE BY QUESTION", `<div class="comparison" style="--columns:${list.length}"><h2>Compare the evidence</h2><div class="segmented"><button data-compare-view="evidence" aria-pressed="${!fundingView}" class="${!fundingView ? "active" : ""}">Evidence and remaining questions</button><button data-compare-view="funding" aria-pressed="${fundingView}" class="${fundingView ? "active" : ""}">Financing observations</button></div>${fundingView ? financing() : evidence()}</div>`);
 }
 function showSourceNotes(contents) {
@@ -1431,7 +1431,7 @@ document.addEventListener("click", (e) => {
     const s = data.sites.find((s) => s.id === b.dataset.site);
     modal(
       "SITE FIELD NOTES",
-      `<h2>${esc(s.name)}</h2><p>${esc(human(s.role))} · ${esc(s.status)}</p><p>${esc(s.place || "Location not selected")}</p><p>${s.latitude === null ? "No coordinates established." : `Approximate area center: ${s.latitude.toFixed(2)}°, ${s.longitude.toFixed(2)}°. Not a surveyed facility boundary.`}</p>${citations(s.sourceIds)}<p><button data-entity="${s.entityId}">Open organization notes ↗</button></p>`,
+      `<h2>${esc(s.name)}</h2><p>${esc(human(s.role))} · ${esc(s.status)}</p><p>${esc(s.place || "Location not selected")}</p><p>${s.latitude === null ? "No coordinates listed" : `Approximate area center: ${s.latitude.toFixed(2)}°, ${s.longitude.toFixed(2)}°`}</p>${citations(s.sourceIds)}<p><button data-entity="${s.entityId}">Open organization notes ↗</button></p>`,
     );
   }
 });
@@ -1450,7 +1450,7 @@ document.addEventListener("change", (e) => {
     if (e.target.checked) {
       if (comparison.size >= 3) {
         e.target.checked = false;
-        toast("Choose up to three organizations.");
+        toast("Choose up to three organizations");
         return;
       }
       comparison.add(id);
@@ -1511,7 +1511,7 @@ async function init() {
   machine();
   calcControls();
   try {
-    const response = await fetch("./data.json?v=09f8c628", { cache: "no-cache" });
+    const response = await fetch("./data.json?v=20261123", { cache: "no-cache" });
     if (!response.ok) throw Error("Dataset failed to load");
     data = await response.json();
     sourceMap = new Map(data.sources.map((s) => [s.id, s]));
@@ -1531,7 +1531,7 @@ async function init() {
         .slice(0, 3),
     );
     $("#atlas-stats").innerHTML =
-      `<span><b>${data.entities.filter((e) => e.role !== "public").length}</b>companies & suppliers</span><span><b>${data.entities.filter((e) => e.role === "public").length}</b>public programmes</span><span><b>${data.sources.length}</b>sources</span>`;
+      `<span><b>${data.entities.filter((e) => e.role !== "public").length}</b>companies & suppliers</span><span><b>${data.entities.filter((e) => e.role === "public").length}</b>public programs</span><span><b>${data.sources.length}</b>sources</span>`;
     atlasConfigurations = [
       ...new Map(data.entities.filter(e => e.approachId).map(e => [e.approachId, {
         id: e.approachId,
