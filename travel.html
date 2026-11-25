@@ -11,7 +11,7 @@ title: Places I've Traveled
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    <h1 class="travel-title">Travel</h1>
+    <h1 class="visually-hidden">{{ page.title }}</h1>
 
     <!-- Map Container -->
     <div class="travel-map-container" id="travel-map"></div>
@@ -413,15 +413,6 @@ title: Places I've Traveled
 </script>
 
 <style>
-  .travel-title {
-    max-width: 950px;
-    margin: 0 auto 18px;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--title-color);
-  }
-
   .travel-stats {
     margin: 40px 0;
   }
@@ -566,10 +557,10 @@ title: Places I've Traveled
     width: 100%;
     height: 500px;
     border-radius: var(--border-radius);
-    border: 1px solid rgba(203, 211, 222, 0.9);
+    border: 2px solid #94a3b8;
     overflow: hidden;
     margin-bottom: 20px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+    box-shadow: none;
     position: relative;
     z-index: 1;
   }
