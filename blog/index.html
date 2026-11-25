@@ -6,11 +6,11 @@ title: Blog
 
 <section class="section">
   <div class="container blog-container">
-    <h1 class="section-title">Blog{% if paginator.page > 1 %} — Page {{ paginator.page }}{% endif %}</h1>
+    <h1 class="visually-hidden">Blog{% if paginator.page > 1 %} — Page {{ paginator.page }}{% endif %}</h1>
 
     <div class="blog-filter-nav">
       <div class="filter-tabs-container">
-        <a href="/blog/" class="filter-tab active">All Posts</a>
+        <a href="/blog/" class="filter-tab active" aria-current="true">All Posts</a>
         <a href="/blog/popular/" class="filter-tab">Popular</a>
       </div>
     </div>
@@ -37,8 +37,8 @@ title: Blog
                 </span>
               {% endif %}
               {% if post.hackernews_id %}
-                <a href="https://news.ycombinator.com/item?id={{ post.hackernews_id }}" class="hn-list-link" target="_blank" rel="noopener" title="Discuss on HackerNews">
-                  <i class="fab fa-y-combinator"></i>
+                <a href="https://news.ycombinator.com/item?id={{ post.hackernews_id }}" class="hn-list-link" target="_blank" rel="noopener" aria-label="Discuss {{ post.title | escape }} on Hacker News" title="Discuss on Hacker News">
+                  {% include icon.html name="y-combinator" %}
                 </a>
               {% endif %}
               {% if post.categories.size > 0 %}

@@ -4,20 +4,18 @@ title: Page not found
 permalink: /404.html
 sitemap: false
 noindex: true
+stylesheets:
+  - /assets/css/404.css
 ---
 
-<div id="middle" class="center">
-  <div id="body"  class="center">
-    <span style="margin-left:auto; margin-right:auto; text-align:center; width:800px;">
-      <div style="font-size:85px;"><b> 404/ </b></div>
-      <br/><br/>
-      <div>
-        <em>
-        Oops, the page you're looking for can't be found!
-        <br/><br/>
-        It may have moved, or may no longer exist. Use the links above to navigate, or <a href="mailto:hello@jasonwillems.com" style="text-decoration:none; color:red;">contact me</a> with further issues.
-        </em>
-      </div>
-    </span>
+<div class="not-found container">
+  <p class="not-found-code">404</p>
+  <div class="not-found-message">
+    <h1>Page not found</h1>
+    <p>The link may be out of date, or there may be a typo in the address.</p>
+    <div class="not-found-links">
+      <a href="/" class="not-found-home">Go to homepage</a>
+      <a href="/blog/">Browse the blog {% include icon.html name="arrow-right" %}</a>
+    </div>
   </div>
 </div>
