@@ -1219,15 +1219,28 @@ img {
 
 .contact-intro {
   text-align: center;
-  margin-bottom: 24px;
+  text-wrap: balance;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
+  max-width: 42rem;
+  color: var(--text-light);
 }
 
-.contact-intro p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--text-light);
-  max-width: 820px;
-  margin: 0 auto;
+.contact-intro h1 {
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.contact-email {
+  margin-top: 1rem;
+}
+
+.contact-info {
+  color: var(--primary-dark);
+  font: 500 1.05rem ui-monospace, Menlo, Consolas, monospace;
+  white-space: nowrap;
 }
 
 .contact-areas {
@@ -1242,15 +1255,6 @@ img {
   background-color: var(--background-alt);
   border-radius: var(--border-radius);
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-  border: 1px solid transparent;
-}
-
-.contact-area:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-  border-color: rgba(11, 158, 220, 0.2);
-  background-color: #fbfdff;
 }
 
 .contact-icon {
@@ -1259,7 +1263,7 @@ img {
   line-height: 1;
 }
 
-.contact-area h3 {
+.contact-area h2 {
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--text-color);
@@ -1270,44 +1274,6 @@ img {
   font-size: 1rem;
   color: var(--text-light);
   line-height: 1.6;
-}
-
-.contact-cta {
-  text-align: center;
-  padding: 24px 20px;
-  background: linear-gradient(to bottom, var(--background-alt) 0%, var(--background-color) 100%);
-  border-radius: var(--border-radius);
-  margin: 0 0 40px;
-}
-
-.contact-cta h1 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--text-color);
-  margin-bottom: 15px;
-}
-
-.contact-cta p {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  margin-bottom: 20px;
-}
-
-.contact-box {
-  display: inline-block;
-  padding: 15px 30px;
-  background-color: var(--background-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--border-color);
-}
-
-.contact-info {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--primary-color);
-  font-family: 'Courier New', monospace;
-  letter-spacing: 0.5px;
 }
 
 /* Footer */
