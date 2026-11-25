@@ -10,15 +10,11 @@ hidden: false
 popular: false
 ---
 {::options smart_quotes="apos,apos,quot,quot" /}
-For years, I was more careful about online privacy than most people I know. I used DuckDuckGo instead of Google, ran ad blockers, stayed logged out of services I didn't need an account for, and never minded accepting slightly clunkier software to stay out of tracking graphs.
+For years, I used DuckDuckGo instead of Google, ran ad blockers, stayed logged out of services I didn't need an account for, and never minded accepting slightly clunkier software to stay out of tracking graphs.
 
 Then I started using ChatGPT every day.
 
 In July, curious about how much had accumulated, I asked it to describe me and my life in as much detail as possible. It returned **4,900 words**, accurate enough that I could not publish it and unsettling enough that I started drafting an essay on AI privacy.
-
-Even so, I did not pull back. Over the next four and a half months, I leaned in harder: I uploaded PDFs and receipts, connected email, finance, and Stripe workflows, and set up recurring monitors to watch for things I cared about. On November 24, I ran the exact same prompt again.
-
-This time it came back with **6,300 words**.
 
 <!--more-->
 
@@ -259,6 +255,10 @@ This time it came back with **6,300 words**.
   }
 }
 </style>
+
+Even so, I did not pull back. Over the next four and a half months, I leaned in harder: I uploaded PDFs and receipts, connected email, finance, and Stripe workflows, and set up recurring monitors to watch for things I cared about. On November 24, I ran the exact same prompt again.
+
+This time it came back with **6,300 words**.
 
 Plenty of people have run variations of this self-audit as a one-off exercise, usually ending in either awe at how perceptive the model seems or a reminder to clear their chat history. Running the same prompt twice across 138 days turned out to be much more revealing than a single snapshot: by November, the profile had become a different kind of artifact.
 
