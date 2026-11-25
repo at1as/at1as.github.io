@@ -478,18 +478,22 @@ title: Places I've Traveled
   }
 
   .country-item {
-    background-color: var(--background-alt);
+    --country-border: #b4a3cb;
+    --flag-background: #f1ebf8;
+    background-color: var(--background-color);
+    border: 1px solid var(--country-border);
     border-radius: var(--border-radius);
     padding: 10px 15px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(226, 232, 240, 0.7);
-    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
-    cursor: default;
+  }
+
+  .country-item.lived {
+    --country-border: #82a9c0;
+    --flag-background: #e6f2fa;
+    font-weight: 500;
   }
 
   .country-item.has-flag {
@@ -503,12 +507,14 @@ title: Places I've Traveled
     font-size: 1.05rem;
     line-height: 1;
     width: 44px;
+    flex-shrink: 0;
+    align-self: stretch;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 10px 8px;
-    border-right: 1px solid rgba(203, 211, 222, 0.45);
-    background: aliceblue;
+    border-inline-end: 1px solid var(--country-border);
+    background-color: var(--flag-background);
     color: var(--text-color);
   }
 
@@ -521,32 +527,6 @@ title: Places I've Traveled
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .country-item:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    border-color: rgba(226, 232, 240, 1);
-  }
-
-  .country-item.has-flag:not(.lived):hover {
-    border-left-color: rgba(139, 92, 246, 0.55);
-  }
-
-  .country-item:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
-  }
-
-  .country-item.lived {
-    background-color: rgba(14, 165, 233, 0.12); /* Light blue background */
-    border-left: 3px solid #0ea5e9; /* Blue border matching map */
-    font-weight: 500;
-  }
-
-  .country-item.lived:hover {
-    box-shadow: 0 5px 12px rgba(14, 165, 233, 0.14);
-    border-color: rgba(14, 165, 233, 0.25);
   }
 
   .country-list-spacing {
