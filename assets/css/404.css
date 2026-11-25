@@ -1,0 +1,82 @@
+.page-content {
+  display: grid;
+  align-items: center;
+}
+
+.not-found {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  max-width: 54rem;
+}
+
+.not-found-code {
+  color: var(--primary-color);
+  font-size: clamp(5rem, 12vw, 9rem);
+  font-weight: 750;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.not-found-message {
+  border-inline-start: 1px solid var(--border-color);
+  padding-inline-start: clamp(2rem, 5vw, 4rem);
+}
+
+.not-found h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.not-found-message p {
+  margin-top: 0.75rem;
+  max-width: 38ch;
+  color: var(--text-light);
+}
+
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: center;
+  margin-top: 1.75rem;
+}
+
+.not-found-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 44px;
+  font-weight: 600;
+}
+
+.not-found-links a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
+}
+
+.not-found-home {
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  background: var(--primary-color);
+  color: white;
+}
+
+.not-found-home:hover {
+  background: var(--primary-dark);
+  color: white;
+}
+
+@media (max-width: 40rem) {
+  .not-found {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .not-found-message {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+}
