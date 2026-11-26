@@ -10,7 +10,7 @@ hidden: false
 popular: false
 ---
 {::options smart_quotes="apos,apos,quot,quot" /}
-Mail-in rebates are a strange kind of discount. A company advertises a product as "$50 after rebate," then asks you to keep the receipt, cut the barcode from the box, fill out a form, and mail everything before a deadline.
+Mail-in rebates are a calculated kind of discount. A company advertises a product as "$50 after rebate," then asks you to keep the receipt, cut the barcode from the box, fill out a form, and mail everything before a deadline.
 
 An immediate $50 discount and a $50 mail-in rebate are only equivalent to someone who finishes the process. The seller gets to advertise the lower price to everyone while paying the rebate only to customers who follow through.
 
