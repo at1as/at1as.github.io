@@ -1,7 +1,7 @@
 ---
 layout: post
 description: "Why rebates, subscriptions, luxury channels, and retail ads rely on human impatience, and how AI agents force friction to migrate from hassle to access control."
-title: "When Persistence Becomes Software: How AI Agents Reprice Friction"
+title: "Businesses Bet You Won't Bother. Your AI Agent Will"
 date: 2026-11-24 18:00:00 -0500
 categories: [technology, business]
 tags: [ai, agents, economics, product, pricing]
@@ -14,7 +14,7 @@ Mail-in rebates are a strange kind of discount. A company advertises a product a
 
 An immediate $50 discount and a $50 mail-in rebate are only equivalent to someone who finishes the process. The seller gets to advertise the lower price to everyone while paying the rebate only to customers who follow through.
 
-The discount is real. So is the bet that most people will not collect it.
+The discount is as real as the bet that most people will not collect it.
 
 <!--more-->
 
@@ -142,17 +142,17 @@ The discount is real. So is the bet that most people will not collect it.
 }
 </style>
 
-Most conversations about AI agents start with tasks that require high intelligence: writing software, synthesizing research, or making complex strategic calls. Some of their earliest economic shocks may hit something far more ordinary.
+Most conversations about AI agents start with tasks that require high intelligence: writing software, synthesizing research, or making complex strategic calls. But some of their earliest commercial effects may hit something far more ordinary.
 
 A surprising share of modern business strategy rests on a single unwritten premise: human attention, organization, and tolerance for annoyance are scarce. When software absorbs persistence at near-zero marginal cost, entire pricing structures, channel boundaries, and monetization models built on hassle lose their load-bearing walls.
 
 ## The Four Jobs Friction Actually Does
 
-We usually talk about friction as accidental waste, something good design tries to eliminate. In practice, businesses rely on friction deliberately across at least four different parts of the economy.
+We usually talk about friction as accidental inefficiency, something good design tries to eliminate. In practice, businesses rely on friction deliberately across at least four different parts of the economy.
 
-**1. Controlling utilization and obfuscating effective price.** Mail-in rebates are the textbook example because the mechanism sits right on the surface. Rather than segmenting customers only by willingness to pay, rebates segment them by willingness to endure paperwork. In a [large field experiment with an online retailer](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4089319), economist Matthias Rodemeier found that shoppers substantially underestimated the hassle of redeeming a rebate (by roughly €20), making rebate promotions far more profitable than equivalent upfront discounts.
+**1. Controlling utilization and obfuscating effective price.** Mail-in rebates are the clearest example because the mechanism sits right on the surface. Rather than segmenting customers only by willingness to pay, rebates segment them by willingness to endure paperwork. In a [large field experiment with an online retailer](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4089319), economist Matthias Rodemeier found that shoppers substantially underestimated the hassle of redeeming a rebate (by roughly €20), making rebate promotions far more profitable than equivalent upfront discounts.
 
-The same logic governs warranty claims, insurance appeals, expense reimbursements, price-matching policies, loyalty-point redemptions, and class-action settlements. Behavioral economist Richard Thaler gave this deliberate administrative drag a memorable name: **sludge**. These systems are not always cynical. Processing claims costs money, fraud is real, and requiring effort can filter out low-stakes requests. Still, they share one decisive property: "available" is not the same as "automatic."
+The same logic governs warranty claims, insurance appeals, expense reimbursements, price-matching policies, loyalty-point redemptions, and class-action settlements. Behavioral economist Richard Thaler gave this deliberate administrative drag a memorable name: **sludge**. These systems are not always cynical. Processing claims costs money, fraud is a genuine concern, and requiring effort can filter out low-stakes requests. Still, they share one decisive property: "available" is not the same as "automatic."
 
 **2. Monetizing passive inertia.** Friction does not even require an obstacle course; sometimes it only requires an automatic renewal and human forgetfulness. In a [2023 NBER study of subscription billing](https://www.nber.org/papers/w31547), economists Liran Einav, Benjamin Klopack, and Neale Mahoney tracked what happened when customers' payment cards expired or were replaced, forcing an active decision to re-enter billing details. The resulting wave of cancellations showed how much recurring revenue rests on inertia: consumer inattention increased seller revenue by **14% to more than 200%**, depending on the category.
 
@@ -202,7 +202,7 @@ That gap protects the full-price channel without forcing a brand to announce tha
 
 The consumer internet already compressed friction once, by making point-in-time information abundant. You could compare prices across ten stores in twenty seconds, read reviews, and spot a resale listing from your phone.
 
-What the internet did *not* eliminate was follow-through. A price tracker can send you an email alert; it does not keep watching for your exact jacket measurements across three resale platforms for six months, verify the seller's history, check the return policy, submit a price-match request if the cost drops next week, or fight a denied warranty claim. Earlier software tools — coupon extensions, subscription dashboards, alert apps — still stopped at the exact point where a human had to act.
+What the internet did *not* eliminate was follow-through. Earlier software tools already chipped away at the easiest layer: browser extensions automatically test discount codes at checkout, price trackers send alerts, and subscription dashboards surface recurring charges. Yet almost all of them stopped at the exact point where a human had to keep going. A price tracker does not watch for your exact jacket measurements across three resale platforms for six months, verify the seller's history, check the return policy, submit a price-match request if the cost drops next week, or fight a denied warranty claim.
 
 AI agents cross that line. [Browser and computer-use agents](https://openai.com/index/introducing-chatgpt-agent/) can already navigate websites, retain context across steps, fill out forms, and run recurring tasks. They remain brittle on messy multi-site workflows and sensitive accounts, yet they do not need to become superintelligent to disrupt this layer of the economy. They only need to be organized, verifiable, and reliably stubborn on low-stakes administrative work.
 
@@ -210,11 +210,11 @@ Once an agent has access to receipts, accounts, and preferences, the customer no
 
 This is a close cousin of the dynamic I wrote about in [my copyright essay](/technology/2026/02/02/AI-Copyright/). Copyright enforcement worked for decades not because the written boundaries were clean, but because human-scale creation was slow and expensive. Consumer pricing worked on a parallel unspoken cushion: human-scale persistence was scarce. Remove that constraint, and rules that looked stable suddenly stop holding.
 
-## The Second-Order Shock: Hidden Cross-Subsidies Collapse
+## The Second-Order Effect: Hidden Cross-Subsidies Collapse
 
 It is tempting to stop here and conclude that AI agents are simply a windfall for consumers. Look one step further, and the equilibrium gets much more interesting.
 
-Friction-heavy business models do not only pad corporate margins; they also create **hidden cross-subsidies between different types of customers**. People who forget to redeem rebates help finance the lower advertised price for people who mail the form in. Inattentive subscribers subsidize lower introductory pricing and flat-rate memberships (gyms are the classic version, though software and media run on the same math). Customers who never optimize credit-card points or contest billing errors end up helping pay for the perks harvested by hyper-vigilant optimizers.
+Friction-heavy business models do not only pad corporate margins; they also create **hidden cross-subsidies between different types of customers**. People who forget to redeem rebates help finance the lower advertised price for people who mail the form in. Inattentive subscribers subsidize lower introductory pricing and flat-rate memberships (gyms are the classic version, though software and media run on the same math). We may even have passed peak credit-card rewards: generous points programs rely on customers using the wrong card at checkout, letting perks expire, or never contesting billing errors. Once an agent automatically picks the highest-earning card for every purchase and optimizes redemptions, the breakage funding those perks shrinks.
 
 Software changes the ratio. If nearly every rebate gets redeemed, a rebate stops functioning as selective discounting and becomes a plain price cut saddled with pointless paperwork. If agents automatically cancel every underused subscription before renewal, revenue that depended on inertia vanishes. If every denied insurance or warranty claim comes back ten minutes later with a well-cited, policy-compliant appeal, the expected cost of initial denials jumps overnight.
 
@@ -224,7 +224,7 @@ Businesses will not simply absorb that shift and leave headline offers intact. I
 
 Businesses rarely surrender price discrimination or utilization control willingly. When effort-based friction stops filtering humans out, companies replace it with barriers designed to exclude software — or to gate access by identity and relationship instead of patience.
 
-Luxury brands have been running a version of this playbook for years, well before AI agents arrived. Hermès does not rely on inconvenient shopping to protect its Birkin and Kelly bags; it restricts who can buy them at all, gating allocation behind purchase history, annual quotas, and boutique relationships. Chanel moved in the same direction, avoiding traditional wholesale in favor of standalone boutiques and brand-operated department-store concessions, capping annual purchases on iconic bags, and rolling out invite-only VIP salons for top clients. The logic is consistent: if the discount or reseller channel erodes the full-price signal, tighten access at the source rather than hope inconvenience holds the line.
+Luxury brands have been running a version of this playbook for years, well before AI agents arrived. Hermès does not rely on inconvenient shopping to protect its Birkin and Kelly bags; it restricts who can buy them at all, gating allocation behind purchase history, annual quotas, and boutique relationships. Chanel moved in the same direction, avoiding traditional wholesale in favor of standalone boutiques and brand-operated department-store concessions, capping annual purchases on iconic bags, and rolling out invite-only VIP salons for top clients. In the watch market, top makers and authorized dealers go even further, pairing allocation lists with contractual restrictions against reselling pieces within a set window and cutting off buyers whose serial numbers show up on the secondary market. The logic is consistent: if the discount or reseller channel erodes the full-price signal, tighten access at the source rather than hope inconvenience holds the line.
 
 In mainstream e-commerce, that defensive shift is already playing out in court. In late 2025, Amazon sued Perplexity over its **Comet** browser agent, which navigated Amazon accounts and completed purchases on users' behalf. A district court granted Amazon a preliminary injunction in March 2026 under federal anti-hacking law (the CFAA), before the Ninth Circuit vacated that injunction in August 2026 (*Amazon.com Services v. Perplexity AI*), holding that the *human shopper* — not Perplexity — was accessing Amazon's servers using a local tool. Even so, the court left platforms free to regulate bots through private Terms of Service and contract law.
 
