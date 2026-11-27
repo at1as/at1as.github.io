@@ -112,6 +112,7 @@
     if (!width) return;
     const lanes = [[], []];
     for (const event of releaseEvents) {
+      if (!event.button) continue;
       const anchor = event.position * width;
       const [below, above] = lanes.map(lane => lane.at(-1)?.anchor ?? -Infinity);
       const lane = anchor - below >= 24 || below <= above ? lanes[0] : lanes[1];
@@ -142,17 +143,21 @@
 
   function prepareReleases() {
     const snapshots = history.snapshots;
-    releaseEvents = releases.filter(release => release.date >= snapshots[0].as_of && release.date <= snapshots.at(-1).as_of)
-      .sort((a, b) => a.date.localeCompare(b.date)).map(release => {
-        const nextIndex = snapshots.findIndex(snapshot => snapshot.as_of >= release.date);
-        const steps = Math.max(1, snapshots.length - 1);
-        let position = nextIndex;
-        if (nextIndex > 0 && snapshots[nextIndex].as_of !== release.date) {
-          const start = Date.parse(snapshots[nextIndex - 1].as_of);
-          const end = Date.parse(snapshots[nextIndex].as_of);
-          position = nextIndex - 1 + (Date.parse(release.date) - start) / (end - start);
-        }
-        const button = document.createElement('button');
+    const inRange = releases.filter(release => release.date >= snapshots[0].as_of && release.date <= snapshots.at(-1).as_of)
+      .sort((a, b) => a.date.localeCompare(b.date));
+    const railReleases = inRange.filter(release => release.featured !== false);
+    const toEvent = release => {
+      const nextIndex = snapshots.findIndex(snapshot => snapshot.as_of >= release.date);
+      const steps = Math.max(1, snapshots.length - 1);
+      let position = nextIndex;
+      if (nextIndex > 0 && snapshots[nextIndex].as_of !== release.date) {
+        const start = Date.parse(snapshots[nextIndex - 1].as_of);
+        const end = Date.parse(snapshots[nextIndex].as_of);
+        position = nextIndex - 1 + (Date.parse(release.date) - start) / (end - start);
+      }
+      let button = null;
+      if (railReleases.includes(release)) {
+        button = document.createElement('button');
         button.type = 'button';
         button.className = 'release-marker';
         button.dataset.release = release.id;
@@ -169,9 +174,11 @@
         tooltip.append(date);
         button.append(tooltip);
         button.addEventListener('click', () => { stop(); select(nextIndex, true, release.id); });
-        return { ...release, nextIndex, position: position / steps, button };
-      });
-    const buttons = releaseEvents.map(release => release.button);
+      }
+      return { ...release, nextIndex, position: position / steps, button };
+    };
+    releaseEvents = inRange.map(toEvent);
+    const buttons = releaseEvents.filter(r => r.button).map(r => r.button);
     releaseRail.replaceChildren(...buttons);
     releaseRail.hidden = buttons.length === 0;
     $('#release-info').hidden = releaseEvents.length === 0;
@@ -183,8 +190,8 @@
 
   function updateReleaseInfo(date, selectedRelease) {
     const release = selectedRelease ? releaseEvents.find(event => event.id === selectedRelease) :
-      releaseEvents.findLast(event => event.date <= date);
-    releaseEvents.forEach(event => { event.button.setAttribute('aria-pressed', String(event === release)); });
+      releaseEvents.findLast(event => event.date <= date && event.button) || releaseEvents.findLast(event => event.date <= date);
+    releaseEvents.forEach(event => { if (event.button) event.button.setAttribute('aria-pressed', String(event === release)); });
     releasePicker.value = release?.id || '';
     const info = $('#release-current');
     info.replaceChildren();
@@ -342,6 +349,9 @@
     updateStatusTable(snapshot);
     snapshot.geometry.nodes.forEach((node, i) => {
       const label = labelElements[i].querySelector('.node-title').textContent;
+      const empty = !snapshot.statuses && node.terminal && node.value === 0;
+      nodeElements[i].toggleAttribute('data-empty', empty);
+      labelElements[i].toggleAttribute('data-empty', empty);
       labelElements[i].querySelector('.node-number').textContent = count(node.value);
       labelElements[i].querySelector('.node-percentage').textContent = `${(100 * node.value / snapshot.total).toFixed(1)}%`;
       nodeElements[i].querySelector('title').textContent = `${label}: ${count(node.value)} (${(100 * node.value / snapshot.total).toFixed(1)}% of all problems)`;
@@ -478,12 +488,16 @@
       const payload = await read('problems.json');
       if (payload.schema_version !== T.catalogVersion || !payload.sources.length) return;
       catalog = payload;
-      window.populateErdosSourcePicker(sourcePicker, catalog.sources);
-      sourcePicker.value = 'bloom-tao';
-      activeSources = T.catalogSources(catalog, 'bloom-tao');
-      showProblemGrid?.(history.snapshots[index], activeSources);
-      gridDatePicker.disabled = history.snapshots.length < 2;
+      const initial = window.populateErdosSourcePicker(sourcePicker, catalog.sources);
       $('#snapshot-source-control').hidden = false;
+      if (initial && initial !== 'bloom-tao') {
+        selectCatalog();
+      } else {
+        sourcePicker.value = 'bloom-tao';
+        activeSources = T.catalogSources(catalog, 'bloom-tao');
+        showProblemGrid?.(history.snapshots[index], activeSources);
+        gridDatePicker.disabled = history.snapshots.length < 2;
+      }
     } catch (error) {
       // The saved Bloom–Tao snapshots are independently usable offline.
     }
@@ -492,8 +506,8 @@
 
   async function load() {
     $('#retry-history').hidden = true;
-    message.hidden = false;
-    message.textContent = 'Loading historical snapshots…';
+    message.textContent = '';
+    message.hidden = true;
     try {
       bloomHistory = validate(await read('history.json'));
       showHistory(bloomHistory, bloomHistory.snapshots.length - 1);
@@ -502,6 +516,7 @@
       loadSources();
     } catch (error) {
       history = null;
+      message.hidden = false;
       message.textContent = 'History could not load. The latest saved snapshot is still shown.';
       $('#retry-history').hidden = false;
     }

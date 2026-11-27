@@ -72,5 +72,6 @@ def render(fallback, releases, site_home, analytics_id, problems):
                   total_delta=last['total']-first['total'],first_open=first['total']-first['resolved'],last_open=last['total']-last['resolved'],
                   month_options=month_options,release_options=release_options,monthly_rows=monthly_rows,
                   **{f'pace_{key}':escape(value) for key,value in charts['pace_text'].items()},
-                  **{key:charts[key] for key in ['pace','composition','formal','pace_readout','composition_readout','formal_readout']})
+                  cumulative_legend=charts['cumulative_legend'],
+                  **{key:charts[key] for key in ['pace','cumulative','composition','formal','pace_readout','cumulative_readout','composition_readout','formal_readout']})
     return version_assets(Template((HERE / '_trends_template.html').read_text()).substitute(values)), data

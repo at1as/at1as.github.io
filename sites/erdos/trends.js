@@ -2,13 +2,20 @@
   'use strict';
   const $=selector=>document.querySelector(selector), T=window.ErdosTrends, C=window.ErdosTrendCharts;
   const releases=JSON.parse($('#model-releases').textContent);
-  const definitions={resolved:'“Resolved” includes proved, disproved, and otherwise solved',lean:'Solutions formalized in Lean, including problems still listed as unresolved',statements:'Problem statements written in Lean. This does not mean they are solved.'};
+  const definitions={resolved:'“Resolved” includes proved, disproved, and otherwise solved',lean:'Solutions formalized in Lean, including problems still listed as unresolved',statements:'Problem statements written in Lean (not necessarily solved)'};
   const format=date=>new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(T.time(date)));
-  let data=null, resizeFrame=null, previewPoint=null, evidenceDate=null;
+  let data=null, resizeFrame=null, previewPoint=null, evidenceDate=null, userPickedWindow=false;
   let catalog=null;
   const sourcePicker=$('#problem-source'), rollups=new Map();
   const metric=()=>$('#trend-metric').value;
   const days=()=>Number($('#pace-window').value);
+  const showAllReleases=()=>$('#pace-releases')?.value==='all';
+
+  function getRollup(selection) {
+    if (!rollups.has(selection)) rollups.set(selection, T.rollup(catalog, selection));
+    return rollups.get(selection);
+  }
+
   function renderSummary() {
     const first=data.points[0],last=data.points.at(-1);
     const number=value=>value.toLocaleString('en-US');
@@ -80,7 +87,10 @@
     $('#records-recent').textContent=`Latest ${length}-day window`;
     previewPoint=null;
     $('#show-pace-changes').disabled=true;
-    for(const [key,text] of Object.entries(C.paceText(metric(),length))) $('#pace-'+key).textContent=text;
+    for(const [key,text] of Object.entries(C.paceText(metric(),length))) {
+      const el = $('#pace-'+key);
+      if (el) el.textContent=text;
+    }
     C.pace($('#pace'),data,metric(),length,releases,$('#compare-release').value,id=> {
       $('#compare-release').value=id; renderPace(); renderWindow();
       $('#release-comparison').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
@@ -89,8 +99,63 @@
       selectedDate:$('#records-month').value==='selected'?evidenceDate:null,
       onPreview:point=>{previewPoint=point;$('#show-pace-changes').disabled=false;},
       onSelect:showPoint
-    });
-    $('#pace').setAttribute('aria-describedby','pace-interaction');
+    },{ showAllReleases: showAllReleases() });
+  }
+  function renderCumulative() {
+    const el = $('#cumulative');
+    if (!el) return;
+    const mode = $('#cumulative-mode')?.value || 'counts';
+    const m = metric();
+    const sel = sourcePicker?.value || 'bloom-tao';
+    const primaryColor = C.colors[m] || '#3977bd';
+    let overlay = null;
+    const multiSource = catalog && catalog.sources.length > 1 && m !== 'statements';
+    if (multiSource && sel === 'bloom-tao') {
+      overlay = {
+        primaryLabel: 'Bloom–Tao',
+        label: 'Combined (union)',
+        color: '#74559d',
+        bandColor: '#8873b7',
+        dashed: true,
+        points: getRollup('combined').points
+      };
+    } else if (multiSource && sel === 'combined') {
+      overlay = {
+        primaryLabel: 'Combined',
+        label: 'Bloom–Tao only',
+        color: '#6b7f99',
+        bandColor: '#8873b7',
+        dashed: true,
+        points: getRollup('bloom-tao').points
+      };
+    }
+    C.cumulative(el, data, m, mode, overlay);
+    const title = $('#cumulative-title');
+    if (title) title.textContent = C.copy[m].cumulativeTitle;
+    const desc = $('#cumulative-description');
+    if (desc) {
+      desc.textContent = overlay
+        ? (mode === 'share'
+          ? `Share of all problems with ${C.copy[m].scope} over time; shaded band shows the catalog gap between Bloom–Tao and Combined.`
+          : `Total ${C.copy[m].plural} over time; shaded band shows the catalog gap between Bloom–Tao and Combined.`)
+        : (mode === 'share'
+          ? `Share of all problems with ${C.copy[m].scope} over time.`
+          : `Total ${C.copy[m].plural} over time in the selected catalog.`);
+    }
+    const legend = $('#cumulative-legend');
+    if (legend) {
+      const primaryLabel = sel === 'combined' ? 'Combined (union)' : (catalog?.sources.find(s => s.id === sel)?.label || 'Bloom–Tao');
+      const items = [{ label: primaryLabel, color: primaryColor, dashed: false }];
+      if (overlay) items.push({ label: overlay.label, color: overlay.color, dashed: true });
+      legend.replaceChildren(...items.map(item => {
+        const span = document.createElement('span');
+        const swatch = document.createElement('i');
+        swatch.style.setProperty('--key', item.color);
+        if (item.dashed) swatch.className = 'dashed';
+        span.append(swatch, item.label);
+        return span;
+      }));
+    }
   }
   function renderComposition() {
     C.composition($('#composition'),data,metric(),month=>{
@@ -101,7 +166,7 @@
     const mode=$('#formal-mode').value;
     C.formal($('#formal'),data,mode);
     $('#formal-total-key').hidden=mode==='coverage';
-    $('#formal-description').textContent=mode==='coverage' ? 'Share of resolved problems with a Lean solution at each date' : 'The shaded gap shows resolved problems with no Lean solution recorded';
+    $('#formal-description').textContent=mode==='coverage' ? 'Share of resolved problems with a Lean solution at each date.' : 'Shaded area shows resolved problems without a recorded Lean proof.';
   }
   function renderWindow() {
     // Older cached HTML may predate the uncertainty explanation.
@@ -109,27 +174,31 @@
       const details=document.createElement('details'),summary=document.createElement('summary');
       const explanation=document.createElement('p'),list=document.createElement('ul');
       details.id='window-uncertainty';details.className='window-uncertainty';
-      summary.textContent='Why timing is uncertain';
+      summary.textContent='Boundary intervals';
       explanation.textContent='The lower count includes changes whose whole snapshot interval is inside the window. The upper count also includes changes that could fall on either side of a boundary. The same uncertain changes may appear in both ranges; do not add the upper counts.';
       list.id='window-intervals';details.append(summary,explanation,list);
       $('#window-verdict').after(details);
     }
     $('#after-rate').previousElementSibling.textContent='Release day + 29 days';
-    $('#release-comparison .chart-note').textContent='Windows use UTC dates, not launch times. Ranges cover only changes captured between saved snapshots; missed changes are not estimated. Nearby release windows can overlap.';
+    $('#release-comparison .chart-note').textContent='Windows use UTC dates, not launch times. Captured snapshot transitions only; nearby release windows overlap.';
     const release=releases.find(r=>r.id===$('#compare-release').value);
     const result=T.releaseWindow(data,release.date,metric());
     const source=document.createElement('a'); source.href=release.source; source.textContent=`${format(release.date)} · ${release.kind} ↗`;
     $('#release-source').replaceChildren(source);
     if(release.note) { const note=document.createElement('a'); note.href=release.note_source; note.textContent=release.note; $('#release-source').append(' · ',note); }
     for(const side of ['before','after']) {
-      const window=result[side];
-      const count=window.uncertain?`${window.count}–${window.possible}`:String(window.count);
-      $(`#${side}-rate`).textContent=!window.complete?'Incomplete':result.coverageChanged?'Coverage changed':window.uncertain?'Uncertain':`${window.rate.toFixed(2)}/day`;
-      $(`#${side}-count`).textContent=`${count} observed ${C.copy[metric()][count === '1' ? 'countedSingular' : 'counted']}${window.complete?'':' in available history'}`;
-      $(`#${side}-range`).textContent=`${format(window.start)}–${format(T.iso(T.time(window.end)-T.DAY))}`;
+      const w=result[side];
+      const count=w.uncertain?`${w.count}–${w.possible}`:String(w.count);
+      const bounded=w.complete && !result.coverageChanged && w.uncertain;
+      $(`#${side}-rate`).textContent=!w.complete?'Incomplete':result.coverageChanged?'Coverage changed':bounded?`${w.minRate.toFixed(2)}–${w.maxRate.toFixed(2)}/day`:`${w.rate.toFixed(2)}/day`;
+      $(`#${side}-count`).textContent=`${count} observed ${C.copy[metric()][count === '1' ? 'countedSingular' : 'counted']}${w.complete?'':' in available history'}`;
+      $(`#${side}-range`).textContent=`${format(w.start)}–${format(T.iso(T.time(w.end)-T.DAY))}`;
     }
     const intervals=result.uncertainIntervals;
-    $('#window-uncertainty').hidden=!intervals.length;
+    const uncertainty = $('#window-uncertainty');
+    uncertainty.hidden=!intervals.length;
+    const summaryEl = uncertainty.querySelector('summary');
+    if (summaryEl) summaryEl.textContent = intervals.length ? `Boundary intervals (${intervals.length})` : 'Boundary intervals';
     $('#window-intervals').replaceChildren(...intervals.map(interval=>{
       const row=document.createElement('li');
       const count=interval.uncertain_ids.length;
@@ -139,12 +208,29 @@
       appendRevisions(row,interval);return row;
     }));
     const a=result.before,b=result.after;
-    $('#window-verdict').textContent= !a.complete||!b.complete ? 'Not enough history for a full 30 days on both sides' :
-      result.coverageChanged ? 'A catalog joined during these windows, so the rates cover different source histories.' :
-      intervals.length ? 'The snapshots cannot place every observed change inside or outside these windows. No exact rate or multiplier is shown for uncertain timing.' :
-      a.count===b.count ? `The same number of observed changes before and after the release date (${a.count})` :
-      a.count===0 ? `No observed changes in the 30 days before the release date; ${b.count} in the 30 days from it` :
-      `${(b.count/a.count).toFixed(2)}× as many observed changes in the 30 days from the release date (${b.count} vs ${a.count})`;
+    let verdict;
+    if (!a.complete || !b.complete) {
+      verdict = 'Not enough history for a full 30 days on both sides.';
+    } else if (result.coverageChanged) {
+      verdict = 'A catalog joined during these windows, so the rates cover different source histories.';
+    } else if (intervals.length) {
+      const aSpan = a.uncertain ? `${a.count}–${a.possible}` : String(a.count);
+      const bSpan = b.uncertain ? `${b.count}–${b.possible}` : String(b.count);
+      if (b.count > a.possible) {
+        verdict = `Higher after release (${bSpan} vs ${aSpan} observed changes); snapshot boundaries prevent an exact multiplier.`;
+      } else if (a.count > b.possible) {
+        verdict = `Lower after release (${bSpan} vs ${aSpan} observed changes); snapshot boundaries prevent an exact multiplier.`;
+      } else {
+        verdict = `Boundary-spanning snapshots overlap both windows (${aSpan} before vs ${bSpan} after); no exact multiplier is shown.`;
+      }
+    } else if (a.count === b.count) {
+      verdict = `The same number of observed changes before and after the release date (${a.count}).`;
+    } else if (a.count === 0) {
+      verdict = `No observed changes in the 30 days before the release date; ${b.count} in the 30 days from it.`;
+    } else {
+      verdict = `${(b.count/a.count).toFixed(2)}× as many observed changes in the 30 days from the release date (${b.count} vs ${a.count}).`;
+    }
+    $('#window-verdict').textContent = verdict;
   }
   function renderRecords() {
     const period=$('#records-month').value;
@@ -223,13 +309,16 @@
     $('#composition-description').textContent=copy.monthly;
     $('#release-description').textContent=copy.release;
     document.querySelectorAll('[data-change-label]').forEach(el=>el.textContent=copy.changes[el.dataset.changeLabel]);
-    renderMonths(); renderPace(); renderComposition(); renderRecords(); renderWindow();
+    renderMonths(); renderPace(); renderCumulative(); renderComposition(); renderRecords(); renderWindow();
     renderFormal();
   }
   function selectSource() {
     const selection=sourcePicker.value;
-    if(!rollups.has(selection)) rollups.set(selection,T.rollup(catalog,selection));
-    data=rollups.get(selection);
+    data=getRollup(selection);
+    const spanDays = (T.time(data.points.at(-1).date) - T.time(data.points[0].date)) / T.DAY;
+    if (!userPickedWindow) {
+      $('#pace-window').value = spanDays < 60 ? '7' : '30';
+    }
     const sources=T.catalogSources(catalog,selection), metricSelect=$('#trend-metric');
     for(const option of metricSelect.options) option.disabled=!Object.hasOwn(data.coverage,option.value);
     if(metricSelect.selectedOptions[0]?.disabled) metricSelect.value=[...metricSelect.options].find(option=>!option.disabled).value;
@@ -238,13 +327,15 @@
     $('#compare-release').value=T.defaultRelease(data,releases);
     const note=$('#trend-source-note');
     note.hidden=sources.length===1&&sources[0].metrics.includes('statements');
-    note.textContent=sources.length>1 ? 'Combined starts with the earliest catalog. Later catalogs join at their first snapshot. Their opening balances are counted separately from newly recorded changes.' :
-      'This catalog does not report Lean statement coverage.';
+    note.textContent=sources.length>1 ? 'Combined merges catalogs by problem number. Later catalogs join at their first snapshot; their opening balances appear separately from Pace.' :
+      'Plasma does not report Lean statement coverage.';
     renderSummary(); renderAll();
     window.renderErdosSourceComparison?.(catalog,sources,data.points.at(-1));
   }
   $('#trend-metric').addEventListener('change',renderAll);
-  $('#pace-window').addEventListener('change',()=>{if(data){$('#records-month').value='recent';evidenceDate=null;$('#records-selected').hidden=true;renderPace();renderRecords();}});
+  $('#pace-window').addEventListener('change',()=>{userPickedWindow=true;if(data){$('#records-month').value='recent';evidenceDate=null;$('#records-selected').hidden=true;renderPace();renderRecords();}});
+  $('#pace-releases')?.addEventListener('change',()=>{if(data)renderPace();});
+  $('#cumulative-mode')?.addEventListener('change',()=>{if(data)renderCumulative();});
   $('#formal-mode').addEventListener('change',()=>{if(data)renderFormal();});
   $('#records-month').addEventListener('change',()=>{if(data){renderRecords();renderPace();}});
   $('#compare-release').addEventListener('change',()=>{if(data){renderPace();renderWindow();}});
@@ -285,10 +376,10 @@
   if('ResizeObserver' in window) {
     let lastWidth=0;
     new ResizeObserver(entries=> {
-      const width=entries[0].contentRect.width;
+      const width=Math.round(entries[0].contentRect.width);
       if(width===lastWidth) return; lastWidth=width;
       if(resizeFrame!==null) cancelAnimationFrame(resizeFrame);
-      resizeFrame=requestAnimationFrame(()=>{if(data){renderPace();renderComposition();renderFormal();}resizeFrame=null;});
+      resizeFrame=requestAnimationFrame(()=>{if(data){renderPace();renderCumulative();renderComposition();renderFormal();}resizeFrame=null;});
     }).observe($('.trends-grid'));
   }
   load();

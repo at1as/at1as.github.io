@@ -1,7 +1,20 @@
 [
   {
+    "id": "gemini-2-5-pro",
+    "name": "Gemini 2.5 Pro",
+    "short_name": "Gemini 2.5 Pro",
+    "provider": "google",
+    "featured": false,
+    "date": "2025-03-25",
+    "kind": "Public release",
+    "source": "https://blog.google/technology/ai/gemini-2-5-pro/"
+  },
+  {
     "id": "sonnet-4-5",
     "name": "Claude Sonnet 4.5",
+    "short_name": "Sonnet 4.5",
+    "provider": "anthropic",
+    "featured": true,
     "date": "2025-09-29",
     "kind": "Public release",
     "source": "https://www.anthropic.com/news/claude-sonnet-4-5"
@@ -9,20 +22,49 @@
   {
     "id": "gpt-5-1",
     "name": "GPT-5.1",
+    "short_name": "GPT-5.1",
+    "provider": "openai",
+    "featured": true,
     "date": "2025-11-13",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
   },
   {
+    "id": "gemini-3-pro",
+    "name": "Gemini 3 Pro",
+    "short_name": "Gemini 3 Pro",
+    "provider": "google",
+    "featured": false,
+    "date": "2025-11-18",
+    "kind": "Public release",
+    "source": "https://blog.google/technology/ai/google-gemini-3/"
+  },
+  {
     "id": "opus-4-5",
     "name": "Claude Opus 4.5",
+    "short_name": "Opus 4.5",
+    "provider": "anthropic",
+    "featured": true,
     "date": "2025-11-24",
     "kind": "Public release",
     "source": "https://www.anthropic.com/news/claude-opus-4-5"
   },
   {
+    "id": "gemini-3-deep-think",
+    "name": "Gemini 3 Deep Think",
+    "short_name": "Gemini 3 DT",
+    "provider": "google",
+    "featured": false,
+    "date": "2025-12-04",
+    "kind": "Public release",
+    "source": "https://blog.google/technology/ai/gemini-3-deep-think-app/"
+  },
+  {
     "id": "gpt-5-2",
     "name": "GPT-5.2",
+    "short_name": "GPT-5.2",
+    "provider": "openai",
+    "featured": true,
     "date": "2025-12-11",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
@@ -30,13 +72,39 @@
   {
     "id": "opus-4-6",
     "name": "Claude Opus 4.6",
+    "short_name": "Opus 4.6",
+    "provider": "anthropic",
+    "featured": true,
     "date": "2026-02-05",
     "kind": "Public release",
     "source": "https://www.anthropic.com/news/claude-opus-4-6"
   },
   {
+    "id": "gemini-3-deep-think-science",
+    "name": "Gemini 3 Deep Think (science)",
+    "short_name": "Gemini 3 DT",
+    "provider": "google",
+    "featured": false,
+    "date": "2026-02-12",
+    "kind": "Public release",
+    "source": "https://blog.google/technology/ai/gemini-3-deep-think-science-research-engineering/"
+  },
+  {
+    "id": "gemini-3-1-pro",
+    "name": "Gemini 3.1 Pro",
+    "short_name": "Gemini 3.1 Pro",
+    "provider": "google",
+    "featured": false,
+    "date": "2026-02-19",
+    "kind": "Public release",
+    "source": "https://blog.google/technology/developers/gemini-3-1-pro/"
+  },
+  {
     "id": "gpt-5-4",
     "name": "GPT-5.4",
+    "short_name": "GPT-5.4",
+    "provider": "openai",
+    "featured": true,
     "date": "2026-03-05",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
@@ -44,6 +112,9 @@
   {
     "id": "gpt-5-5",
     "name": "GPT-5.5",
+    "short_name": "GPT-5.5",
+    "provider": "openai",
+    "featured": true,
     "date": "2026-04-24",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
@@ -51,6 +122,9 @@
   {
     "id": "fable-5",
     "name": "Claude Fable 5",
+    "short_name": "Fable 5",
+    "provider": "anthropic",
+    "featured": true,
     "date": "2026-06-09",
     "kind": "Public release",
     "source": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
@@ -60,6 +134,9 @@
   {
     "id": "gpt-5-6",
     "name": "GPT-5.6 · Sol, Terra & Luna",
+    "short_name": "GPT-5.6",
+    "provider": "openai",
+    "featured": true,
     "date": "2026-07-09",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
@@ -67,6 +144,9 @@
   {
     "id": "astra",
     "name": "GPT-6 Astra",
+    "short_name": "GPT-6 Astra",
+    "provider": "openai",
+    "featured": true,
     "date": "2026-09-03",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
@@ -74,6 +154,9 @@
   {
     "id": "fable-5-1",
     "name": "Claude Fable 5.1",
+    "short_name": "Fable 5.1",
+    "provider": "anthropic",
+    "featured": true,
     "date": "2026-09-15",
     "kind": "Public release",
     "source": "https://www.anthropic.com/claude-fable-and-mythos-5-1"
@@ -81,6 +164,9 @@
   {
     "id": "opus-5-5",
     "name": "Claude Opus 5.5",
+    "short_name": "Opus 5.5",
+    "provider": "anthropic",
+    "featured": true,
     "date": "2026-09-22",
     "kind": "Public release",
     "source": "https://www.anthropic.com/claude-opus-5-5"
@@ -88,6 +174,9 @@
   {
     "id": "gpt-6-sol-luna",
     "name": "GPT-6 · Sol & Luna",
+    "short_name": "GPT-6",
+    "provider": "openai",
+    "featured": false,
     "date": "2026-09-22",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
@@ -95,6 +184,9 @@
   {
     "id": "sonnet-5-5",
     "name": "Claude Sonnet 5.5",
+    "short_name": "Sonnet 5.5",
+    "provider": "anthropic",
+    "featured": false,
     "date": "2026-09-28",
     "kind": "Public release",
     "source": "https://www.anthropic.com/claude-sonnet-5-5"
@@ -102,13 +194,31 @@
   {
     "id": "gpt-6-1-sol",
     "name": "GPT-6.1 Sol",
+    "short_name": "GPT-6.1 Sol",
+    "provider": "openai",
+    "featured": false,
     "date": "2026-09-29",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
   },
   {
+    "id": "gemini-4-argon",
+    "name": "Gemini 4 Argon",
+    "short_name": "Gemini 4 Argon",
+    "provider": "google",
+    "featured": false,
+    "date": "2026-09-30",
+    "kind": "Limited preview",
+    "source": "https://blog.google/technology/ai/gemini-4-argon/",
+    "note": "General availability October 13, 2026.",
+    "note_source": "https://blog.google/technology/ai/gemini-4-argon/"
+  },
+  {
     "id": "haiku-5-5",
     "name": "Claude Haiku 5.5",
+    "short_name": "Haiku 5.5",
+    "provider": "anthropic",
+    "featured": false,
     "date": "2026-10-07",
     "kind": "Public release",
     "source": "https://www.anthropic.com/claude-haiku-5-5"
@@ -116,15 +226,63 @@
   {
     "id": "gpt-6-1-terra",
     "name": "GPT-6.1 Terra",
+    "short_name": "GPT-6.1 Terra",
+    "provider": "openai",
+    "featured": false,
     "date": "2026-10-26",
     "kind": "API release",
     "source": "https://developers.openai.com/api/docs/changelog"
   },
   {
+    "id": "gemini-4-carbon",
+    "name": "Gemini 4 Carbon",
+    "short_name": "Gemini 4 Carbon",
+    "provider": "google",
+    "featured": true,
+    "date": "2026-10-28",
+    "kind": "Public release",
+    "source": "https://blog.google/technology/ai/gemini-4-carbon/",
+    "note": "General availability November 10, 2026.",
+    "note_source": "https://blog.google/technology/ai/gemini-4-carbon-available/"
+  },
+  {
+    "id": "fable-5-2",
+    "name": "Claude Fable 5.2",
+    "short_name": "Fable 5.2",
+    "provider": "anthropic",
+    "featured": true,
+    "date": "2026-11-09",
+    "kind": "Public release",
+    "source": "https://www.anthropic.com/news/introducing-claude-fable-5-2-and-claude-mythos-5-2"
+  },
+  {
+    "id": "gemini-4-hydrogen",
+    "name": "Gemini 4 Hydrogen",
+    "short_name": "Gemini 4 Hydrogen",
+    "provider": "google",
+    "featured": false,
+    "date": "2026-11-12",
+    "kind": "Public release",
+    "source": "https://blog.google/technology/developers/gemini-4-hydrogen/"
+  },
+  {
     "id": "gpt-6-2-astra-sol",
     "name": "GPT-6.2 Astra & Sol",
+    "short_name": "GPT-6.2",
+    "provider": "openai",
+    "featured": true,
     "date": "2026-11-17",
     "kind": "API release",
     "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+  },
+  {
+    "id": "gemini-4-neon",
+    "name": "Gemini 4 Neon",
+    "short_name": "Gemini 4 Neon",
+    "provider": "google",
+    "featured": true,
+    "date": "2026-11-18",
+    "kind": "Public release",
+    "source": "https://blog.google/technology/ai/gemini-4-neon/"
   }
 ]

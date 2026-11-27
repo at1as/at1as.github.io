@@ -37,9 +37,10 @@
     <details id="source-comparison"$comparison_hidden>
       <summary>Compare current results by problem</summary>
       <div class="comparison-body">
-        <p class="chart-explanation">Enter a problem number to see its status and supporting evidence. Choose Combined to compare the catalogs side by side.</p>
-        <div class="records-controls" id="source-comparison-controls" hidden>
-          <label for="source-problem-number">Problem number</label><input type="search" id="source-problem-number" inputmode="numeric" placeholder="e.g. 431">
+        <p id="source-comparison-intro" class="chart-explanation">Filter problems or search by number to inspect status and proof links.</p>
+        <div class="records-controls comparison-toolbar" id="source-comparison-controls" hidden>
+          <div id="source-comparison-filters" class="filter-chips" role="group" aria-label="Filter problems"></div>
+          <div class="problem-search-field"><label for="source-problem-number">Problem #</label><input type="search" id="source-problem-number" inputmode="numeric" placeholder="e.g. 431"></div>
         </div>
         <p id="source-comparison-count" class="records-count" role="status"></p>
         <div id="source-comparison-table" class="records-scroll" tabindex="0" role="region" aria-label="Problem results by source" hidden><table><thead><tr id="source-column-labels"><th scope="col">Problem</th></tr></thead><tbody id="source-problem-rows"></tbody></table></div>
@@ -47,72 +48,86 @@
           <div class="card-heading"><h3 id="source-evidence-title"></h3><form method="dialog"><button>Close</button></form></div>
           <ul id="source-evidence-items"></ul>
         </dialog>
-        <p class="chart-note">A date with ≤ means the catalog already listed that outcome at its first snapshot.</p>
+        <p class="chart-note">≤ marks outcomes already listed at a catalog’s first snapshot.</p>
         <p class="chart-note" id="source-revisions">Data revisions · $comparison_links</p>
         <noscript><p>Enable JavaScript to select a source and look up problem results.</p></noscript>
       </div>
     </details>
     <div class="trend-controls"><label for="trend-metric">Measure</label><select id="trend-metric" disabled><option value="resolved">Resolved problems</option><option value="lean">Solutions in Lean</option><option value="statements">Statements in Lean</option></select><span id="metric-definition">“Resolved” includes proved, disproved, and otherwise solved</span></div>
-    <p id="trends-message" role="status">Loading chart controls…</p><button id="retry-trends" hidden>Retry</button>
+    <p id="trends-message" role="status" hidden></p><button id="retry-trends" hidden>Retry</button>
     <noscript><p>The default charts and monthly table are available below. Enable JavaScript to change measures and inspect individual problem changes.</p></noscript>
     <div class="trends-grid">
       <section class="chart-card wide" aria-labelledby="pace-title">
-        <div class="card-heading"><h2 id="pace-title">$pace_title</h2><label class="compact-control">Look back <select id="pace-window" disabled><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option></select></label></div>
+        <div class="card-heading">
+          <h2 id="pace-title">$pace_title</h2>
+          <div class="card-controls">
+            <label class="compact-control">Releases <select id="pace-releases" disabled><option value="featured" selected>Major</option><option value="all">All</option></select></label>
+            <label class="compact-control">Look back <select id="pace-window" disabled><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option></select></label>
+          </div>
+        </div>
         <p id="pace-description" class="chart-explanation">$pace_description</p>
-        <details class="rate-explanation"><summary>How to read the daily average</summary><p id="pace-example" class="chart-explanation">$pace_example</p></details>
         <div class="trend-plot">$pace</div><div class="readout-row"><p class="chart-readout" aria-live="polite">$pace_readout</p><button id="show-pace-changes" class="evidence-button" type="button" disabled>View these changes <span aria-hidden="true">↓</span></button></div>
         <p id="pace-note" class="chart-note">$pace_note</p>
-        <p id="pace-interaction" class="chart-note">Choose a point, or use arrow keys then Enter, to see its changes. Lines mark model releases; select one to compare before and after.</p>
       </section>
-      <section class="chart-card wide" aria-labelledby="composition-title">
-        <div class="card-heading"><h2 id="composition-title">Monthly changes</h2><a href="../problems.json" download>Download data ↗</a></div>
-        <p id="composition-description" class="chart-explanation">Resolved status changes and database additions, shown separately. Select a bar to see the problems.</p>
-        <div class="chart-legend"><span><i style="--key:#3977bd"></i><span data-change-label="gained">Marked resolved</span></span><span><i style="--key:#9fbfe3"></i><span data-change-label="added">Added as resolved</span></span><span data-baseline-key hidden><i style="--key:#8873b7"></i>From catalog baseline</span><span><i style="--key:#dd7b80"></i><span data-change-label="lost">No longer resolved</span></span><span><i style="--key:#a74559"></i>Removed from database</span><span><i style="--key:#9b94ae"></i>Unmatched changes</span><span><i class="dot" style="--key:#17253c"></i>Net change</span></div>
-        <p class="chart-note baseline-guide" data-baseline-key hidden><strong>From catalog baseline</strong> means a later catalog already recorded these results in its first snapshot. They enter the Combined totals on that date. Pace counts changes after that first snapshot.</p>
-        <div class="trend-plot">$composition</div><p class="chart-readout" aria-live="polite">$composition_readout</p>
-        <details id="monthly-table"><summary>View monthly totals</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Monthly totals; scroll horizontally on small screens"><table><thead><tr><th scope="col">Month</th><th scope="col" data-change-label="gained">Marked resolved</th><th scope="col" data-change-label="added">Added as resolved</th><th scope="col" data-baseline-key hidden>From catalog baseline</th><th scope="col" data-change-label="lost">No longer resolved</th><th scope="col">Removed</th><th scope="col">Unmatched</th><th scope="col">Net change</th></tr></thead><tbody id="monthly-rows">$monthly_rows</tbody></table></div></details>
+      <section class="chart-card wide" aria-labelledby="cumulative-title">
+        <div class="card-heading">
+          <h2 id="cumulative-title">Cumulative progress over time</h2>
+          <div class="card-controls">
+            <label class="compact-control"><span class="visually-hidden">Cumulative scale</span><select id="cumulative-mode" disabled><option value="counts">Number of problems</option><option value="share">% of all problems</option></select></label>
+          </div>
+        </div>
+        <p id="cumulative-description" class="chart-explanation">Total resolved problems over time across the active catalog and combined union.</p>
+        <div id="cumulative-legend" class="chart-legend">$cumulative_legend</div>
+        <div class="trend-plot">$cumulative</div>
+        <p class="chart-readout" aria-live="polite">$cumulative_readout</p>
       </section>
       <section class="chart-card" aria-labelledby="formal-title">
         <div class="card-heading"><h2 id="formal-title">Resolved problems in Lean</h2><label class="compact-control"><span class="visually-hidden">Formalization view</span><select id="formal-mode" disabled><option value="counts">Number of problems</option><option value="coverage">Percentage in Lean</option></select></label></div>
-        <p id="formal-description" class="chart-explanation">The shaded gap shows resolved problems with no Lean solution recorded</p>
+        <p id="formal-description" class="chart-explanation">Shaded area shows resolved problems without a recorded Lean proof.</p>
         <div class="chart-legend"><span id="formal-total-key"><i style="--key:#3977bd"></i>Resolved</span><span><i style="--key:#298761"></i>Of those, in Lean</span></div>
         <div class="trend-plot">$formal</div><p class="chart-readout" aria-live="polite">$formal_readout</p>
-
       </section>
       <section class="chart-card" id="release-comparison" aria-labelledby="release-title">
         <h2 id="release-title">Before and after a model release</h2>
-        <p id="release-description" class="chart-explanation">Compare observed changes to resolved across two 30-day windows around the release date. The data does not tell us whether the model helped.</p>
+        <p id="release-description" class="chart-explanation">Observed changes to resolved in the 30 days before vs. after release (timeline context, not attribution).</p>
         <label class="release-picker" for="compare-release">Model release <select id="compare-release" disabled>$release_options</select></label>
         <p id="release-source"></p>
         <div class="window-comparison"><article><span>30 days before</span><strong id="before-rate">—</strong><p id="before-count">Choose a release to compare</p><small id="before-range"></small></article><article><span>Release day + 29 days</span><strong id="after-rate">—</strong><p id="after-count">Choose a release to compare</p><small id="after-range"></small></article></div>
         <p id="window-verdict" class="window-verdict" aria-live="polite"></p>
-        <details id="window-uncertainty" class="window-uncertainty" hidden><summary>Why timing is uncertain</summary>
+        <details id="window-uncertainty" class="window-uncertainty" hidden><summary>Boundary intervals</summary>
           <p>The lower count includes changes whose whole snapshot interval is inside the window. The upper count also includes changes that could fall on either side of a boundary. The same uncertain changes may appear in both ranges; do not add the upper counts.</p>
           <ul id="window-intervals"></ul>
         </details>
-        <p class="chart-note">Windows use UTC dates, not launch times. Ranges cover only changes captured between saved snapshots; missed changes are not estimated. Nearby release windows can overlap.</p>
+        <p class="chart-note">Windows use UTC dates, not launch times. Captured snapshot transitions only; nearby release windows overlap.</p>
+      </section>
+      <section class="chart-card wide" aria-labelledby="composition-title">
+        <div class="card-heading"><h2 id="composition-title">Monthly changes</h2><a href="../problems.json" download>Download data ↗</a></div>
+        <p id="composition-description" class="chart-explanation">Status changes vs. database additions by month. Select a bar to see the problems.</p>
+        <div class="chart-legend"><span><i style="--key:#3977bd"></i><span data-change-label="gained">Marked resolved</span></span><span><i style="--key:#9fbfe3"></i><span data-change-label="added">Added as resolved</span></span><span data-baseline-key hidden><i style="--key:#8873b7"></i>From catalog baseline</span><span><i style="--key:#dd7b80"></i><span data-change-label="lost">No longer resolved</span></span><span><i style="--key:#a74559"></i>Removed from database</span><span><i style="--key:#9b94ae"></i>Unmatched changes</span><span><i class="dot" style="--key:#17253c"></i>Net change</span></div>
+        <p class="chart-note baseline-guide" data-baseline-key hidden><strong>From catalog baseline</strong> marks results already in a later catalog’s first snapshot (included in Combined totals, excluded from Pace).</p>
+        <div class="trend-plot">$composition</div><p class="chart-readout" aria-live="polite">$composition_readout</p>
+        <details id="monthly-table"><summary>View monthly totals</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Monthly totals; scroll horizontally on small screens"><table><thead><tr><th scope="col">Month</th><th scope="col" data-change-label="gained">Marked resolved</th><th scope="col" data-change-label="added">Added as resolved</th><th scope="col" data-baseline-key hidden>From catalog baseline</th><th scope="col" data-change-label="lost">No longer resolved</th><th scope="col">Removed</th><th scope="col">Unmatched</th><th scope="col">Net change</th></tr></thead><tbody id="monthly-rows">$monthly_rows</tbody></table></div></details>
       </section>
       <section id="problem-changes" class="chart-card wide" aria-labelledby="changes-title">
         <div class="card-heading"><h2 id="changes-title" tabindex="-1">What changed</h2><div class="records-controls"><label for="records-month">Period</label><select id="records-month" disabled><option id="records-recent" value="recent" selected>Latest 30-day window</option><option id="records-selected" value="selected" hidden>Selected chart point</option>$month_options</select></div></div>
         <p id="records-count" class="records-count" role="status">$records_count</p>
         <p id="records-scope" class="chart-note">$records_scope</p>
         <div class="records-scroll" tabindex="0" role="region" aria-label="Recorded problem changes"><table><thead><tr><th scope="col">Problem</th><th scope="col">Recorded on</th><th scope="col">Change</th><th scope="col">Between snapshots</th><th scope="col">Source</th></tr></thead><tbody id="record-rows">$record_rows</tbody></table></div>
-        <p class="chart-note">Problem links show today’s page. “View revisions” shows the historical changes. Repeated changes count separately.</p>
+        <p class="chart-note">Problem links open today’s page; revision links open the historical diff. Repeated changes count separately.</p>
       </section>
     </div>
     <footer id="about-data" class="trends-footer">
-
       <details id="methodology" class="trend-method"><summary>How the numbers are counted</summary>
         <p>Upstream moved its <a href="https://github.com/teorth/erdosproblems/blob/main/STATISTICS.md">summary statistics</a> off the README and <a href="https://github.com/teorth/erdosproblems#progress">froze its own progress chart</a> on October 6, 2026. Its problem data remains active. This independent view reads that data and checks the latest counts against the upstream summary on each refresh.</p>
         <p>Each catalog defines which statuses count as resolved. Bloom–Tao counts proved, disproved, and otherwise solved. Plasma includes accepted independence results. Combined uses the union by problem number.</p>
         <p>A statement in Lean expresses the question in a formal language. A solution in Lean records a formal proof or disproof. Neither identifies who or what produced it; human review of the problem’s status can lag formalization.</p>
-        <p>Model markers show selected public Claude releases and OpenAI API releases, not a complete release history. Their dates provide context; comparing windows does not establish that a model caused a change.</p>
-        <p>Each catalog starts with its first usable snapshot as the baseline. Combined starts at the earliest catalog snapshot and carries forward each catalog's last observation. When a catalog joins, its opening balance contributes to totals and appears as a baseline in monthly changes. Pace and release comparisons count changes after a catalog's first snapshot. Lean statement metrics use catalogs that report them.</p>
+        <p>Model markers show selected public Claude, OpenAI, and Google Gemini releases (toggle “All” on the pace chart for the full catalog in <code>model-releases.json</code>). Dates provide timeline context; comparing windows does not establish causation.</p>
+        <p>Each catalog starts with its first usable snapshot as the baseline. Combined starts at the earliest catalog snapshot and carries forward each catalog’s last observation. When a catalog joins, its opening balance contributes to totals and appears as a baseline in monthly changes. Pace and release comparisons count changes after a catalog’s first snapshot. Lean statement metrics use catalogs that report them.</p>
         <p class="trend-finding">The resolved share rose from <strong>$first_share to $last_share</strong>. The database grew by $total_delta problems; unresolved problems went from $first_open to $last_open.</p>
         <p class="count-reconciliation">$reconciliation</p>
         <p>Daily averages count changes to existing problems. Each window starts at the last snapshot on or before its target start date. The count is divided by the actual days elapsed, shown below the chart.</p>
         <p>Monthly bars count changes in the month they first appear. The first and last months may be partial. All categories add up to the net change.</p>
-        <p>Release comparisons use the 30 UTC dates before the release date and the 30 dates starting with it. An observed change is definitely inside a window only when its whole snapshot interval fits inside it. Intervals spanning a boundary contribute to a possible upper count, not a definite count. This includes snapshots on the boundary date because dates alone do not locate a change within that day. Exact rates require a complete window with no such uncertainty; a multiplier requires two such windows and a nonzero preceding count. These are bounds on captured changes, not all mathematical activity or all database edits.</p>
+        <p>Release comparisons use the 30 UTC dates before the release date and the 30 dates starting with it. An observed change is definitely inside a window only when its whole snapshot interval fits inside it. Intervals spanning a boundary contribute to a possible upper count, not a definite count. When a window has boundary-spanning intervals, the card displays the bounded rate range rather than inventing an exact rate or multiplier. Bounds cover captured changes, not all mathematical activity or all database edits.</p>
         <p>Gaps include days without updates and revisions skipped for invalid status data. Changes between snapshots may be missed or recorded later. Duplicate problem numbers cannot be matched reliably; their effect appears as “unmatched changes.”</p>
       </details>
       <p>Catalog revisions and licenses · $comparison_links</p>

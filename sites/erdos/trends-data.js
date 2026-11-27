@@ -161,10 +161,15 @@
 
   function defaultRelease(data, releases) {
     const start = time(data.points[0].date), end = time(coveredThrough(data, 'resolved'));
-    const eligible = releases.filter(release => time(release.date) - 30*DAY > start &&
-      time(release.date) + 30*DAY <= end && !coverageChanged(data, 'resolved', time(release.date), 30));
+    const pick = pool => {
+      const eligible = pool.filter(release => time(release.date) - 30*DAY > start &&
+        time(release.date) + 30*DAY <= end && !coverageChanged(data, 'resolved', time(release.date), 30));
+      return eligible.at(-1);
+    };
+    const featured = releases.filter(release => release.featured !== false);
+    const observedFeatured = featured.filter(release => release.date <= data.points.at(-1).date);
     const observed = releases.filter(release => release.date <= data.points.at(-1).date);
-    return (eligible.at(-1) || observed.at(-1) || releases[0])?.id;
+    return (pick(featured) || pick(releases) || observedFeatured.at(-1) || observed.at(-1) || featured[0] || releases[0])?.id;
   }
 
   function monthly(data, metric) {
@@ -232,7 +237,9 @@
       // A first snapshot on the starting date may be partway through that day.
       const complete = start > time(data.points[0].date) && end <= time(coveredThrough(data, metric));
       return {start: iso(start), end: iso(end), count, uncertain, possible: count + uncertain,
-        complete, rate: complete && !uncertain && !changed ? count / days : null};
+        complete, rate: complete && !uncertain && !changed ? count / days : null,
+        minRate: complete && !changed ? count / days : null,
+        maxRate: complete && !changed ? (count + uncertain) / days : null};
     };
     const before = evaluate(release - days * DAY, release), after = evaluate(release, release + days * DAY);
     const intervals = [...uncertainIntervals].map(([interval, observed]) => ({...interval, start:observed.start,

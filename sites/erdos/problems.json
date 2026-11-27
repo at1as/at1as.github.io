@@ -4,13 +4,13 @@
     {
       "id": "bloom-tao",
       "label": "Bloom–Tao",
-      "date": "2026-11-19",
-      "revision": "bd23334a26c06d02dbfae2a7bcb47dcce3e09d33",
-      "url": "https://github.com/teorth/erdosproblems/blob/bd23334a26c06d02dbfae2a7bcb47dcce3e09d33/data/problems.yaml",
+      "date": "2026-11-24",
+      "revision": "706c140ecbb4791e11c19b1e9196078daf2b7862",
+      "url": "https://github.com/teorth/erdosproblems/blob/706c140ecbb4791e11c19b1e9196078daf2b7862/data/problems.yaml",
       "repository": "https://github.com/teorth/erdosproblems",
       "repository_created_at": "2025-08-31T16:20:38Z",
       "website_url": "https://www.erdosproblems.com/",
-      "policy_url": "https://github.com/teorth/erdosproblems/blob/bd23334a26c06d02dbfae2a7bcb47dcce3e09d33/CONTRIBUTING.md",
+      "policy_url": "https://github.com/teorth/erdosproblems/blob/706c140ecbb4791e11c19b1e9196078daf2b7862/CONTRIBUTING.md",
       "resolved_statuses": [
         "disproved",
         "proved",
@@ -14201,9 +14201,140 @@
               ]
             ]
           }
+        },
+        {
+          "date": "2026-11-22",
+          "commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe",
+          "changes": {
+            "3": [
+              [
+                "lean",
+                "statements"
+              ]
+            ],
+            "14": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "81": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "96": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "97": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "108": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "131": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "143": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "184": [
+              [
+                "lean",
+                "statements"
+              ]
+            ],
+            "196": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "293": [
+              [
+                "resolved"
+              ]
+            ],
+            "304": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "482": [
+              [
+                "resolved",
+                "lean",
+                "statements"
+              ]
+            ],
+            "625": [
+              [
+                "resolved",
+                "lean",
+                "statements"
+              ]
+            ],
+            "857": [
+              [
+                "resolved",
+                "statements"
+              ]
+            ],
+            "1219": [
+              [
+                "resolved",
+                "lean",
+                "statements"
+              ]
+            ]
+          }
+        },
+        {
+          "date": "2026-11-23",
+          "commit": "22c8e12a88aaf3f9a2fa5fbeba28f95a266a5b65",
+          "changes": {
+            "693": [
+              [
+                "statements"
+              ]
+            ],
+            "768": [
+              [
+                "statements"
+              ]
+            ]
+          }
+        },
+        {
+          "date": "2026-11-24",
+          "commit": "706c140ecbb4791e11c19b1e9196078daf2b7862",
+          "changes": {
+            "1184": [
+              [
+                "statements"
+              ]
+            ]
+          }
         }
       ],
-      "license": "https://github.com/teorth/erdosproblems/blob/bd23334a26c06d02dbfae2a7bcb47dcce3e09d33/LICENSE",
+      "license": "https://github.com/teorth/erdosproblems/blob/706c140ecbb4791e11c19b1e9196078daf2b7862/LICENSE",
       "license_id": "Apache-2.0",
       "license_label": "Apache 2.0"
     },
@@ -19542,8 +19673,18 @@
         "bloom-tao": {
           "status": "open",
           "lean_statement": true,
-          "lean_solution": false,
-          "evidence": []
+          "lean_solution": true,
+          "evidence": [
+            {
+              "kind": "lean_proof",
+              "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/OAI/Combinatorics/Progressions/Results/Conclusions.lean#L38",
+              "scope": "full",
+              "revision": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+              "verification": [
+                "lean"
+              ]
+            }
+          ]
         },
         "plasma": {
           "status": "proved",
@@ -20107,10 +20248,12 @@
       "number": 14,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "solved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "solved",
@@ -22801,10 +22944,12 @@
       "number": 81,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "proved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "claimed",
@@ -23262,10 +23407,12 @@
       "number": 96,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "disproved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "disproved",
@@ -23309,10 +23456,12 @@
       "number": 97,
       "sources": {
         "bloom-tao": {
-          "status": "falsifiable",
+          "status": "disproved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "claimed",
@@ -23572,10 +23721,12 @@
       "number": 108,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "disproved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "disproved",
@@ -24619,10 +24770,12 @@
       "number": 131,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "disproved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "disproved",
@@ -24946,7 +25099,7 @@
       "number": 137,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "verifiable",
           "lean_statement": true,
           "lean_solution": false,
           "evidence": []
@@ -25284,10 +25437,12 @@
       "number": 143,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "solved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "claimed",
@@ -25610,7 +25765,7 @@
       "number": 149,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "falsifiable",
           "lean_statement": false,
           "lean_solution": false,
           "evidence": []
@@ -25756,7 +25911,7 @@
       "number": 151,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "falsifiable",
           "lean_statement": true,
           "lean_solution": false,
           "evidence": []
@@ -27168,8 +27323,18 @@
         "bloom-tao": {
           "status": "open",
           "lean_statement": true,
-          "lean_solution": false,
-          "evidence": []
+          "lean_solution": true,
+          "evidence": [
+            {
+              "kind": "lean_proof",
+              "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/OAI/Combinatorics/CycleDecomposition/Main.lean#L207",
+              "scope": "full",
+              "revision": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+              "verification": [
+                "lean"
+              ]
+            }
+          ]
         },
         "plasma": {
           "status": "proved",
@@ -27767,10 +27932,12 @@
       "number": 196,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "disproved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "disproved",
@@ -32266,10 +32433,12 @@
       "number": 293,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "solved",
           "lean_statement": false,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "open",
@@ -32779,10 +32948,12 @@
       "number": 304,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "proved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "proved",
@@ -39428,8 +39599,18 @@
         "bloom-tao": {
           "status": "solved",
           "lean_statement": true,
-          "lean_solution": false,
-          "evidence": [],
+          "lean_solution": true,
+          "evidence": [
+            {
+              "kind": "lean_proof",
+              "url": "https://github.com/gotrevor/lean-gallery/blob/a834bbad2f36eedcc16066b2bc4da49f98ab5b85/LeanGallery/NumberTheory/Erdos482/Statement.lean",
+              "scope": "full",
+              "revision": "a834bbad2f36eedcc16066b2bc4da49f98ab5b85",
+              "verification": [
+                "lean"
+              ]
+            }
+          ],
           "terminal_by": "2025-09-03",
           "terminal_commit": "4c384e216c18874b7f950b0cf9bd622b84b6ec95"
         },
@@ -44549,10 +44730,12 @@
       "number": 595,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "not_disprovable",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "open",
@@ -44725,10 +44908,12 @@
       "number": 601,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "not_provable",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "open",
@@ -45667,10 +45852,12 @@
       "number": 623,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "independent",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "claimed",
@@ -45703,8 +45890,18 @@
         "bloom-tao": {
           "status": "solved",
           "lean_statement": true,
-          "lean_solution": false,
-          "evidence": [],
+          "lean_solution": true,
+          "evidence": [
+            {
+              "kind": "lean_proof",
+              "url": "https://github.com/SamPetkov/Erdos/blob/22a2c9fd635c613113dab5c54414b7cd35d8eb58/625/formalization/Erdos625SelfContained.lean",
+              "scope": "full",
+              "revision": "22a2c9fd635c613113dab5c54414b7cd35d8eb58",
+              "verification": [
+                "lean"
+              ]
+            }
+          ],
           "terminal_on": "2026-09-05",
           "terminal_commit": "b17335bedda8c2aeea16eefe04f941c59745dc1e"
         },
@@ -47608,7 +47805,7 @@
       "number": 677,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "falsifiable",
           "lean_statement": true,
           "lean_solution": false,
           "evidence": []
@@ -48043,7 +48240,7 @@
       "sources": {
         "bloom-tao": {
           "status": "open",
-          "lean_statement": false,
+          "lean_statement": true,
           "lean_solution": false,
           "evidence": []
         },
@@ -48309,7 +48506,7 @@
       "number": 701,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "falsifiable",
           "lean_statement": true,
           "lean_solution": false,
           "evidence": []
@@ -49905,10 +50102,12 @@
       "number": 740,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "not_provable",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "claimed",
@@ -51311,7 +51510,7 @@
       "sources": {
         "bloom-tao": {
           "status": "open",
-          "lean_statement": false,
+          "lean_statement": true,
           "lean_solution": false,
           "evidence": []
         },
@@ -54442,7 +54641,7 @@
       "number": 850,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "verifiable",
           "lean_statement": true,
           "lean_solution": false,
           "evidence": [
@@ -54642,10 +54841,12 @@
       "number": 857,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "proved",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "open",
@@ -57033,10 +57234,12 @@
       "number": 918,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "not_disprovable",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "open",
@@ -66790,7 +66993,7 @@
       "number": 1160,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "falsifiable",
           "lean_statement": true,
           "lean_solution": false,
           "evidence": []
@@ -67005,10 +67208,12 @@
       "number": 1168,
       "sources": {
         "bloom-tao": {
-          "status": "open",
+          "status": "not_disprovable",
           "lean_statement": true,
           "lean_solution": false,
-          "evidence": []
+          "evidence": [],
+          "terminal_on": "2026-11-22",
+          "terminal_commit": "8e3d61bff616e6c6498d046eb6f0dd42cf4d9afe"
         },
         "plasma": {
           "status": "open",
@@ -67549,7 +67754,7 @@
       "sources": {
         "bloom-tao": {
           "status": "open",
-          "lean_statement": false,
+          "lean_statement": true,
           "lean_solution": false,
           "evidence": []
         },
@@ -68680,8 +68885,17 @@
         "bloom-tao": {
           "status": "proved",
           "lean_statement": true,
-          "lean_solution": false,
-          "evidence": [],
+          "lean_solution": true,
+          "evidence": [
+            {
+              "kind": "lean_proof",
+              "url": "https://github.com/jbaelaw/erdos1219-lean",
+              "scope": "full",
+              "verification": [
+                "lean"
+              ]
+            }
+          ],
           "terminal_on": "2026-09-18",
           "terminal_commit": "b3376bfe3ad1993e9724db93dd4e9181ef3665a1"
         },
