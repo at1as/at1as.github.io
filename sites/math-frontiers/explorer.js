@@ -20,9 +20,12 @@
   let tooltipHighlights = [];
   const rows = () => M.milestones(problem, $('include-reports').checked);
   const V = window.FrontiersView;
-  const {metric, shortMetric} = V;
+  const { metric, shortMetric } = V;
+
   function renderNav() {
-    $('problem-nav').innerHTML = V.navigation(data, $('include-reports').checked, problem.id);
+    const includeReports = $('include-reports').checked;
+    $('problem-nav').innerHTML = V.navigation(data, includeReports, problem.id);
+    $('collection-summary').textContent = M.collectionSummary(data, includeReports);
   }
 
   function renderRiemannNavigation() {
@@ -31,23 +34,24 @@
     $('progress-view').hidden = isRiemann && riemannView === 'regions';
     $('region-view').hidden = !isRiemann || riemannView !== 'regions';
     if (isRiemann) {
-      $('progress-view').setAttribute('role','tabpanel');
-      $('progress-view').setAttribute('aria-labelledby','proportion-tab');
+      $('progress-view').setAttribute('role', 'tabpanel');
+      $('progress-view').setAttribute('aria-labelledby', 'proportion-tab');
     } else {
       $('progress-view').removeAttribute('role');
       $('progress-view').removeAttribute('aria-labelledby');
     }
-    $('riemann-views').querySelectorAll('[data-riemann-view]').forEach(button=>{
+    $('riemann-views').querySelectorAll('[data-riemann-view]').forEach(button => {
       const selected = button.dataset.riemannView === riemannView;
-      button.setAttribute('aria-selected',String(selected));
+      button.setAttribute('aria-selected', String(selected));
       button.tabIndex = selected ? 0 : -1;
     });
   }
 
   function renderRegion() {
     hideTooltip();
-    const available = M.regions(problem, $('include-reports').checked);
-    const region = available.find(r=>r.id===regionId) || available.at(-1);
+    const includeReports = $('include-reports').checked;
+    const available = M.regions(problem, includeReports);
+    const region = available.find(r => r.id === regionId) || available.at(-1);
     regionId = region.id;
     const b = M.regionBounds(region);
     const conjecture = region.status === 'conjecture';
@@ -55,20 +59,22 @@
     const onLine = b.lower === b.upper;
     const range = M.regionRange(region);
     const evidence = M.regionEvidence(region);
-    $('region-controls').querySelectorAll('[data-region]').forEach(button=>{
-      const comparison = problem.zeroFreeRegions.find(r=>r.id===button.dataset.region);
+    $('region-controls').querySelectorAll('[data-region]').forEach(button => {
+      const comparison = problem.zeroFreeRegions.find(r => r.id === button.dataset.region);
       button.disabled = !available.includes(comparison);
-      button.setAttribute('aria-pressed',String(comparison===region));
+      button.setAttribute('aria-pressed', String(comparison === region));
       button.querySelector('small').textContent = M.regionEvidence(comparison);
     });
-    $('region-filter-note').hidden = $('include-reports').checked;
+    $('region-filter-note').hidden = includeReports;
+    $('region-extra-note').hidden = !includeReports;
     $('region-metric-label').textContent = verified ? 'Location of every nontrivial zero' :
       conjecture ? 'Conjectured location of every nontrivial zero' : 'Location bound for every nontrivial zero';
     $('region-value').textContent = range;
     $('region-status').textContent = evidence;
-    $('region-status').className = 'status' + (conjecture ? ' conjecture' : M.reported(region) ? ' report' : '');
+    $('region-status').className = 'status' + (conjecture ? ' conjecture' : verified ? ' verified' : M.reported(region) ? ' report' : '');
     $('region-date').textContent = region.dateLabel;
     $('region-evidence').textContent = `${region.dateLabel} / ${evidence}`;
+    $('region-evidence').className = 'eyebrow' + (verified ? ' verified' : M.reported(region) ? ' report' : '');
     $('region-title').textContent = region.title;
     $('region-detail').textContent = region.detail;
     $('region-who').textContent = region.who;
@@ -76,12 +82,18 @@
     $('region-source').textContent = verified ? 'Read Alpöge’s announcement ↗' :
       conjecture ? 'Read about the conjecture ↗' : 'Read the preprint ↗';
     const leanSource = $('region-lean-source');
-    const leanUrl = region.leanEvidence?.url;
-    leanSource.hidden = !leanUrl;
-    if (leanUrl) leanSource.href = leanUrl;
+    const secondaryUrl = region.leanEvidence?.url || region.verificationUrl;
+    leanSource.hidden = !secondaryUrl;
+    if (secondaryUrl) {
+      leanSource.href = secondaryUrl;
+      leanSource.textContent = region.verificationUrl ? 'Lean & Mathlib verification ↗' : 'Lean evidence ↗';
+    } else {
+      leanSource.removeAttribute('href');
+    }
     $('region-ai-note').hidden = !$('show-ai').checked;
-    $('region-ai-note').textContent = region.ai ? 'AI contribution · '+region.ai : 'The Riemann hypothesis was formulated in 1859; this comparison does not represent an AI result.';
+    $('region-ai-note').textContent = region.ai ? 'AI contribution · ' + region.ai : 'The Riemann hypothesis was formulated in 1859; this comparison does not represent an AI result.';
     $('permitted-legend').hidden = onLine;
+    $('critical-legend-line').className = 'legend-line' + (verified ? ' verified' : '');
     const latest = rows().at(-1);
     $('region-proportion-comparison').textContent = latest.status === 'verified'
       ? `Full RH places ${latest.display} of nontrivial zeros on the critical line.`
@@ -92,33 +104,34 @@
       `The ${region.label} preprint reports that every nontrivial zero lies in ${range}.`;
 
     const width = Math.max(240, $('region-diagram').clientWidth), height = 320;
-    const left = 38, right = 18, top = 42, bottom = 240, plotW = width-left-right;
-    const x = value => left+value*plotW;
+    const left = 38, right = 18, top = 42, bottom = 240, plotW = width - left - right;
+    const x = value => left + value * plotW;
     const description = `${evidence}. ${range}. ${$('region-location-comparison').textContent} The restriction extends to every height.`;
     const excludedTip = verified ? 'Excluded by full RH · Lean-verified proof' :
       conjecture ? 'Excluded if RH is true · conjecture' : `Excluded by the ${region.label} preprint`;
     const permittedTip = `${range}\nPermitted locations; not a distribution of zeros`;
     const lineTip = verified ? '\nEvery nontrivial zero lies here' : conjecture ? '\nEvery nontrivial zero would lie here under RH' : '';
-    const boundary = (value,label,side) => {
+    const lineModifier = verified ? ' verified' : '';
+    const boundary = (value, label, side) => {
       const exactDecimal = Number(value.toFixed(6));
-      const tip = `${side} boundary · β = ${label}\n${value===exactDecimal?'=':'≈'} ${exactDecimal}\n${evidence}`;
-      return `<g data-tooltip="${escape(tip)}" tabindex="0" role="img" aria-label="${escape(tip)}"><line x1="${x(value)}" x2="${x(value)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line class="region-boundary" x1="${x(value)}" x2="${x(value)}" y1="${top}" y2="${bottom}"/><circle cx="${x(value)}" cy="${bottom}" r="4" class="region-boundary-dot"/><text class="boundary-label" x="${x(value)}" y="${bottom+44}" text-anchor="middle">${label}</text></g>`;
+      const tip = `${side} boundary · β = ${label}\n${value === exactDecimal ? '=' : '≈'} ${exactDecimal}\n${evidence}`;
+      return `<g data-tooltip="${escape(tip)}" tabindex="0" role="img" aria-label="${escape(tip)}"><line x1="${x(value)}" x2="${x(value)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line class="region-boundary" x1="${x(value)}" x2="${x(value)}" y1="${top}" y2="${bottom}"/><circle cx="${x(value)}" cy="${bottom}" r="4" class="region-boundary-dot"/><text class="boundary-label" x="${x(value)}" y="${bottom + 44}" text-anchor="middle">${label}</text></g>`;
     };
     $('region-diagram').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="group" aria-labelledby="region-svg-title region-svg-desc">
       <title id="region-svg-title">${escape(region.label)}: permitted locations of zeta zeros</title><desc id="region-svg-desc">${escape(description)}</desc>
-      <defs><pattern id="excluded-hatch" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M-1,1L1,-1M0,7L7,0M6,8L8,6" stroke="#9eB7a1" stroke-width=".6"/></pattern></defs>
-      <rect x="${left}" y="${top}" width="${plotW}" height="${bottom-top}" fill="#e8efe6"/>
-      <rect x="${left}" y="${top}" width="${plotW}" height="${bottom-top}" fill="url(#excluded-hatch)" data-tooltip="${escape(excludedTip)}"/>
-      ${onLine?'':`<rect class="permitted-strip" x="${x(b.lower)}" y="${top}" width="${x(b.upper)-x(b.lower)}" height="${bottom-top}" fill="#fcf3e6" data-tooltip="${escape(permittedTip)}"/>`}
-      <path d="M${left},${top}H${width-right}M${left},${bottom}H${width-right}" stroke="#aab9ad" stroke-dasharray="3 4"/>
-      <text x="${x(.5)}" y="20" text-anchor="middle" class="critical-label">Critical line β = ½</text>
-      <path d="M${x(.5)-4},${top+5}L${x(.5)},${top}L${x(.5)+4},${top+5}M${x(.5)-4},${bottom-5}L${x(.5)},${bottom}L${x(.5)+4},${bottom-5}" class="critical-line"/>
-      <g tabindex="0" role="img" aria-label="Critical line: real part β = ½" data-tooltip="${escape('Critical line · β = ½ = 0.5'+lineTip)}"><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" class="critical-line${onLine?' rh-line':''}"/></g>
-      ${onLine?'':boundary(b.lower,b.lowerLabel,'Left')+boundary(b.upper,b.upperLabel,'Right')}
-      <text x="${left}" y="${bottom+23}" text-anchor="middle">0</text><text x="${x(.5)}" y="${bottom+23}" text-anchor="middle">½</text><text x="${width-right}" y="${bottom+23}" text-anchor="middle">1</text>
-      <text x="${x(.5)}" y="${height-8}" text-anchor="middle">Real part β →</text>
-      <text transform="translate(15 ${(top+bottom)/2}) rotate(-90)" text-anchor="middle">Height γ · all heights</text>
-      ${onLine?`<text class="region-caption" x="${x(.5)+12}" y="${(top+bottom)/2}">All nontrivial</text><text class="region-caption" x="${x(.5)+12}" y="${(top+bottom)/2+18}">zeros lie here</text>`:''}
+      <defs><pattern id="excluded-hatch" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M-1,1L1,-1M0,7L7,0M6,8L8,6" stroke="#9eb7a1" stroke-width=".6"/></pattern></defs>
+      <rect x="${left}" y="${top}" width="${plotW}" height="${bottom - top}" fill="#e8efe6"/>
+      <rect x="${left}" y="${top}" width="${plotW}" height="${bottom - top}" fill="url(#excluded-hatch)" data-tooltip="${escape(excludedTip)}"/>
+      ${onLine ? '' : `<rect class="permitted-strip" x="${x(b.lower)}" y="${top}" width="${x(b.upper) - x(b.lower)}" height="${bottom - top}" fill="#fcf3e6" data-tooltip="${escape(permittedTip)}"/>`}
+      <path d="M${left},${top}H${width - right}M${left},${bottom}H${width - right}" stroke="#aab9ad" stroke-dasharray="3 4"/>
+      <text x="${x(.5)}" y="20" text-anchor="middle" class="critical-label${lineModifier}">Critical line β = ½</text>
+      <path d="M${x(.5) - 4},${top + 5}L${x(.5)},${top}L${x(.5) + 4},${top + 5}M${x(.5) - 4},${bottom - 5}L${x(.5)},${bottom}L${x(.5) + 4},${bottom - 5}" class="critical-line${lineModifier}"/>
+      <g tabindex="0" role="img" aria-label="Critical line: real part β = ½" data-tooltip="${escape('Critical line · β = ½ = 0.5' + lineTip)}"><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" stroke="transparent" stroke-width="14"/><line x1="${x(.5)}" x2="${x(.5)}" y1="${top}" y2="${bottom}" class="critical-line${onLine ? ' rh-line' : ''}${lineModifier}"/></g>
+      ${onLine ? '' : boundary(b.lower, b.lowerLabel, 'Left') + boundary(b.upper, b.upperLabel, 'Right')}
+      <text x="${left}" y="${bottom + 23}" text-anchor="middle">0</text><text x="${x(.5)}" y="${bottom + 23}" text-anchor="middle">½</text><text x="${width - right}" y="${bottom + 23}" text-anchor="middle">1</text>
+      <text x="${x(.5)}" y="${height - 8}" text-anchor="middle">Real part β →</text>
+      <text transform="translate(15 ${(top + bottom) / 2}) rotate(-90)" text-anchor="middle">Height γ · all heights</text>
+      ${onLine ? `<text class="region-caption${lineModifier}" x="${x(.5) + 14}" y="${(top + bottom) / 2}">All nontrivial</text><text class="region-caption${lineModifier}" x="${x(.5) + 14}" y="${(top + bottom) / 2 + 18}">zeros lie here</text>` : ''}
     </svg>`;
   }
 
@@ -133,133 +146,223 @@
   }
 
   function renderGrid(current) {
-    const original=problem.milestones[0].unknown;
-    const unresolved=new Set(current.unknown);
-    const reported=new Set(current.reported || []);
-    let grid='<p class="grid-intro">Each square is one order: 4, 8, 12, …, 2,000. Read left to right.</p><div class="order-grid" aria-hidden="true">';
-    for(let order=4;order<=2000;order+=4)grid+=`<span class="order-cell${unresolved.has(order)?' unknown':reported.has(order)?' resolved':''}" data-cell-order="${order}" data-tooltip="${escape(M.orderText(current,order))}"></span>`;
-    grid+='</div><p class="grid-intro">Inspect the orders that were open in the first snapshot:</p><div class="grid-cases">'+original.map(n=>`<button type="button" data-order="${n}" data-tooltip="${escape(M.orderText(current,n))}" aria-pressed="false">${n}</button>`).join('')+'</div><p class="grid-detail" id="grid-detail" aria-live="polite">Hover over a cell for its order and status, or select an order above.</p>';
-    $('chart').innerHTML=grid;
-    $('chart-unit').textContent='Admissible orders through 2,000 · 500 cases';
-    $('chart-legend').innerHTML='<span class="legend-item">■ Known construction</span><span class="legend-item" style="color:var(--amber)">□ Unresolved</span><span class="legend-item" style="color:var(--amber)">▧ Reported construction</span>';
-    $('chart-note').textContent=problem.chartNote;
+    const original = problem.milestones[0].unknown;
+    const unresolved = new Set(current.unknown);
+    const reported = new Set(current.reported || []);
+    let grid = '<p class="grid-intro">Each square is one order: 4, 8, 12, …, 2,000. Read left to right.</p><div class="order-grid" aria-hidden="true">';
+    for (let order = 4; order <= 2000; order += 4) {
+      grid += `<span class="order-cell${unresolved.has(order) ? ' unknown' : reported.has(order) ? ' resolved' : ''}" data-cell-order="${order}" data-tooltip="${escape(M.orderText(current, order))}"></span>`;
+    }
+    grid += '</div><p class="grid-intro">Inspect the orders that were open in the first snapshot:</p><div class="grid-cases">' +
+      original.map(n => `<button type="button" data-order="${n}" data-tooltip="${escape(M.orderText(current, n))}" aria-pressed="false">${n}</button>`).join('') +
+      '</div><p class="grid-detail" id="grid-detail" aria-live="polite">Hover over a cell for its order and status, or select an order above.</p>';
+    $('chart').innerHTML = grid;
+    $('chart-unit').textContent = 'Admissible orders through 2,000 · 500 cases';
+    $('chart-legend').innerHTML = '<span class="legend-item">■ Known construction</span><span class="legend-item" style="color:var(--amber)">□ Unresolved</span><span class="legend-item" style="color:var(--amber)">▧ Reported construction</span>';
+    $('chart-note').textContent = problem.chartNote;
   }
 
   function render() {
-    const list=rows();
-    index=Math.max(0,Math.min(index<0?list.length-1:index,list.length-1));
-    const m=list[index];
-    $('explorer').hidden=false;
+    const includeReports = $('include-reports').checked;
+    const list = rows();
+    index = Math.max(0, Math.min(index < 0 ? list.length - 1 : index, list.length - 1));
+    const m = list[index];
+    if (problem.id === 'matrix' && mode === 'detail' && !M.inDetailRange(problem, m)) {
+      mode = 'full';
+    }
+    $('explorer').hidden = false;
     renderRiemannNavigation();
-    $('problem-category').textContent=problem.category;
-    $('problem-title').textContent=problem.name;
-    $('metric-label').textContent=problem.metric;
-    $('metric-value').innerHTML=metric(problem,m);
-    $('metric-status').textContent=statusText[m.status];
-    $('metric-status').className='status'+(M.reported(m)?' report':m.status==='verified'?' verified':'');
-    $('metric-date').textContent=m.label;
-    $('question').textContent=problem.question;
-    $('explanation').textContent=problem.explanation;
-    $('event-date').textContent=m.label+' / '+statusText[m.status];
-    $('event-title').textContent=m.title;
-    $('event-detail').textContent=m.detail;
-    $('event-who').textContent=m.who;
-    $('event-source').href=m.url;
+    $('problem-category').textContent = problem.category;
+    $('problem-title').textContent = problem.name;
+    const ps = M.problemStatus(problem, includeReports);
+    $('problem-status').textContent = ps.label;
+    $('problem-status').className = `problem-status ${ps.state}`;
+    $('metric-label').textContent = problem.metricExact && m.lower === m.value ? problem.metricExact : problem.metric;
+    $('metric-value').innerHTML = metric(problem, m);
+    $('metric-status').textContent = statusText[m.status];
+    $('metric-status').className = 'status' + (M.reported(m) ? ' report' : m.status === 'verified' ? ' verified' : '');
+    $('metric-date').textContent = m.label;
+    $('question').textContent = problem.question;
+    $('explanation').textContent = problem.explanation;
+    $('event-date').textContent = m.label + ' / ' + statusText[m.status];
+    $('event-date').className = 'eyebrow' + (m.status === 'verified' ? ' verified' : M.reported(m) ? ' report' : '');
+    $('event-title').textContent = m.title;
+    $('event-detail').textContent = m.detail;
+    $('event-who').textContent = m.who;
+    $('event-source').href = m.url;
+    $('event-source').textContent = `${m.sourceLabel || 'Read the source'} ↗`;
     const support = $('event-support');
     if (support) {
       support.hidden = !m.supportUrl;
-      if (m.supportUrl) support.href = m.supportUrl;
-      else support.removeAttribute('href');
+      if (m.supportUrl) {
+        support.href = m.supportUrl;
+        support.textContent = `${m.supportLabel || 'Supporting source'} ↗`;
+      } else {
+        support.removeAttribute('href');
+      }
     }
-    $('interpretation').textContent=problem.interpretation;
-    $('ai-note').hidden=!$('show-ai').checked;
-    $('ai-note').textContent=m.ai ? 'AI contribution · '+m.ai : 'No AI contribution is documented for this milestone in this collection.';
-    $('extra-note').hidden=!problem.note;
-    $('extra-note').innerHTML=problem.note || '';
-    $('milestone-slider').max=String(list.length-1);
-    $('milestone-slider').value=String(index);
-    $('milestone-slider').setAttribute('aria-valuetext',`${m.label}: ${shortMetric(problem,m)}`);
-    $('milestone-position').textContent=`${index+1} / ${list.length}`;
-    $('previous').disabled=index===0;
-    $('next').disabled=index===list.length-1;
-    $('scale-toggle').hidden=!['primes','matrix'].includes(problem.id);
-    $('scale-toggle').textContent=problem.id==='primes' ? (mode==='linear'?'Use log scale':'Use linear scale') : (mode==='detail'?'Show full range':'Zoom near 2.372');
-    $('scale-toggle').setAttribute('aria-pressed',String(mode!=='full'));
+    $('interpretation').textContent = !includeReports && problem.interpretationPublished
+      ? problem.interpretationPublished
+      : problem.interpretation;
+    $('ai-note').hidden = !$('show-ai').checked;
+    $('ai-note').textContent = m.ai ? 'AI contribution · ' + m.ai : 'No AI contribution is documented for this milestone in this collection.';
+    const showExtra = Boolean(problem.note) && (!problem.noteRequiresReports || includeReports);
+    $('extra-note').hidden = !showExtra;
+    $('extra-note').innerHTML = showExtra ? problem.note : '';
+    $('milestone-slider').max = String(list.length - 1);
+    $('milestone-slider').value = String(index);
+    $('milestone-slider').setAttribute('aria-valuetext', `${m.label}: ${shortMetric(problem, m)}`);
+    $('milestone-position').textContent = `${index + 1} / ${list.length}`;
+    $('previous').disabled = index === 0;
+    $('next').disabled = index === list.length - 1;
+    $('scale-toggle').hidden = !['primes', 'matrix'].includes(problem.id);
+    $('scale-toggle').textContent = problem.id === 'primes'
+      ? (mode === 'linear' ? 'Use log scale' : 'Use linear scale')
+      : (mode === 'detail' ? 'Show full range' : 'Zoom 2.371–2.373 plateau');
+    $('scale-toggle').setAttribute('aria-pressed', String(mode !== 'full'));
     if (!$('progress-view').hidden) renderChart(list);
     if (!$('region-view').hidden) renderRegion();
+    $('milestone-list').dataset.dense = String(list.length > 7);
     $('milestone-list').innerHTML = V.milestones(problem, list, index, $('show-ai').checked);
   }
 
   function hideTooltip() {
-    if(tooltipTarget) tooltipTarget.removeAttribute('aria-describedby');
-    tooltipHighlights.forEach(element=>element.classList.remove('tooltip-active'));
-    tooltipHighlights=[];
-    tooltipTarget=null;
-    $('chart-tooltip').hidden=true;
+    if (tooltipTarget) tooltipTarget.removeAttribute('aria-describedby');
+    tooltipHighlights.forEach(element => element.classList.remove('tooltip-active'));
+    tooltipHighlights = [];
+    tooltipTarget = null;
+    $('chart-tooltip').hidden = true;
   }
-  function showTooltip(target,event) {
-    if(!target)return;
-    if(tooltipTarget!==target) {
+
+  function showTooltip(target, event) {
+    if (!target) return;
+    if (tooltipTarget !== target) {
       hideTooltip();
-      tooltipTarget=target;
-      tooltipHighlights=[target];
-      const point=target.dataset.index!==undefined ? $('chart').querySelector(`g[data-index="${target.dataset.index}"]`) : null;
-      const cell=target.dataset.order ? $('chart').querySelector(`[data-cell-order="${target.dataset.order}"]`) : null;
-      if(point && point!==target)tooltipHighlights.push(point);
-      if(cell)tooltipHighlights.push(cell);
-      tooltipHighlights.forEach(element=>element.classList.add('tooltip-active'));
+      tooltipTarget = target;
+      tooltipHighlights = [target];
+      const point = target.dataset.index !== undefined ? $('chart').querySelector(`g[data-index="${target.dataset.index}"]`) : null;
+      const cell = target.dataset.order ? $('chart').querySelector(`[data-cell-order="${target.dataset.order}"]`) : null;
+      if (point && point !== target) tooltipHighlights.push(point);
+      if (cell) tooltipHighlights.push(cell);
+      tooltipHighlights.forEach(element => element.classList.add('tooltip-active'));
     }
-    const tooltip=$('chart-tooltip');
-    tooltip.textContent=target.dataset.tooltip;
-    tooltip.hidden=false;
-    target.setAttribute('aria-describedby','chart-tooltip');
-    const rect=target.getBoundingClientRect();
-    const x=event?.clientX ?? rect.left+rect.width/2;
-    const y=event?.clientY ?? rect.bottom;
-    const left=Math.max(10,Math.min(x+14,window.innerWidth-tooltip.offsetWidth-10));
-    const top=y+16+tooltip.offsetHeight<=window.innerHeight-10 ? y+16 : Math.max(10,y-tooltip.offsetHeight-12);
-    tooltip.style.left=`${left}px`;
-    tooltip.style.top=`${top}px`;
+    const tooltip = $('chart-tooltip');
+    tooltip.textContent = target.dataset.tooltip;
+    tooltip.hidden = false;
+    target.setAttribute('aria-describedby', 'chart-tooltip');
+    const rect = target.getBoundingClientRect();
+    const x = event?.clientX ?? rect.left + rect.width / 2;
+    const y = event?.clientY ?? rect.bottom;
+    const left = Math.max(10, Math.min(x + 14, window.innerWidth - tooltip.offsetWidth - 10));
+    const top = y + 16 + tooltip.offsetHeight <= window.innerHeight - 10 ? y + 16 : Math.max(10, y - tooltip.offsetHeight - 12);
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
   }
-  document.addEventListener('pointerover',e=>{if(e.pointerType==='touch')return;const target=e.target.closest('[data-tooltip]');if(target)showTooltip(target,e);});
-  document.addEventListener('pointermove',e=>{if(tooltipTarget && e.target.closest('[data-tooltip]')===tooltipTarget)showTooltip(tooltipTarget,e);});
-  document.addEventListener('pointerout',e=>{if(tooltipTarget && !tooltipTarget.contains(e.relatedTarget))hideTooltip();});
-  document.addEventListener('focusin',e=>showTooltip(e.target.closest('[data-tooltip]')));
-  document.addEventListener('focusout',hideTooltip);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')hideTooltip();});
-  window.addEventListener('scroll',hideTooltip,true);
-  $('chart').addEventListener('keydown',e=>{const dot=e.target.closest('g[data-index]');if(dot && ['Enter',' '].includes(e.key)){e.preventDefault();select(Number(dot.dataset.index));$('chart').querySelector(`g[data-index="${index}"]`)?.focus({preventScroll:true});}});
-  function stop(){if(timer)clearInterval(timer);timer=null;$('play').innerHTML='▶ <span>Play history</span>';$('play').setAttribute('aria-label','Play the milestones');}
-  function select(i){stop();index=i;render();}
-  function switchProblem(id,updateURL=true){const next=data.problems.find(p=>p.id===id);if(!next)return;stop();problem=next;index=-1;mode='full';renderNav();render();if(updateURL)history.replaceState(null,'','#'+id);}
-  function switchRiemannView(view) {
-    stop(); hideTooltip(); riemannView=view; render();
-  }
-  $('riemann-views').addEventListener('click',e=>{const button=e.target.closest('[data-riemann-view]');if(button)switchRiemannView(button.dataset.riemannView);});
-  $('riemann-views').addEventListener('keydown',e=>{
-    if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
-    e.preventDefault();
-    const view=e.key==='Home'?'proportion':e.key==='End'?'regions':riemannView==='proportion'?'regions':'proportion';
-    switchRiemannView(view);
-    $(view==='proportion'?'proportion-tab':'regions-tab').focus();
+
+  document.addEventListener('pointerover', e => { if (e.pointerType === 'touch') return; const target = e.target.closest('[data-tooltip]'); if (target) showTooltip(target, e); });
+  document.addEventListener('pointermove', e => { if (tooltipTarget && e.target.closest('[data-tooltip]') === tooltipTarget) showTooltip(tooltipTarget, e); });
+  document.addEventListener('pointerout', e => { if (tooltipTarget && !tooltipTarget.contains(e.relatedTarget)) hideTooltip(); });
+  document.addEventListener('focusin', e => showTooltip(e.target.closest('[data-tooltip]')));
+  document.addEventListener('focusout', hideTooltip);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hideTooltip(); });
+  window.addEventListener('scroll', hideTooltip, true);
+  $('chart').addEventListener('keydown', e => {
+    const dot = e.target.closest('g[data-index]');
+    if (dot && ['Enter', ' '].includes(e.key)) {
+      e.preventDefault();
+      select(Number(dot.dataset.index));
+      $('chart').querySelector(`g[data-index="${index}"]`)?.focus({ preventScroll: true });
+    }
   });
-  $('region-controls').addEventListener('click',e=>{const button=e.target.closest('[data-region]');if(button&&!button.disabled){regionId=button.dataset.region;renderRegion();}});
-  $('problem-nav').addEventListener('click',e=>{const b=e.target.closest('[data-problem]');if(b){switchProblem(b.dataset.problem);$('problem-nav').querySelector(`[data-problem="${problem.id}"]`).focus({preventScroll:true});}});
-  $('milestone-list').addEventListener('click',e=>{const b=e.target.closest('[data-index]');if(b){select(Number(b.dataset.index));$('milestone-list').querySelector(`[data-index="${index}"]`).focus({preventScroll:true});}});
-  $('chart').addEventListener('click',e=>{const point=e.target.closest('[data-index]');if(point)select(Number(point.dataset.index));const order=e.target.closest('[data-order]');if(order){const n=Number(order.dataset.order),m=rows()[index];$('chart').querySelectorAll('[data-order]').forEach(b=>b.setAttribute('aria-pressed',String(b===order)));$('grid-detail').textContent=`Order ${n}: ${m.unknown.includes(n)?'no construction known in this snapshot':(m.reported||[]).includes(n)?'construction reported in August 2026; the source records an independent check for order 668':'a construction is known in this snapshot'}.`;}});
-  $('milestone-slider').addEventListener('input',e=>select(Number(e.target.value)));
-  $('previous').addEventListener('click',()=>select(Math.max(0,index-1)));
-  $('next').addEventListener('click',()=>select(Math.min(rows().length-1,index+1)));
-  $('include-reports').addEventListener('change',()=>{stop();index=-1;renderNav();render();});
-  $('show-ai').addEventListener('change',()=>{
-    try { localStorage.setItem(aiPreferenceKey,String($('show-ai').checked)); }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+    $('play').innerHTML = '▶ <span>Play history</span>';
+    $('play').setAttribute('aria-label', 'Play the milestones');
+  }
+  function select(i) { stop(); index = i; render(); }
+  function switchProblem(id, updateURL = true) {
+    const next = data.problems.find(p => p.id === id);
+    if (!next) return;
+    stop();
+    problem = next;
+    index = -1;
+    mode = 'full';
+    renderNav();
+    render();
+    if (updateURL) history.replaceState(null, '', '#' + id);
+  }
+  function switchRiemannView(view) {
+    stop();
+    hideTooltip();
+    riemannView = view;
+    render();
+  }
+
+  $('riemann-views').addEventListener('click', e => { const button = e.target.closest('[data-riemann-view]'); if (button) switchRiemannView(button.dataset.riemannView); });
+  $('riemann-views').addEventListener('keydown', e => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+    e.preventDefault();
+    const view = e.key === 'Home' ? 'proportion' : e.key === 'End' ? 'regions' : riemannView === 'proportion' ? 'regions' : 'proportion';
+    switchRiemannView(view);
+    $(view === 'proportion' ? 'proportion-tab' : 'regions-tab').focus();
+  });
+  $('region-controls').addEventListener('click', e => { const button = e.target.closest('[data-region]'); if (button && !button.disabled) { regionId = button.dataset.region; renderRegion(); } });
+  $('problem-nav').addEventListener('click', e => { const b = e.target.closest('[data-problem]'); if (b) { switchProblem(b.dataset.problem); $('problem-nav').querySelector(`[data-problem="${problem.id}"]`).focus({ preventScroll: true }); } });
+  $('milestone-list').addEventListener('click', e => { const b = e.target.closest('[data-index]'); if (b) { select(Number(b.dataset.index)); $('milestone-list').querySelector(`[data-index="${index}"]`).focus({ preventScroll: true }); } });
+  $('chart').addEventListener('click', e => {
+    const point = e.target.closest('[data-index]');
+    if (point) select(Number(point.dataset.index));
+    const order = e.target.closest('[data-order]');
+    if (order) {
+      const n = Number(order.dataset.order), m = rows()[index];
+      $('chart').querySelectorAll('[data-order]').forEach(b => b.setAttribute('aria-pressed', String(b === order)));
+      $('grid-detail').textContent = `Order ${n}: ${m.unknown.includes(n) ? 'no construction known in this snapshot' : (m.reported || []).includes(n) ? 'construction reported in August 2026; the source records an independent check for order 668' : 'a construction is known in this snapshot'}.`;
+    }
+  });
+  $('milestone-slider').addEventListener('input', e => select(Number(e.target.value)));
+  $('previous').addEventListener('click', () => select(Math.max(0, index - 1)));
+  $('next').addEventListener('click', () => select(Math.min(rows().length - 1, index + 1)));
+  $('include-reports').addEventListener('change', () => { stop(); index = -1; mode = 'full'; renderNav(); render(); });
+  $('show-ai').addEventListener('change', () => {
+    try { localStorage.setItem(aiPreferenceKey, String($('show-ai').checked)); }
     catch { /* The toggle still works when browser storage is unavailable. */ }
     render();
   });
-  $('scale-toggle').addEventListener('click',()=>{mode=mode==='full'?(problem.id==='primes'?'linear':'detail'):'full';render();});
-  $('play').addEventListener('click',()=>{if(timer){stop();return;}if(index===rows().length-1)index=0;render();$('play').innerHTML='Ⅱ <span>Pause</span>';$('play').setAttribute('aria-label','Pause the milestones');timer=setInterval(()=>{index++;render();if(index===rows().length-1)stop();},1700);});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
-  window.addEventListener('hashchange',()=>switchProblem(location.hash.slice(1),false));
-  window.addEventListener('resize',()=>{if(!$('region-view').hidden)renderRegion();else renderChart(rows());});
-  renderNav();render();
+  $('scale-toggle').addEventListener('click', () => {
+    if (problem.id === 'primes') {
+      mode = mode === 'full' ? 'linear' : 'full';
+    } else if (problem.id === 'matrix') {
+      if (mode === 'full') {
+        const list = rows();
+        if (!M.inDetailRange(problem, list[index])) {
+          const inRangeIndex = list.findLastIndex(m => M.inDetailRange(problem, m));
+          if (inRangeIndex >= 0) index = inRangeIndex;
+        }
+        mode = 'detail';
+      } else {
+        mode = 'full';
+      }
+    }
+    render();
+  });
+  $('play').addEventListener('click', () => {
+    if (timer) { stop(); return; }
+    if (problem.id === 'matrix' && mode === 'detail') mode = 'full';
+    if (index === rows().length - 1) index = 0;
+    render();
+    $('play').innerHTML = 'Ⅱ <span>Pause</span>';
+    $('play').setAttribute('aria-label', 'Pause the milestones');
+    timer = setInterval(() => {
+      index++;
+      render();
+      if (index === rows().length - 1) stop();
+    }, 1700);
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+  window.addEventListener('hashchange', () => switchProblem(location.hash.slice(1), false));
+  window.addEventListener('resize', () => { if (!$('region-view').hidden) renderRegion(); else renderChart(rows()); });
+  renderNav();
+  render();
 })();

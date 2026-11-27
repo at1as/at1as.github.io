@@ -1,67 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Local Movie Database</title>
-    <script src="../resources/js/jquery-2.1.4.min.js"></script>
-    <script src="../resources/js/bootstrap.min.js"></script>
-    <link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>About — Movie & TV Database | Jason Willems</title>
+    <meta name="description" content="About Media Database, an open-source Python tool that indexes local movie, TV, stand-up, and concert libraries into a searchable static catalog.">
+    <meta name="author" content="Jason Willems">
+    <link rel="canonical" href="https://www.jasonwillems.com/sites/mediadatabase/output/about.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jason Willems">
+    <meta property="og:title" content="About — Movie & TV Database | Jason Willems">
+    <meta property="og:description" content="About Media Database, an open-source Python tool that indexes local movie, TV, stand-up, and concert libraries into a searchable static catalog.">
+    <meta property="og:url" content="https://www.jasonwillems.com/sites/mediadatabase/output/about.html">
+    <meta property="og:image" content="https://www.jasonwillems.com/sites/mediadatabase/output/share-card.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Movie and TV Database: open-source static media catalog with IMDb ratings, dark mode, poster tiles, and live multi-filters.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jasonwillems">
+    <meta name="twitter:creator" content="@jasonwillems">
+    <meta name="twitter:title" content="About — Movie & TV Database | Jason Willems">
+    <meta name="twitter:description" content="About Media Database, an open-source Python tool that indexes local movie, TV, stand-up, and concert libraries into a searchable static catalog.">
+    <meta name="twitter:image" content="https://www.jasonwillems.com/sites/mediadatabase/output/share-card.png">
+    <meta name="twitter:image:alt" content="Movie and TV Database: open-source static media catalog with IMDb ratings, dark mode, poster tiles, and live multi-filters.">
+    <script>
+      if (location.protocol === "https:" && /(^|\.)jasonwillems\.com$/i.test(location.hostname)) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", "G-Q5N6H3PVG2", { page_title: document.title });
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-Q5N6H3PVG2";
+        document.head.appendChild(s);
+      }
+    </script>
+    <script src="../resources/js/theme.js"></script>
+    <script src="../resources/js/catalog_view.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="../resources/css/common.css" rel="stylesheet" type="text/css" />
-    <link href="../resources/favicon.png" rel="shotcut icon" type="image/png"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link href="../resources/favicon.png" rel="shortcut icon" type="image/png"/>
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+      .navbar {
+        box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      }
+      .body-container {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+      }
+      .about-card {
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.15);
+        padding: 3rem;
+        margin-bottom: 2rem;
+      }
+      .about-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .about-header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+      }
+      .about-header p {
+        color: #718096;
+        font-size: 1.1rem;
+      }
+      .info-section {
+        margin-bottom: 2rem;
+      }
+      .info-section h4 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+      }
+      .info-section h4 i {
+        margin-right: 0.5rem;
+        color: #667eea;
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .info-item {
+        padding: 1rem;
+        background-color: #f7fafc;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .info-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+      }
+      .info-item strong {
+        color: #4a5568;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+      .info-item a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .info-item a:hover {
+        color: #764ba2;
+        text-decoration: underline;
+      }
+      .about-card hr {
+        border: none;
+        height: 2px;
+        background: linear-gradient(to right, #667eea, #764ba2);
+        margin: 2rem 0;
+        opacity: 0.3;
+      }
+      .timestamp-footer {
+        text-align: center;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+        border-radius: 8px;
+        margin-top: 2rem;
+      }
+      .timestamp-footer strong {
+        color: #2d3748;
+      }
+      .timestamp-footer span {
+        color: #667eea;
+        font-weight: 600;
+      }
+
+      .about-description {
+        font-size: 1.05rem;
+        color: #4a5568;
+        line-height: 1.7;
+      }
+      .dark-theme .about-description {
+        color: #d0d5dd;
+      }
+
+      /* Dark mode styles */
+      .dark-theme body {
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        color: #fff;
+      }
+      .dark-theme .navbar {
+        background-color: #222 !important;
+      }
+      .dark-theme .about-card {
+        background-color: #2d3748;
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      }
+      .dark-theme .about-header h1 {
+        color: #fff;
+      }
+      .dark-theme .about-header p {
+        color: #cbd5e0;
+      }
+      .dark-theme .info-section h4 {
+        color: #fff;
+      }
+      .dark-theme .info-section h4 i {
+        color: #66b3ff;
+      }
+      .dark-theme .info-item {
+        background-color: #1a202c;
+        border-left-color: #66b3ff;
+      }
+      .dark-theme .info-item:hover {
+        box-shadow: 0 4px 12px rgba(102, 179, 255, 0.3);
+      }
+      .dark-theme .info-item strong {
+        color: #a0aec0;
+      }
+      .dark-theme .info-item a {
+        color: #66b3ff;
+      }
+      .dark-theme .info-item a:hover {
+        color: #99ccff;
+      }
+      .dark-theme .about-card hr {
+        background: linear-gradient(to right, #66b3ff, #99ccff);
+      }
+      .dark-theme .timestamp-footer {
+        background: linear-gradient(135deg, #66b3ff15 0%, #99ccff15 100%);
+      }
+      .dark-theme .timestamp-footer strong {
+        color: #e2e8f0;
+      }
+      .dark-theme .timestamp-footer span {
+        color: #66b3ff;
+      }
+
+      /* Navbar spacing */
+      .navbar-nav .nav-item {
+        margin-right: 1.5rem;
+      }
+
+      /* Active navbar link styling */
+      .navbar-dark .navbar-nav .nav-link.active {
+        font-weight: 700;
+        border-bottom: 3px solid #66b3ff;
+        padding-bottom: 4px;
+      }
+      .dark-theme .navbar-dark .navbar-nav .nav-link.active {
+        color: #66b3ff !important;
+        font-weight: 700;
+        border-bottom: 3px solid #66b3ff;
+      }
+    </style>
+      <style>
+      /* Hosted demo "Fork me on GitHub" corner ribbon */
+      body {
+        position: relative;
+      }
+      .github-fork-ribbon-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 136px;
+        height: 136px;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 4;
+      }
+      .github-fork-ribbon {
+        position: absolute;
+        top: 30px;
+        right: -40px;
+        width: 186px;
+        padding: 5px 0;
+        background: linear-gradient(135deg, #24292f 0%, #1b1f23 100%);
+        color: #ffffff !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-align: center;
+        text-decoration: none !important;
+        transform: rotate(45deg);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+        border-top: 1px dashed rgba(255, 255, 255, 0.35);
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
+        pointer-events: auto;
+        transition: background 0.18s ease, box-shadow 0.18s ease;
+      }
+      .github-fork-ribbon:hover,
+      .github-fork-ribbon:focus-visible {
+        background: linear-gradient(135deg, #0878a4 0%, #03658c 100%);
+        color: #ffffff !important;
+        box-shadow: 0 4px 14px rgba(8, 120, 164, 0.45);
+        outline: none;
+      }
+      @media (min-width: 769px) {
+        nav.navbar {
+          padding-right: 118px;
+        }
+      }
+      @media (max-width: 768px) {
+        .github-fork-ribbon-wrap {
+          width: 108px;
+          height: 108px;
+        }
+        .github-fork-ribbon {
+          top: 22px;
+          right: -36px;
+          width: 152px;
+          font-size: 9.5px;
+          padding: 4px 0;
+        }
+        nav.navbar {
+          padding-right: 78px;
+        }
+      }
+    </style>
   </head>
 
-  <body role="document">
-    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>
-        </div>
+  <body>
+    <div class="github-fork-ribbon-wrap"><a class="github-fork-ribbon" href="https://github.com/at1as/Media-Database" target="_blank" rel="noopener noreferrer" aria-label="Fork Media Database on GitHub">Fork me on GitHub</a></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="./index.html">Movies <span class="badge">1014</span></a></li>
-            <li><a href="./series.html">Series <span class="badge">98</span></a></li>
-            <!--<li><a href="./documentaries.html">Documentaries <span class="badge"></span></a></li>-->
-	          <li class="active"><a href="#">About</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+      <div class="collapse navbar-collapse order-2 order-lg-0" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html">Movies
+              <span class="badge badge-secondary">
+                <span>100</span>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./series.html">Series
+              <span class="badge badge-secondary">
+                <span>25</span>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./standup.html">Standup
+              <span class="badge badge-secondary">
+                <span>15</span>
+              </span>
+            </a>
+          </li>
+        
+  <li class="nav-item">
+    <a class="nav-link" href="./live-music.html">Live Music
+      <span class="badge badge-secondary">
+        
+          <span>7</span>
+        
+      </span>
+    </a>
+  </li>
+
+        </ul>
       </div>
+      
+        <div class="navbar-utilities ml-auto order-lg-1">
+  <label class="theme-toggle">
+  <input class="sr-only" type="checkbox" id="darkModeToggle" role="switch" aria-label="Dark mode" autocomplete="off">
+  <span class="theme-toggle-track" aria-hidden="true">
+    <span class="theme-toggle-sun">☀︎</span>
+    <span class="theme-toggle-moon">☾</span>
+  </span>
+</label>
+  <a class="navbar-about" href="./about.html" title="About" aria-label="About" aria-current="page">
+    <span class="navbar-about-icon" aria-hidden="true">i</span>
+  </a>
+</div>
+      
     </nav>
 
-    <div class="container theme-showcase body-container" role="main">
-      <div class="well col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-        <p>
-          <b>IMDB-Scrape</b> creates a local movie database containing information related to your movie collection.
-          Webpages are staticly generated and uploaded to the <i>_output/</i> directory. Rerun the script every
-          time a new file is added to the directory
-        </p>
-        <p style="margin-top:25px">
-          <b>Homepage :</b>
-          <a href="https://github.com/at1as/IMDB-Scrape">https://github.com/at1as/IMDB-Scrape</a>
-        </p>
-        <p>
-          <b>Bugs :</b>
-          <a href="https://github.com/at1as/IMDB-Scrape/issues">https://github.com/at1as/IMDB-Scrape/issues</a>
-        </p>
-        <p>
-          <b>Created by :</b> <a href="http://www.jasonwillems.com">Jason M. Willems</a>
-        </p>
-        <p>
-          <b>License :</b> <a href="https://github.com/at1as/IMDB-Scrape/blob/master/LICENSE">MIT License</a>
-        </p>
-        <hr>
-        <p style="text-align:center">
-          <b>Last Report Generated :</b> <span style="display:block">2015-11-01 15:15:47.817620</span>
-        </p>
+    <div class="container body-container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="about-card">
+            <div class="about-header">
+              <h1><i class="fas fa-film"></i> Media Database</h1>
+              <p>Hosted sample catalog from the open-source Media Database project</p>
+            </div>
+
+            <div class="info-section">
+              <p class="about-description">
+                This hosted demo showcases a curated sample catalog generated by the open-source Media Database project. When run locally against your own drives, Media Database scans your folders, fetches IMDb metadata, and builds a private searchable website for your collection.
+                Webpages are statically generated and uploaded to the <em>_output/</em> directory. Rerun the script every
+                time a new file is added to the directory.
+              </p>
+            </div>
+
+            <hr>
+
+            <div class="info-section">
+              <h4><i class="fas fa-info-circle"></i> Project Information</h4>
+              <div class="info-grid">
+                <div class="info-item">
+                  <strong>Homepage</strong>
+                  <a href="https://github.com/at1as/Media-Database" target="_blank">
+                    <i class="fab fa-github"></i> GitHub Repository
+                  </a>
+                </div>
+                <div class="info-item">
+                  <strong>Report Issues</strong>
+                  <a href="https://github.com/at1as/Media-Database/issues" target="_blank">
+                    <i class="fas fa-bug"></i> Issue Tracker
+                  </a>
+                </div>
+                <div class="info-item">
+                  <strong>Created By</strong>
+                  <a href="https://www.jasonwillems.com/" target="_blank">
+                    <i class="fas fa-user"></i> Jason M. Willems
+                  </a>
+                </div>
+                <div class="info-item">
+                  <strong>License</strong>
+                  <a href="https://github.com/at1as/Media-Database/blob/master/LICENSE" target="_blank">
+                    <i class="fas fa-balance-scale"></i> MIT License
+                  </a>
+                </div>
+                <div class="info-item">
+                  <strong>Data Source</strong>
+                  <a href="https://www.imdb.com/" target="_blank">
+                    <i class="fas fa-database"></i> IMDB
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="timestamp-footer">
+              <strong>Last Report Generated:</strong><br>
+              <span>2026-11-27 18:41 UTC</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

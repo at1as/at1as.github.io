@@ -1,165 +1,1289 @@
-// Refine Movie Table based on current filters
-function search_movie_table(tableID) {
-  // Get queries from each search field
-  var rating_query    = document.getElementById('rating-search').value.toLowerCase();
-  var vote_query      = document.getElementById('vote-search').value.toLowerCase().replace(/\,/g, '');
-  var title_query     = document.getElementById('title-search').value.toLowerCase();
-  var year_min_query  = document.getElementById('year-min-search').value.toLowerCase();
-  var year_max_query  = document.getElementById('year-max-search').value.toLowerCase();
-  var genre_query     = document.getElementById('genre-search').value.toLowerCase();
-  var cast_query      = document.getElementById('cast-search').value.toLowerCase();
-  var director_query  = document.getElementById('director-search').value.toLowerCase();
-  var language_query  = document.getElementById('language-search').value.toLowerCase();
+let draftFilterRows = null;
 
-  // Traverse each row and cell. Hide rows whose content fails to match query
-  for (i=1; i<tableID.rows.length; i++) {
-    var rating_cell   = tableID.rows[i].cells[0].innerHTML.toLowerCase();
-    var vote_cell     = tableID.rows[i].cells[1].innerHTML.toLowerCase().replace(/\,/g, '');
-    var title_cell    = tableID.rows[i].cells[2].children[0].innerHTML.toLowerCase();
-    var year_cell     = tableID.rows[i].cells[3].innerHTML.toLowerCase();
-    var genre_cell    = tableID.rows[i].cells[4].innerHTML.toLowerCase();
-    var cast_cell     = tableID.rows[i].cells[5].innerHTML.toLowerCase();
-    var director_cell = tableID.rows[i].cells[6].innerHTML.toLowerCase();
-    var language_cell = tableID.rows[i].cells[7].innerHTML.toLowerCase();
+function get_filter_fields() {
+  return document.querySelectorAll('#filters input.filter-inline-input, #filters select');
+}
 
-    // Discard row if rating is empty or less than query
-    if ((parseFloat(rating_cell) < parseFloat(rating_query)) || (rating_query !== '' && rating_cell === '')) {
-      tableID.rows[i].style.display = 'none';
+function get_filter_field_value(field_id) {
+  var field = document.getElementById(field_id);
+  if (!field) {
+    return '';
+  }
+
+  if (field.multiple && !field.tomselect) {
+    return get_filter_field_values(field_id).join(', ');
+  }
+
+  if (field.tomselect) {
+    function normalize_select_value(value) {
+      return String(value || '').replace(/\s\(\d+\)$/, '');
     }
-    else if ((parseFloat(vote_cell) < parseFloat(vote_query)) || (vote_query !== '' && vote_cell === '')) {
-      tableID.rows[i].style.display = 'none';
+
+    function normalize_select_values(values) {
+      if (Array.isArray(values)) {
+        return values.map(normalize_select_value).join(', ');
+      }
+
+      if (field.multiple) {
+        return String(values || '')
+          .split(',')
+          .map(function(part) { return normalize_select_value(part.trim()); })
+          .filter(function(part) { return part !== ''; })
+          .join(', ');
+      }
+
+      return normalize_select_value(values);
     }
-    else if (title_cell.indexOf(title_query) === -1 && remove_diacritics(title_cell).indexOf(title_query) === -1 && title_query !== '') {
-      tableID.rows[i].style.display = 'none';
+
+    var select_value = field.tomselect.getValue();
+    return normalize_select_values(select_value);
+  }
+
+  return field.value || '';
+}
+
+function get_filter_field_values(field_id) {
+  var field = document.getElementById(field_id);
+  if (!field) {
+    return [];
+  }
+
+  if (field.tomselect && field.multiple) {
+    return (field.tomselect.items || []).map(function(value) {
+      return String(value || '').replace(/\s\(\d+\)$/, '').trim();
+    }).filter(function(value) {
+      return value !== '';
+    });
+  }
+
+  if (field.multiple) {
+    return Array.from(field.selectedOptions, option => option.value).filter(Boolean);
+  }
+
+  var single_value = get_filter_field_value(field_id).trim();
+  return single_value === '' ? [] : [single_value];
+}
+
+function clear_filter_field(field_id) {
+  var field = document.getElementById(field_id);
+  if (!field) {
+    return;
+  }
+
+  if (field.tomselect) {
+    field.tomselect.clear(true);
+    update_clear_button_visibility(field_id);
+    return;
+  }
+
+  field.value = '';
+  update_clear_button_visibility(field_id);
+}
+
+function update_clear_button_visibility(field_id) {
+  var field = document.getElementById(field_id);
+  if (!field) {
+    return;
+  }
+
+  var clear_btn = field.parentElement.querySelector('.filter-clear-btn');
+  if (clear_btn) {
+    if (field.value.trim() === '') {
+      clear_btn.style.display = 'none';
+      field.parentElement.classList.remove('has-clear-visible');
+    } else {
+      clear_btn.style.display = 'flex';
+      field.parentElement.classList.add('has-clear-visible');
     }
-    else if (year_min_query !== '' && year_cell !== '' && (parseInt(year_cell) < parseInt(year_min_query))) {
-      tableID.rows[i].style.display = 'none';
+  }
+}
+
+function setup_search_clear_buttons() {
+  var search_inputs = document.querySelectorAll('.filter-title-input, #vote-search');
+  search_inputs.forEach(function(input) {
+    // Set initial visibility
+    update_clear_button_visibility(input.id);
+
+    // Add input event listener
+    input.addEventListener('input', function() {
+      update_clear_button_visibility(input.id);
+      trigger_page_search();
+    });
+  });
+}
+
+function detect_results_table_type() {
+  var results_table = document.getElementById('results');
+  if (!results_table) {
+    return null;
+  }
+
+  if (results_table.querySelector('th[name="genre_data"]')) {
+    return 'series';
+  }
+
+  if (results_table.querySelector('th[name="genres_data"]')) {
+    return 'movie';
+  }
+
+  return null;
+}
+
+function trigger_page_search() {
+  const tableType = detect_results_table_type();
+  if (!tableType) {
+    return;
+  }
+
+  const rows = Array.from(document.querySelectorAll('#results tbody tr'));
+  const matches = new Set(tableType === 'series' ? match_series_rows(rows) : match_movie_rows(rows));
+  if (draftFilterRows !== null) {
+    draftFilterRows = matches;
+    update_filter_dialog_count(matches.size);
+    update_filter_counts();
+    return;
+  }
+
+  apply_catalog_filters(matches);
+}
+
+function apply_catalog_filters(matches) {
+  for (const row of document.querySelectorAll('#results tbody tr')) {
+    row.hidden = !matches.has(row);
+  }
+
+  update_results_count_display(matches.size);
+  update_filter_counts();
+  update_results_empty_state(matches.size);
+  update_random_selection_button();
+}
+
+function matches_current_filter_preview(row) {
+  return draftFilterRows === null ? !row.hidden : draftFilterRows.has(row);
+}
+
+function filter_debug_enabled() {
+  try {
+    if (window.location && window.location.search.indexOf('debug_filters=1') !== -1) {
+      return true;
     }
-    else if (year_max_query !== '' && year_cell !== '' && (parseInt(year_cell) > parseInt(year_max_query))) {
-      tableID.rows[i].style.display = 'none';
+
+    return window.localStorage && window.localStorage.getItem('debug_filters') === '1';
+  } catch (err) {
+    return false;
+  }
+}
+
+function log_filter_debug(label, payload) {
+  if (!filter_debug_enabled()) {
+    return;
+  }
+
+  console.log('[Filter Debug] ' + label, payload);
+}
+
+function normalize_filter_label(value) {
+  return String(value ?? '').replace(/\s+/g, ' ').trim();
+}
+
+function extract_cell_labels(cell) {
+  if (!cell) {
+    return [];
+  }
+
+  if (cell.dataset.performers) {
+    return JSON.parse(cell.dataset.performers).map(normalize_filter_label).filter(Boolean);
+  }
+
+  const pills = cell.querySelectorAll('.genre-pill');
+  const labels = pills.length
+    ? Array.from(pills, pill => pill.textContent)
+    : cell.textContent.split(/[,\n]/);
+  return labels.map(normalize_filter_label).filter(Boolean);
+}
+
+function extract_cell_values(cell) {
+  return extract_cell_labels(cell).map(label => label.toLowerCase());
+}
+
+function selected_values_in_list(selectedValues, cell) {
+  const labels = extract_cell_values(cell);
+  for (const value of selectedValues) {
+    const selected = normalize_filter_label(value).toLowerCase();
+    if (selected && !labels.includes(selected)) {
+      log_filter_debug('selected_values_in_list:no_match', {
+        selected_values: selectedValues,
+        item_list: labels
+      });
+      return false;
     }
-    else if (!substrings_in_list(genre_query, genre_cell, 'genre') && genre_query !== '') {
-        tableID.rows[i].style.display = 'none';
+  }
+  return true;
+}
+
+function update_filter_counts() {
+  const button = document.getElementById('clear_all_filters_btn');
+  const label = button?.querySelector('.media-action-btn-label');
+  if (!label) {
+    return;
+  }
+
+  const advancedFilters = document.getElementById('advanced-filters');
+  const noMatches = draftFilterRows === null
+    ? document.getElementById('page_results_num')?.textContent.trim() === '0'
+    : draftFilterRows.size === 0;
+  let activeCount = 0;
+  let advancedCount = 0;
+  for (const input of get_filter_fields()) {
+    const active = get_filter_field_value(input.id).trim() !== '';
+    if (active) {
+      activeCount += 1;
+      if (advancedFilters?.contains(input)) {
+        advancedCount += 1;
+      }
     }
-    else if (!substrings_in_list(cast_query, cast_cell) && cast_query !== '') {
-      tableID.rows[i].style.display = 'none';
-    }
-    else if (director_cell.indexOf(director_query) === -1 && remove_diacritics(director_cell).indexOf(director_query) && director_query !== '') {
-      tableID.rows[i].style.display = 'none';
-    }
-    else if (!substrings_in_list(language_query, language_cell, 'language') && language_query !== '') {
-        tableID.rows[i].style.display = 'none';
-    }
-    else {
-      tableID.rows[i].style.display = '';
+
+    if (input.tagName === 'SELECT') {
+      const unavailable = noMatches && !active;
+      if (input.tomselect) {
+        if (unavailable && !input.tomselect.isDisabled) {
+          input.tomselect.disable();
+        } else if (!unavailable && input.tomselect.isDisabled) {
+          input.tomselect.enable();
+        }
+      } else {
+        input.disabled = unavailable;
+      }
+      input.closest('.filter-prefixed-control, .filter-input-shell')?.classList.toggle('filter-unavailable', unavailable);
     }
   }
 
-  // Update the filtered counter in the page header
-  var count = 0;
-  for (j=1; j<tableID.rows.length; j++) {
-    if (tableID.rows[j].style.display !== 'none') {
-      count += 1;
+  label.textContent = 'Clear All Filters (' + activeCount + ')';
+  button.classList.toggle('is-disabled', activeCount === 0);
+  button.disabled = activeCount === 0;
+
+  const badge = document.getElementById('advanced-filter-count');
+  if (badge) {
+    badge.querySelector('[data-count]').textContent = advancedCount;
+    badge.hidden = advancedCount === 0;
+  }
+
+  const stickyBadge = document.getElementById('sticky-filter-count');
+  if (stickyBadge && draftFilterRows === null) {
+    stickyBadge.querySelector('[data-count]').textContent = activeCount;
+    stickyBadge.hidden = activeCount === 0;
+  }
+}
+
+function update_filter_dialog_count(count) {
+  const label = count === 1 ? 'result' : 'results';
+  document.getElementById('apply-catalog-filters').textContent =
+    'Show ' + count.toLocaleString() + ' ' + label;
+  document.getElementById('catalog-filter-dialog-empty').textContent = count === 0
+    ? 'No matches. Edit or clear a filter to see more options.'
+    : '';
+}
+
+function position_filter_dialog_dropdown(select) {
+  const panel = select?.dropdown.closest('.catalog-filter-dialog-fields');
+  if (!panel || !select.isOpen) {
+    return;
+  }
+
+  const viewport = window.visualViewport;
+  const viewportTop = viewport?.offsetTop ?? 0;
+  const viewportHeight = viewport?.height ?? window.innerHeight;
+  const panelBounds = panel.getBoundingClientRect();
+  const anchor = select.wrapper.getBoundingClientRect();
+  const spaceAbove = anchor.top - Math.max(panelBounds.top, viewportTop);
+  const spaceBelow = Math.min(panelBounds.bottom, viewportTop + viewportHeight) - anchor.bottom;
+  const options = select.dropdown_content;
+  const borderHeight = select.dropdown.offsetHeight - options.offsetHeight;
+  const spacing = borderHeight + 8;
+  const preferredHeight = Math.min(200, viewportHeight * 0.3);
+  const menuHeight = Math.min(preferredHeight, options.scrollHeight) + spacing;
+  const opensAbove = spaceBelow < menuHeight && spaceAbove > spaceBelow;
+  const space = opensAbove ? spaceAbove : spaceBelow;
+  const maxHeight = Math.max(0, Math.min(preferredHeight, space - spacing));
+
+  select.dropdown.classList.toggle('filter-dropdown-above', opensAbove);
+  options.style.maxHeight = maxHeight + 'px';
+}
+
+function initialize_sticky_filters() {
+  const button = document.getElementById('sticky-filters-button');
+  if (!button) {
+    return;
+  }
+
+  const filters = document.getElementById('filters');
+  const advancedFilters = document.getElementById('advanced-filters');
+  const placeholder = document.getElementById('catalog-filter-placeholder');
+  const dialog = document.getElementById('catalog-filter-dialog');
+  const fields = dialog.querySelector('.catalog-filter-dialog-fields');
+  const sort = document.getElementById('tile-sort');
+  const dialogSort = document.getElementById('dialog-tile-sort');
+  const search = document.getElementById('title-search');
+  let appliedValues;
+  let scrollPosition;
+
+  function updateButton() {
+    if (!dialog.open) {
+      button.hidden = filters.getBoundingClientRect().bottom > 0;
     }
   }
 
-  var current_count = document.getElementById('results_num');
-  var total_count   = document.getElementById('total_num');
-  var count_spacer  = document.getElementById('mv_seperator');
-
-  current_count.innerHTML = count;
-
-  if (count == total_count.innerHTML) {
-    current_count.style.display = 'none';
-    count_spacer.style.display  = 'none';
+  if (typeof IntersectionObserver === 'function') {
+    new IntersectionObserver(updateButton).observe(filters);
   } else {
-    current_count.style.display = '';
-    current_count.style.color   = '#45d234';
-    count_spacer.style.display  = '';
+    window.addEventListener('scroll', updateButton, {passive: true});
+    window.addEventListener('resize', updateButton);
+  }
+  updateButton();
+
+  button.addEventListener('click', () => {
+    scrollPosition = window.scrollY;
+    appliedValues = Array.from(get_filter_fields(), field => {
+      const value = field.multiple
+        ? field.tomselect?.items.slice() ?? Array.from(field.selectedOptions, option => option.value)
+        : field.value;
+      return [field, value];
+    });
+    draftFilterRows = new Set(Array.from(document.querySelectorAll('#results tbody tr'))
+      .filter(row => !row.hidden));
+    update_filter_dialog_count(draftFilterRows.size);
+
+    // Keep the regular panel's space in the page while its controls are in the dialog.
+    const style = getComputedStyle(filters);
+    placeholder.style.height = filters.getBoundingClientRect().height + 'px';
+    placeholder.style.marginBlock = style.marginBlockStart + ' ' + style.marginBlockEnd;
+    placeholder.hidden = false;
+    fields.append(filters);
+    advancedFilters.open = true;
+    dialogSort.value = sort.value;
+    dialogSort.parentElement.hidden = !showTiles;
+    dialog.showModal();
+    fields.scrollTop = 0;
+  });
+
+  function restoreAppliedFilters() {
+    for (const [field, value] of appliedValues) {
+      if (field.tomselect) {
+        // Draft-specific option counts can remove a previously selected item.
+        field.tomselect.addOptions(value.map(item => ({value: item, text: item})));
+        field.tomselect.setValue(value, true);
+      } else if (field.multiple) {
+        for (const option of field.options) {
+          option.selected = value.includes(option.value);
+        }
+      } else {
+        if (field.id === 'year-max-search') {
+          refresh_year_select_options();
+        }
+        field.value = value;
+      }
+      update_clear_button_visibility(field.id);
+    }
+    format_selected_rating_option();
+    format_selected_year_options();
   }
 
-  stripe_table();
-};
+  function closeFilters(apply) {
+    if (!dialog.open) {
+      return;
+    }
+
+    for (const [field] of appliedValues) {
+      field.tomselect?.close();
+    }
+    const matches = draftFilterRows;
+    draftFilterRows = null;
+    if (!apply) {
+      restoreAppliedFilters();
+    }
+    appliedValues = null;
+    dialog.close();
+    advancedFilters.open = document.documentElement.dataset.catalogFilters !== 'closed';
+    placeholder.before(filters);
+    placeholder.hidden = true;
+
+    if (apply) {
+      if (showTiles && sort.value !== dialogSort.value) {
+        sort.value = dialogSort.value;
+        shuffledTileLinks = null;
+      }
+      apply_catalog_filters(matches);
+      const firstResult = showTiles
+        ? document.querySelector('#catalog-tiles > li')
+        : matches.values().next().value;
+      const target = firstResult || document.getElementById('results-message');
+      const focusTarget = firstResult?.querySelector('.catalog-tile, a.tooltip-info') || target;
+      if (!firstResult) {
+        target.tabIndex = -1;
+      }
+      focusTarget.focus({preventScroll: true});
+      window.scrollBy({top: target.getBoundingClientRect().top - button.offsetHeight - 20, behavior: 'instant'});
+    } else {
+      update_filter_counts();
+      window.scrollTo({top: scrollPosition, behavior: 'instant'});
+      button.focus({preventScroll: true});
+    }
+
+    updateButton();
+  }
+
+  function repositionDropdown() {
+    if (dialog.open) {
+      const wrapper = fields.querySelector('.ts-wrapper.dropdown-active');
+      const select = wrapper?.closest('.filter-input-shell').querySelector('select');
+      position_filter_dialog_dropdown(select?.tomselect);
+    }
+  }
+
+  fields.addEventListener('scroll', repositionDropdown, {passive: true});
+  window.addEventListener('resize', repositionDropdown);
+  window.visualViewport?.addEventListener('resize', repositionDropdown);
+
+  dialog.querySelector('#apply-catalog-filters').addEventListener('click', () => closeFilters(true));
+  dialog.querySelector('#cancel-catalog-filters').addEventListener('click', () => closeFilters(false));
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !fields.querySelector('.ts-wrapper.dropdown-active')) {
+      event.preventDefault();
+      event.stopPropagation();
+      closeFilters(false);
+    }
+  }, true);
+  dialog.addEventListener('cancel', event => {
+    event.preventDefault();
+    closeFilters(false);
+  });
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) {
+      closeFilters(false);
+    }
+  });
+  search.addEventListener('keydown', event => {
+    if (dialog.open && event.key === 'Enter' && !event.isComposing) {
+      event.preventDefault();
+      closeFilters(true);
+    }
+  });
+}
+
+function update_results_empty_state(count) {
+  var results_message = document.getElementById('results-message');
+  var results_container = document.getElementById('results-container');
+
+  if (results_message) {
+    results_message.style.display = count === 0 ? 'block' : 'none';
+  }
+
+  if (results_container) {
+    results_container.style.display = count === 0 ? 'none' : '';
+  }
+  if (showTiles) {
+    refresh_catalog_tiles();
+  }
+}
+
+function update_results_count_display(count) {
+  var current_count = document.getElementById('results_num');
+  var total_count = document.getElementById('total_num');
+  var count_spacer = document.getElementById('mv_seperator');
+  var page_current_count = document.getElementById('page_results_num');
+  var page_total_count = document.getElementById('page_total_num');
+  var page_count_spacer = document.getElementById('page_mv_seperator');
+
+  if (current_count) {
+    current_count.innerHTML = count;
+  }
+
+  if (page_current_count) {
+    page_current_count.innerHTML = count;
+  }
+
+  if (!total_count) {
+    return;
+  }
+
+  var total_value = total_count.innerHTML;
+  var show_filtered_count = String(count) !== String(total_value);
+
+  if (current_count) {
+    current_count.style.display = show_filtered_count ? '' : 'none';
+    if (show_filtered_count) {
+      current_count.style.color = '#45d234';
+    }
+  }
+
+  if (count_spacer) {
+    count_spacer.style.display = show_filtered_count ? '' : 'none';
+  }
+
+  if (page_current_count) {
+    page_current_count.style.display = show_filtered_count ? '' : 'none';
+  }
+
+  if (page_count_spacer) {
+    page_count_spacer.style.display = show_filtered_count ? '' : 'none';
+  }
+
+  if (page_total_count) {
+    page_total_count.innerHTML = total_value;
+  }
+
+  var page_results_summary = document.querySelector('.filters-results-summary');
+  if (page_results_summary) {
+    page_results_summary.classList.toggle('is-filtered', show_filtered_count);
+    page_results_summary.classList.toggle('is-empty', count === 0);
+  }
+}
+
+function initialize_vote_filter_input() {
+  const input = document.getElementById('vote-search');
+  if (!input) {
+    return;
+  }
+
+  input.addEventListener('keydown', event => {
+    if (event.key === 'e' || event.key === 'E' || event.key === '+' || event.key === '-') {
+      event.preventDefault();
+      input.classList.add('filter-input-invalid');
+
+      window.clearTimeout(input.invalidFilterTimeout);
+      input.invalidFilterTimeout = window.setTimeout(() => {
+        input.classList.remove('filter-input-invalid');
+      }, 900);
+    }
+  });
+
+  input.addEventListener('beforeinput', event => {
+    const caret = input.selectionStart;
+    if (!event.cancelable || caret !== input.selectionEnd) {
+      return;
+    }
+
+    let start = caret;
+    let end = caret;
+    if (event.inputType === 'deleteContentBackward' && input.value[caret - 1] === ',') {
+      start -= 2;
+    } else if (event.inputType === 'deleteContentForward' && input.value[caret] === ',') {
+      end += 2;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    input.setRangeText('', start, end, 'end');
+    input.dispatchEvent(new Event('input', {bubbles: true}));
+  });
+
+  input.addEventListener('input', () => {
+    const value = input.value;
+    const digits = value.replace(/\D/g, '');
+    const firstGroupLength = digits.length % 3 || 3;
+    const formatted = digits.slice(0, firstGroupLength) + digits.slice(firstGroupLength).replace(/\d{3}/g, ',$&');
+    if (formatted === value) {
+      return;
+    }
+
+    // Keep the caret after the same number of digits when commas are inserted.
+    let caret = value.slice(0, input.selectionStart).replace(/\D/g, '').length;
+    for (let i = 0; i < caret; i++) {
+      if (formatted[i] === ',') {
+        caret++;
+      }
+    }
+    input.value = formatted;
+    input.setSelectionRange(caret, caret);
+  });
+}
+
+function populate_select_options(select, values, include_empty_option) {
+  var is_multiple = select.multiple;
+  select.innerHTML = '';
+  if (is_multiple) {
+    select.multiple = true;
+  }
+  if (include_empty_option) {
+    select.appendChild(new Option('', ''));
+  }
+
+  values.forEach(function(value) {
+    select.appendChild(new Option(value, value));
+  });
+}
+
+function get_filter_option_cell_name(field_id) {
+  if (field_id === 'genre-search') {
+    if (document.getElementsByName('genres_data').length > 0) {
+      return 'genres_data';
+    }
+    return 'genre_data';
+  }
+
+  if (field_id === 'language-search') {
+    return 'languages_data';
+  }
+
+  if (field_id === 'director-search') {
+    return 'director_data';
+  }
+
+  if (field_id === 'creator-search') {
+    return 'creator_data';
+  }
+
+  if (field_id === 'cast-search') {
+    return 'stars_data';
+  }
+
+  return null;
+}
+
+function collect_table_value_counts(cellName, onlyMatching = false) {
+  const counts = new Map();
+  for (const cell of document.getElementsByName(cellName)) {
+    if (cell.tagName === 'TH' || (onlyMatching && !matches_current_filter_preview(cell.parentElement))) {
+      continue;
+    }
+
+    const seen = new Set();
+    for (const label of extract_cell_labels(cell)) {
+      const key = label.toLowerCase();
+      if (seen.has(key)) {
+        continue;
+      }
+      seen.add(key);
+
+      const option = counts.get(key);
+      if (option) {
+        option.count += 1;
+      } else {
+        counts.set(key, {value: label, text: label, count: 1});
+      }
+    }
+  }
+  return counts;
+}
+
+function refresh_filter_select_for_visible_rows(fieldId) {
+  const select = document.getElementById(fieldId)?.tomselect;
+  const cellName = get_filter_option_cell_name(fieldId);
+  if (!select || select.isRefreshing || !cellName) {
+    return;
+  }
+  select.isRefreshing = true;
+
+  const counts = collect_table_value_counts(cellName, true);
+  const selectedValues = new Set(select.items);
+  for (const value of selectedValues) {
+    // Preserve the selected label even if a matching row uses different capitalization.
+    const key = normalize_filter_label(value).toLowerCase();
+    counts.set(key, {value, text: value, count: counts.get(key)?.count ?? 0});
+  }
+  const options = Array.from(counts.values()).sort((a, b) => b.count - a.count || a.text.localeCompare(b.text));
+
+  select.clearOptions();
+  select.addOptions(options);
+  select.refreshOptions(false);
+  select.refreshItems();
+  if (options.every(option => selectedValues.has(option.value))) {
+    select.close();
+  }
+  select.isRefreshing = false;
+
+  log_filter_debug('refresh_filter_select_for_visible_rows', {
+    field_id: fieldId,
+    selected_values: Array.from(selectedValues),
+    counts_sample: options.slice(0, 20)
+  });
+}
+
+function collect_year_values() {
+  var cells = document.getElementsByName('year_data');
+  var values = {};
+  var current_year = new Date().getFullYear();
+
+  cells.forEach(function(cell) {
+    var matches = cell.textContent.match(/\d{4}/g) || [];
+    matches.forEach(function(match) {
+      values[match] = true;
+    });
+  });
+
+  for (var year = current_year; year >= 1900; year--) {
+    if (values[String(year)]) {
+      break;
+    }
+    values[String(year)] = true;
+  }
+
+  return Object.keys(values).sort(function(a, b) {
+    return parseInt(a, 10) - parseInt(b, 10);
+  });
+}
+
+function collect_rating_values() {
+  var values = [];
+  var rating = 0;
+
+  while (rating <= 100) {
+    values.push((rating / 10).toFixed(1));
+    rating += 1;
+  }
+
+  return values;
+}
+
+function collect_visible_rating_threshold_counts() {
+  var results_table = document.getElementById('results');
+  var rows = results_table ? results_table.querySelectorAll('tbody tr') : [];
+  var thresholds = collect_rating_values();
+  var counts = {};
+  var visible_ratings = [];
+
+  thresholds.forEach(function(threshold) {
+    counts[threshold] = 0;
+  });
+
+  rows.forEach(function(row) {
+    if (!matches_current_filter_preview(row)) {
+      return;
+    }
+
+    var rating_cell = row.querySelector('[name="rating_data"]');
+    if (!rating_cell) {
+      return;
+    }
+
+    var rating_value = parseFloat((rating_cell.textContent || '').replace(/[^\d.]/g, '').trim());
+    if (!isNaN(rating_value)) {
+      visible_ratings.push(rating_value);
+    }
+  });
+
+  thresholds.forEach(function(threshold) {
+    var threshold_value = parseFloat(threshold);
+
+    visible_ratings.forEach(function(rating_value) {
+      if (rating_value >= threshold_value) {
+        counts[threshold] += 1;
+      }
+    });
+  });
+
+  return counts;
+}
+
+function refresh_rating_select_options() {
+  var rating_select = document.getElementById('rating-search');
+  if (!rating_select || rating_select.tomselect) {
+    return;
+  }
+
+  var selected_value = rating_select.value;
+  var rating_values = collect_rating_values();
+  var counts = collect_visible_rating_threshold_counts();
+
+  rating_select.innerHTML = '';
+  rating_select.appendChild(new Option('', ''));
+
+  rating_values.forEach(function(value) {
+    rating_select.appendChild(new Option(value + '+ (' + counts[value] + ')', value));
+  });
+
+  rating_select.value = selected_value;
+}
+
+function format_selected_rating_option() {
+  var rating_select = document.getElementById('rating-search');
+  if (!rating_select || rating_select.tomselect || !rating_select.value) {
+    return;
+  }
+
+  var selected_option = rating_select.options[rating_select.selectedIndex];
+  if (selected_option) {
+    selected_option.text = rating_select.value + '/10';
+  }
+}
+
+function format_selected_year_options() {
+  ['year-min-search', 'year-max-search'].forEach(function(field_id) {
+    var year_select = document.getElementById(field_id);
+    if (!year_select || year_select.tomselect || !year_select.value) {
+      return;
+    }
+
+    var selected_option = year_select.options[year_select.selectedIndex];
+    if (selected_option) {
+      selected_option.text = year_select.value;
+    }
+  });
+}
+
+function collect_visible_year_range_values() {
+  var results_table = document.getElementById('results');
+  var rows = results_table ? results_table.querySelectorAll('tbody tr') : [];
+  var table_type = detect_results_table_type();
+  var ranges = [];
+
+  rows.forEach(function(row) {
+    if (!matches_current_filter_preview(row)) {
+      return;
+    }
+
+    var year_cell = row.querySelector('[name="year_data"]');
+    if (!year_cell) {
+      return;
+    }
+
+    var year_text = (year_cell.textContent || '').trim();
+    var matches = year_text.match(/\d{4}/g) || [];
+
+    if (matches.length === 0) {
+      return;
+    }
+
+    if (table_type === 'series') {
+      var start_year = parseInt(matches[0], 10);
+      var end_year = null;
+
+      if (matches.length > 1) {
+        end_year = parseInt(matches[1], 10);
+      } else if (year_text.indexOf('-') === -1) {
+        end_year = start_year;
+      }
+
+      ranges.push({
+        min: start_year,
+        max: end_year
+      });
+      return;
+    }
+
+    var year_value = parseInt(matches[0], 10);
+    ranges.push({
+      min: year_value,
+      max: year_value
+    });
+  });
+
+  return ranges;
+}
+
+function build_year_option_counts(year_values) {
+  var ranges = collect_visible_year_range_values();
+  var min_counts = {};
+  var max_counts = {};
+
+  year_values.forEach(function(year_string) {
+    var year_value = parseInt(year_string, 10);
+    min_counts[year_string] = 0;
+    max_counts[year_string] = 0;
+
+    ranges.forEach(function(range) {
+      if (range.min >= year_value) {
+        min_counts[year_string] += 1;
+      }
+
+      if (range.max !== null && range.max <= year_value) {
+        max_counts[year_string] += 1;
+      }
+    });
+  });
+
+  return {
+    min: min_counts,
+    max: max_counts
+  };
+}
+
+function refresh_year_select_options() {
+  var year_values = collect_year_values();
+  var counts = build_year_option_counts(year_values);
+  var year_min_select = document.getElementById('year-min-search');
+  var year_max_select = document.getElementById('year-max-search');
+  var selected_min = year_min_select ? year_min_select.value : '';
+  var selected_max = year_max_select ? year_max_select.value : '';
+  var min_floor = selected_min ? parseInt(selected_min, 10) : null;
+
+  if (year_min_select) {
+    year_min_select.innerHTML = '';
+    year_min_select.appendChild(new Option('', ''));
+
+    year_values.forEach(function(value) {
+      year_min_select.appendChild(new Option(value + ' (' + counts.min[value] + ')', value));
+    });
+
+    year_min_select.value = selected_min;
+  }
+
+  if (year_max_select) {
+    year_max_select.innerHTML = '';
+    year_max_select.appendChild(new Option('', ''));
+
+    year_values.forEach(function(value) {
+      var numeric_value = parseInt(value, 10);
+      if (min_floor !== null && numeric_value < min_floor) {
+        return;
+      }
+
+      year_max_select.appendChild(new Option(value + ' (' + counts.max[value] + ')', value));
+    });
+
+    if (selected_max && min_floor !== null && parseInt(selected_max, 10) < min_floor) {
+      selected_max = '';
+    }
+
+    year_max_select.value = selected_max;
+  }
+
+  format_selected_year_options();
+
+  return selected_max;
+}
+
+function clear_tom_select_search_state(tom_select) {
+  if (!tom_select) {
+    return;
+  }
+
+  tom_select.setTextboxValue('');
+
+  if (tom_select.control_input) {
+    tom_select.control_input.value = '';
+  }
+
+  if (typeof tom_select.lastValue !== 'undefined') {
+    tom_select.lastValue = '';
+  }
+
+  if (typeof tom_select.lastQuery !== 'undefined') {
+    tom_select.lastQuery = null;
+  }
+
+  tom_select.inputState();
+}
+
+function initialize_enhanced_filter_selects() {
+  var rating_select = document.getElementById('rating-search');
+  if (rating_select) {
+    refresh_rating_select_options();
+    if (!rating_select.dataset.filterBound) {
+      rating_select.addEventListener('change', function() {
+        trigger_page_search();
+        format_selected_rating_option();
+      });
+      rating_select.addEventListener('focus', refresh_rating_select_options);
+      rating_select.addEventListener('mousedown', refresh_rating_select_options);
+      rating_select.dataset.filterBound = '1';
+    }
+    format_selected_rating_option();
+  }
+
+  var year_values = collect_year_values();
+  ['year-min-search', 'year-max-search'].forEach(function(field_id) {
+    var year_select = document.getElementById(field_id);
+    if (year_select) {
+      if (!year_select.dataset.filterBound) {
+        year_select.addEventListener('change', function() {
+          var previous_max = document.getElementById('year-max-search') ? document.getElementById('year-max-search').value : '';
+          trigger_page_search();
+          var refreshed_max = refresh_year_select_options();
+          format_selected_year_options();
+
+          if (field_id === 'year-min-search' && previous_max !== refreshed_max) {
+            trigger_page_search();
+          }
+        });
+        year_select.addEventListener('focus', refresh_year_select_options);
+        year_select.addEventListener('mousedown', refresh_year_select_options);
+        year_select.dataset.filterBound = '1';
+      }
+    }
+  });
+
+  refresh_year_select_options();
+  format_selected_year_options();
+
+  // Initialize enhanced selects asynchronously to prevent UI blocking
+  setTimeout(function() {
+    [
+      { id: 'genre-search', placeholder: 'Any genres', hideSelected: true, refreshOnOpen: true },
+      { id: 'language-search', placeholder: 'Any languages', hideSelected: true, refreshOnOpen: true },
+      { id: 'director-search', placeholder: 'Any directors', hideSelected: true, refreshOnOpen: true },
+      { id: 'creator-search', placeholder: 'Any creators', hideSelected: true, refreshOnOpen: true },
+      { id: 'cast-search', placeholder: 'Any cast members', hideSelected: true, refreshOnOpen: true }
+    ].forEach(function(config) {
+      var select = document.getElementById(config.id);
+      if (select && !select.tomselect) {
+        var shell = select.closest('.filter-input-shell');
+        if (shell) {
+          shell.classList.add('loading');
+        }
+
+        // Use setTimeout to make the data collection non-blocking
+        setTimeout(function() {
+          try {
+            var cell_name = get_filter_option_cell_name(config.id);
+            var values = Array.from(collect_table_value_counts(cell_name).values(), option => option.value)
+              .sort((a, b) => a.localeCompare(b));
+            populate_select_options(select, values, false);
+            if (typeof TomSelect === 'undefined') {
+              select.classList.add('form-control');
+              select.addEventListener('change', trigger_page_search);
+              if (shell) {
+                shell.classList.remove('loading');
+              }
+              return;
+            }
+
+            new TomSelect(select, {
+              allowEmptyOption: true,
+              create: false,
+              hideSelected: config.hideSelected,
+              maxItems: null,
+              maxOptions: null, // Remove limit on number of options displayed
+              placeholder: select.getAttribute('placeholder') || config.placeholder,
+              searchField: ['text'],
+              refreshThrottle: 0,
+              plugins: {
+                remove_button: {
+                  title: 'Remove'
+                },
+                no_active_items: {}
+              },
+              render: {
+                option: function(data, escape) {
+                  var option_label = escape(data.text || '');
+
+                  if (typeof data.count === 'number') {
+                    option_label += ' <span class="filter-option-count">(' + escape(String(data.count)) + ')</span>';
+                  }
+
+                  return '<div>' + option_label + '</div>';
+                },
+                item: function(data, escape) {
+                  return '<div>' + escape(data.text || '') + '</div>';
+                }
+              },
+        onDropdownOpen: function() {
+          refresh_filter_select_for_visible_rows(config.id);
+          this.setTextboxValue('');
+          this.refreshOptions(false);
+          position_filter_dialog_dropdown(this);
+        },
+        onFocus: function() {
+          clear_tom_select_search_state(this);
+          this.refreshOptions(false);
+        },
+        onBlur: function() {
+          clear_tom_select_search_state(this);
+          this.refreshOptions(false);
+        },
+        onDropdownClose: function() {
+          this.dropdown.classList.remove('filter-dropdown-above');
+          this.dropdown_content.style.removeProperty('max-height');
+          clear_tom_select_search_state(this);
+          this.refreshOptions(false);
+        },
+        onItemAdd: function() {
+          clear_tom_select_search_state(this);
+        },
+        onChange: function() {
+          log_filter_debug('tomselect:onChange', {
+            field_id: config.id,
+            getValue: this.getValue(),
+            items: this.items ? this.items.slice() : [],
+            selected_texts: (this.items || []).map(function(value) {
+              var option = this.options[value];
+              return option ? option.text : null;
+            }, this)
+          });
+          trigger_page_search();
+          refresh_filter_select_for_visible_rows(config.id);
+          position_filter_dialog_dropdown(this);
+        }
+      });
+
+      if (shell) {
+        shell.classList.remove('loading');
+      }
+    } catch (error) {
+      console.error('Error initializing TomSelect for', config.id, error);
+      if (shell) {
+        shell.classList.remove('loading');
+      }
+    }
+        }, 0); // Small delay to allow UI to update
+      }
+    });
+  }, 100); // Delay initialization to allow page to render
+
+}
+
+// Refine Movie Table based on current filters
+function match_movie_rows(rows) {
+  // Get queries from each search field
+  var rating_query    = get_filter_field_value('rating-search').toLowerCase();
+  var vote_query      = get_filter_field_value('vote-search').toLowerCase().replace(/\,/g, '');
+  var title_query     = get_filter_field_value('title-search').toLowerCase();
+  var year_min_query  = get_filter_field_value('year-min-search').toLowerCase();
+  var year_max_query  = get_filter_field_value('year-max-search').toLowerCase();
+  var genre_query     = get_filter_field_value('genre-search').toLowerCase();
+  var genre_values    = get_filter_field_values('genre-search');
+  var cast_query      = get_filter_field_value('cast-search').toLowerCase();
+  var cast_values    = get_filter_field_values('cast-search');
+  var director_query  = get_filter_field_value('director-search').toLowerCase();
+  var director_values = get_filter_field_values('director-search');
+  var language_query  = get_filter_field_value('language-search').toLowerCase();
+  var language_values = get_filter_field_values('language-search');
+
+  log_filter_debug('match_movie_rows:queries', {
+    title_query: title_query,
+    genre_query: genre_query,
+    genre_values: genre_values,
+    language_query: language_query,
+    language_values: language_values
+  });
+
+  return rows.filter(function(row, index) {
+    const cells = row.cells;
+    const rating_cell = cells.namedItem('rating_data').textContent.trim().toLowerCase();
+    const vote_cell = cells.namedItem('vote_data').textContent.trim().replace(/,/g, '').toLowerCase();
+    const title_cell = (row.querySelector('.catalog-title-cell')?.dataset.sortKey || '').trim().toLowerCase();
+    const artist = cells.namedItem('artist_data')?.textContent.trim().toLowerCase();
+    const titleSearchText = artist ? title_cell + ' ' + artist : title_cell;
+    const year_cell = cells.namedItem('year_data').textContent.trim();
+    const genre_cell_element = cells.namedItem('genres_data');
+    const cast_cell_element = cells.namedItem('stars_data');
+    const director_cell_element = cells.namedItem('director_data');
+    const language_cell_element = cells.namedItem('languages_data');
+
+    if (filter_debug_enabled() && index < 5 && (genre_values.length > 0 || language_values.length > 0)) {
+      log_filter_debug('match_movie_rows:row_sample', {
+        row_index: index + 1,
+        title_cell: title_cell,
+        raw_genre_cell: genre_cell_element ? genre_cell_element.textContent : '',
+        parsed_genre_tokens: genre_cell_element ? extract_cell_values(genre_cell_element) : [],
+        raw_language_cell: language_cell_element ? language_cell_element.textContent : '',
+        parsed_language_tokens: language_cell_element ? extract_cell_values(language_cell_element) : []
+      });
+    }
+
+    // Discard row if rating is empty, None, or less than query
+    var rating_numeric = parseFloat(rating_cell.replace(/[^\d.]/g, '').trim());
+    if (rating_query !== '' && (rating_cell === '' || rating_cell === 'none' || rating_cell.trim() === 'none' || isNaN(rating_numeric) || rating_numeric < parseFloat(rating_query))) {
+      return false;
+    }
+    if (vote_query !== '' && (vote_cell === '' || vote_cell === 'none' || vote_cell.trim() === 'none' || parseFloat(vote_cell) < parseFloat(vote_query))) {
+      return false;
+    }
+    if (!title_match(title_query, titleSearchText) && !title_match(title_query, remove_diacritics(titleSearchText)) && title_query !== '') {
+      return false;
+    }
+    if (year_min_query !== '' && year_cell !== '' && (parseInt(year_cell) < parseInt(year_min_query))) {
+      return false;
+    }
+    if (year_max_query !== '' && year_cell !== '' && (parseInt(year_cell) > parseInt(year_max_query))) {
+      return false;
+    }
+    if (genre_values.length > 0 && !selected_values_in_list(genre_values, genre_cell_element)) {
+        return false;
+    }
+    if (cast_values.length > 0 && !selected_values_in_list(cast_values, cast_cell_element)) {
+        return false;
+    }
+    if (director_values.length > 0 && !selected_values_in_list(director_values, director_cell_element)) {
+        return false;
+    }
+    if (language_values.length > 0 && !selected_values_in_list(language_values, language_cell_element)) {
+      return false;
+    }
+    return true;
+  });
+}
 
 
 // Refine Series Table based on current filters
-function search_series_table(tableID) {
+function match_series_rows(rows) {
   // Get queries from each search field
-  var rating_query    = document.getElementById('rating-search').value.toLowerCase();
-  var vote_query      = document.getElementById('vote-search').value.toLowerCase().replace(/\,/g, '');
-  var title_query     = document.getElementById('title-search').value.toLowerCase();
-  var year_min_query  = document.getElementById('year-min-search').value.toLowerCase();
-  var year_max_query  = document.getElementById('year-max-search').value.toLowerCase();
-  var genre_query     = document.getElementById('genre-search').value.toLowerCase();
-  var cast_query      = document.getElementById('cast-search').value.toLowerCase();
-  var language_query  = document.getElementById('language-search').value.toLowerCase();
+  var rating_query    = get_filter_field_value('rating-search').toLowerCase();
+  var vote_query      = get_filter_field_value('vote-search').toLowerCase().replace(/\,/g, '');
+  var title_query     = get_filter_field_value('title-search').toLowerCase();
+  var year_min_query  = get_filter_field_value('year-min-search').toLowerCase();
+  var year_max_query  = get_filter_field_value('year-max-search').toLowerCase();
+  var genre_query     = get_filter_field_value('genre-search').toLowerCase();
+  var genre_values    = get_filter_field_values('genre-search');
+  var cast_query      = get_filter_field_value('cast-search').toLowerCase();
+  var cast_values    = get_filter_field_values('cast-search');
+  var creator_values = get_filter_field_values('creator-search');
+  var language_query  = get_filter_field_value('language-search').toLowerCase();
+  var language_values = get_filter_field_values('language-search');
 
-  // Traverse each row and cell. Hide rows whose content fails to match query
-  for (i=1; i<tableID.rows.length; i++) {
-    var rating_cell     = tableID.rows[i].cells[0].innerHTML.toLowerCase();
-    var vote_cell       = tableID.rows[i].cells[1].innerHTML.toLowerCase().replace(/\,/g, '');
-    var title_cell      = tableID.rows[i].cells[2].children[0].innerHTML.toLowerCase();
-    var start_year_cell = tableID.rows[i].cells[3].innerHTML.substring(0,4).toLowerCase();
-    var end_year_cell   = tableID.rows[i].cells[3].innerHTML.substring(5,9).toLowerCase().trim();
-    var genre_cell      = tableID.rows[i].cells[4].innerHTML.toLowerCase();
-    var cast_cell       = tableID.rows[i].cells[5].innerHTML.toLowerCase();
-    var language_cell   = tableID.rows[i].cells[6].innerHTML.toLowerCase();
+  log_filter_debug('match_series_rows:queries', {
+    title_query: title_query,
+    genre_query: genre_query,
+    genre_values: genre_values,
+    language_query: language_query,
+    language_values: language_values
+  });
 
-    // Discard row if rating is empty or less than query
-    if ((parseFloat(rating_cell) < parseFloat(rating_query)) || (rating_query !== '' && rating_cell === '')) {
-      tableID.rows[i].style.display = 'none';
-    }
-    else if ((parseFloat(vote_cell) < parseFloat(vote_query)) || (vote_query !== '' && vote_cell === '')) {
-      tableID.rows[i].style.display = 'none';
-    }
-    else if (title_cell.indexOf(title_query) === -1 && remove_diacritics(title_cell).indexOf(title_query) === -1 && title_query !== '') {
-      tableID.rows[i].style.display = 'none';
-    }
-    else if (year_min_query !== '' && start_year_cell !== '' && (parseInt(start_year_cell) < parseInt(year_min_query))) {
-      tableID.rows[i].style.display = 'none';
-    }
-    else if (year_max_query !== '' && ((end_year_cell === '') || (end_year_cell !== '' && (parseInt(end_year_cell) > parseInt(year_max_query))))) {
-      tableID.rows[i].style.display = 'none';
-    }
-    else if (!substrings_in_list(genre_query, genre_cell, 'genre') && genre_query !== '') {
-        tableID.rows[i].style.display = 'none';
-    }
-    else if (!substrings_in_list(cast_query, cast_cell) && cast_query !== '') {
-      tableID.rows[i].style.display = 'none';
-    }
-    else if (!substrings_in_list(language_query, language_cell, 'language') && language_query !== '') {
-        tableID.rows[i].style.display = 'none';
-    }
-    else {
-      tableID.rows[i].style.display = '';
-    }
-  }
+  return rows.filter(function(row, index) {
+    var rating_cell     = row.cells[1].innerHTML.toLowerCase();
+    var vote_cell       = row.cells[2].innerHTML.toLowerCase().replace(/\,/g, '');
+    var title_cell      = row.cells[3].children[0].textContent.trim().toLowerCase();
+    var start_year_cell = row.cells[4].innerHTML.trim().substring(0,4).toLowerCase().trim();
+    var end_year_cell   = row.cells[4].innerHTML.trim().substring(5,9).toLowerCase().trim();
+    var genre_cell      = row.cells[5];
+    var cast_cell_element = row.cells[6];
+    var language_cell   = row.cells[7];
+    var creator_cell_element = row.cells[8];
 
-  // Update the filtered counter in the page header
-  var count = 0;
-  for (j=1; j<tableID.rows.length; j++) {
-    if (tableID.rows[j].style.display !== 'none') {
-      count += 1
+    if (filter_debug_enabled() && index < 5 && (genre_values.length > 0 || language_values.length > 0)) {
+      log_filter_debug('match_series_rows:row_sample', {
+        row_index: index + 1,
+        title_cell: title_cell,
+        raw_genre_cell: row.cells[5].textContent,
+        parsed_genre_tokens: extract_cell_values(genre_cell),
+        raw_language_cell: row.cells[7].textContent,
+        parsed_language_tokens: extract_cell_values(language_cell)
+      });
     }
-  }
 
-  var current_count = document.getElementById('results_num');
-  var total_count   = document.getElementById('total_num');
-  var count_spacer  = document.getElementById('mv_seperator');
-
-  current_count.innerHTML = count;
-
-  if (count == total_count.innerHTML) {
-    current_count.style.display = 'none';
-    count_spacer.style.display  = 'none'
-  } else {
-    current_count.style.display = '';
-    current_count.style.color   = '#45d234';
-    count_spacer.style.display  = ''
-  }
-
-  stripe_table();
-};
+    // Discard row if rating is empty, None, or less than query
+    var rating_numeric = parseFloat(rating_cell.replace(/[^\d.]/g, '').trim());
+    if (rating_query !== '' && (rating_cell === '' || rating_cell === 'none' || rating_cell.trim() === 'none' || isNaN(rating_numeric) || rating_numeric < parseFloat(rating_query))) {
+      return false;
+    }
+    if (vote_query !== '' && (vote_cell === '' || vote_cell === 'none' || vote_cell.trim() === 'none' || parseFloat(vote_cell) < parseFloat(vote_query))) {
+      return false;
+    }
+    if (!title_match(title_query, title_cell) && !title_match(title_query, remove_diacritics(title_cell)) && title_query !== '') {
+      return false;
+    }
+    if (year_min_query !== '' && start_year_cell !== '' && (parseInt(start_year_cell) < parseInt(year_min_query))) {
+      return false;
+    }
+    if (year_max_query !== '' && ((end_year_cell === '') || (end_year_cell !== '' && (parseInt(end_year_cell) > parseInt(year_max_query))))) {
+      return false;
+    }
+    if (genre_values.length > 0 && !selected_values_in_list(genre_values, genre_cell)) {
+        return false;
+    }
+    if (cast_values.length > 0 && !selected_values_in_list(cast_values, cast_cell_element)) {
+      return false;
+    }
+    if (creator_values.length > 0 && !selected_values_in_list(creator_values, creator_cell_element)) {
+      return false;
+    }
+    if (language_values.length > 0 && !selected_values_in_list(language_values, language_cell)) {
+        return false;
+    }
+    return true;
+  });
+}
 
 
 // Return True if any from catagory query list is in item list
@@ -170,7 +1294,7 @@ function substrings_in_list(query, item, filter_type) {
   var positive_match  = false;
   var negative_match  = false;
 
-  // allow genres to be seperated by spaces
+  // allow genres and langugaes to be seperated by spaces (cast must be comma seperated)
   if (filter_type === "genre" || filter_type === "language") {
     if (query_list.length === 1 && query.split(' ').length > 1) {
       query_list = query.split(' ');
@@ -182,7 +1306,8 @@ function substrings_in_list(query, item, filter_type) {
   var query_match   = [];
   var current_query = '';
 
-  for(j=0; j<query_list.length; j++) {
+  // Separate queries into 'match' and 'not' queries
+  for(var j=0; j<query_list.length; j++) {
     current_query = query_list[j].trim();
     if (current_query.length > 1 && current_query[0] === "!"){
       query_not.push(current_query.substring(1,current_query.length));
@@ -191,7 +1316,8 @@ function substrings_in_list(query, item, filter_type) {
     }
   }
 
-  for(k=0; k<query_match.length; k++){
+  // If any 'match' queries are not present in item list return false
+  for(var k=0; k<query_match.length; k++){
     positive_match = false;
 
     for(l=0; l<item_list.length; l++){
@@ -200,57 +1326,34 @@ function substrings_in_list(query, item, filter_type) {
     if (!positive_match) { return false; }
   }
 
-  for(m=0; m<query_not.length; m++){
+  // If any 'not' queries are present in item list return false
+  for(var m=0; m<query_not.length; m++){
 
     negative_match = [];
 
-    for(n=0; n<item_list.length; n++){
-      if (!item_list[n].trim().indexOf(query_not[m].trim()) === 0) {
+    // Compare each 'not' query (outer loop) to each item in list (inner loop)
+    // If item in item_list begins with text of the current query, negative match is true
+    for(var n=0; n<item_list.length; n++){
+      if (item_list[n].trim().indexOf(query_not[m].trim()) === 0) {
         negative_match.push(true);
       } else {
         negative_match.push(false);
       }
     }
-    if (negative_match.indexOf(false) !== -1) { return false; }
+
+    if (negative_match.indexOf(true) !== -1) {
+      return false;
+    }
   }
   return true;
 };
 
-
-// Restripe the table rows after filtering out rows
-function stripe_table() {
-  var all_rows      = document.querySelectorAll('.table > tbody > tr');
-  var visible_rows  = []
-  var even_row      = false;
-
-  for(n=0; n<all_rows.length; n++){
-    if (all_rows[n].style.display !== "none") { visible_rows.push(all_rows[n]) }
-  }
-
-  for(k=0; k<visible_rows.length; k++){
-
-    var visible_cells = visible_rows[k].children;
-
-    if (even_row === false) {
-      for (m=0; m<visible_cells.length; m++) {
-        visible_cells[m].className = visible_cells[m].className.replace("stripe-off", "");
-        visible_cells[m].className = visible_cells[m].className.replace("stripe-on", "");
-        visible_cells[m].className += " stripe-on";
-      }
-      even_row = true;
-
-    } else {
-      for (m=0; m<visible_cells.length; m++) {
-        visible_cells[m].className = visible_cells[m].className.replace("stripe-off", "");
-        visible_cells[m].className = visible_cells[m].className.replace("stripe-on", "");
-        visible_cells[m].className += " stripe-off";
-      }
-      even_row = false;
-
-    }
-  }
-};
-
+// Search for "||" separated query list for any entry to match listing
+function title_match(query, listing) {
+  const terms = query.split('||').map(term => term.replace(/[|:]/g, '').trim()).filter(Boolean);
+  const normalizedTitle = listing.replace(/:/g, '');
+  return terms.length === 0 || terms.some(term => normalizedTitle.includes(term));
+}
 
 // Return string with diactirics removed
 function remove_diacritics(str) {
@@ -354,109 +1457,625 @@ function remove_diacritics(str) {
   return str;
 };
 
+function get_table_modal_links({includeHidden = false} = {}) {
+  const rows = document.querySelectorAll('#results tbody tr');
+  return Array.from(rows)
+    .filter(row => includeHidden || !row.hidden)
+    .map(row => row.querySelector('a[data-title-details]'))
+    .filter(Boolean);
+}
 
-// Load iFrame with specific title
-function load_details(movie) {
-  var movie_details = movie.href.substring(movie.href.indexOf('#')+1);
-  document.getElementById('backdrop').style.display     = '';
-  document.getElementById('modal-alert').style.display  = '';
-  document.getElementById('modal-alert').innerHTML    = "<iframe id='frame' style='z-index: 12; max-width:800px; height:100%; width:100%; border:none; border-radius:3px' frameborder='0' scrolling='yes' src='" + movie_details + "'></iframe>";
- 
-  /* iFrame won't scroll on Desktop Safari unless this state is toggled */
-  var ua = navigator.userAgent.toLowerCase(); 
-  if (ua.indexOf('safari') != -1) { 
-    if (ua.indexOf('chrome') > -1) {
-      // Chrome
-    } else {
-      // Safari
-      if (!( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-        // Desktop Safari
-        document.getElementById('modal-alert').style.overflow = "hidden";
-      }
-    }
+function get_catalog_modal_links() {
+  return showTiles ? tileLinks : get_table_modal_links();
+}
+
+let modalLink = null;
+let modalOpener = null;
+let modalScrollPosition = 0;
+
+function modal_link_index(links, link) {
+  const row = link.closest('tr');
+  return links.findIndex(candidate => candidate.closest('tr') === row);
+}
+
+function open_details(event, opener, link = opener) {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+    return true;
   }
-};
+  show_details(link, opener);
+  return false;
+}
+
+function show_details(link, opener) {
+  modalOpener = opener;
+  modalScrollPosition = window.scrollY;
+  document.body.style.top = '-' + modalScrollPosition + 'px';
+  document.body.classList.add('modal-open');
+  document.getElementById('backdrop').style.display = '';
+  if (typeof $ !== 'undefined' && $.fn.tooltip) {
+    $('[data-toggle="tooltip"]').tooltip('hide');
+  }
+  load_details(link);
+  document.getElementById('modal-close-btn').focus();
+  document.querySelector('#catalog-tiles .catalog-tile-preview')?.remove();
+}
+
+function load_details(link) {
+  modalLink = link;
+  const visible = get_catalog_modal_links();
+  const index = modal_link_index(visible, link);
+  const details = new URL(link.href);
+  details.searchParams.set('dark', document.documentElement.classList.contains('dark-theme') ? '1' : '0');
+  if (index >= 0) {
+    details.searchParams.set('position', String(index + 1));
+    details.searchParams.set('total', String(visible.length));
+  }
+
+  const dialog = document.getElementById('modal-alert');
+  document.getElementById('frame')?.remove();
+  const frame = document.createElement('iframe');
+  frame.id = 'frame';
+  frame.title = 'Title details';
+  frame.src = details.href;
+  dialog.append(frame);
+
+  // Preserve scrolling on desktop Safari when a new details frame opens.
+  if (/safari/i.test(navigator.userAgent) && !/chrome|android|mobile/i.test(navigator.userAgent)) {
+    frame.scrolling = 'no';
+    setTimeout(() => { frame.scrolling = 'yes'; }, 1);
+  }
+
+  const previous = document.getElementById('modal-prev-btn');
+  const next = document.getElementById('modal-next-btn');
+  previous.style.display = index > 0 ? '' : 'none';
+  next.style.display = index >= 0 && index < visible.length - 1 ? '' : 'none';
+  if ((previous.style.display === 'none' && document.activeElement === previous) ||
+      (next.style.display === 'none' && document.activeElement === next)) {
+    document.getElementById('modal-close-btn').focus();
+  }
+}
+
+function navigate_modal(direction) {
+  if (!modalLink) {
+    return;
+  }
+  const visible = get_catalog_modal_links();
+  const index = modal_link_index(visible, modalLink);
+  const target = visible[index + (direction === 'next' ? 1 : -1)];
+  if (index >= 0 && target) {
+    load_details(target);
+  }
+}
 
 function close_details() {
-  document.getElementById('backdrop').style.display = 'none';
-  document.getElementById('modal-alert').style.display = 'none';
-};
-
-// Toggle Display of Search Filters
-function filter_toggle() {
-  var filters   = document.getElementById('filters');
-  var btn_text  = document.getElementById('filter_toggle_btn');
-
-  if (filters.style.display === '') {
-    filters.style.display = 'none';
-    btn_text.innerHTML    = 'Show Filter Options';
-    window.scroll(0, 0);
-  } else {
-    filters.style.display = '';
-    btn_text.innerHTML    = 'Hide Filter Options';
+  if (!modalLink) {
+    return;
   }
+  document.getElementById('frame')?.remove();
+  document.getElementById('backdrop').style.display = 'none';
+  document.body.classList.remove('modal-open');
+  document.body.style.top = '';
+  window.scrollTo(0, modalScrollPosition);
+  modalOpener.focus({preventScroll: true});
+  modalOpener = null;
+  modalLink = null;
+}
+
+function handle_detail_key(key) {
+  if (key === 'Escape') {
+    close_details();
+  } else if (key === 'ArrowLeft' || key === 'ArrowRight') {
+    navigate_modal(key === 'ArrowLeft' ? 'prev' : 'next');
+  }
+}
+
+document.addEventListener('keydown', event => {
+  if (modalLink && !event.altKey && !event.ctrlKey && !event.metaKey &&
+      ['Escape', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+    event.preventDefault();
+    handle_detail_key(event.key);
+  }
+});
+
+window.addEventListener('message', event => {
+  const frame = document.getElementById('frame');
+  if (frame && event.source === frame.contentWindow) {
+    handle_detail_key(event.data?.detailKey);
+  }
+});
+
+function clear_all_filters() {
+  var filter_inputs = get_filter_fields();
+
+  filter_inputs.forEach(function(input) {
+    clear_filter_field(input.id);
+  });
+
+  trigger_page_search();
+  update_filter_counts();
+  update_random_selection_button();
 };
 
-function toggle_column_visibility(column_name) {
+function toggle_column_visibility(column_name, checkbox) {
   var column_cells  = document.getElementsByName(column_name);
-  var next_state    = "";
-  column_cells[0].style.display === "none" ? next_state = "" : next_state = "none";
+  if (column_cells.length === 0) {
+    return;
+  }
 
-  forEach(column_cells, function(cell) { 
-    cell.style.display = next_state;
+  // Determine visibility based on checkbox state, not current column state
+  var should_show = checkbox && checkbox.checked;
+  var display_state = should_show ? "" : "none";
+
+  column_cells.forEach(function(cell) {
+    cell.style.display = display_state;
   });
 };
 
-// Choose Random Item from List
 function random_selection() {
-  var all_items = document.querySelectorAll('.table > tbody > tr').length;
-  var displayed_items = 0;
+  const links = get_catalog_modal_links();
+  if (links.length > 0) {
+    const randomLink = links[Math.floor(Math.random() * links.length)];
+    show_details(randomLink, document.getElementById('random_selection_btn'));
+  }
+}
 
-  /* Traverse table for currently displayed rows */
-  for(var i=0; i<all_items; i++){
-    if (document.querySelectorAll('.table > tbody > tr')[i].style.display !== "none"){
-      displayed_items++;
+function update_random_selection_button() {
+  var random_btn = document.getElementById('random_selection_btn');
+  if (!random_btn) {
+    return;
+  }
+
+  // Get all visible rows
+  var all_rows = document.querySelectorAll('.table > tbody > tr');
+  var visible_rows = [];
+
+  for(var i = 0; i < all_rows.length; i++){
+    if (!all_rows[i].hidden){
+      visible_rows.push(all_rows[i]);
     }
   }
 
-  var random_item = Math.floor(Math.random() * displayed_items);
-  var displayed_item_count = 0;
-  var displayed_item_index = 0;
-
-  /* Find item at index random_item in table (but search through visible rows) */
-  for(var j=0; j<all_items; j++){
-    if (document.querySelectorAll('.table > tbody > tr')[j].style.display !== "none"){
-      
-      if (displayed_item_count === random_item){
-        displayed_item_index = j;
-      }
-      displayed_item_count++;
-    }
+  // Enable/disable based on visible results count
+  if (visible_rows.length === 0) {
+    random_btn.classList.add('is-disabled');
+    random_btn.disabled = true;
+  } else {
+    random_btn.classList.remove('is-disabled');
+    random_btn.disabled = false;
   }
-  
-  /* Find clickable title link for desired item in table */
-  var table_row = document.querySelectorAll('.table > tbody > tr')[displayed_item_index];
-  var table_row_name = table_row.querySelectorAll('td')[2];
-  var table_row_name_link = table_row_name.querySelectorAll('a')[0];
+}
 
-  /* Select a random item only if there are some currently displayed */
-  if (displayed_item_count > 0) {
-    table_row_name_link.click();
+function handleDropdownItemClick(checkboxId, columnType, event) {
+  // Prevent dropdown from closing when clicking the dropdown item
+  if (event) {
+    event.stopPropagation();
   }
-};
+
+  var checkbox = document.getElementById(checkboxId);
+  if (checkbox) {
+    // Toggle the checkbox state first (since clicking dropdown-item doesn't auto-toggle it)
+    checkbox.checked = !checkbox.checked;
+
+    // Then update column visibility based on new checkbox state
+    toggle_column_visibility(columnType, checkbox);
+
+    // Debug: log the state
+    console.log('Toggled', columnType, 'checkbox:', checkbox.checked);
+  }
+}
+
+function setupColumnVisibilityCheckboxes() {
+  var checkboxes = document.querySelectorAll('[id$="_data_checkbox"]');
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      var columnType = checkbox.id.replace('_checkbox', '');
+      toggle_column_visibility(columnType, checkbox);
+      console.log('Toggled', columnType, 'checkbox:', checkbox.checked);
+    });
+  });
+}
 
 /* Clear cell in filters */
 function clear_filter(element_id){
-  document.getElementById(element_id).value = "";
-  // search movie or series table, depending on which page called method. Try both.
-  try{
-    search_movie_table(results);
-  } catch(err) {
-    // no action
-  };
-  try {
-    search_series_table(results);
-  } catch(err) {
-    // no action
-  };
+  clear_filter_field(element_id);
+  trigger_page_search();
+  update_filter_counts();
+  update_random_selection_button();
 };
+
+const tilesPerPage = 48;
+const tileTitleCollator = new Intl.Collator(document.documentElement.lang || undefined, {
+  numeric: true,
+  sensitivity: 'base'
+});
+let showTiles = false;
+let tileLinks = [];
+let shuffledTileLinks = null;
+let renderedTileCount = 0;
+let tileScrollObserver;
+
+function apply_catalog_view() {
+  const useTiles = document.documentElement.dataset.catalogView === 'tiles';
+  if (useTiles === showTiles || !document.getElementById('tile-view')) {
+    return;
+  }
+  showTiles = useTiles;
+  document.getElementById('table-view-btn').setAttribute('aria-pressed', String(!showTiles));
+  document.getElementById('tile-view-btn').setAttribute('aria-pressed', String(showTiles));
+  document.getElementById('results-container').hidden = showTiles;
+  document.getElementById('table-columns').hidden = showTiles;
+  const sortControl = document.getElementById('tile-sort-control');
+  if (sortControl) {
+    sortControl.hidden = !showTiles;
+  }
+  if (showTiles) {
+    refresh_catalog_tiles();
+  } else {
+    document.getElementById('tile-view').hidden = true;
+    tileScrollObserver?.disconnect();
+  }
+}
+
+function initialize_catalog_view() {
+  document.getElementById('tile-sort')?.addEventListener('change', () => {
+    shuffledTileLinks = null;
+    refresh_catalog_tiles();
+  });
+  if (typeof IntersectionObserver === 'function') {
+    const preloadDistance = 240;
+    tileScrollObserver = new IntersectionObserver(entries => {
+      const nearBottom = entries.some(entry => entry.isIntersecting &&
+        entry.target.getBoundingClientRect().top <= window.innerHeight + preloadDistance);
+      if (showTiles && renderedTileCount < tileLinks.length && nearBottom) {
+        append_catalog_tiles();
+      }
+    }, {rootMargin: `0px 0px ${preloadDistance}px 0px`});
+  }
+  apply_catalog_view();
+}
+
+function get_catalog_tile_labels(row) {
+  const title = row.querySelector('a.tooltip-info').textContent.trim();
+  const rating = row.querySelector('[name="rating_data"]').textContent.replace('★', '').trim();
+  return { title, rating: rating && Number.isFinite(Number(rating)) ? rating : '' };
+}
+
+function sort_catalog_tile_links(links, sort) {
+  if (sort === 'random') {
+    if (!shuffledTileLinks) {
+      shuffledTileLinks = get_table_modal_links({includeHidden: true});
+      for (let index = shuffledTileLinks.length - 1; index > 0; index--) {
+        const otherIndex = Math.floor(Math.random() * (index + 1));
+        [shuffledTileLinks[index], shuffledTileLinks[otherIndex]] =
+          [shuffledTileLinks[otherIndex], shuffledTileLinks[index]];
+      }
+    }
+    const visible = new Set(links);
+    return shuffledTileLinks.filter(link => visible.has(link));
+  }
+
+  const ascendingRating = sort === 'rating-asc';
+  const byRating = sort === 'rating' || ascendingRating;
+  if (sort !== 'title' && !byRating) {
+    return links;
+  }
+
+  const unratedScore = ascendingRating ? Infinity : -Infinity;
+  const entries = links.map(link => {
+    const { title, rating } = get_catalog_tile_labels(link.closest('tr'));
+    return { link, title, score: rating ? Number(rating) : unratedScore };
+  });
+  entries.sort((first, second) => {
+    if (byRating && first.score !== second.score) {
+      return ascendingRating ? first.score - second.score : second.score - first.score;
+    }
+    return tileTitleCollator.compare(first.title, second.title);
+  });
+  return entries.map(entry => entry.link);
+}
+
+function refresh_catalog_tiles() {
+  const sort = document.getElementById('tile-sort')?.value;
+  tileLinks = sort_catalog_tile_links(get_table_modal_links(), sort);
+  renderedTileCount = 0;
+  document.getElementById('catalog-tiles').replaceChildren();
+  document.getElementById('tile-view').hidden = tileLinks.length === 0;
+  append_catalog_tiles();
+}
+
+function append_catalog_tiles() {
+  const grid = document.getElementById('catalog-tiles');
+  const template = document.getElementById('catalog-tile-template');
+  const cards = document.createDocumentFragment();
+  const previousCount = renderedTileCount;
+  const limit = Math.min(renderedTileCount + tilesPerPage, tileLinks.length);
+
+  for (; renderedTileCount < limit; renderedTileCount++) {
+    const tableLink = tileLinks[renderedTileCount];
+    const row = tableLink.closest('tr');
+    const card = template.content.cloneNode(true);
+    card.firstElementChild.dataset.tileIndex = renderedTileCount;
+    const link = card.querySelector('.catalog-tile');
+    const image = card.querySelector('img');
+    const { title, rating } = get_catalog_tile_labels(row);
+
+    link.href = tableLink.href;
+    card.querySelector('.catalog-tile-title').textContent = title;
+    const artist = card.querySelector('.catalog-tile-artist');
+    const runtime = card.querySelector('.catalog-tile-runtime');
+    if (artist && runtime) {
+      artist.textContent = row.cells.namedItem('artist_data').textContent.trim();
+      artist.hidden = !artist.textContent;
+      runtime.textContent = row.cells.namedItem('runtime_data').textContent.trim();
+      runtime.hidden = !runtime.textContent;
+    }
+    card.querySelector('.catalog-tile-year').textContent = row.querySelector('[name="year_data"]').textContent.trim();
+    if (rating) {
+      card.querySelector('.catalog-tile-score').textContent = rating;
+    } else {
+      card.querySelector('.catalog-tile-rating').hidden = true;
+    }
+
+    const missingPoster = card.querySelector('.catalog-tile-no-poster');
+    const showMissingPoster = () => {
+      image.remove();
+      missingPoster.hidden = false;
+    };
+    const poster = tableLink.querySelector('img');
+    if (poster) {
+      image.addEventListener('error', showMissingPoster, {once: true});
+      image.src = poster.src;
+    } else {
+      showMissingPoster();
+    }
+
+    link.addEventListener('click', event => {
+      if (!open_details(event, link, tableLink)) {
+        event.preventDefault();
+      }
+    });
+    cards.append(card);
+  }
+
+  grid.append(cards);
+  const hasMore = renderedTileCount < tileLinks.length;
+  const sentinel = document.getElementById('tile-scroll-sentinel');
+  document.getElementById('show-more-tiles').hidden = !hasMore || Boolean(tileScrollObserver);
+  sentinel.hidden = !hasMore || !tileScrollObserver;
+  if (tileScrollObserver) {
+    tileScrollObserver.disconnect();
+    if (hasMore) {
+      tileScrollObserver.observe(sentinel);
+    }
+  }
+  document.getElementById('tile-results-status').textContent =
+    'Showing ' + renderedTileCount + ' of ' + tileLinks.length + ' titles';
+  return grid.children[previousCount]?.querySelector('.catalog-tile');
+}
+
+function initialize_catalog_tile_preview() {
+  const grid = document.getElementById('catalog-tiles');
+  const template = document.getElementById('catalog-tile-preview-template');
+  if (!grid || !template) {
+    return;
+  }
+
+  let dismissedTile = null;
+
+  function showPreview(tile) {
+    if (modalLink || tile === dismissedTile || tile.querySelector('.catalog-tile-preview')) {
+      return;
+    }
+
+    const currentPreview = grid.querySelector('.catalog-tile-preview');
+    if (currentPreview?.contains(document.activeElement)) {
+      return;
+    }
+    currentPreview?.remove();
+
+    const tableLink = tileLinks[tile.dataset.tileIndex];
+    const row = tableLink.closest('tr');
+    const genres = extract_cell_values(row.querySelector('[name="genre_data"], [name="genres_data"]'));
+    const description = row.querySelector('.catalog-title-cell').dataset.listDescription || '';
+    const preview = template.content.firstElementChild.cloneNode(true);
+    const genreText = preview.querySelector('.catalog-tile-preview-genres');
+    const plot = preview.querySelector('.catalog-tile-preview-description');
+    genreText.textContent = genres.slice(0, 2).join(' · ');
+    genreText.hidden = !genres.length;
+    plot.textContent = description;
+    plot.hidden = !description;
+
+    const cardLink = tile.querySelector('.catalog-tile');
+    const more = preview.querySelector('.catalog-tile-preview-more');
+    more.href = tableLink.href;
+    more.setAttribute('aria-label', 'See more about ' + cardLink.querySelector('.catalog-tile-title').textContent);
+    more.addEventListener('click', event => {
+      if (!open_details(event, cardLink, tableLink)) {
+        event.preventDefault();
+      }
+    });
+    tile.append(preview);
+  }
+
+  grid.addEventListener('pointerover', event => {
+    const tile = event.target.closest('li[data-tile-index]');
+    if (event.pointerType !== 'touch' && tile && !tile.contains(event.relatedTarget)) {
+      showPreview(tile);
+    }
+  });
+
+  grid.addEventListener('focusin', event => {
+    if (event.target.matches('.catalog-tile:focus-visible')) {
+      showPreview(event.target.parentElement);
+    }
+  });
+
+  function hidePreviewOnExit(event) {
+    const tile = event.target.closest('li[data-tile-index]');
+    if (!tile || tile.contains(event.relatedTarget)) {
+      return;
+    }
+    if (event.type === 'pointerout' ? tile.contains(document.activeElement) : tile.matches(':hover')) {
+      return;
+    }
+    if (tile === dismissedTile) {
+      dismissedTile = null;
+    }
+    tile.querySelector('.catalog-tile-preview')?.remove();
+  }
+
+  grid.addEventListener('pointerout', hidePreviewOnExit);
+  grid.addEventListener('focusout', hidePreviewOnExit);
+
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || event.defaultPrevented) {
+      return;
+    }
+    const preview = grid.querySelector('.catalog-tile-preview');
+    if (preview) {
+      dismissedTile = preview.parentElement;
+      if (preview.contains(document.activeElement)) {
+        dismissedTile.querySelector('.catalog-tile').focus({preventScroll: true});
+      }
+      preview.remove();
+    }
+  });
+}
+
+function show_more_tiles() {
+  append_catalog_tiles()?.focus();
+}
+
+function initialize_catalog_list_descriptions() {
+  const cells = document.querySelectorAll('.catalog-title-cell[data-list-description]');
+  if (!cells.length) {
+    return;
+  }
+
+  function renderDescription(cell) {
+    const paragraph = document.createElement('p');
+    paragraph.className = 'catalog-list-description';
+    paragraph.textContent = cell.dataset.listDescription;
+    cell.append(paragraph);
+    return paragraph;
+  }
+
+  if (typeof IntersectionObserver !== 'function') {
+    cells.forEach(renderDescription);
+    return;
+  }
+
+  const rendered = new Map();
+  const observer = new IntersectionObserver(entries => {
+    for (const {target, isIntersecting} of entries) {
+      if (isIntersecting) {
+        if (!rendered.has(target)) {
+          rendered.set(target, renderDescription(target));
+        }
+      } else {
+        rendered.get(target)?.remove();
+        rendered.delete(target);
+      }
+    }
+  }, {rootMargin: '480px 0px'});
+  cells.forEach(cell => observer.observe(cell));
+}
+
+function setup_results_scroll() {
+  const container = document.getElementById('results-container');
+  const table = document.getElementById('results');
+  if (!container || !table) {
+    return;
+  }
+
+  function updateScrollState() {
+    const fits = container.scrollWidth <= container.clientWidth;
+    if (fits) {
+      container.removeAttribute('tabindex');
+    } else {
+      container.tabIndex = 0;
+    }
+  }
+
+  const observer = new ResizeObserver(updateScrollState);
+  observer.observe(container);
+  observer.observe(table);
+  updateScrollState();
+}
+
+function enhanceTableStyling() {
+  var resultsTable = document.getElementById('results');
+  if (!resultsTable) {
+    return;
+  }
+
+  var genreCells = resultsTable.querySelectorAll('td[name="genres_data"], td[name="genre_data"]');
+  genreCells.forEach(function(cell) {
+    if (cell.dataset.enhanced) {
+      return;
+    }
+    cell.dataset.enhanced = 'true';
+
+    var genres = cell.innerHTML.split(',<br>').map(function(g) {
+      return g.split('<br/>').join('').split(',').join('').trim();
+    }).filter(function(g) { return g !== ''; });
+
+    if (genres.length > 0) {
+      cell.innerHTML = genres.map(function(genre) {
+        return '<span class="genre-pill">' + genre + '</span>';
+      }).join(' ');
+    }
+  });
+
+  var ratingCells = resultsTable.querySelectorAll('td[name="rating_data"]');
+  ratingCells.forEach(function(cell) {
+    if (cell.dataset.enhanced) {
+      return;
+    }
+    cell.dataset.enhanced = 'true';
+
+    var ratingText = cell.textContent.trim();
+    if (ratingText && ratingText !== 'None' && ratingText !== '') {
+      cell.innerHTML = '<span class="rating-with-star"><span class="rating-star">★</span>' + ratingText + '</span>';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', update_filter_counts);
+document.addEventListener('DOMContentLoaded', initialize_enhanced_filter_selects);
+document.addEventListener('DOMContentLoaded', initialize_vote_filter_input);
+document.addEventListener('DOMContentLoaded', setup_search_clear_buttons);
+document.addEventListener('DOMContentLoaded', update_random_selection_button);
+document.addEventListener('DOMContentLoaded', setupColumnVisibilityCheckboxes);
+document.addEventListener('DOMContentLoaded', enhanceTableStyling);
+document.addEventListener('DOMContentLoaded', setup_results_scroll);
+document.addEventListener('DOMContentLoaded', initialize_catalog_view);
+document.addEventListener('DOMContentLoaded', initialize_sticky_filters);
+document.addEventListener('DOMContentLoaded', initialize_catalog_tile_preview);
+document.addEventListener('DOMContentLoaded', initialize_catalog_list_descriptions);
+document.addEventListener('catalogviewchange', apply_catalog_view);
+document.addEventListener('DOMContentLoaded', function() {
+  var filters = document.getElementById('filters');
+  if (!filters) {
+    return;
+  }
+
+  filters.addEventListener('input', update_filter_counts);
+  filters.addEventListener('change', update_filter_counts);
+  filters.addEventListener('input', update_random_selection_button);
+  filters.addEventListener('change', update_random_selection_button);
+});
+
+
+/* Called on Document Load */
+// Stylized Tooltips
+if (typeof $ !== 'undefined') {
+  $(document).ready(function(){
+    // Bootstrap doesn't allow html in tooltips without this setting
+    $('[data-toggle="tooltip"]').tooltip({
+      html: true
+    });
+
+    $("a.tooltip-info").tooltip();
+  });
+}

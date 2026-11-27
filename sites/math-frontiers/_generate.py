@@ -15,6 +15,10 @@ labels = {'published': 'Published result', 'construction': 'Published constructi
 
 def value(problem, milestone):
     if problem['kind'] == 'range':
+        if problem['id'] == 'matrix':
+            if milestone['lower'] == milestone['value']:
+                return f"{milestone['display']} (ω = 9/4)"
+            return f"{milestone.get('display', milestone['value'])} (floor {milestone['lower']})"
         return f"{milestone['lower']}–{milestone['value']}"
     if problem['kind'] == 'floor':
         return f"> 10^{milestone['value']}"
@@ -25,18 +29,20 @@ tables = []
 for problem in data['problems']:
     rows = []
     for milestone in problem['milestones']:
-        links = f'<a href="{escape(milestone["url"])}" target="_blank" rel="noopener">Primary source ↗</a>'
+        source_label = escape(milestone.get('sourceLabel') or 'Primary source')
+        links = f'<a href="{escape(milestone["url"])}" target="_blank" rel="noopener">{source_label} ↗</a>'
         if milestone.get('supportUrl'):
-            links += f' · <a href="{escape(milestone["supportUrl"])}" target="_blank" rel="noopener">Supporting source ↗</a>'
+            support_label = escape(milestone.get('supportLabel') or 'Supporting source')
+            links += f' · <a href="{escape(milestone["supportUrl"])}" target="_blank" rel="noopener">{support_label} ↗</a>'
         ai = ('<span class="table-note">AI contribution: ' + escape(milestone['ai']) + '</span>') if milestone.get('ai') else ''
-        rows.append(f'<tr><td><time datetime="{milestone["date"]}">{escape(milestone["label"])}</time></td><td>{escape(value(problem,milestone))}</td><td>{labels[milestone["status"]]}<span class="table-note">{escape(milestone["who"])}</span></td><td>{escape(milestone["detail"])}<br>{links}{ai}</td></tr>')
+        rows.append(f'<tr><td><time datetime="{milestone["date"]}">{escape(milestone["label"])}</time></td><td>{escape(value(problem, milestone))}</td><td>{labels[milestone["status"]]}<span class="table-note">{escape(milestone["who"])}</span></td><td>{escape(milestone["detail"])}<br>{links}{ai}</td></tr>')
     regions = problem.get('zeroFreeRegions', [])
     region_table = ''
     if regions:
         region_rows = []
         for region in regions:
             n, d = region['numerator'], region['denominator']
-            bound = 'β = ½' if n * 2 == d else f'{d-n}/{d} ≤ β ≤ {n}/{d}'
+            bound = 'β = ½' if n * 2 == d else f'{d - n}/{d} ≤ β ≤ {n}/{d}'
             ai = ('<span class="table-note">AI contribution: ' + escape(region['ai']) + '</span>') if region.get('ai') else ''
             evidence = labels[region['status']]
             links = f'<a href="{escape(region["url"])}" target="_blank" rel="noopener">Source ↗</a>'
@@ -54,20 +60,11 @@ html = (ROOT / '_template.html').read_text()
 html = html.replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('<', '\\u003c'))
 html = html.replace('__TABLES__', '\n'.join(tables))
 html = html.replace('__UPDATED__', escape(data['updated']))
-riemann = next(problem for problem in data['problems'] if problem['id'] == 'riemann')
-proof = next((region for region in riemann['zeroFreeRegions'] if region['status'] == 'verified'), None)
-notice = (f'<aside class="riemann-proof" aria-label="Riemann Hypothesis proof">'
-          f'<strong>{labels[proof["status"]]}</strong> '
-          f'<span>{escape(proof["who"])}, released a proof on '
-          f'<time datetime="{proof["date"]}">{escape(proof["dateLabel"])}</time>.</span> '
-          f'<a href="{escape(proof["verificationUrl"])}" target="_blank" rel="noopener">Lean and Mathlib verification ↗</a></aside>'
-          if proof else '')
-html = html.replace('__RIEMANN_PROOF__', notice)
 for filename in ('styles.css', 'model.js', 'view.js', 'explorer.js'):
     digest = sha256((ROOT / filename).read_bytes()).hexdigest()[:12]
     html = html.replace(f'="{filename}"', f'="{filename}?v={digest}"')
 initial = json.loads(subprocess.check_output(['node', str(ROOT / '_render.cjs')], text=True))
-for key, value in initial.items():
-    html = html.replace(f'__{key}__', value)
+for key, val in initial.items():
+    html = html.replace(f'__{key}__', val)
 (ROOT / 'index.html').write_text(html)
 print(f'Rendered {len(data["problems"])} frontiers / {sum(len(p["milestones"]) for p in data["problems"])} sourced milestones.')

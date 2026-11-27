@@ -1,33 +1,31 @@
 ---
 layout: default
-description: "Move static sites from Amazon S3 and CloudFront to Azure, with practical guidance on hosting, CDN configuration, deployment, and caching."
-title: "Static Sites & CDN Migration"
+title: "Migrating Static Sites & CDN from AWS S3 to Azure Static Web Apps & Front Door"
+description: "Move static sites from Amazon S3 and CloudFront to Azure, covering apex DNS constraints, Blob Storage, Azure Front Door CDN invalidation, and Static Web Apps."
 permalink: /aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/
+last_modified_at: 2026-11-27
+image:
+  path: /assets/images/static-site-architecture-option3.png
+  alt: "Static site architecture using Azure DNS Zone and Azure Static Web Apps"
 ---
 
-# Static Sites & CDN Migration
+<nav class="guide-breadcrumb" aria-label="Breadcrumb">
+  <a href="/aws-azure-migration-guide/">AWS to Azure Migration Guide</a>
+  <span class="crumb-sep" aria-hidden="true">/</span>
+  <span>Chapter 4 of 6</span>
+</nav>
+
+# Static Sites & CDN Migration: AWS S3 to Azure Static Web Apps & Front Door
 
 <div class="chapter-meta-line">
   <span class="chapter-number">Chapter 4</span>
   <span class="reading-time-wrapper">{% include reading_time.html %}</span>
   <span class="category">Infrastructure Guide</span>
-  <span class="migration-path"><strong>S3</strong> → <strong>Static Apps</strong></span>
+  <span class="migration-path"><strong>S3 &amp; CloudFront</strong> → <strong>Static Web Apps / Front Door</strong></span>
 </div>
 
 <div class="chapter-intro">
-This is <b>Part IV</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our static sites from AWS S3 to Azure Static Web Apps.
-
-<div class="chapter-nav">
-  <a href="/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/" class="chapter-nav-button back">
-    <span class="arrow">←</span>Previous Chapter
-  </a>
-  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
-    <i class="fas fa-home"></i> Home
-  </a>
-  <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="chapter-nav-button next">
-    Next Chapter: Database Migration<span class="arrow">→</span>
-  </a>
-</div>
+  <p>Chapter 4 of 6 in our series on migrating LEAD's enterprise platform from AWS to Azure — covering how apex DNS constraints shaped our move across Azure Storage, Front Door, and Static Web Apps.</p>
 </div>
 
 ## Overview
@@ -83,9 +81,9 @@ Key implications:
 These constraints drove the architecture in each migration.
 
 
-### Scenario 1: WordPress → Azure Storage (Sunrize)
+## Scenario 1: WordPress → Azure Storage (Sunrize)
 
-#### Goal
+### Goal
 
 Migrate WordPress content to a static site hosted on Azure Storage to eliminate WordPress maintenance and reduce cost.
 
@@ -93,9 +91,9 @@ We'll gloss over the details of this as it's not relevant to the migration strat
 
 We elected to use Jekyll for the static site generator, but any static site generator would work.
 
-#### Architecture Attempted
+### Architecture Attempted
 
-```bash
+```
 Internet
     ↓
 Route53
@@ -103,7 +101,7 @@ Route53
 Azure Storage Static Website
 ```
 
-#### What Worked
+### What Worked
 
 - Converted WordPress to Jekyll
 - Deployed to Azure Storage static website
@@ -111,7 +109,7 @@ Azure Storage Static Website
 - Static hosting worked correctly
 - Azure Storage allows providing additional assets used for 404 pages
 
-#### What Failed
+### What Failed
 
 The root domain (`example.com`) could not be moved.
 
@@ -126,33 +124,33 @@ Result:
 - `www.example.com` worked
 - Apex did not
 
-#### Workaround Implemented
+### Workaround Implemented
 
 We kept the existing Azure WordPress instance from a prior migration (hosted as an Azure Web App, with a static IP), downsized it, and turned it into a redirect service:
 
-```bash
+```
 example.com  → 301 redirect → www.example.com
 www.example.com → Azure Storage
 ```
 
 This allowed us to complete the migration prior to moving DNS providers.
 
-#### Evaluated Alternative: S3 Redirect
+### Evaluated Alternative: S3 Redirect
 
 We evaluated using an S3 bucket for apex redirect. While this works for HTTP, it does not support HTTPS without CloudFront. That reintroduced AWS infrastructure and complexity, so we abandoned it.
 
-#### Final Architecture
+### Final Architecture
 
-```bash
+```
 Apex → Azure redirect server
 www  → Azure Storage
 ```
 
 ![Static Site Architecture Option 1]({{ "/assets/images/static-site-architecture-option1.png" | relative_url }})
 
-This was funtional, but inelegant, and served as a stop gap until we could move DNS providers.
+This was functional, but inelegant, and served as a stopgap until we could move DNS providers.
 
-#### Deployment
+### Deployment
 
 Our static site is developed locally and deployed with a simple Makefile that uses the Azure Storage CLI to upload the new site contents:
 
@@ -170,7 +168,7 @@ This scenario can be a natural next step for the one outlined above.
 
 ### When This Applies
 
-- Uzing Azure DNS Zones
+- Using Azure DNS Zones
 - Need CDN, compression, WAF
 - Hosting static content in Azure Storage
 
@@ -221,7 +219,7 @@ The objective was straightforward:
 - Re-route Route53
 
 #### Architecture
-```bash
+```
 Internet
     ↓
 Route53
@@ -244,7 +242,7 @@ This mirrored Scenario 2, but in a production setting.
 #### CDN Coordination Matters
 
 Angular builds produce hashed asset filenames:
-```bash
+```
 main.84fd31.js
 runtime.aa9221.js
 ```
@@ -265,15 +263,15 @@ There are two ways to handle this:
 1. Leave historical assets in storage indefinitely
 2. Clean up old assets and purge the CDN on deployment
 
-Our deployment utility offers three options
+Our deployment utility offers three options:
 
-1. do not purge CDN
-2. purges Front Door cache async
-3. purge Front Door cache sync
+1. Do not purge CDN
+2. Purge Front Door cache asynchronously
+3. Purge Front Door cache synchronously
 
-The purging ensures that each release to ensure the next request for index.html retrieves the updated version that references the new hashed assets.
+Purging on release ensures the next request for `index.html` retrieves the updated version referencing the new hashed assets.
 
-This coordination between storage cleanup and CDN invalidation is essential for SPA deployments behind a CDN. We share the full deployment script at the bottom of the article.
+This coordination between storage cleanup and CDN invalidation is essential for SPA deployments behind a CDN. We share the full deployment script at the bottom of the chapter.
 
 #### Why Front Door Was Valuable
 
@@ -292,15 +290,15 @@ Even for a fully static site, these features reduced operational overhead while 
 
 This is the clean architecture we adopted for our other static site, which was not migrated, but a net new creation.
 
-#### Key Difference
+### Key Difference
 
 We moved DNS into an Azure DNS Zone.
 
-That unlocked alias A records to Azure services. And using a static Web App allowed us to optionally add Front Door as a CDN, it does not require it.
+That unlocked alias A records to Azure services. And using a Static Web App allowed us to optionally add Front Door as a CDN, without requiring it.
 
-#### Archtiecture
+### Architecture
 
-```bash
+```
 Internet
     ↓
 Azure DNS Zone
@@ -332,7 +330,7 @@ www.example.com → CNAME
 
 ![Static Site Architecture Option 3]({{ "/assets/images/static-site-architecture-option3.png" | relative_url }})
 
-An simple, fully Azure-native solution.
+A simple, fully Azure-native solution.
 
 ### Deployment
 
@@ -350,7 +348,7 @@ setup:
 
 deploy: setup
         swa login --subscription-id "<SUBSCRIPTION_ID>" \
-                  --resource-group "<RESOURCE_GROUP>>" \
+                  --resource-group "<RESOURCE_GROUP>" \
                   --app-name "<APP_NAME>"
         swa deploy ./web --env production --app-name "<APP_NAME>" --resource-group "<RESOURCE_GROUP>"
 ```
@@ -386,9 +384,7 @@ az storage blob upload-batch \
   --overwrite
 ```
 
----
-
-## Azure Front Door
+### Azure Front Door
 
 Create profile and configure origin to:
 
@@ -397,8 +393,6 @@ Create profile and configure origin to:
 ```
 
 Add custom domain, validate via TXT record, enable managed certificate.
-
----
 
 ### Azure Static Web App
 
@@ -424,8 +418,6 @@ When using Azure DNS Zone, this automatically creates:
 
 * Alias A record (apex)
 * TXT validation record
-
----
 
 ### Redirect Handling (Static Web App)
 
@@ -484,9 +476,9 @@ For SPAs that generate hashed asset filenames, CDN cache must be purged when cle
 
 Understanding that upfront simplifies everything that follows. Our new sites were able to use Static Web Apps directly, as they were not constrained by external DNS. Our migrated sites required a more gradual process that dealt with the tradeoffs.
 
-### Appendix
+## Appendix
 
-Azure Angular deployment script, allowing optional CDN purge syncronously or asynchronously. Note that hardcoded variables are denoted with angle brackets (adjust for your environment)
+Azure Angular deployment script, allowing optional CDN purge synchronously or asynchronously. Note that environment-specific variables are denoted with angle brackets (adjust for your environment).
 
 ```python
 #!/usr/bin/env python3
@@ -631,7 +623,7 @@ def purge_cache(realm: str, asyncPurge: bool ) -> None:
     """
         Purge the Azure CDN cache
         Since the other steps clean up old resources, it is important that customers are not pointed to non-existent resources
-        This command will take several minutes to run, but can return immediately (and continue asyncronhously) with the --no-wait flag
+        This command will take several minutes to run, but can return immediately (and continue asynchronously) with the --no-wait flag
         For sensitive deploys in which it is essential to receive confirmation of cache purge, do not use the --no-wait flag
         In all other circumstances, asyncPurge set to true will speed the deployment process up
     """
@@ -760,8 +752,8 @@ if __name__ == "__main__":
 ```
 
 <div class="chapter-subscribe">
-  <h3>Enjoying this migration guide?</h3>
-  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <h3>Enjoyed this guide?</h3>
+  <p>Occasional essays on engineering, AI, and building products — no spam, unsubscribe anytime</p>
   <form
     action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
     method="post"
@@ -769,21 +761,20 @@ if __name__ == "__main__":
   >
     <input type="hidden" name="metadata__source" value="{{ page.url }}" />
     <div class="form-row">
-      <input type="email" name="email" placeholder="your@email.com" required />
+      <input type="email" name="email" aria-label="Email address" autocomplete="email" placeholder="your@email.com" required />
       <button type="submit">Subscribe</button>
     </div>
   </form>
 </div>
 
-<div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/" class="back-to-toc">
-    <i class="fas fa-arrow-left"></i> Previous Chapter
+<nav class="next-chapter-section" aria-label="Chapter navigation">
+  <a href="/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/" class="chapter-pager-link prev">
+    <span class="pager-kicker">← Previous Chapter</span>
+    <span class="pager-title">WordPress on Bitnami to App Service</span>
   </a>
-  <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="next-chapter-button">
-    <span class="button-content">
-      <span class="button-text">Next Chapter</span>
-      <span class="button-subtitle">Azure Database Migration</span>
-      <span class="arrow">→</span>
-    </span>
+  <a href="/aws-azure-migration-guide/" class="chapter-pager-link overview">All Chapters</a>
+  <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="chapter-pager-link next">
+    <span class="pager-kicker">Next Chapter →</span>
+    <span class="pager-title">PostgreSQL Migration from RDS to Azure</span>
   </a>
-</div>
+</nav>

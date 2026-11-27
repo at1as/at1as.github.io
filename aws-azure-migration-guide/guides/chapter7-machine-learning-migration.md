@@ -7,26 +7,22 @@ sitemap: false
 noindex: true
 ---
 
+<nav class="guide-breadcrumb" aria-label="Breadcrumb">
+  <a href="/aws-azure-migration-guide/">AWS to Azure Migration Guide</a>
+  <span class="crumb-sep" aria-hidden="true">/</span>
+  <span>Planned Chapter</span>
+</nav>
+
 # Machine Learning Migration
 
 <div class="chapter-meta-line">
-  <span class="chapter-number">Chapter 7</span>
-  <span class="reading-time-wrapper">{% include reading_time.html %}</span>
-  <span class="category">ML/AI Guide</span>
+  <span class="chapter-number">Planned</span>
+  <span class="category">ML &amp; AI</span>
   <span class="migration-path"><strong>SageMaker</strong> → <strong>Azure ML</strong></span>
 </div>
 
 <div class="chapter-intro">
-This is <b>Part VII</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of machine learning workloads from AWS to Azure.
-  <div class="chapter-nav">
-  <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="chapter-nav-button back">
-    <span class="arrow">←</span>Previous Chapter
-  </a>
-  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
-    <i class="fas fa-home"></i> Home
-  </a>
-  <div></div>
-</div>
+  <p>Planned future chapter on migrating machine learning workloads and pipelines from AWS to Azure.</p>
 </div>
 
 ## Coming Soon
@@ -52,8 +48,8 @@ When complete, this chapter will cover the data pipelines we use for Machine Lea
 This chapter will be published as we complete our machine learning migration work. Check back soon for detailed guides, code examples, and performance comparisons.
 
 <div class="chapter-subscribe">
-  <h3>Enjoying this migration guide?</h3>
-  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <h3>Enjoyed this guide?</h3>
+  <p>Occasional essays on engineering, AI, and building products — no spam, unsubscribe anytime</p>
   <form
     action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
     method="post"
@@ -61,14 +57,19 @@ This chapter will be published as we complete our machine learning migration wor
   >
     <input type="hidden" name="metadata__source" value="{{ page.url }}" />
     <div class="form-row">
-      <input type="email" name="email" placeholder="your@email.com" required />
+      <input type="email" name="email" aria-label="Email address" autocomplete="email" placeholder="your@email.com" required />
       <button type="submit">Subscribe</button>
     </div>
   </form>
 </div>
 
-<div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="back-to-toc">
-    <i class="fas fa-arrow-left"></i> Previous Chapter
+<nav class="next-chapter-section two-col" aria-label="Chapter navigation">
+  <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="chapter-pager-link prev">
+    <span class="pager-kicker">← Chapter 6</span>
+    <span class="pager-title">Route 53 to Azure DNS Zones</span>
   </a>
-</div>
+  <a href="/aws-azure-migration-guide/" class="chapter-pager-link next">
+    <span class="pager-kicker">Guide Overview →</span>
+    <span class="pager-title">All Chapters</span>
+  </a>
+</nav>

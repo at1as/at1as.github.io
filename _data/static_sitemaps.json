@@ -25,5 +25,13 @@
   {
     "root": "/sites/fusion/",
     "exclude": []
+  },
+  {
+    "root": "/sites/amtcalculator/",
+    "exclude": []
+  },
+  {
+    "root": "/sites/mediadatabase/output/",
+    "exclude": []
   }
 ]

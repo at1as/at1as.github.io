@@ -1,14 +1,17 @@
 <div class="source-picker"$source_control_attributes>
-  <label for="$source_select_id">Source</label>
-  <select id="$source_select_id" disabled><option value="bloom-tao">Bloom–Tao</option></select>
+  <span class="source-picker-label" id="${source_select_id}-label">Source</span>
+  <div class="source-segments" role="group" aria-labelledby="${source_select_id}-label">
+    <button type="button" data-source-option="bloom-tao" aria-pressed="true" disabled>Bloom–Tao</button>
+  </div>
+  <select id="$source_select_id" class="visually-hidden" aria-labelledby="${source_select_id}-label" tabindex="-1" disabled><option value="bloom-tao">Bloom–Tao</option></select>
   <button class="source-info" type="button" popovertarget="source-help" aria-label="About the sources and their dates" hidden>i</button>
   <section id="source-help" popover aria-labelledby="source-help-title">
     <div class="source-help-heading">
       <h2 id="source-help-title">Sources and dates</h2>
       <button type="button" popovertarget="source-help" popovertargetaction="hide" aria-label="Close source information">×</button>
     </div>
-    <p>Dates show the first and latest snapshots we have for each catalog. Results in the first snapshot may have been proved earlier.</p>
+    <p>Dates show each catalog’s first and latest saved snapshots. Baseline entries may have been proved earlier.</p>
     <dl></dl>
-    <div id="combined-help"><strong>Combined</strong><p>Counts a problem once if any catalog marks it resolved. Each catalog joins at its first snapshot. After its last snapshot, its recorded results carry forward.</p></div>
+    <div id="combined-help"><strong>Combined</strong><p>Union across catalogs by problem number: counts a problem once if any catalog marks it resolved. Later catalogs join at their first snapshot and carry forward after their last.</p></div>
   </section>
 </div>

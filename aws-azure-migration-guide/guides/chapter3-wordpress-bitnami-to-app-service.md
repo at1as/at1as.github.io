@@ -1,33 +1,31 @@
 ---
 layout: default
-description: "How to migrate a WordPress site from Bitnami on AWS to Azure App Service, including database transfer, configuration, and deployment."
-title: "WordPress on Bitnami to Azure App Service Migration"
+title: "Migrating WordPress from AWS Lightsail (Bitnami) to Azure App Service"
+description: "How to migrate a WordPress site from Bitnami on AWS Lightsail to Azure App Service, including PHP-FPM tuning, database transfer, and custom domain cutover."
 permalink: /aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/
+last_modified_at: 2026-11-27
+image:
+  path: /assets/images/azure-typical-service-overview.png
+  alt: "Azure App Service migration architecture for WordPress workloads"
 ---
 
-# WordPress on Bitnami to Azure App Service Migration
+<nav class="guide-breadcrumb" aria-label="Breadcrumb">
+  <a href="/aws-azure-migration-guide/">AWS to Azure Migration Guide</a>
+  <span class="crumb-sep" aria-hidden="true">/</span>
+  <span>Chapter 3 of 6</span>
+</nav>
+
+# WordPress on Bitnami (AWS Lightsail) to Azure App Service
 
 <div class="chapter-meta-line">
   <span class="chapter-number">Chapter 3</span>
   <span class="reading-time-wrapper">{% include reading_time.html %}</span>
   <span class="category">Migration Guide</span>
-  <span class="migration-path"><strong>WordPress</strong> → <strong>App Service</strong></span>
+  <span class="migration-path"><strong>Lightsail WordPress</strong> → <strong>App Service</strong></span>
 </div>
 
 <div class="chapter-intro">
-This is <b>Part III</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our WordPress properties from AWS Lightsail with Bitnami to Azure App Service.
-
-<div class="chapter-nav">
-  <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="chapter-nav-button back">
-    <span class="arrow">←</span>Previous Chapter
-  </a>
-  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
-    <i class="fas fa-home"></i> Home
-  </a>
-  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="chapter-nav-button next">
-    Next Chapter: Static Sites & CDN<span class="arrow">→</span>
-  </a>
-</div>
+  <p>Chapter 3 of 6 in our series on migrating LEAD's enterprise platform from AWS to Azure — covering how we moved our WordPress properties from AWS Lightsail with Bitnami to standard Azure App Service.</p>
 </div>
 
 ## Overview
@@ -38,9 +36,7 @@ As extensions we use often require specific PHP versions for WordPress versions,
 
 This guide covers the combined learnings from the migration process we followed to move both of our WordPress properties to Azure App Service.
 
-Note that our approach did not rely heavily upon tooling, as we're comfortable with server configuration and management, but there are many tools available and this approach may not be the correct one for all teams.
-
-We're engineers and not WordPress experts, so we surely lack a significant amount of domain expertise in this space.
+We're systems engineers rather than WordPress specialists, so we leaned on direct server configuration and CLI tooling rather than managed migration services. There are plenty of third-party tools available if your team prefers a more turnkey workflow.
 
 
 ## Prerequisites
@@ -149,8 +145,8 @@ Before importing, disable plugins that may cause conflicts:
 2. **Import the backup file** (may take several minutes)
 3. **Monitor logs** if import fails:
    - Check via Kudu Console
-   - Inspect /home/LogFiles/
-   - or tail PHP logs if avaiable `tail -f /var/log/php-fpm/php-fpm.www.log`
+   - Inspect `/home/LogFiles/`
+   - Or tail PHP logs if available: `tail -f /var/log/php-fpm/php-fpm.www.log`
 
 ### Common Import Errors
 
@@ -178,19 +174,21 @@ mv /var/www/wordpress/wp-content/object-cache.php /var/www/wordpress/wp-content/
    - Compare with Lightsail performance
 
 3. **WordPress Admin**
-   - Login with original credentials
+   - Log in with original credentials
    - **Settings → General**: Verify WordPress Address and Site Address
    - Check all functionality works correctly
 
 ### Performance Comparison
 
-| **Hosting** | **Desktop** | **Mobile** |
-|--------------|-------------|------------|
-| Lightsail    | 72 (72, 94, 74, 100) | 25 (25/92/71/100) |
-| Azure P0V3   | 54 | --- |
-| Azure P1V3   | 66 (66, 94, 96, 100) | 33 (33, 92, 96, 100) |
+PageSpeed Insights scores below show overall Performance followed by `(Performance, Accessibility, Best Practices, SEO)`:
 
-This compared our optmized Lightsail setup with our basic Azure setup.
+| Hosting | Desktop | Mobile |
+|---------|---------|--------|
+| Lightsail | 72 (72, 94, 74, 100) | 25 (25, 92, 71, 100) |
+| Azure P0v3 | 54 | — |
+| Azure P1v3 | 66 (66, 94, 96, 100) | 33 (33, 92, 96, 100) |
+
+This compared our optimized Lightsail setup with our baseline Azure setup before caching and PHP-FPM tuning.
 
 ## Step 6: Performance Optimization
 
@@ -235,17 +233,17 @@ EOF
 
 chmod +x /home/startup.sh
 ```
-Note that we adjusted these settings to avoid OOM errors and memory pressure issues"
+Note that we adjusted these settings to avoid OOM errors and memory pressure issues.
 
-#### Before (Default):
-```bash
+#### Before (Default)
+```
 App Service Container
  ├── PHP-FPM (max_children = 50)
  ├── Memory Pressure
  └── OOM Risk
 ```
-#### After (Tuned):
-```bash
+#### After (Tuned)
+```
 App Service Container
  ├── PHP-FPM (max_children = 15)
  ├── Stable Memory
@@ -280,7 +278,7 @@ nice -n 10 wp plugin activate elementor --allow-root --path="/home/site/wwwroot"
 
 ## Step 7: Domain Transfer
 
-If DNS is managed externally (e.g., Route53), add a custom domain in Azure for certificate management and update DNS records to point to the correct App Service endpoint.
+If DNS is managed externally (e.g., Route 53), add a custom domain in Azure for certificate management and update DNS records to point to the correct App Service endpoint.
 
 ### Add Custom Domain
 
@@ -306,9 +304,9 @@ wp option update home 'https://www.example.com' --allow-root
 wp search-replace '<OLD_SITE_NAME>.azurewebsites.net' 'www.example.com' --precise --allow-root --skip-columns=guid
 ```
 
-### Update wp-config.php
+### Update `wp-config.php`
 
-Add the following to your wp-config.php file to point to the new domain:
+Add the following to your `wp-config.php` file to point to the new domain:
 
 ```php
 // Add to wp-config.php
@@ -346,7 +344,7 @@ mv /home/site/wwwroot/wp-content/themes/<THEME>/{cache,cache2} /home/site/wwwroo
 wp cache flush --allow-root
 ```
 
-### Shutdown Old Service on AWS
+### Shut Down Old Service on AWS
 
 We waited several weeks to ensure stability and feel confident a rollback was not necessary before removing the AWS resources.
 
@@ -368,9 +366,9 @@ status;  # Verify TLS connection
 
 ### Deployment Slots
 
-Deployment slots allow creating a standby instance without traffic routed to it to test changes before going live. This allows zero downtime deployments and rollbacks:
+Deployment slots allow creating a standby instance without traffic routed to it to test changes before going live. This allows zero-downtime deployments and rollbacks:
 
-```bash
+```
 Production Slot  ← live traffic
 Staging Slot     ← test environment
 
@@ -380,7 +378,7 @@ Swap → Zero downtime deployment
 ### Performance Enhancement with Caching
 
 Enable **W3 Total Cache** (pre-configured for Azure):
-- FrontDoor CDN integration
+- Azure Front Door CDN integration
 - Redis object cache
 - Database caching
 - **Note**: Avoid minification initially to prevent rendering issues
@@ -395,17 +393,17 @@ Monitor Azure spend through the Azure Portal or cost management tools. If using 
 ### Common Issues
 
 **Memory Issues:**
-- Scale up to P1V3 if experiencing OOM errors
+- Scale up to P1v3 if experiencing OOM errors
 - Monitor via "Diagnose and Solve Problems" → "Web App Down"
 
 **Plugin Conflicts:**
-- Disable problematic plugins (ex. Elementskit-lite if rendering issues occur)
+- Disable problematic plugins (e.g., `elementskit-lite` if rendering issues occur)
 - Update plugins to latest versions
 - Test plugins individually
 
 **Domain Issues:**
-- Ensure both www and non-www domains have certificates (if applicable)
-- Use Azure DNS Zones for better A record management
+- Ensure both `www` and apex domains have certificates (if applicable)
+- Use Azure DNS Zones for cleaner apex `A` record management
 
 ### Performance Monitoring
 
@@ -419,29 +417,29 @@ Use Azure's built-in tools:
 - **Deployment Slots** for zero-downtime deployments and testing of new versions
 - **Managed Certificates** (no manual SSL management)
 - **Integrated Monitoring** (Application Insights)
-- **Built-in CDN** (FrontDoor)
-- **Mmanaged identities**
+- **Built-in CDN** (Azure Front Door)
+- **Managed identities**
 - **Automated Backups**
-- **Seamless Vertical and horizontal scalability** (Lightsail only offers vertical scalabiling)
+- **Seamless vertical and horizontal scalability** (Lightsail only offers vertical scaling)
 
 ## Migration Timeline
 
-| **Phase** | **Duration** | **Key Activities** |
-|-----------|--------------|-------------------|
+| Phase | Duration | Key Activities |
+|-------|----------|----------------|
 | Preparation | 30 minutes | Create App Service, configure settings |
 | Export | 15 minutes | Backup WordPress from AWS |
 | Import | 60+ minutes | Import to Azure, resolve errors |
 | Optimization | 45 minutes | Performance tuning, plugin management |
-| Domain Transfer | 30-180 minutes | DNS setup, SSL certificates |
+| Domain Transfer | 30–180 minutes | DNS setup, SSL certificates |
 | Cleanup | 15 minutes | Remove temporary files, final testing |
 
 ## Lessons Learned
 
 #### Before
-```bash
+```
 Internet
    ↓
-Route53
+Route 53
    ↓
 Lightsail Instance
    ├── Apache
@@ -451,7 +449,7 @@ Lightsail Instance
 ```
 
 #### After
-```bash
+```
 Internet
    ↓
 External DNS
@@ -468,23 +466,23 @@ Azure App Service (P1v3)
 Azure Database for MySQL
 ```
 
-### ✅ **Success Factors**
+### Success Factors
 - Use All-In-One WP Migration for large sites
-- Optimize PHP-FPM settings for Azure environment
+- Optimize PHP-FPM settings for the Azure App Service environment
 - Test plugins individually after migration
-- Monitor performance and scale as needed
+- Monitor memory and response times, scaling SKUs as needed
 
-### ⚠️ **Watch Out For**
-- CLI operations can crash server (use `nice` prefix)
-- Azure URL remnants in WordPress configuration
-- Deployment slot failures require CLI resolution
-- Certificate provisioning can take hours
+### Watch Out For
+- Heavy WP-CLI operations can spike CPU on smaller SKUs (use `nice`)
+- Leftover `.azurewebsites.net` URLs in WordPress options or post content
+- Deployment slot sync issues sometimes require CLI cleanup
+- Managed certificate provisioning can take anywhere from minutes to a few hours
 
-### 🔧 **Optimization Tips**
-- Start with P1V3 tier for better performance
-- Enable W3 Total Cache after stabilization
-- Use deployment slots for testing
-- Monitor memory usage and adjust PHP-FPM accordingly
+### Optimization Tips
+- Start with the P1v3 tier for predictable memory headroom
+- Enable W3 Total Cache only after the baseline migration is stable
+- Use deployment slots to validate WordPress core and plugin updates before swapping
+- Watch memory pressure metrics and tune `pm.max_children` accordingly
 
 ## Conclusion
 
@@ -493,8 +491,8 @@ Migrating WordPress from Bitnami on AWS Lightsail to Azure App Service provides 
 The migration process typically takes 3–4 hours for a complete site, with most time spent on import and domain transfer. Post-migration optimization can further improve performance and long-term stability.
 
 <div class="chapter-subscribe">
-  <h3>Enjoying this migration guide?</h3>
-  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <h3>Enjoyed this guide?</h3>
+  <p>Occasional essays on engineering, AI, and building products — no spam, unsubscribe anytime</p>
   <form
     action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
     method="post"
@@ -502,21 +500,20 @@ The migration process typically takes 3–4 hours for a complete site, with most
   >
     <input type="hidden" name="metadata__source" value="{{ page.url }}" />
     <div class="form-row">
-      <input type="email" name="email" placeholder="your@email.com" required />
+      <input type="email" name="email" aria-label="Email address" autocomplete="email" placeholder="your@email.com" required />
       <button type="submit">Subscribe</button>
     </div>
   </form>
 </div>
 
-<div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="back-to-toc">
-    <i class="fas fa-arrow-left"></i> Previous Chapter
+<nav class="next-chapter-section" aria-label="Chapter navigation">
+  <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="chapter-pager-link prev">
+    <span class="pager-kicker">← Previous Chapter</span>
+    <span class="pager-title">ECS &amp; EC2 to Azure App Service</span>
   </a>
-  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="next-chapter-button">
-    <span class="button-content">
-      <span class="button-text">Next Chapter</span>
-      <span class="button-subtitle">Static Sites & CDN Migration</span>
-      <span class="arrow">→</span>
-    </span>
+  <a href="/aws-azure-migration-guide/" class="chapter-pager-link overview">All Chapters</a>
+  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="chapter-pager-link next">
+    <span class="pager-kicker">Next Chapter →</span>
+    <span class="pager-title">Static Sites &amp; CDN Migration</span>
   </a>
-</div>
+</nav>

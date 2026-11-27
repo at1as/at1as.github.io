@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f3f6f9"/>
+  <rect x="44" y="44" width="1112" height="542" rx="18" fill="#ffffff" stroke="#d3dce6" stroke-width="2"/>
+
+  <!-- Eyebrow & title -->
+  <text x="92" y="114" font-family="Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="2.4" fill="#0878a4">FEDERAL FORM 6251 · TAX YEARS 2018–2027</text>
+  <text x="92" y="190" font-family="Helvetica Neue, Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="-2" fill="#0f172a">AMT Calculator</text>
+  <text x="92" y="236" font-family="Helvetica Neue, Arial, sans-serif" font-size="24" fill="#475569">Estimate federal Alternative Minimum Tax &amp; AMT-free ISO exercise headroom</text>
+
+  <!-- Mini visual summary cards -->
+  <g transform="translate(92, 286)">
+    <!-- Left panel: comparison bars -->
+    <rect x="0" y="0" width="600" height="216" rx="12" fill="#f8fafc" stroke="#d3dce6" stroke-width="1.5"/>
+    <text x="28" y="38" font-family="Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="1.2" fill="#64748b">REGULAR TAX VS. TENTATIVE MINIMUM TAX</text>
+
+    <text x="28" y="82" font-family="Helvetica Neue, Arial, sans-serif" font-size="17" font-weight="600" fill="#334155">Regular Tax</text>
+    <rect x="190" y="64" width="265" height="24" rx="6" fill="#cbd5e1"/>
+    <text x="472" y="82" font-family="Helvetica Neue, Arial, sans-serif" font-size="17" font-weight="600" fill="#475569">Baseline</text>
+
+    <text x="28" y="132" font-family="Helvetica Neue, Arial, sans-serif" font-size="17" font-weight="600" fill="#0f172a">Tentative Min Tax</text>
+    <rect x="190" y="114" width="265" height="24" rx="6" fill="#0878a4"/>
+    <rect x="459" y="114" width="84" height="24" rx="6" fill="#d97706"/>
+    <text x="556" y="132" font-family="Helvetica Neue, Arial, sans-serif" font-size="15" font-weight="700" fill="#b45309">AMT</text>
+
+    <line x1="28" y1="166" x2="572" y2="166" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="28" y="196" font-family="Helvetica Neue, Arial, sans-serif" font-size="15" fill="#475569">Includes 2026+ 50% exemption phaseout &amp; marginal cliff rate</text>
+
+    <!-- Right panel: ISO headroom callout -->
+    <rect x="628" y="0" width="388" height="216" rx="12" fill="#edf5f8" stroke="#bfd4e3" stroke-width="1.5"/>
+    <text x="656" y="40" font-family="Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="1.2" fill="#03658c">ISO EXERCISE HEADROOM</text>
+    <text x="656" y="106" font-family="Helvetica Neue, Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-1" fill="#0f172a">AMT-Free</text>
+    <text x="656" y="142" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" fill="#334155">Max ISO spread before</text>
+    <text x="656" y="168" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" fill="#334155">triggering federal AMT</text>
+    <rect x="656" y="184" width="128" height="6" rx="3" fill="#0878a4"/>
+  </g>
+
+  <!-- Footer -->
+  <text x="92" y="552" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" fill="#64748b">Client-side · Private · Single, MFJ &amp; MFS</text>
+  <text x="1108" y="552" text-anchor="end" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600" fill="#0f172a">jasonwillems.com</text>
+</svg>

@@ -50,18 +50,18 @@ test('release windows suppress rates outside available history',()=>{
   const old=T.releaseWindow(data,data.points[0].date,'resolved'); assert.equal(old.before.complete,false);
 });
 
-test('release comparisons explain uncertainty and link its evidence without an exact multiplier',async()=>{
+test('release comparisons show bounded rates and link boundary evidence without an exact multiplier',async()=>{
   // Keep the incomplete-window case fixed as the live dataset grows past it.
   const cutoff='2026-09-28';
   const earlier={...data,points:data.points.filter(p=>p.date<=cutoff),intervals:data.intervals.filter(i=>i.end<=cutoff)};
   const app=await boot(false,'',earlier);
   try {
     app.change('#trend-metric','lean');app.change('#compare-release','opus-4-6');
-    assert.equal(app.q('#before-rate').textContent,'Uncertain');
-    assert.equal(app.q('#after-rate').textContent,'Uncertain');
+    assert.equal(app.q('#before-rate').textContent,'0.87–1.97/day');
+    assert.equal(app.q('#after-rate').textContent,'0.50–1.67/day');
     assert.match(app.q('#before-count').textContent,/26–59 observed Lean solution additions/);
     assert.match(app.q('#after-count').textContent,/15–50 observed Lean solution additions/);
-    assert.match(app.q('#window-verdict').textContent,/cannot place.*No exact rate or multiplier/);
+    assert.match(app.q('#window-verdict').textContent,/no exact multiplier/i);
     assert.doesNotMatch(app.q('#window-verdict').textContent,/1\.74|×/);
     assert.equal(app.q('#window-uncertainty').hidden,false);
     const rows=[...app.w.document.querySelectorAll('#window-intervals li')];
@@ -177,10 +177,16 @@ test('the global source selection rebuilds charts, evidence and current results 
     assert.equal(app.q('#trend-metric [value="statements"]').disabled, true);
     assert.equal(app.q('.view-meta time').dateTime, '2026-10-08');
     assert.equal(app.q('#source-comparison-count').textContent, '4 resolved · 2 with a Lean solution');
-    assert.equal(app.q('#before-rate').textContent, 'Incomplete');
+    assert.equal(app.q('#pace-window').value, '7', 'Short histories default to 7-day lookback');
+    assert.equal(app.q('#after-rate').textContent, 'Incomplete');
     input.value = '4';
     input.dispatchEvent(new app.w.Event('input'));
     assert.match(app.q('#source-problem-rows').textContent, /#4Open/);
+    // Filter chips work for disagreements in Combined mode.
+    app.q('[data-source-option="combined"]').click();
+    assert.equal(app.q('#problem-source').value, 'combined');
+    app.q('[data-filter="disagreements"]').click();
+    assert.equal(app.q('#source-problem-rows').rows.length, 3);
   } finally { app.dom.window.close(); }
 });
 
@@ -280,7 +286,7 @@ test('trends controls render all measures, period evidence, and release comparis
       app.change('#pace-window',window);
       assert.match(app.q('#pace-title').textContent,/How often/);
       assert.ok(app.q('#pace-description').textContent.includes(`previous ${window} days`));
-      assert.ok(app.q('#pace-example').textContent.includes(`over ${window} days`));
+      assert.ok(app.q('#pace-note').textContent.includes('existing problems'));
       const latest=T.rolling(data,metric,Number(window)).at(-1);
       const readout=app.q('#pace').closest('.chart-card').querySelector('.chart-readout').textContent;
       const counted=app.w.ErdosTrendCharts.copy[metric][latest.events===1?'countedSingular':'counted'];
@@ -292,6 +298,9 @@ test('trends controls render all measures, period evidence, and release comparis
       assert.match(app.q('#records-count').textContent,new RegExp(`^${records.length} changes? across ${new Set(records.map(e=>e.number)).size} distinct problems?`));
     }
     for(const path of app.w.document.querySelectorAll('.trend-plot path')) assert.doesNotMatch(path.getAttribute('d')||'',/NaN|Infinity/);
+    app.change('#cumulative-mode','share');
+    assert.match(app.q('#cumulative').getAttribute('aria-label'),/share of all problems/);
+    app.change('#cumulative-mode','counts');
     app.change('#records-month','2025-10');
     const events=T.events(data,metric,'2025-10');
     assert.equal(app.q('#record-rows').children.length,events.length||1);
@@ -300,9 +309,9 @@ test('trends controls render all measures, period evidence, and release comparis
   app.change('#compare-release','astra');
   const astraWindow=T.releaseWindow(data,'2026-09-03',app.q('#trend-metric').value);
   assert.equal(app.q('#after-rate').textContent,!astraWindow.after.complete?'Incomplete':
-    astraWindow.after.rate===null?'Uncertain':`${astraWindow.after.rate.toFixed(2)}/day`);
+    astraWindow.after.uncertain?`${astraWindow.after.minRate.toFixed(2)}–${astraWindow.after.maxRate.toFixed(2)}/day`:`${astraWindow.after.rate.toFixed(2)}/day`);
   if(!astraWindow.after.complete) assert.match(app.q('#window-verdict').textContent,/Not enough/);
-  else if(astraWindow.after.rate===null) assert.match(app.q('#window-verdict').textContent,/No exact rate or multiplier/);
+  else if(astraWindow.after.rate===null) assert.match(app.q('#window-verdict').textContent,/exact multiplier/);
   app.change('#compare-release','gpt-5-6');
   assert.doesNotMatch(app.q('#after-rate').textContent,/Incomplete/);
   assert.ok(app.q('#release-source a').href.startsWith('https://developers.openai.com/'));
@@ -325,34 +334,39 @@ test('every model release has a readable label on its date, with no label collis
   const app=await boot();
   const releases=JSON.parse(app.q('#model-releases').textContent);
   const latest=data.points.at(-1).date;
-  const visible=releases.filter(r=>r.date>=data.points[0].date&&T.time(r.date)<=T.time(latest)+30*T.DAY);
-  const extentEnd=[latest,...visible.map(r=>r.date)].sort().at(-1);
-  for(const width of [240,268,314,340,480,768,960,1400]) {
-    const plot=app.q('#pace');
-    plot.getBoundingClientRect=()=>({width});
-    for(const selected of ['astra','gpt-5-6']) {
-      app.change('#compare-release',selected);
-      const markers=[...plot.querySelectorAll('.release-reference')];
-      assert.equal(markers.length,visible.length);
-      assert.equal(plot.querySelectorAll('[aria-pressed="true"]').length,1);
-      const boxes=markers.map(marker=> {
-        const release=visible.find(r=>r.id===marker.dataset.release);
-        assert.ok(release);
-        const line=plot.querySelector(`.release-line[data-release="${release.id}"]`);
-        const expected=52+(T.time(release.date)-T.time(data.points[0].date))/(T.time(extentEnd)-T.time(data.points[0].date))*(width-72);
-        assert.ok(Math.abs(Number(line.getAttribute('x1'))-expected)<1e-6,'Vertical line stays on the release date');
-        assert.equal(line.getAttribute('x1'),line.getAttribute('x2'));
-        const label=marker.querySelector('.release-name');
-        assert.ok(label.textContent.length>0);
-        assert.equal(label.getAttribute('fill'),release.id===selected?'#74559d':'#65728a');
-        const box=marker.querySelector('.release-label-hit');
-        const x=Number(box.getAttribute('x')), y=Number(box.getAttribute('y'));
-        const right=x+Number(box.getAttribute('width')),bottom=y+Number(box.getAttribute('height'));
-        assert.ok(x>=52&&right<=width-20,'Label fits inside the chart');
-        assert.ok(bottom<Number(line.getAttribute('y1')),'Label is above the data');
-        return {x,y,right,bottom};
-      });
-      boxes.forEach((a,i)=>boxes.slice(i+1).forEach(b=>assert.ok(a.right<=b.x||b.right<=a.x||a.bottom<=b.y||b.bottom<=a.y,'Release labels do not overlap')));
+  const allVisible=releases.filter(r=>r.date>=data.points[0].date&&T.time(r.date)<=T.time(latest)+30*T.DAY);
+  const featuredVisible=allVisible.filter(r=>r.featured!==false);
+  const extentEnd=[latest,...allVisible.map(r=>r.date)].sort().at(-1);
+  for(const mode of ['featured','all']) {
+    app.change('#pace-releases',mode);
+    const visible=mode==='all'?allVisible:featuredVisible;
+    for(const width of [240,268,314,340,480,768,960,1400]) {
+      const plot=app.q('#pace');
+      plot.getBoundingClientRect=()=>({width});
+      for(const selected of ['astra','gpt-5-6']) {
+        app.change('#compare-release',selected);
+        const markers=[...plot.querySelectorAll('.release-reference')];
+        assert.equal(markers.length,visible.length);
+        assert.equal(plot.querySelectorAll('[aria-pressed="true"]').length,1);
+        const boxes=markers.map(marker=> {
+          const release=visible.find(r=>r.id===marker.dataset.release);
+          assert.ok(release);
+          const line=plot.querySelector(`.release-line[data-release="${release.id}"]`);
+          const expected=52+(T.time(release.date)-T.time(data.points[0].date))/(T.time(extentEnd)-T.time(data.points[0].date))*(width-72);
+          assert.ok(Math.abs(Number(line.getAttribute('x1'))-expected)<1e-6,'Vertical line stays on the release date');
+          assert.equal(line.getAttribute('x1'),line.getAttribute('x2'));
+          const label=marker.querySelector('.release-name');
+          assert.ok(label.textContent.length>0);
+          assert.equal(label.getAttribute('fill'),release.id===selected?'#74559d':'#5b687e');
+          const box=marker.querySelector('.release-label-hit');
+          const x=Number(box.getAttribute('x')), y=Number(box.getAttribute('y'));
+          const right=x+Number(box.getAttribute('width')),bottom=y+Number(box.getAttribute('height'));
+          assert.ok(x>=52&&right<=width-20,'Label fits inside the chart');
+          assert.ok(bottom<Number(line.getAttribute('y1')),'Label is above the data');
+          return {x,y,right,bottom};
+        });
+        boxes.forEach((a,i)=>boxes.slice(i+1).forEach(b=>assert.ok(a.right<=b.x||b.right<=a.x||a.bottom<=b.y||b.bottom<=a.y,'Release labels do not overlap')));
+      }
     }
   }
   app.dom.window.close();

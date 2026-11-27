@@ -37,7 +37,9 @@
       "chartDescription": "Selected upper bounds on the limit inferior of consecutive prime gaps, on a logarithmic scale.",
       "chartNote": "H₁ is the limit inferior of consecutive prime gaps. A bound means infinitely many pairs are at least this close, not that all gaps are this small. Dates use public reports.",
       "interpretation": "The published bound fell from 70 million to 246 in just over a year. The conjecture asks for a gap of 2. The reported 186 result has a conditional Lean formalization, not a complete formal proof.",
+      "interpretationPublished": "The published bound fell from 70 million to 246 in just over a year. The conjecture still asks for a gap of 2.",
       "note": "An independent August 31, 2026 <a href=\"https://arxiv.org/abs/2608.31126\" target=\"_blank\" rel=\"noopener\">preprint by Julia Stadlmann</a> gives 240. It is not another step here: the 186 manuscript is dated August 30. These are manuscript dates, not a priority judgment.",
+      "noteRequiresReports": true,
       "milestones": [
         {
           "date": "2013-05",
@@ -95,11 +97,13 @@
           "title": "A reported bound of 186",
           "detail": "The manuscript claims an unconditional mathematical bound of 186. Its Lean formalization assumes three input axioms, covering exponential-sum estimates and numerical bounds. The repository makes these dependencies explicit.",
           "url": "https://cdn.openai.com/pdf/51126fac-1b68-4128-9666-c908bcc16033/short_gaps.pdf",
+          "sourceLabel": "Read the preprint",
           "status": "preprint",
           "display": "≤ 186",
           "short": "Preprint · partial formalization",
           "ai": "The paper credits GPT-6 Astra with the proof. The Lean development remains conditional on input axioms; numerical checks use Python/FLINT.",
-          "supportUrl": "https://github.com/openai/PrimeGaps186/blob/main/README.md"
+          "supportUrl": "https://github.com/openai/PrimeGaps186/blob/main/README.md",
+          "supportLabel": "Lean repository"
         }
       ]
     },
@@ -137,6 +141,7 @@
       "chartNote": "Earlier lower bounds describe the proportion as the height grows. Full RH puts every nontrivial zero on the critical line at every height.",
       "interpretation": "The final step follows from full RH, which puts every nontrivial zero on the line. An asymptotic density of 100% alone could still allow a sparse set of exceptions.",
       "note": "An independent <a href=\"https://arxiv.org/abs/2609.02882\" target=\"_blank\" rel=\"noopener\">September 2026 preprint by Youness Lamzouri</a> gives a simpler proof of the same 67.25% bound. It adds evidence, not another upward step. This is a selected history, not an exhaustive ledger of every recent claim.",
+      "noteRequiresReports": true,
       "milestones": [
         {
           "date": "1974",
@@ -209,7 +214,9 @@
           "title": "Full RH places every nontrivial zero on the line",
           "detail": "The Lean-verified proof puts every nontrivial zero at β = ½, giving a proportion of 100% on the line. The August 67.25% bound counts only zeros that are both simple and on the line.",
           "url": "https://alpo.ge/remark.pdf",
+          "sourceLabel": "Read Alpöge’s announcement",
           "supportUrl": "https://leanprover-community.github.io/blog/posts/riemann-hypothesis/",
+          "supportLabel": "Lean & Mathlib verification",
           "status": "verified",
           "display": "100%",
           "short": "Full RH",
@@ -274,15 +281,16 @@
     {
       "id": "matrix",
       "name": "Matrix multiplication",
-      "reviewed": "2026-11-21",
-      "kind": "bound",
-      "category": "03 / Lowering an exponent",
-      "metric": "Selected upper bound on the exponent ω",
+      "reviewed": "2026-11-26",
+      "kind": "range",
+      "category": "03 / Pinning down an exponent",
+      "metric": "Possible range of the exponent ω",
+      "metricExact": "Reported exponent ω (bounds meet at 9/4)",
       "question": "How fast can we multiply two square matrices?",
-      "explanation": "The standard algorithm takes roughly n³ arithmetic operations. Faster algorithms reduce the exponent. The conjectured optimum is 2.",
-      "unit": "Arithmetic-complexity exponent ω · linear scale",
+      "explanation": "Standard multiplication takes roughly n³ arithmetic operations, and reading n² entries sets a trivial floor of 2. Faster algorithms lowered the ceiling while a late-2026 preprint reports raising the floor to meet it at 9/4.",
+      "unit": "Arithmetic-complexity exponent ω · upper and lower bounds",
       "start": 1969,
-      "end": 2028,
+      "end": 2027.5,
       "yearTicks": [
         1969,
         1990,
@@ -300,28 +308,33 @@
         2.75,
         3
       ],
-      "target": 2,
-      "targetLabel": "Conjectured target: 2",
-      "chartDescription": "Selected upper bounds on the matrix multiplication exponent, with conjectured target 2.",
-      "chartNote": "ω describes how the number of scalar arithmetic operations grows with matrix size.",
-      "interpretation": "The plotted upper bounds of 2.375477 in 1990 and 2.371177 in the August 2026 preprint differ by 0.004300.",
+      "floorLabel": "Trivial floor: 2",
+      "chartDescription": "Selected upper and lower bounds on the matrix multiplication exponent ω, from Strassen’s 1969 algorithm through late-2026 preprints reporting ω = 9/4.",
+      "chartNote": "ω governs how scalar arithmetic operations grow with matrix size. The shaded band marks values between the lower bound (floor) and upper bound (ceiling).",
+      "interpretation": "From 1990 to August 2026, upper bounds moved by just 0.004300. Late-2026 preprints report dropping the ceiling to 2.25 (9/4) and raising the formal arithmetic-circuit floor from 2 to 2.25; independent peer review is ongoing.",
+      "interpretationPublished": "Between 1990 and 2024, published upper bounds narrowed by 0.004138, leaving ω between the trivial floor of 2 and 2.371339.",
+      "note": "Follow-ups to the October 9/4 upper bound include <a href=\"https://arxiv.org/abs/2610.28627\" target=\"_blank\" rel=\"noopener\">Rafael Pass’s constructive proof</a> and an <a href=\"https://arxiv.org/abs/2610.30054\" target=\"_blank\" rel=\"noopener\">all-fields exposition</a> with <a href=\"https://github.com/jzuiddam/omega-nine-quarters-all-fields\" target=\"_blank\" rel=\"noopener\">Lean formalization</a> by Amanov, van den Berg, and Zuiddam. OpenAI’s November 24 lower-bound repository formalizes ω = 9/4 for division-free arithmetic circuits in Lean, while the per-size gate bound remains unformalized.",
+      "noteRequiresReports": true,
       "milestones": [
         {
           "date": "1969",
           "label": "1969",
           "value": 2.807354922057604,
+          "lower": 2,
           "who": "Volker Strassen",
           "title": "Strassen’s recursive algorithm",
-          "detail": "Strassen broke the cubic barrier with a recursive algorithm, giving an exponent of log₂(7), approximately 2.807355.",
+          "detail": "Strassen broke the cubic barrier with a recursive algorithm, giving an upper bound of log₂(7), approximately 2.807355, against the trivial lower bound of 2.",
           "url": "https://link.springer.com/article/10.1007/BF02165411",
           "status": "published",
           "display": "≤ log₂ 7",
+          "rangeDisplay": "2–log₂ 7",
           "short": "Strassen"
         },
         {
           "date": "1990",
           "label": "1990",
           "value": 2.375477,
+          "lower": 2,
           "who": "Don Coppersmith and Shmuel Winograd",
           "title": "The Coppersmith–Winograd bound",
           "detail": "The Coppersmith–Winograd method pushed the exponent below 2.376. This chart uses 2.375477 from Tao’s numerical reference ledger and the journal publication year, 1990; conference presentation was in 1987.",
@@ -329,12 +342,14 @@
           "status": "published",
           "display": "≈ 2.375477",
           "short": "Coppersmith · Winograd",
-          "supportUrl": "https://teorth.github.io/optimizationproblems/constants/15a.html"
+          "supportUrl": "https://teorth.github.io/optimizationproblems/constants/15a.html",
+          "supportLabel": "Tao reference ledger"
         },
         {
           "date": "2014-01-30",
           "label": "2014",
           "value": 2.3728639,
+          "lower": 2,
           "who": "François Le Gall",
           "title": "Le Gall’s tensor analysis",
           "detail": "New analysis gave an exponent below 2.3728639. Posted and published at ISSAC in 2014.",
@@ -347,6 +362,7 @@
           "date": "2020-10-12",
           "label": "2020",
           "value": 2.3728596,
+          "lower": 2,
           "who": "Josh Alman and Virginia Vassilevska Williams",
           "title": "A refined laser method",
           "detail": "A stronger analysis lowered the exponent to 2.3728596. Preprint in 2020; SODA publication in 2021.",
@@ -359,6 +375,7 @@
           "date": "2022-10-18",
           "label": "2022",
           "value": 2.371866,
+          "lower": 2,
           "who": "Ran Duan, Hongxun Wu, Renfei Zhou",
           "title": "Asymmetric hashing improves the bound",
           "detail": "The asymmetric hashing approach improved the exponent to below 2.371866. Preprint in 2022; FOCS publication in 2023.",
@@ -371,6 +388,7 @@
           "date": "2023-07-16",
           "label": "2023",
           "value": 2.371552,
+          "lower": 2,
           "who": "Virginia Vassilevska Williams, Yinzhan Xu, Zixuan Xu, Renfei Zhou",
           "title": "An upper bound of 2.371552",
           "detail": "The authors report an upper bound of 2.371552. Preprint in 2023; SODA publication in 2024.",
@@ -383,6 +401,7 @@
           "date": "2024-04-25",
           "label": "2024",
           "value": 2.371339,
+          "lower": 2,
           "who": "Josh Alman, Ran Duan, Virginia Vassilevska Williams, Yinzhan Xu, Zixuan Xu, Renfei Zhou",
           "title": "An upper bound of 2.371339",
           "detail": "Further refinements yield an exponent below 2.371339. First posted in April 2024 and published at SODA in 2025.",
@@ -395,10 +414,12 @@
           "date": "2026-08-17",
           "label": "Aug 2026",
           "value": 2.371177,
+          "lower": 2,
           "who": "Emilien Dupont and collaborators",
           "title": "AlphaEvolve-assisted optimization",
           "detail": "The preprint combines gradient optimization with an algorithm refined by AlphaEvolve. It reports an exponent below 2.371177 and rigorous verification of the resulting bound.",
           "url": "https://arxiv.org/abs/2608.16884",
+          "sourceLabel": "Read the preprint",
           "status": "preprint",
           "display": "< 2.371177",
           "short": "Dupont et al.",
@@ -408,15 +429,37 @@
           "date": "2026-10-06",
           "label": "Oct 6, 2026",
           "value": 2.25,
+          "lower": 2,
           "who": "OpenAI",
-          "title": "A reported upper bound of 2.25",
-          "detail": "OpenAI’s October 6 release reports ω ≤ 9/4 for square matrices over the complex numbers in exact scalar arithmetic. Rafael Pass’s later preprint gives a constructive proof of the same exponent bound using polynomial packings and block recursion.",
-          "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4c146bf78a/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
-          "supportUrl": "https://arxiv.org/abs/2610.28627v2",
+          "title": "Ceiling drops to 9/4 (2.25)",
+          "detail": "OpenAI’s October release (manuscript dated October 2) reports ω ≤ 9/4 for square matrices over ℂ in exact scalar arithmetic. Independent follow-ups by Rafael Pass and by Amanov, van den Berg, and Zuiddam gave constructive and all-fields proofs with Lean formalization.",
+          "url": "https://github.com/openai/math/blob/main/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+          "sourceLabel": "Read the preprint",
+          "supportUrl": "https://arxiv.org/abs/2610.30054",
+          "supportLabel": "All-fields exposition",
           "status": "preprint",
           "display": "≤ 2.25",
-          "short": "OpenAI",
+          "short": "OpenAI · ceiling",
           "ai": "OpenAI attributes the result to an internal frontier model."
+        },
+        {
+          "date": "2026-11-24",
+          "label": "Nov 24, 2026",
+          "value": 2.25,
+          "lower": 2.25,
+          "boundChange": "lower",
+          "who": "OpenAI",
+          "title": "Floor rises to 9/4 (2.25), closing the band",
+          "detail": "A 111-page preprint reports a matching lower bound ω ≥ 9/4 over every field in formal arithmetic circuits, ruling out ω = 2 if confirmed. Lean code in the repository checks ω = 9/4 for division-free circuits; the per-size gate count bound remains unformalized and peer review is ongoing.",
+          "url": "https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf",
+          "sourceLabel": "Read the preprint",
+          "supportUrl": "https://github.com/openai/math/tree/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026",
+          "supportLabel": "Lean repository & scope",
+          "status": "preprint",
+          "display": "≥ 2.25",
+          "rangeDisplay": "= 2.25",
+          "short": "OpenAI · floor",
+          "ai": "OpenAI attributes the lower-bound proof and accompanying Lean formalization to an internal frontier model."
         }
       ]
     },
@@ -559,7 +602,8 @@
       ],
       "chartDescription": "Published lower bounds on the size of an odd perfect number, followed by an unpublished 2014 report. Vertical values are powers of ten.",
       "chartNote": "The vertical axis plots the exponent: 1,500 means 10^1500. Dates are publication years, except the 2014 author presentation. The undated 10^2200 extension is not plotted.",
-      "interpretation": "Ruling out every candidate below 10^1500 still leaves infinitely many larger candidates. A growing exclusion bound does not tell us whether an odd perfect number exists.",
+      "interpretation": "Ruling out every candidate below 10^1500 (published) or 10^2000 (unpublished report) still leaves infinitely many larger candidates. A growing exclusion bound does not tell us whether an odd perfect number exists.",
+      "interpretationPublished": "Ruling out every candidate below 10^1500 still leaves infinitely many larger candidates. A growing exclusion bound does not tell us whether an odd perfect number exists.",
       "note": "Pascal Ochem’s <a href=\"https://www.lirmm.fr/~ochem/opn/\" target=\"_blank\" rel=\"noopener\">institutional project page</a> now reports a bound of 10^2200. Its announcement date was not verified, so it is not assigned a 2026 position on this timeline.",
       "milestones": [
         {
@@ -643,6 +687,7 @@
       "chartNote": "Only orders divisible by four, from 4 to 2,000, are shown. Hatched cells are reported constructions, not unresolved cases. The general conjecture concerns infinitely many orders.",
       "interpretation": "Filling every gap through 2,000 would settle a finite collection of cases. It would not prove the Hadamard conjecture for all multiples of four.",
       "note": "The <a href=\"https://ion.nechita.net/posts/new-hadamard-matrices/\" target=\"_blank\" rel=\"noopener\">independent August 13, 2026 check by Ion Nechita</a> covers order 668. Epoch reports all 12 constructions; this collection has not independently checked every matrix. AI attribution on Epoch’s page is provisional.",
+      "noteRequiresReports": true,
       "milestones": [
         {
           "date": "2007-03-11",
@@ -729,5 +774,5 @@
       ]
     }
   ],
-  "updated": "2026-11-21"
+  "updated": "2026-11-26"
 }

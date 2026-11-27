@@ -3,41 +3,7 @@
   --directory-ink: #293b40;
   --directory-muted: #687478;
   --directory-line: #e3e8e7;
-  padding-top: 4px;
-  padding-bottom: 20px;
-}
-
-.site-directory-header {
-  padding: 40px 0 64px;
-}
-
-.site-directory-eyebrow {
-  margin-bottom: 14px;
-  color: var(--primary-color);
-  font-size: .6875rem;
-  font-weight: 600;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-
-.site-directory-header h1 {
-  margin: 0 0 20px;
-  color: var(--directory-ink);
-  font-size: clamp(2.4rem, 5.2vw, 3.75rem);
-  font-weight: 500;
-  letter-spacing: -.055em;
-  line-height: 1.14;
-  text-wrap: balance;
-}
-
-.site-directory-period {
-  color: var(--primary-color);
-}
-
-.site-directory-intro {
-  color: var(--directory-muted);
-  font-size: 1.0625rem;
-  line-height: 1.8;
+  padding-bottom: clamp(1rem, 4vw, 3rem);
 }
 
 .site-directory-section-heading {
@@ -263,14 +229,6 @@
 }
 
 @media (max-width: 700px) {
-  .site-directory-header {
-    padding: 28px 0 44px;
-  }
-
-  .site-directory-intro {
-    font-size: .9375rem;
-  }
-
   .site-directory-grid {
     grid-template-columns: 1fr;
     gap: 24px;

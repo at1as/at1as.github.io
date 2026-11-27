@@ -106,11 +106,12 @@ test('slider and date selection synchronize all displayed data and source revisi
 test('release markers map to snapshot spacing, pause playback, and link official sources', async () => {
   const app = await boot();
   const inRange = releases.filter(release => release.date >= history.snapshots[0].as_of && release.date <= history.snapshots.at(-1).as_of);
-  assert.equal(app.w.document.querySelectorAll('.release-marker').length, inRange.length);
+  const featuredInRange = inRange.filter(release => release.featured !== false);
+  assert.equal(app.w.document.querySelectorAll('.release-marker').length, featuredInRange.length);
   for (const release of releases) {
     const selector = `[data-release="${release.id}"]`;
-    if (!inRange.includes(release)) {
-      assert.equal(app.q(selector), null, 'A release outside the saved history has no snapshot marker');
+    if (!featuredInRange.includes(release)) {
+      assert.equal(app.q(selector), null, 'Only featured releases in range have a slider rail marker');
       continue;
     }
     const index = history.snapshots.findIndex(snapshot => snapshot.as_of >= release.date);
@@ -185,7 +186,7 @@ test('release markers use two compact rows and preserve keyboard focus on resize
     rail.getBoundingClientRect = () => ({ width });
     app.w.dispatchEvent(new app.w.Event('resize'));
     assert.equal(app.w.document.activeElement, buttons.at(-1), 'Relayout preserves keyboard focus');
-    assert.notEqual(app.q('[data-release="opus-5-5"]').dataset.side, app.q('[data-release="gpt-6-sol-luna"]').dataset.side);
+    assert.notEqual(app.q('[data-release="gpt-6-2-astra-sol"]').dataset.side, app.q('[data-release="gemini-4-neon"]').dataset.side);
     assert.ok(buttons.every(button => ['above','below'].includes(button.dataset.side) && !button.style.top));
     for (const side of ['above','below']) {
       const centers = buttons.filter(button => button.dataset.side === side)
@@ -201,7 +202,7 @@ test('release markers use two compact rows and preserve keyboard focus on resize
 test('playback crosses releases and the picker only offers releases within the snapshot history', async () => {
   const app = await boot();
   app.q('#time-slider').value = '0'; app.event('#time-slider', 'input');
-  assert.equal(app.q('[aria-pressed="true"]'), null);
+  assert.equal(app.q('.release-marker[aria-pressed="true"]'), null);
   const fableRelease = releases.find(release => release.id === 'fable-5-1');
   const fable = history.snapshots.findIndex(snapshot => snapshot.as_of >= fableRelease.date);
   app.q('#time-slider').value = String(fable - 1); app.event('#time-slider', 'input');
@@ -209,18 +210,20 @@ test('playback crosses releases and the picker only offers releases within the s
   assert.equal(app.q('[data-release="fable-5-1"]').getAttribute('aria-pressed'), 'true');
   assert.equal(app.q('#snapshot-release').selectedOptions[0].text, 'Claude Fable 5.1');
   const expected = releases.filter(r => r.date >= history.snapshots[0].as_of && r.date <= history.snapshots.at(-1).as_of);
+  const expectedFeatured = expected.filter(r => r.featured !== false);
   const picker = app.q('#snapshot-release');
   assert.deepEqual(Array.from(picker.options, option => option.value), ['', ...expected.map(r => r.id)]);
   app.q('#time-slider').value = app.q('#time-slider').max; app.event('#time-slider', 'input');
-  assert.equal(picker.value, expected.at(-1).id);
+  assert.equal(picker.value, expectedFeatured.at(-1).id);
   for (const release of expected) {
     picker.value = release.id; app.event('#snapshot-release', 'change');
     assert.equal(app.q('#snapshot-date').dateTime, history.snapshots.find(s => s.as_of >= release.date).as_of);
-    assert.equal(app.q('.release-marker[aria-pressed="true"]').dataset.release, release.id);
+    if (release.featured !== false) assert.equal(app.q('.release-marker[aria-pressed="true"]').dataset.release, release.id);
+    else assert.equal(app.q('#release-current a').href, release.source);
   }
   app.dom.window.close();
   const shorter = await boot({ data: { ...history, snapshots: history.snapshots.slice(70, 200) } });
-  const subset = releases.filter(r => r.date >= history.snapshots[70].as_of && r.date <= history.snapshots[199].as_of);
+  const subset = releases.filter(r => r.featured !== false && r.date >= history.snapshots[70].as_of && r.date <= history.snapshots[199].as_of);
   assert.equal(shorter.w.document.querySelectorAll('.release-marker').length, subset.length);
   assert.equal(shorter.q('[data-release="astra"]'), null);
   shorter.dom.window.close();
@@ -243,16 +246,21 @@ test('Snapshot switches calendars, charts, and source citations from the problem
       const coverage = `${source.label} ${format(source.history[0].date)} – ${format(source.history.at(-1).date)}`;
       assert.ok(app.q('#source-help').textContent.includes(coverage));
     }
-    assert.deepEqual(Array.from(app.q('#snapshot-source').options, opt=>opt.value), ['bloom-tao','plasma','combined']);
-    assert.equal(snapshot('resolved'),'576');
+    assert.deepEqual(Array.from(app.q('#snapshot-source').options, opt=>opt.value), ['bloom-tao','combined','plasma']);
+    const latestBloom = history.snapshots.at(-1);
+    const latestBloomResolved = latestBloom.statuses.proved + latestBloom.statuses.disproved + latestBloom.statuses.solved;
+    assert.equal(snapshot('resolved'), latestBloomResolved.toLocaleString('en-US'));
     checkGrid();
-    select('#snapshot-source','plasma');
+    app.q('[data-source-option="plasma"]').click();
+    assert.equal(app.q('#snapshot-source').value, 'plasma');
+    assert.equal(app.q('[data-source-option="plasma"]').getAttribute('aria-pressed'), 'true');
     const plasma = catalog.sources.find(source => source.id === 'plasma');
     const covered = releases.filter(r => r.date >= plasma.history[0].date && r.date <= plasma.history.at(-1).date);
     assert.deepEqual(Array.from(app.q('#snapshot-release').options, opt=>opt.value), ['', ...covered.map(r => r.id)]);
     assert.equal(app.q('#snapshot-date').dateTime,'2026-11-16');
     assert.equal(app.q('#snapshot-picker').options.length,12);
     assert.equal(snapshot('resolved'),'618');
+    assert.equal(app.q('[data-node="unresolved-lean"]').hasAttribute('data-empty'), true, 'Zero-value open Lean node is hidden in Plasma');
     checkGrid();
     assert.equal(app.q('[data-entry="108-0"]').href, 'https://erdosproblems.ai/problems/108');
     assert.equal(snapshot('resolved-lean'),'66');

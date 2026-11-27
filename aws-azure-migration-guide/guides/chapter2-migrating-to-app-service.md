@@ -1,33 +1,31 @@
 ---
 layout: default
-description: "A guide to moving containerized services from Amazon ECS to Azure App Service, with deployment configuration and lessons from LEAD's migration."
-title: "From Amazon ECS to Azure App Service — A Real-World Container Migration"
+title: "Migrating from Amazon ECS & EC2 to Azure App Service"
+description: "A guide to moving containerized services from Amazon ECS and EC2 to Azure App Service, including deployment slots, scheduler guards, and outbound NAT limits."
 permalink: /aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/
+last_modified_at: 2026-11-27
+image:
+  path: /assets/images/azure-typical-service-overview.png
+  alt: "Post-migration Azure App Service architecture with deployment slots and Container Registry"
 ---
 
-# Chapter 2: From Amazon ECS to Azure App Service — A Real-World Container Migration
+<nav class="guide-breadcrumb" aria-label="Breadcrumb">
+  <a href="/aws-azure-migration-guide/">AWS to Azure Migration Guide</a>
+  <span class="crumb-sep" aria-hidden="true">/</span>
+  <span>Chapter 2 of 6</span>
+</nav>
+
+# From Amazon ECS & EC2 to Azure App Service — A Real-World Container Migration
 
 <div class="chapter-meta-line">
   <span class="chapter-number">Chapter 2</span>
   <span class="reading-time-wrapper">{% include reading_time.html %}</span>
   <span class="category">Container Migration</span>
-  <span class="migration-path"><strong>ECS</strong> → <strong>App Service</strong></span>
+  <span class="migration-path"><strong>ECS &amp; EC2</strong> → <strong>App Service</strong></span>
 </div>
 
 <div class="chapter-intro">
-This is <b>Part II</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the first major workloads we moved from AWS ECS & EC2 to Azure App Service as well as the broader lessons we learned
-
-<div class="chapter-nav">
-  <a href="/aws-azure-migration-guide/guides/chapter1-migrating-to-azure/" class="chapter-nav-button back">
-    <span class="arrow">←</span>Previous Chapter
-  </a>
-  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
-    <i class="fas fa-home"></i> Home
-  </a>
-  <a href="/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/" class="chapter-nav-button next">
-    Next Chapter: WordPress Migration<span class="arrow">→</span>
-  </a>
-</div>
+  <p>Chapter 2 of 6 in our series on migrating LEAD's enterprise platform from AWS to Azure — covering how we moved containerized workloads from Amazon ECS and EC2 to Azure App Service, plus the operational surprises we hit along the way.</p>
 </div>
 
 ## Preface: Evaluating Azure App Service
@@ -55,7 +53,7 @@ In our case, moving from EC2 to App Service required some application optimizati
 
 ## Our Apps, and the Constraints We Had to Build Around
 
-Our platform spans quite a few services, running NodeJS, Java and Python . Each of our applications had different operational requirements. The following are a few that we needed to build around:
+Our platform spans quite a few services, running Node.js, Java, and Python. Each of our applications had different operational requirements. The following are a few that we needed to build around:
 
 **Singleton constraint.** Several services run background jobs on a schedule. Two instances running simultaneously means duplicate job executions. Any migration path had to preserve single-instance semantics, both during and after the migration.
 
@@ -67,7 +65,7 @@ Our platform spans quite a few services, running NodeJS, Java and Python . Each 
 
 ## The Target Architecture
 
-The following the common architecture pattern we applied across the platform (with some minor varitions for specific services):
+The following is the common architecture pattern we applied across the platform (with some minor variations for specific services):
 
 ![Site Architecture]({{ "/assets/images/azure-typical-service-overview.png" | relative_url }})
 
@@ -78,8 +76,8 @@ Key components:
 - **Azure Container Registry (ACR)** — the equivalent of ECR, stores the Docker images.
 - **Azure App Service Plan** — hosts Web App Services for each workload. Production services each have an **Active** and **Swap** deployment slot, enabling zero-downtime deploys.
 - **Azure DB for PostgreSQL** — the equivalent of RDS, backing both environments, with a production active-standby replica in a separate availability zone.
-- **Insights & Monitoring** — Application Insights, App Service Logs, Azure Alerts and Microsoft Defender
-- **External integrations** — Twilio SendGrid, Stripe, Slack, etc
+- **Insights & Monitoring** — Application Insights, App Service Logs, Azure Alerts, and Microsoft Defender.
+- **External integrations** — Twilio SendGrid, Stripe, Slack, etc.
 
 The deliberate separation of staging and production as independent Web App Services — each with their own slot pair — is what gives us genuine environment fidelity, rather than just a renamed copy.
 
@@ -160,7 +158,7 @@ Application Insights also gives you distributed tracing, performance baselines, 
 
 ## Zero-Downtime Deployments: Deployment Slots
 
-This is the most architecturally interesting part of the migration. Post migraiton, for most of our services, we deploy them using Deployment Slots.
+This is the most architecturally interesting part of the migration. Post-migration, for most of our services, we deploy them using Deployment Slots.
 
 ### The Problem
 
@@ -228,7 +226,7 @@ The ease of setting up App Services prompted one pattern that we repeated across
 
 Our Microsoft Teams integration (LEADbot) was a Node.js app that handled both live user interactions and a nightly reconciliation job. The reconciliation job required a different version of `bot-builder` and Node.js than the live-traffic service — which put the entire service at risk of sudden deprecation. Running a security-outdated dependency in the same process as live user traffic is the kind of quiet risk that tends to explode at the worst moment.
 
-The fix was clean: split the repo into two independent modules and deploy them as two separate App Services. The live-traffic service got the current Node.js runtime with regular updates. The reconciliation service got its own App Service that could target specific verisons of dependencies that it required, which were held back by certain functions of the app, completely isolated from user-facing requests or inbound connectivity.
+The fix was clean: split the repo into two independent modules and deploy them as two separate App Services. The live-traffic service got the current Node.js runtime with regular updates. The reconciliation service got its own App Service that could target specific versions of dependencies that it required, which were held back by certain functions of the app, completely isolated from user-facing requests or inbound connectivity.
 
 The App Service-specific consideration: **pay close attention to region when creating new services.** The reconciliation service needed outbound database access, which means it needed to be in the same region as the database. This brings us to a set of important lessons from the migration.
 
@@ -237,7 +235,7 @@ The App Service-specific consideration: **pay close attention to region when cre
 
 ### 🔴 Azure NAT Throughput Is Lower Than Equivalent EC2 — and It Will Surprise You
 
-This one caught of us guard. After migrating several services to App Service, we started seeing intermittent `ETIMEDOUT` errors on outbound HTTPS connections. The errors weren't consistent — they happened under load, particularly at the top of the hour, when we schedule many events.
+This one caught us off guard. After migrating several services to App Service, we started seeing intermittent `ETIMEDOUT` errors on outbound HTTPS connections. The errors weren't consistent — they happened under load, particularly at the top of the hour, when we schedule many events.
 
 The root cause: **App Services with comparable vCPU/memory to our EC2 instances had lower outbound NAT throughput.** On EC2, we had static IPs and predictable, dedicated NATing. On App Service, outbound connections flow through shared platform-level NAT with its own throughput limits.
 
@@ -277,7 +275,7 @@ On Azure, Application Insights, Azure Monitor, and Microsoft Defender come pre-i
 
 ## DNS Transition
 
-We kept Route 53 for DNS during the initial migration (Chapter 7 covers the full DNS migration). The bridge was a CNAME in Route 53 pointing to the App Service custom domain, with a TXT record for domain verification. Managed TLS certificates are auto-provisioned by Azure once the domain is validated.
+We kept Route 53 for DNS during the initial migration (Chapter 6 covers the full DNS migration). The bridge was a CNAME in Route 53 pointing to the App Service custom domain, with a TXT record for domain verification. Managed TLS certificates are auto-provisioned by Azure once the domain is validated.
 
 ## AWS Cleanup Checklist
 
@@ -294,9 +292,9 @@ Don't rush the last step. Running both environments in parallel for a couple of 
 
 The most important lesson from this migration wasn’t about Azure at all. It was about understanding the abstraction boundary of the platform. When you change platforms, you change which constraints surface first. The job isn’t to fight those constraints — it’s to design within them.
 
-## Appendix:
+## Appendix
 
-This is the script we use to deploy to Azure App Service. We intentially started with a simple process, that bypassed pipeline and other infrastructure and additionally left a few steps manual, including the actual deployment. This script will:
+This is the script we use to deploy to Azure App Service. We intentionally started with a simple process that bypassed pipelines and other infrastructure, leaving a few steps manual, including the actual deployment. This script will:
 
 1. Build the image
 2. Tag the image
@@ -329,7 +327,7 @@ IMAGE_NAME =  {
 }
 AZURE_APP_SERVICE_URL = {
     "stage": "https://portal.azure.com/#@lead.app/resource/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Web/sites/<APP_SERVICE_NAME>/slots/staging/vstscd",
-    "prod":  "https://portal.azure.com/#@lead.app/resource/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Web/sites/<APP_SERVICE_NAME>/slots/staging/vstscd",,
+    "prod":  "https://portal.azure.com/#@lead.app/resource/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Web/sites/<APP_SERVICE_NAME>/slots/staging/vstscd",
 }
 
 
@@ -384,7 +382,7 @@ def check_az_login() -> None:
         sys.exit(1)
 
 def deploy(realm: str, version: str) -> None:
-    """ Deploy the Angular app to Azure Blob Storage """
+    """ Build and push container image to Azure Container Registry """
     uncommitted_changes = False
 
     if not realm:
@@ -449,8 +447,8 @@ if __name__ == "__main__":
 ```
 
 <div class="chapter-subscribe">
-  <h3>Enjoying this migration guide?</h3>
-  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <h3>Enjoyed this guide?</h3>
+  <p>Occasional essays on engineering, AI, and building products — no spam, unsubscribe anytime</p>
   <form
     action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
     method="post"
@@ -458,21 +456,20 @@ if __name__ == "__main__":
   >
     <input type="hidden" name="metadata__source" value="{{ page.url }}" />
     <div class="form-row">
-      <input type="email" name="email" placeholder="your@email.com" required />
+      <input type="email" name="email" aria-label="Email address" autocomplete="email" placeholder="your@email.com" required />
       <button type="submit">Subscribe</button>
     </div>
   </form>
 </div>
 
-<div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter1-migrating-to-azure/" class="back-to-toc">
-    <i class="fas fa-arrow-left"></i> Previous Chapter
+<nav class="next-chapter-section" aria-label="Chapter navigation">
+  <a href="/aws-azure-migration-guide/guides/chapter1-migrating-to-azure/" class="chapter-pager-link prev">
+    <span class="pager-kicker">← Previous Chapter</span>
+    <span class="pager-title">Project Summary &amp; Strategy</span>
   </a>
-  <a href="/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/" class="next-chapter-button">
-    <span class="button-content">
-      <span class="button-text">Next Chapter</span>
-      <span class="button-subtitle">WordPress on Bitnami to App Service</span>
-      <span class="arrow">→</span>
-    </span>
+  <a href="/aws-azure-migration-guide/" class="chapter-pager-link overview">All Chapters</a>
+  <a href="/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/" class="chapter-pager-link next">
+    <span class="pager-kicker">Next Chapter →</span>
+    <span class="pager-title">WordPress on Bitnami to App Service</span>
   </a>
-</div>
+</nav>

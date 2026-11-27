@@ -1,32 +1,31 @@
 ---
 layout: default
-description: "Move DNS management from Amazon Route 53 to Azure DNS Zones, with guidance on record migration, domain configuration, and cutover."
-title: "Azure DNS Zones Setup"
+title: "Migrating DNS from AWS Route 53 to Azure DNS Zones"
+description: "Move DNS management from Amazon Route 53 to Azure DNS Zones, with guidance on name server delegation, record import, and alias A records."
 permalink: /aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/
+last_modified_at: 2026-11-27
+image:
+  path: /assets/images/dns-domains-configuration.jpg
+  alt: "Updating registrar name servers to delegate DNS to Azure DNS Zones"
 ---
 
-# Azure DNS Zones Setup
+<nav class="guide-breadcrumb" aria-label="Breadcrumb">
+  <a href="/aws-azure-migration-guide/">AWS to Azure Migration Guide</a>
+  <span class="crumb-sep" aria-hidden="true">/</span>
+  <span>Chapter 6 of 6</span>
+</nav>
+
+# Migrating DNS from AWS Route 53 to Azure DNS Zones
 
 <div class="chapter-meta-line">
   <span class="chapter-number">Chapter 6</span>
   <span class="reading-time-wrapper">{% include reading_time.html %}</span>
-  <span class="category">Network Guide</span>
-  <span class="migration-path"><strong>Route 53</strong> → <strong>DNS Zones</strong></span>
+  <span class="category">Network &amp; DNS</span>
+  <span class="migration-path"><strong>Route 53</strong> → <strong>Azure DNS Zones</strong></span>
 </div>
 
 <div class="chapter-intro">
-This is <b>Part VI</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our DNS infrastructure from AWS Route53 to Azure DNS Zones.
-<div class="chapter-nav">
-  <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="chapter-nav-button back">
-    <span class="arrow">←</span>Previous Chapter
-  </a>
-  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
-    <i class="fas fa-home"></i> Home
-  </a>
-  <a href="/aws-azure-migration-guide/guides/chapter7-machine-learning-migration/" class="chapter-nav-button next">
-    Next Chapter: ML Migration<span class="arrow">→</span>
-  </a>
-</div>
+  <p>Chapter 6 of 6 in our series on migrating LEAD's enterprise platform from AWS to Azure — covering how we delegated DNS from AWS Route 53 and external registrars to Azure DNS Zones.</p>
 </div>
 
 
@@ -34,7 +33,7 @@ This is <b>Part VI</b> of our ongoing series on migrating LEAD's enterprise plat
 
 Because Azure doesn’t function as a registrar, your domain must live with a third-party registrar.
 
-For new domains, purchase from a registrar (e.g., Namecheap, Route53, GoDaddy, etc). For existing domains, they can stay with their current registrar.
+For new domains, purchase from a registrar (e.g., Namecheap, Route 53, GoDaddy, etc.). For existing domains, they can stay with their current registrar.
 
 The only requirement is:
 
@@ -71,9 +70,26 @@ ns4-xx.azure-dns.info
 These are critical for the next step.
 
 
+## Pre-Cutover Checklist (Existing Domains)
+
+Before updating name servers on a live domain, run three quick safeguards to avoid silent outages:
+
+1. **Lower TTLs 24–48 hours early:** Drop record TTLs in Route 53 (e.g., to `300` seconds) before the cutover window so resolvers pick up changes quickly — and can roll back just as fast if needed.
+2. **Audit non-web records:** Confirm every `MX`, `SPF` (`TXT`), `DKIM`, `DMARC`, and third-party verification record exists identically in your Azure DNS Zone. Broken email delivery is the easiest issue to miss during a DNS move.
+3. **Query Azure's name servers directly before switching:** Test resolution against one of the assigned Azure name servers and compare against Route 53 before touching your registrar:
+
+```bash
+dig @ns1-xx.azure-dns.com example.com A +short
+dig @ns1-xx.azure-dns.com example.com MX +short
+dig @ns1-xx.azure-dns.com example.com TXT +short
+```
+
+Once Azure returns the exact same answers as Route 53, you're safe to delegate.
+
+
 ## Step 3: Point Your Domain to Azure
 
-Now go back to your registrar (e.g., Namecheap, GoDaddy, etc).
+Now go back to your registrar (e.g., Namecheap, GoDaddy, etc.).
 
 Replace the existing name servers with the Azure-provided NS records.
 
@@ -101,43 +117,37 @@ Azure DNS does not host your site — it only resolves domain names to services.
 
 ## How This Fits Into the Migration
 
-The actual usage of DNS records will be covered in the relevant service chapters covering:
+Each of the service migrations covered in earlier chapters — [Azure App Service](/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/), [WordPress](/aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/), and [Static Web Apps / Front Door](/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/) — eventually comes down to custom domain validation and routing:
 
-* Static Web Apps
-* Azure Web Apps
-* API services
-* Email configuration
+* Adding a TXT record for domain ownership verification
+* Adding an alias A record (for apex domains) or CNAME record for traffic routing
+* Keeping email records (MX, SPF, DKIM, DMARC) intact during cutover
 
-Each Azure service typically instructs you to:
-
-* Add a TXT record for domain validation
-* Add an A or CNAME record for traffic routing
-
-Because your domain is now delegated to Azure DNS, those records can be managed centrally inside your Azure environment.
+Because your domain is delegated to Azure DNS, those records can be managed centrally alongside the rest of your Azure environment — and you no longer need the apex redirect workarounds required when DNS lived in Route 53.
 
 ## AWS vs Azure DNS at a Glance
 
-| Capability                | Route53 (AWS) | Azure DNS |
-| ------------------------- | ------------- | --------- |
-| Domain registration       | Yes           | No        |
-| DNS hosting               | Yes           | Yes       |
-| Deep platform integration | Yes           | Yes       |
-| Managed in cloud console  | Yes           | Yes       |
+| Capability                | Route 53 (AWS) | Azure DNS |
+| ------------------------- | -------------- | --------- |
+| Domain registration       | Yes            | No        |
+| DNS hosting               | Yes            | Yes       |
+| Deep platform integration | Yes            | Yes       |
+| Managed in cloud console  | Yes            | Yes       |
 
 ## Final Takeaway
 
-DNS migration is straightforward (but high risk, so needs to be executed carefully):
+DNS migration is straightforward (but high risk, so it needs to be executed carefully):
 
 1. Keep your domain at a registrar
-2. Create an Azure DNS Zone
-3. Delegate your domain to Azure
-4. Manage records inside Azure going forward
+2. Create an Azure DNS Zone and import existing records
+3. Delegate your domain's name servers to Azure
+4. Manage all records — including apex aliases to Azure services — inside Azure going forward
 
-That's all. From here, the rest of your Azure migration builds on top of this foundation.
+With DNS delegated to Azure alongside your applications, databases, and static sites, the final AWS dependency is retired and your entire production footprint runs natively on Azure.
 
 <div class="chapter-subscribe">
-  <h3>Enjoying this migration guide?</h3>
-  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <h3>Enjoyed this guide?</h3>
+  <p>Occasional essays on engineering, AI, and building products — no spam, unsubscribe anytime</p>
   <form
     action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
     method="post"
@@ -145,21 +155,19 @@ That's all. From here, the rest of your Azure migration builds on top of this fo
   >
     <input type="hidden" name="metadata__source" value="{{ page.url }}" />
     <div class="form-row">
-      <input type="email" name="email" placeholder="your@email.com" required />
+      <input type="email" name="email" aria-label="Email address" autocomplete="email" placeholder="your@email.com" required />
       <button type="submit">Subscribe</button>
     </div>
   </form>
 </div>
 
-<div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="back-to-toc">
-    <i class="fas fa-arrow-left"></i> Previous Chapter
+<nav class="next-chapter-section two-col" aria-label="Chapter navigation">
+  <a href="/aws-azure-migration-guide/guides/chapter5-azure-db-migration/" class="chapter-pager-link prev">
+    <span class="pager-kicker">← Previous Chapter</span>
+    <span class="pager-title">PostgreSQL Migration from RDS to Azure</span>
   </a>
-  <a href="/aws-azure-migration-guide/guides/chapter7-machine-learning-migration/" class="next-chapter-button">
-    <span class="button-content">
-      <span class="button-text">Next Chapter</span>
-      <span class="button-subtitle">Machine Learning Migration</span>
-      <span class="arrow">→</span>
-    </span>
+  <a href="/aws-azure-migration-guide/" class="chapter-pager-link next">
+    <span class="pager-kicker">Back to Guide →</span>
+    <span class="pager-title">All Chapters &amp; Service Matrix</span>
   </a>
-</div>
+</nav>

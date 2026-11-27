@@ -50,12 +50,12 @@ function layout(data, maxTotal = data.total) {
       flow('unresolved', id, data.statuses[id]);
     }
   } else {
-    for (const [id, total, lean, color] of [
-      ['resolved', resolved, data.resolved_lean, 'blue'],
-      ['unresolved', data.total - resolved, data.lean - data.resolved_lean, 'red']
+    for (const [id, total, lean, color, leanLabel, otherLabel] of [
+      ['resolved', resolved, data.resolved_lean, 'blue', 'Lean-formalized solution', 'Not Lean-formalized'],
+      ['unresolved', data.total - resolved, data.lean - data.resolved_lean, 'red', 'Lean solution (status open)', 'No Lean solution']
     ]) {
-      add(id + '-lean', 'Lean solution', color);
-      add(id + '-other', 'No Lean solution recorded', color);
+      add(id + '-lean', leanLabel, color);
+      add(id + '-other', otherLabel, color);
       flow(id, id + '-lean', lean);
       flow(id, id + '-other', total - lean);
     }
@@ -96,6 +96,7 @@ function render(data) {
       .node-label { paint-order: stroke; stroke: #fdfdfe; stroke-width: 6px; stroke-linejoin: round; }
       .flow { fill: none; stroke-opacity: .38; }
       .flow:hover { stroke-opacity: .65; }
+      [data-empty="true"] { display: none; }
       a:hover .node-title, a:focus .node-title { text-decoration: underline; }
       a:focus { outline: none; }
       a:focus .node-bar { stroke: #17253c; stroke-width: 2px; }
@@ -112,19 +113,21 @@ function render(data) {
   // Draw all bars first, then all labels so a later ribbon or bar cannot obscure text.
   for (const node of graph.nodes) {
     const terminal = node.sourceLinks.length === 0;
+    const empty = !data.statuses && terminal && node.value === 0;
     const tag = node.href ? 'a' : 'g';
-    parts.push(`<${tag}${node.href ? ` href="${escape(node.href)}"` : ''} data-node="${node.id}" class="node ${terminal ? 'terminal' : 'branch'}">`);
+    parts.push(`<${tag}${node.href ? ` href="${escape(node.href)}"` : ''} data-node="${node.id}"${empty ? ' data-empty="true"' : ''} class="node ${terminal ? 'terminal' : 'branch'}">`);
     parts.push(`<title>${escape(node.label)}: ${format(node.value)} (${(node.value / data.total * 100).toFixed(1)}% of all problems)</title>`);
     parts.push(`<rect class="node-bar" x="${node.x0}" y="${node.y0}" width="${node.x1 - node.x0}" height="${node.y1 - node.y0}" fill="${palette[node.color]}" rx="${Math.min(2, (node.y1 - node.y0) / 2)}"/>`);
     parts.push(`</${tag}>`);
   }
   for (const node of graph.nodes) {
     const terminal = node.sourceLinks.length === 0;
+    const empty = !data.statuses && terminal && node.value === 0;
     const x = terminal ? node.x1 + 16 : node.x0;
     const y = terminal ? (node.y0 + node.y1) / 2 - 5 : node.y0 - 39;
     const tag = node.href ? 'a' : 'g';
     // The bar provides the keyboard target; this duplicate label link is pointer-only.
-    parts.push(`<${tag}${node.href ? ` href="${escape(node.href)}" tabindex="-1" aria-hidden="true"` : ''} data-label="${node.id}" class="${terminal ? 'terminal' : 'branch'}">`);
+    parts.push(`<${tag}${node.href ? ` href="${escape(node.href)}" tabindex="-1" aria-hidden="true"` : ''} data-label="${node.id}"${empty ? ' data-empty="true"' : ''} class="${terminal ? 'terminal' : 'branch'}">`);
     parts.push(`<text class="node-label node-title" x="${x}" y="${y}">${escape(node.label)}</text>`);
     parts.push(`<text class="node-label node-count" x="${x}" y="${y + (terminal ? 28 : 31)}"><tspan class="node-number">${format(node.value)}</tspan> <tspan class="node-percentage" dx="4">${(node.value / data.total * 100).toFixed(1)}%</tspan></text>`);
     parts.push(`</${tag}>`);
