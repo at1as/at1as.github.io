@@ -2,7 +2,7 @@
 layout: post
 description: "Why rebates, subscriptions, luxury channels, and retail ads rely on human impatience, and how AI agents force friction to migrate from hassle to access control."
 title: "Businesses Bet You Won't Bother. Your AI Agent Will"
-date: 2026-11-24 18:00:00 -0500
+date: 2026-11-27 12:00:00 -0500
 categories: [technology, business]
 tags: [ai, agents, economics, product, pricing]
 excerpt_separator: "<!--more-->"
