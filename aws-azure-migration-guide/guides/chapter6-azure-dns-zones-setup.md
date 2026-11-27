@@ -33,7 +33,7 @@ image:
 
 Because Azure doesn’t function as a registrar, your domain must live with a third-party registrar.
 
-For new domains, purchase from a registrar (e.g., Namecheap, Route53, GoDaddy, etc). For existing domains, they can stay with their current registrar.
+For new domains, purchase from a registrar (e.g., Namecheap, Route 53, GoDaddy, etc.). For existing domains, they can stay with their current registrar.
 
 The only requirement is:
 
@@ -70,9 +70,26 @@ ns4-xx.azure-dns.info
 These are critical for the next step.
 
 
+## Pre-Cutover Checklist (Existing Domains)
+
+Before updating name servers on a live domain, run three quick safeguards to avoid silent outages:
+
+1. **Lower TTLs 24–48 hours early:** Drop record TTLs in Route 53 (e.g., to `300` seconds) before the cutover window so resolvers pick up changes quickly — and can roll back just as fast if needed.
+2. **Audit non-web records:** Confirm every `MX`, `SPF` (`TXT`), `DKIM`, `DMARC`, and third-party verification record exists identically in your Azure DNS Zone. Broken email delivery is the easiest issue to miss during a DNS move.
+3. **Query Azure's name servers directly before switching:** Test resolution against one of the assigned Azure name servers and compare against Route 53 before touching your registrar:
+
+```bash
+dig @ns1-xx.azure-dns.com example.com A +short
+dig @ns1-xx.azure-dns.com example.com MX +short
+dig @ns1-xx.azure-dns.com example.com TXT +short
+```
+
+Once Azure returns the exact same answers as Route 53, you're safe to delegate.
+
+
 ## Step 3: Point Your Domain to Azure
 
-Now go back to your registrar (e.g., Namecheap, GoDaddy, etc).
+Now go back to your registrar (e.g., Namecheap, GoDaddy, etc.).
 
 Replace the existing name servers with the Azure-provided NS records.
 
