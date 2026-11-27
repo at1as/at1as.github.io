@@ -24,6 +24,70 @@
 </script>
 {% endif %}
 
+{% if page.url contains '/aws-azure-migration-guide/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ '/' | absolute_url | jsonify }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Projects",
+      "item": {{ '/sites/' | absolute_url | jsonify }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AWS to Azure Migration Guide",
+      "item": {{ '/aws-azure-migration-guide/' | absolute_url | jsonify }}
+    }{% if page.url != '/aws-azure-migration-guide/' %},
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": {{ page.title | jsonify }},
+      "item": {{ page.url | absolute_url | jsonify }}
+    }{% endif %}
+  ]
+}
+</script>
+{% if page.url contains '/aws-azure-migration-guide/guides/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": "Jason Willems",
+    "url": {{ site.url | jsonify }}
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Jason Willems",
+    "url": {{ site.url | jsonify }}
+  },
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "AWS to Azure Migration Guide",
+    "url": {{ '/aws-azure-migration-guide/' | absolute_url | jsonify }}
+  }{% if page.image.path %},
+  "image": {{ page.image.path | absolute_url | jsonify }}{% elsif page.image %},
+  "image": {{ page.image | absolute_url | jsonify }}{% endif %}{% if page.last_modified_at %},
+  "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }}{% endif %}
+}
+</script>
+{% endif %}
+{% endif %}
+
 {% if page.layout == 'post' or page.layout == 'blog' %}
 <script type="application/ld+json">
 {

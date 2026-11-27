@@ -1,33 +1,31 @@
 ---
 layout: default
-description: "How to migrate a WordPress site from Bitnami on AWS to Azure App Service, including database transfer, configuration, and deployment."
-title: "WordPress on Bitnami to Azure App Service Migration"
+title: "Migrating WordPress from AWS Lightsail (Bitnami) to Azure App Service"
+description: "How to migrate a WordPress site from Bitnami on AWS Lightsail to Azure App Service, including PHP-FPM tuning, database transfer, and custom domain cutover."
 permalink: /aws-azure-migration-guide/guides/chapter3-wordpress-bitnami-to-app-service/
+last_modified_at: 2026-11-27
+image:
+  path: /assets/images/azure-typical-service-overview.png
+  alt: "Azure App Service migration architecture for WordPress workloads"
 ---
 
-# WordPress on Bitnami to Azure App Service Migration
+<nav class="guide-breadcrumb" aria-label="Breadcrumb">
+  <a href="/aws-azure-migration-guide/">AWS to Azure Migration Guide</a>
+  <span class="crumb-sep" aria-hidden="true">/</span>
+  <span>Chapter 3 of 6</span>
+</nav>
+
+# WordPress on Bitnami (AWS Lightsail) to Azure App Service
 
 <div class="chapter-meta-line">
   <span class="chapter-number">Chapter 3</span>
   <span class="reading-time-wrapper">{% include reading_time.html %}</span>
   <span class="category">Migration Guide</span>
-  <span class="migration-path"><strong>WordPress</strong> → <strong>App Service</strong></span>
+  <span class="migration-path"><strong>Lightsail WordPress</strong> → <strong>App Service</strong></span>
 </div>
 
 <div class="chapter-intro">
-This is <b>Part III</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our WordPress properties from AWS Lightsail with Bitnami to Azure App Service.
-
-<div class="chapter-nav">
-  <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="chapter-nav-button back">
-    <span class="arrow">←</span>Previous Chapter
-  </a>
-  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
-    <i class="fas fa-home"></i> Home
-  </a>
-  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="chapter-nav-button next">
-    Next Chapter: Static Sites & CDN<span class="arrow">→</span>
-  </a>
-</div>
+  <p>Chapter 3 of 6 in our series on migrating LEAD's enterprise platform from AWS to Azure — covering how we moved our WordPress properties from AWS Lightsail with Bitnami to standard Azure App Service.</p>
 </div>
 
 ## Overview
@@ -150,7 +148,7 @@ Before importing, disable plugins that may cause conflicts:
 3. **Monitor logs** if import fails:
    - Check via Kudu Console
    - Inspect /home/LogFiles/
-   - or tail PHP logs if avaiable `tail -f /var/log/php-fpm/php-fpm.www.log`
+   - or tail PHP logs if available `tail -f /var/log/php-fpm/php-fpm.www.log`
 
 ### Common Import Errors
 
@@ -190,7 +188,7 @@ mv /var/www/wordpress/wp-content/object-cache.php /var/www/wordpress/wp-content/
 | Azure P0V3   | 54 | --- |
 | Azure P1V3   | 66 (66, 94, 96, 100) | 33 (33, 92, 96, 100) |
 
-This compared our optmized Lightsail setup with our basic Azure setup.
+This compared our optimized Lightsail setup with our basic Azure setup.
 
 ## Step 6: Performance Optimization
 
@@ -235,17 +233,17 @@ EOF
 
 chmod +x /home/startup.sh
 ```
-Note that we adjusted these settings to avoid OOM errors and memory pressure issues"
+Note that we adjusted these settings to avoid OOM errors and memory pressure issues.
 
-#### Before (Default):
-```bash
+#### Before (Default)
+```
 App Service Container
  ├── PHP-FPM (max_children = 50)
  ├── Memory Pressure
  └── OOM Risk
 ```
-#### After (Tuned):
-```bash
+#### After (Tuned)
+```
 App Service Container
  ├── PHP-FPM (max_children = 15)
  ├── Stable Memory
@@ -420,9 +418,9 @@ Use Azure's built-in tools:
 - **Managed Certificates** (no manual SSL management)
 - **Integrated Monitoring** (Application Insights)
 - **Built-in CDN** (FrontDoor)
-- **Mmanaged identities**
+- **Managed identities**
 - **Automated Backups**
-- **Seamless Vertical and horizontal scalability** (Lightsail only offers vertical scalabiling)
+- **Seamless vertical and horizontal scalability** (Lightsail only offers vertical scaling)
 
 ## Migration Timeline
 
@@ -438,7 +436,7 @@ Use Azure's built-in tools:
 ## Lessons Learned
 
 #### Before
-```bash
+```
 Internet
    ↓
 Route53
@@ -451,7 +449,7 @@ Lightsail Instance
 ```
 
 #### After
-```bash
+```
 Internet
    ↓
 External DNS
@@ -493,8 +491,8 @@ Migrating WordPress from Bitnami on AWS Lightsail to Azure App Service provides 
 The migration process typically takes 3–4 hours for a complete site, with most time spent on import and domain transfer. Post-migration optimization can further improve performance and long-term stability.
 
 <div class="chapter-subscribe">
-  <h3>Enjoying this migration guide?</h3>
-  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <h3>Enjoyed this guide?</h3>
+  <p>Occasional essays on engineering, AI, and building products — no spam, unsubscribe anytime</p>
   <form
     action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
     method="post"
@@ -502,21 +500,20 @@ The migration process typically takes 3–4 hours for a complete site, with most
   >
     <input type="hidden" name="metadata__source" value="{{ page.url }}" />
     <div class="form-row">
-      <input type="email" name="email" placeholder="your@email.com" required />
+      <input type="email" name="email" aria-label="Email address" autocomplete="email" placeholder="your@email.com" required />
       <button type="submit">Subscribe</button>
     </div>
   </form>
 </div>
 
-<div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="back-to-toc">
-    <i class="fas fa-arrow-left"></i> Previous Chapter
+<nav class="next-chapter-section" aria-label="Chapter navigation">
+  <a href="/aws-azure-migration-guide/guides/chapter2-migrating-to-app-service/" class="chapter-pager-link prev">
+    <span class="pager-kicker">← Previous Chapter</span>
+    <span class="pager-title">ECS &amp; EC2 to Azure App Service</span>
   </a>
-  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="next-chapter-button">
-    <span class="button-content">
-      <span class="button-text">Next Chapter</span>
-      <span class="button-subtitle">Static Sites & CDN Migration</span>
-      <span class="arrow">→</span>
-    </span>
+  <a href="/aws-azure-migration-guide/" class="chapter-pager-link overview">All Chapters</a>
+  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="chapter-pager-link next">
+    <span class="pager-kicker">Next Chapter →</span>
+    <span class="pager-title">Static Sites &amp; CDN Migration</span>
   </a>
-</div>
+</nav>

@@ -1,32 +1,31 @@
 ---
 layout: default
-description: "How LEAD migrated PostgreSQL from Amazon RDS to Azure, including replication, cutover planning, and lessons on minimizing downtime."
-title: "Azure Database Migration"
+title: "Migrating PostgreSQL from AWS RDS to Azure with AWS DMS (Near-Zero Downtime)"
+description: "How LEAD migrated a 200M+ row PostgreSQL database from Amazon RDS to Azure Database for PostgreSQL using AWS DMS logical replication, schema restoration, and live cutover."
 permalink: /aws-azure-migration-guide/guides/chapter5-azure-db-migration/
+last_modified_at: 2026-11-27
+image:
+  path: /assets/images/db-cutover-arch.png
+  alt: "AWS DMS logical replication architecture from Amazon RDS to Azure Database for PostgreSQL"
 ---
 
-# PostgreSQL Migration from AWS RDS to Azure: How We Cut Over with (Almost**) Zero Downtime
+<nav class="guide-breadcrumb" aria-label="Breadcrumb">
+  <a href="/aws-azure-migration-guide/">AWS to Azure Migration Guide</a>
+  <span class="crumb-sep" aria-hidden="true">/</span>
+  <span>Chapter 5 of 6</span>
+</nav>
+
+# PostgreSQL Migration from AWS RDS to Azure: How We Cut Over with Near-Zero Downtime
 
 <div class="chapter-meta-line">
   <span class="chapter-number">Chapter 5</span>
   <span class="reading-time-wrapper">{% include reading_time.html %}</span>
-  <span class="category">Infrastructure Guide</span>
-  <span class="migration-path"><strong>RDS</strong> → <strong>Azure Database</strong></span>
+  <span class="category">Database Migration</span>
+  <span class="migration-path"><strong>RDS PostgreSQL</strong> → <strong>Azure Database</strong></span>
 </div>
 
 <div class="chapter-intro">
-  This is <b>Part V</b> of our ongoing series on migrating LEAD's enterprise platform from AWS to Azure. This chapter covers the migration of our Postgres Databases from AWS RDS to Azure Database for PostgreSQL.
-  <div class="chapter-nav">
-  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="chapter-nav-button back">
-    <span class="arrow">←</span>Previous Chapter
-  </a>
-  <a href="/aws-azure-migration-guide/" class="chapter-nav-button home">
-    <i class="fas fa-home"></i> Home
-  </a>
-  <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="chapter-nav-button next">
-    Next Chapter: DNS Zones Setup<span class="arrow">→</span>
-  </a>
-</div>
+  <p>Chapter 5 of 6 in our series on migrating LEAD's enterprise platform from AWS to Azure — covering how we replicated and cut over our PostgreSQL databases from Amazon RDS to Azure Database for PostgreSQL using AWS DMS.</p>
 </div>
 
 ## Overview
@@ -42,7 +41,7 @@ This chapter walks through the architecture we used, the tradeoffs we made, and 
 
 ## The Setup
 
-Our RDS instance wasn't particularly exotic — a `db.t3.micro` running PostgreSQL 14, with 128GiB of storage set to auto-scale and around 200 million rows in our largest table. The burstable CPU class meant we weren't paying for sustained performance, but it also meant we had to be careful about sustained load during migration. In many ways we already staring to outgrow the instance class.
+Our RDS instance wasn't particularly exotic — a `db.t3.micro` running PostgreSQL 14, with 128GiB of storage set to auto-scale and around 200 million rows in our largest table. The burstable CPU class meant we weren't paying for sustained performance, but it also meant we had to be careful about sustained load during migration. In many ways we were already starting to outgrow the instance class.
 
 Despite the small instance, it contained several hundred million rows and wrote at least 25M rows per month.
 
@@ -69,7 +68,7 @@ The key insight is that you don't have to stop anything, or cut over at a certai
 
 Here's how the pieces fit together:
 
-<image src="{{ "/assets/images/db-cutover-arch.png" | relative_url }}" alt="DMS Migration Architecture" />
+![DMS Migration Architecture]({{ "/assets/images/db-cutover-arch.png" | relative_url }})
 
 DMS sits in the middle, reading from the RDS WAL via a logical replication slot and writing to Azure. During the initial full load it bulk-copies all rows; after that it switches to continuous CDC (Change Data Capture), replaying every insert, update, and delete in near real-time. Your application keeps reading and writing to RDS the whole time. When you're ready to cut over, you flip the connection string and DMS stops being needed.
 
@@ -85,7 +84,7 @@ in a custom parameter group — and because it's a static parameter, a reboot of
 
 There's no way around this on standard RDS PostgreSQL. It's a hard constraint from AWS, and this parameter is disabled by default.
 
-We debated whether or not this was acceptible. Sunrize performs actions every 15 minutes under constant write pressure, with premium accounts given priority. We have a roughly 10 minute window under which we can disable our jobs at the application layer and expect no impact on premium accounts. We were lucky to have this window, and ultimately decided to accept this rather than engineering a more complex solution.
+We debated whether or not this was acceptable. Sunrize performs actions every 15 minutes under constant write pressure, with premium accounts given priority. We have a roughly 10 minute window under which we can disable our jobs at the application layer and expect no impact on premium accounts. We were lucky to have this window, and ultimately decided to accept this rather than engineering a more complex solution.
 
 
 In any case, what you *can* do is tailor this to a low-traffic period (does not exist for our workflow, but in the worst case data loss on a weekend would be more acceptable to our users), schedule it in advance, communicate it to users, and budget around 4–5 minutes. That's a very different thing from an unplanned outage during migration.
@@ -136,7 +135,7 @@ ALTER TABLE public.user_company ALTER COLUMN role DROP NOT NULL;
 
 We restored the constraint after migration. The column is never NULL in practice, which we enforce at the application layer, so this constraint was more a guard against software bugs.
 
-Whether or not this is feasaible will depend on the specific schema and how it's used - you'd want to audit your own schema before assuming the same.
+Whether or not this is feasible will depend on the specific schema and how it's used — you'd want to audit your own schema before assuming the same.
 
 #### Verifying Extraction Queries
 
@@ -147,14 +146,14 @@ On a burstable instance like t3.micro, this matters. A full table scan during ex
 If your schema is not index-aligned with your primary keys or ordering columns, fix that before starting.
 
 
-## Perparing the Destination Database (Azure)
+## Preparing the Destination Database (Azure)
 
 Several details must be configured before DMS writes to Azure.
 
 #### Extensions
 
 Check your RDS instance for any installed extensions:
-```
+```sql
 SELECT *
 FROM pg_available_extensions
 WHERE installed_version IS NOT NULL;
@@ -168,7 +167,7 @@ Azure uses `adminuser` by default. Ensure the user being used on RDS exists in t
 
 #### SSL
 
-Azure enforces SSL. Connection strings (if some reason they don't) must include:
+Azure enforces SSL. Connection strings (if for some reason they don't already) must include:
 ```
 sslmode=require
 ```
@@ -289,7 +288,7 @@ ALTER TABLE public.user_activity
 
 When the initial load is complete, DMS switches to continuous replication — it's catching up ongoing changes from the WAL. This is where you start preparing the cutover.
 
-We used Azure deployment slots to test the new database before touching production. We pointed a staging slot at the Azure database with environment variables that would disable database writes at the application layer (`SCHEDULER_ENABLED=false` = no background jobs, no  write traffic) and throughly ran our test suites to verify all essential operations. This step is worth taking slowly.
+We used Azure deployment slots to test the new database before touching production. We pointed a staging slot at the Azure database with environment variables that would disable database writes at the application layer (`SCHEDULER_ENABLED=false` = no background jobs, no write traffic) and thoroughly ran our test suites to verify all essential operations. This step is worth taking slowly.
 
 ### We'll Do It Live: The Cutover Procedure
 
@@ -300,8 +299,6 @@ Ensure application supports write suspension.
 Add `SCHEDULER_ENABLED=true` in production and implement logic such that when `SCHEDULER_ENABLED=false`, background jobs and scheduled writes are disabled.
 
 #### 2. Confirm DMS is Caught Up
-
-Confirm DMS is fully caught up
 
 - Initial load complete
 - Replication lag near zero
@@ -326,7 +323,7 @@ Update production environment variable:
 - New DB host
 - `SCHEDULER_ENABLED=true`
 
-Redeploy production. Note taht we don't deployment slots in this case because the database connection string is a slot specific value (which allowed us to point staging and prod to different databases). So we need to update the value in the production slot itself.
+Redeploy production. Note that we don't use deployment slots in this case because the database connection string is a slot-specific value (which allowed us to point staging and prod to different databases). So we need to update the value in the production slot itself.
 
 At this point:
 
@@ -346,19 +343,19 @@ Note that at this stage a rollback is no longer possible without temporary data 
 
 ## Architecture
 
-Here's the process we went through
+Here's the process we went through:
 
 #### Phase 1: Migrate Data
 
-<image src="{{ "/assets/images/db-cutover-migration-phase.png" | relative_url }}" alt="DB Cutover Migration Phase" />
+![DB Cutover Migration Phase]({{ "/assets/images/db-cutover-migration-phase.png" | relative_url }})
 
 #### Phase 2: Testing
 
-<image src="{{ "/assets/images/db-cutover-testing-phase.png" | relative_url }}" alt="DB Cutover Testing Phase" />
+![DB Cutover Testing Phase]({{ "/assets/images/db-cutover-testing-phase.png" | relative_url }})
 
 #### Phase 3: Cutover
 
-<image src="{{ "/assets/images/db-cutover-cutover-phase.png" | relative_url }}" alt="DB Cutover Cutover Phase" />
+![DB Cutover Cutover Phase]({{ "/assets/images/db-cutover-cutover-phase.png" | relative_url }})
 
 
 
@@ -375,7 +372,7 @@ Here's the process we went through
 
 ## What If We Needed True Zero Downtime?
 
-Our migration required ~4 minutes of downtime for the initial RDS reboot to enable logical replication. Everything after that ran without interruption. We targeted a weekend (in all timezones to minimize impact)
+Our migration required ~4 minutes of downtime for the initial RDS reboot to enable logical replication. Everything after that ran without interruption. We targeted a weekend (in all timezones to minimize impact).
 
 We come from environments in which we'd sooner accept 12 extra months of active migration work instead of a single digit number of minutes of unavailability, but in this case we were fortunate that we were able to determine we could afford this without negatively impacting our users. Eliminating even that 4-minute window would require significantly more engineering effort.
 
@@ -393,7 +390,7 @@ Each of these adds complexity:
 - Replay safety
 - Additional operational risk
 
-For us, the marginal benefit of reducing downtime from four minutes to zero did not justify the additional system complexity. A short, scheduled reboot was the more rational tradeoff. But as our platform matures, we may naturally fit the zero downtime migration path more cleanly, particuarly with respect to designing for async writes by default.
+For us, the marginal benefit of reducing downtime from four minutes to zero did not justify the additional system complexity. A short, scheduled reboot was the more rational tradeoff. But as our platform matures, we may naturally fit the zero downtime migration path more cleanly, particularly with respect to designing for async writes by default.
 
 ## Alternative Migration Strategies
 
@@ -401,7 +398,7 @@ Before reaching for DMS, it's worth asking whether you actually need it. We were
 
 One of our databases contained no sensitive data, existed for infrequent recurring jobs and contained only ~500MB of data (compressed). For that database, we installed an audit trigger on the source database to log any writes, then ran a pg_dump and pg_restore during a quiet window.
 
-After the import, we checked the audit log: if no writes had been recorded during the window, we cut over. If there had been writes, we'd have needed to replay them manually or re-run the dump. For us, the window was clean, so we cut over. This was only possible it was a non-critical workflow with minimal traffic. If that suits your use case better, the approach can be simpler than the one described in this document.
+After the import, we checked the audit log: if no writes had been recorded during the window, we cut over. If there had been writes, we'd have needed to replay them manually or re-run the dump. For us, the window was clean, so we cut over. This was only possible because it was a non-critical workflow with minimal traffic. If that suits your use case better, the approach can be simpler than the one described in this document.
 
 ## Closing Thoughts
 
@@ -412,8 +409,8 @@ Total app downtime: ~4 minutes for the RDS parameter group restart, which we sch
 The new database is measurably faster on read-heavy queries (more memory helps) and we're no longer watching CPU credit balances. Zone redundancy comes included. On balance, it's a clear improvement, and the migration path — while not simple — was well within reach for a small team.
 
 <div class="chapter-subscribe">
-  <h3>Enjoying this migration guide?</h3>
-  <p>Get notified when new chapters are published. No spam, unsubscribe anytime.</p>
+  <h3>Enjoyed this guide?</h3>
+  <p>Occasional essays on engineering, AI, and building products — no spam, unsubscribe anytime</p>
   <form
     action="https://buttondown.com/api/emails/embed-subscribe/jasonwillems"
     method="post"
@@ -421,21 +418,20 @@ The new database is measurably faster on read-heavy queries (more memory helps) 
   >
     <input type="hidden" name="metadata__source" value="{{ page.url }}" />
     <div class="form-row">
-      <input type="email" name="email" placeholder="your@email.com" required />
+      <input type="email" name="email" aria-label="Email address" autocomplete="email" placeholder="your@email.com" required />
       <button type="submit">Subscribe</button>
     </div>
   </form>
 </div>
 
-<div class="next-chapter-section">
-  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="back-to-toc">
-    <i class="fas fa-arrow-left"></i> Previous Chapter
+<nav class="next-chapter-section" aria-label="Chapter navigation">
+  <a href="/aws-azure-migration-guide/guides/chapter4-static-sites-cdn-migration/" class="chapter-pager-link prev">
+    <span class="pager-kicker">← Previous Chapter</span>
+    <span class="pager-title">Static Sites &amp; CDN Migration</span>
   </a>
-  <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="next-chapter-button">
-    <span class="button-content">
-      <span class="button-text">Next Chapter</span>
-      <span class="button-subtitle">Azure DNS Zones Setup</span>
-      <span class="arrow">→</span>
-    </span>
+  <a href="/aws-azure-migration-guide/" class="chapter-pager-link overview">All Chapters</a>
+  <a href="/aws-azure-migration-guide/guides/chapter6-azure-dns-zones-setup/" class="chapter-pager-link next">
+    <span class="pager-kicker">Next Chapter →</span>
+    <span class="pager-title">Route 53 to Azure DNS Zones</span>
   </a>
-</div>
+</nav>
