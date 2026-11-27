@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Stand-Up Specials — Movie & TV Database Demo | Jason Willems</title>
+    <meta name="description" content="Browse a curated sample of stand-up comedy specials in the Media Database demo, with IMDb ratings, trailers, poster tiles, and filters.">
+    <meta name="author" content="Jason Willems">
+    <link rel="canonical" href="https://www.jasonwillems.com/sites/mediadatabase/output/standup.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jason Willems">
+    <meta property="og:title" content="Stand-Up Specials — Movie & TV Database Demo | Jason Willems">
+    <meta property="og:description" content="Browse a curated sample of stand-up comedy specials in the Media Database demo, with IMDb ratings, trailers, poster tiles, and filters.">
+    <meta property="og:url" content="https://www.jasonwillems.com/sites/mediadatabase/output/standup.html">
+    <meta property="og:image" content="https://www.jasonwillems.com/sites/mediadatabase/output/share-card.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Movie and TV Database: open-source static media catalog with IMDb ratings, dark mode, poster tiles, and live multi-filters.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jasonwillems">
+    <meta name="twitter:creator" content="@jasonwillems">
+    <meta name="twitter:title" content="Stand-Up Specials — Movie & TV Database Demo | Jason Willems">
+    <meta name="twitter:description" content="Browse a curated sample of stand-up comedy specials in the Media Database demo, with IMDb ratings, trailers, poster tiles, and filters.">
+    <meta name="twitter:image" content="https://www.jasonwillems.com/sites/mediadatabase/output/share-card.png">
+    <meta name="twitter:image:alt" content="Movie and TV Database: open-source static media catalog with IMDb ratings, dark mode, poster tiles, and live multi-filters.">
+    <script>
+      if (location.protocol === "https:" && /(^|\.)jasonwillems\.com$/i.test(location.hostname)) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", "G-Q5N6H3PVG2", { page_title: document.title });
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-Q5N6H3PVG2";
+        document.head.appendChild(s);
+      }
+    </script>
+    <script src="../resources/js/theme.js"></script>
+    <script src="../resources/js/catalog_view.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.5.2/dist/css/tom-select.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.5.2/dist/js/tom-select.complete.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <link href="../resources/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/favicon.png" rel="shortcut icon" type="image/png"/>
+    <script src="../resources/js/catalog_table_sort.js" type="text/javascript"></script>
+    <script src="../resources/js/common.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <style>
+      /* Dark mode styles */
+      .dark-theme body {
+        background-color: #333;
+        color: #fff;
+      }
+      .dark-theme .navbar {
+        background-color: #222 !important;
+      }
+      .dark-theme .jumbotron {
+        background-color: #444;
+        color: #fff;
+        border: 1px solid #666;
+      }
+      .dark-theme .card {
+        background-color: #444;
+        color: #fff;
+      }
+      .dark-theme .table {
+        color: #fff;
+        background-color: #444;
+      }
+      .dark-theme .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(255,255,255,.05);
+      }
+      .dark-theme .table thead th {
+        background-color: #555;
+        color: #fff;
+        border-color: #666;
+      }
+      .dark-theme .table td, .dark-theme .table th {
+        border-color: #666;
+      }
+      .dark-theme .form-control {
+        background-color: #555;
+        border-color: #666;
+        color: #fff;
+      }
+      .dark-theme .form-control:focus {
+        background-color: #666;
+        border-color: #777;
+        color: #fff;
+        box-shadow: 0 0 0 0.2rem rgba(102, 179, 255, 0.25);
+      }
+      .dark-theme .badge-secondary {
+        background-color: #666;
+        color: #fff;
+      }
+      .dark-theme .tooltip-inner {
+        background-color: #555;
+        color: #fff;
+      }
+      .dark-theme .modal-content {
+        background-color: #444;
+        color: #fff;
+      }
+      .dark-theme .col-form-label {
+        color: #fff;
+      }
+      .dark-theme .clear-filter {
+        color: #ccc;
+      }
+      .dark-theme .clear-filter:hover {
+        color: #ff6b6b;
+      }
+      .dark-theme .question-filter {
+        color: #66b3ff;
+      }
+      .dark-theme .question-filter:hover {
+        color: #99ccff;
+      }
+      .dark-theme .tooltip-info {
+        color: #66b3ff;
+      }
+      .dark-theme .form-check-label {
+        color: #ddd;
+      }
+      .dark-theme .table-columns-toggle-section {
+        background-color: #555;
+        color: #fff;
+        border: 1px solid #666;
+      }
+
+      /* Navbar spacing */
+      .navbar-nav .nav-item {
+        margin-right: 1.5rem;
+      }
+
+      /* Active navbar link styling */
+      .navbar-dark .navbar-nav .nav-link.active {
+        font-weight: 700;
+        border-bottom: 3px solid #66b3ff;
+        padding-bottom: 4px;
+      }
+      .dark-theme .navbar-dark .navbar-nav .nav-link.active {
+        color: #66b3ff !important;
+        font-weight: 700;
+        border-bottom: 3px solid #66b3ff;
+      }
+    </style>
+      <style>
+      /* Hosted demo "Fork me on GitHub" corner ribbon */
+      body {
+        position: relative;
+      }
+      .github-fork-ribbon-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 136px;
+        height: 136px;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 4;
+      }
+      .github-fork-ribbon {
+        position: absolute;
+        top: 30px;
+        right: -40px;
+        width: 186px;
+        padding: 5px 0;
+        background: linear-gradient(135deg, #24292f 0%, #1b1f23 100%);
+        color: #ffffff !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-align: center;
+        text-decoration: none !important;
+        transform: rotate(45deg);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+        border-top: 1px dashed rgba(255, 255, 255, 0.35);
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
+        pointer-events: auto;
+        transition: background 0.18s ease, box-shadow 0.18s ease;
+      }
+      .github-fork-ribbon:hover,
+      .github-fork-ribbon:focus-visible {
+        background: linear-gradient(135deg, #0878a4 0%, #03658c 100%);
+        color: #ffffff !important;
+        box-shadow: 0 4px 14px rgba(8, 120, 164, 0.45);
+        outline: none;
+      }
+      @media (min-width: 769px) {
+        nav.navbar {
+          padding-right: 118px;
+        }
+      }
+      @media (max-width: 768px) {
+        .github-fork-ribbon-wrap {
+          width: 108px;
+          height: 108px;
+        }
+        .github-fork-ribbon {
+          top: 22px;
+          right: -36px;
+          width: 152px;
+          font-size: 9.5px;
+          padding: 4px 0;
+        }
+        nav.navbar {
+          padding-right: 78px;
+        }
+      }
+    </style>
+  </head>
+
+  <body role="document">
+    <div class="github-fork-ribbon-wrap"><a class="github-fork-ribbon" href="https://github.com/at1as/Media-Database" target="_blank" rel="noopener noreferrer" aria-label="Fork Media Database on GitHub">Fork me on GitHub</a></div>
+    <h1 class="sr-only">Stand-Up Specials — Movie &amp; TV Database Demo</h1>
+    <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+			<div class="collapse navbar-collapse order-2 order-lg-0" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="./index.html">Movies
+              <span class="badge badge-secondary">
+                <span>100</span>
+              </span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./series.html">Series
+              <span class="badge badge-secondary">
+                <span>25</span>
+              </span>
+						</a>
+					</li>
+          <li class="nav-item active">
+						<a class="nav-link active" href="./standup.html">Standup
+              <span class="badge badge-secondary">
+                <span id="results_num" style="display:none">15</span>
+                <span id="mv_seperator" style="display:none"> / </span>
+                <span id="total_num">15</span>
+              </span>
+              <span class="sr-only">(current)</span>
+						</a>
+					</li>
+				
+  <li class="nav-item">
+    <a class="nav-link" href="./live-music.html">Live Music
+      <span class="badge badge-secondary">
+        
+          <span>7</span>
+        
+      </span>
+    </a>
+  </li>
+
+				</ul>
+			</div>
+      <div class="navbar-utilities ml-auto order-lg-1">
+  <label class="theme-toggle">
+  <input class="sr-only" type="checkbox" id="darkModeToggle" role="switch" aria-label="Dark mode" autocomplete="off">
+  <span class="theme-toggle-track" aria-hidden="true">
+    <span class="theme-toggle-sun">☀︎</span>
+    <span class="theme-toggle-moon">☾</span>
+  </span>
+</label>
+  <a class="navbar-about" href="./about.html" title="About" aria-label="About">
+    <span class="navbar-about-icon" aria-hidden="true">i</span>
+  </a>
+</div>
+    </nav>
+    <div class="container-fluid theme-showcase body-container" role="main">
+
+      <!-- Filters -->
+      <div id="filters" class="mx-auto jumbotron filter-container ml-5 mr-5">
+        <div class="filters-toolbar">
+          <div class="filter-prefixed-control filter-search-control has-inline-clear">
+            <span class="filter-prefix" aria-hidden="true">⌕</span>
+            <input class="filter-inline-input filter-title-input" id="title-search" type="search" placeholder="Search by title" spellcheck="false">
+            <button type="button" class="filter-clear-btn" onclick="clear_filter('title-search')" aria-label="Clear title filter"><i class="fa fa-times-circle clear-filter"></i></button>
+          </div>
+          <div class="filters-results-summary">
+            <span class="filters-results-label">Results</span>
+            <span class="filters-results-count">
+              <span id="page_results_num" style="display:none">15</span>
+              <span id="page_mv_seperator" style="display:none"> / </span>
+              <span id="page_total_num">15</span>
+            </span>
+          </div>
+          <div id="clear_all_filters">
+            <button id="clear_all_filters_btn" class="btn media-action-btn media-action-btn-clear" onclick="clear_all_filters()">
+              <span class="media-action-btn-icon" aria-hidden="true">✕</span>
+              <span class="media-action-btn-label">Clear All Filters (0)</span>
+            </button>
+          </div>
+        </div>
+
+        <details id="advanced-filters">
+          <summary>
+  <span class="filters-summary-label">
+    Search Filters
+    <span id="advanced-filter-count" hidden><span data-count></span><span class="sr-only"> active</span></span>
+  </span>
+</summary>
+<script>
+  document.currentScript.parentElement.open = document.documentElement.dataset.catalogFilters !== 'closed';
+</script>
+
+          <div class="filters-grid">
+
+            <div class="filter-card filter-card-half filter-card-inline-group">
+              <div class="filter-prefixed-control filter-prefixed-control-rating">
+                <span class="filter-prefix" aria-hidden="true"><span class="filter-prefix-star">★</span> MIN RATING</span>
+                <select class="native-filter-select filter-inline-input" id="rating-search" data-filter-type="rating"></select>
+              </div>
+              <div class="filter-prefixed-control filter-prefixed-control-votes has-inline-clear">
+                <span class="filter-prefix" aria-hidden="true">MIN VOTES</span>
+                <input class="numeric-filter-input filter-inline-input" id="vote-search" type="text" inputmode="numeric" aria-label="Minimum votes" spellcheck="false">
+                <button type="button" class="filter-clear-btn" onclick="clear_filter('vote-search')" aria-label="Clear votes filter"><i class="fa fa-times-circle clear-filter"></i></button>
+              </div>
+            </div>
+
+            <div class="filter-card filter-card-half filter-card-inline-group">
+              <div class="filter-prefixed-control">
+                <span class="filter-prefix" aria-hidden="true">From</span>
+                <select class="native-filter-select filter-inline-input" id="year-min-search" data-filter-type="year"></select>
+              </div>
+              <div class="filter-prefixed-control">
+                <span class="filter-prefix" aria-hidden="true">To</span>
+                <select class="native-filter-select filter-inline-input" id="year-max-search" data-filter-type="year"></select>
+              </div>
+            </div>
+
+            <div class="filters-row-break"></div>
+
+            <div class="filter-card filter-card-half">
+              <div class="filter-label-row">
+                <label for="genre-search" class="filter-label">Genres</label>
+              </div>
+              <div class="filter-input-shell enhanced-filter-select loading">
+                <select class="enhanced-filter-select" id="genre-search" data-filter-type="genre" multiple placeholder="Any genres"></select>
+              </div>
+            </div>
+
+            <div class="filter-card filter-card-half">
+              <div class="filter-label-row">
+                <label for="language-search" class="filter-label">Languages</label>
+              </div>
+              <div class="filter-input-shell enhanced-filter-select loading">
+                <select class="enhanced-filter-select" id="language-search" data-filter-type="language" multiple placeholder="Any languages"></select>
+              </div>
+            </div>
+
+            <div class="filter-card filter-card-half">
+              <div class="filter-label-row">
+                <label for="cast-search" class="filter-label">Cast</label>
+              </div>
+              <div class="filter-input-shell enhanced-filter-select loading">
+                <select class="enhanced-filter-select" id="cast-search" data-filter-type="cast" multiple placeholder="Any cast members"></select>
+              </div>
+            </div>
+
+            <div class="filter-card filter-card-half">
+              <div class="filter-label-row">
+                <label for="director-search" class="filter-label">Directors</label>
+              </div>
+              <div class="filter-input-shell enhanced-filter-select loading">
+                <select class="enhanced-filter-select" id="director-search" data-filter-type="director" multiple placeholder="Any directors"></select>
+              </div>
+            </div>
+          </div>
+        </details>
+
+      </div>
+
+      
+<div id="catalog-filter-placeholder" hidden></div>
+<button type="button" id="sticky-filters-button" class="btn media-action-btn" aria-haspopup="dialog"
+        aria-controls="catalog-filter-dialog" hidden>
+  <span class="media-action-btn-icon" aria-hidden="true">☰</span>
+  <span class="media-action-btn-label">Filters</span>
+  <span id="sticky-filter-count" hidden><span data-count></span><span class="sr-only"> active</span></span>
+</button>
+<dialog id="catalog-filter-dialog" aria-labelledby="catalog-filter-dialog-title">
+  <div class="catalog-filter-dialog-header">
+    <h2 id="catalog-filter-dialog-title" class="catalog-filter-dialog-title" tabindex="-1" autofocus>Filters</h2>
+    
+<div id="dialog-tile-sort-control" class="catalog-tile-sort" hidden>
+  <label for="dialog-tile-sort">Sort:</label>
+  <select id="dialog-tile-sort" aria-controls="catalog-tiles">
+    <option value="table">Table order</option>
+    <option value="title">Title (A–Z)</option>
+    <option value="rating">Rating (high to low)</option>
+    <option value="rating-asc">Rating (low to high)</option>
+    <option value="random">Random</option>
+  </select>
+</div>
+
+  </div>
+  <div class="catalog-filter-dialog-fields"></div>
+  <div class="catalog-filter-dialog-actions">
+    <p id="catalog-filter-dialog-empty" class="catalog-filter-dialog-empty" role="status"></p>
+    <button type="button" id="cancel-catalog-filters" class="btn btn-light">Cancel</button>
+    <button type="button" id="apply-catalog-filters" class="btn btn-primary">Show results</button>
+  </div>
+</dialog>
+
+      <div class="page-action-group">
+        
+<div class="catalog-view-toggle" role="group" aria-label="Results view">
+  <button type="button" id="table-view-btn" aria-pressed="true" aria-controls="results-container" data-view="table">Table</button>
+  <button type="button" id="tile-view-btn" aria-pressed="false" aria-controls="tile-view" data-view="tiles">Tiles</button>
+</div>
+
+<div id="tile-sort-control" class="catalog-tile-sort" hidden>
+  <label for="tile-sort">Sort:</label>
+  <select id="tile-sort" aria-controls="catalog-tiles">
+    <option value="table">Table order</option>
+    <option value="title">Title (A–Z)</option>
+    <option value="rating">Rating (high to low)</option>
+    <option value="rating-asc">Rating (low to high)</option>
+    <option value="random">Random</option>
+  </select>
+</div>
+
+        <div class="dropdown" id="table-columns">
+          <button class="btn media-action-btn dropdown-toggle" type="button" id="columnVisibilityDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="media-action-btn-icon" aria-hidden="true">⚙</span>
+            <span class="media-action-btn-label">Columns</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="columnVisibilityDropdown">
+            <div class="dropdown-item" onclick="handleDropdownItemClick('image_data_checkbox', 'image_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="image_data_checkbox" name="image_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="image_data_checkbox" onclick="event.stopPropagation()">Image</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('rating_data_checkbox', 'rating_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rating_data_checkbox" name="rating_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="rating_data_checkbox" onclick="event.stopPropagation()">Rating</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('vote_data_checkbox', 'vote_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="vote_data_checkbox" name="vote_data_checkbox" onclick="event.stopPropagation()">
+                <label class="form-check-label" for="vote_data_checkbox" onclick="event.stopPropagation()">Votes</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('resolution_data_checkbox', 'resolution_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="resolution_data_checkbox" name="resolution_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="resolution_data_checkbox" onclick="event.stopPropagation()">Quality</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('genres_data_checkbox', 'genres_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="genres_data_checkbox" name="genres_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="genres_data_checkbox" onclick="event.stopPropagation()">Genres</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('stars_data_checkbox', 'stars_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="stars_data_checkbox" name="stars_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="stars_data_checkbox" onclick="event.stopPropagation()">Cast</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('director_data_checkbox', 'director_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="director_data_checkbox" name="director_data_checkbox" onclick="event.stopPropagation()">
+                <label class="form-check-label" for="director_data_checkbox" onclick="event.stopPropagation()">Director</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('languages_data_checkbox', 'languages_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="languages_data_checkbox" name="languages_data_checkbox" onclick="event.stopPropagation()">
+                <label class="form-check-label" for="languages_data_checkbox" onclick="event.stopPropagation()">Languages</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="random_selection">
+          <button id="random_selection_btn" class="btn media-action-btn media-action-btn-random" onclick="random_selection()">
+            <span class="media-action-btn-icon" aria-hidden="true">🎲</span>
+            <span class="media-action-btn-label">Surprise Me</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="results-message" class="results-empty-state" style="display:none;">
+        No results match the current filters.
+      </div>
+
+      <!-- Results Table -->
+      <div id="results-container" role="region" aria-label="Results table" tabindex="0">
+        <table id="results" class="table table-striped table-bordered scalable_table" data-sortable>
+          <thead>
+            <tr id="table_header">
+              <th name="image_data" style="vertical-align:top;"><!-- Image --></th>
+              <th name="rating_data" style="vertical-align:top" data-sort="number">Rating</th>
+              <th name="vote_data" class="hidden-sm hidden-xs" style="vertical-align:top; display:none" data-sort="number">Votes</th>
+              <th style="vertical-align:top" data-sort="text">Title</th>
+              <th name="year_data" style="vertical-align:top" data-sort="number">Year</th>
+              <th name="resolution_data" class="hidden-sm hidden-xs" style="vertical-align:top" data-sort="text">Quality</th>
+              <th name="genres_data" class="hidden-sm hidden-xs" style="vertical-align:top" data-sort="text">Genres</th>
+              <th name="stars_data" class="hidden-sm hidden-xs" style="vertical-align:top" data-sort="text">Cast</th>
+              <th name="director_data" class="hidden-sm hidden-xs" style="vertical-align:top; display:none" data-sort="text">Director</th>
+              <th name="languages_data" class="hidden-sm hidden-xs" style="vertical-align:top; display:none" data-sort="text">Languages</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Dave%20Chappelle%20Sticks%20and%20Stones(2019).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Dave%20Chappelle%20Sticks%20and%20Stones%20%282019%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.3
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  29,189
+                </td>
+                
+                <td name="title_data" data-sort-key="Dave Chappelle: Sticks &amp; Stones" class="catalog-title-cell vertical-row" data-list-description="Dave Chappelle takes on gun culture, the opioid crisis, and the tidal wave of celebrity scandals in a defiant stand-up special filmed in Atlanta.">
+                  <a
+                    href="./standup/Dave%20Chappelle%20Sticks%20and%20Stones(2019).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Dave Chappelle: Sticks & Stones
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2019
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">720p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Dave Chappelle
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Stan Lathan
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Sincerely%20Louis%20C.K.(2020).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Sincerely%20Louis%20CK%20%282020%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.2
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  7,146
+                </td>
+                
+                <td name="title_data" data-sort-key="Sincerely Louis C.K." class="catalog-title-cell vertical-row" data-list-description="In the long anticipated and controversial comeback of Louis CK, he doesn&#39;t hold back when discussing topics like religion, god, pedophilia, traveling Europe, and of course his sexual misconduct accusations in his brand new special.">
+                  <a
+                    href="./standup/Sincerely%20Louis%20C.K.(2020).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Sincerely Louis C.K.
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2020
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">720p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Louis C.K.
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Louis C.K.
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Ricky%20Gervais%20Humanity(2018).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Ricky%20Gervais%20Humanity%20%282018%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.0
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  25,476
+                </td>
+                
+                <td name="title_data" data-sort-key="Ricky Gervais: Humanity" class="catalog-title-cell vertical-row" data-list-description="Live performance of British comedian Ricky Gervais filmed in London&#39;s Eventim Apollo.">
+                  <a
+                    href="./standup/Ricky%20Gervais%20Humanity(2018).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Ricky Gervais: Humanity
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2018
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Documentary,<br>Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Ricky Gervais
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    John L. Spencer
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Dave%20Chappelle%20The%20Closer(2021).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Dave%20Chappelle%20The%20Closer%20%282021%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.9
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  29,913
+                </td>
+                
+                <td name="title_data" data-sort-key="Dave Chappelle: The Closer" class="catalog-title-cell vertical-row" data-list-description="As he closes out his slate of comedy specials, Dave takes the stage to try and set the record straight; and get a few things off his chest.">
+                  <a
+                    href="./standup/Dave%20Chappelle%20The%20Closer(2021).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Dave Chappelle: The Closer
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2021
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Dave Chappelle,<br/>Daphne Dorman
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Stan Lathan
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Anthony%20Jeselnik%20Thoughts%20and%20Prayers(2015).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Anthony%20Jeselnik%20Thoughts%20and%20Prayers%20%282015%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.7
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  6,583
+                </td>
+                
+                <td name="title_data" data-sort-key="Anthony Jeselnik: Thoughts and Prayers" class="catalog-title-cell vertical-row" data-list-description="Stand up comedian and former Late Night with Jimmy Fallon writer Anthony Jeselnik brings his dark humor and wit to San Francisco.">
+                  <a
+                    href="./standup/Anthony%20Jeselnik%20Thoughts%20and%20Prayers(2015).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Anthony Jeselnik: Thoughts and Prayers
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2015
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Anthony Jeselnik,<br/>Peggy
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Adam Dubin
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Ricky%20Gervais%20SuperNature(2022).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Ricky%20Gervais%20SuperNature%20%282022%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.6
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  25,370
+                </td>
+                
+                <td name="title_data" data-sort-key="Ricky Gervais: SuperNature" class="catalog-title-cell vertical-row" data-list-description="Follows Ricky Gervais as he gives his take on the rules of comedy, spoiling his cat and debunks the supernatural, concluding that actual nature is super enough.">
+                  <a
+                    href="./standup/Ricky%20Gervais%20SuperNature(2022).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Ricky Gervais: SuperNature
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2022
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Ricky Gervais
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    John L. Spencer
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Ali%20Wong%20Hard%20Knock%20Wife(2018).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Ali%20Wong%20Hard%20Knock%20Wife%20%282018%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.3
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  5,915
+                </td>
+                
+                <td name="title_data" data-sort-key="Ali Wong: Hard Knock Wife" class="catalog-title-cell vertical-row" data-list-description="Comedian Ali Wong performs her live stand-up set at Toronto&#39;s Winter Garden Theatre.">
+                  <a
+                    href="./standup/Ali%20Wong%20Hard%20Knock%20Wife(2018).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Ali Wong: Hard Knock Wife
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2018
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">720p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Ali Wong
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Jaime Eliezer Karas
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Joe%20Rogan%20Strange%20Times(2018).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Joe%20Rogan%20Strange%20Times%20%282018%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.2
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  5,244
+                </td>
+                
+                <td name="title_data" data-sort-key="Joe Rogan: Strange Times" class="catalog-title-cell vertical-row" data-list-description="Outspoken as ever, comedian Joe Rogan takes on current culture, pro wrestling, pot laws, cats, vegans and more in a stand-up special shot in Boston.">
+                  <a
+                    href="./standup/Joe%20Rogan%20Strange%20Times(2018).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Joe Rogan: Strange Times
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2018
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Joe Rogan
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Anthony Giordano
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Ricky%20Gervais%20Armageddon(2023).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Ricky%20Gervais%20Armageddon%20%282023%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.1
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  17,525
+                </td>
+                
+                <td name="title_data" data-sort-key="Ricky Gervais: Armageddon" class="catalog-title-cell vertical-row" data-list-description="A stand-up show that touches on topics such as artificial intelligence, political correctness, family weddings, funerals, and the end of humanity.">
+                  <a
+                    href="./standup/Ricky%20Gervais%20Armageddon(2023).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Ricky Gervais: Armageddon
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2023
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Documentary,<br>Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Ricky Gervais
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    John L. Spencer
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Jimmy%20Carr%20His%20Dark%20Material(2021).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Jimmy%20Carr%20His%20Dark%20Material%20%282021%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.1
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  6,576
+                </td>
+                
+                <td name="title_data" data-sort-key="Jimmy Carr: His Dark Material" class="catalog-title-cell vertical-row" data-list-description="Jimmy Carr finds humour in the darkest of places in this stand-up comedy special. This special features Jimmy&#39;s trademark dry, sardonic wit and includes some jokes which Jimmy calls &#34;career enders&#34;.">
+                  <a
+                    href="./standup/Jimmy%20Carr%20His%20Dark%20Material(2021).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Jimmy Carr: His Dark Material
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2021
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">720p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Jimmy Carr
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Amanda Baker,<br>Brian Klein
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Dave%20Chappelle%20The%20Dreamer(2023).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Dave%20Chappelle%20The%20Dreamer%20%282023%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.0
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  9,140
+                </td>
+                
+                <td name="title_data" data-sort-key="Dave Chappelle: The Dreamer" class="catalog-title-cell vertical-row" data-list-description="From his onstage tackle to the slap heard round the world, the comic lets loose in this freewheeling and unfiltered comedy special.">
+                  <a
+                    href="./standup/Dave%20Chappelle%20The%20Dreamer(2023).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Dave Chappelle: The Dreamer
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2023
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Dave Chappelle
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Stan Lathan
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Chris%20Rock%20Selective%20Outrage(2023).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Chris%20Rock%20Selective%20Outrage%20%282023%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  6.8
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  12,373
+                </td>
+                
+                <td name="title_data" data-sort-key="Chris Rock: Selective Outrage" class="catalog-title-cell vertical-row" data-list-description="Comedian Chris Rock performs a live stand-up special in Baltimore, Maryland.">
+                  <a
+                    href="./standup/Chris%20Rock%20Selective%20Outrage(2023).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Chris Rock: Selective Outrage
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2023
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Documentary,<br>Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Chris Rock
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Joel Gallen
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Ricky%20Gervais%20Mortality(2025).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Ricky%20Gervais%20Mortality%20%282025%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  6.8
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  7,797
+                </td>
+                
+                <td name="title_data" data-sort-key="Ricky Gervais: Mortality" class="catalog-title-cell vertical-row" data-list-description="Ricky Gervais tackles life, death and the state of the world in a brutally honest special that spares no topic, even his own mortality.">
+                  <a
+                    href="./standup/Ricky%20Gervais%20Mortality(2025).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Ricky Gervais: Mortality
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2025
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">4K</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Documentary,<br>Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Ricky Gervais
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    John L. Spencer
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  English
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Dave%20Chappelle%20The%20Unstoppable(2025).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Dave%20Chappelle%20The%20Unstoppable%20%282025%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  6.3
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  5,738
+                </td>
+                
+                <td name="title_data" data-sort-key="Dave Chappelle: The Unstoppable" class="catalog-title-cell vertical-row" data-list-description="Facing a world gone sideways, comedy icon Dave Chappelle delivers bold truths and potent punchlines in this no-holds-barred special.">
+                  <a
+                    href="./standup/Dave%20Chappelle%20The%20Unstoppable(2025).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Dave Chappelle: The Unstoppable
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2025
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Documentary,<br>Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Dave Chappelle
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Rikki Hughes
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./standup/Joe%20Rogan%20Burn%20the%20Boats(2024).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/standup/Joe%20Rogan%20Burn%20the%20Boats%20%282024%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  4.3
+                </td>
+                <td name="vote_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  5,324
+                </td>
+                
+                <td name="title_data" data-sort-key="Joe Rogan: Burn the Boats" class="catalog-title-cell vertical-row" data-list-description="Renowned comedian and podcast host Joe Rogan delivers a live stand-up set at the Majestic Theatre in San Antonio, Texas, for his third Netflix special.">
+                  <a
+                    href="./standup/Joe%20Rogan%20Burn%20the%20Boats(2024).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                  >
+                    Joe Rogan: Burn the Boats
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="vertical-row">
+                  2024
+                </td>
+                <td name="resolution_data" class="hidden-sm hidden-xs vertical-row" style="text-align:center;">
+                  <span class="badge badge-secondary">1080p</span>
+                </td>
+                <td name="genres_data" class="hidden-sm hidden-xs vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Neil Downanlich,<br/>Ari Matti Mustonen,<br/>Joe Rogan
+                </td>
+                
+                  <td name="director_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                    Anthony Giordano
+                  </td>
+                
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                </td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+      <section id="tile-view" aria-label="Results by poster" hidden>
+  <ul id="catalog-tiles" class="catalog-tiles"></ul>
+  <div class="catalog-tile-pagination">
+    <div id="tile-scroll-sentinel" aria-hidden="true" hidden></div>
+    <button type="button" class="btn media-action-btn" id="show-more-tiles" onclick="show_more_tiles()" hidden>Show more titles</button>
+    <span id="tile-results-status" class="sr-only" role="status"></span>
+  </div>
+</section>
+
+<template id="catalog-tile-template">
+  <li>
+    <a class="catalog-tile">
+      <span class="catalog-tile-poster">
+        <img alt="" loading="lazy" decoding="async">
+        <span class="catalog-tile-no-poster" aria-hidden="true" hidden>No poster</span>
+      </span>
+      <span class="catalog-tile-caption">
+        
+        <span class="catalog-tile-title"></span>
+        <span class="catalog-tile-meta">
+          <span class="catalog-tile-year"></span>
+          
+          <span class="catalog-tile-rating">
+            <span aria-hidden="true" class="rating-star">★</span>
+            <span class="sr-only">IMDb rating</span>
+            <span class="catalog-tile-score"></span>
+          </span>
+        </span>
+      </span>
+    </a>
+  </li>
+</template>
+
+<template id="catalog-tile-preview-template">
+  <div class="catalog-tile-preview">
+    <div class="catalog-tile-preview-content">
+      <p class="catalog-tile-preview-genres" hidden></p>
+      <p class="catalog-tile-preview-description" hidden></p>
+      <a class="catalog-tile-preview-more">See more <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</template>
+    </div>
+
+    <div id="backdrop" style="display:none" onclick="if (event.target === this) close_details()">
+  <div id="modal-alert" class="centered" role="dialog" aria-modal="true" aria-label="Title details">
+    <button type="button" id="modal-prev-btn" onclick="navigate_modal('prev')" aria-label="Previous title" title="Previous (←)">‹</button>
+    <button type="button" id="modal-next-btn" onclick="navigate_modal('next')" aria-label="Next title" title="Next (→)">›</button>
+    <button type="button" id="modal-close-btn" onclick="close_details()" aria-label="Close details" title="Close (Esc)">×</button>
+  </div>
+</div>
+
+  </body>
+</html>

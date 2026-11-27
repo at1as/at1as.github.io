@@ -1,78 +1,671 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, follow">
     <title>Local Movie Database</title>
-    <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../resources/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <script src="../../resources/js/theme.js"></script>
+    <script src="../../resources/js/detail_keys.js" defer></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
     <link href="../../resources/css/common.css" rel="stylesheet" type="text/css" />
-    <script src="../../resources/js/jquery-2.1.4.min.js"></script>
-    <script src="../../resources/js/bootstrap.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #f8f9fa;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        overflow-x: hidden;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        min-height: 100vh;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      /* Left side - Poster */
+      .poster-position-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 2;
+        display: none;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.68);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      }
+
+      /* Right side - Details */
+      .details-section {
+        background: white;
+        padding: 2.5rem 3rem;
+        overflow-y: auto;
+      }
+
+      .title-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      .alt-title {
+        color: #6b7280;
+        font-size: 0.95rem;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+      }
+
+      .alt-title strong {
+        font-weight: 600;
+        color: #374151;
+        font-style: normal;
+      }
+
+      .rating-section {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .star-icon {
+        color: #fbbf24;
+        font-size: 2rem;
+        filter: drop-shadow(0 2px 6px rgba(251, 191, 36, 0.4));
+      }
+
+      .rating-text {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #1f2937;
+        margin-right: 0.5rem;
+      }
+
+      .votes-text {
+        color: #6b7280;
+        font-size: 0.9rem;
+      }
+
+      .plot-section {
+        background: #f8f9fa;
+        border-left: 4px solid #667eea;
+        padding: 1.25rem;
+        margin-bottom: 2rem;
+        border-radius: 6px;
+      }
+
+      .plot-section p {
+        color: #374151;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .meta-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .meta-badges span {
+        background: #1f2937;
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .meta-badges .badge-rating {
+        background: #3b82f6;
+        color: white;
+      }
+
+      .meta-badges .badge-runtime {
+        background: #f59e0b;
+        color: white;
+      }
+
+      .meta-badges .badge-genre {
+        background: #1f2937;
+        color: white;
+      }
+
+      .info-block {
+        margin-bottom: 1.5rem;
+      }
+
+      .info-block h3 {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .info-block p, .info-block div {
+        color: #1f2937;
+        font-size: 1rem;
+        line-height: 1.6;
+        font-weight: 500;
+        padding-left: 0.5rem;
+      }
+
+      .info-block .season-list {
+        overflow: hidden;
+        padding-left: 0;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+      }
+
+      .season + .season {
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .season-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto 0.6rem;
+        align-items: center;
+        gap: 0.65rem;
+        min-height: 2.25rem;
+        margin: 0;
+        padding: 0.35rem 0.75rem;
+        border-radius: 0;
+        list-style: none;
+        background: #f8f9fa;
+        color: #1f2937;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-align: left;
+        overflow-wrap: anywhere;
+        cursor: pointer;
+      }
+
+      .season-header:hover {
+        background: #eef2f7;
+      }
+
+      .season-header:focus-visible {
+        outline: 2px solid #667eea;
+        outline-offset: -2px;
+      }
+
+      .season-header::-webkit-details-marker {
+        display: none;
+      }
+
+      .season-header::after {
+        content: "";
+        justify-self: center;
+        width: 0.45rem;
+        height: 0.45rem;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-0.1rem) rotate(45deg);
+      }
+
+      .season[open] > .season-header::after {
+        transform: translateY(0.1rem) rotate(225deg);
+      }
+
+      .season-count {
+        color: #4b5563;
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .episode-resolution {
+        align-self: center;
+        min-width: 3rem;
+        background: #e8edf4;
+        color: #374151;
+        font-size: 0.75rem;
+      }
+
+      .dark-theme .media-detail .episode-resolution {
+        background: #393f49;
+      }
+
+      .season-container {
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid #e5e7eb;
+        list-style: none;
+      }
+
+      .episode-container {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.65rem;
+        align-items: start;
+        padding: 0.3rem 0.75rem 0.3rem 1rem;
+        color: #374151;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        text-align: left;
+        overflow-wrap: anywhere;
+      }
+
+      .episode-container + .episode-container {
+        border-top: 1px solid #eef0f2;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+        .details-section {
+          padding: 1.5rem;
+        }
+      }
+    </style>
   </head>
-  <body role="document" class="title-body">
+  <body class="media-detail">
+    <script>
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var position = params.get('position');
+        var total = params.get('total');
 
-    <div class="container theme-showcase" role="main" style="margin:0px; padding:0px; width:100%">
-      <div id="title_content" class="jumbotron">
+        if (!position || !total) {
+          return;
+        }
 
-        <h2 class="title-title"> Black Mirror (2011– ) </h2>
+        document.addEventListener('DOMContentLoaded', function() {
+          var badge = document.getElementById('poster-position-badge');
+          if (!badge) {
+            return;
+          }
+
+          badge.textContent = position + ' / ' + total;
+          badge.style.display = 'inline-flex';
+        });
+      })();
+    </script>
+    <div class="container">
+      <!-- Left: Poster -->
+      <div class="poster-section">
+        <div id="poster-position-badge" class="poster-position-badge"></div>
+        <img src="../images/series/Black%20Mirror%20%282011%29.jpg" alt="Black Mirror">
         
+          <div class="button-container">
+  
+  
+    <a href="https://www.imdb.com/video/vi308201753/" target="_blank" rel="noopener noreferrer" class="imdb-button trailer-button">See trailer</a>
+  
+  
+  
+    <a href="https://www.imdb.com/title/tt2085059/" target="_blank" class="imdb-button">Go to IMDB</a>
+  
+</div>
         
-        <span style="vertical-align:top">
-          <a href="../images/Black Mirror (2011).png">
-            <img data-src="holder.js/200x200" class="img-thumbnail title-image" alt="200x200" src="../images/series/Black Mirror (2011).png">
-          </a>
-        </span>
+      </div>
+
+      <!-- Right: Details -->
+      <div class="details-section">
+        <h2 class="title-title">Black Mirror (2011-2019)</h2>
+
         
-        <span id="title-header">
-          <div>
-            <span id="star">&#9733; </span>
-            <h4 id="item-rating"><b> 8.8 / 10</b> (41,471 votes) </h4>
-          </div>
+        <div class="alt-title"><strong>Alternative Titles:</strong> Gương Đen</div>
+        
 
-          <div style="margin-left:10px">
-            <h5>
-               
-              
-
-              
-              <span id="item-running-time">60 min</span> &mdash;
-              
-
-              
-              <span style="margin-left:10px">
-                 <span style="margin-right:10px">Drama</span>  <span style="margin-right:10px">Sci-Fi</span>  <span style="margin-right:10px">Thriller</span> </h5>
-              </span>
-              
-          </div>
-
-          <h4 style="padding-top:10px">Cast:</h4>
-          <div style="margin-left:10px">
-            
-              <h5 style="font-weight:400"> Daniel Kaluuya </h5>
-            
-              <h5 style="font-weight:400"> Toby Kebbell </h5>
-            
-              <h5 style="font-weight:400"> Rory Kinnear </h5>
-            
-          </div>
-
-          <h4 style="padding-top:10px">Languages:</h4>
-          <div style="margin-left:10px;">
-            
-              <h5 class="title-language"> English </h5>
-            
-          </div>
-        </span>
-        <hr>
-        <div id="item-description">
-          <p> A television anthology series that shows the dark side of life and technology. </p>
+        <div class="rating-section">
+          <span class="star-icon">★</span>
+          <span class="rating-text">8.7 / 10</span>
+          <span class="votes-text">(754,923 votes)</span>
         </div>
-        <p id="title-url"><a href="http://www.imdb.com/title/tt2085059/?ref_=fn_al_tt_1" target="_blank">Go to IMDB</a></p>
+
+        <div class="meta-badges">
+          
+            
+
+  
+    <span class="badge-rating">TV-MA</span>
+  
+
+          
+          
+            <span class="badge-runtime">60 mins</span>
+          
+          
+            
+              <span class="badge-genre">Crime</span>
+            
+              <span class="badge-genre">Drama</span>
+            
+              <span class="badge-genre">Mystery</span>
+            
+              <span class="badge-genre">Sci-Fi</span>
+            
+              <span class="badge-genre">Thriller</span>
+            
+          
+        </div>
+
+        <div class="plot-section">
+          <p>Featuring stand-alone dramas -- sharp, suspenseful, satirical tales that explore techno-paranoia -- "Black Mirror" is a contemporary reworking of "The Twilight Zone" with stories that tap into the collective unease about the modern world.</p>
+        </div>
+
+        
+        <div class="info-block">
+          <h3>Creators</h3>
+          <div>
+            
+              Charlie Brooker
+            
+          </div>
+        </div>
+        
+
+        <div class="info-block">
+          <h3>Cast</h3>
+          <div>
+            
+              Anjana Vasan<br>
+            
+              Cristin Milioti<br>
+            
+              Jesse Plemons<br>
+            
+              Aaron Paul<br>
+            
+              Jimmi Simpson
+            
+          </div>
+        </div>
+
+        
+        <div class="info-block">
+          <h3>Languages</h3>
+          <div>
+            
+              English
+            
+          </div>
+        </div>
+        
+
+        
+        
+        <section class="info-block">
+          <h3>Episodes</h3>
+          <div class="season-list">
+            
+              
+              <details class="season">
+                <summary class="season-header">
+                  <span>
+                    
+                      Season 1
+                    
+                  </span>
+                  
+                  <span class="season-count">3 episodes</span>
+                </summary>
+                <ul class="season-container">
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S01E01 The National Anthem</span>
+                      
+                        <span class="custom-pill episode-resolution">1080p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S01E02 15 Million Merits</span>
+                      
+                        <span class="custom-pill episode-resolution">1080p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S01E03 The Entire History Of You</span>
+                      
+                        <span class="custom-pill episode-resolution">1080p</span>
+                      
+                    </li>
+                  
+                </ul>
+              </details>
+            
+              
+              <details class="season">
+                <summary class="season-header">
+                  <span>
+                    
+                      Season 2
+                    
+                  </span>
+                  
+                  <span class="season-count">4 episodes</span>
+                </summary>
+                <ul class="season-container">
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S02E01</span>
+                      
+                        <span class="custom-pill episode-resolution">SD</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S02E02</span>
+                      
+                        <span class="custom-pill episode-resolution">SD</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S02E03</span>
+                      
+                        <span class="custom-pill episode-resolution">SD</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S02E04 Special White Christmas</span>
+                      
+                        <span class="custom-pill episode-resolution">SD</span>
+                      
+                    </li>
+                  
+                </ul>
+              </details>
+            
+              
+              <details class="season">
+                <summary class="season-header">
+                  <span>
+                    
+                      Season 3
+                    
+                  </span>
+                  
+                  <span class="season-count">6 episodes</span>
+                </summary>
+                <ul class="season-container">
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S03E01</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S03E02</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S03E03</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S03E04</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S03E05</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S03E06</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                </ul>
+              </details>
+            
+              
+              <details class="season">
+                <summary class="season-header">
+                  <span>
+                    
+                      Season 4
+                    
+                  </span>
+                  
+                  <span class="season-count">6 episodes</span>
+                </summary>
+                <ul class="season-container">
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S04E01 USS Callister</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S04E02 Arkangel</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S04E03 Crocodile</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S04E04 Hang the DJ</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S04E05 Metalhead</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S04E06 Black Museum</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                </ul>
+              </details>
+            
+              
+              <details class="season">
+                <summary class="season-header">
+                  <span>
+                    
+                      Season 5
+                    
+                  </span>
+                  
+                  <span class="season-count">3 episodes</span>
+                </summary>
+                <ul class="season-container">
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S05E01</span>
+                      
+                        <span class="custom-pill episode-resolution">1080p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S05E02</span>
+                      
+                        <span class="custom-pill episode-resolution">1080p</span>
+                      
+                    </li>
+                  
+                    <li class="episode-container">
+                      <span class="episode-name">Black Mirror S05E03</span>
+                      
+                        <span class="custom-pill episode-resolution">720p</span>
+                      
+                    </li>
+                  
+                </ul>
+              </details>
+            
+          </div>
+        </section>
+        
+
+        <hr class="detail-divider">
+
         <div id="data-retrieved">
-          <div>Data Retrieved: 2015-10-31</div>
+          <div>Data Retrieved: 2026-11-19T23:03:52+00:00</div>
           <div>Directory Name: &quot;Black Mirror (2011)&quot;</div>
         </div>
       </div>

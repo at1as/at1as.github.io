@@ -1,1837 +1,1840 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Local Movie Database</title>
-    <script src="../resources/js/jquery-2.1.4.min.js"></script>
-    <script src="../resources/js/bootstrap.min.js"></script>
-    <link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <title>TV Series — Movie & TV Database Demo | Jason Willems</title>
+    <meta name="description" content="Browse a curated sample of TV series in the Media Database demo, with IMDb ratings, seasons, episodes, poster tiles, and multi-field filters.">
+    <meta name="author" content="Jason Willems">
+    <link rel="canonical" href="https://www.jasonwillems.com/sites/mediadatabase/output/series.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jason Willems">
+    <meta property="og:title" content="TV Series — Movie & TV Database Demo | Jason Willems">
+    <meta property="og:description" content="Browse a curated sample of TV series in the Media Database demo, with IMDb ratings, seasons, episodes, poster tiles, and multi-field filters.">
+    <meta property="og:url" content="https://www.jasonwillems.com/sites/mediadatabase/output/series.html">
+    <meta property="og:image" content="https://www.jasonwillems.com/sites/mediadatabase/output/share-card.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Movie and TV Database: open-source static media catalog with IMDb ratings, dark mode, poster tiles, and live multi-filters.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jasonwillems">
+    <meta name="twitter:creator" content="@jasonwillems">
+    <meta name="twitter:title" content="TV Series — Movie & TV Database Demo | Jason Willems">
+    <meta name="twitter:description" content="Browse a curated sample of TV series in the Media Database demo, with IMDb ratings, seasons, episodes, poster tiles, and multi-field filters.">
+    <meta name="twitter:image" content="https://www.jasonwillems.com/sites/mediadatabase/output/share-card.png">
+    <meta name="twitter:image:alt" content="Movie and TV Database: open-source static media catalog with IMDb ratings, dark mode, poster tiles, and live multi-filters.">
+    <script>
+      if (location.protocol === "https:" && /(^|\.)jasonwillems\.com$/i.test(location.hostname)) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", "G-Q5N6H3PVG2", { page_title: document.title });
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-Q5N6H3PVG2";
+        document.head.appendChild(s);
+      }
+    </script>
+    <script src="../resources/js/theme.js"></script>
+    <script src="../resources/js/catalog_view.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.5.2/dist/css/tom-select.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.5.2/dist/js/tom-select.complete.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
     <link href="../resources/css/sortable-theme-minimal.css" rel="stylesheet" type="text/css" />
     <link href="../resources/css/common.css" rel="stylesheet" type="text/css" />
-    <link href="../resources/favicon.png" rel="shotcut icon" type="image/png"/>
-    <script src="../resources/js/sorttable.min.js" type="text/javascript"></script>
+    <link href="../resources/favicon.png" rel="shortcut icon" type="image/png"/>
+    <script src="../resources/js/catalog_table_sort.js" type="text/javascript"></script>
     <script src="../resources/js/common.js" type="text/javascript"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <style>
+      /* Sorttable adds its own arrow when a column is sorted. */
+      #results thead th::after {
+        content: none;
+      }
+
+      /* Dark mode styles */
+      .dark-theme body {
+        background-color: #333;
+        color: #fff;
+      }
+      .dark-theme .navbar {
+        background-color: #222 !important;
+      }
+      .dark-theme .jumbotron {
+        background-color: #444;
+        color: #fff;
+        border: 1px solid #666;
+      }
+      .dark-theme .card {
+        background-color: #444;
+        color: #fff;
+      }
+      .dark-theme .table {
+        color: #fff;
+        background-color: #444;
+      }
+      .dark-theme .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(255,255,255,.05);
+      }
+      .dark-theme .table thead th {
+        background-color: #555;
+        color: #fff;
+        border-color: #666;
+      }
+      .dark-theme .table td, .dark-theme .table th {
+        border-color: #666;
+      }
+      .dark-theme .table tbody tr {
+        background-color: #444;
+        color: #fff;
+      }
+      .dark-theme .table tbody tr td {
+        background-color: inherit;
+        color: inherit;
+      }
+      .dark-theme .table tbody tr td a {
+        color: #66b3ff;
+      }
+      .dark-theme .form-control {
+        background-color: #555;
+        border-color: #666;
+        color: #fff;
+      }
+      .dark-theme .form-control:focus {
+        background-color: #666;
+        border-color: #777;
+        color: #fff;
+        box-shadow: 0 0 0 0.2rem rgba(102, 179, 255, 0.25);
+      }
+      .dark-theme .badge-secondary {
+        background-color: #666;
+        color: #fff;
+      }
+      .dark-theme .tooltip-inner {
+        background-color: #555;
+        color: #fff;
+      }
+      .dark-theme .modal-content {
+        background-color: #444;
+        color: #fff;
+      }
+      .dark-theme .col-form-label {
+        color: #fff;
+      }
+      .dark-theme .clear-filter {
+        color: #ccc;
+      }
+      .dark-theme .clear-filter:hover {
+        color: #ff6b6b;
+      }
+      .dark-theme .question-filter {
+        color: #66b3ff;
+      }
+      .dark-theme .question-filter:hover {
+        color: #99ccff;
+      }
+      .dark-theme .tooltip-info {
+        color: #66b3ff;
+      }
+      .dark-theme .form-check-label {
+        color: #ddd;
+      }
+      .dark-theme .table-columns-toggle-section {
+        background-color: #555;
+        color: #fff;
+        border: 1px solid #666;
+      }
+
+      /* Navbar spacing */
+      .navbar-nav .nav-item {
+        margin-right: 1.5rem;
+      }
+
+      /* Active navbar link styling */
+      .navbar-dark .navbar-nav .nav-link.active {
+        font-weight: 700;
+        border-bottom: 3px solid #66b3ff;
+        padding-bottom: 4px;
+      }
+      .dark-theme .navbar-dark .navbar-nav .nav-link.active {
+        color: #66b3ff !important;
+        font-weight: 700;
+        border-bottom: 3px solid #66b3ff;
+      }
+    </style>
+      <style>
+      /* Hosted demo "Fork me on GitHub" corner ribbon */
+      body {
+        position: relative;
+      }
+      .github-fork-ribbon-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 136px;
+        height: 136px;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 4;
+      }
+      .github-fork-ribbon {
+        position: absolute;
+        top: 30px;
+        right: -40px;
+        width: 186px;
+        padding: 5px 0;
+        background: linear-gradient(135deg, #24292f 0%, #1b1f23 100%);
+        color: #ffffff !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-align: center;
+        text-decoration: none !important;
+        transform: rotate(45deg);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+        border-top: 1px dashed rgba(255, 255, 255, 0.35);
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
+        pointer-events: auto;
+        transition: background 0.18s ease, box-shadow 0.18s ease;
+      }
+      .github-fork-ribbon:hover,
+      .github-fork-ribbon:focus-visible {
+        background: linear-gradient(135deg, #0878a4 0%, #03658c 100%);
+        color: #ffffff !important;
+        box-shadow: 0 4px 14px rgba(8, 120, 164, 0.45);
+        outline: none;
+      }
+      @media (min-width: 769px) {
+        nav.navbar {
+          padding-right: 118px;
+        }
+      }
+      @media (max-width: 768px) {
+        .github-fork-ribbon-wrap {
+          width: 108px;
+          height: 108px;
+        }
+        .github-fork-ribbon {
+          top: 22px;
+          right: -36px;
+          width: 152px;
+          font-size: 9.5px;
+          padding: 4px 0;
+        }
+        nav.navbar {
+          padding-right: 78px;
+        }
+      }
+    </style>
   </head>
 
   <body role="document">
-    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="./index.html">Movies
-              <span class="badge">
-                <span>1014</span>
+    <div class="github-fork-ribbon-wrap"><a class="github-fork-ribbon" href="https://github.com/at1as/Media-Database" target="_blank" rel="noopener noreferrer" aria-label="Fork Media Database on GitHub">Fork me on GitHub</a></div>
+    <h1 class="sr-only">TV Series — Movie &amp; TV Database Demo</h1>
+    <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+			<div class="collapse navbar-collapse order-2 order-lg-0" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="./index.html">Movies
+              <span class="badge badge-secondary">
+               100
               </span>
-            </a></li>
- 	          <li class="active"><a href="./series.html">Series
-              <span class="badge">
-                <span id="results_num" style="display:none">98</span>
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link active" href="./series.html">Series
+              <span class="badge badge-secondary">
+                <span id="results_num" style="display:none">25</span>
                 <span id="mv_seperator" style="display:none"> / </span>
-                <span id="total_num">98</span>
+                <span id="total_num">25</span>
               </span>
-            </a></li>
-            <!--<li><a href="./documentaries.html">Documentaries <span class="badge"></span></a></li>-->
-            <li><a href="./about.html">About</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+          <li class="nav-item">
+						<a class="nav-link" href="./standup.html">Standup
+              <span class="badge badge-secondary">
+                <span>15</span>
+              </span>
+						</a>
+					</li>
+				
+  <li class="nav-item">
+    <a class="nav-link" href="./live-music.html">Live Music
+      <span class="badge badge-secondary">
+        
+          <span>7</span>
+        
+      </span>
+    </a>
+  </li>
+
+				</ul>
+			</div>
+      <div class="navbar-utilities ml-auto order-lg-1">
+  <label class="theme-toggle">
+  <input class="sr-only" type="checkbox" id="darkModeToggle" role="switch" aria-label="Dark mode" autocomplete="off">
+  <span class="theme-toggle-track" aria-hidden="true">
+    <span class="theme-toggle-sun">☀︎</span>
+    <span class="theme-toggle-moon">☾</span>
+  </span>
+</label>
+  <a class="navbar-about" href="./about.html" title="About" aria-label="About">
+    <span class="navbar-about-icon" aria-hidden="true">i</span>
+  </a>
+</div>
     </nav>
     <div class="container-fluid theme-showcase body-container" role="main">
 
       <!-- Filters -->
-      <div id="filters" class="jumbotron filter-container col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-          <div class="filter-section">
-            <div class="col-md-3" style="padding-left:0px">
-              <h4>Title:</h4>
+      <div id="filters" class="mx-auto jumbotron filter-container ml-5 mr-5">
+        <div class="filters-toolbar">
+          <div class="filter-prefixed-control filter-search-control has-inline-clear">
+            <span class="filter-prefix" aria-hidden="true">⌕</span>
+            <input class="filter-inline-input filter-title-input" id="title-search" type="search" placeholder="Search by title" spellcheck="false">
+            <button type="button" class="filter-clear-btn" onclick="clear_filter('title-search')" aria-label="Clear title filter"><i class="fa fa-times-circle clear-filter"></i></button>
+          </div>
+          <div class="filters-results-summary">
+            <span class="filters-results-label">Results</span>
+            <span class="filters-results-count">
+              <span id="page_results_num" style="display:none">25</span>
+              <span id="page_mv_seperator" style="display:none"> / </span>
+              <span id="page_total_num">25</span>
+            </span>
+          </div>
+          <div id="clear_all_filters">
+            <button id="clear_all_filters_btn" class="btn media-action-btn media-action-btn-clear" onclick="clear_all_filters()">
+              <span class="media-action-btn-icon" aria-hidden="true">✕</span>
+              <span class="media-action-btn-label">Clear All Filters (0)</span>
+            </button>
+          </div>
+        </div>
+
+        <details id="advanced-filters">
+          <summary>
+  <span class="filters-summary-label">
+    Search Filters
+    <span id="advanced-filter-count" hidden><span data-count></span><span class="sr-only"> active</span></span>
+  </span>
+</summary>
+<script>
+  document.currentScript.parentElement.open = document.documentElement.dataset.catalogFilters !== 'closed';
+</script>
+
+          <div class="filters-grid">
+
+            <div class="filter-card filter-card-half filter-card-inline-group">
+              <div class="filter-prefixed-control filter-prefixed-control-rating">
+                <span class="filter-prefix" aria-hidden="true"><span class="filter-prefix-star">★</span> MIN RATING</span>
+                <select class="native-filter-select filter-inline-input" id="rating-search" data-filter-type="rating"></select>
+              </div>
+              <div class="filter-prefixed-control filter-prefixed-control-votes has-inline-clear">
+                <span class="filter-prefix" aria-hidden="true">MIN VOTES</span>
+                <input class="numeric-filter-input filter-inline-input" id="vote-search" type="text" inputmode="numeric" aria-label="Minimum votes" spellcheck="false">
+                <button type="button" class="filter-clear-btn" onclick="clear_filter('vote-search')" aria-label="Clear votes filter"><i class="fa fa-times-circle clear-filter"></i></button>
+              </div>
             </div>
-            <div style="display:flex">
-              <input class="form-control" id="title-search" type="search" onkeyup="search_series_table(results)" spellcheck="false">
-              <span class="glyphicon glyphicon-remove clear-filter" onclick="clear_filter('title-search'); search_series_table(results)"></span>
+
+            <div class="filter-card filter-card-half filter-card-inline-group">
+              <div class="filter-prefixed-control">
+                <span class="filter-prefix" aria-hidden="true">From</span>
+                <select class="native-filter-select filter-inline-input" id="year-min-search" data-filter-type="year"></select>
+              </div>
+              <div class="filter-prefixed-control">
+                <span class="filter-prefix" aria-hidden="true">To</span>
+                <select class="native-filter-select filter-inline-input" id="year-max-search" data-filter-type="year"></select>
+              </div>
+            </div>
+
+            <div class="filters-row-break"></div>
+
+            <div class="filter-card filter-card-half">
+              <div class="filter-label-row">
+                <label for="genre-search" class="filter-label">Genres</label>
+              </div>
+              <div class="filter-input-shell enhanced-filter-select loading">
+                <select class="enhanced-filter-select" id="genre-search" data-filter-type="genre" multiple placeholder="Any genres"></select>
+              </div>
+            </div>
+
+            <div class="filter-card filter-card-half">
+              <div class="filter-label-row">
+                <label for="language-search" class="filter-label">Languages</label>
+              </div>
+              <div class="filter-input-shell enhanced-filter-select loading">
+                <select class="enhanced-filter-select" id="language-search" data-filter-type="language" multiple placeholder="Any languages"></select>
+              </div>
+            </div>
+
+            <div class="filter-card filter-card-half">
+              <div class="filter-label-row">
+                <label for="cast-search" class="filter-label">Cast</label>
+              </div>
+              <div class="filter-input-shell enhanced-filter-select loading">
+                <select class="enhanced-filter-select" id="cast-search" data-filter-type="cast" multiple placeholder="Any cast members"></select>
+              </div>
+            </div>
+
+            <div class="filter-card filter-card-half">
+              <div class="filter-label-row">
+                <label for="creator-search" class="filter-label">Creators</label>
+              </div>
+              <div class="filter-input-shell enhanced-filter-select loading">
+                <select class="enhanced-filter-select" id="creator-search" data-filter-type="creator" multiple placeholder="Any creators"></select>
+              </div>
             </div>
           </div>
-          <div class="filter-section">
-            <div class="col-md-3" style="padding-left:0px">
-              <h4>Rating (Min):</h4>
-            </div>
-            <div style="display:flex">
-              <input class="form-control" id="rating-search" type="search" onkeyup="search_series_table(results)" spellcheck="false">
-              <span class="glyphicon glyphicon-remove clear-filter" onclick="clear_filter('rating-search'); search_series_table(results)"></span>
-            </div>
-          </div>
-          <div class="filter-section">
-            <div class="col-md-3" style="padding-left:0px">
-              <h4>Votes (Min):</h4>
-            </div>
-            <div style="display:flex">
-              <input class="form-control" id="vote-search" type="search" onkeyup="search_series_table(results)" spellcheck="false">
-              <span class="glyphicon glyphicon-remove clear-filter" onclick="clear_filter('vote-search'); search_series_table(results)"></span>
-            </div>
-          </div>
-          <div class="filter-section">
-            <div class="col-md-3" style="padding-left:0px">
-              <h4>Start Year (Min):</h4>
-            </div>
-            <div style="display:flex">
-              <input class="form-control" id="year-min-search" type="search" onkeyup="search_series_table(results)" spellcheck="false">
-              <span class="glyphicon glyphicon-remove clear-filter" onclick="clear_filter('year-min-search'); search_series_table(results)"></span>
-            </div>
-          </div>
-          <div class="filter-section">
-            <div class="col-md-3" style="padding-left:0px">
-              <h4>End Year (Max):</h4>
-            </div>
-            <div style="display:flex">
-              <input class="form-control" id="year-max-search" type="search" onkeyup="search_series_table(results)" spellcheck="false">
-              <span class="glyphicon glyphicon-remove clear-filter" onclick="clear_filter('year-max-search'); search_series_table(results)"></span>
-            </div>
-          </div>
-          <div class="filter-section">
-            <div class="col-md-3" style="padding-left:0px">
-              <h4>Genres:</h4>
-            </div>
-            <div style="display:flex">
-              <input class="form-control" id="genre-search" type="search" onkeyup="search_series_table(results)" spellcheck="false">
-              <span class="glyphicon glyphicon-remove clear-filter" onclick="clear_filter('genre-search'); search_series_table(results)"></span>
-            </div>
-          </div>
-          <div class="filter-section">
-            <div class="col-md-3" style="padding-left:0px">
-              <h4>Cast:</h4>
-            </div>
-            <div style="display:flex">
-              <input class="form-control" id="cast-search" type="search" onkeyup="search_series_table(results)" spellcheck="false">
-              <span class="glyphicon glyphicon-remove clear-filter" onclick="clear_filter('cast-search'); search_series_table(results)"></span>
-            </div>
-          </div>
-          <div class="filter-section">
-            <div class="col-md-3" style="padding-left:0px">
-              <h4>Languages:</h4>
-            </div>
-            <div style="display:flex">
-              <input class="form-control" id="language-search" type="search" onkeyup="search_series_table(results)" spellcheck="false">
-              <span class="glyphicon glyphicon-remove clear-filter" onclick="clear_filter('language-search'); search_series_table(results)"></span>
-            </div>
-          </div>
+        </details>
+
       </div>
 
-      <!-- Show / Hide filter toggle -->
-      <div id="filter_toggle">
-        <button id="filter_toggle_btn" class="btn btn-small" onclick="filter_toggle()">
-          Hide Search Filters
-        </button>
+      
+<div id="catalog-filter-placeholder" hidden></div>
+<button type="button" id="sticky-filters-button" class="btn media-action-btn" aria-haspopup="dialog"
+        aria-controls="catalog-filter-dialog" hidden>
+  <span class="media-action-btn-icon" aria-hidden="true">☰</span>
+  <span class="media-action-btn-label">Filters</span>
+  <span id="sticky-filter-count" hidden><span data-count></span><span class="sr-only"> active</span></span>
+</button>
+<dialog id="catalog-filter-dialog" aria-labelledby="catalog-filter-dialog-title">
+  <div class="catalog-filter-dialog-header">
+    <h2 id="catalog-filter-dialog-title" class="catalog-filter-dialog-title" tabindex="-1" autofocus>Filters</h2>
+    
+<div id="dialog-tile-sort-control" class="catalog-tile-sort" hidden>
+  <label for="dialog-tile-sort">Sort:</label>
+  <select id="dialog-tile-sort" aria-controls="catalog-tiles">
+    <option value="table">Table order</option>
+    <option value="title">Title (A–Z)</option>
+    <option value="rating">Rating (high to low)</option>
+    <option value="rating-asc">Rating (low to high)</option>
+    <option value="random">Random</option>
+  </select>
+</div>
+
+  </div>
+  <div class="catalog-filter-dialog-fields"></div>
+  <div class="catalog-filter-dialog-actions">
+    <p id="catalog-filter-dialog-empty" class="catalog-filter-dialog-empty" role="status"></p>
+    <button type="button" id="cancel-catalog-filters" class="btn btn-light">Cancel</button>
+    <button type="button" id="apply-catalog-filters" class="btn btn-primary">Show results</button>
+  </div>
+</dialog>
+
+      <div class="page-action-group">
+        
+<div class="catalog-view-toggle" role="group" aria-label="Results view">
+  <button type="button" id="table-view-btn" aria-pressed="true" aria-controls="results-container" data-view="table">Table</button>
+  <button type="button" id="tile-view-btn" aria-pressed="false" aria-controls="tile-view" data-view="tiles">Tiles</button>
+</div>
+
+<div id="tile-sort-control" class="catalog-tile-sort" hidden>
+  <label for="tile-sort">Sort:</label>
+  <select id="tile-sort" aria-controls="catalog-tiles">
+    <option value="table">Table order</option>
+    <option value="title">Title (A–Z)</option>
+    <option value="rating">Rating (high to low)</option>
+    <option value="rating-asc">Rating (low to high)</option>
+    <option value="random">Random</option>
+  </select>
+</div>
+
+        <div class="dropdown" id="table-columns">
+          <button class="btn media-action-btn dropdown-toggle" type="button" id="columnVisibilityDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="media-action-btn-icon" aria-hidden="true">⚙</span>
+            <span class="media-action-btn-label">Columns</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="columnVisibilityDropdown">
+            <div class="dropdown-item" onclick="handleDropdownItemClick('image_data_checkbox', 'image_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="image_data_checkbox" name="image_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="image_data_checkbox" onclick="event.stopPropagation()">Image</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('rating_data_checkbox', 'rating_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rating_data_checkbox" name="rating_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="rating_data_checkbox" onclick="event.stopPropagation()">Rating</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('vote_data_checkbox', 'vote_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="vote_data_checkbox" name="vote_data_checkbox" onclick="event.stopPropagation()">
+                <label class="form-check-label" for="vote_data_checkbox" onclick="event.stopPropagation()">Votes</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('genre_data_checkbox', 'genre_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="genre_data_checkbox" name="genre_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="genre_data_checkbox" onclick="event.stopPropagation()">Genres</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('stars_data_checkbox', 'stars_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="stars_data_checkbox" name="stars_data_checkbox" onclick="event.stopPropagation()" checked>
+                <label class="form-check-label" for="stars_data_checkbox" onclick="event.stopPropagation()">Cast</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('languages_data_checkbox', 'languages_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="languages_data_checkbox" name="languages_data_checkbox" onclick="event.stopPropagation()">
+                <label class="form-check-label" for="languages_data_checkbox" onclick="event.stopPropagation()">Languages</label>
+              </div>
+            </div>
+            <div class="dropdown-item" onclick="handleDropdownItemClick('creator_data_checkbox', 'creator_data', event)">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="creator_data_checkbox" name="creator_data_checkbox" onclick="event.stopPropagation()">
+                <label class="form-check-label" for="creator_data_checkbox" onclick="event.stopPropagation()">Creators</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="random_selection">
+          <button id="random_selection_btn" class="btn media-action-btn media-action-btn-random" onclick="random_selection()">
+            <span class="media-action-btn-icon" aria-hidden="true">🎲</span>
+            <span class="media-action-btn-label">Surprise Me</span>
+          </button>
+        </div>
       </div>
-      <div id="random_selection">
-        <button id="random_selection_btn" class="btn btn-small" onclick="random_selection()">
-          Choose Random from Selection
-        </button> 
+
+      <div id="results-message" class="results-empty-state" style="display:none;">
+        No results match the current filters.
       </div>
 
       <!-- Results Table -->
-      <div style="width:100%">
-        <table id="results" class="table table-striped table-bordered sortable scalable_table" data-sortable>
+      <div id="results-container" role="region" aria-label="Results table" tabindex="0">
+        <table id="results" class="table table-striped table-bordered scalable_table" data-sortable>
           <thead>
-            <tr id="table_header" onclick="stripe_table()">
-              <th name="rating_data" style="vertical-align:top" class="sorttable_numeric">Rating</th>
-              <th name="vote_data" style="vertical-align:top; display:none" class="sorttable_numeric">Votes</th>
-              <th style="vertical-align:top" class="sorttable_alpha">Title</th>
-              <th name="year_data" class="hidden-sm hidden-xs" style="vertical-align:top" class="sorttable_alpha">Years</th>
-              <th name="genre_data" style="vertical-align:top">Genres</th>
-              <th name="stars_data" class="hidden-sm hidden-xs" style="vertical-align:top">Stars</th>
-              <th name="lang_data" class="hidden-sm hidden-xs" style="vertical-align:top; display:none">Languages</th>
+            <tr id="table_header">
+              <th name="image_data" style="vertical-align:top;"><!-- Image --></th>
+              <th name="rating_data" data-sort="number">Rating</th>
+              <th name="vote_data" style="vertical-align:top; display:none" data-sort="number">Votes</th>
+              <th style="vertical-align:top" data-sort="text">Title</th>
+              <th name="year_data" class="hidden-sm hidden-xs" style="vertical-align:top" data-sort="text">Years</th>
+              <th name="genre_data" style="vertical-align:top" data-sort="text">Genres</th>
+              <th name="stars_data" class="hidden-sm hidden-xs" style="vertical-align:top" data-sort="text">Cast</th>
+              <th name="languages_data" class="hidden-sm hidden-xs" style="vertical-align:top; display:none" data-sort="text">Languages</th>
+              <th name="creator_data" class="hidden-sm hidden-xs" style="vertical-align:top; display:none" data-sort="text">Creators</th>
             </tr>
           </thead>
           <tbody>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.7</td>
-                <td name="votes_data" style="display:none">131,005</td>
-                <td sorttable_customkey="Mad Men">
-                  <a href="#./series/Mad Men(2007).html" onclick="load_details(this)"
-                    
-                  >
-                    Mad Men
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Breaking%20Bad(2008).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Breaking%20Bad%20%282008%29.jpg" loading="lazy"><!-- ' -->
                   </a>
-                  <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2007–2015</td>
-                <td name="genre_data">Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jon Hamm, Elisabeth Moss, Vincent Kartheiser</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.5</td>
-                <td name="votes_data" style="display:none">763,466</td>
-                <td sorttable_customkey="Breaking Bad">
-                  <a href="#./series/Breaking Bad(2008).html" onclick="load_details(this)"
-                    
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.5
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  2,707,040
+                </td>
+                
+                <td data-sort-key="Breaking Bad" class="catalog-title-cell vertical-row" data-list-description="A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student to secure his family&#39;s future.">
+                  <a
+                    href="./series/Breaking%20Bad(2008).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Breaking Bad"
+                    tabindex="-1"
+                    data-html="true"
                   >
                     Breaking Bad
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2008–2013</td>
-                <td name="genre_data">Crime, Drama, Thriller</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Bryan Cranston, Aaron Paul, Anna Gunn</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Spanish</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2008-2013
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Crime,<br/>Drama,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Bryan Cranston,<br/>Anna Gunn,<br/>Aaron Paul,<br/>Dean Norris,<br/>Betsy Brandt
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Spanish
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Vince Gilligan
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">9.1</td>
-                <td name="votes_data" style="display:none">38,298</td>
-                <td sorttable_customkey="Fullmetal Alchemist: Brotherhood">
-                  <a href="#./series/Fullmetal Alchemist: Brotherhood(2009).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Band%20of%20Brothers(2001).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Band%20of%20Brothers%20%282001%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.4
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  613,488
+                </td>
+                
+                <td data-sort-key="Band of Brothers" class="catalog-title-cell vertical-row" data-list-description="The men of Easy Company, 506th Parachute Infantry Regiment, train for war and fight across Europe during World War II, forging bonds of brotherhood amid the brutal realities of combat.">
+                  <a
+                    href="./series/Band%20of%20Brothers(2001).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Band of Brothers"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Fullmetal Alchemist: Brotherhood
+                    Band of Brothers
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2009–2010</td>
-                <td name="genre_data">Animation, Action, Adventure</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Kent Williams, Iemasa Kayumi, Vic Mignogna</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2001-2001
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Action,<br/>Drama,<br/>History,<br/>War
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Scott Grimes,<br/>Damian Lewis,<br/>Ron Livingston,<br/>Matthew Leitch,<br/>Shane Taylor
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, German, French, Dutch, Latin, Polish, Spanish
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Steven Spielberg,<br>Tom Hanks
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">103,196</td>
-                <td sorttable_customkey="Better Call Saul">
-                  <a href="#./series/Better Call Saul(2015).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Chernobyl(2019).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Chernobyl%20%282019%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.3
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  1,077,564
+                </td>
+                
+                <td data-sort-key="Chernobyl" class="catalog-title-cell vertical-row" data-list-description="In April 1986, the city of Chernobyl in the Soviet Union suffers one of the worst nuclear disasters in the history of mankind. Consequently, many heroes put their lives on the line in the following days, weeks and months.">
+                  <a
+                    href="./series/Chernobyl(2019).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Chernobyl"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Better Call Saul
+                    Chernobyl
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2015– </td>
-                <td name="genre_data">Crime, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Bob Odenkirk, Jonathan Banks, Rhea Seehorn</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Spanish</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.7</td>
-                <td name="votes_data" style="display:none">51,825</td>
-                <td sorttable_customkey="Louie">
-                  <a href="#./series/Louie(2010).html" onclick="load_details(this)"
-                    
-                  >
-                    Louie
-                  </a>
-                  <!-- ' -->
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2019-2019
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2010– </td>
-                <td name="genre_data">Comedy, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Louis C.K., Hadley Delany, Ursula Parker</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.2</td>
-                <td name="votes_data" style="display:none">86,985</td>
-                <td sorttable_customkey="30 Rock">
-                  <a href="#./series/30 Rock(2006).html" onclick="load_details(this)"
-                    
-                  >
-                    30 Rock
-                  </a>
-                  <!-- ' -->
+                <td name="genre_data" class="vertical-row">
+                  Drama,<br/>History,<br/>Thriller
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2006–2013</td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Tina Fey, Alec Baldwin, Tracy Morgan</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.0</td>
-                <td name="votes_data" style="display:none">89,310</td>
-                <td sorttable_customkey="Malcolm in the Middle">
-                  <a href="#./series/Malcolm in the Middle(2000).html" onclick="load_details(this)"
-                    
-                  >
-                    Malcolm in the Middle
-                  </a>
-                  <!-- ' -->
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Jared Harris,<br/>Jessie Buckley,<br/>Stellan Skarsgård,<br/>Emily Watson,<br/>Adam Nagaitis
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2000–2006</td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Frankie Muniz, Jane Kaczmarek, Bryan Cranston</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">73,576</td>
-                <td sorttable_customkey="Archer">
-                  <a href="#./series/Archer(2009).html" onclick="load_details(this)"
-                    
-                  >
-                    Archer
-                  </a>
-                  <!-- ' -->
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Russian, Ukrainian
+                  
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2009– </td>
-                <td name="genre_data">Animation, Action, Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">H. Jon Benjamin, Judy Greer, Amber Nash</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.1</td>
-                <td name="votes_data" style="display:none">48,150</td>
-                <td sorttable_customkey="Narcos">
-                  <a href="#./series/Narcos(2015).html" onclick="load_details(this)"
-                    
-                  >
-                    Narcos
-                  </a>
-                  <!-- ' -->
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Craig Mazin
+                  
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2015– </td>
-                <td name="genre_data">Biography, Crime, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Wagner Moura, Boyd Holbrook, Pedro Pascal</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Spanish</td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">7.4</td>
-                <td name="votes_data" style="display:none">7,204</td>
-                <td sorttable_customkey="Kitchen Nightmares">
-                  <a href="#./series/Kitchen Nightmares(2007).html" onclick="load_details(this)"
-                    
-                  >
-                    Kitchen Nightmares
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Game%20of%20Thrones(2011).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Game%20of%20Thrones%20%282011%29.jpg" loading="lazy"><!-- ' -->
                   </a>
-                  <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2007– </td>
-                <td name="genre_data">Reality-TV</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Gordon Ramsay, Kim Seeley, Michael Cabbibo</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">18,788</td>
-                <td sorttable_customkey="Code Geass: Lelouch of the Rebellion">
-                  <a href="#./series/Code Geass: Lelouch of the Rebellion(2006).html" onclick="load_details(this)"
-                    
-                  >
-                    Code Geass: Lelouch of the Rebellion
-                  </a>
-                  <!-- ' -->
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.2
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2006–2007</td>
-                <td name="genre_data">Animation, Action, Adventure</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jun Fukuyama, Yukana Nogami, Johnny Yong Bosch</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">455,765</td>
-                <td sorttable_customkey="Dexter">
-                  <a href="#./series/Dexter(2006).html" onclick="load_details(this)"
-                    
-                  >
-                    Dexter
-                  </a>
-                  <!-- ' -->
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  2,685,875
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2006–2013</td>
-                <td name="genre_data">Crime, Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Michael C. Hall, Jennifer Carpenter, David Zayas</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Spanish</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">7.9</td>
-                <td name="votes_data" style="display:none">36,606</td>
-                <td sorttable_customkey="The Borgias">
-                  <a href="#./series/The Borgias(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    The Borgias
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011–2013</td>
-                <td name="genre_data">Crime, Drama, History</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jeremy Irons, François Arnaud, Holliday Grainger</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">11,628</td>
-                <td sorttable_customkey="Steins;Gate">
-                  <a href="#./series/Steins;Gate(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    Steins;Gate
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data">Animation, Comedy, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Mamoru Miyano, Asami Imai, Kana Hanazawa</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">12,336</td>
-                <td sorttable_customkey="Impractical Jokers">
-                  <a href="#./series/Impractical Jokers(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    Impractical Jokers
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data">Comedy, Reality-TV</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Joe Gatto, James Murray, Brian Quinn</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.1</td>
-                <td name="votes_data" style="display:none">26,011</td>
-                <td sorttable_customkey="Marco Polo">
-                  <a href="#./series/Marco Polo(2014).html" onclick="load_details(this)"
-                    
-                  >
-                    Marco Polo
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2014– </td>
-                <td name="genre_data">Adventure, Drama, History</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Lorenzo Richelmy, Benedict Wong, Joan Chen</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">7.8</td>
-                <td name="votes_data" style="display:none">1,094</td>
-                <td sorttable_customkey="Shiki">
-                  <a href="#./series/Shiki(2010).html" onclick="load_details(this)"
-                    
-                  >
-                    Shiki
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2010– </td>
-                <td name="genre_data">Animation, Drama, Horror</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Kayla Carlyle, Bryan Massey, Ryan Manalansan</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">141,645</td>
-                <td sorttable_customkey="Hannibal">
-                  <a href="#./series/Hannibal(2013).html" onclick="load_details(this)"
-                    
-                  >
-                    Hannibal
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2013–2015</td>
-                <td name="genre_data">Crime, Drama, Horror</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Hugh Dancy, Mads Mikkelsen, Caroline Dhavernas</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.2</td>
-                <td name="votes_data" style="display:none">18,628</td>
-                <td sorttable_customkey="Erufen rîto">
-                  <a href="#./series/Erufen rîto(2004).html" onclick="load_details(this)"
-                    
-                  >
-                    Erufen rîto
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2004– </td>
-                <td name="genre_data">Animation, Drama, Horror</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Sanae Kobayashi, Chihiro Suzuki, Mamiko Noto</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Japanese</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.2</td>
-                <td name="votes_data" style="display:none">1,851</td>
-                <td sorttable_customkey="Terror in Resonance">
-                  <a href="#./series/Terror in Resonance(2014).html" onclick="load_details(this)"
-                    
-                  >
-                    Terror in Resonance
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2014– </td>
-                <td name="genre_data">Animation, Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Kaito Ishikawa, Soma Saito, Shunsuke Sakuya</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese, English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.4</td>
-                <td name="votes_data" style="display:none">50,145</td>
-                <td sorttable_customkey="Sense8">
-                  <a href="#./series/Sense8(2015).html" onclick="load_details(this)"
-                    
-                  >
-                    Sense8
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2015– </td>
-                <td name="genre_data">Drama, Mystery, Sci-Fi</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Aml Ameen, Doona Bae, Jamie Clayton</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.2</td>
-                <td name="votes_data" style="display:none">61,512</td>
-                <td sorttable_customkey="The Killing">
-                  <a href="#./series/The Killing(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    The Killing
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011–2014</td>
-                <td name="genre_data">Crime, Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Mireille Enos, Joel Kinnaman, Billy Campbell</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Persian</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">158,975</td>
-                <td sorttable_customkey="Spartacus: War of the Damned">
-                  <a href="#./series/Spartacus: War of the Damned(2010).html" onclick="load_details(this)"
-                    
-                  >
-                    Spartacus: War of the Damned
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2010–2013</td>
-                <td name="genre_data">Action, Adventure, Biography</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Andy Whitfield, Lucy Lawless, Manu Bennett</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.5</td>
-                <td name="votes_data" style="display:none">866,938</td>
-                <td sorttable_customkey="Game of Thrones">
-                  <a href="#./series/Game of Thrones(2011).html" onclick="load_details(this)"
-                    
+                
+                <td data-sort-key="Game of Thrones" class="catalog-title-cell vertical-row" data-list-description="Nine noble families vie for control of Westeros and the Iron Throne, while an ancient threat beyond The Wall begins to stir.">
+                  <a
+                    href="./series/Game%20of%20Thrones(2011).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Game of Thrones"
+                    tabindex="-1"
+                    data-html="true"
                   >
                     Game of Thrones
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data">Adventure, Drama, Fantasy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Emilia Clarke, Peter Dinklage, Kit Harington</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.0</td>
-                <td name="votes_data" style="display:none">418,546</td>
-                <td sorttable_customkey="Friends">
-                  <a href="#./series/Friends(1994).html" onclick="load_details(this)"
-                    
-                  >
-                    Friends
-                  </a>
-                  <!-- ' -->
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2011-2019
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1994–2004</td>
-                <td name="genre_data">Comedy, Romance</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jennifer Aniston, Courteney Cox, Lisa Kudrow</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.0</td>
-                <td name="votes_data" style="display:none">119,986</td>
-                <td sorttable_customkey="Fargo">
-                  <a href="#./series/Fargo(2014).html" onclick="load_details(this)"
-                    
-                  >
-                    Fargo
-                  </a>
-                  <!-- ' -->
+                <td name="genre_data" class="vertical-row">
+                  Drama,<br/>Fantasy
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2014– </td>
-                <td name="genre_data">Crime, Drama, Thriller</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Billy Bob Thornton, Martin Freeman, Allison Tolman</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.7</td>
-                <td name="votes_data" style="display:none">120,412</td>
-                <td sorttable_customkey="The X-Files">
-                  <a href="#./series/The X-Files(1993).html" onclick="load_details(this)"
-                    
-                  >
-                    The X-Files
-                  </a>
-                  <!-- ' -->
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Peter Dinklage,<br/>Lena Headey,<br/>Kit Harington,<br/>Emilia Clarke,<br/>Sophie Turner
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1993–2002</td>
-                <td name="genre_data">Drama, Mystery, Sci-Fi</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">David Duchovny, Gillian Anderson, Mitch Pileggi</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.5</td>
-                <td name="votes_data" style="display:none">137,321</td>
-                <td sorttable_customkey="24">
-                  <a href="#./series/24(2001).html" onclick="load_details(this)"
-                    
-                  >
-                    24
-                  </a>
-                  <!-- ' -->
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2001–2010</td>
-                <td name="genre_data">Action, Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Kiefer Sutherland, Mary Lynn Rajskub, Carlos Bernard</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Russian, German, Korean, Arabic, Spanish, Serbian, Mandarin</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">49,266</td>
-                <td sorttable_customkey="Attack on Titan">
-                  <a href="#./series/Attack on Titan(2013).html" onclick="load_details(this)"
-                    
-                  >
-                    Attack on Titan
-                  </a>
-                  <!-- ' -->
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    David Benioff,<br>D.B. Weiss,<br>David J. Peterson
+                  
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2013– </td>
-                <td name="genre_data">Animation, Action, Adventure</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Marina Inoue, Yuki Kaji, Josh Grelle</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">237,901</td>
-                <td sorttable_customkey="The Simpsons">
-                  <a href="#./series/The Simpsons(1989).html" onclick="load_details(this)"
-                    
-                  >
-                    The Simpsons
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/The%20Sopranos(1999).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/The%20Sopranos%20%281999%29.jpg" loading="lazy"><!-- ' -->
                   </a>
-                  <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1989– </td>
-                <td name="genre_data">Animation, Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Dan Castellaneta, Nancy Cartwright, Julie Kavner</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Spanish, Albanian, French, Japanese, German, Russian, Hindi, Swahili, Italian, Swedish, Turkish, Cantonese, Mandarin, Hebrew, Arabic, Klingon, Bengali, Czech</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.2</td>
-                <td name="votes_data" style="display:none">170,453</td>
-                <td sorttable_customkey="The Sopranos">
-                  <a href="#./series/The Sopranos(1999).html" onclick="load_details(this)"
-                    
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.2
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  606,756
+                </td>
+                
+                <td data-sort-key="The Sopranos" class="catalog-title-cell vertical-row" data-list-description="New Jersey mob boss Tony Soprano deals with personal and professional issues in his home and business life that affect his mental state, leading him to seek professional psychiatric counseling.">
+                  <a
+                    href="./series/The%20Sopranos(1999).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="The Sopranos"
+                    tabindex="-1"
+                    data-html="true"
                   >
                     The Sopranos
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1999–2007</td>
-                <td name="genre_data">Crime, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">James Gandolfini, Lorraine Bracco, Edie Falco</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Italian, Russian</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  1999-2007
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Crime,<br/>Drama
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  James Gandolfini,<br/>Lorraine Bracco,<br/>Edie Falco,<br/>Michael Imperioli,<br/>Dominic Chianese
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Italian, Russian
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    David Chase
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.5</td>
-                <td name="votes_data" style="display:none">2,725</td>
-                <td sorttable_customkey="Spiral">
-                  <a href="#./series/Spiral(2005).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Attack%20on%20Titan(2013).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Attack%20on%20Titan%20%282013%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.1
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  761,168
+                </td>
+                
+                <td data-sort-key="Attack on Titan" class="catalog-title-cell vertical-row" data-list-description="In a world where humanity shelters behind towering walls from man-eating Titans, a determined teen joins the elite Survey Corps to fight the giants and uncover the secrets of their origin.">
+                  <a
+                    href="./series/Attack%20on%20Titan(2013).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Attack on Titan"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Spiral
+                    Attack on Titan
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2005– </td>
-                <td name="genre_data">Crime, Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Caroline Proust, Audrey Fleurot, Philippe Duclos</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">French</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.0</td>
-                <td name="votes_data" style="display:none">45,002</td>
-                <td sorttable_customkey="Cowboy Bebop">
-                  <a href="#./series/Cowboy Bebop(1998).html" onclick="load_details(this)"
-                    
-                  >
-                    Cowboy Bebop
-                  </a>
-                  <!-- ' -->
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2013-2023
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1998–1999</td>
-                <td name="genre_data">Animation, Action, Adventure</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Kôichi Yamadera, Unshô Ishizuka, Megumi Hayashibara</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">111,987</td>
-                <td sorttable_customkey="Battlestar Galactica">
-                  <a href="#./series/Battlestar Galactica(2004).html" onclick="load_details(this)"
-                    
-                  >
-                    Battlestar Galactica
-                  </a>
-                  <!-- ' -->
+                <td name="genre_data" class="vertical-row">
+                  Animation,<br/>Action,<br/>Adventure,<br/>Drama,<br/>Fantasy,<br/>Horror
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2004–2009</td>
-                <td name="genre_data">Action, Adventure, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Edward James Olmos, Mary McDonnell, Jamie Bamber</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">125,179</td>
-                <td sorttable_customkey="Boardwalk Empire">
-                  <a href="#./series/Boardwalk Empire(2010).html" onclick="load_details(this)"
-                    
-                  >
-                    Boardwalk Empire
-                  </a>
-                  <!-- ' -->
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Jessie James Grelle,<br/>Bryce Papenbrook,<br/>Trina Nishimura,<br/>Yûki Kaji,<br/>Yui Ishikawa
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2010–2014</td>
-                <td name="genre_data">Crime, Drama, History</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Steve Buscemi, Stephen Graham, Vincent Piazza</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.2</td>
-                <td name="votes_data" style="display:none">284,909</td>
-                <td sorttable_customkey="True Detective">
-                  <a href="#./series/True Detective(2014).html" onclick="load_details(this)"
-                    
-                  >
-                    True Detective
-                  </a>
-                  <!-- ' -->
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    Japanese, English
+                  
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2014– </td>
-                <td name="genre_data">Crime, Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Vince Vaughn, Colin Farrell, Rachel McAdams</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.1</td>
-                <td name="votes_data" style="display:none">171,129</td>
-                <td sorttable_customkey="Firefly">
-                  <a href="#./series/Firefly(2002).html" onclick="load_details(this)"
-                    
-                  >
-                    Firefly
-                  </a>
-                  <!-- ' -->
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Yasuko Kobayashi,<br>Hiroshi Seko
+                  
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2002–2003</td>
-                <td name="genre_data">Adventure, Drama, Sci-Fi</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Nathan Fillion, Gina Torres, Alan Tudyk</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Mandarin</td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">2,595</td>
-                <td sorttable_customkey="Vice">
-                  <a href="#./series/Vice(2013).html" onclick="load_details(this)"
-                    
-                  >
-                    Vice
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Sherlock(2010).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Sherlock%20%282010%29.jpg" loading="lazy"><!-- ' -->
                   </a>
-                  <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2013– </td>
-                <td name="genre_data">Documentary, News</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Shane Smith, Thomas Morton, Ryan Duffy</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.0</td>
-                <td name="votes_data" style="display:none">85,883</td>
-                <td sorttable_customkey="Mr. Robot">
-                  <a href="#./series/Mr. Robot(2015).html" onclick="load_details(this)"
-                    
-                  >
-                    Mr. Robot
-                  </a>
-                  <!-- ' -->
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.0
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2015– </td>
-                <td name="genre_data">Crime, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Rami Malek, Christian Slater, Portia Doubleday</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">7.7</td>
-                <td name="votes_data" style="display:none">192,830</td>
-                <td sorttable_customkey="Heroes">
-                  <a href="#./series/Heroes(2006).html" onclick="load_details(this)"
-                    
-                  >
-                    Heroes
-                  </a>
-                  <!-- ' -->
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  1,105,808
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2006–2010</td>
-                <td name="genre_data">Drama, Fantasy, Sci-Fi</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Hayden Panettiere, Jack Coleman, Milo Ventimiglia</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Japanese, Spanish</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.7</td>
-                <td name="votes_data" style="display:none">57,698</td>
-                <td sorttable_customkey="Star Trek: The Next Generation">
-                  <a href="#./series/Star Trek: The Next Generation(1987).html" onclick="load_details(this)"
-                    
-                  >
-                    Star Trek: The Next Generation
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1987–1994</td>
-                <td name="genre_data">Action, Adventure, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Patrick Stewart, Brent Spiner, Jonathan Frakes</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Klingon, French</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">82,699</td>
-                <td sorttable_customkey="Freaks and Geeks">
-                  <a href="#./series/Freaks and Geeks(1999).html" onclick="load_details(this)"
-                    
-                  >
-                    Freaks and Geeks
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1999–2000</td>
-                <td name="genre_data">Comedy, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Linda Cardellini, John Francis Daley, James Franco</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">1,709</td>
-                <td sorttable_customkey="Chef's Table">
-                  <a href="#./series/Chef%27s Table(2015).html" onclick="load_details(this)"
-                    
-                  >
-                    Chef's Table
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2015– </td>
-                <td name="genre_data">Documentary</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Dan Barber, Massimo Bottura, Francis Mallmann</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none"></td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">131,502</td>
-                <td sorttable_customkey="Daredevil">
-                  <a href="#./series/Daredevil(2015).html" onclick="load_details(this)"
-                    
-                  >
-                    Daredevil
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2015– </td>
-                <td name="genre_data">Action, Crime, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Charlie Cox, Vincent D'Onofrio, Deborah Ann Woll</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Russian, Spanish, German, French</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">72,609</td>
-                <td sorttable_customkey="The Newsroom">
-                  <a href="#./series/The Newsroom(2012).html" onclick="load_details(this)"
-                    
-                  >
-                    The Newsroom
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2012–2014</td>
-                <td name="genre_data">Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jeff Daniels, Emily Mortimer, John Gallagher Jr.</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.2</td>
-                <td name="votes_data" style="display:none">10,431</td>
-                <td sorttable_customkey="Penn & Teller: Bullshit!">
-                  <a href="#./series/Penn & Teller: Bullshit!(2003).html" onclick="load_details(this)"
-                    
-                  >
-                    Penn & Teller: Bullshit!
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2003– </td>
-                <td name="genre_data">Comedy, Documentary</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Penn Jillette, Teller, George W. Bush</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.1</td>
-                <td name="votes_data" style="display:none">49,741</td>
-                <td sorttable_customkey="Bates Motel">
-                  <a href="#./series/Bates Motel(2013).html" onclick="load_details(this)"
-                    
-                  >
-                    Bates Motel
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2013– </td>
-                <td name="genre_data">Drama, Mystery, Thriller</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Vera Farmiga, Freddie Highmore, Max Thieriot</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.3</td>
-                <td name="votes_data" style="display:none">429,250</td>
-                <td sorttable_customkey="Sherlock">
-                  <a href="#./series/Sherlock(2010).html" onclick="load_details(this)"
-                    
+                
+                <td data-sort-key="Sherlock" class="catalog-title-cell vertical-row" data-list-description="In modern-day London, brilliant but eccentric detective Sherlock Holmes teams with war veteran Dr. John Watson to crack baffling crimes, outwit formidable foes, and aid Scotland Yard with razor-sharp deduction.">
+                  <a
+                    href="./series/Sherlock(2010).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Sherlock"
+                    tabindex="-1"
+                    data-html="true"
                   >
                     Sherlock
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2010– </td>
-                <td name="genre_data">Crime, Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Benedict Cumberbatch, Martin Freeman, Una Stubbs</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2010-2017
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Crime,<br/>Drama,<br/>Mystery,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Benedict Cumberbatch,<br/>Martin Freeman,<br/>Una Stubbs,<br/>Rupert Graves,<br/>Louise Brealey
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Steven Moffat,<br>Mark Gatiss
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">7.8</td>
-                <td name="votes_data" style="display:none">2,059</td>
-                <td sorttable_customkey="Undergrads">
-                  <a href="#./series/Undergrads(2001).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Better%20Call%20Saul(2015).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Better%20Call%20Saul%20%282015%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.0
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  878,341
+                </td>
+                
+                <td data-sort-key="Better Call Saul" class="catalog-title-cell vertical-row" data-list-description="Albuquerque lawyer Jimmy McGill scrapes for clients and respect, but every win drags him closer to shady deals, dangerous players, and the alter ego Saul Goodman.">
+                  <a
+                    href="./series/Better%20Call%20Saul(2015).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Better Call Saul"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Undergrads
+                    Better Call Saul
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2001– </td>
-                <td name="genre_data">Animation, Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Pete Williams, Josh A. Cagan, Rob Tinkler</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.4</td>
-                <td name="votes_data" style="display:none">3,004</td>
-                <td sorttable_customkey="Long Way Down">
-                  <a href="#./series/Long Way Down(2007).html" onclick="load_details(this)"
-                    
-                  >
-                    Long Way Down
-                  </a>
-                  <!-- ' -->
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2015-2022
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2007</td>
-                <td name="genre_data">Documentary</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Ewan McGregor, Charley Boorman, David Alexanian</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.1</td>
-                <td name="votes_data" style="display:none">82,776</td>
-                <td sorttable_customkey="Weeds">
-                  <a href="#./series/Weeds(2005).html" onclick="load_details(this)"
-                    
-                  >
-                    Weeds
-                  </a>
-                  <!-- ' -->
+                <td name="genre_data" class="vertical-row">
+                  Crime,<br/>Drama
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2005–2012</td>
-                <td name="genre_data">Comedy, Crime, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Mary-Louise Parker, Hunter Parrish, Alexander Gould</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Spanish</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.1</td>
-                <td name="votes_data" style="display:none">107,228</td>
-                <td sorttable_customkey="That '70s Show">
-                  <a href="#./series/That %2770s Show(1998).html" onclick="load_details(this)"
-                    
-                  >
-                    That '70s Show
-                  </a>
-                  <!-- ' -->
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Bob Odenkirk,<br/>Jonathan Banks,<br/>Rhea Seehorn,<br/>Patrick Fabian,<br/>Michael Mando
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1998–2006</td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Topher Grace, Laura Prepon, Mila Kunis</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.1</td>
-                <td name="votes_data" style="display:none">7,665</td>
-                <td sorttable_customkey="Claymore">
-                  <a href="#./series/Claymore(2007).html" onclick="load_details(this)"
-                    
-                  >
-                    Claymore
-                  </a>
-                  <!-- ' -->
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Spanish, Vietnamese
+                  
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2007– </td>
-                <td name="genre_data">Animation, Action, Adventure</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Todd Haberkorn, Houko Kuwashima, Stephanie Young</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">155,353</td>
-                <td sorttable_customkey="Seinfeld">
-                  <a href="#./series/Seinfeld(1989).html" onclick="load_details(this)"
-                    
-                  >
-                    Seinfeld
-                  </a>
-                  <!-- ' -->
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Vince Gilligan,<br>Peter Gould
+                  
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1989–1998</td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jerry Seinfeld, Julia Louis-Dreyfus, Michael Richards</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.3</td>
-                <td name="votes_data" style="display:none">13,713</td>
-                <td sorttable_customkey="The Returned">
-                  <a href="#./series/The Returned(2012).html" onclick="load_details(this)"
-                    
-                  >
-                    The Returned
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/The%20Office(2005).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/The%20Office%20%28US%29%20%282005%29.jpg" loading="lazy"><!-- ' -->
                   </a>
-                  <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2012– </td>
-                <td name="genre_data">Drama, Fantasy, Horror</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Anne Consigny, Clotilde Hesme, Frédéric Pierrot</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">French</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">558,861</td>
-                <td sorttable_customkey="The Walking Dead">
-                  <a href="#./series/The Walking Dead(2010).html" onclick="load_details(this)"
-                    
-                  >
-                    The Walking Dead
-                  </a>
-                  <!-- ' -->
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.0
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2010– </td>
-                <td name="genre_data">Drama, Horror</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Andrew Lincoln, Jon Bernthal, Sarah Wayne Callies</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.0</td>
-                <td name="votes_data" style="display:none">196,858</td>
-                <td sorttable_customkey="True Blood">
-                  <a href="#./series/True Blood(2008).html" onclick="load_details(this)"
-                    
-                  >
-                    True Blood
-                  </a>
-                  <!-- ' -->
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  859,959
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2008–2014</td>
-                <td name="genre_data">Drama, Fantasy, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Anna Paquin, Stephen Moyer, Sam Trammell</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, German, Swedish, Russian</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.3</td>
-                <td name="votes_data" style="display:none">221,917</td>
-                <td sorttable_customkey="Family Guy">
-                  <a href="#./series/Family Guy(1999).html" onclick="load_details(this)"
-                    
-                  >
-                    Family Guy
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1999– </td>
-                <td name="genre_data">Animation, Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Seth MacFarlane, Alex Borstein, Seth Green</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Portuguese</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.0</td>
-                <td name="votes_data" style="display:none">250,566</td>
-                <td sorttable_customkey="House of Cards">
-                  <a href="#./series/House of Cards(2013).html" onclick="load_details(this)"
-                    
-                  >
-                    House of Cards
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2013– </td>
-                <td name="genre_data">Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Kevin Spacey, Michel Gill, Robin Wright</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.4</td>
-                <td name="votes_data" style="display:none">42,435</td>
-                <td sorttable_customkey="Pushing Daisies">
-                  <a href="#./series/Pushing Daisies(2007).html" onclick="load_details(this)"
-                    
-                  >
-                    Pushing Daisies
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2007–2009</td>
-                <td name="genre_data">Comedy, Drama, Fantasy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Lee Pace, Anna Friel, Chi McBride</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.2</td>
-                <td name="votes_data" style="display:none">9,773</td>
-                <td sorttable_customkey="Human Planet">
-                  <a href="#./series/Human Planet(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    Human Planet
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011</td>
-                <td name="genre_data">Documentary</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">John Hurt</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">102,893</td>
-                <td sorttable_customkey="Parks and Recreation">
-                  <a href="#./series/Parks and Recreation(2009).html" onclick="load_details(this)"
-                    
-                  >
-                    Parks and Recreation
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2009–2015</td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Amy Poehler, Jim O'Heir, Nick Offerman</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">133,375</td>
-                <td sorttable_customkey="Community">
-                  <a href="#./series/Community(2009).html" onclick="load_details(this)"
-                    
-                  >
-                    Community
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2009–2015</td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Joel McHale, Danny Pudi, Donald Glover</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">134,665</td>
-                <td sorttable_customkey="Doctor Who">
-                  <a href="#./series/Doctor Who(2005).html" onclick="load_details(this)"
-                    
-                  >
-                    Doctor Who
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2005– </td>
-                <td name="genre_data">Adventure, Drama, Family</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Peter Capaldi, Jenna Coleman, Matt Smith</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.0</td>
-                <td name="votes_data" style="display:none">7,182</td>
-                <td sorttable_customkey="Long Way Round">
-                  <a href="#./series/Long Way Round(2004).html" onclick="load_details(this)"
-                    
-                  >
-                    Long Way Round
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2004</td>
-                <td name="genre_data">Documentary, Adventure</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Ewan McGregor, Charley Boorman, David Alexanian</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">647</td>
-                <td sorttable_customkey="Horizon">
-                  <a href="#./series/Horizon(1964).html" onclick="load_details(this)"
-                    
-                  >
-                    Horizon
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1964– </td>
-                <td name="genre_data">Documentary, History</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Paul Vaughan, Jack Fortune, Dilly Barlow</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">83,659</td>
-                <td sorttable_customkey="Six Feet Under">
-                  <a href="#./series/Six Feet Under(2001).html" onclick="load_details(this)"
-                    
-                  >
-                    Six Feet Under
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2001–2005</td>
-                <td name="genre_data">Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Peter Krause, Michael C. Hall, Frances Conroy</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">215,450</td>
-                <td sorttable_customkey="South Park">
-                  <a href="#./series/South Park(1997).html" onclick="load_details(this)"
-                    
-                  >
-                    South Park
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1997– </td>
-                <td name="genre_data">Animation, Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Trey Parker, Matt Stone, Isaac Hayes</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.7</td>
-                <td name="votes_data" style="display:none">208,915</td>
-                <td sorttable_customkey="Suits">
-                  <a href="#./series/Suits(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    Suits
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data">Comedy, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Gabriel Macht, Patrick J. Adams, Meghan Markle</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.5</td>
-                <td name="votes_data" style="display:none">86,563</td>
-                <td sorttable_customkey="Planet Earth">
-                  <a href="#./series/Planet Earth(2006).html" onclick="load_details(this)"
-                    
-                  >
-                    Planet Earth
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2006</td>
-                <td name="genre_data">Documentary</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">David Attenborough, Sigourney Weaver, Huw Cordey</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.7</td>
-                <td name="votes_data" style="display:none">77,424</td>
-                <td sorttable_customkey="Spartacus: Gods of the Arena">
-                  <a href="#./series/Spartacus: Gods of the Arena(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    Spartacus: Gods of the Arena
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011</td>
-                <td name="genre_data">Action, Adventure, Biography</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">John Hannah, Manu Bennett, Peter Mensah</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Syriac</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.5</td>
-                <td name="votes_data" style="display:none">5,296</td>
-                <td sorttable_customkey="Baccano!">
-                  <a href="#./series/Baccano!(2007).html" onclick="load_details(this)"
-                    
-                  >
-                    Baccano!
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2007–2008</td>
-                <td name="genre_data">Animation, Action, Adventure</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">J. Michael Tatum, Caitlin Glass, Akemi Kanda</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Japanese</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">7.8</td>
-                <td name="votes_data" style="display:none">124,230</td>
-                <td sorttable_customkey="New Girl">
-                  <a href="#./series/New Girl(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    New Girl
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Zooey Deschanel, Jake Johnson, Max Greenfield</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">136,120</td>
-                <td sorttable_customkey="Futurama">
-                  <a href="#./series/Futurama(1999).html" onclick="load_details(this)"
-                    
-                  >
-                    Futurama
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">1999–2013</td>
-                <td name="genre_data">Animation, Comedy, Sci-Fi</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Billy West, John DiMaggio, Katey Sagal</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">7.3</td>
-                <td name="votes_data" style="display:none">2,157</td>
-                <td sorttable_customkey="Testees">
-                  <a href="#./series/Testees(2008).html" onclick="load_details(this)"
-                    
-                  >
-                    Testees
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2008– </td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jeff Kassel, Steve Markle, Joe Pingue</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.1</td>
-                <td name="votes_data" style="display:none">7,497</td>
-                <td sorttable_customkey="Frozen Planet">
-                  <a href="#./series/Frozen Planet(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    Frozen Planet
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011</td>
-                <td name="genre_data">Documentary</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">David Attenborough, Alec Baldwin, Chadden Hunter</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Russian</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">7.4</td>
-                <td name="votes_data" style="display:none">18,450</td>
-                <td sorttable_customkey="House of Lies">
-                  <a href="#./series/House of Lies(2012).html" onclick="load_details(this)"
-                    
-                  >
-                    House of Lies
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2012– </td>
-                <td name="genre_data">Comedy, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Don Cheadle, Kristen Bell, Ben Schwartz</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">217,330</td>
-                <td sorttable_customkey="Modern Family">
-                  <a href="#./series/Modern Family(2009).html" onclick="load_details(this)"
-                    
-                  >
-                    Modern Family
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2009– </td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Ed O'Neill, Sofía Vergara, Julie Bowen</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.4</td>
-                <td name="votes_data" style="display:none">412,333</td>
-                <td sorttable_customkey="How I Met Your Mother">
-                  <a href="#./series/How I Met Your Mother(2005).html" onclick="load_details(this)"
-                    
-                  >
-                    How I Met Your Mother
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2005–2014</td>
-                <td name="genre_data">Comedy, Romance</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Josh Radnor, Jason Segel, Cobie Smulders</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">68,132</td>
-                <td sorttable_customkey="Top Gear">
-                  <a href="#./series/Top Gear(2002).html" onclick="load_details(this)"
-                    
-                  >
-                    Top Gear
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2002– </td>
-                <td name="genre_data">Comedy, Talk-Show</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Richard Hammond, Jeremy Clarkson, James May</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.5</td>
-                <td name="votes_data" style="display:none">1,805</td>
-                <td sorttable_customkey="Kenny Hotz's Triumph of the Will">
-                  <a href="#./series/Kenny Hotz%27s Triumph of the Will(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    Kenny Hotz's Triumph of the Will
-                  </a>
-                  <!-- ' -->
-                </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data">Comedy, Crime, Reality-TV</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Kenny Hotz, Jeff Kassel, Sebastian Cluer</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">179,353</td>
-                <td sorttable_customkey="The Office">
-                  <a href="#./series/The Office(2005).html" onclick="load_details(this)"
-                    
+                
+                <td data-sort-key="The Office" class="catalog-title-cell vertical-row" data-list-description="A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, tedium and romance.">
+                  <a
+                    href="./series/The%20Office(2005).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="The Office"
+                    tabindex="-1"
+                    data-html="true"
                   >
                     The Office
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2005–2013</td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Rainn Wilson, John Krasinski, Jenna Fischer</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2005-2013
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Comedy
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Rainn Wilson,<br/>John Krasinski,<br/>Jenna Fischer,<br/>Leslie David Baker,<br/>Brian Baumgartner
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Spanish, German, French
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.1</td>
-                <td name="votes_data" style="display:none">7,150</td>
-                <td sorttable_customkey="Ergo Proxy">
-                  <a href="#./series/Ergo Proxy(2006).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Rick%20and%20Morty(2013).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Rick%20and%20Morty%20%282013%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  9.0
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  719,023
+                </td>
+                
+                <td data-sort-key="Rick and Morty" class="catalog-title-cell vertical-row" data-list-description="The fractured domestic lives of a nihilistic mad scientist and his anxious grandson are further complicated by their inter-dimensional misadventures.">
+                  <a
+                    href="./series/Rick%20and%20Morty(2013).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Rick and Morty"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Ergo Proxy
+                    Rick and Morty
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2006– </td>
-                <td name="genre_data">Animation, Adventure, Crime</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Taliesin Jaffe, Kôji Yusa, Akiko Yajima</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2013-
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Animation,<br/>Adventure,<br/>Comedy,<br/>Sci-Fi
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Chris Parnell,<br/>Spencer Grammer,<br/>Sarah Chalke,<br/>Justin Roiland,<br/>Kari Wahlgren
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Dan Harmon,<br>Justin Roiland
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.2</td>
-                <td name="votes_data" style="display:none">34,170</td>
-                <td sorttable_customkey="Workaholics">
-                  <a href="#./series/Workaholics(2011).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Friends(1994).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Friends%20%281994%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.8
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  1,215,620
+                </td>
+                
+                <td data-sort-key="Friends" class="catalog-title-cell vertical-row" data-list-description="The personal and professional lives of six friends living in the Manhattan borough of New York City.">
+                  <a
+                    href="./series/Friends(1994).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Friends"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Workaholics
+                    Friends
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Blake Anderson, Adam DeVine, Anders Holm</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  1994-2004
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Comedy,<br/>Romance
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Jennifer Aniston,<br/>Courteney Cox,<br/>Lisa Kudrow,<br/>Matt LeBlanc,<br/>Matthew Perry
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Spanish, Italian, French, Dutch, Hebrew
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    David Crane,<br>Marta Kauffman
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.4</td>
-                <td name="votes_data" style="display:none">138,383</td>
-                <td sorttable_customkey="Californication">
-                  <a href="#./series/Californication(2007).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/True%20Detective(2014).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/True%20Detective%20%282014%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.8
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  779,620
+                </td>
+                
+                <td data-sort-key="True Detective" class="catalog-title-cell vertical-row" data-list-description="Anthology series in which police investigations unearth the personal and professional secrets of those involved, both within and outside the law.">
+                  <a
+                    href="./series/True%20Detective(2014).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="True Detective"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Californication
+                    True Detective
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2007–2014</td>
-                <td name="genre_data">Comedy, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">David Duchovny, Natascha McElhone, Evan Handler</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">9.3</td>
-                <td name="votes_data" style="display:none">169,299</td>
-                <td sorttable_customkey="The Wire">
-                  <a href="#./series/The Wire(2002).html" onclick="load_details(this)"
-                    
-                  >
-                    The Wire
-                  </a>
-                  <!-- ' -->
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2014-2019
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2002–2008</td>
-                <td name="genre_data">Crime, Drama, Thriller</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Dominic West, Lance Reddick, Sonja Sohn</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Greek, Mandarin, Spanish</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">6.6</td>
-                <td name="votes_data" style="display:none">320</td>
-                <td sorttable_customkey="Penn & Teller Tell a Lie">
-                  <a href="#./series/Penn & Teller Tell a Lie(2011).html" onclick="load_details(this)"
-                    
-                  >
-                    Penn & Teller Tell a Lie
-                  </a>
-                  <!-- ' -->
+                <td name="genre_data" class="vertical-row">
+                  Crime,<br/>Drama,<br/>Mystery,<br/>Thriller
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data"></td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Penn Jillette, Teller, Steve Broxterman</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
-              </tr>
-            
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">8,105</td>
-                <td sorttable_customkey="Monster">
-                  <a href="#./series/Monster(2004).html" onclick="load_details(this)"
-                    
-                  >
-                    Monster
-                  </a>
-                  <!-- ' -->
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Matthew McConaughey,<br/>Colin Farrell,<br/>Mahershala Ali,<br/>Woody Harrelson,<br/>Rachel McAdams
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2004–2010</td>
-                <td name="genre_data">Animation, Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Liam O'Brien, Karen Strassman, Richard Epcar</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Nic Pizzolatto,<br>Issa López
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.8</td>
-                <td name="votes_data" style="display:none">41,471</td>
-                <td sorttable_customkey="Black Mirror">
-                  <a href="#./series/Black Mirror(2011).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Black%20Mirror(2011).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Black%20Mirror%20%282011%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.7
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  754,923
+                </td>
+                
+                <td data-sort-key="Black Mirror" class="catalog-title-cell vertical-row" data-list-description="Featuring stand-alone dramas -- sharp, suspenseful, satirical tales that explore techno-paranoia -- &#34;Black Mirror&#34; is a contemporary reworking of &#34;The Twilight Zone&#34; with stories that tap into the collective unease about the modern world.">
+                  <a
+                    href="./series/Black%20Mirror(2011).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Black Mirror"
+                    tabindex="-1"
+                    data-html="true"
                   >
                     Black Mirror
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2011– </td>
-                <td name="genre_data">Drama, Sci-Fi, Thriller</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Daniel Kaluuya, Toby Kebbell, Rory Kinnear</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2011-2019
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Crime,<br/>Drama,<br/>Mystery,<br/>Sci-Fi,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Anjana Vasan,<br/>Cristin Milioti,<br/>Jesse Plemons,<br/>Aaron Paul,<br/>Jimmi Simpson
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Charlie Brooker
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.5</td>
-                <td name="votes_data" style="display:none">178,347</td>
-                <td sorttable_customkey="Scrubs">
-                  <a href="#./series/Scrubs(2001).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Stranger%20Things(2016).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Stranger%20Things%20%282016%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.6
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  1,756,387
+                </td>
+                
+                <td data-sort-key="Stranger Things" class="catalog-title-cell vertical-row" data-list-description="In 1980s Indiana, a group of young friends witness supernatural forces and secret government exploits. As they search for answers, the children unravel a series of extraordinary mysteries.">
+                  <a
+                    href="./series/Stranger%20Things(2016).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Stranger Things"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Scrubs
+                    Stranger Things
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2001–2010</td>
-                <td name="genre_data">Comedy, Drama</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Zach Braff, Donald Faison, Sarah Chalke</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, German, Spanish, American Sign Language</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2016-2025
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Drama,<br/>Fantasy,<br/>Horror,<br/>Mystery,<br/>Sci-Fi,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Winona Ryder,<br/>David Harbour,<br/>Finn Wolfhard,<br/>Millie Bobby Brown,<br/>Gaten Matarazzo
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Matt Duffer,<br>Ross Duffer
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.1</td>
-                <td name="votes_data" style="display:none">1,179</td>
-                <td sorttable_customkey="Penn & Teller: Fool Us">
-                  <a href="#./series/Penn & Teller: Fool Us(2010).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Dexter(2006).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Dexter%20%282006%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.6
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  965,150
+                </td>
+                
+                <td data-sort-key="Dexter" class="catalog-title-cell vertical-row" data-list-description="He&#39;s smart. He&#39;s lovable. He&#39;s Dexter Morgan, America&#39;s favorite serial killer, who spends his days solving crimes and his nights committing them.">
+                  <a
+                    href="./series/Dexter(2006).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Dexter"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Penn & Teller: Fool Us
+                    Dexter
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2010– </td>
-                <td name="genre_data">Game-Show</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Penn Jillette, Teller, Jonathan Ross</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2006-2013
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Crime,<br/>Drama,<br/>Mystery,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Michael C. Hall,<br/>Jennifer Carpenter,<br/>David Zayas,<br/>James Remar,<br/>C.S. Lee
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Spanish
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    James Manos Jr.
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">7.8</td>
-                <td name="votes_data" style="display:none">4,041</td>
-                <td sorttable_customkey="Ramsay's Kitchen Nightmares">
-                  <a href="#./series/Ramsay%27s Kitchen Nightmares(2004).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/The%20Mandalorian(2019).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Mandalorian%20%282019%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.6
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  670,343
+                </td>
+                
+                <td data-sort-key="The Mandalorian" class="catalog-title-cell vertical-row" data-list-description="The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic.">
+                  <a
+                    href="./series/The%20Mandalorian(2019).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="The Mandalorian"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Ramsay's Kitchen Nightmares
+                    The Mandalorian
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2004–2014</td>
-                <td name="genre_data">Reality-TV</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Gordon Ramsay, Neil Farrell, Daniela Bayfield</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2019-2023
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Action,<br/>Adventure,<br/>Fantasy,<br/>Sci-Fi
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Pedro Pascal,<br/>Chris Bartlett,<br/>Katee Sackhoff,<br/>Carl Weathers,<br/>Emily Swallow
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Jon Favreau
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.9</td>
-                <td name="votes_data" style="display:none">277,533</td>
-                <td sorttable_customkey="House M.D.">
-                  <a href="#./series/House M.D.(2004).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/The%20Boys(2019).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/The%20Boys%20%282019%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.5
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  1,037,017
+                </td>
+                
+                <td data-sort-key="The Boys" class="catalog-title-cell vertical-row" data-list-description="A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers.">
+                  <a
+                    href="./series/The%20Boys(2019).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="The Boys"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    House M.D.
+                    The Boys
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2004–2012</td>
-                <td name="genre_data">Drama, Mystery</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Hugh Laurie, Omar Epps, Robert Sean Leonard</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2019-2026
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Action,<br/>Comedy,<br/>Crime,<br/>Sci-Fi
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Karl Urban,<br/>Jack Quaid,<br/>Antony Starr,<br/>Erin Moriarty,<br/>Jessie T. Usher
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Eric Kripke
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.6</td>
-                <td name="votes_data" style="display:none">6,148</td>
-                <td sorttable_customkey="Mushi-Shi">
-                  <a href="#./series/Mushi-Shi(2005).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/The%20Queens%20Gambit(2020).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/The%20Queens%20Gambit%20%282020%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.5
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  685,283
+                </td>
+                
+                <td data-sort-key="The Queen&#39;s Gambit" class="catalog-title-cell vertical-row" data-list-description="Orphaned at the tender age of nine, prodigious introvert Beth Harmon discovers and masters the game of chess in 1960s USA. But child stardom comes at a price.">
+                  <a
+                    href="./series/The%20Queens%20Gambit(2020).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="The Queens Gambit"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Mushi-Shi
+                    The Queen's Gambit
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2005–2006</td>
-                <td name="genre_data">Animation, Drama, Fantasy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Kôjun Itô, Yûto Nakano, Travis Willingham</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2020-2020
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Drama
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Anya Taylor-Joy,<br/>Chloe Pirrie,<br/>Bill Camp,<br/>Marielle Heller,<br/>Marcin Dorocinski
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, French, Spanish, Russian
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Scott Frank,<br>Allan Scott
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.5</td>
-                <td name="votes_data" style="display:none">345,686</td>
-                <td sorttable_customkey="Lost">
-                  <a href="#./series/Lost(2004).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/The%20Last%20of%20Us(2023).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/The%20Last%20of%20Us%20%282023%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.4
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  756,721
+                </td>
+                
+                <td data-sort-key="The Last of Us" class="catalog-title-cell vertical-row" data-list-description="After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be humanity&#39;s last hope.">
+                  <a
+                    href="./series/The%20Last%20of%20Us(2023).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="The Last of Us"
+                    tabindex="-1"
+                    data-html="true"
+                  >
+                    The Last of Us
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2023-
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Action,<br/>Adventure,<br/>Drama,<br/>Horror,<br/>Sci-Fi,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Bella Ramsey,<br/>Pedro Pascal,<br/>Gabriel Luna,<br/>Isabela Merced,<br/>Young Mazino
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Indonesian
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Neil Druckmann,<br>Craig Mazin
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/How%20I%20Met%20Your%20Mother(2005).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/How%20I%20Met%20Your%20Mother%20%282005%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.3
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  793,544
+                </td>
+                
+                <td data-sort-key="How I Met Your Mother" class="catalog-title-cell vertical-row" data-list-description="A father recounts to his children - through a series of flashbacks - the journey he and his four best friends took leading up to him meeting their mother.">
+                  <a
+                    href="./series/How%20I%20Met%20Your%20Mother(2005).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="How I Met Your Mother"
+                    tabindex="-1"
+                    data-html="true"
+                  >
+                    How I Met Your Mother
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2005-2014
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Comedy,<br/>Drama,<br/>Romance
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Josh Radnor,<br/>Jason Segel,<br/>Cobie Smulders,<br/>Neil Patrick Harris,<br/>Alyson Hannigan
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Persian, Chinese
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Carter Bays,<br>Craig Thomas
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Lost(2004).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Lost%20%282004%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.3
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  686,525
+                </td>
+                
+                <td data-sort-key="Lost" class="catalog-title-cell vertical-row" data-list-description="The survivors of a plane crash are forced to work together in order to survive on a seemingly deserted tropical island.">
+                  <a
+                    href="./series/Lost(2004).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Lost"
+                    tabindex="-1"
+                    data-html="true"
                   >
                     Lost
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2004–2010</td>
-                <td name="genre_data">Adventure, Drama, Fantasy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jorge Garcia, Naveen Andrews, Matthew Fox</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English, Portuguese, Spanish, Arabic, French, Korean, German, Latin, Russian, Japanese</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2004-2010
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Adventure,<br/>Drama,<br/>Fantasy,<br/>Mystery,<br/>Sci-Fi,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Naveen Andrews,<br/>Matthew Fox,<br/>Jorge Garcia,<br/>Josh Holloway,<br/>Daniel Dae Kim
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Portuguese, Spanish, Arabic, French, Korean, German, Latin, Russian, Japanese
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    J.J. Abrams,<br>Jeffrey Lieber,<br>Damon Lindelof
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">7.4</td>
-                <td name="votes_data" style="display:none">4,564</td>
-                <td sorttable_customkey="Gantz">
-                  <a href="#./series/Gantz(2004).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Prison%20Break(2005).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Prison%20Break%20%282005%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.3
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  684,987
+                </td>
+                
+                <td data-sort-key="Prison Break" class="catalog-title-cell vertical-row" data-list-description="A structural engineer installs himself in a prison his company helped design, to save his falsely accused brother from a death sentence by breaking both of them out from the inside.">
+                  <a
+                    href="./series/Prison%20Break(2005).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Prison Break"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Gantz
+                    Prison Break
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2004– </td>
-                <td name="genre_data">Animation, Drama, Fantasy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Mie Sonozaki, Takurou Nakakuni, Hajime Iijima</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese, English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2005-2017
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Action,<br/>Crime,<br/>Drama,<br/>Mystery,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Dominic Purcell,<br/>Wentworth Miller,<br/>Amaury Nolasco,<br/>Robert Knepper,<br/>Sarah Wayne Callies
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English, Spanish, Arabic
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Paul T. Scheuring
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">9.0</td>
-                <td name="votes_data" style="display:none">195,301</td>
-                <td sorttable_customkey="Arrested Development">
-                  <a href="#./series/Arrested Development(2003).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/The%20Walking%20Dead(2010).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/The%20Walking%20Dead%20%282010%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  8.1
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  1,222,849
+                </td>
+                
+                <td data-sort-key="The Walking Dead" class="catalog-title-cell vertical-row" data-list-description="Sheriff Deputy Rick Grimes wakes up from a coma to learn the world is in ruins and must lead a group of survivors to stay alive.">
+                  <a
+                    href="./series/The%20Walking%20Dead(2010).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="The Walking Dead"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Arrested Development
+                    The Walking Dead
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2003– </td>
-                <td name="genre_data">Comedy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Jason Bateman, Michael Cera, Portia de Rossi</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">English</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2010-2022
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Drama,<br/>Horror,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Norman Reedus,<br/>Melissa McBride,<br/>Lauren Cohan,<br/>Danai Gurira,<br/>Christian Serratos
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Frank Darabont
+                  
+                </td>
               </tr>
             
-              <tr>
-                <td name="rating_data" style="text-align:center">8.1</td>
-                <td name="votes_data" style="display:none">6,961</td>
-                <td sorttable_customkey="Darker Than Black">
-                  <a href="#./series/Darker Than Black(2007).html" onclick="load_details(this)"
-                    
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/Squid%20Game(2021).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/Squid%20Game%20%282021%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.9
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  783,839
+                </td>
+                
+                <td data-sort-key="Squid Game" class="catalog-title-cell vertical-row" data-list-description="Hundreds of cash-strapped players accept a strange invitation to compete in children&#39;s games. Inside, a tempting prize awaits with deadly high stakes. A survival game that has a whopping 45.6 billion-won prize at stake.">
+                  <a
+                    href="./series/Squid%20Game(2021).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="Squid Game"
+                    tabindex="-1"
+                    data-html="true"
                   >
-                    Darker Than Black
+                    Squid Game
                   </a>
                   <!-- ' -->
                 </td>
-                <td name="year_data" class="hidden-sm hidden-xs">2007– </td>
-                <td name="genre_data">Animation, Action, Fantasy</td>
-                <td name="stars_data" class="hidden-sm hidden-xs">Hidenobu Kiuchi, Matthew Leonhart, Christopher Sabat</td>
-                <td name="langauges_data" class="hidden-sm hidden-xs" style="display:none">Japanese</td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2021-2025
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Action,<br/>Crime,<br/>Drama,<br/>Mystery,<br/>Thriller
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Lee Jung-jae,<br/>Wi Ha-joon,<br/>Jeon Young-soo,<br/>Halley Kim,<br/>Lee Byung-hun
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    Korean, English, Urdu
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Hwang Dong-hyuk
+                  
+                </td>
+              </tr>
+            
+              <tr class="movie-row">
+                <td name="image_data" class="vertical-row" style="text-align:center;">
+                  <a href="./series/The%20Witcher(2019).html" data-title-details onclick="return open_details(event, this)">
+                    <img class="catalog-list-poster" width="200px" src="images/series/The%20Witcher%20%282019%29.jpg" loading="lazy"><!-- ' -->
+                  </a>
+                </td>
+                <td name="rating_data" class="vertical-row" style="text-align:center">
+                  7.8
+                </td>
+                <td name="vote_data" class="vertical-row" style="display:none">
+                  628,054
+                </td>
+                
+                <td data-sort-key="The Witcher" class="catalog-title-cell vertical-row" data-list-description="Geralt of Rivia, a solitary monster hunter, struggles to find his place in a world where people often prove more wicked than beasts.">
+                  <a
+                    href="./series/The%20Witcher(2019).html"
+                    data-title-details onclick="return open_details(event, this)"
+                    class="tooltip-info"
+                    data-placement="right"
+                    data-toggle="tooltip"
+                    title="The Witcher"
+                    tabindex="-1"
+                    data-html="true"
+                  >
+                    The Witcher
+                  </a>
+                  <!-- ' -->
+                </td>
+                <td name="year_data" class="hidden-sm hidden-xs vertical-row">
+                  2019-
+                </td>
+                <td name="genre_data" class="vertical-row">
+                  Action,<br/>Adventure,<br/>Drama,<br/>Fantasy,<br/>Mystery
+                </td>
+                <td name="stars_data" class="hidden-sm hidden-xs vertical-row">
+                  Freya Allan,<br/>Anya Chalotra,<br/>Eamon Farren,<br/>Henry Cavill,<br/>Mimî M Khayisa
+                </td>
+                <td name="languages_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                    English
+                  
+                </td>
+                <td name="creator_data" class="hidden-sm hidden-xs vertical-row" style="display:none">
+                  
+                  
+                    Lauren Schmidt Hissrich
+                  
+                </td>
               </tr>
             
           </tbody>
         </table>
       </div>
+
+      <section id="tile-view" aria-label="Results by poster" hidden>
+  <ul id="catalog-tiles" class="catalog-tiles"></ul>
+  <div class="catalog-tile-pagination">
+    <div id="tile-scroll-sentinel" aria-hidden="true" hidden></div>
+    <button type="button" class="btn media-action-btn" id="show-more-tiles" onclick="show_more_tiles()" hidden>Show more titles</button>
+    <span id="tile-results-status" class="sr-only" role="status"></span>
+  </div>
+</section>
+
+<template id="catalog-tile-template">
+  <li>
+    <a class="catalog-tile">
+      <span class="catalog-tile-poster">
+        <img alt="" loading="lazy" decoding="async">
+        <span class="catalog-tile-no-poster" aria-hidden="true" hidden>No poster</span>
+      </span>
+      <span class="catalog-tile-caption">
+        
+        <span class="catalog-tile-title"></span>
+        <span class="catalog-tile-meta">
+          <span class="catalog-tile-year"></span>
+          
+          <span class="catalog-tile-rating">
+            <span aria-hidden="true" class="rating-star">★</span>
+            <span class="sr-only">IMDb rating</span>
+            <span class="catalog-tile-score"></span>
+          </span>
+        </span>
+      </span>
+    </a>
+  </li>
+</template>
+
+<template id="catalog-tile-preview-template">
+  <div class="catalog-tile-preview">
+    <div class="catalog-tile-preview-content">
+      <p class="catalog-tile-preview-genres" hidden></p>
+      <p class="catalog-tile-preview-description" hidden></p>
+      <a class="catalog-tile-preview-more">See more <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</template>
     </div>
 
-    <!-- Modal: Asset Content-->
-    <div id="backdrop" style="display:none" onclick="close_details()">
-      <div id="modal-alert" class="centered" tabindex="-1" role="dialog" style="display:none;">
-        <div id="modal-content" class="modal-content">
-        </div>
-      </div>
-    </div>
+    <div id="backdrop" style="display:none" onclick="if (event.target === this) close_details()">
+  <div id="modal-alert" class="centered" role="dialog" aria-modal="true" aria-label="Title details">
+    <button type="button" id="modal-prev-btn" onclick="navigate_modal('prev')" aria-label="Previous title" title="Previous (←)">‹</button>
+    <button type="button" id="modal-next-btn" onclick="navigate_modal('next')" aria-label="Next title" title="Next (→)">›</button>
+    <button type="button" id="modal-close-btn" onclick="close_details()" aria-label="Close details" title="Close (Esc)">×</button>
+  </div>
+</div>
 
   </body>
 </html>

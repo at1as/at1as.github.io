@@ -29,5 +29,9 @@
   {
     "root": "/sites/amtcalculator/",
     "exclude": []
+  },
+  {
+    "root": "/sites/mediadatabase/output/",
+    "exclude": []
   }
 ]
