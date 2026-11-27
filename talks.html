@@ -1,284 +1,90 @@
 ---
 layout: default
-description: "Talks, podcast appearances, papers, and presentations by Jason Willems on AI, software engineering, startups, and technology."
-title: Talks
+title: "Talks & Media"
+description: "Conference talks, events, and coverage of Jason Willems's writing on technology, engineering, and startups."
+stylesheets:
+  - /assets/css/talks.css
 ---
 
-<section class="section">
-  <div class="container">
+<div class="container media-page">
+  <header class="page-intro">
+    <h1>Talks &amp; Media</h1>
+    <p>Conference talks, events I’ve co-hosted, and coverage of my writing.</p>
+  </header>
 
-    <div class="talks-intro">
-      <h1 class="talks-title">Talks & Media</h1>
-      <p class="talks-subtitle">Selected talks, podcast appearances, papers, and presentations</p>
-    </div>
-
-    <div class="talks-list">
-      <!-- Changelog Podcast Feature -->
-      <div class="talk-item">
-        <div class="talk-title-wrapper">
-          <h2 class="talk-title">The Tech Monoculture Is Finally Breaking</h2>
-          <span class="talk-tag">Podcast Feature</span>
-        </div>
-        <div class="talk-event">{% include icon.html name="microphone" %} The Changelog Podcast</div>
-        <div class="talk-date">February 2, 2026</div>
-        <div class="talk-description">
-          <p>
-            The Changelog podcast discussed my article on how the decades-long tech consolidation is finally reversing.
-            In the post I argue that technology went through a long phase dominated by consolidation. My optimistic view is that this era is ending: the tech monoculture is cracking, and experimentation, personality, and fun are creeping back in through new hardware, platforms, and tools. Tech is <i>finally fun again</i>.
-          </p>
-        </div>
-        <div class="talk-links">
-          <a href="https://podcasts.apple.com/us/podcast/the-tech-monoculture-is-finally-breaking-news/id341623264?i=1000747759482" class="talk-link">{% include icon.html name="podcast" %} Podcast Episode</a>
-          <a href="/technology/2025/12/17/Tech-Is-Fun-Again/" class="talk-link">{% include icon.html name="newspaper" %} Article</a>
-        </div>
-      </div>
-
-      <!-- Example talk - replace with your actual talks -->
-      <div class="talk-item">
-        <div class="talk-title-wrapper">
-          <h2 class="talk-title">Future of Enterprise Tech & Startup Showcase</h2>
-          <span class="talk-tag tag-cohost">Co-host</span>
-        </div>
-        <div class="talk-event">{% include icon.html name="map-pin" %} Manhattan, New York</div>
-        <div class="talk-date">April 30, 2025</div>
-        <div class="talk-description">
-          <p>
-            <b>LEAD x AI Circle x Alchemist Accelerator:</b> A look at how companies can apply modern change management strategies and organizational network analysis (ONA)
-            to optimize collaboration, surface hidden insights, and unlock the full value of their internal data—powered by <a href="https://www.lead.app">today's tooling and platforms</a>.
-          </p>
-        </div>
-        <div class="talk-links">
-          <a href="javascript:void(0)" class="talk-link" onclick="openPhotoGallery('future-enterprise-tech-2025')">{% include icon.html name="camera" %} Photos</a>
-          <a href="https://lu.ma/ajn6c01w" class="talk-link">{% include icon.html name="link" %}Event Link</a>
-          <a href="https://www.lead.app" class="talk-link">{% include icon.html name="link" %}Partner</a>
-        </div>
-      </div>
-
-      <!-- Building Secure Search Infrastructure for Fraud and Trust Operations -->
-      <div class="talk-item">
-        <div class="talk-title-wrapper">
-          <h2 class="talk-title">Building Secure Search Infrastructure for Fraud and Trust Operations</h2>
-        </div>
-        <div class="talk-event">{% include icon.html name="map-pin" %} AWS, Seattle</div>
-        <div class="talk-date">February 28, 2024</div>
-        <div class="talk-description">
-          <p>
-            At Twilio, I led the team responsible for an internal OpenSearch-based platform used by trust and safety teams to investigate fraud, spam, account takeover, and terms-of-service violations across customer usage data.
-          </p>
-          <p>
-            I presented the architecture and operational lessons to several hundred participants, including how we handled sensitive data access, SAML authentication, privileged reviewer roles, audit logging, high-cardinality search, ingestion latency, cluster sizing, indexing behavior, monitoring, and predictable traffic spikes.
-            The exact data volumes and internal details are not public, but the talk centered on the practical challenges of building secure, reliable search infrastructure for compliance-sensitive workflows at Twilio scale.
-          </p>
-        </div>
+  <article class="media-feature">
+    <div class="media-feature-copy">
+      <p class="media-meta">
+        <span class="media-source">{% include icon.html name="microphone" %} The Changelog</span>
+        <time datetime="2026-02-02">February 2, 2026</time>
+      </p>
+      <h2>The Tech Monoculture Is Finally Breaking</h2>
+      <p class="media-summary">The Changelog discussed my essay on how decades of tech consolidation are giving way to renewed experimentation with hardware, software, and single-purpose gadgets.</p>
+      <div class="media-links">
+        <a class="media-listen" href="https://podcasts.apple.com/us/podcast/the-tech-monoculture-is-finally-breaking-news/id341623264?i=1000747759482">{% include icon.html name="podcast" %} Listen to the episode</a>
+        <a href="/technology/2025/12/17/Tech-Is-Fun-Again/">Read the essay {% include icon.html name="arrow-right" %}</a>
       </div>
     </div>
-  </div>
-</section>
+    <img class="media-feature-image" src="/assets/images/talks/tech-monoculture.webp" alt="A translucent blue handheld console, digital camera, MP3 player, and wired headphones" width="1280" height="853" fetchpriority="high">
+  </article>
 
-<!-- Photo Gallery Modal -->
-<div id="photoModal" class="photo-modal">
-  <button type="button" class="close-modal" aria-label="Close photo gallery">&times;</button>
-  <div class="modal-content">
-    <img class="modal-image" id="modalImage" alt="Enlarged photo view">
-    <a class="prev-photo">&#10094;</a>
-    <a class="next-photo">&#10095;</a>
-    <div class="photo-counter" id="photoCounter"></div>
-    <div class="photo-caption" id="photoCaption"></div>
-  </div>
+  <section class="media-speaking" aria-labelledby="speaking-heading">
+    <h2 id="speaking-heading">Speaking &amp; events</h2>
+
+    <article class="media-entry media-entry-with-photos" id="future-enterprise-tech-2025">
+      <div class="media-entry-copy">
+        <p class="media-meta">
+          <span class="media-source">Co-host · Manhattan, New York</span>
+          <time datetime="2025-04-30">April 30, 2025</time>
+        </p>
+        <h3>Future of Enterprise Tech &amp; Startup Showcase</h3>
+        <p class="media-summary">I co-hosted this showcase with LEAD, AI Circle, and Alchemist Accelerator. We looked at how companies can use organizational network analysis to find in-house experts, understand how knowledge flows, and manage change.</p>
+        <div class="media-links">
+          <a href="https://lu.ma/ajn6c01w">Event details {% include icon.html name="arrow-right" %}</a>
+          <a href="https://www.lead.app">Explore LEAD {% include icon.html name="arrow-right" %}</a>
+        </div>
+      </div>
+
+      {% assign event_photos = '/assets/images/talks/future-enterprise-tech-2025' %}
+      <div class="media-photos" role="group" aria-label="Event photos">
+        <a href="{{ event_photos }}/sme-network.webp">
+          <img src="{{ event_photos }}/sme-network.webp" alt="Jason presenting a LEAD dashboard for identifying subject matter experts" width="1440" height="864" loading="lazy" decoding="async">
+        </a>
+        <a href="{{ event_photos }}/lead-platform.webp">
+          <img src="{{ event_photos }}/lead-platform.webp" alt="Jason introducing the LEAD platform" width="1124" height="1200" loading="lazy" decoding="async">
+        </a>
+        <a href="{{ event_photos }}/change-management.webp">
+          <img src="{{ event_photos }}/change-management.webp" alt="Jason pointing to a chart during the change management presentation" width="1200" height="938" loading="lazy" decoding="async">
+        </a>
+        <p class="media-photos-caption">{% include icon.html name="camera" %} Photos from the showcase</p>
+      </div>
+    </article>
+
+    <article class="media-entry">
+      <div class="media-entry-copy">
+        <p class="media-meta">
+          <span class="media-source">Talk · AWS, Seattle</span>
+          <time datetime="2024-02-28">February 28, 2024</time>
+        </p>
+        <h3>Building Secure Search Infrastructure for Fraud and Trust Operations</h3>
+        <p class="media-summary">I shared lessons from leading the team behind Twilio’s OpenSearch platform, which trust and safety teams used to investigate fraud, spam, and account takeovers.</p>
+        <p class="media-summary">I covered SAML, reviewer permissions, and audit logging for sensitive data, along with the indexing, ingestion, and cluster sizing choices that kept high-cardinality searches fast during traffic spikes.</p>
+      </div>
+    </article>
+  </section>
 </div>
 
-<script>
-  // Photo Gallery Configuration
-  const galleryConfig = {
-    'future-enterprise-tech-2025': {
-      photos: [
-        {
-          src: '/assets/images/talks/future-enterprise-tech-2025/LEAD.png',
-          caption: 'LEAD platform for organizational network analysis'
-        },
-        {
-          src: '/assets/images/talks/future-enterprise-tech-2025/SMEs.png',
-          caption: 'Subject matter experts and knowledge flow visualization'
-        },
-        {
-          src: '/assets/images/talks/future-enterprise-tech-2025/change_management.png',
-          caption: 'Modern change management approach with data-driven insights'
-        }
-      ]
-    }
-    // Add more galleries for other talks as needed
-  };
-
-  // Current gallery and photo index
-  let currentGallery = '';
-  let currentPhotoIndex = 0;
-  let galleryOpener = null;
-
-  // Get modal elements
-  const modal = document.getElementById('photoModal');
-  const modalImg = document.getElementById('modalImage');
-  const closeBtn = document.getElementsByClassName('close-modal')[0];
-  const prevBtn = document.getElementsByClassName('prev-photo')[0];
-  const nextBtn = document.getElementsByClassName('next-photo')[0];
-  const counter = document.getElementById('photoCounter');
-  const caption = document.getElementById('photoCaption');
-
-  // Open the photo gallery
-  function openPhotoGallery(galleryId) {
-    if (!galleryConfig[galleryId]) return;
-
-    galleryOpener = document.activeElement;
-    currentGallery = galleryId;
-    currentPhotoIndex = 0;
-    showPhoto(currentPhotoIndex);
-    modal.style.display = 'block';
-
-    // Prevent scrolling on the body when modal is open
-    document.body.style.overflow = 'hidden';
-    closeBtn.focus();
-  }
-
-  // Show the current photo
-  function showPhoto(index) {
-    const gallery = galleryConfig[currentGallery];
-    if (!gallery) return;
-
-    const photos = gallery.photos;
-    if (index >= photos.length) index = 0;
-    if (index < 0) index = photos.length - 1;
-
-    currentPhotoIndex = index;
-    modalImg.src = photos[index].src;
-    caption.textContent = photos[index].caption || '';
-    counter.textContent = `${index + 1} / ${photos.length}`;
-  }
-
-  // Close the modal
-  function closePhotoGallery() {
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-    if (galleryOpener) galleryOpener.focus();
-  }
-
-  closeBtn.onclick = closePhotoGallery;
-
-  // Next photo
-  nextBtn.onclick = function() {
-    showPhoto(currentPhotoIndex + 1);
-  }
-
-  // Previous photo
-  prevBtn.onclick = function() {
-    showPhoto(currentPhotoIndex - 1);
-  }
-
-  // Close modal when clicking outside the image
-  window.onclick = function(event) {
-    if (event.target === modal) {
-      closePhotoGallery();
-    }
-  }
-
-  // Keyboard navigation
-  document.addEventListener('keydown', function(event) {
-    if (modal.style.display === 'block') {
-      if (event.key === 'ArrowRight') {
-        showPhoto(currentPhotoIndex + 1);
-      } else if (event.key === 'ArrowLeft') {
-        showPhoto(currentPhotoIndex - 1);
-      } else if (event.key === 'Escape') {
-        closePhotoGallery();
-      }
-    }
-  });
-</script>
-
-<style>
-  .talks-intro {
-    margin-bottom: 40px;
-    font-size: 1.1rem;
-    max-width: 800px;
-  }
-
-  .talk-item {
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .talk-item:last-child {
-    border-bottom: none;
-  }
-
-  .talk-title {
-    font-size: 1.75rem;
-    color: var(--title-color);
-  }
-
-  .talk-event {
-    font-weight: 500;
-    color: var(--text-light);
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-  }
-
-  .talk-event i {
-    color: var(--primary-color);
-    margin-right: 4px;
-  }
-
-  .talk-date {
-    color: var(--text-light);
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-  }
-
-  .talk-description {
-    margin-bottom: 36px;
-  }
-
-  .talk-description p + p {
-    margin-top: 1rem;
-  }
-
-  .talk-links {
-    display: flex;
-    gap: 15px;
-  }
-
-  .talk-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 15px;
-    background-color: var(--background-alt);
-    border-radius: var(--border-radius);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all var(--transition-speed) ease;
-  }
-
-  .talk-link:hover {
-    background-color: var(--primary-color);
-    color: white;
-  }
-
-  .talk-item.upcoming {
-    background-color: var(--background-alt);
-    padding: 25px;
-    border-radius: var(--border-radius);
-    border-bottom: none;
-  }
-
-  .talks-list {
-    margin-top: 0;
-  }
-
-  .talks-subtitle {
-    margin-top: 0;
-  }
-</style>
-
-<script>
-  document.getElementById('talkslink').classList.add('active');
-</script>
+<dialog class="media-gallery" aria-label="Photos from the showcase">
+  <div class="media-gallery-panel">
+    <div class="media-gallery-toolbar">
+      <button class="media-gallery-close" type="button" aria-label="Close photo gallery" autofocus>&times;</button>
+    </div>
+    <img class="media-gallery-image" src="/assets/images/talks/future-enterprise-tech-2025/sme-network.webp" alt="" loading="lazy">
+    <div class="media-gallery-footer">
+      <button class="media-gallery-prev" type="button" aria-label="Previous photo">{% include icon.html name="arrow-left" %}</button>
+      <p class="media-gallery-caption" aria-live="polite"></p>
+      <button class="media-gallery-next" type="button" aria-label="Next photo">{% include icon.html name="arrow-right" %}</button>
+    </div>
+  </div>
+</dialog>
+<script src="/assets/js/talk-gallery.js" type="module"></script>

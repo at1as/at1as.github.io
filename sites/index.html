@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Projects
-description: Tools, visualizations, and small experiments by Jason Willems.
+description: Interactive explainers, visualizations, and tools by Jason Willems.
 permalink: /sites/
 stylesheets:
   - /assets/css/sites.css
@@ -42,7 +42,7 @@ sites:
     preview: mathematics
     action: Explore the frontiers
     featured: true
-  - title: Erdős problems in the AI era
+  - title: Erdős Problems in the AI Era
     url: /sites/erdos/
     description: Track recorded resolutions and formalized proofs over time, alongside AI model releases.
     category: Data visualization
@@ -82,18 +82,14 @@ sites:
 ---
 
 <div class="container site-directory">
-  <header class="site-directory-header">
-    <p class="site-directory-eyebrow">Projects & experiments</p>
-    <h1>A few things I’ve built<span class="site-directory-period">.</span></h1>
-    <p class="site-directory-intro">Tools, visualizations, and small experiments</p>
+  <header class="page-intro">
+    <h1>Projects</h1>
+    <p>Interactive explainers, visualizations, and tools.</p>
   </header>
 
   <section aria-labelledby="featured-title">
     {% assign featured_sites = page.sites | where: 'featured', true %}
-    <div class="site-directory-section-heading">
-      <h2 id="featured-title">Featured projects</h2>
-      <span>{{ featured_sites.size }} projects</span>
-    </div>
+    <h2 id="featured-title" class="visually-hidden">Featured projects</h2>
     <ul class="site-directory-grid">
       {% for project in featured_sites %}
       <li>
@@ -119,8 +115,7 @@ sites:
 
   <section class="site-directory-more" aria-labelledby="more-title">
     <div class="site-directory-section-heading">
-      <h2 id="more-title">More to explore</h2>
-      <span>Tools, guides & side projects</span>
+      <h2 id="more-title">Guides &amp; smaller tools</h2>
     </div>
     <ul class="site-directory-tools">
       {% assign smaller_sites = page.sites | where: 'featured', false %}
