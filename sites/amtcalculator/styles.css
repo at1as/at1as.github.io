@@ -297,6 +297,21 @@ input[type="number"] {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]::placeholder {
+  color: #9aa7b8;
+  font-weight: 400;
+}
+
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -428,8 +443,20 @@ input[type="number"]:focus {
 }
 
 .verdict-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.875rem;
   font-weight: 650;
+}
+
+.verdict-label::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
 }
 
 .verdict-rate {
@@ -495,8 +522,14 @@ input[type="number"]:focus {
 .headroom-top {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 12px;
+}
+
+.headroom-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .headroom-title {
@@ -510,6 +543,22 @@ input[type="number"]:focus {
   font-weight: 650;
   color: var(--accent-dark);
   font-variant-numeric: tabular-nums;
+}
+
+.headroom-fill-btn {
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-subtle);
+  color: var(--accent-dark);
+  font: 600 0.72rem/1.2 inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.headroom-fill-btn:hover {
+  background: var(--accent-tint);
+  border-color: var(--accent);
 }
 
 .headroom-track {
@@ -561,7 +610,28 @@ input[type="number"]:focus {
 }
 
 .comparison-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--muted);
+}
+
+.applies-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--green-bg);
+  color: var(--green);
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.applies-tag--amt {
+  background: var(--amber-bg);
+  color: var(--amber);
 }
 
 .comparison-row strong {
@@ -684,6 +754,10 @@ input[type="number"]:focus {
   font-size: 0.95rem;
   font-weight: 600;
   margin: 0 0 2px;
+}
+
+.continue-reading .continue-sub {
+  margin: 0;
 }
 
 .continue-reading a {

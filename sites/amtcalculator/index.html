@@ -43,7 +43,7 @@
         <h1 id="page_title">AMT Calculator</h1>
         <span id="year_badge" class="year-badge">Tax Year 2026</span>
       </div>
-      <p class="subtitle">Estimate federal Alternative Minimum Tax and your AMT-free ISO exercise headroom before you exercise.</p>
+      <p class="subtitle">Estimate federal Alternative Minimum Tax and your AMT-free ISO exercise headroom</p>
       <p id="law_callout" class="law-callout" hidden></p>
     </header>
 
@@ -63,8 +63,8 @@
             <div class="field">
               <label for="inputYear">Tax year</label>
               <select id="inputYear">
-                <option value="2027">2027</option>
-                <option value="2026" selected>2026</option>
+                <option value="2027">2027 (Rev. Proc. 2026-35)</option>
+                <option value="2026" selected>2026 (Current)</option>
                 <option value="2025">2025</option>
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
@@ -94,18 +94,18 @@
               <label for="inputIncome">Salary &amp; taxable benefits</label>
               <div class="currency-input">
                 <span class="currency-prefix" aria-hidden="true">$</span>
-                <input type="number" min="0" step="100" id="inputIncome" value="0" inputmode="decimal">
+                <input type="number" min="0" step="any" id="inputIncome" placeholder="0" inputmode="decimal">
               </div>
-              <p class="field-hint">Base salary, bonus, and taxable benefits. Exclude RSUs and ISOs entered separately.</p>
+              <p class="field-hint">Base salary, bonus, and taxable benefits — exclude RSUs and ISOs entered separately</p>
             </div>
 
             <div class="field">
               <label for="rsuIncome">RSU income vested</label>
               <div class="currency-input">
                 <span class="currency-prefix" aria-hidden="true">$</span>
-                <input type="number" min="0" step="100" id="rsuIncome" value="0" inputmode="decimal">
+                <input type="number" min="0" step="any" id="rsuIncome" placeholder="0" inputmode="decimal">
               </div>
-              <p class="field-hint">Total market value of RSUs vesting during the year (shares × price on each vest date).</p>
+              <p class="field-hint">Total market value of RSUs vesting during the year (shares × vest-date price)</p>
             </div>
           </div>
 
@@ -113,7 +113,7 @@
             <label for="isoGains">ISO bargain element (spread)</label>
             <div class="currency-input">
               <span class="currency-prefix" aria-hidden="true">$</span>
-              <input type="number" min="0" step="100" id="isoGains" value="0" inputmode="decimal">
+              <input type="number" min="0" step="any" id="isoGains" placeholder="0" inputmode="decimal">
             </div>
             <p class="field-hint">Shares exercised and held past Dec 31 × (FMV/409A − strike price). Same-year disqualifying sales are taxed as ordinary income instead.</p>
 
@@ -132,7 +132,7 @@
                   <label for="isoFmv">FMV / 409A ($)</label>
                   <input type="number" min="0" step="0.01" id="isoFmv" placeholder="24.50" inputmode="decimal">
                 </div>
-                <p class="iso-helper-note">Automatically updates the ISO bargain element field above.</p>
+                <p class="iso-helper-note">Automatically updates the ISO bargain element above</p>
               </div>
             </details>
           </div>
@@ -141,7 +141,7 @@
             <label for="pensionContributions">Pre-tax 401(k) contributions</label>
             <div class="currency-input">
               <span class="currency-prefix" aria-hidden="true">$</span>
-              <input type="number" min="0" step="100" id="pensionContributions" value="0" inputmode="decimal">
+              <input type="number" min="0" step="any" id="pensionContributions" placeholder="0" inputmode="decimal">
             </div>
             <p id="pension_limit_hint" class="field-hint"></p>
           </div>
@@ -175,7 +175,10 @@
         <div class="headroom-box">
           <div class="headroom-top">
             <span class="headroom-title">AMT-free ISO headroom</span>
-            <span id="iso_headroom_total" class="headroom-value">$0</span>
+            <div class="headroom-right">
+              <span id="iso_headroom_total" class="headroom-value">$0</span>
+              <button type="button" id="fill_headroom" class="headroom-fill-btn" title="Set ISO bargain element to the maximum AMT-free amount">Fill max</button>
+            </div>
           </div>
           <div class="headroom-track" aria-hidden="true">
             <div id="headroom_fill" class="headroom-fill" data-over="false"></div>
@@ -186,14 +189,14 @@
         <div class="comparison-list">
           <div class="comparison-item">
             <div class="comparison-row">
-              <span>Regular federal income tax (Form 1040)</span>
+              <span>Regular tax (Form 1040) <em id="regular_applies_tag" class="applies-tag" hidden>Applies</em></span>
               <strong id="tax_bill">$0.00</strong>
             </div>
             <div class="bar-track" aria-hidden="true"><div id="regular_bar" class="bar-fill regular"></div></div>
           </div>
           <div class="comparison-item">
             <div class="comparison-row">
-              <span>Tentative minimum tax (Form 6251)</span>
+              <span>Tentative minimum tax (Form 6251) <em id="amt_applies_tag" class="applies-tag applies-tag--amt" hidden>Applies</em></span>
               <strong id="amt_bill">$0.00</strong>
             </div>
             <div class="bar-track" aria-hidden="true"><div id="amt_bar" class="bar-fill amt"></div></div>
@@ -228,11 +231,11 @@
 
     <footer class="page-footer">
       <p><strong>Planning estimate, not tax advice.</strong> Uses the standard deduction and the ordinary + ISO income entered above. Does not model itemized deductions (such as SALT), preferential capital-gains rates, tax credits, payroll taxes, state AMT (e.g., California), or prior-year AMT credit carryforwards (Form 8801). Consult a CPA before making large exercise decisions.</p>
-      <p>Parameters sourced from IRS Revenue Procedures 2018-18 through 2026-35 and P.L. 119-21 (2026+ 50% AMT exemption phaseout). <a href="https://github.com/at1as/at1as.github.io/tree/master/sites/amtcalculator">Source code ↗</a></p>
+      <p>Parameters sourced from IRS Revenue Procedures 2018-18 through 2026-35 and P.L. 119-21 (2026+ 50% AMT exemption phaseout) · <a href="https://github.com/at1as/at1as.github.io/tree/master/sites/amtcalculator">Source code ↗</a></p>
       <div class="continue-reading">
         <div>
           <p class="continue-title">More from Jason Willems</p>
-          <p style="margin:0">Interactive explainers, visualizations, and writing on tech &amp; AI</p>
+          <p class="continue-sub">Interactive explainers, visualizations, and writing on tech &amp; AI</p>
         </div>
         <a href="../">Back to Projects <span aria-hidden="true">→</span></a>
       </div>

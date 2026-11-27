@@ -906,105 +906,6 @@ img {
   margin: 0 auto;
 }
 
-/* Featured Section */
-.featured-section {
-  padding: 40px 0 60px;
-  background-color: var(--background-color);
-}
-
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.featured-card {
-  display: block;
-  padding: 40px 30px;
-  background-color: var(--background-alt);
-  border-radius: var(--border-radius);
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-  border: 1px solid transparent;
-  text-decoration: none;
-}
-
-.featured-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-  border-color: rgba(11, 158, 220, 0.2);
-  background-color: #fbfdff;
-}
-
-.featured-icon {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  line-height: 1;
-}
-
-.featured-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--text-color);
-  margin-bottom: 10px;
-}
-
-.featured-text {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  line-height: 1.5;
-}
-
-.featured-media {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  overflow: hidden;
-  padding: 0;
-  border-color: var(--border-color);
-  text-align: left;
-}
-
-.featured-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 2 / 1;
-  object-fit: cover;
-  object-position: center 24%;
-}
-
-.featured-media-copy {
-  padding: clamp(1.25rem, 4vw, 2.5rem);
-}
-
-.featured-media .featured-title {
-  margin-bottom: 0.45rem;
-  font-size: clamp(1.45rem, 3vw, 1.8rem);
-  letter-spacing: -0.025em;
-}
-
-.featured-media .icon {
-  margin-left: 0.2em;
-  color: var(--primary-dark);
-  font-size: 0.7em;
-}
-
-.featured-media:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 3px;
-}
-
-@media (max-width: 570px) {
-  .featured-grid,
-  .featured-media {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Contact Page */
 .contact-page {
   padding-bottom: clamp(1rem, 4vw, 3rem);
@@ -1017,7 +918,7 @@ img {
   margin-top: 1.25rem;
   padding: 11px 18px;
   background-color: var(--background-color);
-  border: 1px solid var(--border-color);
+  border: 1px solid #cfd9e4;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
 }
@@ -1048,8 +949,8 @@ img {
 
 .contact-area {
   padding: 28px;
-  background-color: var(--background-alt);
-  border: 1px solid var(--border-color);
+  background-color: #f3f6f9;
+  border: 1px solid #d3dce6;
   border-radius: 12px;
   text-align: left;
 }

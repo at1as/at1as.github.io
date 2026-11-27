@@ -553,7 +553,7 @@ function updateHelperHints() {
   const jointLimit = limit * 2;
   const k401Hint = document.getElementById("pension_limit_hint");
   if (k401Hint) {
-    k401Hint.textContent = `${year} base elective deferral limit: ${asCurrency(limit, { whole: true })} individual (${asCurrency(jointLimit, { whole: true })} MFJ dual earners, excluding catch-ups). Leave $0 if Salary is already W-2 Box 1.`;
+    k401Hint.textContent = `${year} base limit: ${asCurrency(limit, { whole: true })} individual (${asCurrency(jointLimit, { whole: true })} MFJ dual earners, before catch-ups). Leave blank if Salary is already W-2 Box 1.`;
   }
 
   const lawCallout = document.getElementById("law_callout");
@@ -564,7 +564,7 @@ function updateHelperHints() {
         : details.amt.phaseout_threshold;
       const ex = details.amt.exemptions[status];
       lawCallout.hidden = false;
-      lawCallout.textContent = `${year} rules (P.L. 119-21): AMT exemption (${asCurrency(ex, { whole: true })}) phases out at 50% above ${asCurrency(thresh, { whole: true })} AMTI—creating up to a 42% effective marginal rate on ISO exercises inside the phaseout zone.`;
+      lawCallout.textContent = `${year} rules (P.L. 119-21): AMT exemption (${asCurrency(ex, { whole: true })}) phases out at 50% above ${asCurrency(thresh, { whole: true })} AMTI — up to a 42% effective marginal rate on ISO spreads inside the phaseout zone`;
     } else {
       lawCallout.hidden = true;
     }
@@ -596,6 +596,13 @@ function calculateTaxes() {
   document.getElementById("regular_bar").style.width = `${Math.min(100, (s.regular_tax / maxTax) * 100)}%`;
   document.getElementById("amt_bar").style.width = `${Math.min(100, (s.tentative_minimum_tax / maxTax) * 100)}%`;
 
+  const regTag = document.getElementById("regular_applies_tag");
+  const amtTag = document.getElementById("amt_applies_tag");
+  if (regTag && amtTag) {
+    regTag.hidden = s.total_federal_tax <= 0 || s.is_amt_due;
+    amtTag.hidden = !s.is_amt_due;
+  }
+
   const banner = document.getElementById("verdict_banner");
   const verdict = document.getElementById("type_of_tax_owed");
   const marginalBadge = document.getElementById("marginal_iso_badge");
@@ -612,6 +619,11 @@ function calculateTaxes() {
   document.getElementById("iso_headroom_total").textContent = asCurrency(s.iso_headroom, { whole: true });
   const headroomFill = document.getElementById("headroom_fill");
   const headroomCopy = document.getElementById("headroom_copy");
+  const fillBtn = document.getElementById("fill_headroom");
+  if (fillBtn) {
+    fillBtn.dataset.headroom = String(Math.floor(s.iso_headroom));
+    fillBtn.hidden = s.iso_headroom <= 0;
+  }
   const usagePct = s.iso_headroom > 0
     ? Math.min(100, (iso_gains / s.iso_headroom) * 100)
     : (iso_gains > 0 ? 100 : 0);
@@ -619,11 +631,13 @@ function calculateTaxes() {
   headroomFill.dataset.over = String(s.is_amt_due);
 
   if (s.is_amt_due) {
-    headroomCopy.textContent = `Your ${asCurrency(iso_gains, { whole: true })} ISO spread is ${asCurrency(s.iso_over_headroom, { whole: true })} over the AMT-free threshold of ${asCurrency(s.iso_headroom, { whole: true })}.`;
+    headroomCopy.textContent = `Your ${asCurrency(iso_gains, { whole: true })} ISO spread is ${asCurrency(s.iso_over_headroom, { whole: true })} over the ${asCurrency(s.iso_headroom, { whole: true })} AMT-free threshold`;
   } else if (iso_gains > 0) {
-    headroomCopy.textContent = `Using ${Math.round(usagePct)}% of your AMT-free headroom—${asCurrency(s.iso_headroom_remaining, { whole: true })} of additional ISO spread remaining before AMT kicks in.`;
+    headroomCopy.textContent = `Using ${Math.round(usagePct)}% of your AMT-free headroom — ${asCurrency(s.iso_headroom_remaining, { whole: true })} remaining before AMT kicks in`;
+  } else if (income + rsu_income === 0) {
+    headroomCopy.textContent = `Enter your income or click “Load example” to calculate your AMT-free ISO headroom`;
   } else {
-    headroomCopy.textContent = `With your current income, you can exercise up to ${asCurrency(s.iso_headroom, { whole: true })} of ISO bargain element before triggering AMT.`;
+    headroomCopy.textContent = `You can exercise up to ${asCurrency(s.iso_headroom, { whole: true })} of ISO bargain element before triggering AMT`;
   }
 
   // Form 1040 & Form 6251 breakdown rows
@@ -721,9 +735,21 @@ if (typeof document !== "undefined") {
     resetBtn.addEventListener("click", () => {
       for (const id of ["inputIncome", "rsuIncome", "isoGains", "pensionContributions", "isoShares", "isoStrike", "isoFmv"]) {
         const el = document.getElementById(id);
-        if (el) el.value = id.startsWith("iso") && id !== "isoGains" ? "" : "0";
+        if (el) el.value = "";
       }
       calculateTaxes();
+    });
+  }
+
+  const fillHeadroomBtn = document.getElementById("fill_headroom");
+  if (fillHeadroomBtn) {
+    fillHeadroomBtn.addEventListener("click", () => {
+      const val = fillHeadroomBtn.dataset.headroom;
+      const isoInput = document.getElementById("isoGains");
+      if (isoInput && val) {
+        isoInput.value = val;
+        calculateTaxes();
+      }
     });
   }
 
