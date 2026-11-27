@@ -25,5 +25,9 @@
   {
     "root": "/sites/fusion/",
     "exclude": []
+  },
+  {
+    "root": "/sites/amtcalculator/",
+    "exclude": []
   }
 ]
