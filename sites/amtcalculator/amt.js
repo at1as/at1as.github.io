@@ -1,18 +1,18 @@
 // Federal income-tax and individual AMT amounts published by the IRS for
-// tax years 2018–2026. Sources: Revenue Procedures 2018-18/2018-22,
-// 2018-57, 2019-44, 2020-45, 2021-45, 2022-38, 2023-34, 2024-40, and 2025-32.
+// tax years 2018–2027. Sources: Revenue Procedures 2018-18/2018-22,
+// 2018-57, 2019-44, 2020-45, 2021-45, 2022-38, 2023-34, 2024-40, 2025-32,
+// 2026-35, and P.L. 119-21 (Sec. 70107 for 2026+ AMT phaseout rules).
 //
-// This calculator deliberately remains a planning estimate. It applies the
-// standard deduction and the income types collected by the form; it is not a
-// replacement for Form 1040 and Form 6251.
+// This calculator is a planning estimate using the standard deduction and the
+// income types entered; it does not replace Form 1040 or Form 6251.
 
 const STANDARD_TAX_RATES = [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37];
 const AMT_LOW_RATE = 0.26;
 const AMT_HIGH_RATE = 0.28;
-const AMT_MFS_ADDITIONAL_INCOME_RATE = 0.25;
 
 const TAX_YEAR_DATA = {
   2018: {
+    elective_deferral_limit: 18500,
     standard_deductions: {
       single: 12000,
       married_joint: 24000,
@@ -40,6 +40,7 @@ const TAX_YEAR_DATA = {
     }
   },
   2019: {
+    elective_deferral_limit: 19000,
     standard_deductions: {
       single: 12200,
       married_joint: 24400,
@@ -67,6 +68,7 @@ const TAX_YEAR_DATA = {
     }
   },
   2020: {
+    elective_deferral_limit: 19500,
     standard_deductions: {
       single: 12400,
       married_joint: 24800,
@@ -94,6 +96,7 @@ const TAX_YEAR_DATA = {
     }
   },
   2021: {
+    elective_deferral_limit: 19500,
     standard_deductions: {
       single: 12550,
       married_joint: 25100,
@@ -121,6 +124,7 @@ const TAX_YEAR_DATA = {
     }
   },
   2022: {
+    elective_deferral_limit: 20500,
     standard_deductions: {
       single: 12950,
       married_joint: 25900,
@@ -148,6 +152,7 @@ const TAX_YEAR_DATA = {
     }
   },
   2023: {
+    elective_deferral_limit: 22500,
     standard_deductions: {
       single: 13850,
       married_joint: 27700,
@@ -175,6 +180,7 @@ const TAX_YEAR_DATA = {
     }
   },
   2024: {
+    elective_deferral_limit: 23000,
     standard_deductions: {
       single: 14600,
       married_joint: 29200,
@@ -202,6 +208,7 @@ const TAX_YEAR_DATA = {
     }
   },
   2025: {
+    elective_deferral_limit: 23500,
     standard_deductions: {
       // Updated by P.L. 119-21 and Rev. Proc. 2025-32.
       single: 15750,
@@ -230,6 +237,7 @@ const TAX_YEAR_DATA = {
     }
   },
   2026: {
+    elective_deferral_limit: 24500,
     standard_deductions: {
       single: 16100,
       married_joint: 32200,
@@ -255,13 +263,42 @@ const TAX_YEAR_DATA = {
       married_joint_phaseout_threshold: 1000000,
       phaseout_rate: 0.50
     }
+  },
+  2027: {
+    elective_deferral_limit: 25500,
+    // Official inflation adjustments published in Rev. Proc. 2026-35.
+    standard_deductions: {
+      single: 16600,
+      married_joint: 33200,
+      married_separate: 16600,
+      head_of_household: 24925
+    },
+    tax_bracket_limits: {
+      single: [12800, 52025, 109125, 208325, 264550, 661375],
+      married_joint: [25600, 104050, 218250, 416650, 529100, 793650],
+      married_separate: [12800, 52025, 109125, 208325, 264550, 396825],
+      head_of_household: [18250, 69650, 109100, 208300, 264550, 661375]
+    },
+    amt: {
+      exemptions: {
+        single: 93000,
+        married_joint: 144700,
+        married_separate: 72350,
+        head_of_household: 93000
+      },
+      bracket_threshold: 252500,
+      married_separate_bracket_threshold: 126250,
+      phaseout_threshold: 515950,
+      married_joint_phaseout_threshold: 1031900,
+      phaseout_rate: 0.50
+    }
   }
 };
 
 const SUPPORTED_TAX_YEARS = Object.keys(TAX_YEAR_DATA)
   .map(year => Number(year))
   .sort((a, b) => a - b);
-const DEFAULT_TAX_YEAR = SUPPORTED_TAX_YEARS[SUPPORTED_TAX_YEARS.length - 1];
+const DEFAULT_TAX_YEAR = 2026;
 const FILING_STATUSES = ["single", "married_joint", "married_separate", "head_of_household"];
 
 function taxYear() {
@@ -272,11 +309,9 @@ function taxYear() {
 
 function taxYearData(year) {
   const selected_year = Number(year === undefined ? taxYear() : year);
-
   if (!TAX_YEAR_DATA[selected_year]) {
     throw new RangeError(`Unsupported tax year: ${year}`);
   }
-
   return TAX_YEAR_DATA[selected_year];
 }
 
@@ -288,7 +323,7 @@ function validateFilingStatus(filing_status) {
 
 function amount(value) {
   const parsed_value = Number(value);
-  return Number.isFinite(parsed_value) ? parsed_value : 0;
+  return Number.isFinite(parsed_value) && parsed_value > 0 ? parsed_value : 0;
 }
 
 function amtTaxDetails(filing_status, year) {
@@ -320,6 +355,7 @@ function standardTaxDetails(filing_status, year) {
 
   return {
     tax_year: selected_year,
+    elective_deferral_limit: details.elective_deferral_limit,
     standard_deduction: details.standard_deductions[filing_status],
     tax_brackets: bracket_limits.map((limit, index) => {
       const bracket = [previous_limit, limit, STANDARD_TAX_RATES[index]];
@@ -329,50 +365,83 @@ function standardTaxDetails(filing_status, year) {
   };
 }
 
-function asCurrency(value) {
+function asCurrency(value, { whole = false } = {}) {
+  const n = Number.isFinite(Number(value)) ? Number(value) : 0;
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }).format(amount(value));
+    minimumFractionDigits: whole ? 0 : 2,
+    maximumFractionDigits: whole ? 0 : 2
+  }).format(n);
 }
 
 function reducedAMTExemptionAmount(exemption) {
   return Math.max(0, exemption);
 }
 
-// Returns tentative minimum tax, the Form 6251 amount compared with regular tax.
-// The additional AMT owed is max(0, tentative minimum tax - regular tax).
-function calculateAMT(income, iso_gains, rsu_income, pension, filing_status, year) {
+function calculateAMTBreakdown(income, iso_gains, rsu_income, pension, filing_status, year) {
   const amt_details = amtTaxDetails(filing_status, year);
-  const exemption_amount = amt_details.amt_exemption_amount;
+  const base_exemption = amt_details.amt_exemption_amount;
   const phase_out_income = amt_details.amt_phase_out_income;
   const phase_out_percent = amt_details.amt_phase_out_percent;
-  let adjusted_income = Math.max(
+
+  const amti_before_mfs_addback = Math.max(
     0,
     amount(income) + amount(rsu_income) + amount(iso_gains) - amount(pension)
   );
 
-  // Form 6251 requires an additional AMTI amount for very-high-income taxpayers
-  // who are married filing separately. It starts once their exemption is gone.
+  // Form 6251 Line 4 adds back an extra AMTI amount for high-income MFS filers
+  // once their exemption is fully phased out, using the year's statutory
+  // phaseout rate (25% in 2018–2025; 50% in 2026+ under P.L. 119-21).
+  let mfs_addback = 0;
   if (filing_status === "married_separate") {
-    const complete_phaseout_income = phase_out_income + (exemption_amount / phase_out_percent);
-    const income_above_complete_phaseout = Math.max(0, adjusted_income - complete_phaseout_income);
-    adjusted_income += Math.min(
-      exemption_amount,
-      income_above_complete_phaseout * AMT_MFS_ADDITIONAL_INCOME_RATE
+    const complete_phaseout_income = phase_out_income + (base_exemption / phase_out_percent);
+    const income_above_complete_phaseout = Math.max(0, amti_before_mfs_addback - complete_phaseout_income);
+    mfs_addback = Math.min(
+      base_exemption,
+      income_above_complete_phaseout * phase_out_percent
     );
   }
 
-  const exemption_reduction = Math.max(0, adjusted_income - phase_out_income) * phase_out_percent;
-  const reduced_exemption = reducedAMTExemptionAmount(exemption_amount - exemption_reduction);
-  const taxable_excess = Math.max(0, adjusted_income - reduced_exemption);
+  const amti = amti_before_mfs_addback + mfs_addback;
+  const exemption_reduction = Math.min(
+    base_exemption,
+    Math.max(0, amti - phase_out_income) * phase_out_percent
+  );
+  const exemption = reducedAMTExemptionAmount(base_exemption - exemption_reduction);
+  const taxable_excess = Math.max(0, amti - exemption);
   const lower_rate_income = Math.min(taxable_excess, amt_details.amt_bracket_crossover);
   const higher_rate_income = Math.max(0, taxable_excess - amt_details.amt_bracket_crossover);
-
-  return (lower_rate_income * amt_details.amt_low_rate) +
+  const tentative_minimum_tax = (lower_rate_income * amt_details.amt_low_rate) +
     (higher_rate_income * amt_details.amt_high_rate);
+
+  const in_phaseout = amti > phase_out_income && exemption > 0;
+  const in_mfs_addback = mfs_addback > 0 && mfs_addback < base_exemption;
+
+  return {
+    amti_before_mfs_addback,
+    mfs_addback,
+    amti,
+    base_exemption,
+    phase_out_income,
+    phase_out_percent,
+    exemption_reduction,
+    exemption,
+    taxable_excess,
+    bracket_crossover: amt_details.amt_bracket_crossover,
+    lower_rate_income,
+    higher_rate_income,
+    tentative_minimum_tax,
+    in_phaseout,
+    in_mfs_addback
+  };
+}
+
+// Returns tentative minimum tax, the Form 6251 amount compared with regular tax.
+// The additional AMT owed is max(0, tentative minimum tax - regular tax).
+function calculateAMT(income, iso_gains, rsu_income, pension, filing_status, year) {
+  return calculateAMTBreakdown(income, iso_gains, rsu_income, pension, filing_status, year)
+    .tentative_minimum_tax;
 }
 
 function calculateIncomeTax(income, iso_gains, rsu_income, pension, filing_status, year) {
@@ -384,7 +453,6 @@ function calculateIncomeTax(income, iso_gains, rsu_income, pension, filing_statu
 
   // ISO bargain-element income is excluded from regular income tax in this
   // simplified model and included in the AMT calculation above.
-
   return standard_tax_details.tax_brackets.reduce((tax, bracket) => {
     const lower_limit = bracket[0];
     const upper_limit = bracket[1];
@@ -394,32 +462,113 @@ function calculateIncomeTax(income, iso_gains, rsu_income, pension, filing_statu
   }, 0);
 }
 
+// Maximum ISO bargain element realizable without triggering additional AMT.
+function calculateISOHeadroom(income, rsu_income, pension, filing_status, year) {
+  const regular_tax = calculateIncomeTax(income, 0, rsu_income, pension, filing_status, year);
+  const tmt_at_zero = calculateAMT(income, 0, rsu_income, pension, filing_status, year);
+  if (tmt_at_zero > regular_tax + 1e-9) {
+    return 0;
+  }
+
+  let lo = 0;
+  let hi = 100000;
+  while (calculateAMT(income, hi, rsu_income, pension, filing_status, year) <= regular_tax + 1e-9) {
+    lo = hi;
+    hi *= 2;
+    if (hi > 1e11) break;
+  }
+
+  for (let i = 0; i < 60; i += 1) {
+    const mid = (lo + hi) / 2;
+    if (calculateAMT(income, mid, rsu_income, pension, filing_status, year) <= regular_tax + 1e-9) {
+      lo = mid;
+    } else {
+      hi = mid;
+    }
+  }
+  return Math.floor(lo * 100) / 100;
+}
+
 function calculateTaxSummary(income, iso_gains, rsu_income, pension, filing_status, year) {
-  const regular_tax = calculateIncomeTax(
-    income,
-    iso_gains,
-    rsu_income,
-    pension,
-    filing_status,
-    year
-  );
-  const tentative_minimum_tax = calculateAMT(
-    income,
-    iso_gains,
-    rsu_income,
-    pension,
-    filing_status,
-    year
-  );
+  const inc = amount(income);
+  const iso = amount(iso_gains);
+  const rsu = amount(rsu_income);
+  const pen = amount(pension);
+  const standard_details = standardTaxDetails(filing_status, year);
+  const ordinary_adjusted = Math.max(0, inc + rsu - pen);
+  const regular_taxable_income = Math.max(0, ordinary_adjusted - standard_details.standard_deduction);
+  const regular_tax = calculateIncomeTax(inc, iso, rsu, pen, filing_status, year);
+  const amt_breakdown = calculateAMTBreakdown(inc, iso, rsu, pen, filing_status, year);
+  const tentative_minimum_tax = amt_breakdown.tentative_minimum_tax;
   const additional_amt = Math.max(0, tentative_minimum_tax - regular_tax);
+  const total_federal_tax = regular_tax + additional_amt;
+  const total_economic_income = Math.max(0, inc + rsu + iso - pen);
+  const effective_tax_rate = total_economic_income > 0 ? total_federal_tax / total_economic_income : 0;
+
+  const iso_headroom = calculateISOHeadroom(inc, rsu, pen, filing_status, year);
+  const iso_headroom_remaining = Math.max(0, iso_headroom - iso);
+  const iso_over_headroom = Math.max(0, iso - iso_headroom);
+
+  const tmt_plus_one = calculateAMT(inc, iso + 1, rsu, pen, filing_status, year);
+  const total_plus_one = Math.max(regular_tax, tmt_plus_one);
+  const next_iso_dollar_rate = Math.max(0, total_plus_one - total_federal_tax);
+
+  let regular_marginal_rate = 0;
+  if (regular_taxable_income > 0) {
+    const bracket = standard_details.tax_brackets.find(
+      ([low, high]) => regular_taxable_income > low && regular_taxable_income <= high
+    );
+    regular_marginal_rate = bracket ? bracket[2] : STANDARD_TAX_RATES[STANDARD_TAX_RATES.length - 1];
+  }
 
   return {
+    tax_year: standard_details.tax_year,
+    standard_deduction: standard_details.standard_deduction,
+    elective_deferral_limit: standard_details.elective_deferral_limit,
+    regular_taxable_income,
+    regular_marginal_rate,
     regular_tax,
     tentative_minimum_tax,
     additional_amt,
-    total_federal_tax: regular_tax + additional_amt,
-    is_amt_due: additional_amt > 0
+    total_federal_tax,
+    effective_tax_rate,
+    is_amt_due: additional_amt > 0,
+    iso_headroom,
+    iso_headroom_remaining,
+    iso_over_headroom,
+    next_iso_dollar_rate,
+    amt_breakdown
   };
+}
+
+function asPercent(rate) {
+  return `${(rate * 100).toFixed(1)}%`;
+}
+
+function updateHelperHints() {
+  const year = taxYear();
+  const status = document.getElementById("inputFilingStatus").value;
+  const details = taxYearData(year);
+  const limit = details.elective_deferral_limit;
+  const jointLimit = limit * 2;
+  const k401Hint = document.getElementById("pension_limit_hint");
+  if (k401Hint) {
+    k401Hint.textContent = `${year} base elective deferral limit: ${asCurrency(limit, { whole: true })} individual (${asCurrency(jointLimit, { whole: true })} MFJ dual earners, excluding catch-ups). Leave $0 if Salary is already W-2 Box 1.`;
+  }
+
+  const lawCallout = document.getElementById("law_callout");
+  if (lawCallout) {
+    if (year >= 2026) {
+      const thresh = status === "married_joint"
+        ? details.amt.married_joint_phaseout_threshold
+        : details.amt.phaseout_threshold;
+      const ex = details.amt.exemptions[status];
+      lawCallout.hidden = false;
+      lawCallout.textContent = `${year} rules (P.L. 119-21): AMT exemption (${asCurrency(ex, { whole: true })}) phases out at 50% above ${asCurrency(thresh, { whole: true })} AMTI—creating up to a 42% effective marginal rate on ISO exercises inside the phaseout zone.`;
+    } else {
+      lawCallout.hidden = true;
+    }
+  }
 }
 
 function calculateTaxes() {
@@ -429,36 +578,98 @@ function calculateTaxes() {
   const iso_gains = amount(document.getElementById("isoGains").value);
   const pension_contrib = amount(document.getElementById("pensionContributions").value);
   const year = taxYear();
-  const summary = calculateTaxSummary(
-    income,
-    iso_gains,
-    rsu_income,
-    pension_contrib,
-    filing_status,
-    year
-  );
+  const s = calculateTaxSummary(income, iso_gains, rsu_income, pension_contrib, filing_status, year);
+  const b = s.amt_breakdown;
 
-  document.getElementById("tax_bill").textContent = asCurrency(summary.regular_tax);
-  document.getElementById("amt_bill").textContent = asCurrency(summary.tentative_minimum_tax);
-  document.getElementById("tax_amt_delta").textContent = asCurrency(summary.additional_amt);
+  document.getElementById("total_tax").textContent = asCurrency(s.total_federal_tax);
+  document.getElementById("effective_rate_note").textContent = `${asPercent(s.effective_tax_rate)} effective federal rate`;
+  document.getElementById("tax_amt_delta").textContent = asCurrency(s.additional_amt);
+  document.getElementById("amt_delta_card").dataset.highlight = s.is_amt_due ? "amt" : "none";
+  document.getElementById("amt_delta_note").textContent = s.is_amt_due
+    ? `Next $1 of ISO spread taxed at ${asPercent(s.next_iso_dollar_rate)}`
+    : "No additional AMT owed";
 
-  const tax_method = document.getElementById("type_of_tax_owed");
-  if (summary.is_amt_due) {
-    tax_method.textContent = "AMT applies to this estimate";
-    tax_method.style.color = "red";
+  document.getElementById("tax_bill").textContent = asCurrency(s.regular_tax);
+  document.getElementById("amt_bill").textContent = asCurrency(s.tentative_minimum_tax);
+
+  const maxTax = Math.max(s.regular_tax, s.tentative_minimum_tax, 1);
+  document.getElementById("regular_bar").style.width = `${Math.min(100, (s.regular_tax / maxTax) * 100)}%`;
+  document.getElementById("amt_bar").style.width = `${Math.min(100, (s.tentative_minimum_tax / maxTax) * 100)}%`;
+
+  const banner = document.getElementById("verdict_banner");
+  const verdict = document.getElementById("type_of_tax_owed");
+  const marginalBadge = document.getElementById("marginal_iso_badge");
+  const inCliff = s.is_amt_due && (b.in_phaseout || b.in_mfs_addback);
+  banner.dataset.state = inCliff ? "phaseout" : (s.is_amt_due ? "amt" : "regular");
+  verdict.textContent = inCliff
+    ? `AMT applies (${Math.round(b.phase_out_percent * 100)}% exemption phaseout zone)`
+    : s.is_amt_due
+      ? "AMT applies to this estimate"
+      : "Regular federal income tax applies";
+  marginalBadge.textContent = `Next ISO $1: ${asPercent(s.next_iso_dollar_rate)}`;
+
+  // AMT-free ISO headroom display
+  document.getElementById("iso_headroom_total").textContent = asCurrency(s.iso_headroom, { whole: true });
+  const headroomFill = document.getElementById("headroom_fill");
+  const headroomCopy = document.getElementById("headroom_copy");
+  const usagePct = s.iso_headroom > 0
+    ? Math.min(100, (iso_gains / s.iso_headroom) * 100)
+    : (iso_gains > 0 ? 100 : 0);
+  headroomFill.style.width = `${usagePct}%`;
+  headroomFill.dataset.over = String(s.is_amt_due);
+
+  if (s.is_amt_due) {
+    headroomCopy.textContent = `Your ${asCurrency(iso_gains, { whole: true })} ISO spread is ${asCurrency(s.iso_over_headroom, { whole: true })} over the AMT-free threshold of ${asCurrency(s.iso_headroom, { whole: true })}.`;
+  } else if (iso_gains > 0) {
+    headroomCopy.textContent = `Using ${Math.round(usagePct)}% of your AMT-free headroom—${asCurrency(s.iso_headroom_remaining, { whole: true })} of additional ISO spread remaining before AMT kicks in.`;
   } else {
-    tax_method.textContent = "Regular federal income tax applies";
-    tax_method.style.color = "green";
+    headroomCopy.textContent = `With your current income, you can exercise up to ${asCurrency(s.iso_headroom, { whole: true })} of ISO bargain element before triggering AMT.`;
   }
+
+  // Form 1040 & Form 6251 breakdown rows
+  document.getElementById("bd_std_deduction").textContent = asCurrency(s.standard_deduction);
+  document.getElementById("bd_reg_taxable").textContent = asCurrency(s.regular_taxable_income);
+  document.getElementById("bd_reg_marginal").textContent = asPercent(s.regular_marginal_rate);
+  document.getElementById("bd_amti").textContent = asCurrency(b.amti);
+  const mfsRow = document.getElementById("bd_mfs_row");
+  mfsRow.hidden = b.mfs_addback <= 0;
+  document.getElementById("bd_mfs_addback").textContent = `+${asCurrency(b.mfs_addback)}`;
+  document.getElementById("bd_base_exemption").textContent = asCurrency(b.base_exemption);
+  document.getElementById("bd_exemption_phaseout").textContent = b.exemption_reduction > 0
+    ? `−${asCurrency(b.exemption_reduction)}`
+    : "$0.00";
+  document.getElementById("bd_net_exemption").textContent = asCurrency(b.exemption);
+  document.getElementById("bd_amt_excess").textContent = asCurrency(b.taxable_excess);
+  document.getElementById("bd_amt_26").textContent = `${asCurrency(b.lower_rate_income)} → ${asCurrency(b.lower_rate_income * AMT_LOW_RATE)}`;
+  document.getElementById("bd_amt_28").textContent = `${asCurrency(b.higher_rate_income)} → ${asCurrency(b.higher_rate_income * AMT_HIGH_RATE)}`;
 }
 
 function updateTaxYearCopy() {
-  document.getElementById("page_title").textContent = `AMT Tax Calculator – ${taxYear()}`;
+  const year = taxYear();
+  const badge = document.getElementById("year_badge");
+  if (badge) badge.textContent = `Tax Year ${year}`;
+  updateHelperHints();
+}
+
+function syncISOHelper() {
+  const shares = amount(document.getElementById("isoShares")?.value);
+  const strike = amount(document.getElementById("isoStrike")?.value);
+  const fmv = amount(document.getElementById("isoFmv")?.value);
+  const spread = Math.max(0, shares * Math.max(0, fmv - strike));
+  const isoInput = document.getElementById("isoGains");
+  if (isoInput) {
+    isoInput.value = spread > 0 ? spread.toFixed(2).replace(/\.00$/, "") : "0";
+    calculateTaxes();
+  }
 }
 
 if (typeof document !== "undefined") {
   const tax_form = document.querySelector("form");
   const year_input = document.getElementById("inputYear");
+  const status_input = document.getElementById("inputFilingStatus");
+  const numeric_inputs = ["inputIncome", "rsuIncome", "isoGains", "pensionContributions"]
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
 
   if (tax_form) {
     tax_form.addEventListener("submit", event => {
@@ -474,12 +685,51 @@ if (typeof document !== "undefined") {
     });
   }
 
-  document.addEventListener("DOMContentLoaded", updateTaxYearCopy);
-}
+  if (status_input) {
+    status_input.addEventListener("change", () => {
+      updateHelperHints();
+      calculateTaxes();
+    });
+  }
 
-if (typeof window !== "undefined" && window.jQuery) {
-  window.jQuery(() => {
-    window.jQuery("[data-toggle=\"tooltip\"]").tooltip();
+  for (const input of numeric_inputs) {
+    input.addEventListener("input", calculateTaxes);
+  }
+
+  for (const id of ["isoShares", "isoStrike", "isoFmv"]) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", syncISOHelper);
+  }
+
+  const exampleBtn = document.getElementById("load_example");
+  if (exampleBtn) {
+    exampleBtn.addEventListener("click", () => {
+      const year = taxYear();
+      const limit = taxYearData(year).elective_deferral_limit;
+      document.getElementById("inputFilingStatus").value = "single";
+      document.getElementById("inputIncome").value = "240000";
+      document.getElementById("rsuIncome").value = "80000";
+      document.getElementById("isoGains").value = "220000";
+      document.getElementById("pensionContributions").value = String(limit);
+      updateHelperHints();
+      calculateTaxes();
+    });
+  }
+
+  const resetBtn = document.getElementById("reset_form");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      for (const id of ["inputIncome", "rsuIncome", "isoGains", "pensionContributions", "isoShares", "isoStrike", "isoFmv"]) {
+        const el = document.getElementById(id);
+        if (el) el.value = id.startsWith("iso") && id !== "isoGains" ? "" : "0";
+      }
+      calculateTaxes();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    updateTaxYearCopy();
+    calculateTaxes();
   });
 }
 
@@ -492,8 +742,10 @@ if (typeof module !== "undefined" && module.exports) {
     amtTaxDetails,
     standardTaxDetails,
     reducedAMTExemptionAmount,
+    calculateAMTBreakdown,
     calculateAMT,
     calculateIncomeTax,
+    calculateISOHeadroom,
     calculateTaxSummary,
     asCurrency
   };

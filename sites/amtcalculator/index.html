@@ -1,178 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf8">
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5N6H3PVG2"></script>
-    <script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AMT Calculator (2018–2027) | Jason Willems</title>
+  <meta name="description" content="Estimate federal Alternative Minimum Tax (AMT), AMT-free ISO exercise headroom, and Form 6251 breakdown for tax years 2018–2027, including 2026+ 50% phaseout rules.">
+  <meta name="author" content="Jason Willems">
+  <link rel="canonical" href="https://www.jasonwillems.com/sites/amtcalculator/">
+  <link rel="icon" href="../../favicon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script>
+    if (location.protocol === "https:" && /(^|\.)jasonwillems\.com$/i.test(location.hostname)) {
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-Q5N6H3PVG2');
-    </script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- for tooltips -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </head>
-  <body class="bg-light">
-    <a href="https://github.com/at1as/amt_calculator_website"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
-    <div class="container">
-      
-      <div class="py-5 text-center">
-        <h2 id="page_title">AMT Tax Calculator</h2>
-        <!--<p class="lead">Taxes are tough. The math behind them, however, isn't. AMT Tax bills should not come as a end of year shock, and it shouldn't cost hundreds of dollars to have tax accountants explain the financial consequences of exercising stock</p>-->
-        <p class="lead">Proactively plan around AMT <span style="font-style:italic">before</span> you exercise</p>
-        <p class="mb-1" style="font-weight:100; font-style:italic; color:red; font-size:0.75rem">
-          This planning estimate is not legal or tax advice. Discuss your specific situation with a qualified tax professional.
-        </p>
-        <p class="text-muted mx-auto" style="font-size:0.75rem; max-width:48rem">
-          Uses the standard deduction and only the income shown below. It does not model credits, itemized or other deductions,
-          preferential capital-gain rates, payroll taxes, state taxes, or every adjustment required by Forms 1040 and 6251.
-        </p>
-      </div>
- 
-      <div class="row">
-        
-        <!-- TAX OUTPUT SECTION -->
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Tax Bill</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Regular Tax Calculation</h6>
-                <small class="text-muted">Estimated federal income tax</small>
-              </div>
-              <span class="text-muted" id="tax_bill">$0</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">AMT Calculation</h6>
-                <small class="text-muted">Tentative minimum tax</small>
-              </div>
-              <span class="text-muted" id="amt_bill">$0</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Additional AMT</span>
-              <strong id="tax_amt_delta" >$0</strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div>
-                <h6 class="my-0">Tax Method</h6>
-                <small id="type_of_tax_owed">Regular federal income tax applies</small>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!-- END TAX OUTPUT SECTION -->
-
-        <!-- TAX INPUT SECTION -->
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Tax Information</h4>
-
-          <form>
-            <div class="row">
-              <div class="mb-3 col-md-6">
-                <label for="inputYear">Year</label>
-                <select class="form-control" id="inputYear">
-                  <option value="2026" selected>2026</option>
-                  <option value="2025">2025</option>
-                  <option value="2024">2024</option>
-                  <option value="2023">2023</option>
-                  <option value="2022">2022</option>
-                  <option value="2021">2021</option>
-                  <option value="2020">2020</option>
-                  <option value="2019">2019</option>
-                  <option value="2018">2018</option>
-                </select>
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="inputFilingStatus">Filing Status</label>
-                <select id="inputFilingStatus" class="form-control">
-                  <option value="single" selected>Single</option>
-                  <option value="married_joint">Married Filing Jointly</option>
-                  <option value="married_separate">Married Filing Separately</option>
-                  <option value="head_of_household">Head of Household</option>
-                </select>
-              </div>
-            </div>
-            
-            <hr class="mb4">
-            <h4 class="mb-3">Earnings</h4>
-
-            <div class="row">
-              <div class="mb-3 col-md-6">
-                <label for="inputIncome" style="width:100%">Salary (<span style="font-weight:500"> + Taxable Benefits</span>)
-                  <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Total salary compensation + taxable benefits (cafeteria food, etc). Check a recent W2 for an idea of your taxable benefits.<br/><br/>Exclude stock based compensation from this calculation (it will be added in the <b>RSU</b> and <b>ISO</b> fields)."></i>
-                </label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input type="number" min="0" step="0.01" class="form-control" id="inputIncome" value=0 style="letter-spacing:0.1em">
-                </div>
-              </div>
-              <div class="md-3 col-md-6">
-                <label for="rsuIncome" style="width:100%">Restricted Stock Unit Income (<span style="font-weight:500">RSUs</span>)
-                  <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Total pre-tax value of RSUs that vested during the selected tax year.<br/><br/>For instance, if 100 shares vested at a market price of <b>$50.00</b>, this value would be (<em>100 shares × $50.00</em>) = <u>$5,000</u>.<br/><br/>If you vest multiple times, use the market price at each vesting date."></i>
-                </label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input type="number" min="0" step="0.01" class="form-control" id="rsuIncome" value=0 style="letter-spacing:0.1em">
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="isoGains" style="width:100%">Incentive Stock Option Gains (<span style="font-weight:500">ISOs</span>)
-                <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Total ISO bargain element for shares exercised and held through the end of the selected tax year.<br/><br/>For example, exercising 10 shares at a $10 strike price when fair market value is $40 creates <em>10 shares × ($40 market value − $10 strike price)</em> = <u>$300</u>.<br/><br/>A same-year sale can receive different treatment; consult a tax professional."></i>
-              </label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
-                </div>
-                <input type="number" min="0" step="0.01" class="form-control" id="isoGains" value="0" style="letter-spacing:0.1em">
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="pensionContributions" style="width:100%">Pre-tax 401(k) Contributions
-                <i class="fas fa-info-circle" style="float:right" data-toggle="tooltip" data-html="true" data-placement="top" title="Employee pre-tax 401(k) contributions for the selected tax year.<br/><br/>Enter this only if the Salary field is your gross salary before those contributions. Do not enter it again if Salary is based on W-2 box 1, which generally already excludes pre-tax 401(k) deferrals. Do not include Roth or employer contributions."></i>
-              </label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input type="number" min="0" max="48000" step="0.01" class="form-control" id="pensionContributions" value=0 style="letter-spacing:0.1em">
-                </div>
-            </div>
-
-            <hr class="mb4">
-
-            <div class="form-group row">
-              <div class="col-sm-12">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">
-                  Calculate
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <!-- END TAX INPUT SECTION -->
-      </div>
-
-      <!-- BEGIN FOOTER -->
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">© 2018–2026 Jason Willems</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="https://github.com/at1as/amt_calculator_website">Github</a></li>
-        </ul>
-      </footer>
-      <!-- END FOOTER -->
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", "G-Q5N6H3PVG2");
+      const s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=G-Q5N6H3PVG2";
+      document.head.appendChild(s);
+    }
+  </script>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="site-breadcrumb">
+      <a href="../../">Jason Willems</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="../">Projects</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>AMT Calculator</span>
     </div>
-    <script src="./amt.js"></script>
-  </body>
+    <div class="site-nav-links">
+      <a class="blog-link" href="../../blog/">Blog</a>
+      <a class="site-home-link" href="../../">More from Jason <span aria-hidden="true">↗</span></a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <header class="page-header">
+      <div class="title-row">
+        <h1 id="page_title">AMT Calculator</h1>
+        <span id="year_badge" class="year-badge">Tax Year 2026</span>
+      </div>
+      <p class="subtitle">Estimate federal Alternative Minimum Tax and your AMT-free ISO exercise headroom before you exercise.</p>
+      <p id="law_callout" class="law-callout" hidden></p>
+    </header>
+
+    <div class="calc-layout">
+      <!-- Inputs -->
+      <section class="panel" aria-labelledby="inputs-heading">
+        <div class="panel-header">
+          <h2 id="inputs-heading">Tax Information</h2>
+          <div class="panel-actions">
+            <button type="button" id="load_example" class="text-button">Load example</button>
+            <button type="button" id="reset_form" class="text-button">Reset</button>
+          </div>
+        </div>
+
+        <form novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="inputYear">Tax year</label>
+              <select id="inputYear">
+                <option value="2027">2027</option>
+                <option value="2026" selected>2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="inputFilingStatus">Filing status</label>
+              <select id="inputFilingStatus">
+                <option value="single" selected>Single</option>
+                <option value="married_joint">Married Filing Jointly</option>
+                <option value="married_separate">Married Filing Separately</option>
+                <option value="head_of_household">Head of Household</option>
+              </select>
+            </div>
+          </div>
+
+          <hr class="section-divider">
+          <p class="section-label">Income &amp; equity</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="inputIncome">Salary &amp; taxable benefits</label>
+              <div class="currency-input">
+                <span class="currency-prefix" aria-hidden="true">$</span>
+                <input type="number" min="0" step="100" id="inputIncome" value="0" inputmode="decimal">
+              </div>
+              <p class="field-hint">Base salary, bonus, and taxable benefits. Exclude RSUs and ISOs entered separately.</p>
+            </div>
+
+            <div class="field">
+              <label for="rsuIncome">RSU income vested</label>
+              <div class="currency-input">
+                <span class="currency-prefix" aria-hidden="true">$</span>
+                <input type="number" min="0" step="100" id="rsuIncome" value="0" inputmode="decimal">
+              </div>
+              <p class="field-hint">Total market value of RSUs vesting during the year (shares × price on each vest date).</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="isoGains">ISO bargain element (spread)</label>
+            <div class="currency-input">
+              <span class="currency-prefix" aria-hidden="true">$</span>
+              <input type="number" min="0" step="100" id="isoGains" value="0" inputmode="decimal">
+            </div>
+            <p class="field-hint">Shares exercised and held past Dec 31 × (FMV/409A − strike price). Same-year disqualifying sales are taxed as ordinary income instead.</p>
+
+            <details class="iso-helper">
+              <summary>Calculate spread from shares, strike &amp; FMV</summary>
+              <div class="iso-helper-body">
+                <div>
+                  <label for="isoShares">Shares</label>
+                  <input type="number" min="0" step="1" id="isoShares" placeholder="10000" inputmode="numeric">
+                </div>
+                <div>
+                  <label for="isoStrike">Strike price ($)</label>
+                  <input type="number" min="0" step="0.01" id="isoStrike" placeholder="2.50" inputmode="decimal">
+                </div>
+                <div>
+                  <label for="isoFmv">FMV / 409A ($)</label>
+                  <input type="number" min="0" step="0.01" id="isoFmv" placeholder="24.50" inputmode="decimal">
+                </div>
+                <p class="iso-helper-note">Automatically updates the ISO bargain element field above.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="field">
+            <label for="pensionContributions">Pre-tax 401(k) contributions</label>
+            <div class="currency-input">
+              <span class="currency-prefix" aria-hidden="true">$</span>
+              <input type="number" min="0" step="100" id="pensionContributions" value="0" inputmode="decimal">
+            </div>
+            <p id="pension_limit_hint" class="field-hint"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- Live Results -->
+      <section class="panel results-panel" aria-labelledby="results-heading" aria-live="polite">
+        <div class="panel-header">
+          <h2 id="results-heading">Estimated Tax Summary</h2>
+        </div>
+
+        <div id="verdict_banner" class="verdict-banner" data-state="regular">
+          <span id="type_of_tax_owed" class="verdict-label">Regular federal income tax applies</span>
+          <span id="marginal_iso_badge" class="verdict-rate">Next ISO $1: 0.0%</span>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <span>Total federal tax</span>
+            <strong id="total_tax">$0.00</strong>
+            <small id="effective_rate_note">0.0% effective federal rate</small>
+          </div>
+          <div id="amt_delta_card" class="metric-card" data-highlight="none">
+            <span>Additional AMT</span>
+            <strong id="tax_amt_delta">$0.00</strong>
+            <small id="amt_delta_note">No additional AMT owed</small>
+          </div>
+        </div>
+
+        <div class="headroom-box">
+          <div class="headroom-top">
+            <span class="headroom-title">AMT-free ISO headroom</span>
+            <span id="iso_headroom_total" class="headroom-value">$0</span>
+          </div>
+          <div class="headroom-track" aria-hidden="true">
+            <div id="headroom_fill" class="headroom-fill" data-over="false"></div>
+          </div>
+          <p id="headroom_copy" class="headroom-copy"></p>
+        </div>
+
+        <div class="comparison-list">
+          <div class="comparison-item">
+            <div class="comparison-row">
+              <span>Regular federal income tax (Form 1040)</span>
+              <strong id="tax_bill">$0.00</strong>
+            </div>
+            <div class="bar-track" aria-hidden="true"><div id="regular_bar" class="bar-fill regular"></div></div>
+          </div>
+          <div class="comparison-item">
+            <div class="comparison-row">
+              <span>Tentative minimum tax (Form 6251)</span>
+              <strong id="amt_bill">$0.00</strong>
+            </div>
+            <div class="bar-track" aria-hidden="true"><div id="amt_bar" class="bar-fill amt"></div></div>
+          </div>
+        </div>
+
+        <details class="breakdown">
+          <summary>Form 1040 &amp; Form 6251 breakdown</summary>
+          <div class="breakdown-grid">
+            <table class="breakdown-table">
+              <tbody>
+                <tr class="subhead"><th colspan="2">Regular Tax (Form 1040)</th></tr>
+                <tr><th scope="row">Standard deduction</th><td id="bd_std_deduction">$0.00</td></tr>
+                <tr><th scope="row">Regular taxable income</th><td id="bd_reg_taxable">$0.00</td></tr>
+                <tr><th scope="row">Top ordinary bracket</th><td id="bd_reg_marginal">0.0%</td></tr>
+
+                <tr class="subhead"><th colspan="2">Alternative Minimum Tax (Form 6251)</th></tr>
+                <tr><th scope="row">AMTI (Line 4)</th><td id="bd_amti">$0.00</td></tr>
+                <tr id="bd_mfs_row" hidden><th scope="row">MFS high-income AMTI add-back</th><td id="bd_mfs_addback">$0.00</td></tr>
+                <tr><th scope="row">Base AMT exemption</th><td id="bd_base_exemption">$0.00</td></tr>
+                <tr><th scope="row">Exemption phaseout reduction</th><td id="bd_exemption_phaseout">$0.00</td></tr>
+                <tr><th scope="row">Allowable AMT exemption</th><td id="bd_net_exemption">$0.00</td></tr>
+                <tr><th scope="row">AMT taxable excess (Line 6)</th><td id="bd_amt_excess">$0.00</td></tr>
+                <tr><th scope="row">26% tier</th><td id="bd_amt_26">$0.00 → $0.00</td></tr>
+                <tr><th scope="row">28% tier</th><td id="bd_amt_28">$0.00 → $0.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+    </div>
+
+    <footer class="page-footer">
+      <p><strong>Planning estimate, not tax advice.</strong> Uses the standard deduction and the ordinary + ISO income entered above. Does not model itemized deductions (such as SALT), preferential capital-gains rates, tax credits, payroll taxes, state AMT (e.g., California), or prior-year AMT credit carryforwards (Form 8801). Consult a CPA before making large exercise decisions.</p>
+      <p>Parameters sourced from IRS Revenue Procedures 2018-18 through 2026-35 and P.L. 119-21 (2026+ 50% AMT exemption phaseout). <a href="https://github.com/at1as/at1as.github.io/tree/master/sites/amtcalculator">Source code ↗</a></p>
+      <div class="continue-reading">
+        <div>
+          <p class="continue-title">More from Jason Willems</p>
+          <p style="margin:0">Interactive explainers, visualizations, and writing on tech &amp; AI</p>
+        </div>
+        <a href="../">Back to Projects <span aria-hidden="true">→</span></a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="./amt.js"></script>
+</body>
 </html>
