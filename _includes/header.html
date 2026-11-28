@@ -49,13 +49,25 @@
           </button>
 
           <nav class="site-nav" id="site-navigation">
+            {% assign is_home = false %}
+            {% if page.url == '/' %}{% assign is_home = true %}{% endif %}
+            {% assign is_travel = false %}
+            {% if page.url == '/travel/' %}{% assign is_travel = true %}{% endif %}
+            {% assign is_talks = false %}
+            {% if page.url == '/talks/' %}{% assign is_talks = true %}{% endif %}
+            {% assign is_projects = false %}
+            {% if page.url == '/sites/' or page.url contains '/aws-azure-migration-guide/' %}{% assign is_projects = true %}{% endif %}
+            {% assign is_blog = false %}
+            {% if page.url contains '/blog/' or page.layout == 'post' or page.layout == 'blog' %}{% assign is_blog = true %}{% endif %}
+            {% assign is_contact = false %}
+            {% if page.url == '/contact/' %}{% assign is_contact = true %}{% endif %}
             <ul class="nav-links">
-              <li><a href="/" id="homelink" class="nav-link">Home</a></li>
-              <li><a href="/travel/" id="travellink" class="nav-link">Travel</a></li>
-              <li><a href="/talks/" id="talkslink" class="nav-link{% if page.url == '/talks/' %} active{% endif %}"{% if page.url == '/talks/' %} aria-current="page"{% endif %}>Media</a></li>
-              <li><a href="/sites/" id="siteslink" class="nav-link{% if page.url == '/sites/' %} active{% endif %}"{% if page.url == '/sites/' %} aria-current="page"{% endif %}>Projects</a></li>
-              <li><a href="/blog/" id="bloglink" class="nav-link">Blog</a></li>
-              <li><a href="/contact/" id="contactlink" class="nav-link">Contact</a></li>
+              <li><a href="/" id="homelink" class="nav-link{% if is_home %} active{% endif %}"{% if is_home %} aria-current="page"{% endif %}>Home</a></li>
+              <li><a href="/travel/" id="travellink" class="nav-link{% if is_travel %} active{% endif %}"{% if is_travel %} aria-current="page"{% endif %}>Travel</a></li>
+              <li><a href="/talks/" id="talkslink" class="nav-link{% if is_talks %} active{% endif %}"{% if is_talks %} aria-current="page"{% endif %}>Media</a></li>
+              <li><a href="/sites/" id="siteslink" class="nav-link{% if is_projects %} active{% endif %}"{% if page.url == '/sites/' %} aria-current="page"{% endif %}>Projects</a></li>
+              <li><a href="/blog/" id="bloglink" class="nav-link{% if is_blog %} active{% endif %}"{% if page.url == '/blog/' %} aria-current="page"{% endif %}>Blog</a></li>
+              <li><a href="/contact/" id="contactlink" class="nav-link{% if is_contact %} active{% endif %}"{% if is_contact %} aria-current="page"{% endif %}>Contact</a></li>
             </ul>
           </nav>
 

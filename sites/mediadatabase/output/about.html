@@ -229,7 +229,7 @@
       }
     </style>
       <style>
-      /* Hosted demo "Fork me on GitHub" corner ribbon */
+      /* Hosted demo double corner ribbon (Other Projects + Fork me on GitHub) */
       body {
         position: relative;
       }
@@ -237,66 +237,111 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 136px;
-        height: 136px;
+        width: 142px;
+        height: 142px;
         overflow: hidden;
         pointer-events: none;
         z-index: 4;
       }
-      .github-fork-ribbon {
+      .corner-ribbon {
         position: absolute;
-        top: 30px;
-        right: -40px;
-        width: 186px;
-        padding: 5px 0;
-        background: linear-gradient(135deg, #24292f 0%, #1b1f23 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #ffffff !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.025em;
+        line-height: 1;
         text-align: center;
         text-decoration: none !important;
+        white-space: nowrap;
         transform: rotate(45deg);
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-        border-top: 1px dashed rgba(255, 255, 255, 0.35);
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
         pointer-events: auto;
         transition: background 0.18s ease, box-shadow 0.18s ease;
       }
+      .corner-ribbon:focus-visible {
+        outline: 2px solid #ffffff;
+        outline-offset: -3px;
+      }
+      .projects-ribbon {
+        top: 24px;
+        right: -65px;
+        width: 200px;
+        height: 22px;
+        background: linear-gradient(135deg, #0878a4 0%, #03658c 100%);
+        font-size: 10px;
+        border-top: 1px dashed rgba(255, 255, 255, 0.35);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        z-index: 2;
+      }
+      .projects-ribbon:hover,
+      .projects-ribbon:focus-visible {
+        background: linear-gradient(135deg, #0a8ec2 0%, #0578a6 100%);
+        color: #ffffff !important;
+      }
+      .github-fork-ribbon {
+        top: 40px;
+        right: -63px;
+        width: 230px;
+        height: 24px;
+        background: linear-gradient(135deg, #24292f 0%, #1b1f23 100%);
+        font-size: 10.5px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+        z-index: 1;
+      }
       .github-fork-ribbon:hover,
       .github-fork-ribbon:focus-visible {
-        background: linear-gradient(135deg, #0878a4 0%, #03658c 100%);
+        background: linear-gradient(135deg, #323942 0%, #24292f 100%);
         color: #ffffff !important;
-        box-shadow: 0 4px 14px rgba(8, 120, 164, 0.45);
-        outline: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+      }
+      .filter-prefixed-control select.filter-inline-input {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        padding-right: 32px !important;
+        background-image: none !important;
+      }
+      .filter-prefixed-control select.filter-inline-input::picker-icon {
+        display: none !important;
+        content: none !important;
       }
       @media (min-width: 769px) {
         nav.navbar {
-          padding-right: 118px;
+          padding-right: 132px;
         }
       }
       @media (max-width: 768px) {
         .github-fork-ribbon-wrap {
-          width: 108px;
-          height: 108px;
+          width: 114px;
+          height: 114px;
+        }
+        .projects-ribbon {
+          top: 20px;
+          right: -55px;
+          width: 170px;
+          height: 19px;
+          font-size: 8.5px;
         }
         .github-fork-ribbon {
-          top: 22px;
-          right: -36px;
-          width: 152px;
-          font-size: 9.5px;
-          padding: 4px 0;
+          top: 34px;
+          right: -56px;
+          width: 200px;
+          height: 20px;
+          font-size: 8.5px;
         }
         nav.navbar {
-          padding-right: 78px;
+          padding-right: 92px;
         }
       }
     </style>
   </head>
 
   <body>
-    <div class="github-fork-ribbon-wrap"><a class="github-fork-ribbon" href="https://github.com/at1as/Media-Database" target="_blank" rel="noopener noreferrer" aria-label="Fork Media Database on GitHub">Fork me on GitHub</a></div>
+    <div class="github-fork-ribbon-wrap"><a class="corner-ribbon projects-ribbon" href="../../" aria-label="View Jason Willems's other projects">Other Projects</a><a class="corner-ribbon github-fork-ribbon" href="https://github.com/at1as/Media-Database" target="_blank" rel="noopener noreferrer" aria-label="Fork Media Database on GitHub">Fork me on GitHub</a></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -10,7 +10,7 @@ title: Blog
 
     <div class="blog-filter-nav">
       <div class="filter-tabs-container">
-        <a href="/blog/" class="filter-tab active" aria-current="true">All Posts</a>
+        <a href="/blog/" class="filter-tab active" aria-current="page">All Posts</a>
         <a href="/blog/popular/" class="filter-tab">Popular</a>
       </div>
     </div>
@@ -59,7 +59,7 @@ title: Blog
 
             {% include post-preview.html post=post %}
 
-            <a href="{{ post.url }}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            <a href="{{ post.url }}" class="read-more">Read More {% include icon.html name="arrow-right" %}</a>
           </article>
         {% endunless %}
       {% endfor %}
@@ -77,7 +77,7 @@ title: Blog
     <div class="pagination">
       {% if paginator.previous_page %}
         <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-item prev">
-          <i class="fas fa-chevron-left"></i> Newer Posts
+          {% include icon.html name="arrow-left" %} Newer Posts
         </a>
       {% endif %}
 
@@ -85,7 +85,7 @@ title: Blog
 
       {% if paginator.next_page %}
         <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-item next">
-          Older Posts <i class="fas fa-chevron-right"></i>
+          Older Posts {% include icon.html name="arrow-right" %}
         </a>
       {% endif %}
     </div>
@@ -244,11 +244,11 @@ title: Blog
     color: var(--primary-color);
   }
 
-  .read-more i {
+  .read-more .icon {
     transition: transform var(--transition-speed) ease;
   }
 
-  .read-more:hover i {
+  .read-more:hover .icon {
     transform: translateX(5px);
   }
 
@@ -296,7 +296,3 @@ title: Blog
     }
   }
 </style>
-
-<script>
-  document.getElementById('bloglink').classList.add('active');
-</script>

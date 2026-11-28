@@ -753,8 +753,15 @@ html:has(#catalog-filter-dialog[open]) {
   cursor:pointer;
 }
 .filter-prefixed-control select.filter-inline-input{
-  padding-right:18px !important;
+  -webkit-appearance:none !important;
+  -moz-appearance:none !important;
+  appearance:none !important;
+  padding-right:32px !important;
   background-image:none !important;
+}
+.filter-prefixed-control select.filter-inline-input::picker-icon{
+  display:none !important;
+  content:none !important;
 }
 .filter-prefixed-control:not(.has-inline-clear)::after{
   content:'';
