@@ -51,7 +51,7 @@ permalink: /blog/popular/
 
             {% include post-preview.html post=post %}
 
-            <a href="{{ post.url }}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            <a href="{{ post.url }}" class="read-more">Read More {% include icon.html name="arrow-right" %}</a>
           </article>
         {% endunless %}
       {% endfor %}
@@ -226,11 +226,11 @@ permalink: /blog/popular/
     color: var(--primary-color);
   }
 
-  .read-more i {
+  .read-more .icon {
     transition: transform var(--transition-speed) ease;
   }
 
-  .read-more:hover i {
+  .read-more:hover .icon {
     transform: translateX(5px);
   }
 
@@ -265,7 +265,3 @@ permalink: /blog/popular/
     }
   }
 </style>
-
-<script>
-  document.getElementById('bloglink').classList.add('active');
-</script>

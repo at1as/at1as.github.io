@@ -2,9 +2,44 @@
 layout: default
 description: "Explore Jason Willems's travel map, including countries he has visited and places he has called home across Europe and North America."
 title: Places I've Traveled
+cities_label: "50+"
+countries:
+  - { code: AUT, name: Austria, flag: "🇦🇹", lived: false, continent: Europe }
+  - { code: AUS, name: Australia, flag: "🇦🇺", lived: false, continent: Oceania }
+  - { code: BHS, name: Bahamas, flag: "🇧🇸", lived: false, continent: North America }
+  - { code: BEL, name: Belgium, flag: "🇧🇪", lived: false, continent: Europe }
+  - { code: CAN, name: Canada, flag: "🇨🇦", lived: true, continent: North America }
+  - { code: CHN, name: China, flag: "🇨🇳", lived: false, continent: Asia }
+  - { code: CUB, name: Cuba, flag: "🇨🇺", lived: false, continent: North America }
+  - { code: EGY, name: Egypt, flag: "🇪🇬", lived: false, continent: Africa }
+  - { code: FRA, name: France, flag: "🇫🇷", lived: false, continent: Europe }
+  - { code: DEU, name: Germany, flag: "🇩🇪", lived: false, continent: Europe }
+  - { code: IDN, name: Indonesia, flag: "🇮🇩", lived: false, continent: Asia }
+  - { code: ISR, name: Israel, flag: "🇮🇱", lived: false, continent: Asia }
+  - { code: ITA, name: Italy, flag: "🇮🇹", lived: false, continent: Europe }
+  - { code: JPN, name: Japan, flag: "🇯🇵", lived: false, continent: Asia }
+  - { code: JOR, name: Jordan, flag: "🇯🇴", lived: false, continent: Asia }
+  - { code: LBN, name: Lebanon, flag: "🇱🇧", lived: false, continent: Asia }
+  - { code: MYS, name: Malaysia, flag: "🇲🇾", lived: false, continent: Asia }
+  - { code: MEX, name: Mexico, flag: "🇲🇽", lived: false, continent: North America }
+  - { code: NLD, name: Netherlands, flag: "🇳🇱", lived: true, continent: Europe }
+  - { code: SGP, name: Singapore, flag: "🇸🇬", lived: false, continent: Asia, lat: 1.3521, lng: 103.8198 }
+  - { code: KOR, name: South Korea, flag: "🇰🇷", lived: false, continent: Asia }
+  - { code: ESP, name: Spain, flag: "🇪🇸", lived: false, continent: Europe }
+  - { code: CHE, name: Switzerland, flag: "🇨🇭", lived: false, continent: Europe }
+  - { code: TWN, name: Taiwan, flag: "🇹🇼", lived: false, continent: Asia }
+  - { code: THA, name: Thailand, flag: "🇹🇭", lived: false, continent: Asia }
+  - { code: GBR, name: United Kingdom, flag: "🇬🇧", lived: false, continent: Europe }
+  - { code: USA, name: United States, flag: "🇺🇸", lived: true, continent: North America }
+  - { code: VAT, name: Vatican City, flag: "🇻🇦", lived: false, continent: Europe, lat: 41.9029, lng: 12.4534 }
+  - { code: VNM, name: Vietnam, flag: "🇻🇳", lived: false, continent: Asia }
 ---
 
-<section class="section">
+{% assign lived_countries = page.countries | where: "lived", true | sort: "name" %}
+{% assign visited_countries = page.countries | where: "lived", false | sort: "name" %}
+{% assign continents = page.countries | map: "continent" | uniq %}
+
+<section class="section travel-section">
   <div class="container">
 
     <!-- Leaflet CSS and JS -->
@@ -14,7 +49,7 @@ title: Places I've Traveled
     <h1 class="visually-hidden">{{ page.title }}</h1>
 
     <!-- Map Container -->
-    <div class="travel-map-container" id="travel-map"></div>
+    <div class="travel-map-container" id="travel-map" role="region" aria-label="Interactive travel map"></div>
 
     <!-- Map Legend -->
     <div class="map-legend">
@@ -34,31 +69,41 @@ title: Places I've Traveled
     <div class="travel-stats">
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number" id="countries-count">24</div>
+          <div class="stat-number" id="countries-count">{{ page.countries | size }}</div>
           <div class="stat-label">Countries</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number" id="continents-count">5</div>
+          <div class="stat-number" id="continents-count">{{ continents | size }}</div>
           <div class="stat-label">Continents</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number" id="cities-count">50+</div>
+          <div class="stat-number" id="cities-count">{{ page.cities_label }}</div>
           <div class="stat-label">Cities</div>
         </div>
       </div>
     </div>
 
     <div class="country-list">
-      <h2 class="section-subtitle" id="lived-heading">Lived</h2>
+      <h2 class="section-subtitle" id="lived-heading">Lived <span class="heading-count">({{ lived_countries | size }})</span></h2>
       <div class="countries-grid" id="lived-countries-grid">
-        <!-- Countries lived will be populated by JavaScript -->
+        {% for country in lived_countries %}
+        <button type="button" class="country-item lived has-flag" data-country="{{ country.name | downcase | escape }}" title="Focus {{ country.name | escape }} on map">
+          <span class="country-flag" aria-hidden="true">{{ country.flag }}</span>
+          <span class="country-name">{{ country.name | escape }}</span>
+        </button>
+        {% endfor %}
       </div>
     </div>
 
     <div class="country-list country-list-spacing">
-      <h2 class="section-subtitle" id="visited-heading">Visited</h2>
+      <h2 class="section-subtitle" id="visited-heading">Visited <span class="heading-count">({{ visited_countries | size }})</span></h2>
       <div class="countries-grid" id="countries-grid">
-        <!-- Countries will be populated by JavaScript -->
+        {% for country in visited_countries %}
+        <button type="button" class="country-item has-flag" data-country="{{ country.name | downcase | escape }}" title="Focus {{ country.name | escape }} on map">
+          <span class="country-flag" aria-hidden="true">{{ country.flag }}</span>
+          <span class="country-name">{{ country.name | escape }}</span>
+        </button>
+        {% endfor %}
       </div>
     </div>
 
@@ -67,18 +112,20 @@ title: Places I've Traveled
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Mark the travel link as active
-    document.getElementById('travellink').classList.add('active');
+    if (typeof L === 'undefined') return;
 
-    // Initialize the map
-    const initialCenter = [20, 0];
-    const initialZoom = 2;
-    const worldBounds = L.latLngBounds([[-90, -180], [90, 180]]);
+    const countriesData = {{ page.countries | jsonify }};
+    const isMobile = window.innerWidth <= 768;
+    const initialCenter = isMobile ? [20, 12] : [20, 0];
+    const initialZoom = isMobile ? 1 : 2;
+    const worldBounds = L.latLngBounds([[-65, -180], [82, 180]]);
 
     const map = L.map('travel-map', {
       worldCopyJump: true,
+      zoomSnap: 0.25,
+      minZoom: isMobile ? 0.75 : 2,
       maxBounds: worldBounds,
-      maxBoundsViscosity: 0.8
+      maxBoundsViscosity: 0.85
     }).setView(initialCenter, initialZoom);
 
     const RecenterControl = L.Control.extend({
@@ -89,11 +136,12 @@ title: Places I've Traveled
         button.href = '#';
         button.title = 'Re-center map';
         button.setAttribute('aria-label', 'Re-center map');
-        button.innerHTML = '⟳';
+        button.textContent = '⟳';
 
         L.DomEvent.disableClickPropagation(container);
         L.DomEvent.on(button, 'click', function(e) {
           L.DomEvent.preventDefault(e);
+          map.closePopup();
           map.setView(initialCenter, initialZoom, { animate: true, duration: 0.35 });
         });
 
@@ -103,318 +151,184 @@ title: Places I've Traveled
 
     map.addControl(new RecenterControl());
 
-    // Add the base map layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 18
     }).addTo(map);
 
-    // Countries data with ISO codes, names, and whether I've lived there
-    const countriesData = [
-      { code: 'AUT', name: 'Austria', lived: false, continent: 'Europe' },
-      { code: 'BEL', name: 'Belgium', lived: false, continent: 'Europe' },
-      { code: 'DEU', name: 'Germany', lived: false, continent: 'Europe' },
-      { code: 'ITA', name: 'Italy', lived: false, continent: 'Europe' },
-      { code: 'NLD', name: 'Netherlands', lived: true, continent: 'Europe' },
-      { code: 'GBR', name: 'United Kingdom', lived: false, continent: 'Europe' },
-      { code: 'CAN', name: 'Canada', lived: true, continent: 'North America' },
-      { code: 'CUB', name: 'Cuba', lived: false, continent: 'North America' },
-      { code: 'MEX', name: 'Mexico', lived: false, continent: 'North America' },
-      { code: 'USA', name: 'United States', lived: true, continent: 'North America' },
-      { code: 'EGY', name: 'Egypt', lived: false, continent: 'Africa' },
-      { code: 'CHN', name: 'China', lived: false, continent: 'Asia' },
-      { code: 'ISR', name: 'Israel', lived: false, continent: 'Asia' },
-      { code: 'JOR', name: 'Jordan', lived: false, continent: 'Asia' },
-      { code: 'LBN', name: 'Lebanon', lived: false, continent: 'Asia' },
-      { code: 'AUS', name: 'Australia', lived: false, continent: 'Oceania' },
-      { code: 'VAT', name: 'Vatican City', lived: false, continent: 'Europe' },
-      { code: 'JPN', name: 'Japan', lived: false, continent: 'Asia' },
-      { code: 'VNM', name: 'Vietnam', lived: false, continent: 'Asia' },
-      { code: 'SGP', name: 'Singapore', lived: false, continent: 'Asia' },
-      { code: 'KOR', name: 'South Korea', lived: false, continent: 'Asia' },
-      { code: 'MYS', name: 'Malaysia', lived: false, continent: 'Asia' },
-      { code: 'IDN', name: 'Indonesia', lived: false, continent: 'Asia' },
-      { code: 'BHS', name: 'Bahamas', lived: false, continent: 'North America' },
-      { code: 'FRA', name: 'France', lived: false, continent: 'Europe' },
-      { code: 'THA', name: 'Thailand', lived: false, continent: 'Asia' },
-      { code: 'TWN', name: 'Taiwan', lived: false, continent: 'Asia' },
-      { code: 'CHE', name: 'Switzerland', lived: false, continent: 'Europe' },
-      { code: 'ESP', name: 'Spain', lived: false, continent: 'Europe' },
-    ];
-
-    const iso3ToIso2 = {
-      AUT: 'AT',
-      BEL: 'BE',
-      DEU: 'DE',
-      ITA: 'IT',
-      NLD: 'NL',
-      GBR: 'GB',
-      CAN: 'CA',
-      CUB: 'CU',
-      MEX: 'MX',
-      USA: 'US',
-      EGY: 'EG',
-      CHN: 'CN',
-      ISR: 'IL',
-      JOR: 'JO',
-      LBN: 'LB',
-      AUS: 'AU',
-      VAT: 'VA',
-      JPN: 'JP',
-      VNM: 'VN',
-      SGP: 'SG',
-      KOR: 'KR',
-      MYS: 'MY',
-      IDN: 'ID',
-      BHS: 'BS',
-      FRA: 'FR',
-      THA: 'TH',
-      TWN: 'TW',
-      CHE: 'CH',
-      ESP: 'ES'
+    const nameVariations = {
+      'United States': ['United States of America', 'USA', 'US'],
+      'United Kingdom': ['UK', 'Great Britain'],
+      'South Korea': ['Korea, Republic of', 'Republic of Korea'],
+      'Vatican City': ['Vatican', 'Holy See'],
+      'Bahamas': ['The Bahamas'],
+      'Netherlands': ['Holland']
     };
 
-    function iso2ToFlagEmoji(iso2) {
-      if (!iso2 || typeof iso2 !== 'string' || iso2.length !== 2) return '';
-      const codePoints = iso2
-        .toUpperCase()
-        .split('')
-        .map(char => 127397 + char.charCodeAt(0));
-      return String.fromCodePoint(...codePoints);
+    const countryLookup = {};
+    countriesData.forEach(function(country) {
+      countryLookup[country.name.toLowerCase()] = country;
+      const variations = nameVariations[country.name];
+      if (variations) {
+        variations.forEach(function(variation) {
+          countryLookup[variation.toLowerCase()] = country;
+        });
+      }
+    });
+
+    const layerByCountry = {};
+
+    function popupHtml(country) {
+      let html = '<strong>' + country.name + '</strong>';
+      if (country.lived) {
+        html += '<br><span style="color:#059669">✓ Lived here</span>';
+      }
+      return html;
     }
 
-    // Create arrays of just visited and lived countries for convenience
-    const visitedCountries = countriesData;
-    const livedCountries = countriesData.filter(country => country.lived);
+    function focusCountry(key) {
+      const target = layerByCountry[key];
+      if (!target) return;
 
-    // Fetch GeoJSON data for country boundaries
+      const mapEl = document.getElementById('travel-map');
+      const rect = mapEl.getBoundingClientRect();
+      if (rect.top < 72 || rect.bottom > window.innerHeight) {
+        mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      if (typeof target.getBounds === 'function') {
+        map.fitBounds(target.getBounds(), { padding: [28, 28], maxZoom: 6 });
+      } else if (typeof target.getLatLng === 'function') {
+        map.setView(target.getLatLng(), 6, { animate: true });
+      }
+      target.openPopup();
+    }
+
+    document.querySelectorAll('.country-item[data-country]').forEach(function(button) {
+      button.addEventListener('click', function() {
+        focusCountry(this.dataset.country);
+      });
+    });
+
+    // Add markers for microstates omitted from low-resolution world GeoJSON
+    countriesData.forEach(function(country) {
+      if (typeof country.lat !== 'number' || typeof country.lng !== 'number') return;
+      const isLived = Boolean(country.lived);
+      const marker = L.circleMarker([country.lat, country.lng], {
+        radius: 5,
+        weight: 2,
+        color: isLived ? '#0284c7' : '#7c3aed',
+        fillColor: isLived ? '#0ea5e9' : '#8b5cf6',
+        fillOpacity: 0.85
+      }).addTo(map);
+      marker.bindPopup(popupHtml(country));
+      marker.on('click', function() {
+        map.setView([country.lat, country.lng], 6, { animate: true });
+      });
+      layerByCountry[country.name.toLowerCase()] = marker;
+    });
+
     fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
-      .then(response => response.json())
-      .then(data => {
-        // Log the first feature to see its structure
-        console.log('First feature:', data.features[0]);
-
-        // Create lookup maps for visited and lived countries
-        const visitedCountryMap = {};
-        const livedCountryMap = {};
-
-        // Populate the lookup maps with multiple name variations for better matching
-        countriesData.forEach(country => {
-          // Add the country name and variations to the appropriate map
-          if (country.lived) {
-            livedCountryMap[country.name.toLowerCase()] = true;
-            // Special case for USA
-            if (country.name === 'United States') {
-              livedCountryMap['united states of america'] = true;
-              livedCountryMap['usa'] = true;
-            }
-            // Special case for UK
-            if (country.name === 'United Kingdom') {
-              livedCountryMap['uk'] = true;
-              livedCountryMap['great britain'] = true;
-            }
-          } else {
-            visitedCountryMap[country.name.toLowerCase()] = true;
-            // Special case for USA
-            if (country.name === 'United States') {
-              visitedCountryMap['united states of america'] = true;
-              visitedCountryMap['usa'] = true;
-            }
-            // Special case for UK
-            if (country.name === 'United Kingdom') {
-              visitedCountryMap['uk'] = true;
-              visitedCountryMap['great britain'] = true;
-            }
-          }
-        });
-
-        // Debug
-        console.log('Visited countries:', Object.keys(visitedCountryMap));
-        console.log('Lived countries:', Object.keys(livedCountryMap));
-
-        // Create name variations map for better matching
-        const nameVariations = {
-          'United States': ['United States of America', 'USA', 'US'],
-          'United Kingdom': ['UK', 'Great Britain'],
-          'South Korea': ['Korea, Republic of', 'Republic of Korea'],
-          'Vatican City': ['Vatican', 'Holy See'],
-          'Bahamas': ['The Bahamas'],
-          'Netherlands': ['Holland']
-        };
-
-        // Build a comprehensive lookup map
-        const countryStatusMap = {};
-        countriesData.forEach(country => {
-          const status = country.lived ? 'lived' : 'visited';
-
-          // Add primary name
-          countryStatusMap[country.name.toLowerCase()] = status;
-
-          // Add variations if they exist
-          if (nameVariations[country.name]) {
-            nameVariations[country.name].forEach(variation => {
-              countryStatusMap[variation.toLowerCase()] = status;
-            });
-          }
-        });
-
-        console.log('Country status map:', countryStatusMap);
-
-        // Add GeoJSON layer to the map
-        const geojsonLayer = L.geoJSON(data.features, {
+      .then(function(response) {
+        if (!response.ok) throw new Error('Failed to load country boundaries');
+        return response.json();
+      })
+      .then(function(data) {
+        L.geoJSON(data.features, {
           style: function(feature) {
-            const countryName = feature.properties.name;
-            const status = countryStatusMap[countryName.toLowerCase()];
-            const hasLived = status === 'lived';
-            const hasVisited = status === 'visited';
-
-            // Different styling based on status
-            if (hasLived) {
+            const match = countryLookup[(feature.properties.name || '').toLowerCase()];
+            if (match && match.lived) {
               return {
-                fillColor: '#0ea5e9', // Vibrant sky blue for countries lived in
+                fillColor: '#0ea5e9',
                 weight: 2,
                 opacity: 1,
                 color: '#0284c7',
                 fillOpacity: 0.75,
                 dashArray: ''
               };
-            } else if (hasVisited) {
+            }
+            if (match) {
               return {
-                fillColor: '#8b5cf6', // Purple for countries visited
+                fillColor: '#8b5cf6',
                 weight: 2,
                 opacity: 1,
                 color: '#7c3aed',
                 fillOpacity: 0.6,
                 dashArray: ''
               };
-            } else {
-              return {
-                fillColor: '#f1f5f9', // Light gray for countries not visited
-                weight: 1,
-                opacity: 1,
-                color: '#94a3b8',
-                fillOpacity: 0.2,
-                dashArray: '3'
-              };
             }
+            return {
+              fillColor: '#f1f5f9',
+              weight: 1,
+              opacity: 1,
+              color: '#94a3b8',
+              fillOpacity: 0.2,
+              dashArray: '3'
+            };
           },
           onEachFeature: function(feature, layer) {
-            const countryName = feature.properties.name;
-            const status = countryStatusMap[countryName.toLowerCase()];
-            const hasLived = status === 'lived';
-            const hasVisited = status === 'visited';
+            const match = countryLookup[(feature.properties.name || '').toLowerCase()];
+            if (!match) return;
 
-            if (hasLived || hasVisited) {
-              // Create a more informative popup based on status
-              let popupContent = `<strong>${countryName}</strong>`;
-              if (hasLived) {
-                popupContent += `<br><span style="color:#059669">✓ Lived here</span>`;
-              }
-              layer.bindPopup(popupContent);
+            layerByCountry[match.name.toLowerCase()] = layer;
+            layer.bindPopup(popupHtml(match));
 
-              // Add hover effects based on status
-              layer.on({
-                mouseover: function() {
-                  if (hasLived) {
-                    // Sky blue hover effect for lived-in countries
-                    this.setStyle({
-                      weight: 3,
-                      color: '#0369a1',
-                      fillOpacity: 0.9,
-                      fillColor: '#38bdf8'
-                    });
-                  } else {
-                    // Purple hover effect for visited countries
-                    this.setStyle({
-                      weight: 3,
-                      color: '#6d28d9',
-                      fillOpacity: 0.8,
-                      fillColor: '#a78bfa'
-                    });
-                  }
-                  this.bringToFront();
-                },
-                mouseout: function() {
-                  if (hasLived) {
-                    // Reset to sky blue for lived-in countries
-                    this.setStyle({
-                      weight: 2,
-                      color: '#0284c7',
-                      fillOpacity: 0.75,
-                      fillColor: '#0ea5e9'
-                    });
-                  } else {
-                    // Reset to purple for visited countries
-                    this.setStyle({
-                      weight: 2,
-                      color: '#7c3aed',
-                      fillOpacity: 0.6,
-                      fillColor: '#8b5cf6'
-                    });
-                  }
-                },
-                click: function() {
-                  map.fitBounds(this.getBounds());
+            layer.on({
+              mouseover: function() {
+                if (match.lived) {
+                  this.setStyle({
+                    weight: 3,
+                    color: '#0369a1',
+                    fillOpacity: 0.9,
+                    fillColor: '#38bdf8'
+                  });
+                } else {
+                  this.setStyle({
+                    weight: 3,
+                    color: '#6d28d9',
+                    fillOpacity: 0.8,
+                    fillColor: '#a78bfa'
+                  });
                 }
-              });
-            }
+                this.bringToFront();
+              },
+              mouseout: function() {
+                if (match.lived) {
+                  this.setStyle({
+                    weight: 2,
+                    color: '#0284c7',
+                    fillOpacity: 0.75,
+                    fillColor: '#0ea5e9'
+                  });
+                } else {
+                  this.setStyle({
+                    weight: 2,
+                    color: '#7c3aed',
+                    fillOpacity: 0.6,
+                    fillColor: '#8b5cf6'
+                  });
+                }
+              },
+              click: function() {
+                map.fitBounds(this.getBounds(), { padding: [24, 24], maxZoom: 6 });
+              }
+            });
           }
         }).addTo(map);
-
-        // Separate countries into visited and lived
-        const countriesVisited = countriesData.filter(country => !country.lived);
-        const countriesLived = countriesData.filter(country => country.lived);
-
-        // Update the counts
-        document.getElementById('countries-count').textContent = countriesData.length;
-        document.getElementById('continents-count').textContent = [...new Set(countriesData.map(c => c.continent))].length;
-
-        // Update section headings with counts
-        document.getElementById('lived-heading').innerHTML = `Lived <span class="heading-count">(${countriesLived.length})</span>`;
-        document.getElementById('visited-heading').innerHTML = `Visited <span class="heading-count">(${countriesVisited.length})</span>`;
-        // Populate the lived countries grid
-        const livedCountriesGrid = document.getElementById('lived-countries-grid');
-        countriesLived.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
-          const countryElement = document.createElement('div');
-          countryElement.className = 'country-item lived';
-
-          const iso2 = iso3ToIso2[country.code];
-          const flag = iso2ToFlagEmoji(iso2);
-          if (flag) {
-            countryElement.classList.add('has-flag');
-            countryElement.innerHTML = `<span class="country-flag" aria-hidden="true">${flag}</span><span class="country-name">${country.name}</span>`;
-          } else {
-            countryElement.textContent = country.name;
-          }
-          livedCountriesGrid.appendChild(countryElement);
-        });
-
-        // Populate the visited countries grid
-        const countriesGrid = document.getElementById('countries-grid');
-        countriesVisited.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
-          const countryElement = document.createElement('div');
-          countryElement.className = 'country-item';
-
-          const iso2 = iso3ToIso2[country.code];
-          const flag = iso2ToFlagEmoji(iso2);
-          if (flag) {
-            countryElement.classList.add('has-flag');
-            countryElement.innerHTML = `<span class="country-flag" aria-hidden="true">${flag}</span><span class="country-name">${country.name}</span>`;
-          } else {
-            countryElement.textContent = country.name;
-          }
-          countriesGrid.appendChild(countryElement);
-        });
-
-        // Update countries count (total of both visited and lived)
-        document.getElementById('countries-count').textContent = countriesData.length;
+      })
+      .catch(function() {
+        // Base map, stats, and country lists remain usable if boundary GeoJSON fails to load.
       });
   });
 </script>
 
 <style>
+  .travel-section {
+    margin-bottom: 24px;
+  }
+
   .travel-stats {
-    margin: 40px 0;
+    margin: 32px 0 40px;
   }
 
   .section-subtitle {
@@ -430,43 +344,47 @@ title: Places I've Traveled
   }
 
   .stats-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 180px));
     justify-content: center;
-    gap: 30px;
+    gap: 24px;
     margin-top: 20px;
   }
 
   .stat-card {
     background-color: #f3f6f9;
     border-radius: 12px;
-    padding: 20px;
+    padding: 20px 16px;
     text-align: center;
-    min-width: 150px;
     border: 1px solid #d3dce6;
   }
 
   .stat-number {
-    font-size: 2.5rem;
+    font-size: 2.35rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 5px;
+    line-height: 1.15;
+    margin-bottom: 6px;
   }
 
   .stat-label {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-light);
   }
 
   .countries-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 15px;
+    gap: 14px;
     margin-top: 20px;
   }
 
   .country-item {
     --country-border: #d8d1e4;
     --flag-background: #f3eff9;
+    appearance: none;
+    font: inherit;
+    color: inherit;
     background-color: #fcfbfd;
     border: 1px solid var(--country-border);
     border-radius: var(--border-radius);
@@ -475,6 +393,20 @@ title: Places I've Traveled
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+  }
+
+  .country-item:hover {
+    border-color: #a78bfa;
+    box-shadow: 0 4px 12px -8px rgba(109, 40, 217, 0.45);
+    transform: translateY(-1px);
+  }
+
+  .country-item:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
   }
 
   .country-item.lived {
@@ -482,6 +414,11 @@ title: Places I've Traveled
     --flag-background: #ebf4fb;
     background-color: #f9fcfe;
     font-weight: 500;
+  }
+
+  .country-item.lived:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 4px 12px -8px rgba(2, 132, 199, 0.45);
   }
 
   .country-item.has-flag {
@@ -523,11 +460,11 @@ title: Places I've Traveled
 
   .travel-map-container {
     width: 100%;
-    height: 500px;
+    height: 480px;
     border-radius: var(--border-radius);
     border: 2px solid #94a3b8;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     box-shadow: none;
     position: relative;
     z-index: 1;
@@ -562,24 +499,22 @@ title: Places I've Traveled
   .map-legend {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 15px;
-    margin-bottom: 40px;
-    padding: 15px 25px;
+    justify-content: center;
+    gap: 24px;
+    margin: 14px auto 32px;
+    padding: 12px 24px;
     background: #f3f6f9;
     border-radius: 10px;
     border: 1px solid #d3dce6;
-    max-width: 350px;
-    margin-left: auto;
-    margin-right: auto;
+    width: fit-content;
+    max-width: 100%;
   }
 
   .legend-item {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
   }
 
   .legend-divider {
@@ -590,8 +525,8 @@ title: Places I've Traveled
   }
 
   .legend-color {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
@@ -606,7 +541,6 @@ title: Places I've Traveled
     opacity: 0.6;
   }
 
-
   .legend-label {
     font-size: 0.95rem;
     color: var(--text-color);
@@ -614,50 +548,61 @@ title: Places I've Traveled
   }
 
   .legend-emoji {
-    font-size: 1.2em;
-    margin-left: 5px;
+    font-size: 1.15em;
+    margin-left: 4px;
     line-height: 1;
     display: inline-block;
     transform: translateY(1px);
   }
 
-  .legend-tip {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    font-style: italic;
-    margin-left: 10px;
-    padding-left: 10px;
-    border-left: 1px solid var(--border-color);
-  }
-
   @media (max-width: 768px) {
-    .stats-grid {
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .stat-card {
-      width: 100%;
-      max-width: 200px;
+    .travel-map-container {
+      height: 300px;
     }
 
     .map-legend {
-      flex-direction: column;
+      gap: 16px;
+      padding: 10px 18px;
+      margin-bottom: 24px;
+    }
+
+    .travel-stats {
+      margin: 24px 0 32px;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      align-items: flex-start;
-      padding: 15px;
+      margin-top: 0;
     }
 
-    .legend-divider {
-      display: none;
+    .stat-card {
+      padding: 14px 8px;
     }
 
-    .legend-tip {
-      margin-left: 0;
-      padding-left: 0;
-      border-left: none;
-      margin-top: 10px;
+    .stat-number {
+      font-size: 1.75rem;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+    }
+
+    .countries-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .country-flag {
+      width: 36px;
+      padding: 8px 6px;
+      font-size: 0.95rem;
+    }
+
+    .country-name {
+      padding: 8px 9px;
+      font-size: 0.875rem;
     }
   }
 </style>

@@ -98,6 +98,10 @@
   object-fit: cover;
 }
 
+.site-project--fusion .site-project-preview img {
+  object-fit: contain;
+}
+
 .site-project-body {
   display: flex;
   flex: 1;
